@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/ScalaPlay/ScalaPlayIntroduction.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:47:09 GMT -->
+<head>
+  <title>Scala Play app with Angular - 2017 </title>
+  <meta content="Scala Play app with Angular" name="description" />
+  <meta content="Java Tutorial, Scala Play : Scala Play app with Angular" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../../public/css/app.css">
+  <link rel="stylesheet" href="../../../public/css/styles.css">
+  <link rel="stylesheet" href="../../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../../index-2.html">Home</a></li>
+          <li><a href="../../../about_us.html">About</a></li>
+          <li><a href="../../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../../python/pytut.html">Python</a></li>
+          <li><a href="../../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../on_java.html">Java</a></li>
+              <li><a href="../../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../../AmazingPlaces/index.html" target="_blank">
+<img src="../../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Scala Play app with Angular - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../images/ScalaPlay/ScalaPlay-Icon.png" alt="ScalaPlay-Icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle_2nd" id="Note">Note</div>
+<p>In this page, we'll work on a simple blog with Scala Play as backend and Angular as frontend frameworks.</p>
+<p>First, we are going to test it on a local Apache/Nginx with reverse proxy setup on Ubuntu 14. Then, we'll deploy it to  production VPS on Ubuntu.</p>
+<p>The domain name for local is set as <b>play.angular.com</b> for local, and <a href="http://cruxlynx.com/" target="_blank">cruxlynx.com</a> for production.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="clone">Get code</div>
+<p>Let's start by updating the list:</p>
+<pre>
+$ sudo apt-get update
+</pre>
+<br>
+<p>Get the code from a repo:</p>
+<pre>
+$ git clone https://github.com/Einsteinish/Scala-Play-Framework-with-Angular.git
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Node-install">Install Node.js</div>
+<pre>
+$ sudo apt-get install nodejs
+$ sudo ln -s /usr/bin/nodejs /usr/bin/node
+$ node -v
+v0.10.25
+</pre>
+<br>
+<p>In order to upgrade node, we can use <b>n</b> module from <b>npm</b>: 
+<pre>
+$ sudo npm cache clean -f
+$ sudo npm install -g n
+$ sudo n stable
+
+$ sudo ln -sf /usr/local/n/versions/node/6.0.0/bin/node /usr/bin/node
+</pre>
+<br>
+<p>For <b>npm</b>:</p>
+<pre>
+$ sudo apt-get install npm
+$ npm -v
+1.3.10
+</pre>
+<br>
+<p>We may want to upgrade <b>npm</b>:</p>
+<pre>
+$ sudo npm install -g npm
+
+$ npm -v
+3.8.9
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Node-install">Install Java</div>
+<p>Install Java for backend:</p>
+<pre>
+$ sudo apt-add-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Install-frontend-packages">Install frontend packages</div>
+<p>Install JavaScript tools:</p>
+<pre>
+$ sudo npm install -g grunt-cli bower
+$ sudo npm install -g yo
+</pre>
+<br>
+<p><b>grunt</b> is a task-based command line build tool for JavaScript projects.</p>
+<p>Let's install local <b>grunt</b>.</p>
+<p>The easiest way to add Grunt and gruntplugins to an existing <b>package.json</b> is with the command <b>npm install grunt --save-dev</b>. Not only will this install grunt locally, but it will automatically be added to the <b>devDependencies</b> section, using a tilde version range:</p>
+<pre>
+$ sudo npm install grunt --save-dev
+</pre>
+<br>
+<p>Now, we want to install packages specified in <b>package.json</b>:</p>
+<pre>
+$ sudo npm install
+</pre>
+<br>
+<p>Using the <b>--save-dev</b> flag will cause <b>npm</b> to automatically add this package to the dependencies in our <b>package.json</b> file.</p>
+<p>Run <b>grunt serve</b>:</p>
+<pre>
+$ grunt serve
+...
+Running "wiredep:app" (wiredep) task
+Warning: Error: Cannot find where you keep your Bower packages. Use --force to continue.
+...
+</pre>
+<br>
+<p>To fix the problem:</p>
+<pre>
+$ bower install jquery --save
+</pre>
+<br>
+<p>Now we can run AngularJS client app run <b>grunt serve</b>:</p>
+<pre>
+$ <font color="blue">grunt serve</font>
+Running "serve" task
+
+Running "clean:server" (clean) task
+&gt;&gt; 0 paths cleaned.
+
+Running "wiredep:app" (wiredep) task
+
+Running "wiredep:test" (wiredep) task
+
+Running "concurrent:server" (concurrent) task
+    
+    Running "copy:styles" (copy) task
+    Copied 1 file
+    
+    Done.
+...
+    
+Running "autoprefixer:server" (autoprefixer) task
+Autoprefixer's process() method is deprecated and will removed in next major release. Use postcss([autoprefixer]).process() instead
+File .tmp/styles/main.css created.
+
+Running "configureProxies:server" (configureProxies) task
+Proxy created for: /app to localhost:9090
+
+Running "connect:livereload" (connect) task
+Started connect web server on http://localhost:9000
+
+Running "watch" task
+Waiting...
+</pre>
+<br>
+<p>Check the process:</p>
+<pre>
+$ lsof -i
+grunt    8395    k   10u  IPv4 5356818      0t0  TCP localhost:9000 (LISTEN)
+grunt    8395    k   11u  IPv4 5356200      0t0  TCP *:35729 (LISTEN)
+...
+</pre>
+<br>
+<p>On the Play server:</p>
+<pre>
+$ <font color="blue">./activator "run 9090"</font>
+[info] Loading project definition from /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/project
+[info] Updating {file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/project/}server-build...
+[info] Resolving org.fusesource.jansi#jansi;1.4 ...
+[info] Done updating.
+[info] Set current project to server (in build file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/)
+[info] Updating {file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/}root...
+[info] Resolving jline#jline;2.11 ...
+[info] Done updating.
+
+--- (Running the application, auto-reloading is enabled) ---
+
+[info] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9090
+
+(Server started, use Ctrl+D to stop and go back to the console...)
+
+[info] play - database [default] connected at jdbc:h2:mem:play
+[info] play - Application started (Dev)
+</pre>
+<br>
+<p>Check the process:</p>
+<pre>
+$ lsof -i
+java    15885    k  309u  IPv6 5778371      0t0  TCP *:9090 (LISTEN)
+</pre>
+<br>
+<p>Actually, the Play command runs this:</p>
+<pre>
+$ java -Dactivator.home=. -Xms1024m -Xmx1024m -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=256m -jar ./activator-launch-1.3.2.jar run 9090
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="browser">Running on a browser</div>
+<p>Open a browser and type in <b>http://localhost:9000</b>:</p>
+<br/>
+<img alt="Localhost-9000.png" src="../images/ScalaPlay/Introduction/Localhost-9000.png"/>
+<br/>
+<p>We can set up Apache reverse proxy so that users request on port 80 and forward it to port 9000. Here is the config file (<b>/etc/apache2/sites-available/play.angular.com.conf</b>):</p>
+<pre>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@play.angular.com
+    ServerName www.play.angular.com
+    ServerAlias play.angular.com
+    ErrorLog /var/www/play.angular.com/logs/error.log
+    CustomLog /var/www/play.angular.com/logs/access.log combined
+
+        ProxyPass / http://localhost:9000/
+        ProxyPassReverse / http://localhost:9000/
+        &lt;Location "/app"&gt;
+            Order deny,allow
+            Allow from all
+        &lt;/Location&gt;
+&lt;/VirtualHost&gt;
+</pre>
+<br>
+<p>Also we need to set the host in <b>/etc/hosts</b> like this:</p>
+<pre>
+127.0.0.1 play.angular.com
+</pre>
+<br>
+<p>This time, we can just type in the domain name for the url:</p>
+<br/>
+<img alt="play-angular-com.png" src="../images/ScalaPlay/Introduction/play-angular-com.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="nginx">Production web server configuration</div>
+<p><b>/etc/httpd/cruxlynx.com.conf</b>:</p>
+<pre>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin cruxlynx@gmail.com
+    ServerName www.cruxlynx.com
+    ServerAlias cruxlynx.com
+    ErrorLog /var/www/cruxlynx.com/logs/error.log
+    CustomLog /var/www/cruxlynx.com/logs/access.log combined
+
+    ProxyPass / http://localhost:9000/
+    ProxyPassReverse / http://localhost:9000/
+    &lt;Location "/app"&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Location&gt;
+&lt;/VirtualHost&gt;
+</pre>
+<br>
+<p><b>/etc/nginx/cruxlynx.com.conf</b>:</p>
+<pre>
+server {
+    listen 80;
+
+    server_name cruxlynx.com;
+
+    location / {
+        proxy_pass http://localhost:9000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Background-running">Background running server &amp; client  </div>
+<p>In the following two sections, we'll test for production version on local.</p>
+<p>We want to run it as a background process so that it can run after exiting from ssh.</p>
+<p>In Production:</p>
+<pre>
+server$ <font color="blue">./activator "start -Dhttp.port=9090"</font>
+[info] Loading project definition from /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/project
+[info] Updating {file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/project/}server-build...
+[info] Resolving org.fusesource.jansi#jansi;1.4 ...
+[info] Done updating.
+[info] Set current project to server (in build file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/)
+[info] Packaging /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/scala-2.11/server_2.11-1.0-SNAPSHOT-sources.jar ...
+[info] Done packaging.
+[info] Updating {file:/home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/}root...
+[info] Resolving jline#jline;2.11 ...
+[info] Done updating.
+[info] Wrote /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/scala-2.11/server_2.11-1.0-SNAPSHOT.pom
+[info] Main Scala API documentation to /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/scala-2.11/api...
+[info] Packaging /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/scala-2.11/server_2.11-1.0-SNAPSHOT.jar ...
+[info] Done packaging.
+[info] Packaging /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/server-1.0-SNAPSHOT-assets.jar ...
+[info] Done packaging.
+model contains 22 documentable templates
+[info] Main Scala API documentation successful.
+[info] Packaging /home/k/MySites/cruxlynx/Scala-Play-Framework-with-Angular/server/target/scala-2.11/server_2.11-1.0-SNAPSHOT-javadoc.jar ...
+[info] Done packaging.
+
+(Starting server. Type Ctrl+D to exit logs, <font color="blue">the server will remain in background</font>)
+ 
+Play server process ID is 30222
+[info] play - database [default] connected at jdbc:h2:mem:play
+[info] play - Application started (Prod)
+[info] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9090
+</pre>
+<br>
+<p>As the output suggested, we can type Ctrl+D and out of ssh. The server still running in background.</p>
+<p>More info on port change depending on the Play version : <a href="http://stackoverflow.com/questions/8205067/how-do-i-change-the-default-port-9000-that-play-uses-when-i-execute-the-run" target="_blank">How do I change the default port (9000) that Play uses when I execute the "run" command?</a></p>
+<p>For <b>client</b>:</p>
+<pre>
+client$ <font color="blue">nohup grunt serve &amp;</font>
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="prod-page">Production Demo Page</div>
+<p>The picture below shows the result from the run on AWS Ubuntu 14 with nginx reverse proxy setup.</p>
+<pre>
+server$ ./activator "start -Dhttp.port=9090"
+client$ nohup grunt serve &amp;
+
+$ lsof -i
+COMMAND  PID   USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+grunt   1747 ubuntu   10u  IPv4  13039      0t0  TCP localhost:9000 (LISTEN)
+grunt   1747 ubuntu   11u  IPv6  13042      0t0  TCP *:35729 (LISTEN)
+java    3476 ubuntu   90u  IPv6  30014      0t0  TCP *:9090 (LISTEN)
+</pre>
+<br/>
+<img alt="CruxLynxAfterOnePost.png" src="../images/ScalaPlay/Introduction/CruxLynxAfterOnePost.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="refs">Reference</div>
+<p>The code of this post is based on <a href="https://www.toptal.com/java/building-modern-web-applications-with-angularjs-and-play-framework" target="_blank">Building Modern Web Applications with AngularJS and Play Framework</a></p>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="cronjob">cronjob</div>
+<p>I haven't figured out the reason why but the <b>grunt</b> keeps dying, so I have to run the following cronjob as 'root':</p>
+<pre>
+$ sudo crontab -e 
+
+* * * * * cd /vol1/MySites/cruxlynx/Scala-Play-Framework-with-Angular/client && ./g.sh
+</pre>
+<br>
+<p>Note: I moved the source code to <b>/vol1</b> from <b>~</b>. The sections in this tutorial were written before I moved the files.</p>
+<p>The script (<b>g.sh</b>) looks like this:</p>
+<pre>
+#!/bin/bash
+
+pID=`pgrep grunt`
+echo "pid=$pID"
+if [ -z "$pID" ] #check empty
+then
+   echo "Not running"
+   nohup grunt serve >/dev/null 2>&1 &
+else
+   echo "Running"
+fi
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+             <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+             </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+            <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+            </div>
+            <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Scala Play!</h1>
+   <br><br>
+   <a href="ScalaPlayIntroduction.html">Scala/Java Play app with Angular</a>
+   <br><br>
+
+
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Spring Boot</h1>
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-HelloWorld-with-Maven.html">Spring Boot : Hello world with Mavan 3</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-HelloWorld-with-Gradle.html">Spring Boot : Hello world with Gradle 2</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-Authetication-Securing-Web-Application.php">Spring Boot (Gradle 2) : Hello world with Authentication</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-Maven3-Elicpse-Tomcat-War-file.html">Spring Boot : Deploying War file to Tomcat 8's webapps</a> 
+   <br><br>
+   <a href="../Spring-Boot/How-to-Setup-Apache-as-Reverse-Proxy-for-Tomcat8-Server-using-mod-proxy.html">How to Setup Apache as Reverse Proxy for Tomcat Server using mod proxy</a> 
+   <br><br>
+   <a href="../Spring-Boot/Maven-mvn-command-cheat-sheet.html">Maven : mvn command cheat sheet</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-REST-API-CORS-Maven-Tomcat-Deploy-War.html">Spring-Boot REST API with CORS App Maven war file deploy to Tomcat</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-Security-AngularJS-I.html">Spring-Boot / Spring Security with AngularJS - Part I (Introduction) </a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-Security-AngularJS-II.html">Spring-Boot / Spring Security with AngularJS - Part II (Dynamic resource load from Angular)</a> 
+   <br><br>
+   <a href="../Spring-Boot/Spring-Boot-Security-AngularJS-III-Form-Based%20Authentication.html">Spring-Boot / Spring Security with AngularJS : Part III (Form-based Authentication)</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Java Tutorials</h1>
+   <br><br>
+   <a href="../on_java.html">Java Tutorial Home</a> 
+   <br><br>
+   <a href="../javabasics.html">Basics - Compiling and Launching</a> 
+   <br><br>
+   <a href="../innerclass.html">Inner Classes</a> 
+   <br><br>
+   <a href="../constructor.html">Constructor</a> 
+   <br><br>
+   <a href="../enums.html">Enums</a> 
+   <br><br>
+   <a href="../statics.html">Static & Finally</a> 
+   <br><br>
+   <a href="../defaultandprotected.html">Default and Protected</a>
+   <br><br>
+   <a href="../polymorphism.html">Polymorphism</a>
+   <br><br>
+   <a href="../exceptionhandling.html">Exception Handling</a>
+   <br><br>
+   <a href="../exceptionhandling2.html">Exception Handling II</a>
+   <br><br>
+   <a href="../stringclass.html">String Class</a>
+   <br><br>
+   <a href="../threads.html">Threads</a>
+   <br><br>
+   <a href="../threads2.html">Threads II - State Transition</a>
+   <br><br>
+   <a href="../threads3.html">Threads III - Synchronization</a>
+   <br><br>
+   <a href="../objectclass.html">Object Class</a>
+   <br><br>
+   <a href="../fileio.html">File I/O</a>
+   <br><br>
+   <a href="../serialization.html">Serialization</a>
+   <br><br>
+   <a href="../arraylist.html">ArrayList</a>
+   <br><br>
+   <a href="../autoboxing.html">Autoboxing</a>
+   <br><br>
+   <a href="../javagraphics.html">Java Graphics Interface I - Basics</a>
+   <br><br>
+   <a href="../javagraphics2.html">Java Graphics Interface II - Labels, Text Fields, Layouts</a>
+   <br><br>
+   <a href="../javagraphics3.html">Java Graphics Interface III - paintComponent</a>
+   <br><br>
+   <a href="../tcp_socket_server_client.html">TCP Sockets Server/Client</a>
+   <br><br>
+   <a href="../scala_functional_java_programming.html">Scala - Functional Java Programming</a>
+   <br><br>
+   <a href="../Apache_CXF.html">Apache CXF install</a>
+   <br><br>
+   <a href="../Tomcat7_Ubuntu_14_Install_On_Amazon_EC2.html">Tomcat 7 Ubuntu 14 Install on Amazon EC2 instance</a>
+   <br><br>
+   <a href="../Maven/What-is-Apache-Maven.html">What is Apache Maven?</a>
+   <br><br>
+   <a href="../Maven/Apache-Maven-Lifecycle.html">Maven life cycle</a>
+   <br><br>
+   <a href="../Maven/Eclipse_Maven3_Plugin.html">Eclipse Maven 3 plugin on Ubuntu 14.04</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_Setting_Up.html">Apache Maven 3 - Setting up and creating a project</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_compile_build_install.html">Apache Maven 3 - Compile, build, and install a Maven project</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_Dependencies.html">Apache Maven 3 - Dependencies</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_Web_Application_War.html">Apache Maven 3 - Web Application</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_Plugins.html">Apache Maven 3 - Plugins (compiler)</a>
+   <br><br>
+   <a href="../Maven/Apache_Maven3_Plugins_Jetty.html">Apache Maven 3 - Plugins (Jetty)</a>
+   <br><br>
+   <a href="../../../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <br><br>
+   <b><i>Spring Framework</i></b>
+   <br><br>
+   <a href="../SpringFramework/HelloWorld_App_with_Spring4_Maven3.html">Hello World App with Spring 4 & Maven 3 - Part I</a>
+
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>JUnit & Maven Tutorial</h1>
+   <br><br>
+   <a href="../../../TestingFramworks/JUnit/JUnit_HelloWorld.html">JUnit 4 Introduction (Hello World)</a> 
+
+   <br><br>
+   <a href="../../../TestingFramworks/JUnit/JUnit_Eclipse_Plugin.html">JUnit 4 Test with Eclipse Luna (Hello World)</a>
+
+   <br><br>
+   <a href="../../../TestingFramworks/JUnit/JUnit_Test_with_Maven.html">JUnit 4 Test with Maven (Hello World)</a> 
+
+   <br><br>
+
+
+
+<br /><br />
+
+
+
+
+
+
+      
+            </div>
+          </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/ScalaPlay/ScalaPlayIntroduction.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:47:17 GMT -->
+</html>
+
+

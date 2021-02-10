@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/binarytree.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:19:19 GMT -->
+<head>
+  <title>C++ Tutorial: Binary Tree - 2017</title>
+  <meta content="C++ Tutorial: Binary Search Tree, Basically, binary search trees are fast at insert and lookup. On average, a binary search tree algorithm can locate a node in an n node tree in order log(n) time (log base 2). Therefore, binary search trees are good for dictionary problems where the code inserts and looks up information indexed by some key. The log(n) behavior is the average case -- it's possible for a particular tree to be much slower depending on its shape." name="description" />
+  <meta content="C++ Tutorial, Binary Search Tree, SubTree, In Order print, Level print, C++ binary tree, binary tree,
+ Pre Order print, Post Oder print, Paths from the root to leaves, Successor/Predecessor, Lowest Common Ancestor, Breadth First" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial 
+- Binary Tree Code Example       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle_2nd" id="Algoryhme">Algoryhme </div>
+<br/>
+I think that I shall never see<br/>
+A graph more lovely than a tree.<br/>
+A tree whose crucial property<br/>
+Is loop-free connectivity.<br/>
+A tree that must be sure to span<br/>
+So packets can reach every LAN.<br/>
+First, the root must be selected.<br/>
+By ID, it is elected.<br/>
+Least-cost paths from root are traced.<br/>
+In the tree, these paths are placed.<br/>
+A mesh is made by folks like me,<br/>
+Then bridges find a spanning tree.<br/>
+<br/>
+- Radia Perlman (Developer of Spanning Tree)
+
+
+
+<br/><br/>
+<div class="subtitle" id="binarytreeexamples">Binary Tree Example Code</div>
+<p>A <strong>binary tree</strong> is made of nodes, where each node contains a <strong>left</strong> pointer, a <strong>right</strong> pointer, and a <strong>data element</strong>. </p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>The <strong>root</strong> pointer points to the topmost node in the tree. The left and right pointers recursively point to smaller <strong>subtrees</strong> on either side. A null pointer represents a binary tree with no elements -- the empty tree.</p>
+<p>The formal recursive definition is: a <strong>binary tree</strong> is either empty (represented by a null pointer), or is made of a single node, where the left and right pointers (recursive definition ahead) each point to a <strong>binary tree</strong>. </p>
+<p>A <strong>binary search tree (BST)</strong> or <strong>ordered binary tree</strong> is a type of binary tree where the nodes are arranged in order: for each node, all elements in its left subtree are less-or-equal to the node (&lt;=), and all the elements in its right subtree are greater than the node (&gt;). </p>
+<p>Basically, binary search trees are fast at insert and lookup. On average, a binary search tree algorithm can locate a node in an $n$ node tree in order $ \log n$ time (log base 2). Therefore, binary search trees are good for <strong>dictionary</strong> problems where the code inserts and looks up information indexed by some key. 
+The $ \log n$ behavior is the average case -- it's possible for a particular tree to be much slower depending on its shape.</p>
+<p>The last tree out of major kinds of trees is a <a href="../Algorithms/heapsort.html" target="_blank">heap</a>. A heap is a tree in which each node's children have values less than or equal to node's value. Consequently, the root node always has the largest value in the tree, which means that it's possible to find the maximum value in constant time: Simply return the root value. So, if extraction the max value needs to be fast, we should use a heap.</p>
+<p>A <strong>leaf (external)</strong> node is a node that has no children while <strong>nonleaf</strong> node is also called <strong>internal</strong> node. The number of children of a node $x$ in a tree $T$ is the same as the <strong>degree</strong> of $x$. The length of the simple path from the root $r$ to a node $x$ is the <strong>depth</strong> of $x$ in $T$. A <strong>level</strong> of a tree consists of all nodes at the same depth. The <strong>height</strong> of a node in a tree is the number of edges (hops) on the longest downward path from the node to a leaf, and the height of a tree is the height of its root. So, the height of a tree is equal to the largest depth of any node in the tree.</p>
+<p>The <strong>height (depth)</strong> could be anywhere from ~$log_2 n$(best case, perfectly balanced) to ~$n$ (worst case, a chain). Another thing to point out here is the importance of the <strong>height</strong>. We may appreciate the role of the height property of BST from the answer to the following question:<br/>
+What's the worst-case running time of search(or insert) operation in a binary search tree containing $n$ keys?<br/>
+<ol>
+<li>$O(1)$</li>
+<li>$O(log_2 n)$</li>
+<li>$O(height)$</li>
+<li>$O(n)$</li>
+</ol>
+The answer is <strong>(3)</strong>. That's because we need to know the structure of BST, and the <strong>height</strong> gives us that information (longest root-leaf path). Note that (2) is for the bast case, and (4) is the answer for the worst case. So, in general, (3) should be the answer.
+</p>
+<ol>
+<br/><br/>
+<img alt="binarytree_pic" src="images/binarytree/binarytree_pic.png"/>
+<br/>
+<br/>
+<p>The following items are included in this Binary Search Tree example code. <br/>
+It's based on the tree in the picture above.</p>
+<ol>
+<li><strong>Look Up (lookUp())</strong><br/>
+	One advantage of a binary search tree is that the lookup operation is fast and simple. This is particularly useful for data storage. This look up is a fast operation because we eliminate half the nodes from our search on each iteration by choosing to follow the left subtree or the right subtree. It is an $ \Omega (\log n)$ operation.
+	</li>
+<br/>
+<li><strong>New Node (newTreeNode())</strong> <br/>
+	Makes the <strong>root</strong> node.
+	</li>
+<br/>
+<li><strong>Insert Node (insertTreeNode())</strong><br/>
+	Insertion begins as a search would begin; if the root is not equal to the value, we search the left or right subtrees as before. Eventually, we will reach an external node and add the value as its right or left child, depending on the node's value. In other words, we examine the root and recursively insert the new node to the left subtree if the new value is less than the root, or the right subtree if the new value is greater than or equal to the root.<br/>
+
+	$ \Omega (\log n)$ operations
+	</li>
+<br/>
+<li><strong>Deleting a key from a binary search (<a href="binarytree.html#delete_key">  deleteKey()</a>) </strong> <br/>
+         This is a little bit tricky. We can categorize it in three groups depending its operations:
+         <ol>
+<li>A leaf node - this is the easiest case and we just delete it.
+          </li>
+<li>A node that has both left and right child <br/>
+           We replace the node with its predecessor.
+          </li>
+<li>A node that has only one child. The child replaces the parent.</li>
+</ol>
+</li>
+<br/>
+<li><strong>Is The Given Tree BST? (isBST())</strong><br/>
+      The code <strong>isBST()</strong> is the answer to the question: <br/>
+      Given a binary tree, programmatically we need to prove it is a binary search tree.<br/>
+If the given binary tree is a binary search tree, then the inorder traversal should output the elements in increasing order. <br/>
+We make use of this property of inorder traversal to check whether the given binary tree is a BST or not.
+	</li>
+<br/>
+<li><strong>Size (treeSize())</strong> <br/>
+	Size of a binary tree is the total number of nodes in the tree. 
+	</li>
+<br/>
+<li><strong>Maximum/Minimum Depth (maxDepth()/minDepth())</strong> <br/>
+	The number of nodes along the longest/shortest path from the root node down to the farthest leaf node. The maxDepth of the empty tree is 0.
+	</li>
+<br/>
+<li><strong>Is balanced? (isBalanced()) </strong> <br/>
+	A balanced binary tree is commonly defined as a binary tree in which the height of the two subtrees of every node never differ by more than 1.<br/>
+
+	In this example, I used maxDepth(node)-minDepth(node) &lt;= 1
+	</li>
+<br/>
+<li><strong>Minimum/Maximum Value (minTree()/maxTree())</strong></li>
+<br/>
+<li><strong>In Order Successor/Predecessor (succesorInOrder()/predecessorInOrder()) </strong> <br/>
+	A node which has the next higher/lower key. <br/><br/>
+<ol>
+<li><strong>Successor</strong> <br/>
+         A node's successor is the one with the next largest value in the tree. In other words, 
+         if all keys are distinct, the successor of a node $x$ is the node with the smallest key greater than $x.key$.
+         The structure of binary search tree allows us to determine the successor of a node <strong>without ever comparing the keys</strong>.<br/>
+         For example, given the tree in the picture above, the successor of B is C, the successor of E is F, 
+         and the successor of I is None. Finding the successor involves two distinct cases. <br/>
+        (a) If a node has a right child, then the successor is the minimum of the minor tree. For example, 
+         to find the successor of B, we know it has a right hand child, D, so we take its minimum, C. <br/>
+        (b) If a node has no right child, as in the case with E, we need to search back up the tree until 
+        we find the first right-hand turn. In other words, we keep looking up the tree until we find a node that is the left child,
+        and then use its parent. In our example, we move up the tree moving left from E to D, and then left again to B, 
+        and finally we make a right-hand turn to F.<br/>
+        The following pseudo code returns the successor of a node $x$ in a binary search tree if it exists, or NULL if $x$ has the largest key in the tree:
+<pre>
+SuccessorInOrder(x)
+    if x.right != NULL;
+        return minTree(x);
+    y = x.p
+    while x!= NULL &amp;&amp; x == y.right
+        x = y;
+        y = x.p;
+    return y;
+</pre>
+           As described earlier, we broke the code into two cases. If the right subtree of node $x$ is not empty, then the successor of $x$ is just the leftmost node in $x$'s right subtree. So, we just call <strong>minTree(x)</strong>. However, if the right subtree of node $x$ is empty, to find $y$, we simply go up the tree from $x$ until we see a node that is the left child of its parent.
+
+           </li><br/>
+<li><strong>Predecessor</strong> <br/>
+           For example, given the tree in the picture above, the predecessor of B is A, the predecessor of E is D, and 
+           the predecessor of I is H. <br/>
+           The algorithm for finding the predecessor is , in essence, the inverse of what we use for the successor, and 
+           it also involves two similar cases. <br/>
+         (a) If a node has a left child, then we take subtree's maximum, i.e. right-most child of its left subtree.<br/>
+         (b) If a node has no left child, we walk up the tree until we find a left-hand turn. In other words, follow the parent pointer until we get the key which is smaller than its own value.
+           </li>
+</ol>
+</li>
+<br/>
+<li><strong>LCA (Lowest Common Ancestor) - (lowestCommonAncestor())</strong> <br/>
+        For the picture above, <br/>
+        The lowest common ancestor of A and C is B<br/>
+        The lowest common ancestor of E and H is F<br/>
+        The lowest common ancestor of D and E is B<br/>
+        The lowest common ancestor of G and I is F<br/>
+        The lowest common ancestor of H and I is G<br/>
+</li>
+<br/>
+<li><strong>Clear (Delete Node) </strong> <br/>
+	$ \Omega (\log n)$ operations
+	</li>
+<br/>
+<br/>
+<img alt="pre_post_in_order" src="images/binarytree/pre_post_in_order.png"/>
+<br/>
+<li><strong>In Order print (printTreeInOrder())</strong><br/>
+        As the name suggests, it prints the values in a binary search tree in sorted order.<br/>
+	Inorder traversal performs the operation first on the node's <strong>left</strong> descendants, then on the <strong>node</strong> itself, and finally on its <strong>right</strong> descendants. In other words, the left subtree is visited first, then the node itself, and then the node's right subtree.<br/>
+        If $x$ is the root of an $n$-node subtree, then the call <strong>printTreeInOrder(x)</strong> takes $\Theta (n)$ time In fact, it prints out exactly one node per one recursive call.<br/>
+<pre>
+        if x != NULL
+           printTreeInOrder(x.left);
+           print x.key;
+           printTreeInOrder(x.right);
+        </pre>
+        Also called <strong>Inorder tree walk</strong>.
+	</li>
+<br/>
+<li><strong>Pre Order print (printTreePreOrder())</strong><br/>
+	Preorder traversal involves walking around the tree in a counterclockwise manner starting at the root. 
+        It first visits the root node, then each of the subtree. <br/>
+        Sticking close to the edge, and printing out the nodes as we encounter them. For the tree shown above, the result is F B A D C E G I H. <br/>
+	Traversal operation performed first on the <strong>node itself</strong>, then on its <strong>left  descendants</strong>, and finally on its <strong>right descendants</strong>. In other words, a node is always visited before any of its children.<br/>
+        Also called <strong>Preorder tree walk</strong>.
+	</li>
+<br/>
+<li><strong>Post Oder print (printTreePostOrder())</strong><br/>
+	Postorder traversal performs the operation first on the node's <strong>left</strong> descendants, then on the node's <strong>right</strong> descendants, and finally on the <strong>node</strong> itself. In other words, all of a node's children are visited before the node itself.<br/>
+        For the picture above, it will be - A C E D B H I G F.<br/>
+        Also called <strong>Postorder tree walk</strong>.
+	</li>
+<br/>
+<li><strong>Reverse Oder print (printTreeReverseOrder())</strong><br/>
+         Reversing the traverse of the <strong>printTreeInOrder()</strong>.<br/>
+         This will print - I H G F E D C B A.
+        </li>
+<br/>
+<li><strong>Converting Binary Search Tree into an Array (TreeToArray())</strong> <br/>
+	How do you put a Binary Search Tree in an array in an efficient manner. <br/>
+Hint :: If the node is stored at the ith position and its children are at 2i and 2i+1(I mean level order wise). 
+It's not the most efficient way.
+	</li>
+<br/>
+<li><strong>Paths from the root to leaves (pathFinder())</strong> <br/>
+	Given a binary tree, print out all of its root-to-leaf 
+paths, one per line. Uses a recursive helper to do the work. 
+	</li>
+<br/>
+<li><strong>Find n-th maximum node (NthMax()) </strong><br/>
+	How do we find out the fifth maximum element in a Binary Search Tree in efficient manner? <br/>
+Note: We should not use any extra space. i.e., sorting Binary Search Tree and storing the results in an array and listing out the fifth element.
+	</li>
+<br/>
+<li><strong>Is Sub Tree? (isSubTree())</strong></li>
+<br/>
+<li><strong>Mirror Tree (mirror())</strong> <br/>
+	Change a tree so that the roles of the left 
+and right hand pointers are swapped at every node. </li>
+<br/>
+<li><strong>Make a new tree with minimal depth from a sorted array (createMinimalBST(())</strong></li>
+<br/>
+<li><strong>Get the level for a given node element (getLevel(root, elm, 0))</strong></li>
+<br/>
+<li><strong>Separate elements depending on the level (even/odd) (level_even_odd(root);)</strong><br/>
+         This function utilizes BFS, and can be used to calculate the sum of element at even levels or odd levels.<br/>
+         For example, given a binary tree. Write a function that takes only root node as argument and returns (sum of values at odd height)-(sum of values at even height).
+        </li>
+<br/>
+<li><strong>Traversing level-order: Breadth-first traversal </strong><br/>
+	It's nice when we have a tree with ordering properties such as a BST or a  <a href="../Algorithms/heapsort.html" target="_blank">heap</a>. Often we're given a tree that isn't BST or a heap. For instance, we may have a tree that is a representation of a family tree or a company job hierarchy. We have to use different techniques to retrieve data from this kind of tree. One common class of problems involves searching for a particular node. There are two very common search algorithms.<br/>
+		One way to search a tree is to do a <strong>breadth-first search (BFS)</strong>. In a BFS we start with the root, move left to right across the second level, then move left to right across the third level, and so on. We continue the search until either we have examined all of the nodes or we find the node we are searching for. The time to find a node is O(<i>n</i>), so this type of search is best avoided for large trees. A BFS also uses a large amount of memory because it is necessary to track the child nodes for all nodes on a given level while searching that level.<br/>
+<strong>BreadthFirstTraversal()</strong> <br/>
+</li>
+<br/>
+<li><strong>Printing elements at the same level</strong>
+<ol>
+<li><strong>BreadthFirst_LevelElement_Print(root, levVec) </strong><br/>
+              It is used to print all elements at the same level (depth). The parameters are <strong>root</strong> and 2D vector <strong>levVec</strong>. The vector has the depth information and being used to set the size of the first index which is index for level. While traversing with Breadth First approach, each node will be pushed into the vector after finding the level of the element using <strong>getLevel()</strong> function.
+                So, it looks like this for the tree diagram above.
+                 <pre>
+Level at 0: F
+Level at 1: B G
+Level at 2: A D I
+Level at 3: C E H
+                 </pre>
+</li>
+<br/>
+<li><strong>levelPrint(root, elm, level) </strong><br/>
+             Prints all nodes at the same level.<br/>
+             This is simpler than <strong>BreadthFirst_LevelElement_Print()</strong>. <br/>
+             It takes 2D vector (<strong>elm</strong>) with the same size of level (= MaxDepth+1)
+	and fills elements as we traverse (preOrder).<br/>
+</li>
+</ol>
+</li>
+<li><strong>Depth-First Search</strong> <br/>
+		Another common way to search for a node is by using a <strong>depth-first search (DFS)</strong>. A depth-first search follows one branch of the tree down as many levels as possible until the target node is found or the end is reached. When the search can't go down any farther, it is continued at the nearest ancestor with unexplored children. DFS has much lower memory requirements than BFS because it is not necessary to store all of the child pointers at each level. In addition, DFS has the advantage that it doesn't examine any single level last (BFS examines the lower level last). This is useful if we suspect that the node we are searching for will be in the lower levels. In this case, a DFS would usually find the target node more quickly than a BFS.<br/>
+<strong>InOrder(), PreOrder(), PostOrder()</strong>
+</li>
+
+</ol>
+<br/>
+<p>Here is the file for Binary Tree example below: <a href="files/BinaryTree.cpp" target="_blank">BinaryTree.cpp</a>.</p>
+<pre>
+
+/* Binary Tree */
+
+#include &lt;iostream&gt;
+#include &lt;deque&gt;
+#include &lt;climits&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+struct Tree
+{
+	char data;
+	Tree *left;
+	Tree *right;  
+	Tree *parent;  
+};
+
+Tree* lookUp(struct Tree *node, char key)
+{
+	if(node == NULL) return node;
+
+	if(node-&gt;data == key) return node;
+	else {
+	    if(node-&gt;data &lt; key)
+		return lookUp(node-&gt;right, key) ;
+	    else
+		return lookUp(node-&gt;left, key);
+	}
+}
+
+Tree* leftMost(struct Tree *node)
+{
+	if(node == NULL) return NULL;
+	while(node-&gt;left != NULL)
+		node = node-&gt;left;
+	return node;
+}
+
+struct Tree *newTreeNode(int data) 
+{
+	Tree *node = new Tree;
+	node-&gt;data = data;
+	node-&gt;left = NULL;
+	node-&gt;right = NULL;
+	node-&gt;parent = NULL;
+
+	return node;
+}
+
+struct Tree* insertTreeNode(struct Tree *node, int data)
+{
+	static Tree *p;
+	Tree *retNode;
+
+	//if(node != NULL) p = node;
+
+	if(node == NULL)  {
+	    retNode = newTreeNode(data);
+	    retNode-&gt;parent = p;
+	    return retNode;
+	}
+	if(data &lt;= node-&gt;data ) { 
+	    p = node;
+	    node-&gt;left = insertTreeNode(node-&gt;left,data);
+	} 
+	else {
+	    p = node;
+	    node-&gt;right = insertTreeNode(node-&gt;right,data);
+	} 
+	return node;
+}
+
+void isBST(struct Tree *node)
+{
+	static int lastData = INT_MIN;
+	if(node == NULL) return;
+
+	isBST(node-&gt;left);
+
+	/* check if the given tree is BST */
+	if(lastData &lt; node-&gt;data) 
+	    lastData = node-&gt;data;
+	else {
+	    cout &lt;&lt; "Not a BST" &lt;&lt; endl;
+	    return;
+	}
+
+	isBST(node-&gt;right);
+	return;
+}
+
+int treeSize(struct Tree *node)
+{
+	if(node == NULL) return 0;
+	else
+	    return treeSize(node-&gt;left) + 1 + treeSize(node-&gt;right);
+}
+
+int maxDepth(struct Tree *node)
+{
+	if(node == NULL || (node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL)) 
+            return 0;
+
+	int leftDepth = maxDepth(node-&gt;left);
+	int rightDepth = maxDepth(node-&gt;right);
+
+	return leftDepth &gt; rightDepth ? 
+				leftDepth + 1 : rightDepth + 1;
+}
+
+int minDepth(struct Tree *node)
+{
+	if(node == NULL || (node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL)) 
+            return 0;
+
+	int leftDepth = minDepth(node-&gt;left);
+	int rightDepth = minDepth(node-&gt;right);
+
+	return leftDepth &lt; rightDepth ? 
+				leftDepth + 1 : rightDepth + 1;
+}
+
+bool isBalanced(struct Tree *node)
+{
+	if(maxDepth(node)-minDepth(node) &lt;= 1) 
+	    return true;
+	else
+	    return false;
+}
+
+/* Tree Minimum */
+Tree* minTree(struct Tree *node)
+{
+	if(node == NULL) return NULL;
+	while(node-&gt;left) 
+	    node = node -&gt; left;
+	return node;
+}
+
+/* Tree Maximum */
+Tree* maxTree(struct Tree *node)
+{
+	while(node-&gt;right) 
+	    node = node -&gt; right;
+	return node;
+}
+
+/* In Order Successor - a node which has the next higher key */ 
+Tree *succesorInOrder(struct Tree *node)
+{
+	/* if the node has right child, seccessor is Tree-Minimum */
+	if(node-&gt;right != NULL) return minTree(node-&gt;right);
+
+	Tree *y = node-&gt;parent;
+	while(y != NULL &amp;&amp; node == y-&gt;right) {
+	    node = y;
+	    y = y-&gt;parent;
+	}
+	return y;
+}
+
+/* In Order Predecessor - a node which has the next lower key */
+Tree *predecessorInOrder(struct Tree *node)
+{
+	/* if the node has left child, predecessor is Tree-Maximum */
+	if(node-&gt;left != NULL) return maxTree(node-&gt;left);
+
+	Tree *y = node-&gt;parent;
+	/* if it does not have a left child, 
+	predecessor is its first left ancestor */
+	while(y != NULL &amp;&amp; node == y-&gt;left) {
+	    node = y;
+	    y = y-&gt;parent;
+	}
+	return y;
+}
+
+void reverseOrderPrint(struct Tree *node)
+{
+	if(node == NULL) return;
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+		cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+		return;
+	}
+	
+	reverseOrderPrint(node-&gt;right);
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	reverseOrderPrint(node-&gt;left);
+}
+ 
+Tree *lowestCommonAncestor(Tree *node, Tree *p, Tree *q) 
+{
+	Tree *left, *right;
+	if(node == NULL) return NULL;
+	if(node-&gt;left == p || node-&gt;left == q
+		|| node-&gt;right == p || node-&gt;right == q) return node;
+	
+	left = lowestCommonAncestor(node-&gt;left,p,q);
+	right = lowestCommonAncestor(node-&gt;right, p,q);
+	if(left &amp;&amp; right) 
+	    return node;
+	else 
+	    return (left) ? left : right;	
+}
+
+void clear(struct Tree *node)
+{
+	if(node != NULL) {
+	    clear(node-&gt;left);
+	    clear(node-&gt;right);
+	    delete node;
+	}
+}
+/* print tree in order */
+/* 1. Traverse the left subtree. 
+   2. Visit the root. 
+   3. Traverse the right subtree. 
+*/
+
+void printTreeInOrder(struct Tree *node)
+{
+	if(node == NULL) return;
+
+	printTreeInOrder(node-&gt;left);
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	printTreeInOrder(node-&gt;right);
+}
+
+/* print tree in postorder*/
+/* 1. Traverse the left subtree. 
+   2. Traverse the right subtree. 
+   3. Visit the root. 
+*/
+void printTreePostOrder(struct Tree *node)
+{
+	if(node == NULL) return;
+
+	printTreePostOrder(node-&gt;left);
+	printTreePostOrder(node-&gt;right);
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+}
+
+/* print in preorder */
+/* 1. Visit the root. 
+   2. Traverse the left subtree. 
+   3. Traverse the right subtree. 
+*/
+void printTreePreOrder(struct Tree *node)
+{
+	if(node == NULL) return;
+
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	printTreePreOrder(node-&gt;left);
+	printTreePreOrder(node-&gt;right);
+}
+
+/* In reverse of printTreeInOrder() */
+void printTreeReverseOrder(struct Tree *node)
+{
+	if(node == NULL) return;
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+	    cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	    return;
+	}
+	
+	printTreeReverseOrder(node-&gt;right);
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	printTreeReverseOrder(node-&gt;left);
+}
+/* recursion routine to find path */
+void pathFinder(struct Tree *node, int path[], int level)
+{
+	if(node == NULL) return;
+        // save leaf node
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+	    path[level] = node-&gt;data;
+	    for(int i = 0; i &lt;= level; i++) {
+		cout &lt;&lt; (char)path[i];
+	    }
+	    cout &lt;&lt; endl;
+	    return;
+	}
+        // save parent node
+	path[level] = node-&gt;data;
+	pathFinder(node-&gt;left, path, level+1);
+	pathFinder(node-&gt;right, path, level+1);
+}
+
+bool matchTree(Tree *r1, Tree *r2)
+{
+	/* Nothing left in the subtree */
+	if(r1 == NULL &amp;&amp; r2 == NULL)
+	    return true;
+	/* Big tree empty and subtree not found */
+	if(r1 == NULL || r2 == NULL)
+	    return false;
+	/* Not matching */
+	if(r1-&gt;data != r2-&gt;data)
+	    return false;
+	return (matchTree(r1-&gt;left, r2-&gt;left) &amp;&amp; 
+			matchTree(r1-&gt;right, r2-&gt;right));
+}
+
+bool subTree(Tree *r1, Tree *r2)
+{
+	/*Big tree empty and subtree not found */
+	if(r1 == NULL)
+	    return false;
+	if(r1-&gt;data == r2-&gt;data)
+	    if(matchTree(r1, r2)) return true;
+	return 
+            (subTree(r1-&gt;left, r2) || subTree(r1-&gt;right, r2));
+}
+
+bool isSubTree(Tree *r1, Tree *r2)
+{
+	/* Empty tree is subtree */
+	if(r2 == NULL) 
+	    return true;
+	else
+	    return subTree(r1, r2);
+}
+
+/* change a tree so that the roles of the left 
+and right hand pointers are swapped at every node */
+void mirror(Tree *r)
+{
+	if(r == NULL) return;
+	
+	Tree *tmp;
+	mirror(r-&gt;left);
+	mirror(r-&gt;right);
+
+	/* swap pointers */
+	tmp = r-&gt;right;
+	r-&gt;right = r-&gt;left;
+	r-&gt;left = tmp;
+}
+
+/* create a new tree from a sorted array */
+Tree *addToBST(char arr[], int start, int end)
+{
+	if(end &lt; start) return NULL;
+	int mid = (start + end)/2;
+
+	Tree *r = new Tree;
+	r-&gt;data = arr[mid];
+	r-&gt;left = addToBST(arr, start, mid-1);
+	r-&gt;right = addToBST(arr, mid+1, end);
+	return r;
+}
+
+Tree *createMinimalBST(char arr[], int size)
+{
+	return addToBST(arr,0,size-1);
+}
+
+/* Breadth first traversal using queue */
+void BreadthFirstTraversal(Tree *root)
+{
+	if (root == NULL) return;
+	deque &lt;Tree *&gt; queue;
+	queue.push_back(root);
+
+	while (!queue.empty()) {
+	    Tree *p = queue.front();
+	    cout &lt;&lt; p-&gt;data &lt;&lt; " ";
+	    queue.pop_front();
+
+	    if (p-&gt;left != NULL)
+		queue.push_back(p-&gt;left);
+	    if (p-&gt;right != NULL)
+		queue.push_back(p-&gt;right);
+	}
+	cout &lt;&lt; endl;
+} 
+
+/* get the level of a node element: root level = 0 */
+int getLevel(struct Tree *node, int elm, int level)
+{
+	if(node == NULL) return 0;
+	if(elm == node-&gt;data) 
+	    return level;
+	else if(elm &lt; node-&gt;data) 
+	    return getLevel(node-&gt;left, elm, level+1);
+	else 
+	    return getLevel(node-&gt;right, elm, level+1);
+}
+
+/* This code prints out all nodes at the same depth (level) */
+void BreadthFirst_LevelElement_Print
+               (struct Tree *root, vector&lt;vector&lt;int&gt; &gt; &amp;v;)
+{
+	if(root == NULL) return;
+	deque&lt;Tree *&gt; q;
+	q.push_back(root);
+	while(!q.empty()) {
+	    Tree *p =  q.front();
+	    int lev = getLevel(root, p-&gt;data, 0);
+	    v[lev].push_back(p-&gt;data);
+	    q.pop_front();
+	    if(p-&gt;left) q.push_back(p-&gt;left);
+	    if(p-&gt;right)q.push_back(p-&gt;right);
+	}
+	return;
+}
+
+/* levelPrint()
+prints nodes at the same level
+This is simpler than the BreadthFirstTraversal(root) above
+It takes 2D vector with the same size of level (= MaxDepth+1)
+and fills elements as we traverse (preOrder) */
+
+void levelPrint(struct Tree *node, vector&lt;vector&lt;char&gt; &gt;&amp;elm;, int level)
+{
+	if(node == NULL) return;
+	// leaf nodes
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+	    elm[level].push_back(node-&gt;data);
+	    return;
+	}
+	// other nodes
+	elm[level++].push_back(node-&gt;data);
+	levelPrint(node-&gt;left, elm, level);
+	levelPrint(node-&gt;right, elm, level);
+}
+
+/* find n-th max node from a tree */
+void NthMax(struct Tree* t)
+{        
+	static int n_th_max = 5;
+	static int num = 0;
+	if(t == NULL) return;        
+	NthMax(t-&gt;right);        
+	num++;        
+	if(num == n_th_max)                
+	    cout &lt;&lt; n_th_max &lt;&lt; "-th maximum data is " 
+                 &lt;&lt; t-&gt;data &lt;&lt; endl;        
+	NthMax(t-&gt;left);
+}
+
+/* Converting a BST into an Array */ 
+void TreeToArray(struct Tree *node, int a[]){ 
+	static int pos = 0; 
+  
+	if(node){ 
+	    TreeToArray(node-&gt;left,a); 
+	    a[pos++] = node-&gt;data; 
+	    TreeToArray(node-&gt;right,a); 
+       } 
+} 
+
+/* Separate even/odd level elements */
+/* This function is using BFS */
+void level_even_odd(struct Tree *node)
+{
+	vector&lt;char&gt; evenVec, oddVec;
+	if (node == NULL) return;
+	deque&lt;struct Tree*&gt; que;
+	que.push_back(node);
+
+	while(!que.empty()) 
+	{
+	    struct Tree *p = que.front();
+	    int level = getLevel(node, p-&gt;data, 0) ;
+	    // even level
+	    if (level % 2 == 0) 
+		evenVec.push_back(p-&gt;data);
+	    else
+		oddVec.push_back(p-&gt;data);
+	    que.pop_front();
+	    if(p-&gt;left)  que.push_back(p-&gt;left);
+	    if(p-&gt;right) que.push_back(p-&gt;right);
+	}
+	
+	cout &lt;&lt; "even level elements : ";
+	for(int i = 0; i &lt; evenVec.size(); i++) 
+            cout &lt;&lt; evenVec[i] &lt;&lt; " ";
+	cout &lt;&lt; endl &lt;&lt; "odd level elements : ";
+        for(int i = 0; i &lt; oddVec.size(); i++) 
+            cout &lt;&lt; oddVec[i] &lt;&lt; " ";
+	cout &lt;&lt; endl;
+}
+
+int main(int argc, char **argv)
+{
+	char ch, ch1, ch2;
+	Tree *found;
+	Tree *succ;
+	Tree *pred;
+	Tree *ancestor;
+	char charArr[9] 
+	    = {'A','B','C','D','E','F','G','H','I'};
+
+	Tree *root = newTreeNode('F');
+	insertTreeNode(root,'B');
+	insertTreeNode(root,'A');
+	insertTreeNode(root,'D');
+	insertTreeNode(root,'C');  
+	insertTreeNode(root,'E');
+	insertTreeNode(root,'G');
+	insertTreeNode(root,'I');
+	insertTreeNode(root,'H');
+
+	/* is the tree BST? */
+	isBST(root);
+
+	/* size of tree */
+	cout &lt;&lt; "size = " &lt;&lt; treeSize(root) &lt;&lt; endl;
+
+	/* max depth */
+	cout &lt;&lt; "max depth = " &lt;&lt; maxDepth(root) &lt;&lt; endl;
+
+	/* min depth */
+	cout &lt;&lt; "min depth = " &lt;&lt; minDepth(root) &lt;&lt; endl;
+
+	/* balanced tree? */
+	if(isBalanced(root))
+	    cout &lt;&lt; "This tree is balanced!\n";
+	else
+	    cout &lt;&lt; "This tree is not balanced!\n";
+
+	/* min value of the tree*/
+	if(root) 
+	    cout &lt;&lt; "Min value = " &lt;&lt; minTree(root)-&gt;data &lt;&lt; endl;
+
+	/* max value of the tree*/
+	if(root) 
+	    cout &lt;&lt; "Max value = " &lt;&lt; maxTree(root)-&gt;data &lt;&lt; endl;
+
+	/* get the level of a data: root level = 0 */
+	cout &lt;&lt; "Node B is at level: " &lt;&lt; getLevel(root, 'B', 0) &lt;&lt; endl;
+	cout &lt;&lt; "Node H is at level: " &lt;&lt; getLevel(root, 'H', 0) &lt;&lt; endl;
+	cout &lt;&lt; "Node F is at level: " &lt;&lt; getLevel(root, 'F', 0) &lt;&lt; endl;
+
+        /* separate even/odd level elements */
+        level_even_odd(root);
+
+	ch = 'B';
+	found = lookUp(root,ch);
+	if(found) {
+	    cout &lt;&lt; "Min value of subtree " &lt;&lt; ch &lt;&lt; " as a root is "
+			 &lt;&lt; minTree(found)-&gt;data &lt;&lt; endl;
+	    cout &lt;&lt; "Max value of subtree " &lt;&lt; ch &lt;&lt; " as a root is "
+			 &lt;&lt; maxTree(found)-&gt;data &lt;&lt; endl;
+	}
+
+	ch = 'B';
+	found = lookUp(root,ch);
+	if(found) {
+	    succ = succesorInOrder(found);
+	    if(succ)
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is "
+		     &lt;&lt; succesorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	ch = 'E';
+	found = lookUp(root,ch);
+	if(found) {
+	    succ = succesorInOrder(found);
+	    if(succ)
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is "
+			 &lt;&lt; succesorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	ch = 'I';
+	found = lookUp(root,ch);
+	if(found) {
+	    succ = succesorInOrder(found);
+	    if(succ)
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is "
+			 &lt;&lt; succesorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Successor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	ch = 'B';
+	found = lookUp(root,ch);
+	if(found) {
+	    pred = predecessorInOrder(found);
+	    if(pred)
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is "
+			 &lt;&lt; predecessorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	ch = 'E';
+	found = lookUp(root,ch);
+	if(found) {
+	    pred = predecessorInOrder(found);
+	    if(pred)
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is "
+			 &lt;&lt; predecessorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	ch = 'I';
+	found = lookUp(root,ch);
+	if(found) {
+	    pred = predecessorInOrder(found);
+	    if(pred)
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is "
+			 &lt;&lt; predecessorInOrder(found)-&gt;data &lt;&lt; endl;
+	    else 
+		cout &lt;&lt; "In Order Predecessor of " &lt;&lt; ch &lt;&lt; " is None\n";
+	}
+
+	/* Lowest Common Ancestor */
+	ch1 = 'A';
+	ch2 = 'C';
+	ancestor = 
+	    lowestCommonAncestor(root, 
+			lookUp(root,ch1), lookUp(root,ch2));
+	if(ancestor) 
+	    cout &lt;&lt; "The lowest common ancestor of " &lt;&lt; ch1 &lt;&lt; " and "
+		&lt;&lt; ch2 &lt;&lt; " is " &lt;&lt; ancestor-&gt;data &lt;&lt; endl;
+
+	ch1 = 'E';
+	ch2 = 'H';
+	ancestor = 
+	    lowestCommonAncestor(root, 
+			lookUp(root,ch1), lookUp(root,ch2));
+	if(ancestor) 
+	    cout &lt;&lt; "The lowest common ancestor of " &lt;&lt; ch1 &lt;&lt; " and "
+		&lt;&lt; ch2 &lt;&lt; " is " &lt;&lt; ancestor-&gt;data &lt;&lt; endl;
+
+	ch1 = 'D';
+	ch2 = 'E';
+	ancestor = 
+	    lowestCommonAncestor(root, 
+			lookUp(root,ch1), lookUp(root,ch2));
+	if(ancestor) 
+	    cout &lt;&lt; "The lowest common ancestor of " &lt;&lt; ch1 &lt;&lt; " and "
+		&lt;&lt; ch2 &lt;&lt; " is " &lt;&lt; ancestor-&gt;data &lt;&lt; endl;
+
+	ch1 = 'G';
+	ch2 = 'I';
+	ancestor = 
+	    lowestCommonAncestor(root, 
+			lookUp(root,ch1), lookUp(root,ch2));
+	if(ancestor) 
+	    cout &lt;&lt; "The lowest common ancestor of " &lt;&lt; ch1 &lt;&lt; " and "
+		&lt;&lt; ch2 &lt;&lt; " is " &lt;&lt; ancestor-&gt;data &lt;&lt; endl;
+
+	ch1 = 'H';
+	ch2 = 'I';
+	ancestor = 
+	    lowestCommonAncestor(root, 
+			lookUp(root,ch1), lookUp(root,ch2));
+	if(ancestor) 
+	    cout &lt;&lt; "The lowest common ancestor of " &lt;&lt; ch1 &lt;&lt; " and "
+		&lt;&lt; ch2 &lt;&lt; " is " &lt;&lt; ancestor-&gt;data &lt;&lt; endl;
+
+	/* print tree in order */
+	cout &lt;&lt; "increasing sort order\n";
+	printTreeInOrder(root);
+	cout &lt;&lt; endl;
+
+	/* print tree in postorder*/
+	cout &lt;&lt; "post order \n";
+	printTreePostOrder(root);
+	cout &lt;&lt; endl;
+
+	/* print tree in preorder*/
+	cout &lt;&lt; "pre order \n";
+	printTreePreOrder(root);
+	cout &lt;&lt; endl;
+
+	/* print tree in reverse order*/
+	cout &lt;&lt; "reverse order \n";
+	printTreeReverseOrder(root);
+	cout &lt;&lt; endl;
+
+	/* lookUp */
+	ch = 'D';
+	found = lookUp(root,ch);
+	if(found) 
+	    cout &lt;&lt; found-&gt;data &lt;&lt; " is in the tree\n";
+	else
+	    cout &lt;&lt; ch &lt;&lt; " is not in the tree\n";
+
+	/* lookUp */
+	ch = 'M';
+	found = lookUp(root,ch);
+	if(found) 
+	    cout &lt;&lt; found-&gt;data &lt;&lt; " is in the tree\n";
+	else
+	    cout &lt;&lt; ch &lt;&lt; " is not in the tree\n";
+
+	/* printing all paths :
+	Given a binary tree, print out all of its root-to-leaf 
+	paths, one per line. Uses a recursive helper to do the work. */
+	cout &lt;&lt; "printing paths ..." &lt;&lt; endl;
+	int path[10];
+	pathFinder(root, path, 0);
+
+	/* find n-th maximum node */
+	NthMax(root);
+
+	/* Traversing level-order. 
+	We visit every node on a level before going to a lower level. 
+	This is also called Breadth-first traversal.*/
+	cout &lt;&lt; "printing with Breadth-first traversal" &lt;&lt; endl;
+	BreadthFirstTraversal(root);
+
+	/* Prints all element at the same depth (level) */
+	int row = maxDepth(root);
+	vector&lt;vector&lt;int&gt; &gt; levVec(row+1);
+	BreadthFirst_LevelElement_Print(root, levVec);
+	for(int m = 0; m &lt; levVec.size(); m++) {
+	    cout &lt;&lt; "Level at " &lt;&lt; m &lt;&lt; ": ";
+	    for(int n = 0; n &lt; levVec[m].size(); n++) 
+		cout &lt;&lt; (char)levVec[m][n] &lt;&lt; " ";
+	    cout &lt;&lt; endl;
+	}
+
+	/* levelPrint()
+	prints nodes at the same level
+	This is simpler than the BreadthFirstTraversal(root) above
+	It takes 2D vector (elm) with the same size of level (= MaxDepth+1)
+	and fills elements as we traverse (preOrder) */
+	vector&lt;vector&lt;char&gt; &gt; elm;
+	int mxDepth = maxDepth(root);
+	elm.resize(mxDepth+1);
+	int level = 0;
+	levelPrint(root, elm, level);
+	cout &lt;&lt; "levelPrint() " &lt;&lt; endl;
+	for(int i = 0; i &lt;= mxDepth; i++) {
+	    cout &lt;&lt; "level " &lt;&lt; i &lt;&lt; ": " ;
+	    for(int j = 0; j &lt; elm[i].size(); j++) 
+		cout &lt;&lt; elm[i][j] &lt;&lt; " ";
+	    cout &lt;&lt; endl;
+	}
+
+	/* convert the tree into an array */
+	int treeSz = treeSize(root);
+	int *array = new int[treeSz];
+	TreeToArray(root,array);
+	cout &lt;&lt; "New array: ";
+	for (int i = 0; i &lt; treeSz; i++)
+	    cout &lt;&lt; (char)array[i] &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	delete [] array;
+
+	/* subtree */
+	Tree *root2 = newTreeNode('D');
+	insertTreeNode(root2,'C');  
+	insertTreeNode(root2,'E');
+	cout &lt;&lt; "1-2 subtree: " &lt;&lt; isSubTree(root, root2) &lt;&lt; endl;
+
+	Tree *root3 = newTreeNode('B');
+	insertTreeNode(root3,'A');  
+	insertTreeNode(root3,'D');
+	insertTreeNode(root3,'C');  
+	insertTreeNode(root3,'E');
+	cout &lt;&lt; "1-3 subtree: " &lt;&lt; isSubTree(root, root3) &lt;&lt; endl;
+
+	Tree *root4 = newTreeNode('B'); 
+	insertTreeNode(root4,'D');
+	insertTreeNode(root4,'C');  
+	insertTreeNode(root4,'E');
+	cout &lt;&lt; "1-4 subtree: " &lt;&lt; isSubTree(root, root4) &lt;&lt; endl;
+
+	cout &lt;&lt; "2-3 subtree: " &lt;&lt; isSubTree(root2, root3) &lt;&lt; endl;
+	cout &lt;&lt; "3-2 subtree: " &lt;&lt; isSubTree(root3, root2) &lt;&lt; endl;
+
+	/* swap left and right */
+	mirror(root);
+
+	/* deleting a tree */
+	clear(root);
+
+	/* make a new tree with minimal depth */
+	Tree *newRoot = createMinimalBST(charArr,9);
+
+	return 0;
+}
+</pre>
+<p>From the run, we get:</p>
+<pre>
+size = 9
+max depth = 3
+min depth = 2
+This tree is balanced!
+Min value = A
+Max value = I
+Node B is at level: 1
+Node H is at level: 3
+Node F is at level: 0
+even level elements : F A D I
+odd level elements : B G C E H
+Min value of subtree B as a root is A
+Max value of subtree B as a root is E
+In Order Successor of B is C
+In Order Successor of E is F
+In Order Successor of I is None
+In Order Predecessor of B is A
+In Order Predecessor of E is D
+In Order Predecessor of I is H
+The lowest common ancestor of A and C is B
+The lowest common ancestor of E and H is F
+The lowest common ancestor of D and E is B
+The lowest common ancestor of G and I is F
+The lowest common ancestor of H and I is G
+increasing sort order
+A B C D E F G H I
+post order
+A C E D B H I G F
+pre order
+F B A D C E G I H
+reverse order
+I H G F E D C B A
+D is in the tree
+M is not in the tree
+printing paths ...
+FBA
+FBDC
+FBDE
+FGIH
+5-th maximum data is E
+printing with Breadth-first traversal
+F B G A D I C E H
+Level at 0: F
+Level at 1: B G
+Level at 2: A D I
+Level at 3: C E H
+levelPrint()
+level 0: F
+level 1: B G
+level 2: A D I
+level 3: C E H
+New array: A B C D E F G H I
+New array: A B C D E F G H I
+1-2 subtree: 1
+1-3 subtree: 1
+1-4 subtree: 0
+2-3 subtree: 0
+3-2 subtree: 1
+</pre>
+<br/><br/>
+<br/><br/>
+<br/>
+<div class="subtitle" id="binaryserachexamples">Binary Search Example Code</div>
+<p>The following example shows <strong>binary serach</strong> algorithms using <strong>iterative</strong> and <strong>recursive</strong>.</p>
+<p>We look for an element <strong>x</strong> in a sorted array. It compares <strong>x</strong>x or the array range equals to zero.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+// iterative
+int bsearch(int a[], int sz, int x)
+{
+	int low = 0;
+	int high = sz -1;
+	while(low &lt;= high) {
+		int mid = (low+high)/2;
+		if(x &lt; a[mid]) 
+			high = mid - 1;
+		else if(x &gt; a[mid]) 
+			low = mid + 1;
+		else 
+			return a[mid];
+	}
+	return -1;
+}
+
+// recursive
+int bsearch_recursive(int a[], int low, int high, int x)
+{
+	if(low &gt; high) return -1;
+
+	int mid = (low + high)/2;
+	if(x &lt; a[mid])
+		bsearch_recursive(a, low, mid-1, x);
+	else if(x &gt; a[mid])
+		bsearch_recursive(a, mid+1, high, x);
+	else
+		return a[mid];
+}
+ 
+void print(int n)
+{
+	if(n == -1) {
+		cout &lt;&lt; "not found" &lt;&lt; endl;
+		return;
+	}
+	cout &lt;&lt; "found" &lt;&lt; endl;
+
+}
+int main()
+{        
+	int a[]={3, 7, 9, 16, 23, 34, 67, 87, 92};
+	int arraySize = sizeof(a)/sizeof(int);
+	int result;
+
+	result = bsearch(a, arraySize, 7); 
+	print(result);
+	result = bsearch(a, arraySize, 92); 
+	print(result);
+	result = bsearch(a, arraySize, 77); 
+	print(result);
+
+	result = bsearch_recursive(a, 0, arraySize-1, 7); 
+	print(result);
+	result = bsearch_recursive(a, 0, arraySize-1, 92); 
+	print(result);
+	result = bsearch_recursive(a, 0, arraySize-1, 77); 
+	print(result);
+
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+found
+found
+not found
+found
+found
+not found
+</pre>
+<br/><br/>
+<br/>
+<div class="subtitle_2nd" id="sum_of_path">Path Sum - Binary Tree</div>
+<pre>
+
+/*         3
+          / \
+	-1   2
+	/ \  /
+       5   7 1
+
+*/
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+typedef struct Tree
+{
+	int data;
+	Tree *left;
+	Tree *right;  
+} Node;
+
+/* recursion routine to find path */
+void pathFinder(Node* node, int path[], int level)
+{
+	if(node == NULL) return;
+	// leaf node save
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+		path[level] = node-&gt;data;
+		int sum = 0;
+		for(int i = 0; i &lt;= level; i++) {
+			cout &lt;&lt; path[i] &lt;&lt; " ";
+			sum += path[i];
+		}
+		cout &lt;&lt; "  sum = " &lt;&lt; sum &lt;&lt; endl;
+		return;
+	}
+	// parent node save
+	path[level] = node-&gt;data;
+	pathFinder(node-&gt;left, path, level+1);
+	pathFinder(node-&gt;right, path, level+1);
+}
+
+struct Tree* insertNode(Tree *node, int data)
+{
+	node-&gt;data = data;
+	node-&gt;left = NULL;
+	node-&gt;right = NULL;
+	return node;
+}
+
+int main(int argc, char **argv)
+{
+	Tree *root = NULL;
+	Tree *nodeLeft = NULL;
+	Tree *nodeRight = NULL;
+
+	// unsorted binary tree
+	// root
+	root = insertNode(new Tree, 3);
+
+	// 1st level
+	nodeLeft = insertNode(new Tree, -1);
+	root-&gt;left = nodeLeft;
+	nodeRight = insertNode(new Tree, 2);
+	root-&gt;right = nodeRight;
+
+	// 2nd level
+	nodeLeft-&gt;left = insertNode(new Tree, 5);
+	nodeLeft-&gt;right = insertNode(new Tree, 7);
+	nodeRight-&gt;left = insertNode(new Tree, 1);
+
+	// path find
+	int path[10];
+	pathFinder(root,path,0);
+	
+	return 0;
+}
+
+/* output */
+/*
+3 -1 5  sum = 7
+3 -1 7  sum = 9
+3 2 1  sum = 6
+*/
+</pre>
+<br/><br/>
+<br/>
+<div class="subtitle_2nd" id="bst_with_minimal_height">BST with Minimal Height</div>
+<p>The code below constructs binary search tree with minimal height for an int array which is already sorted in increasing order.</p>
+<p>The middle element becomes a root and each sides of the mid element go to either left or right side of the tree. We do it recursively so that middle element always becomes the root for each subtree.</p>
+<pre>
+#include &lt;iostream&gt;
+
+typedef struct node
+{
+	node *left;
+	node *right;
+	int data;
+} Node;
+
+Node *btree(int a[], int low, int high)
+{
+	if(low &gt; high) return NULL;
+	int mid = (low + high) /2;
+	Node *nd = new Node;
+	nd-&gt;data = a[mid];
+	nd-&gt;left = btree(a, low, mid-1);
+	nd-&gt;right = btree(a, mid+1, high);
+	return nd;
+}
+
+int main()
+{
+	int a[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+	int size = sizeof(a)/sizeof(int);
+	Node *root = btree(a, 0, size-1);
+
+	return 0;
+}
+</pre>
+<br/><br/>
+<br/>
+<div class="subtitle_2nd" id="two_binary_tree">Comparing the two binary trees</div>
+<p>Is the two BST same? <br/>
+<p>The code below compares both structure and data and check if both are the same.</p>
+<p><strong>bool isTreeEqual (TREE*, TREE*)</strong> takes both of the nodes as its parameters. As soon as it detects the difference, it returns <strong>false</strong>, and returns <strong>true</strong> only after passing all the tests.</p>
+<ol>
+<li>Check if the roots are equal or both NULL</li>
+<li>Check if one of them is NULL</li>
+<li>Check node, left subtree, and then right subtree</li>
+</ol>
+<br/>
+<pre>
+/* Compare two Binary Trees */
+
+#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct Tree
+{
+	char data;
+	Tree *left;
+	Tree *right;   
+} TREE;
+
+TREE* newTree(char ch)
+{
+	TREE *node = new TREE;
+	node-&gt;data = ch;
+	node-&gt;left = NULL;
+	node-&gt;right = NULL;
+	return node;
+}
+
+void insertTreeNode(TREE *node, char ch)
+{
+	TREE *newNode = new TREE;
+	newNode-&gt;data = ch;
+	newNode-&gt;left = NULL;
+	newNode-&gt;right = NULL;
+	while(node) {
+	    if(ch &lt;= node-&gt;data) {
+		if(node-&gt;left == NULL) {
+		    node-&gt;left = newNode;
+		    return;
+		}
+		else
+		    node = node-&gt;left;
+	    }
+	    else {
+		if(node-&gt;right == NULL) {
+		    node-&gt;right = newNode;
+		    return;
+		}
+		else
+		    node = node-&gt;right;
+	    }
+	}
+}
+
+bool isTreeEqual(TREE* node1, TREE* node2)
+{
+	// handles the roots are equal or both NULL
+	if(node1 == node2) 
+            return true;
+
+	// one of them NULL
+	if(node1 == NULL || node2 == NULL) 
+            return false;
+
+	// data check
+	if(node1-&gt;data != node2-&gt;data) 
+            return false;
+	if(!isTreeEqual(node1-&gt;left, node2-&gt;left)) 
+            return false;
+	if(!isTreeEqual(node1-&gt;right, node2-&gt;right)) 
+            return false;
+
+        // everything has been checked, return true
+	return true;
+}
+
+void clear(TREE* node)
+{
+	if(node != NULL) {
+	    clear(node-&gt;left);
+	    clear(node-&gt;right);
+	    delete node;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	char charArr[] 
+	    = {'F','B','A','D','C','E','G','I','H'};
+	int size = sizeof(charArr)/sizeof(charArr[0]);
+
+	TREE *root1 = newTree('F');
+	for(int i = 1; i &lt; size; i++) 
+	    insertTreeNode(root1,charArr[i]);
+
+	// same roots
+	cout &lt;&lt; "isTreeEqual(root1, root1) = " 
+	     &lt;&lt; isTreeEqual(root1, root1) &lt;&lt; endl;
+
+	TREE *root2 = newTree('F');
+	for(int i = 1; i &lt; size; i++) 
+	    insertTreeNode(root2,charArr[i]);
+
+	// same structure &amp; data
+	cout &lt;&lt; "isTreeEqual(root1, root2) = " 
+	     &lt;&lt; isTreeEqual(root1, root2) &lt;&lt; endl;
+
+	// same structure but the last leaf is different
+	char charArr3[] 
+	    = {'F','B','A','D','C','E','G','I','Z'};
+	TREE *root3 = newTree('F');
+	for(int i = 1; i &lt; size; i++) 
+	    insertTreeNode(root3,charArr3[i]);
+	cout &lt;&lt; "isTreeEqual(root1, root3) = " 
+	     &lt;&lt; isTreeEqual(root1, root3) &lt;&lt; endl;
+
+	// root4 has one more leaf node 'J'
+	char charArr4[] 
+	    = {'F','B','A','D','C','E','G','I','H','J'};
+	size = sizeof(charArr4)/sizeof(charArr4[0]);
+	TREE *root4 = newTree('F');
+	for(int i = 1; i &lt; size; i++) 
+	    insertTreeNode(root4,charArr4[i]);
+	cout &lt;&lt; "isTreeEqual(root1, root4) = " 
+	     &lt;&lt; isTreeEqual(root1, root4) &lt;&lt; endl;
+
+	// root = NULL
+	cout &lt;&lt; "isTreeEqual(root1, 0) = " 
+	     &lt;&lt; isTreeEqual(root1, 0) &lt;&lt; endl;
+
+	// both roots are NULL
+	cout &lt;&lt; "isTreeEqual(0, 0) = " 
+	     &lt;&lt; isTreeEqual(0, 0) &lt;&lt; endl;
+
+	// deallocate
+	clear(root1);
+	clear(root2);
+	clear(root3);
+        clear(root4);
+
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+isTreeEqual(root1, root1) = 1
+isTreeEqual(root1, root2) = 1
+isTreeEqual(root1, root3) = 0
+isTreeEqual(root1, root4) = 0
+isTreeEqual(root1, 0) = 0
+isTreeEqual(0, 0) = 1
+</pre>
+<br/>
+<br/><br/>
+<div class="subtitle" id="delete_key">Deleting a key from BST</div>
+<p>Deleting a key from a binary search is a little bit tricky. We can categorize it in three groups depending its operations:
+<ol>
+<li>A leaf node - this is the easiest case and we just delete it.
+  </li>
+<li>A node that has both left and right child <br/>
+   We replace the node with its predecessor.
+  </li>
+<li>A node that has only one child. The child replaces the parent.</li>
+</ol>
+<p>The colde below is based on the BST in the picture.</p>
+<br/><br/>
+<img alt="binarytree_pic" src="images/binarytree/binarytree_pic.png"/>
+<br/>
+<br/>
+<pre>
+/* Binary Tree  - deleting a node*/
+
+#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct Tree
+{
+	char data;
+	Tree *left;
+	Tree *right;  
+	Tree *parent;  
+} TREE;
+
+TREE *newTreeNode(int data) 
+{
+	TREE *node = new TREE;
+	node-&gt;data = data;
+	node-&gt;left = NULL;
+	node-&gt;right = NULL;
+	node-&gt;parent = NULL;
+
+	return node;
+}
+
+void insertTreeNode(TREE *node, char ch)
+{
+	TREE *newNode = new TREE;
+	newNode-&gt;data = ch;
+	newNode-&gt;left = NULL;
+	newNode-&gt;right = NULL;
+	while(node) {
+	    if(ch &lt;= node-&gt;data) {
+		    if(node-&gt;left == NULL) {
+			    newNode-&gt;parent = node;
+		        node-&gt;left = newNode;
+		        return;
+		    }
+		    else
+		    node = node-&gt;left;
+	    }
+	    else {
+		    if(node-&gt;right == NULL) {
+				newNode-&gt;parent = node;
+		        node-&gt;right = newNode;
+		        return;
+		    }
+		    else
+		        node = node-&gt;right;
+	    }
+	}
+}
+
+TREE *getNode(TREE *node, char c)
+{
+	if(node == NULL) return node;
+	if(c &lt; node-&gt;data) 
+		return getNode(node-&gt;left,c);
+	else if( c &gt; node-&gt;data)
+		return getNode(node-&gt;right, c);
+	else
+		return node;
+}
+
+char treeMax(TREE *node)
+{
+	while(node-&gt;right) {
+		node = node-&gt;right;
+	}
+	return node-&gt;data;
+}
+
+void printTreeInOrder(TREE *node)
+{
+	if(node == NULL) return;
+
+	printTreeInOrder(node-&gt;left);
+	cout &lt;&lt; node-&gt;data &lt;&lt; " ";
+	printTreeInOrder(node-&gt;right);
+}
+
+char predecessorInOrder(TREE *node)
+{
+	if(node-&gt;left) 
+		return treeMax(node-&gt;left);
+
+	TREE *y = node-&gt;parent;
+	while(node == y-&gt;left) {
+		node = y;
+		y = y-&gt;parent;
+	}
+
+	return y-&gt;data;
+}
+
+void deleteKey(TREE *root, char ch)
+{
+	TREE *node, *p, *child, *pred;
+	// get the node for the key
+	node = getNode(root, ch);
+
+	// leaf node - just delete the node
+	if(node-&gt;left == NULL &amp;&amp; node-&gt;right == NULL) {
+		if(node-&gt;parent) p = node-&gt;parent;
+		if(node == p-&gt;left) 
+			p-&gt;left = NULL;
+		else
+			p-&gt;right = NULL;
+		delete node;
+		return;
+	}
+
+	// two children - replace it with its predecessor and delete
+	if(node-&gt;left &amp;&amp; node-&gt;right) {
+		char ch_pred = predecessorInOrder(node);
+		pred = getNode(root, ch_pred);
+		if(pred-&gt;parent-&gt;left == pred) 
+			pred-&gt;parent-&gt;left = NULL;
+		else if(pred-&gt;parent-&gt;right == pred) 
+			pred-&gt;parent-&gt;right = NULL;
+		node-&gt;data = pred-&gt;data;
+		delete pred;
+		return;
+	}
+
+	// only one child 
+	// replace it with its child and delete
+	if(node-&gt;left) 
+		child = node-&gt;left;
+	else if(node-&gt;right)
+		child = node-&gt;right;
+	p = node-&gt;parent;
+	if(p-&gt;left &amp;&amp; p-&gt;left == node) {
+		p-&gt;left = child;
+	}
+	else if (p-&gt;right &amp;&amp; p-&gt;right == node) {
+		p-&gt;right = child;
+	}
+	child-&gt;parent = p;
+	delete node;
+	return;
+}
+
+int main(int argc, char **argv)
+{
+	TREE *root = newTreeNode('F');
+	insertTreeNode(root,'B');
+	insertTreeNode(root,'A');
+	insertTreeNode(root,'D');
+	insertTreeNode(root,'C');  
+	insertTreeNode(root,'E');
+	insertTreeNode(root,'G');
+	insertTreeNode(root,'I');
+	insertTreeNode(root,'H');
+
+	printTreeInOrder(root);
+
+	cout &lt;&lt; "\ndeleteKey(root, 'A')" &lt;&lt; endl;
+	deleteKey(root, 'A');
+	printTreeInOrder(root);
+	cout &lt;&lt; "\ninsertTreeNode(root,'A')" &lt;&lt; endl;
+	insertTreeNode(root,'A');
+	printTreeInOrder(root);
+
+	cout &lt;&lt; "\ndeleteKey(root, 'I')" &lt;&lt; endl;
+	deleteKey(root, 'I');
+	cout &lt;&lt; "deleteKey(root, 'H')" &lt;&lt; endl;
+	deleteKey(root, 'H');
+	printTreeInOrder(root);
+	cout &lt;&lt; "\ninsertTreeNode(root,'I')" &lt;&lt; endl;
+	insertTreeNode(root,'I');
+	cout &lt;&lt; "insertTreeNode(root,'H')" &lt;&lt; endl;
+	insertTreeNode(root,'H');
+	printTreeInOrder(root);
+
+	cout &lt;&lt; "\ndeleteKey(root, 'F') " &lt;&lt; endl;
+	deleteKey(root, 'F');
+	printTreeInOrder(root);
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+A B C D E F G H I
+deleteKey(root, 'A')
+B C D E F G H I
+insertTreeNode(root,'A')
+A B C D E F G H I
+deleteKey(root, 'I')
+deleteKey(root, 'H')
+A B C D E F G
+insertTreeNode(root,'I')
+insertTreeNode(root,'H')
+A B C D E F G H I
+deleteKey(root, 'F')
+A B C D E G H I
+</pre>
+<br/>
+<br/><br/>
+<div class="subtitle" id="binary_sort_nlogn">$n \log n$ Time Complexity</div>
+<p>No algorithm that sort by comparison based can do beter than $n \log n$ performance in the average or worst case.</p>
+<p>Given $n$ items, there are ${n!}$ permutations of these elements. Each internal node of binary decision tree represents a comparison $a_i \le a_j$ and the leaves of the tree represents on of ${n!}$. Though there are numerous constructs for binary decision tree, we can compute its minimum height, $h$. In other words, there must be some leaf that requires $h$ comparison nodes in the tree from the root to that leaf.</p>
+<p>Let's assume we have complete binary tree of height $h$ in which all non-leaf nodes have both a left and a right child. This tree contains $n=2^h-1$ nodes. The height will be $h = \log (n+1)$. Any binary decision tree with ${n!}$ leaf nodes has at least ${n!}$ nodes. So, we need to compute $h=[\log({n!})]$ to determine the height of the binary decision tree.</p>
+<br/>
+<img alt="binary_decision_tree.png" src="images/binarytree/binary_decision_tree.png"/>
+<br/>
+<p>
+$$\begin{align}
+h &amp; \ge  \log({n!}) \\
+  &amp;       = \log(n(n-1)(n-2)...(2)(1)) \\
+  &amp;       = \log(n) + \log(n-1) + \log(n-2) + ...+ \log 2 +\log 1 \\
+  &amp;       = \sum_{i={n/2}}^n \log i + \sum_{i=1}^{n/2-1} \log i \\
+  &amp;       \ge \sum_{i={n/2}}^n \log i \\
+  &amp;       \ge \sum_{i={n/2}}^n \log {n \over 2} \\
+  &amp;       = {n \over 2} \log {n \over 2} \\
+  &amp;       = \Omega (n \log n) 
+\end{align}$$
+</p>
+<p>So, any sorting algorithm using comparisons will require $\Omega(n \log n)$ comparisons to sort.</p>
+<p>An alternative sorting algorithm such as <a href="../Algorithms/bucketsort.html" target="_blank">bucket sort</a> would perform better under specific conditions. That's because it is not solely rely on comparing elements.</p>
+<br/><br/>
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title sub">Bogotobogo Image / Video Processing </h1>
+<h1 class="teaser title">Computer Vision & Machine Learning</h2>
+<p>
+  with OpenCV, MATLAB, FFmpeg, and scikit-learn.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_ubuntu13_install_cmake.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/lena_Ubuntu_opencv.png" 
+      title="Installing on Ubuntu 13 and loading an image"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_mat_object_image_matrix_image_container.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/matrix_Mat_object.png" 
+      title="Mat(rix) object (Image Container)"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_creating_mat_objects.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/ThreeChannelArray.png" 
+      title="Creating Mat objects, zeros(), ones(), eye() and clone()"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_load_convert_save_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Dostoevsky.png" 
+      title="The core - Image load, convert and save"/> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra1.png" 
+      title="Smoothing Filters A - Average and Gaussian Blur"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing_B.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra2.png" 
+      title="Smoothing Filters B - Median, Bilateral"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCVwithPython.png" 
+      title="OpenCV 3 with Python"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bgr_Matplot.png" 
+      title="OpenCV BGR : Matplotlib RGB, There is a difference in pixel ordering in OpenCV and Matplotlib."/> </a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/CloudyGoldenGate_grayscale.jpg" 
+      title="Basic image operations - pixel access"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/iPython_FFT_Random.png" 
+      title="iPython - Signal Processing with NumPy"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Signal_FFT_square_5_Hz.png" 
+      title="Signal Processing with NumPy I - FFT & DFT for sine, square waves, unitpulse, and random signal"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/NumPyFFT_maze.png" 
+      title="Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT"/> </a>
+      
+    </div>
+ 
+    <!-- 16-20 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/cv2_dft_xfiles.png" 
+      title="Inverse Fourier Transform of an Image with low pass filter: cv2.idft()"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Histo_gray.png" 
+      title="Image Histogram"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/RGB_HSV.png" 
+      title="Video Capture & Switching colorspaces - RGB / HSV"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCV_Otsu_Thresholding3.png" 
+      title="Adaptive Thresholding - Otsu's clustering-based image thresholding"/> </a>
+      
+    </div>
+
+    <!-- 21-25 -->
+
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/SanFrancisco_out.png" 
+      title="Edge Detection - Sobel and Laplacian Kernels"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Canny_Edge_Detection.png" 
+      title="Canny Edge Detection"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hough_eye_51.png" 
+      title="Hough Transform - Circles"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_Dilation.png" 
+      title="Watershed Algorithm : Marker-based Segmentation I"/> </a>
+      
+    </div>
+
+    <!-- 26-30 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_input_output.png" 
+      title="Watershed Algorithm : Marker-based Segmentation II"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Denoising_Gaussian_Gray.png" 
+      title="Image noise reduction : Non-local Means denoising algorithm"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/xfiles4.png" 
+      title="Image object detection : Face detection using Haar Cascade Classifiers"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bolt.jpg" 
+      title="Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts"/> </a>
+      
+    </div>
+
+    <!-- 31-35 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Output_4_pics.png" 
+      title="Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/MeanShiftPic.png" 
+      title="Video : Mean shift object tracking"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D.png" 
+      title="Machine Learning : Clustering - K-Means clustering I"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D_2.png" 
+      title="Machine Learning : Clustering - K-Means clustering II"/> </a>
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/kNN_2.png" 
+      title="Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm"/> </a>
+
+      <img src="../media/img/TopicLogo/OpenCV/more_image_processing.png" 
+      title="Continue..."/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" 
+      title="Matlab - Vectors and Matrices"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_M_Files_scripts.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/m_files.png" 
+      title="mfiles - Matlab script files"/> </a>
+      
+    </div>
+
+    <!-- 41-45 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_For_Loop.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/sum_1_to_10_ForLoop.png" 
+      title="For loop for loop_index = vector"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Indexing_Masking_Array_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ArrayMasking.png" 
+      title="Indexing and masking"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Array_Audio_Wave_File_Plot_Play.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DrumAudioTwoChannels_2.png" 
+      title="Vectors and arrays with audio files"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ReversedAudio.png" 
+      title="Manipulating Audio I : Reverse play and delay audio"/> </a>
+      
+    </div>
+
+    <!-- 46-50 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_2_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Audio2.png" 
+      title="Manipulating Audio II : Playing with stereo sound, tone control, changing Speed, removing vocals"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Introduction_to_FFT_DFT_Fast_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/FFT_DFT_Diagram.png" 
+      title="Introduction to FFT & DFT"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_DFT_Discrete_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DFT_results.png" 
+      title="Discrete Fourier Transform (DFT)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_I.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/RGB_BerkeleyTower.png" 
+      title="Digital Image Processing 1 - 7 basic functions "/> </a>
+ 
+    </div>
+
+    <!-- 51-55 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_2_RGB_Indexed_Color_Info.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ImgProc2.png" 
+      title="Digital Image Processing 2 - RGB image & indexed image"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_3_Grayscale_RGB.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Einstein.jpg" 
+      title="Digital Image Processing 3 - Grayscale image I"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_4_Grayscale_RGB_II.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/bit_plane1.png" 
+      title="Digital Image Processing 4 - Grayscale image II (image data type and bit-plane)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_5_Histogram_Equalization_imhist_histeq_imadjust.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/two_histogram_in_one_pic.png" 
+      title="Digital Image Processing 5 - Histogram equalization"/> </a>
+      
+    </div>
+
+    <!-- 56-60 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_6_Filter_Smoothing_Low_Pass_fspecial_filter2.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/noise_in_rgb_image.png" 
+      title="Digital Image Processing 6 - Image Filter (Low pass filters)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_1_Object_Detection_by_Color_Thresholding.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Object_Detect_Run2.png" 
+      title="Video Processing 1 - Object detection (tagging cars) by thresholding color"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_2_Face_Detection_CamShift_Tracking.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DetectedFace.png" 
+      title="Video Processing 2 - Face Detection and CAMShift Tracking"/> </a>
+
+      <img src="../media/img/TopicLogo/Matlab/more_image_processing.png" 
+      title="More image processing"/> 
+      
+    </div>
+
+    <!-- 61-65 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_image_scaling_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" 
+      title="Image/video scaling"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropping_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/cropped_blue_umbrella_025.png" 
+      title="Image/video cropping - crop=712:534"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_cropdetect.png" 
+      title="Cropdetect and ffplay : crop=out_width:out_height:x:y"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_speed_up_dlow_down.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_video_speed_up_dlow_down.png" 
+      title="Speeding-up & slowing-down video"/> </a>
+      
+    </div>
+
+    <!-- 66-70 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_basic_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_show.png" 
+      title="Basic slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_adv_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/Adv_Slide_Show.png" 
+      title="Advanced slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_thumbnails_select_scene_iframe.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/thumnail_iframe.png" 
+      title="Thumbnails -Selecting specific frames : I-frame extraction etc."/> </a>
+
+      <a href="../FFMpeg/ffmpeg_seeking_ss_option_cutting_section_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/seek_cut_sections.png" 
+      title="Seeking and cutting sections of a video & audio"/> </a>
+      
+    </div>
+
+    <!-- 71-75 -->
+    <div id = "pics">
+
+      <a href="../FFMpeg/ffmpeg_concatenating_two_videos.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/concat.png" 
+      title="Concatenating two video files or two audio files"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out.png" 
+      title="Transitions : fade-in & fade-out for 1 slide"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out_two.png" 
+      title="Transitions : python script for fade-in & fade-out with two slides"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_concat.png" 
+      title="Concatenate slides"/> </a>
+      
+    </div>
+
+    <!-- 76-80 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_video_test_patterns_src.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/creating_test_video.png" 
+      title="Creating test videos"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/screencasting.png" 
+      title="Screen Recording on Ubuntu A"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture_active_current_top_window.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ActiveCapture.png" 
+      title="Active window capture with Python on Ubuntu B"/> </a>
+
+      <img src="../media/img/TopicLogo/arrow_scikit-learn.png" 
+      title="Machine Learning with scikit-learn"/> 
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" 
+      title="scikit-learn installation"/> </a>
+
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/feature_extraction.png" 
+      title="Features and feature extraction - iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/supervised.png" 
+      title="Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/un_supervised.png" 
+      title="Unsupervised_Learning - KMeans clustering with iris dataset"/> </a>
+
+
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/NonlinearlySeparable.png" 
+      title="Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/svm.png" 
+      title="Support Vector Machines (SVM)"/> </a>
+
+      
+    </div>
+
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title">Bogotobogo's Video Streaming Technology </h1>
+<h1 class="teaser title sub">with FFmpeg, HLS, MPEG-DASH, H.265 (HEVC)</h2>
+
+
+<div class="box full" >
+<div style="margin:0 auto; width: 734px; height:120px;">
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/VideoStreaming_Image.png" 
+      title="Video Streaming Technology - General Introduction & Terminology"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Adaptive_Sorenson.png" 
+      title="Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH"/> </a>
+
+      <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/JPEG_Compression_process_YCbCr.png" 
+      title="Digital Image Processing : JPEG Compression - subsampling, subimage, DCT, quantize, Huffman encoding"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/planet_linux_i002.png" 
+      title="FFmpeg on Linux - Audio Video Transcoding,  Mux and Demux"/> </a>
+      
+    </div>
+
+    <!-- 6-10 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Conversion_To_Webm.png" 
+      title="FFmpeg install on Windows, file conversion, and FFmpeg converter"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTML5_player.png" 
+      title="FFmpeg Webcam video capture, HTML5 player"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_http_live_streaming_hls.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Segment.png" 
+      title="FFmpeg segment etc."/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_options_list.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_command_options.png" 
+      title="FFmpeg command options"/> </a>
+      
+    </div>
+
+    <!-- 11-15 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Smooth_Streaming.png" 
+      title="Multiple bit rate encoding with two pass, creating manifest using ismindex and mp4split"/> </a>
+
+      <a href="../VideoStreaming/rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTTPvsRTMP.png" 
+      title="HTTP vs RTMP"/> </a>
+
+      <a href="../WebTechnologies/mobile.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Mobile.png" 
+      title="Mobile in general and Mobile streaming"/> </a>
+
+      <a href="../VideoStreaming/h265_hevc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/H265.png" 
+      title="Introduction to H.265 (HEVC)"/> </a>
+      
+    </div>
+
+    <!-- 16-20-->
+    <div id = "pics">
+      <a href="../VideoStreaming/Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Export_BBFlash.png" 
+      title="Screen Recording (mp4/ogg) and HTML5 Video"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/iis8.png" 
+      title="SmoothStreaming iis8"/> </a>
+
+      <a href="../VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/localhost_nginx_welcome.png" 
+      title="Smooth Streaming on Nginx/Apache"/> </a>
+
+      <a href="../VideoStreaming/mpeg_dash.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/DASH_Profile.png" 
+      title="MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)"/> </a>
+      
+    </div>
+
+    <!-- 21-25-->
+    <div id = "pics">
+      <a href="../VideoStreaming/p2pStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/P2P.png" 
+      title="p2p"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/ExpressionEncoderSilverlightProject.png" 
+      title="Smooth Streaming - Expression Encoder"/> </a>
+
+      <a href="../VideoStreaming/optimization_transrating.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/opt_data.png" 
+      title="Streaming (Data Traffic) - Optimization"/> </a>
+
+      <a href="../VideoStreaming/VideoStreamingSharingSites.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/vimeo.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/convert_save.png" 
+      title="How to Capture Screen to a Video File using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_http.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Results_Two_Pictures.png" 
+      title="Live Streaming over http using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/OpenNetworkStream.png" 
+      title="Live Streaming over RTP using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/File_Convert_Transcoding_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/TranscodingStarted.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/YouTube.png" 
+      title="Downloading a YouTube Video using VLC"/> </a>
+      
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h1 class="teaser title">Bogotobogo's contents</h1>
+<p>
+  To see more items, click left or right arrow.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div>
+      <a href="cpptut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Cpp_Image.png" /> </a>
+      <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html" target="_blank">
+      <img src="../media/img/TopicLogo/Qt5_Image.png" /></a>
+      <a href="../python/pytut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Python_Image.png" /> </a>
+      <a href="../Android/android.html" target="_blank">
+      <img src="../media/img/TopicLogo/Android_Image.png" /> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div>
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" /> </a>
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV3_Image.png" /></a>
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" /></a>
+      <a href="../php/phptut.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/PHP_Image.png" /></a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div>
+      <a href="../CSharp/.netframework.html" target="_blank">
+      <img src="../media/img/TopicLogo/CSharp_Image.png" /></a>
+      <a href="../VisualBasicSQL/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/VisualBacis_Image.png" /></a>
+      <a href="../AngularJS/AngularJS_Introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/AngularJS_logo.png" /> </a>
+      <a href="../JQuery/JQuery_document_ready_click_function.html" target="_blank">
+      <img src="../media/img/TopicLogo/jQuery_Image.png" /></a>
+    </div>
+ 
+    <!-- 16-20 -->
+    <div>
+      <a href="../Algorithms/algorithms.html" target="_blank">
+      <img src="../media/img/TopicLogo/Algorithms_Image.png" /></a>
+      <a href="../DesignPatterns/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Design_Patterns_Image.png" /></a>
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming_Image.png" /></a>
+      <a href="../Java/tutorials/on_java.html" target="_blank">
+      <img src="../media/img/TopicLogo/Java_Image.png" /></a>
+    </div>
+
+    <!-- 21-25 -->
+    <div>
+      <a href="../RubyOnRails/RubyOnRails.html" target="_blank">
+      <img src="../media/img/TopicLogo/RubyOnRails_Image.png" /></a>
+      <a href="../iPhone/iPhone.html" target="_blank">
+      <img src="../media/img/TopicLogo/iOS_Image.png" /></a>
+      <a href="../HTML5/OnHTML5.html" target="_blank">
+      <img src="../media/img/TopicLogo/HTML5_Image.png" /></a>
+      <a href="../Linux/linux_tips1.html" target="_blank">
+      <img src="../media/img/TopicLogo/Linux_Image.png" /> </a>    
+    </div>
+
+    <!-- 26-30 -->
+    <div>
+      <a href="../python/Django/Python_Django_tutorial_introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Django_Image.png" /></a>
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html"/ target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" /></a>
+      <a href="../php/Laravel4/php_laravel4_framework_install_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/Laravel_Image.png" /></a>
+      
+      <a href="embeddedSystemsProgramming.html" target="_blank">
+      <img src="../media/img/TopicLogo/EmbeddedRTOS.png" /></a>
+    </div>
+
+    <!-- 31-35 -->
+    <div>
+      <a href="Git/Git_GitHub_Express.html" target="_blank">
+      <img src="../media/img/TopicLogo/git_github_image.png" /></a>
+      <a href="../SVG/svg.html" target="_blank">
+      <img src="../media/img/TopicLogo/SVG_Image.png" /> </a>
+      <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html" target="_blank">
+      <img src="../media/img/TopicLogo/DevOps_icon.png" /> </a>
+      <img src="../media/img/TopicLogo/Coming_Soon_Image.png" />
+      <img src="../media/img/TopicLogo/Hadoop_Blur_Image.png" />
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div>
+      <img src="../media/img/TopicLogo/OpenCL_Blur_Image.png" />
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+</script>
+</div> <!-- box full -->
+ 
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+ 
+</div> <!-- blurb -->
+</p></p></ol>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+  <!-- CDN MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/binarytree.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:19:24 GMT -->
+</html>
+

@@ -1,0 +1,207 @@
+<script>
+"use strict";
+(function() {
+
+  function appendArrowhead(selection) {
+    selection.append("marker")
+        .attr("id", "arrowhead")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 5)
+        .attr("refY", 0)
+        .attr("markerWidth", 10)
+        .attr("markerHeight", 10)
+        .attr("orient", "auto")
+      .append("path")
+        .attr("d", "M0,-5L5,0L0,5")
+        .style("fill", "none")
+        .style("stroke", "grey");
+  }
+
+  var vectorScale = d3.scaleLinear()
+      .domain([0, 1])
+      .range([-14, 14]);
+
+  var memoryData = [
+    {x: 0.9, y: 0.9},
+    {x: 0.8, y: 0.8},
+    {x: 0.1, y: 0.9},
+    {x: 0.4, y: 0.2},
+    {x: 0.2, y: 0.2},
+    {x: 0.4, y: 0.3},
+    {x: 0.1, y: 0.5}
+  ];
+
+  var writeData = {x: 0.9, y: 0};
+
+  //
+  // Read
+  //
+  var nodeWidth = 36;
+  var readHtml = d3.selectAll("#rnn-read");
+  var svg = readHtml.select("svg");
+  var result = svg.select("#read-result").style("opacity", 0);
+  var resultBBox = result.node().getBBox();
+  var memory = svg.selectAll("#memory use");
+  var memoryBBox = svg.select("#memory").node().getBBox();
+  var attention = svg.selectAll("#attention use");
+  var attentionBBox = svg.select("#attention").node().getBBox();
+  var path = svg.selectAll("#paths path");
+
+  appendArrowhead(svg);
+  var resultArrow = svg.append("line")
+      .attr("class", "result-line")
+      .attr("marker-end", "url(#arrowhead)")
+      .style("stroke", "grey");
+
+  memory.data(memoryData)
+    .each(function(d, i) {
+      this.style.opacity = 0;
+      d.top = memoryBBox.y;
+      d.left = memoryBBox.x + nodeWidth * i;
+      d.width = nodeWidth;
+    });
+
+  var memoryVectors = svg.selectAll(".vector")
+      .data(memoryData)
+    .enter().append("line")
+      .attr("class", "vector")
+      .attr("transform", function(d) {
+        return `translate(${d.left + d.width / 2 - vectorScale(d.x) / 2}, ${d.top + d.width / 2 - vectorScale(d.y) / 2})`
+      })
+      .attr("x2", function(d) { return  vectorScale(d.x); })
+      .attr("y2", function(d) { return  vectorScale(d.y); })
+      .attr("marker-end", "url(#arrowhead)")
+      .style("stroke", "grey");
+
+  function updateReadAttention(data) {
+    attention.data(data)
+        .style("opacity", function(d) { return  d + 0.05; });
+
+    path.data(data)
+        .style("stroke-opacity", function(d) { return  d + 0.1; });
+
+    var resultX = d3.sum(memoryData, function(d, i) { return d.x * data[i]; }) / d3.sum(data);
+    var resultY = d3.sum(memoryData, function(d, i) { return d.y * data[i]; }) / d3.sum(data);
+
+    resultArrow
+        .attr("transform",`translate(${resultBBox.x + resultBBox.width / 2 - vectorScale(resultX) / 2}, ${resultBBox.y + resultBBox.width / 2 - vectorScale(resultY) / 2})`)
+        .attr("x2", function(d) { return  vectorScale(resultX); })
+        .attr("y2", function(d) { return  vectorScale(resultY); });
+  }
+
+  var length = memory.size();
+  var attentionData = d3.range(length).map(function() { return Math.random(); });
+  updateReadAttention(attentionData);
+
+  readHtml.on("mousemove", function() {
+    var data = [];
+    attention.each(function() {
+      var bbox = this.getBoundingClientRect()
+      var distance = Math.abs(bbox.left - d3.event.clientX + bbox.width / 2);
+      data.push(Math.exp(-distance / 25));
+    });
+    data = data.map(function(d) { return  d / d3.sum(data); });
+    updateReadAttention(data);
+  });
+
+  var initReadData = d3.range(attention.size()).map(function(d) { return  Math.exp(-d); });
+  initReadData = initReadData.map(function(d) { return  d / d3.sum(initReadData); });
+  updateReadAttention(initReadData);
+
+  //
+  // Write
+  //
+
+  var writeHtml = d3.selectAll("#rnn-write");
+  var writeSvg = writeHtml.select("svg");
+  var writeMemory = writeSvg.selectAll("#memory use");
+  var writeMemoryBBox = writeSvg.select("#memory").node().getBBox();
+  var writeNewMemory = writeSvg.selectAll("#new-memory use");
+  var writeNewMemoryBBox = writeSvg.select("#new-memory").node().getBBox();
+  var writeAttention = writeSvg.selectAll("#attention use");
+  var writeAttentionBBox = writeSvg.select("#attention").node().getBBox();
+  var writePath = writeSvg.selectAll("#paths path");
+  var writeResult = writeSvg.select("#write-result").style("opacity", 0);
+  var writeResultBBox = writeResult.node().getBBox();
+  var newMemoryData = memoryData.map(function(){ return {}; });
+
+  appendArrowhead(writeSvg);
+  var writeArrow = writeSvg.append("line")
+      .attr("class", "write-line")
+      .attr("marker-end", "url(#arrowhead)")
+      .style("stroke", "grey")
+      .attr("transform", "translate(" + (writeResultBBox.x + writeResultBBox.width / 2 - vectorScale(writeData.x) / 2) + ", " + (writeResultBBox.y + writeResultBBox.width / 2 - vectorScale(writeData.y) / 2) + ")")
+      .attr("x2", vectorScale(writeData.x))
+      .attr("y2", vectorScale(writeData.y));
+
+  writeMemory.data(memoryData)
+    .each(function(d, i) {
+      this.style.opacity = 0;
+      d.top = writeMemoryBBox.y;
+      d.left = writeMemoryBBox.x + i * nodeWidth;
+      d.width = nodeWidth;
+    });
+
+  var writeMemoryVectors = writeSvg.selectAll(".vector")
+      .data(memoryData)
+    .enter().append("line")
+      .attr("class", "vector")
+      .attr("transform", function(d) {
+        return "translate(" + (d.left + d.width / 2 - vectorScale(d.x) / 2) + ", " + (d.top + d.width / 2 - vectorScale(d.y) / 2) + ")";
+      })
+      .attr("x2", function(d) { return  vectorScale(d.x); })
+      .attr("y2", function(d) { return  vectorScale(d.y); })
+      .attr("marker-end", "url(#arrowhead)")
+      .style("stroke", "grey");
+
+  writeNewMemory.data(newMemoryData)
+    .each(function(d, i) {
+      this.style.opacity = 0;
+      d.top = writeNewMemoryBBox.y;
+      d.left = writeNewMemoryBBox.x + i * nodeWidth;
+      d.width = nodeWidth;
+    });
+
+  var writeNewMemoryVectors = writeSvg.selectAll(".new-vector")
+      .data(newMemoryData)
+    .enter().append("line")
+      .attr("class", "new-vector")
+      .attr("marker-end", "url(#arrowhead)")
+      .style("stroke", "grey");
+
+  function updateWriteAttention(data) {
+    newMemoryData.forEach(function(d, i) {
+      d.x = (memoryData[i].x + writeData.x * data[i]) / (1 + data[i]);
+      d.y = (memoryData[i].y + writeData.y * data[i]) / (1 + data[i]);
+    });
+    writeNewMemoryVectors
+        .attr("transform", function(d) {
+          return "translate(" + (d.left + d.width / 2 - vectorScale(d.x) / 2) + ", " + (d.top + d.width / 2 - vectorScale(d.y) / 2) + ")";
+        })
+        .attr("x2", function(d) { return  vectorScale(d.x); })
+        .attr("y2", function(d) { return  vectorScale(d.y); });
+
+    writeAttention.data(data)
+        .style("opacity", function(d) { return  d + 0.05; });
+
+    writePath.data(data)
+        .style("stroke-opacity", function(d) { return  d + 0.1; });
+  }
+
+  writeHtml.on("mousemove", function() {
+    var data = [];
+    writeAttention.each(function() {
+      var bbox = this.getBoundingClientRect()
+      var distance = Math.abs(bbox.left - d3.event.clientX + bbox.width / 2);
+      data.push(Math.exp(-distance / 25));
+    });
+    data = data.map(function(d) { return  d / d3.sum(data); });
+    updateWriteAttention(data);
+  });
+
+  var initWriteData = d3.range(writeAttention.size()).map(function(d) { return  Math.exp(-d); });
+  initWriteData = initWriteData.map(function(d) { return  d / d3.sum(initWriteData); });
+  updateWriteAttention(initWriteData);
+
+})();
+</script>

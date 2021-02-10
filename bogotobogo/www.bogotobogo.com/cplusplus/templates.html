@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/templates.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:03:49 GMT -->
+<head>
+  <title>C++ Tutorial: Templates - 2017</title>
+  <meta content="C++ Tutorial: Templates" name="description" />
+  <meta content="C++ Tutorial, Function Templates, Generic Functions, Class Templates, Instantiation, 
+Template Specialization, Implicit Instantiation, Explicit Instantiation, typename, value. allocator, uninitialized storage" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial - Templates - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="Templates">Templates</div>
+<p>We use <strong>templates</strong> when we need functions/classes that apply the same algorithm to a several types. So we can use the same function/class regardless of the types of the argument or result.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>In other words, a <strong>template</strong> is a mechanism that allows a programmer to use types as parameters for a class or a function. The compiler then generates a specific class or function when we later provide specific types as arguments. In a sense, templates provide <strong>static (compile-time) polymorphism</strong>, as opposed to dynamic (run-time) polymorphism. A function/class defined using template is called a <strong>generic function/class</strong>, and the ability to use and create generic functions/classes is one of the key features of C++. </p>
+<p>We can think of a class template as a <strong>type generator</strong>. The process of generating types from a class template is called <strong>specialization</strong> or <strong>template instantiation</strong>.</p>
+<p>In most of the cases, template instantiation is very complicated, but that complexity is in the domain of compiler writer, not the template user. Template instantiation takes place at compile time or link time, not at run time.</p>
+<p>The syntax is:
+<pre>
+template &lt;class T&gt; function_declaration;
+</pre>
+or
+<pre>
+template &lt;typename T&gt; function_declaration;
+</pre>
+</p>
+<p>We can use either of construct. They are not different since both expressions have exactly the same meaning 
+and behave exactly the same way.</p>
+<p>Let's take one example of how a template generates a code. We have a function like this:</p>
+<pre>
+void f(vector&lt;string&gt;&amp;v;)
+{
+    v.push_back("Steve Jobs");
+}
+</pre>
+<p>The compiler, when it sees <strong>v.push_back("Steve Jobs")</strong>, generates a function something like this ("Programming Principles and Practice Using C++" by Stroustrup, 2009)</p>
+<pre>
+void vector&lt;string&gt;::push_back(const string&amp; s){...}
+</pre>
+<p>from the following template definition:</p>
+<pre>
+template&lt;typename T&gt;
+void vector&lt;T&gt;::push_back(const T&amp; s){...}
+</pre>
+<p>The process of generating types from a given template arguments is called <strong>specialization</strong> or <strong>template instantiation</strong>. For example, vector&lt;int&gt; and vector&lt;Node*&gt; are said to be a specialization of vector.</p>
+<p>Templates are the foundation of generic programming. Generic programming relies on polymorphism. 
+Though there are several differences between OOP (class hierarchies and virtual functions) and generic programming (templates),
+ the major difference is:</p>
+<ol>
+<li><strong>Generic (templates)</strong> : compile time resolution. <br/>
+	The choice of function invoked when we use is determined by the compiler at compile time.
+     </li>
+<li><strong>OOP (virtual functions)</strong> : run time resolution. 
+     </li>
+</ol>
+<p>Generic programming lets us write classes and functions that are polymorphic across unrelated types at compile time.
+ A single class or function can be used to manipulate objects of a variety of types. 
+The standard library containers, iterators, and algorithms are examples of generic programming. 
+We can use library classes and functions on any kind of type.</p>
+<p>When we parameterize a class, we get a <strong>class template</strong>, and when we parameterize a function, 
+we get a <strong>function template</strong>.</p>
+<p>So, what do people actually use template for?</p>
+<ol>
+<li>When performance is essential.</li>
+<li>When flexibility in combining information from several types is essential.</li>
+</ol>
+<p>But note that, the flexibility and performance come at the cost of poor error diagnostics and poor error messages.</p>
+<div class="subtitle" id="Template_term">Terminology of Templates</div>
+<p>Let's review the terminology of template using the following example implementing a generic stack class. This section of terminology is borrowed from "API design for C++" by Martin Reddy, 2011.</p>
+<pre>
+template &lt;typename T&gt;
+class Stack
+{
+public:
+	void push(T val);
+	T pop();
+	bool isEmpty() const;
+private:
+	std:vector&lt;T&gt; mStack;
+};
+</pre>
+<ol>
+<li><strong>Template Parameters</strong><br/>
+<p>
+These names are listed after the template keyword in a template declarations. As shown in the example, <strong>T</strong> is the single template parameter specified in the <strong>Stack</strong> class.</p>
+</li>
+<li><strong>Template Arguments</strong><br/>
+<p>
+These are substituted for template parameters during specialization. In our example, given a specialization <strong>Stack&lt;int&gt;</strong>, the <strong>int</strong> is a template argument.</p>
+</li>
+<li><strong>Instantiation</strong><br/>
+<p>
+This is when the compiler generates a regular class, method, or function by substituting each of the template's parameters with a concrete type. This can happen implicitly when we create an object based on a template or explicitly if we want to control when the code generation happens. For instance, the following code creates two specific stack instances and will normally cause the compiler to generate code for these two different types:</p>
+<pre>
+Stack&lt;T&gt; myIntStack;
+Stack&lt;T&gt; myStringStack;
+</pre>
+<li><strong>Implicit Instantiation</strong><br/>
+<p>This is when the compiler decides when to generate code for our template instances. Leaving the decision to the compiler means that it must find an appropriate place to insert the code, and it must also make sure that only one instance of the code exists to avoid duplicate symbol errors. This is non-trivial problem and can cause extra bloat in our object files or longer compile time. Most importantly, implicit instantiation means that we have to include the template definitions in our header files so that the compiler has an access to the definitions whenever it needs to generate the instantiation code.</p>
+</li>
+<li><strong>Emplicit Instantiation</strong><br/>
+<p>This is when the programmer determine when the compiler should generate the code for a specific specialization. This can make for much more efficient compilation and link times because the compiler no longer needs to maintain bookkeeping information for all of its implicit instantiations. The onus, however, is then placed on the programmer to ensure that a particular specialization is explicitly instantiated only once. So, explicit instantiation allows us to move the template implementation into the <strong>.cpp</strong> file, and so hide from the user.</p>
+</li>
+<li><strong>Lazy Instantiation</strong><br/>
+<p>This describes the standard implicit instantation behavior of a C++ compiler wherein it will only generate code for the parts of a template that are actually used. Given the previous two instantiations, for example, if we never called <strong>isEmpty()</strong> on the <strong>myStringStack</strong> object, then the compiler would not generate code for the <strong>std::string</strong> specialization of that method. This means that we can instantiate a template with a type that can be used by some, but not all methods of a class template. If one method uses the <strong>&gt;=</strong> operator, but the type we want to instantiate does not define this operator. This is fine as long as we don't call the particular method that attempts to use the <strong>&gt;=</strong> operator.</p>
+</li>
+<li><strong>Specialization</strong><br/>
+<p>When a template is instantiated, the resulting class, method, or function is called a specialization. More specifically, this is an instantiated (or generated) specialization. However, the term specialization can also be used when we provide a custom implementation for a function by specifying concrete types for all the template parameters. The following is called an explicit specialization:</p>
+<pre>
+tempate&lt;&gt;
+void Stack&lt;int&gt;::push(int val)
+{
+    // integer specific push implementation
+}
+</pre></li>
+<li><strong>Partial Specialization</strong><br/>
+<p>This is when we provide a specialization of the template for a subset of all possible cases. In other words, we specialize one feature of the template but still allow the user to specify other features. For example, if our template accepts multiple parameters, we could partially specialize it by defining a case where we specify a concrete type for only one of the parameters. In our <strong>Stack</strong> example with a single template parameter, we could partially specialize this template to specifically handle <strong>pointers(*)</strong> to any type <strong>T</strong>. This still lets users create a stack of any type, but it also lets us write specific logic to handle the case where users create a stack of pointers. This partially specialized class declaration looks like this:
+<pre>
+template &lt;typename T&gt;
+class Stack&lt;T*&gt;
+{
+public:
+	void push(T* val);
+	T* pop();
+	bool isEmpty() const;
+private:
+	std:vector&lt;T*&gt; mStack;
+};
+</pre>
+</p>
+</li>
+</li></ol>
+<br/>
+<br/>
+<div class="subtitle" id="Pros_Cons_Templates">Pros and Cons of Templates</div>
+<ol>
+<li><p><strong>Pros</strong></p>
+<ol>
+<li>It provides us <strong>type-safe</strong>, <strong>efficient</strong> generic containers and generic algorithms </li>
+<li>The main reason for using C++ and templates is the trade-offs in performance and maintainability outweigh the bigger size of the resulting code and longer compile times. </li>
+<li>The drawbacks of not using them are likely to be much greater.
+  </li>
+</ol>
+</li>
+<li><p><strong>Cons</strong></p>
+<ol>
+<li>Templates can lead to slower compile-times and possibly larger executable.
+  </li>
+<li>Compilers often produce incomprehensible 
+ poor error diagnostics and poor error messages.
+  </li>
+<li>The design of the STL collections tends to lead to a lot of copying of objects. The original smart pointer, std::auto_ptr, wasn't suitable for use in most collections. Things could be improved if we use other smart pointers from boost or C11.
+  </li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle" id="FunctionTemplates">Function Templates</div>
+<p>Here is a simple example of how we use the template for a function which gives us the minimum value.</p>
+<pre>
+#include &lt;iostream&gt;
+
+template &lt;class T&gt;
+const T&amp; min(const T&amp; a, const T&amp; b) {
+	return a &lt; b ? a : b;
+}
+
+int main() 
+{
+	int x = 10, y = 20;
+	long xLong = 100, yLong = 200;
+	int minimum = min<font color="blue">&lt;int&gt;</font>(x, y);
+	long minimumLong = min<font color="blue">&lt;long&gt;</font>(xLong,yLong);
+	std::cout &lt;&lt; "minimum = " &lt;&lt; minimum &lt;&lt; std::endl;
+	std::cout &lt;&lt; "minimumLong = " &lt;&lt; minimumLong &lt;&lt; std::endl;
+}
+</pre>
+<p>If we drop &lt;int&gt; or &lt;long&gt;, the compiler still can do the job since it still can get the information about the type from the the function argument. </p>
+<p>A function template can be declared <strong>inline</strong> in the same way as a nontemplate function. 
+The specifier is placed following the template parameter list and before the return type. It shouldn't be placed 
+in front of the <strong>template</strong> keyword. So, it looks like this:</p>
+<pre>
+template &lt;class T&gt;
+<font color="red">inline</font> const T&amp; min(const T&amp; a, const T&amp; b) {
+</pre>
+<p>But <strong>not</strong> this:</p>
+<pre>
+<font color="red">inline</font> template &lt;class T&gt;
+const T&amp; min(const T&amp; a, const T&amp; b) {
+</pre>
+<p>We can also define function templates that accept more than one type parameter, simply by specifying more template parameters between the angle brackets as in the example below.</p>
+<pre>
+template &lt;class T, class U&gt;
+inline const T&amp; min(const T&amp; a, const U&amp; b) {
+	return a &lt; b ? a : b;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="ClassTemplates">Class Templates</div>
+<p>Class can be generic using template.</p>
+<pre>
+template &lt;class T&gt;
+class Complx {
+private:
+	T real, imag;
+public:
+	Complx(T&amp;, T&amp;);
+	T&amp; getReal();
+	T&amp; getImag();
+};
+
+template &lt;class T&gt;
+Complx&lt;T&gt;::Complx(T&amp; a, T&amp; b) {
+	real = a;
+	imag = b;
+}
+
+template &lt;class T&gt;
+T&amp; Complx&lt;T&gt;::getReal() {
+	return real;
+}
+
+template &lt;class T&gt;
+T&amp; Complx&lt;T&gt;::getImag() {
+	return imag;
+}
+
+#include &lt;iostream&gt;
+
+int main() 
+{
+	double i=100, j=200;
+	Complx &lt;double&gt; myComplx(i,j);
+
+	std::cout &lt;&lt;"My complex is " &lt;&lt; myComplx.getReal() &lt;&lt; ","
+		&lt;&lt; myComplx.getImag() &lt;&lt; std::endl;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="exercise">Simple Template Exercise</div>
+<br/>
+<div class="subtitle_2nd" id="initial">Initial code</div>
+<p>We have the following vector class:</p>
+<pre>
+class vector
+{
+	int sz;		// number of elements
+	double* elem;	// address of first element
+	int space;	// number of elements plus free-space
+			// slots for new elements
+public:
+	vector() : sz(0), elem(0), space(0) {}
+	vector(int s) : sz(s), elem(new double[s]), space(s) {
+		for(int i = 0; i &lt; sz; ++i) elem[i] = 0;
+	}
+	vector(const vector&amp;);
+	vector&amp; operator=(const vector &amp; v);
+
+	~vector() { delete[] elem; }
+
+	double&amp; operator[](int n);
+	const double&amp; operator[](int n) const;
+
+	int size() const { return sz; }
+	int capacity() const { return space; }
+
+	void reserve(int alloc_size);
+	void resize(int resize_size);
+	void push_back(double d);
+};
+
+void vector::reserve(int alloc_size) {
+	if(alloc_size &lt;= space) return;
+	double *p = new double[alloc_size];
+	for(int i = 0; i &lt; sz; ++i) p[i] = elem[i];
+	delete[] elem;
+	elem = p;
+	space = alloc_size;
+}
+
+vector&amp; vector::operator=(const vector &amp; v) {
+	if(this == &amp;v;) return *this;
+
+	if(v.sz &lt;= space) {
+		for(int i = 0; i &lt; v.sz; ++i) 
+			elem[i] = v.elem[i];
+		sz = v.sz;
+		return *this;
+	}
+
+	double *p = new double[v.sz];
+	for(int i = 0; i &lt; v.sz; ++i) 
+		p[i] = v.elem[i];
+	delete[] elem;
+	space = sz = v.sz;
+	elem = p;
+	return *this;
+}
+
+void vector::resize(int resize_size) {
+	reserve(resize_size);
+	for(int i = 0; i &lt; resize_size; ++i) elem[i] = 0;
+	sz = resize_size;
+}
+
+void vector::push_back(double d){
+	if(space == 0) 
+		reserve(10);
+	else if(sz == space) 
+		reserve(2*space);
+	elem[sz] = d;
+	++sz;
+}
+</pre>
+<p>Let's convert the code using template parameters by replacing <strong>double</strong> with <strong>T</strong>:</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+template&lt;class <font color="red">T</font>&gt;
+class vector
+{
+	int sz;		// number of elements
+	<font color="red">T</font>* elem;	// address of first element
+	int space;	// number of elements plus free-space
+
+public:
+	vector() : sz(0), elem(0), space(0) {}
+	vector(int s) : sz(s), elem(new <font color="red">T</font>[s]), space(s) {
+		for(int i = 0; i &lt; sz; ++i) elem[i] = 0;
+	}
+	vector(const vector&amp;);
+	vector&amp; operator=(const vector &amp; v);
+
+	~vector() { delete[] elem; }
+
+	<font color="red">T</font>&amp; at(int n);
+	const <font color="red">T</font>&amp; at(int n) const;
+
+	<font color="red">T</font>&amp; operator[](int n);
+	const <font color="red">T</font>&amp; operator[](int n) const;
+
+	int size() const { return sz; }
+	int capacity() const { return space; }
+
+	void reserve(int alloc_size);
+	void resize(int resize_size);
+	void push_back(const <font color="red">T</font>&amp; d);
+};
+
+template&lt;class <font color="red">T</font>&gt;
+void vector&lt;<font color="red">T</font>&gt;::reserve(int alloc_size) {
+	if(alloc_size &lt;= space) return;
+	<font color="red">T</font> *p = new <font color="red">T</font>[alloc_size];
+	for(int i = 0; i &lt; sz; ++i) p[i] = elem[i];
+	delete[] elem;
+	elem = p;
+	space = alloc_size;
+}
+
+template&lt;class <font color="red">T</font>&gt;
+<font color="red">T</font>&amp; vector&lt;<font color="red">T</font>&gt;::at(int n) {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class <font color="red">T</font>&gt;
+const <font color="red">T</font>&amp; vector&lt;<font color="red">T</font>&gt;::at(int n) const {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class <font color="red">T</font>&gt;
+<font color="red">T</font>&amp; vector&lt;<font color="red">T</font>&gt;::operator[](int n) {
+	return elem[n];
+}
+
+template&lt;class <font color="red">T</font>&gt;
+const <font color="red">T</font>&amp; vector&lt;<font color="red">T</font>&gt;::operator[](int n) const { 
+	return elem[n]; 
+}
+
+template&lt;class <font color="red">T</font>&gt;
+vector&lt;<font color="red">T</font>&gt;&amp; vector&lt;<font color="red">T</font>&gt;::operator=(const vector&lt;<font color="red">T</font>&gt; &amp; v) {
+	if(this == &amp;v;) return *this;
+
+	if(v.sz &lt;= space) {
+		for(int i = 0; i &lt; v.sz; ++i) 
+			elem[i] = v.elem[i];
+		sz = v.sz;
+		return *this;
+	}
+
+	<font color="red">T</font> *p = new <font color="red">T</font>[v.sz];
+	for(int i = 0; i &lt; v.sz; ++i) 
+		p[i] = v.elem[i];
+	delete[] elem;
+	space = sz = v.sz;
+	elem = p;
+	return *this;
+}
+
+template&lt;class <font color="red">T</font>&gt;
+void vector&lt;<font color="red">T</font>&gt;::resize(int resize_size) {
+	reserve(resize_size);
+	for(int i = 0; i &lt; resize_size; ++i) elem[i] = 0;
+	sz = resize_size;
+}
+
+template&lt;class <font color="red">T</font>&gt;
+void vector&lt;<font color="red">T</font>&gt;::push_back(const <font color="red">T</font>&amp; d){
+	if(space == 0) 
+		reserve(10);
+	else if(sz == space) 
+		reserve(2*space);
+	elem[sz] = d;
+	++sz;
+}
+
+int main()
+{
+	vector&lt;double&gt; dv(3);
+	dv.resize(5);
+	for(int i = 0; i &lt; dv.size(); ++i) {
+		cout &lt;&lt; dv[i] &lt;&lt; " " ;      //0 0 0 0 0
+	}
+        return 0;
+}
+</pre>
+<p>One thing we should note in the <strong>main()</strong> is that we used the type <strong>double</strong> which has the default value of 0. For the <strong>resize()</strong> fucntion, we could have done it by providing a way of initializing the vector:</p>
+<pre>
+template &lt;class T&gt;
+void vector&lt;T&gt;::resize(int sz, T def=<font color="red">T()</font>);
+...
+vector&lt;double&gt; v
+v.resize(10);      // add 10 copies of double() which is 0.0
+v.resize(10, 2.0)  // add 10 copies of 2.0
+</pre>
+<p>
+However, as shown in the example below, there is an issue of how do we handle a type when it does not have a default value. For instance, <strong>vector&lt;X&gt;</strong> where <strong>X</strong> does not have default value:</p>
+<pre>
+#include &lt;vector&gt;
+struct X
+{
+	X(int) {};
+	~X() {};
+};
+
+int main()
+{
+	std::vector&lt;X&gt; xv;
+
+        /* tries to make 3 Xs */
+	//std::vector&lt;X&gt; xv2(3);  // error: no appropriate default constructor available
+        return 0;
+}
+</pre>
+<p>So, in general, if we want to implement something like vector container where we do not have proper way of initialization for the type that does not have default value. Also, more trickier is the issue of destroying the elements when we are finished with them. So, let's look at what the standard library provides to handle those issues.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="allocator">The allocator class</div>
+<p>
+The standard library, fortunately, provides a class <strong>allocator</strong>, which provides <strong>uninitialized memory</strong>. The <strong>allocator</strong> class is a template that provides typed memory allocation, object construction and destruction. The <strong>allocator</strong> class <font color="blue">separates</font> <strong>allocation</strong> and <strong>object construction</strong>. When an <strong>allocator</strong> object allocates memory, it allocates space that is suitably sized and aligned to hold objects of the given type. However, the memory it allocates is unconstructed. Users of it should separately <strong>construct</strong> and <strong>destroy</strong> objects placed in the memory it allocates. </p>
+<p>The class looks like this ("Programming Principles and Practice Using C++" by Stroustrup, 2009):</p>
+<pre>
+template&lt;class T&gt; class <font color="red">allocator</font>
+{
+public:
+	// allocate space for n objects of type T
+	T* allocate(int n);
+
+	// deallocate n objects of type T starting at p
+	void deallocate(T*p, int n);
+
+	// construct a T with the value v in p
+	void construct(T* p, const T&amp; v);
+
+	// destroy the T in p
+	void destroy(T* p);
+};
+</pre>
+<p>The four operators allow us to:</p>
+<ol>
+<li><strong>Allocate</strong> memory of a size large enough to hold an object of type <strong>T</strong> without initializing.</li>
+<li><strong>Deallocate</strong> uninitialized space of a size large enough for an object of type <strong>T</strong>.</li>
+<li><strong>Construct</strong> an object of type <strong>T</strong> in uninitialized space. The <strong>construct</strong> function uses the copy constructor for type <strong>T</strong> to copy the value <strong>v</strong> into the element denoted by <strong>p</strong>. </li>
+<li><strong>Destroy</strong> an object of type <strong>T</strong>, thus returning its space to the uninitialized state.</li>
+</ol>
+<p>The <strong>allocator</strong> is exactly what we need for implementing <strong>vector&lt;T&gt;::reserve()</strong>. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="convertedA">Converted code A using template</div>
+<pre>
+#include &lt;memory&gt;
+
+template&lt;class T&gt;
+class vector
+{
+	int sz;		// number of elements
+	T* elem;	// address of first element
+	int space;	// number of elements plus free-space
+			// slots for new elements
+
+	<font color="red">std::allocator&lt;T&gt; a;</font>
+
+public:
+	vector() : sz(0), elem(0), space(0) {}
+	vector(int s) : sz(s), elem(new T[s]), space(s) {
+		for(int i = 0; i &lt; sz; ++i) elem[i] = 0;
+	}
+	vector(const vector&amp;);
+	vector&amp; operator=(const vector &amp; v);
+
+	~vector() { delete[] elem; }
+
+	T&amp; at(int n);
+	const T&amp; at(int n) const;
+
+	T&amp; operator[](int n);
+	const T&amp; operator[](int n) const;
+
+	int size() const { return sz; }
+	int capacity() const { return space; }
+
+	void reserve(int alloc_size);
+	void resize(int resize_size, T val);
+	void push_back(const T&amp; d);
+};
+
+template&lt;class T&gt;
+void vector&lt;T&gt;::reserve(int alloc_size) {
+	if(alloc_size &lt;= space) return;
+	T* p = <font color="red">a.allocate</font>(alloc_size);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.construct</font>(&amp;p;[i], elem[i]);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.destroy</font>(&amp;elem;[i]);
+	<font color="red">a.deallocate</font>(elem,space);
+	elem = p;
+	space = alloc_size;
+}
+
+template&lt;class T&gt; 
+T&amp; vector&lt;T&gt;::at(int n) {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class T&gt; 
+const T&amp; vector&lt;T&gt;::at(int n) const {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class T&gt;
+T&amp; vector&lt;T&gt;::operator[](int n) {
+	return elem[n];
+}
+
+template&lt;class T&gt;
+const T&amp; vector&lt;T&gt;::operator[](int n) const { 
+	return elem[n]; 
+}
+
+template&lt;class T&gt;
+vector&lt;T&gt;&amp; vector&lt;T&gt;::operator=(const vector&lt;T&gt; &amp; v) {
+	if(this == &amp;v;) return *this;
+
+	if(v.sz &lt;= space) {
+		for(int i = 0; i &lt; v.sz; ++i) 
+			elem[i] = v.elem[i];
+		sz = v.sz;
+		return *this;
+	}
+
+	T* p = <font color="red">a.allocate</font>(alloc_size);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.constructa.destroy</font>(&amp;v.elem;[i]);
+	<font color="red">a.deallocate</font>(elem,space);
+
+	space = sz = v.sz;
+	elem = p;
+	return *this;
+}
+
+template&lt;class T&gt;
+void vector&lt;T&gt;::resize(int resize_size, T val = T()) {
+	reserve(resize_size);
+	for(int i = 0; i &lt; resize_size; ++i) <font color="red">a.construct</font>(&amp;elem;[i], val);
+	for(int i = 0; i &lt; resize_size; ++i) <font color="red">a.destroy</font>(&amp;elem;[i]);
+	sz = resize_size;
+}
+
+template&lt;class T&gt;
+void vector&lt;T&gt;::push_back(const T&amp; d){
+	if(space == 0) 
+		reserve(10);
+	else if(sz == space) 
+		reserve(2*space);
+	elem[sz] = d;
+	++sz;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="convertedB">Converted code B using template</div>
+<p>We can start by passing <strong>vector</strong> an allocator parameter:</p>
+<pre>
+template&lt;class T, class A = allocator&lt;T&gt;&gt;
+class vector 
+{
+	A a;	// using allocate to handle memory for elements
+	...
+};
+</pre>
+<p>With the handle defined as above line, the new code looks like this:</p>
+<pre>
+#include &lt;memory&gt;
+
+template&lt;class T, <font color="red">class A = allocator&lt;T&gt;</font>&gt;
+class vector
+{
+	int sz;		// number of elements
+	T* elem;	// address of first element
+	int space;	// number of elements plus free-space
+			// slots for new elements
+
+	<font color="red">A a;</font>
+
+public:
+	vector() : sz(0), elem(0), space(0) {}
+	vector(int s) : sz(s), elem(new T[s]), space(s) {
+		for(int i = 0; i &lt; sz; ++i) elem[i] = 0;
+	}
+	vector(const vector&amp;);
+	vector&amp; operator=(const vector &amp; v);
+
+	~vector() { delete[] elem; }
+
+	T&amp; at(int n);
+	const T&amp; at(int n) const;
+
+	T&amp; operator[](int n);
+	const T&amp; operator[](int n) const;
+
+	int size() const { return sz; }
+	int capacity() const { return space; }
+
+	void reserve(int alloc_size);
+	void resize(int resize_size, T val);
+	void push_back(const T&amp; d);
+};
+
+template&lt;class T, <font color="red">class A</font> &gt;
+void vector&lt;T,<font color="red">A</font>&gt;::reserve(int alloc_size) {
+	if(alloc_size &lt;= space) return;
+	T* p = <font color="red">a.allocate</font>(alloc_size);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.construct</font>(&amp;p;[i], elem[i]);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.destroy</font>(&amp;elem;[i]);
+	<font color="red">a.deallocate</font>(elem,space);
+	elem = p;
+	space = alloc_size;
+}
+
+template&lt;class T, <font color="red">class A</font>&gt; 
+T&amp; vector&lt;T,<font color="red">A</font>&gt;::at(int n) {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class T, <font color="red">class A</font>&gt; 
+const T&amp; vector&lt;T,<font color="red">A</font>&gt;::at(int n) const {
+	if(n &lt; 0 || sz &lt;= n) throw out_of_range();
+	return elem[n];
+}
+
+template&lt;class T, <font color="red">class A</font>&gt;
+T&amp; vector&lt;T,<font color="red">A</font>&gt;::operator[](int n) {
+	return elem[n];
+}
+
+template&lt;class T, <font color="red">class A</font>&gt;
+const T&amp; vector&lt;T,<font color="red">A</font>&gt;::operator[](int n) const { 
+	return elem[n]; 
+}
+
+template&lt;class T, <font color="red">class A</font>&gt;
+vector&lt;T,<font color="red">A</font>&gt;&amp; vector&lt;T,<font color="red">A</font>&gt;::operator=(const vector&lt;T,<font color="red">A</font>&gt; &amp; v) {
+	if(this == &amp;v;) return *this;
+
+	if(v.sz &lt;= space) {
+		for(int i = 0; i &lt; v.sz; ++i) 
+			elem[i] = v.elem[i];
+		sz = v.sz;
+		return *this;
+	}
+
+	T* p = <font color="red">a.allocate</font>(alloc_size);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.construct</font>(&amp;p;[i], v.elem[i]);
+	for(int i = 0; i &lt; sz; ++i) <font color="red">a.destroy</font>(&amp;v.elem;[i]);
+	<font color="red">a.deallocate</font>(elem,space);
+
+	space = sz = v.sz;
+	elem = p;
+	return *this;
+}
+
+template&lt;class T, <font color="red">class A</font>&gt;
+void vector&lt;T,<font color="red">A</font>&gt;::resize(int resize_size, T val = T()) {
+	reserve(resize_size);
+	for(int i = 0; i &lt; resize_size; ++i) <font color="red">a.construct</font>(&amp;elem;[i], val);
+	for(int i = 0; i &lt; resize_size; ++i) <font color="red">a.destroy</font>(&amp;elem;[i]);
+	sz = resize_size;
+}
+
+template&lt;class T, <font color="red">class A</font>&gt;
+void vector&lt;T,<font color="red">A</font>&gt;::push_back(const T&amp; d){
+	if(space == 0) 
+		reserve(10);
+	else if(sz == space) 
+		reserve(2*space);
+	elem[sz] = d;
+	++sz;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="nontype">Nontype Template Parameters</div>
+<p>It is useful to parameterize classes with types. How about parameterizing classes with <strong>nontype</strong> things, such as string values, integral expressions, pointers, and references? </p>
+<p>We can use a parameter which is not a type. A nontype parameter is considered as part of the type. For the standard class <strong>bitset&lt;&gt;</strong>, we can pass the number of bits as the template argument.</p>
+<pre>
+bitset&lt;32&gt; b32;		// bitset with 32 bits
+bitset&lt;64&gt; b64;		// bitset with 64 bits
+</pre>
+<p>The bitsets have different types because they use different template arguments. So, we can't assign or compare them.</p>
+<p>
+This nontype parameter is replaced by value when the function is called.
+The type of that value is specified in the template parameter list.
+In the example below, the function template declares <strong>arrayInit</strong> as a function template
+with one type and one nontype template parameter. The function itself takes a single parameter, which is a reference to an array.
+</p>
+<pre>
+template &lt;class T, <font color="red">size_t N</font>&gt;
+void arrayInit(T (&amp;a;)[N]) 
+{
+	for (size_t i = 0; i != N; ++i) a[i] = 0;
+}
+
+int main() 
+{
+	int i[10];
+	double d[20];
+	arrayInit(i);	// arrayInit(int(&amp;)[10])
+	arrayInit(d);	// arrayInit(double (&amp;)[20])
+}
+</pre>
+<p>A template nontype parameter is a constant value inside the template definition. 
+We can use a nontype parameter when we need constant expressions. In the example, we need that to specify the size of an array.
+So, when <strong>arrayInit</strong> is called, the compiler figures out the value of the nontype parameter 
+from the array argument.</p>
+<br/>
+<p>Here is another example using integer as a <strong>non-type</strong> parameters. In the code below, we want to assign values for all the elements of a vector. So, we set the template parameter with an integere value as non-type, and as we traverse each element of the vector container, we set the value we want by calling <strong>setValue()</strong>.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+template &lt;<font color="red">int</font> val&gt;
+void setValue(int&amp; elem)
+{
+	elem = val;
+}
+
+class PrintElements
+{
+public:
+	void operator()(int&amp; elm) const {cout &lt;&lt; elm &lt;&lt; ' ';}
+};
+
+int main()
+{
+	int size = 5;
+	vector&lt;int&gt; v(size);
+        PrintElements print_it;
+	for_each(v.begin(), v.end(), print_it);
+	for_each(v.begin(), v.end(), setValue<font color="red">&lt;10&gt;</font>);
+	for_each(v.begin(), v.end(), print_it);
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+0 0 0 0 0 10 10 10 10 10
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="templateparameters">More On Template Parameters</div>
+<p>The name used for a template parameter has not intrinsic meaning. In the previous example, the <strong>min()</strong>'s
+template name <strong>T</strong> could be anything:</p>
+<pre>
+template &lt;class DontCare&gt;
+const DontCarer&amp; min(const DontCare&amp; a, const DontCare&amp; b) { return a &lt; b ? a : b; } 
+</pre>
+<p>But we need to know whether the parameter is a <strong>type</strong> parameter or a <strong>nontype</strong> parameter. 
+If it is a type parameter, then we know that the parameter represents an as yet unknown <strong>type</strong>. 
+If it is a nontype parameter, we know it is an yet unknown <strong>value</strong>.</p>
+<br/>
+<div class="subtitle_2nd" id="templateparameterscope">Scope of Template Parameter</div>
+<pre>
+<font color="red">typedef float T;</font>
+template &lt;class T&gt;
+T&amp; min(const T&amp; a, const T&amp; b) 
+{ 
+	T tmp = a &lt; b ? a : b; 
+	return tmp;
+} 
+</pre>
+<p>The global typedef that defines <strong>T</strong> as <strong>float</strong> is hidden by the type parameter 
+named <strong>T</strong>. So, <strong>tmp</strong> is not a <strong>float</strong>, it still has the type of 
+the template parameter <strong>T</strong>, not that of the global typedef. In other words, the type of <strong>tmp</strong> 
+is whatever type gets bound to the template parameter <strong>T</strong>.</p>
+<br/>
+<div class="subtitle_2nd" id="restrictionstemplateparameter">Template Parameter Name</div>
+<p>A name used as a template parameter may not be reused within the template:</p>
+<pre>
+template &lt;class T&gt;
+T&amp; min(const T&amp; a, const T&amp; b) 
+{ 
+	<font color="red">typedef float T;</font>  // error: redeclaration of template parameter T
+	T tmp = a &lt; b ? a : b; 
+	return tmp;
+} 
+</pre>
+<p>So, the name of a template parameter can be used only once within the same template parameter list:</p>
+<pre>
+// error: illegal reuse of template parameter name T
+template &lt;class T, classT&gt;
+T&amp; min(const T&amp; a, const T&amp; b) 
+</pre>
+<p>In a function template parameter list, the keywords <strong>typename</strong> and <strong>class</strong> can be 
+used interchangeably. But when want to use types inside a function template, we must tell the compiler that 
+the name we are using refers to a <strong>type</strong>. We must be explicit because the compiler cannot tell when a 
+name defined by a type parameter is a <strong>type</strong> or a <strong>value</strong>:</p>
+<pre>
+template &lt;typename T&gt;
+void foo(const T&amp; vector)
+{
+	<font color="red">T::const_iterator* it;</font>
+}
+</pre>
+<p>This appears that we're declaring <strong>it</strong> as a pointer to a <strong>T::const_iterator</strong>.  
+It's because we know that <strong>T::const_iterator</strong> is a <strong>type</strong>.
+But what if <strong>T::const_iterator</strong> 
+isn't a <strong>type</strong>? 
+<p>If <strong>T::const_iterator</strong> is a <strong>type</strong>, then the line is a <strong>declaration</strong>. But 
+if <strong>T::const_iterator</strong> is an <strong>object</strong>, then it's a <strong>multiplication</strong>. 
+We know that <strong>const_iterator</strong> must be a member of the type bound to <strong>T</strong>, but 
+we do not know whether <strong>const_iterator</strong> is the name of a <strong>type</strong> or a <strong>data</strong> 
+member. Until <strong>T</strong> is known, there's no way to know whether <strong>T::const_iterator</strong> is 
+a type or isn't. When the template <storng>foo is parsed, <strong>T</strong> isn't known. 
+The compiler, by default, assumes that it's a data member not <strong>type</strong>.
+In other words, <strong>T::const_iterator</strong> 
+is assumed to <strong>not</strong> be a <strong>type</strong>.</storng></p>
+<p>So, if we want the compiler to treat <strong>const_iterator</strong> as a type, then we must explicitly tell 
+the compiler to do so:</p>
+<pre>
+template &lt;typename T&gt;
+void foo(const T&amp; vector)
+{
+	<font color="red">typename</font> T::const_iterator* it;
+}
+</pre>
+<p>By writing <strong>typename T::const_iterator</strong>, we indicate that member <strong>const_iterator</strong> of the type bound to <strong>T</strong> is the name of a type.</p>
+<p>Let's take a look at similar example:</p>
+<pre>
+template <class t>
+class A {
+	typename T::MyType * ptr;
+	...
+}
+</class></pre>
+<p>The <strong>typename</strong> is used to clarify that <strong>MyType</strong> is a type of class T. So, <strong>ptr</strong> is a pointer to the type <strong>T::MyType</strong>. Without <strong>typename</strong>, <strong>MyType</strong> would be considered a static member. So, </p>
+<pre>
+T::MyType * ptr
+</pre>
+<p>would be a multiplication of value <strong>MyType</strong> of type <stron>T with <strong>ptr</strong>.</stron></p>
+<p>Scott Meyers called a variable like <strong>T::const_iterator</strong> a <strong>nested dependent type name</strong>. </p>
+<p>So, the general rule is: anytime we refer to a nested dependent type name in a template, we must immediately precede it by 
+the word <strong>typename</strong> becuase in C++, any identifier of a template is considered to be a <strong>value</strong>, except if it is qualified by <strong>typename</strong>.</p>
+<p>Check another case when we need typename - <a href="linkedlist.html#linkedlistexample10" target="_blank">Generic Linked List</a>. Without the specification, we'll probably get the following error from Visual Studio 2010:</p>
+<pre>
+dependent name is not a type prefix with 'typename' to indicate a type
+</pre>
+<br/>
+<p>Let's look at another example of <strong>typename</strong>:</p>
+<pre>template&lt;typename T&gt;
+void foo(T it)
+{
+	<font color="red">typename iterator_traits&lt;T&gt;::value_type</font> tmp(*it);
+}
+</pre>
+<p>It declares a local variable, tmp, 
+which is the same type as what <strong>T</strong> objects point to, and it initializes <strong>tmp</strong> with the 
+object that <strong>T</strong> points to. So, if <strong>T</strong> is <strong>list&lt;string&gt;iterator</strong>, <strong>tmp</strong> 
+is of type <strong>string</strong>.</p>
+<p>Let's talk about the <strong>iterator_traits</strong>. When we write a generic code, we may need the type of elements to which the iterator refers. So, C++ STL provides a special template structure to define the <strong>iterator_traits</strong>. This structure has information regarding an iterator. It is used as a common interface for all the type definitions an iterator should have, such as the category, the type of the elements, and so on:</p>
+<pre>
+template &lt;class T&gt;
+struct iterator_traits {
+     typedef typename T::value_type         value_type;
+     typedef typename T::difference_type    difference_type
+     typedef typename T::iterator_category  iterator_category  
+     typedef typename T::pointer            pointer;
+     typedef typename T::reference          reference;
+};
+</pre>
+<p>Here, <strong>T</strong> stands for the type of the iterator. So, the following expression yields the <strong>value type</strong> of iterator type <strong>T</strong>:</p>
+<pre>
+typename std::iterator_traits&lt;T&gt;::value_type
+</pre>
+<p><strong>iterator_traits</strong> is so named because it describes argument's proterty/traits. The most important feature of traits templates is that they provide us a way to associate information with a type <strong>non-intrusively</strong>. In other words, if we have a new package of code which gives us some iterator-like types called <strong>iter_like</strong> that refers to a <strong>double</strong>, we can assign it a <strong>value_type</strong> without any disturbance to our existing code. All we have to do is to add an explicit specialization of <strong>iterator_traits</strong>, and <strong>foo()</strong> will see the type <strong>double</strong> when it asks about the <strong>value_type</strong> of new package's iterator:</p>
+<pre>
+namespace std
+{
+     template&lt;&gt;
+     struct iterator_traits&lt;<font color="red">NewPackage::iter_like</font>&gt;
+     {
+         <font color="red">typedef double value_type;</font>
+         ...
+     };
+}
+</pre>
+<p>This non-intrusive aspect of traits is exactly what makes <strong>iterator_traits</strong> work for pointers: the standard library contains the following <strong>partial</strong> specialization of <strong>iterator_traits</strong>:</p>
+<pre>
+template &lt;class T&gt;
+struct iterator_traits&lt;T*&gt; 
+{
+      typedef T                               value_type;
+      typedef ptrdiff_t                       difference_type;
+      typedef random_access_iterator_tag      iterator_catogory;
+      typedef T*                              pointer;
+      typedef T&amp;                              reference;        
+}
+</pre>
+<p>So, for any type <strong>T*</strong>, it is defined that it has the random access iterator category, and thanks to the indirection through <strong>iterator_traits</strong>, generic functions can now access an iterator's associated types uniformly, whether or not it is a pointer.</p>
+<br/>
+<p>Here is the summary:</p>
+<ol>
+<li>When declaring template parameters, <strong>class</strong> and <strong>typename</strong> are interchangeable.</li>
+<li>Use <strong>typename</strong> to identify nested dependent type names.</li>
+<li>If there is any doubt as to whether <strong>typename</strong> is necessary to indicate that a name is 
+a type, just specify it. There is not harm in specifying <strong>typename</strong> before a type.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle" id="Instantiation">Instantiation</div>
+<p>Template is not itself a class or a function, it is a <strong>blueprint</strong>. The compiler uses the 
+template to generate type-specific versions. The process of generating a type-specific instance of a template is 
+knows as <strong>instantiation</strong>. A template is instantiated when we use it: A class template is 
+instantiated when we refer to an actual template class type, and a function template is instantiated when we call 
+it or use it to initialize or assign to a pointer to function.</p>
+<p>When we write
+<pre>
+vector&lt;double&gt; vd;
+</pre>
+<p>the compiler automatically creates a class named <strong>vector&lt;double&gt;</strong>. 
+In effect, the compiler creates the <strong>vector&lt;double&gt;</strong> class by rewriting the <strong>vector</strong> 
+template, replacing every occurrence of the template parameter <strong>T</strong> by the type <strong>double</strong>.</p>
+<pre>
+template&lt;class T&gt; 
+class vector
+{
+	int sz;
+	T* element;
+public:
+	vector():size(0), element(0) {}
+	~vector() { delete[] element; }
+	vector &amp;operator;=(const vector&amp;);
+	const T&amp; operator[](int n){ return element[n]; }
+	void push_back(const T&amp;d;);
+      ...
+};	
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="TemplateSpecialization">Template Specialization</div>
+<p>It is not always possible to write a single template that is for every possible template argument 
+with which the template might be instantiated. Because general definition might not compile or might do the wrong thing, 
+we may be able to take advantage of some specific knowledge about a type to write a more efficient function 
+than the one that is instantiated from the template.</p>
+<p>If we want to implement different template when a specific type is passed as template parameter, we can declare a <strong>specialization</strong> of that template.</p>
+<p>For example, let's suppose that we have a very simple class called <strong>DoublePlay</strong> that can store one element of any type and that it has just one member function called <strong>doubleIt</strong>, which doubles its value. But we find that when it stores an element of type <strong>string</strong> it would be more convenient to have a completely different implementation with a function member <strong>mine</strong>, so we decide to declare a class template specialization for that type</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+template &lt;class T&gt;
+class DoublePlay 
+{
+private:
+	T mine;
+public:
+	DoublePlay(T&amp; a): mine(a){}
+	T doubleIt(){
+		return mine*2;
+	}
+};
+
+<font color="red">template &lt;&gt;
+class DoublePlay &lt;std::string&gt; </font>
+{
+private:
+	std::string mine;
+public:
+	DoublePlay(std::string&amp; a):mine(a){}
+	std::string&amp; doubleIt(){
+		return mine.append(mine);
+	}
+};
+
+int main() 
+{
+	int i = 10;
+	std::string s="ab";
+
+	DoublePlay&lt;int&gt;myPlayA(i);
+	DoublePlay&lt;std::string&gt;myPlayB(s);
+
+	std::cout &lt;&lt; i &lt;&lt; " to " &lt;&lt; myPlayA.doubleIt() &lt;&lt; std::endl;
+	std::cout &lt;&lt; s &lt;&lt; " to " &lt;&lt; myPlayB.doubleIt() &lt;&lt; std::endl;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+10 to 20
+ab to abab
+</pre>
+<p>The syntax we used in the class template specialization:
+<pre>
+template &lt;&gt; class mycontainer &lt;std::string&gt; { ... };
+</pre>
+<p>Notice that we precede the class template name with an empty <strong>template&lt;&gt; </strong>parameter list. This is to explicitly declare it as a template specialization. In other words, the <strong>template&lt;&gt;</strong> in declarations distinguish between the explicit <strong>instantiation</strong> and the explicit <strong>specialization</strong>.</p>
+<p>Actually, to extend our understanding of templates, we need to investigate the term <strong>instantiation</strong> and <strong>specialization</strong>. Including a function template in our code does not in itself generate a function definition. It's merely a plan for generating a function definition. When the compiler uses the template to generate a function definition for a particular type, the result is termed an <strong>instantiation</strong> of the template. </p>
+<p>In our earlier example, the function call <strong>min(x,y)</strong> causes the compiler to generate an instantiation of <strong>min()</strong>, using <strong>int</strong> as a type. </p>
+<p>The template is <strong>not</strong> a function definition, but the specific <strong>instantiation</strong> using <strong>int</strong> is a function definition. This type of instantiation is termed <strong>implicit instantiation</strong> because the compiler deduces the necessity for making the definition by noting that the code uses a <strong>min()</strong> function with <strong>int</strong> parameters.</p>
+<p>But more important than this prefix, is the <strong>&lt;std::string&gt;</strong> specialization parameter after the class template name. This specialization parameter itself identifies the type for which we are going to declare a template class specialization (<strong>string</strong>). Notice the differences between the generic class template and the specialization:</p>
+<pre>
+template &lt;class T&gt; class DoublePlay { ... };
+template &lt;&gt; class DoublePlay &lt;string&gt; { ... };
+</pre>
+<p>The first line is the generic template, and the second one is the specialization.</p>
+<p>When we declare specializations for a template class, we must also define all its members, even those exactly equal to the generic template class, because there is no <strong>inheritance</strong> of members from the generic template to the specialization.
+</p>
+<p>Here is another example of using template specialization used as a part of <a href="boost.html#boostmpl" target="_blank">template metaprogramming</a>.</p>
+<pre>
+#include &lt;iostream&gt;
+
+template &lt;int n&gt;
+struct Factorial 
+{
+    enum { value = n * Factorial&lt;n - 1&gt;::value };
+};
+ 
+template &lt;&gt;
+struct Factorial&lt;0&gt; 
+{
+    enum { value = 1 };
+};
+ 
+int main()
+{
+	std::cout &lt;&lt; "Factorial&lt;5&gt;::value = " &lt;&lt; Factorial&lt;5&gt;::value &lt;&lt; std::endl;	
+}
+</pre>
+<br/>
+<br/>
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h1 class="teaser title">Bogotobogo's contents</h1>
+<p>
+  To see more items, click left or right arrow.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div>
+      <a href="cpptut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Cpp_Image.png" /> </a>
+      <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html" target="_blank">
+      <img src="../media/img/TopicLogo/Qt5_Image.png" /></a>
+      <a href="../python/pytut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Python_Image.png" /> </a>
+      <a href="../Android/android.html" target="_blank">
+      <img src="../media/img/TopicLogo/Android_Image.png" /> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div>
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" /> </a>
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV3_Image.png" /></a>
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" /></a>
+      <a href="../php/phptut.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/PHP_Image.png" /></a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div>
+      <a href="../CSharp/.netframework.html" target="_blank">
+      <img src="../media/img/TopicLogo/CSharp_Image.png" /></a>
+      <a href="../VisualBasicSQL/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/VisualBacis_Image.png" /></a>
+      <a href="../AngularJS/AngularJS_Introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/AngularJS_logo.png" /> </a>
+      <a href="../JQuery/JQuery_document_ready_click_function.html" target="_blank">
+      <img src="../media/img/TopicLogo/jQuery_Image.png" /></a>
+    </div>
+ 
+    <!-- 16-20 -->
+    <div>
+      <a href="../Algorithms/algorithms.html" target="_blank">
+      <img src="../media/img/TopicLogo/Algorithms_Image.png" /></a>
+      <a href="../DesignPatterns/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Design_Patterns_Image.png" /></a>
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming_Image.png" /></a>
+      <a href="../Java/tutorials/on_java.html" target="_blank">
+      <img src="../media/img/TopicLogo/Java_Image.png" /></a>
+    </div>
+
+    <!-- 21-25 -->
+    <div>
+      <a href="../RubyOnRails/RubyOnRails.html" target="_blank">
+      <img src="../media/img/TopicLogo/RubyOnRails_Image.png" /></a>
+      <a href="../iPhone/iPhone.html" target="_blank">
+      <img src="../media/img/TopicLogo/iOS_Image.png" /></a>
+      <a href="../HTML5/OnHTML5.html" target="_blank">
+      <img src="../media/img/TopicLogo/HTML5_Image.png" /></a>
+      <a href="../Linux/linux_tips1.html" target="_blank">
+      <img src="../media/img/TopicLogo/Linux_Image.png" /> </a>    
+    </div>
+
+    <!-- 26-30 -->
+    <div>
+      <a href="../python/Django/Python_Django_tutorial_introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Django_Image.png" /></a>
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html"/ target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" /></a>
+      <a href="../php/Laravel4/php_laravel4_framework_install_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/Laravel_Image.png" /></a>
+      
+      <a href="embeddedSystemsProgramming.html" target="_blank">
+      <img src="../media/img/TopicLogo/EmbeddedRTOS.png" /></a>
+    </div>
+
+    <!-- 31-35 -->
+    <div>
+      <a href="Git/Git_GitHub_Express.html" target="_blank">
+      <img src="../media/img/TopicLogo/git_github_image.png" /></a>
+      <a href="../SVG/svg.html" target="_blank">
+      <img src="../media/img/TopicLogo/SVG_Image.png" /> </a>
+      <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html" target="_blank">
+      <img src="../media/img/TopicLogo/DevOps_icon.png" /> </a>
+      <img src="../media/img/TopicLogo/Coming_Soon_Image.png" />
+      <img src="../media/img/TopicLogo/Hadoop_Blur_Image.png" />
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div>
+      <img src="../media/img/TopicLogo/OpenCL_Blur_Image.png" />
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+</script>
+</div> <!-- box full -->
+ 
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+ 
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title sub">Bogotobogo Image / Video Processing </h1>
+<h1 class="teaser title">Computer Vision & Machine Learning</h2>
+<p>
+  with OpenCV, MATLAB, FFmpeg, and scikit-learn.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_ubuntu13_install_cmake.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/lena_Ubuntu_opencv.png" 
+      title="Installing on Ubuntu 13 and loading an image"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_mat_object_image_matrix_image_container.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/matrix_Mat_object.png" 
+      title="Mat(rix) object (Image Container)"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_creating_mat_objects.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/ThreeChannelArray.png" 
+      title="Creating Mat objects, zeros(), ones(), eye() and clone()"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_load_convert_save_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Dostoevsky.png" 
+      title="The core - Image load, convert and save"/> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra1.png" 
+      title="Smoothing Filters A - Average and Gaussian Blur"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing_B.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra2.png" 
+      title="Smoothing Filters B - Median, Bilateral"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCVwithPython.png" 
+      title="OpenCV 3 with Python"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bgr_Matplot.png" 
+      title="OpenCV BGR : Matplotlib RGB, There is a difference in pixel ordering in OpenCV and Matplotlib."/> </a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/CloudyGoldenGate_grayscale.jpg" 
+      title="Basic image operations - pixel access"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/iPython_FFT_Random.png" 
+      title="iPython - Signal Processing with NumPy"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Signal_FFT_square_5_Hz.png" 
+      title="Signal Processing with NumPy I - FFT & DFT for sine, square waves, unitpulse, and random signal"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/NumPyFFT_maze.png" 
+      title="Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT"/> </a>
+      
+    </div>
+ 
+    <!-- 16-20 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/cv2_dft_xfiles.png" 
+      title="Inverse Fourier Transform of an Image with low pass filter: cv2.idft()"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Histo_gray.png" 
+      title="Image Histogram"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/RGB_HSV.png" 
+      title="Video Capture & Switching colorspaces - RGB / HSV"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCV_Otsu_Thresholding3.png" 
+      title="Adaptive Thresholding - Otsu's clustering-based image thresholding"/> </a>
+      
+    </div>
+
+    <!-- 21-25 -->
+
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/SanFrancisco_out.png" 
+      title="Edge Detection - Sobel and Laplacian Kernels"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Canny_Edge_Detection.png" 
+      title="Canny Edge Detection"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hough_eye_51.png" 
+      title="Hough Transform - Circles"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_Dilation.png" 
+      title="Watershed Algorithm : Marker-based Segmentation I"/> </a>
+      
+    </div>
+
+    <!-- 26-30 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_input_output.png" 
+      title="Watershed Algorithm : Marker-based Segmentation II"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Denoising_Gaussian_Gray.png" 
+      title="Image noise reduction : Non-local Means denoising algorithm"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/xfiles4.png" 
+      title="Image object detection : Face detection using Haar Cascade Classifiers"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bolt.jpg" 
+      title="Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts"/> </a>
+      
+    </div>
+
+    <!-- 31-35 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Output_4_pics.png" 
+      title="Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/MeanShiftPic.png" 
+      title="Video : Mean shift object tracking"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D.png" 
+      title="Machine Learning : Clustering - K-Means clustering I"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D_2.png" 
+      title="Machine Learning : Clustering - K-Means clustering II"/> </a>
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/kNN_2.png" 
+      title="Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm"/> </a>
+
+      <img src="../media/img/TopicLogo/OpenCV/more_image_processing.png" 
+      title="Continue..."/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" 
+      title="Matlab - Vectors and Matrices"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_M_Files_scripts.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/m_files.png" 
+      title="mfiles - Matlab script files"/> </a>
+      
+    </div>
+
+    <!-- 41-45 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_For_Loop.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/sum_1_to_10_ForLoop.png" 
+      title="For loop for loop_index = vector"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Indexing_Masking_Array_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ArrayMasking.png" 
+      title="Indexing and masking"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Array_Audio_Wave_File_Plot_Play.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DrumAudioTwoChannels_2.png" 
+      title="Vectors and arrays with audio files"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ReversedAudio.png" 
+      title="Manipulating Audio I : Reverse play and delay audio"/> </a>
+      
+    </div>
+
+    <!-- 46-50 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_2_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Audio2.png" 
+      title="Manipulating Audio II : Playing with stereo sound, tone control, changing Speed, removing vocals"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Introduction_to_FFT_DFT_Fast_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/FFT_DFT_Diagram.png" 
+      title="Introduction to FFT & DFT"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_DFT_Discrete_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DFT_results.png" 
+      title="Discrete Fourier Transform (DFT)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_I.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/RGB_BerkeleyTower.png" 
+      title="Digital Image Processing 1 - 7 basic functions "/> </a>
+ 
+    </div>
+
+    <!-- 51-55 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_2_RGB_Indexed_Color_Info.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ImgProc2.png" 
+      title="Digital Image Processing 2 - RGB image & indexed image"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_3_Grayscale_RGB.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Einstein.jpg" 
+      title="Digital Image Processing 3 - Grayscale image I"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_4_Grayscale_RGB_II.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/bit_plane1.png" 
+      title="Digital Image Processing 4 - Grayscale image II (image data type and bit-plane)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_5_Histogram_Equalization_imhist_histeq_imadjust.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/two_histogram_in_one_pic.png" 
+      title="Digital Image Processing 5 - Histogram equalization"/> </a>
+      
+    </div>
+
+    <!-- 56-60 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_6_Filter_Smoothing_Low_Pass_fspecial_filter2.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/noise_in_rgb_image.png" 
+      title="Digital Image Processing 6 - Image Filter (Low pass filters)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_1_Object_Detection_by_Color_Thresholding.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Object_Detect_Run2.png" 
+      title="Video Processing 1 - Object detection (tagging cars) by thresholding color"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_2_Face_Detection_CamShift_Tracking.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DetectedFace.png" 
+      title="Video Processing 2 - Face Detection and CAMShift Tracking"/> </a>
+
+      <img src="../media/img/TopicLogo/Matlab/more_image_processing.png" 
+      title="More image processing"/> 
+      
+    </div>
+
+    <!-- 61-65 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_image_scaling_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" 
+      title="Image/video scaling"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropping_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/cropped_blue_umbrella_025.png" 
+      title="Image/video cropping - crop=712:534"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_cropdetect.png" 
+      title="Cropdetect and ffplay : crop=out_width:out_height:x:y"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_speed_up_dlow_down.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_video_speed_up_dlow_down.png" 
+      title="Speeding-up & slowing-down video"/> </a>
+      
+    </div>
+
+    <!-- 66-70 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_basic_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_show.png" 
+      title="Basic slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_adv_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/Adv_Slide_Show.png" 
+      title="Advanced slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_thumbnails_select_scene_iframe.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/thumnail_iframe.png" 
+      title="Thumbnails -Selecting specific frames : I-frame extraction etc."/> </a>
+
+      <a href="../FFMpeg/ffmpeg_seeking_ss_option_cutting_section_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/seek_cut_sections.png" 
+      title="Seeking and cutting sections of a video & audio"/> </a>
+      
+    </div>
+
+    <!-- 71-75 -->
+    <div id = "pics">
+
+      <a href="../FFMpeg/ffmpeg_concatenating_two_videos.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/concat.png" 
+      title="Concatenating two video files or two audio files"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out.png" 
+      title="Transitions : fade-in & fade-out for 1 slide"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out_two.png" 
+      title="Transitions : python script for fade-in & fade-out with two slides"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_concat.png" 
+      title="Concatenate slides"/> </a>
+      
+    </div>
+
+    <!-- 76-80 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_video_test_patterns_src.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/creating_test_video.png" 
+      title="Creating test videos"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/screencasting.png" 
+      title="Screen Recording on Ubuntu A"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture_active_current_top_window.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ActiveCapture.png" 
+      title="Active window capture with Python on Ubuntu B"/> </a>
+
+      <img src="../media/img/TopicLogo/arrow_scikit-learn.png" 
+      title="Machine Learning with scikit-learn"/> 
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" 
+      title="scikit-learn installation"/> </a>
+
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/feature_extraction.png" 
+      title="Features and feature extraction - iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/supervised.png" 
+      title="Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/un_supervised.png" 
+      title="Unsupervised_Learning - KMeans clustering with iris dataset"/> </a>
+
+
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/NonlinearlySeparable.png" 
+      title="Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/svm.png" 
+      title="Support Vector Machines (SVM)"/> </a>
+
+      
+    </div>
+
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title">Bogotobogo's Video Streaming Technology </h1>
+<h1 class="teaser title sub">with FFmpeg, HLS, MPEG-DASH, H.265 (HEVC)</h2>
+
+
+<div class="box full" >
+<div style="margin:0 auto; width: 734px; height:120px;">
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/VideoStreaming_Image.png" 
+      title="Video Streaming Technology - General Introduction & Terminology"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Adaptive_Sorenson.png" 
+      title="Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH"/> </a>
+
+      <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/JPEG_Compression_process_YCbCr.png" 
+      title="Digital Image Processing : JPEG Compression - subsampling, subimage, DCT, quantize, Huffman encoding"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/planet_linux_i002.png" 
+      title="FFmpeg on Linux - Audio Video Transcoding,  Mux and Demux"/> </a>
+      
+    </div>
+
+    <!-- 6-10 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Conversion_To_Webm.png" 
+      title="FFmpeg install on Windows, file conversion, and FFmpeg converter"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTML5_player.png" 
+      title="FFmpeg Webcam video capture, HTML5 player"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_http_live_streaming_hls.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Segment.png" 
+      title="FFmpeg segment etc."/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_options_list.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_command_options.png" 
+      title="FFmpeg command options"/> </a>
+      
+    </div>
+
+    <!-- 11-15 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Smooth_Streaming.png" 
+      title="Multiple bit rate encoding with two pass, creating manifest using ismindex and mp4split"/> </a>
+
+      <a href="../VideoStreaming/rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTTPvsRTMP.png" 
+      title="HTTP vs RTMP"/> </a>
+
+      <a href="../WebTechnologies/mobile.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Mobile.png" 
+      title="Mobile in general and Mobile streaming"/> </a>
+
+      <a href="../VideoStreaming/h265_hevc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/H265.png" 
+      title="Introduction to H.265 (HEVC)"/> </a>
+      
+    </div>
+
+    <!-- 16-20-->
+    <div id = "pics">
+      <a href="../VideoStreaming/Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Export_BBFlash.png" 
+      title="Screen Recording (mp4/ogg) and HTML5 Video"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/iis8.png" 
+      title="SmoothStreaming iis8"/> </a>
+
+      <a href="../VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/localhost_nginx_welcome.png" 
+      title="Smooth Streaming on Nginx/Apache"/> </a>
+
+      <a href="../VideoStreaming/mpeg_dash.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/DASH_Profile.png" 
+      title="MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)"/> </a>
+      
+    </div>
+
+    <!-- 21-25-->
+    <div id = "pics">
+      <a href="../VideoStreaming/p2pStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/P2P.png" 
+      title="p2p"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/ExpressionEncoderSilverlightProject.png" 
+      title="Smooth Streaming - Expression Encoder"/> </a>
+
+      <a href="../VideoStreaming/optimization_transrating.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/opt_data.png" 
+      title="Streaming (Data Traffic) - Optimization"/> </a>
+
+      <a href="../VideoStreaming/VideoStreamingSharingSites.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/vimeo.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/convert_save.png" 
+      title="How to Capture Screen to a Video File using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_http.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Results_Two_Pictures.png" 
+      title="Live Streaming over http using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/OpenNetworkStream.png" 
+      title="Live Streaming over RTP using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/File_Convert_Transcoding_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/TranscodingStarted.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/YouTube.png" 
+      title="Downloading a YouTube Video using VLC"/> </a>
+      
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+</p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/templates.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:03:49 GMT -->
+</html>
+

@@ -1,0 +1,1069 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/regression/linear-regression.aspx?tutorial=ap by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Linear Regression
+</title>
+
+    <link href="../jq/fancybox/jquery.fancybox-1.3.4.css" rel="Stylesheet" />
+
+    <script src="../jq/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="../jq/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+    <script src="../jq/fancybox/jquery.fancybox-1.3.4.js" type="text/javascript"></script>
+    <script src="../jq/video.js" type="text/javascript"></script>
+    
+    <!-- Use for development only to add intellisense. Comment out for production.
+    <script src="/jq/jquery-1.7.1-vsdoc.js" type="text/javascript"></script>  -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jqVideo_displayVideo();
+            jqVideo_buttonRollover();
+        });
+        
+    </script>
+
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="Simple linear regression. How to define least-squares regression line. How to find coefficient of determination. Includes video lesson on regression analysis." /><meta name="keywords" content="Regression, linear regression, simple linear regression, linear regression equation, what is linear regression, least squares linear regression, least-squares linear regression, linear regression formula, regression line, coefficient of determination" /><link href="linear-regressiona225.html?tutorial=ap" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/regression/linear-regression.aspx?tutorial=ap" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="254CABA8" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Z0fiCYE1Vm9daeoTVKe3dPHDhQjP7FNc44gjwB4vbJRzjPVwFyWTLE/4br86sC0+UFRSl4YFkELklSCm8CAKx+BMrX8fmnI2SXY0DADKRolkK8fWzS/TocZpey5mn/hZoTg1LtagDOutY73X5NiWzJuLdEuhVxWWBx0KeoO9wDnVMLfoZ78gyTKjSLC2ve6ehabhIJBmg2L3f3Qmjns2Xg==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1 id="h1Title">What is Linear Regression?</h1>             
+                        
+                    <div class="divVideoButtonWrapper">                    
+                        <!-- View video -->
+                        <a id="aViewVideo" class="iframe" href="http://stattrek.com/videos/ap/lessons/regression/linear-regression/video.html" 
+                            title="Simple linear regression">
+                                <img id="imgViewVideo" src="../images/videoButtonBlue.gif" 
+                                 alt="View video lesson on simple linear regression"/>
+                        </a>
+                    </div>
+
+                    <div style="min-height:80px;">
+                        <p>In a cause and effect relationship, the 
+                        <strong>independent variable</strong> is the cause, and the 
+                        <strong>dependent variable</strong> is the effect.  
+                        <strong>Least squares linear regression</strong> is a method
+                        for predicting the value of a dependent variable <em>Y</em>, 
+                        based on the value of an independent variable
+                        <em>X</em>.</p>
+                    </div>
+
+                    <p>In this tutorial, we focus on the case where there is only one
+                        independent variable.  This is called 
+                        simple regression (as opposed to 
+                        multiple regression, which handles two or
+                        more independent variables).</p>
+    
+                    <p>Tip: The next lesson presents a 
+                        <a href=Regression-Example1602.html?Tutorial=ap>
+                        simple regression example</a> 
+                        that shows how to 
+                        apply the material covered in this lesson.  Since 
+                        this lesson is a little dense, you may benefit by also 
+                        reading the next lesson.</p>
+
+                    <a name="ReqressionPrerequisites"></a>
+                    <h2>Prerequisites for Regression</h2>
+                    <p>Simple linear regression is appropriate when the following
+                        conditions are satisfied.</p>
+                    <ul>
+                        <li>The dependent variable <em>Y</em> has a linear relationship
+                            to the independent variable <em>X</em>.  To check this, 
+                            make sure that the XY   
+                            <a href="../statistics/dictionaryb3fb.html?Target=Scatterplot">
+                            scatterplot</a> is linear and that the 
+                            <a href="../statistics/dictionary7049.html?Target=Residual%20plot">
+                            residual plot</a> shows a random pattern.  (Don't worry. We'll cover residual plots in a
+                            <a rel="external" href="residual-analysis.html">future lesson</a>.)<br /><br /></li>
+    
+                        <li>For each value of X, the probability distribution of Y has the 
+                            same standard deviation &sigma;.  When this condition is 
+                            satisfied, the variability of the residuals will be relatively
+                            constant across all values of X, which is easily checked in
+                            a residual plot.<br /><br /></li>
+        
+                        <li>For any given value of X,<br /><br />
+                            <ul>
+                                <li class="extraLineSpace">The Y values are independent, as indicated by a 
+                                    random pattern on the residual plot.</li>
+                                <li>The Y values are roughly normally distributed
+                                    (i.e., 
+                                    <a href="../statistics/dictionary1121.html?Target=Symmetry">
+                                    symmetric</a> and  
+                                    <a href="../statistics/dictionary0fe2.html?Target=Unimodal%20distribution">
+                                    unimodal</a>).  A little  
+                                    <a href="../statistics/dictionaryd447.html?Target=Skewness">
+                                    skewness</a>
+                                    is ok if the sample size is large.  A   
+                                    <a href="../statistics/dictionary1738.html?Target=Histogram">
+                                    histogram</a> or a   
+                                    <a href="../statistics/dictionarya24f.html?Target=Dotplot">
+                                    dotplot</a> will show the shape of the distribution.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2>The Least Squares Regression Line</h2>
+                    <p>Linear regression finds the straight line, called the 
+                        <strong>least squares regression line</strong> or LSRL, that
+                        best represents observations in a
+                        <a href="../statistics/dictionaryc8ce.html?Target=Bivariate%20data">
+                        bivariate</a> data set.  Suppose <em>Y</em> is a dependent variable, 
+                        and <em>X</em> is an independent variable.  The population 
+                        regression line is:</p>	
+    
+                    <p style="text-align:center;">
+                        Y = &Beta;<sub>0</sub> + &Beta;<sub>1</sub>X</p>
+    
+                    <p>where &Beta;<sub>0</sub> is a constant, 
+                        &Beta;<sub>1</sub> is the regression coefficient, 
+                        X is the value of the independent variable, and Y is the 
+                        value of the dependent variable.</p>
+    
+                    <p>Given a random sample of observations, the population regression 
+                        line is estimated by:</p>
+
+                    <p style="text-align:center;">
+                        &#375; = b<sub>0</sub> + b<sub>1</sub>x</p>
+    
+                    <p>where b<sub>0</sub> is a constant, 
+                        b<sub>1</sub> is the regression coefficient, 
+                        x is the value of the independent variable, and &#375; is the 
+                        <em>predicted</em> value of the dependent variable.</p>
+    
+                    <h2>How to Define a Regression Line</h2>
+                    <p>Normally, you will 
+                        use a computational tool - a software package (e.g., Excel) or a 
+                        <a href="../ap-statistics/calculator-comparison.html">graphing calculator</a> -
+                        to find b<sub>0</sub> and b<sub>1</sub>.  You enter the 
+                        <em>X</em> and <em>Y</em> values into your program or calculator, 
+                        and the tool solves for each parameter.</p>
+    
+                    <p>In the unlikely event that you find yourself on a desert island
+                        without a computer or a graphing calculator, you can solve for 
+                        b<sub>0</sub> and b<sub>1</sub> "by hand".  Here are the 
+                        equations.</p>   
+    
+                    <p style="text-align:center;">
+                        b<sub>1</sub> = &Sigma; [ (x<sub>i</sub> - <font class="Over">x</font>)(y<sub>i</sub> - <font class="Over">y</font>) ] / &Sigma; [ (x<sub>i</sub> - <font class="Over">x</font>)<sup>2</sup>]
+                        <br />
+                        b<sub>1</sub> = r * (s<sub>y</sub> / s<sub>x</sub>)
+                        <br />
+                        b<sub>0</sub> = <font class="Over">y</font> - b<sub>1</sub> * <font class="Over">x</font></p>
+    
+                    <p>where b<sub>0</sub> is the constant in the regression equation, 
+                        b<sub>1</sub> is the regression coefficient, 
+                        r is the correlation between x and y, 
+                        x<sub>i</sub> is the <em>X</em> value of observation <em>i</em>, 
+                        y<sub>i</sub> is the <em>Y</em> value of observation <em>i</em>, 
+                        <font class="Over">x</font> is the mean of <em>X</em>,
+                        <font class="Over">y</font> is the mean of <em>Y</em>,  
+                        s<sub>x</sub> is the standard deviation of <em>X</em>, and 
+                        s<sub>y</sub> is the standard deviation of <em>Y</em></p>
+
+                    <h2>Properties of the Regression Line</h2>
+                    <p>When the regression parameters (b<sub>0</sub> and b<sub>1</sub>) 
+                        are defined as described 
+                        above, the regression line has the following properties.</p>
+                    <ul>
+                        <li class="extraLineSpace">The line minimizes the sum of squared differences between 
+                            observed values (the <em>y</em> values) and predicted
+                            values (the &#375; values computed from the regression
+                            equation).</li>
+                        <li class="extraLineSpace">The regression line passes through the mean of the <em>X</em>
+                            values (<font class="Over">x</font>) and through the mean of the 
+                            <em>Y</em> values (<font class="Over">y</font>).</li>
+                        <li class="extraLineSpace">The regression constant (b<sub>0</sub>) is equal to the 
+                            <a href="../statistics/dictionary1a8f.html?Target=Y%20intercept">y intercept</a> 
+                            of the regression line.</li>
+                        <li class="extraLineSpace">The regression coefficient (b<sub>1</sub>) is the 
+                            average change in the dependent variable (<em>Y</em>) for a 
+                            1-unit change in the independent variable (<em>X</em>).
+                            It is the 
+                            <a href="../statistics/dictionary3272.html?Target=Slope">slope</a> 
+                            of the regression line.</li>		    
+                    </ul>
+                    <p>The least squares regression line is the only straight line that
+                        has all of these properties.</p>
+
+                    <h2>The Coefficient of Determination</h2>
+                    <p>The <strong>coefficient of determination</strong> (denoted by 
+                        R<sup>2</sup>) is a key output of regression analysis.
+                        It is interpreted as the proportion of the variance in the 
+                        dependent variable that is predictable from the independent variable.</p>	
+                    <ul>
+                        <li class="extraLineSpace">The coefficient of determination ranges from 0 to 1.</li>
+                        <li class="extraLineSpace">An R<sup>2</sup> of 0 means that the dependent variable cannot be
+                            predicted from the independent variable.</li>
+                        <li class="extraLineSpace">An R<sup>2</sup> of 1 means the dependent variable can be 
+                            predicted without error from the independent variable.</li>
+                        <li>An R<sup>2</sup> between 0 and 1 indicates the extent to which
+                            the dependent variable is predictable.  An R<sup>2</sup> of 
+                            0.10 means that 10 percent of the variance in <em>Y</em> is
+                            predictable from <em>X</em>; an R<sup>2</sup> of 0.20 means
+                            that 20 percent is predictable; and so on.</li>
+                    </ul>
+
+                    <p>The formula for computing the coefficient of determination for a 
+                    linear regression model with one independent variable is given below.</p>
+
+                    <div align="center">
+                    <div class="Definition" align="left">
+                      <b>Coefficient of determination.</b>
+                    The coefficient of determination (R<sup>2</sup>) for a linear regression model with
+                      one independent variable is:
+                    <p align="center" style="BACKGROUND-COLOR: #B0C4DE">
+                      R<sup>2</sup> = { ( 1 / N ) * &Sigma; [ (x<sub>i</sub> - <font class="Over">x</font>) * (y<sub>i</sub> - <font class="Over">y</font>) ]  /  (&sigma;<sub>x</sub>  *  &sigma;<sub>y</sub> )  }<sup>2</sup>
+                      </p>
+                      where N is the number of
+                      observations used to fit the model, &Sigma; is the summation symbol,
+                      x<sub>i</sub> is the x value for observation i,
+                      <font class="Over">x</font> is the mean x value,
+                      y<sub>i</sub> is the y value for observation i,
+                      <font class="Over">y</font> is the mean y value,
+                      &sigma;<sub>x</sub> is the standard deviation of x, and
+                      &sigma;<sub>y</sub> is the standard deviation of y.
+
+                    </div>
+                    </div>
+                    <br />
+                    <p>If you know the linear correlation (r) between two variables, then the coefficient of
+                        determination (R<sup>2</sup>) is easily computed using the following formula: 
+                        R<sup>2</sup> = r<sup>2</sup>.</p>
+
+                    <h2>Standard Error</h2>
+                    <p>The <strong>standard error</strong> about the regression line
+                       (often denoted by SE) is a measure of the average amount that the 
+                       regression equation over- or under-predicts.  The higher
+                       the coefficient of determination, the lower the standard
+                       error; and the more accurate predictions are likely to be.</p>
+
+                    <!-- Review problem(s) -->
+                    <h2>Test Your Understanding</h2>
+                    <p><strong>Problem 1</strong></p>
+                    <p>A researcher uses a regression equation to predict home heating
+                        bills (dollar cost), based on home size (square feet).  
+                        The correlation between predicted
+                        bills and home size is 0.70.  What is the correct interpretation
+                        of this finding?</p>
+                    <!-- 
+                    <p class="Probs">
+                        I. 
+                        <br />
+                        II. 
+                        <br />
+                        III. 
+                    </p> 
+                     -->
+                    <p class="Probs"> 
+                        (A) 70% of the variability in home heating bills can be 
+                            explained by home size.
+                        <br />
+                        (B) 49% of the variability in home heating bills can be 
+                            explained by home size.
+                        <br />
+                        (C) For each added square foot of home size, heating bills 
+                            increased by 70 cents.
+                        <br />
+                        (D) For each added square foot of home size, heating bills 
+                            increased by 49 cents.
+                        <br />
+                        (E) None of the above.
+                    </p>
+
+                    <p><strong>Solution</strong></p>
+                    <p>The correct answer is (B). The coefficient of determination 
+                        measures the proportion of variation in the dependent variable
+                        that is predictable from the independent variable.  The
+                        coefficient of determination is equal to R<sup>2</sup>; 
+                        in this case, (0.70)<sup>2</sup> or 0.49.  Therefore, 49%
+                        of the variability in heating bills can be explained by home size.</p>
+
+                    <br />
+                    <div id="divTest" align="center"></div>
+                    <br />
+
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                    <!-- google_ad_section_end -->
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                    
+
+<link href="../css/theme1/stat-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-stat.js" type="text/javascript"></script> 
+
+<div id="divAP">
+<nav>
+<div class="st_Title">
+    <a class="st_Title" title="Introduction to AP Statistics Tutorial" href="../tutorials/ap-statistics-tutorial.html">
+    AP Statistics Tutorial
+    </a>
+</div>
+
+<div id="divAPMenuItems" class="st_contents">
+    <div class="st_heading">Exploring Data</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">The basics</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variablesb15b.html?Tutorial=AP">Variables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/populations-and-samplesb15b.html?Tutorial=AP">Population vs sample</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/central-tendencyb15b.html?Tutorial=AP">Central tendency</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variabilityb15b.html?Tutorial=AP">Variability</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/measures-of-positionb15b.html?Tutorial=AP">Position</a></p>
+        </div>
+     </div>
+        
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Charts and graphs</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/data-patternsb15b.html?Tutorial=AP">Patterns in data</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/dot-plotb15b.html?Tutorial=AP">Dotplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/histogramb15b.html?Tutorial=AP">Histograms</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/stemplotb15b.html?Tutorial=AP">Stemplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/boxplotb15b.html?Tutorial=AP">Boxplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/cumulative-plotb15b.html?Tutorial=AP">Cumulative plots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/scatterplotb15b.html?Tutorial=AP">Scatterplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/compare-data-setsb15b.html?Tutorial=AP">Comparing data sets</a></p>
+         </div>   
+     </div>
+     
+     <div>
+        <div class="st_topmenu">
+            <span id="spTop2" class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Regression</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/measurement-scalesb15b.html?Tutorial=AP">Measurement scales</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/correlationb15b.html?Tutorial=AP">Linear correlation</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="linear-regressionb15b.html?Tutorial=AP">Linear regression</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="regression-exampleb15b.html?Tutorial=AP">Regression example</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="residual-analysisb15b.html?Tutorial=AP">Residual analysis</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="linear-transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="influential-pointsb15b.html?Tutorial=AP">Influential points</a></p>
+        </div>
+     </div> 
+      
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Categorical data</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/one-way-tableb15b.html?Tutorial=AP">One-way tables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/two-way-tableb15b.html?Tutorial=AP">Two-way tables</a></p>
+        </div>
+     </div>
+    
+    <div class="st_heading">Planning a Study</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Surveys</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span id="spSub21a" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/data-collection-methodsb15b.html?Tutorial=AP">Data collection</a></p>
+            <p class="st_submenu"><span id="spSub22" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/sampling-methodsb15b.html?Tutorial=AP">Sampling methods</a></p>
+            <p class="st_submenu"><span id="spSub23" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/survey-biasb15b.html?Tutorial=AP">Bias in surveys</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" href="#">Experiments</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/what-is-an-experimentb15b.html?Tutorial=AP">Intro to experiments</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/experimental-designb15b.html?Tutorial=AP">Experimental design</a></p>
+        </div>
+    </div>
+    
+    <div class="st_heading">Anticipating Patterns</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Probability</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/what-is-probabilityb15b.html?Tutorial=AP">Probability intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-rulesb15b.html?Tutorial=AP">Rules of probability</a></p>
+        </div>    
+    </div>
+        
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Random variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/random-variableb15b.html?Tutorial=AP">Introduction</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-distributionb15b.html?Tutorial=AP">Distributions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/mean-varianceb15b.html?Tutorial=AP">Mean and variance</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/combinationb15b.html?Tutorial=AP">Combinations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/simulationb15b.html?Tutorial=AP">Simulation of events</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Discrete variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/binomialb15b.html?Tutorial=AP">Binomial distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/negative-binomialb15b.html?Tutorial=AP">Negative binomial</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Continuous variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/normalb15b.html?Tutorial=AP">Normal distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/standard-normalb15b.html?Tutorial=AP">Standard normal</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/t-distributionb15b.html?Tutorial=AP">t Distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/chi-squareb15b.html?Tutorial=AP">Chi-square</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Sampling distributions</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/sampling-distributionb15b.html?Tutorial=AP">Sampling distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-proportionb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Statistical Inference</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/estimation-in-statisticsb15b.html?Tutorial=AP">Estimation problems</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/standard-errorb15b.html?Tutorial=AP">Standard error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/margin-of-errorb15b.html?Tutorial=AP">Margin of error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-intervalb15b.html?Tutorial=AP">Confidence intervals</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation problems</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-meanb15b.html?Tutorial=AP">Means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/mean-difference-pairsb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="slope-confidence-intervalb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis testing</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/hypothesis-testingb15b.html?Tutorial=AP">Hypothesis test intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/power-of-testb15b.html?Tutorial=AP">Power of test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/how-to-test-hypothesisb15b.html?Tutorial=AP">How to test</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis tests</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/meanb15b.html?Tutorial=AP">Mean</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/paired-meansb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/goodness-of-fitb15b.html?Tutorial=AP">Goodness of fit test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/homogeneityb15b.html?Tutorial=AP">Homogeneity</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="slope-testb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Appendices</div>    
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../ap-statistics/practice-testb15b.html?Tutorial=AP">Practice Exam</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../statistics/notationb15b.html?Tutorial=AP">Notation</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix" 
+        href="../ap-statistics/formulasb15b.html?Tutorial=AP">AP Statistics Formulas</a>
+    </div>    
+
+</div>  <!-- End of AP menu items,id ="divAPMenuItems" -->
+</nav>
+</div>  <!-- End AP Stat tutorial, id="divAP" -->
+
+
+  <!-- End Statistics tutorial, id="divStat" -->
+
+<script type="text/javascript">
+    st_init();
+</script>
+
+<br />
+<div id="divAPFootnote" style="BACKGROUND-COLOR: #eeeeee; border:solid 1px #3333ff; padding: 10px; width:140px;">
+    <table><tr>
+		<td style="vertical-align:top;">*&nbsp;&nbsp;</td>
+		<td style="font-size:9pt;">AP and Advanced Placement Program are registered 
+		trademarks of the College Board, which was not involved in the 
+		production of, and does not endorse this website.</td>
+		</tr></table>
+</div>    <!-- End AP disclaimer -->
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'>Texas Instrument 84 Plus Silver Edition graphing Calculator (Full Pink in color) (Packaging may vary)</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'><img src='https://images-na.ssl-images-amazon.com/images/I/51Z1mcIr4dL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$150.00</span><br />Buy Used: <span style='color:#990000;'>$60.52</span><br />Buy New: <span style='color:#990000;'>$236.96</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1592576346?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1592576346'>The Complete Idiot's Guide to Statistics, 2nd Edition (Idiot's Guides)</a><br /><span class='verticalAdAuthor'>Ph.D., Robert A. Donnelly Jr.</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1592576346?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1592576346'><img src='https://images-na.ssl-images-amazon.com/images/I/51n7b3nIY0L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$19.95</span><br />Buy Used: <span style='color:#990000;'>$2.48</span><br />Buy New: <span style='color:#990000;'>$16.83</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0071412786?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0071412786'>5 Steps to a 5 on the AP: Statistics</a><br /><span class='verticalAdAuthor'>Duane C Hinders</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0071412786?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0071412786'><img src='https://images-na.ssl-images-amazon.com/images/I/51Wfw4X2pnL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$16.95</span><br />Buy Used: <span style='color:#990000;'>$0.01</span><br />Buy New: <span style='color:#990000;'>$9.99</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1895997143?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1895997143'>Statistics & Probability with the TI-89</a><br /><span class='verticalAdAuthor'>Brendan Kelly</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1895997143?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1895997143'><img src='https://images-na.ssl-images-amazon.com/images/I/51Aold9Uf7L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$16.95</span><br />Buy Used: <span style='color:#990000;'>$4.10</span><br />Buy New: <span style='color:#990000;'>$14.55</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0470040076?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0470040076'>Sampling of Populations: Methods and Applications</a><br /><span class='verticalAdAuthor'>Paul S. Levy, Stanley Lemeshow</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0470040076?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0470040076'><img src='https://images-na.ssl-images-amazon.com/images/I/412wO-9DnQL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$173.00</span><br />Buy Used: <span style='color:#990000;'>$60.00</span><br />Buy New: <span style='color:#990000;'>$124.06</span></font></div></div><br /></aside><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'>HP 50g Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'><img src='https://images-na.ssl-images-amazon.com/images/I/41mB7uHff8L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$80.00</span><br />Buy New: <span style='color:#990000;'>$198.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/regression/linear-regression.aspx?tutorial=ap by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:25 GMT -->
+</html>

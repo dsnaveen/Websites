@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreaded.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 17:27:08 GMT -->
+<head>
+  <title>C++ Tutorial: Multi-Threaded Programming - Terminology 2017</title>
+  <meta content="C++ Tutorial: Multi-Threaded Programming - 2016, Application that has more than one thread of execution within the application itself is called multhreaded application. This section explains issues related to locking mechanisms such as lock-free programming, priority inversion, priority inheritance, priority ceiling, preemptive scheduling." name="description" />
+  <meta content="C++ Tutorial, Multi-Threaded Programming, MultiThreading Programming, Terminology, deadlock, semaphore, mutex, race condition, monitor, mutual exclusion, Lock-Free Code, atomic operation, /proc/cpuinfo, lock-free programming, priority inversion, priority inheritance, priority ceiling, preemptive scheduling, process vs kernel, processes vs threads" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">
+Multi-Threaded Programming 
+Terminology - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mth1">Multi-Threaded Programming - Terminology</div>
+<div class="subtitle_2nd" id="thread">Thread</div>
+<p>More exactly it is <strong>Thread of Execution</strong> which is the smallest unit of processing.</p>
+<br/>
+<ol>
+<li>It is scheduled by an OS.</li>
+<li>In general, it is contained in a process.</li>
+So, multiple threads can exist within the same process.
+<li>It shares the resources with the process: 
+The memory, code (instructions), 
+and global variable (context - the values that its variables reference at any given moment).</li>
+<li>On a single processor, each thread has its turn by multiplexing based on time. On a multiple processor, each thread is running at the same time with each processor/core running a particular thread.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="hard">Why it's so hard?</div>
+<p>Need a break?</p>
+<p>Martin Odersky talked on Parallel/Concurrent programming - Why it's so hard? <br/>
+Is it inherent or incidental? Or both?</p>
+<p><a href="http://www.youtube.com/watch?v=3jg1AheF4n0">Martin Odersky's talk at OSCON 2011: Working Hard to Keep it Simple</a> (<a href="http://www.slideshare.net/Odersky/oscon-keynote-working-hard-to-keep-it-simple">slides</a>)</p>
+<p>Though this is more about <a href="../Java/tutorial/scala_functional_java_programming.html" target="_blank">Scala</a>, it brings a whole different approach to parallelism / multithreading / concurrent computation.</p>
+
+<video autoplay controls height="352" width="352">
+<source src="../Qt/images/ProducerConsumerQSemaphore/QSemaphores_Producer_Consumer.mp4" type="video/mp4">
+<source src="../Qt/images/ProducerConsumerQSemaphore/QSemaphores_Producer_Consumer.ogv" type="video/ogg">
+Your browser does not support the video tag.
+</source></source></video>
+<p>Video recording - Producer and Consumer model using QSemaphore, for more info, please visit my Qt5 Tutorial:</p>
+<p><a href="../Qt/Qt5_QThreads_QSemaphore_Producer_Consumer_GuiThread.html" target="_blank">QSemaphores - Producer and Consumer</a>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="why_multithreading">Why multithreaded?</div>
+<p>Application that has more than one thread of execution within the application itself is called multhreaded application. </p>
+<p>For example, if we want to create a server that can serve as many concurrent connections as the the server can cope with,  we can achieve such a task relatively easily if we devote a new thread to each connection. In some cases, instead of creating a separate socket to handle incoming connections, a multithreaded server creates a new thread for each incoming connection, and creates a new socket with each new thread.</p>
+<p>Another typical example of the case when we need multithreading is GUI application. GUI applications have one thread of execution (Main Thread) and do one operation at a time. This thread is either waiting for an event or processing an event. So, if the user triggers a time-consuming operation from the user interface, the interface freezes while the operation is in progress. In this case, we need to implement multithreading.</p>
+<p>The main thread can start new threads by creating objects of a Thread subclass. 
+If multithreaded, the GUI runs in its own thread and additional processing takes place in other threads, and the application will have responsive GUIs even during intensive processing. In other words, we pass on the heavy-duty processing to separate secondary threads and leave the primary GUI thread free to respond to the user.</p>
+<p>These new threads need to communicate among themselves so that application can keep the user informed of progress (keep the user interface up-to-date regarding the progress), allow the user to intervene (provide the user with some control over the secondary thread), and let the primary thread know when processing is complete. Typically, they use <strong>shared variables</strong> together by using a resource protection mechanism such as <strong>mutextes</strong>, <strong>semaphores</strong>, or <strong>wait conditions</strong>, etc.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadvsprocesses">Threads vs. Processes</div>
+<p>Processes and threads are related to each other but are fundamentally different.<p>
+<p>A <strong>process</strong> can be thought of as an instance of a running program. Each process is an independent entity to which system resources such as CPU time, memory, etc. are allocated and each process is executed in a separate address space. If we want to access another process' resources, <strong>inter-process communications</strong> have to be used such as <strong>pipes</strong>, <strong>files</strong>, <strong>sockets</strong> etc. See more on <a href="../Linux/linux_process_and_signals.html" target="_blank">Linux process</a>.</p>
+<p>Process provides each program with <strong>two key abstractions</strong>:</p>
+<ol>
+<li>Logical control flow<br/>
+ Each process seems to have exclusive use of the CPU</li>
+<li>Private virtual address space<br/>
+ Each process seems to have exclusive use of main memory</li>
+</ol>
+<br/>
+<img alt="process" src="images/multithread/process.png"/>
+<br/>
+<p>A <strong>thread</strong> uses the same address space of a process. A process can have multiple threads. A key difference between processes and threads is that multiple threads <strong>share</strong> parts of their state. Typically, multiple threads can read from and write to the same memory (no process can directly access the memory of another process). However, each thread still has its own stack of activation records and its own copy of CPU registers, including the stack pointer and the program counter, which together describe the <strong>state</strong> of the thread's execution.</p>
+<p>A thread is a particular execution path of a process. When one thread modifies a process resource, the change is immediately visible to sibling threads. </p>
+<ol>
+<li>Processes are independent while thread is within a process.</li>
+<li>Processes have separate address spaces while threads share their address spaces.</li>
+<li>Processes communicate each other through inter-process communication.</li>
+<li>Processes carry considerable state (e.g., ready, running, waiting, or stopped)  information, whereas multiple threads within a process share state as well as memory and other resources.</li>
+<li><a href="#ContextSwitch" target="_blank">Context switching</a> between threads in the same process is typically faster than context switching between processes.</li>
+<li><strong>Multithreading</strong> has some advantages over <strong>multiple processes</strong>. Threads require less overhead to manage than processes, and intraprocess thread communication is less expensive than interprocess communication.</li>
+<li><strong>Multiple process</strong> concurrent programs do have one advantage: Each process can execute on a different machine (<strong>distribute program</strong>). Examples of distributed programs are file servers (NFS), file transfer clients and servers (FTP), remote log-in clients and servers (Telnet), groupware programs, and Web browsers and servers. </li>
+</ol>
+<br/>
+<img alt="athread" src="images/multithread/athread.png"/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Message_Passing_Shared_Memory">Message Passing vs. Shared Memory</div>
+<ol>
+<li><strong>Message Passing</strong><br/>
+<ol>
+<li>Message passing exchanges data via inter-process communication(IPC) mechanisms.</li>
+<li><strong>Pros</strong>: Generalizes to both local &amp; remote communication.</li>
+<li><strong>Cons</strong>: May incur excess overhead for large messages in a "loop-back" configuration.</li>
+</ol>
+</li>
+<li><strong>Shared Memory</strong><br/>
+<ol>
+<li>Shared memory allows apps to access &amp; exchange data as though they were local to address space of each process.</li>
+<li><strong>Pros</strong>: Can be more efficient for large messages in loop-back configuration.</li>
+<li><strong>Cons</strong>: Doesn't generalize efficiently to remote systems &amp; can be more error-prone &amp; non-portable for OO apps.</li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Multiprocessing_vs_Multithreading">Multiprocessing vs. Multithreading</div>
+<ol>
+<li><strong>Multiprocessing</strong><br/>
+<ol>
+<li>A process is the unit of resource allocation &amp; protection.</li>
+<li>A process manages certain resources, e.g., virtual memory, I/O handlers, and signal handlers.</li>
+<li><strong>Pros</strong>: Process is protected from other processes via an MMU.</li>
+<li><strong>Cons</strong>: IPC between processes can be complicated and inefficient.</li>
+</ol>
+</li>
+<li><strong>Multithreading</strong><br/>
+<ol>
+<li>A thread is the unit of computation that runs in the context of a process.</li>
+<li>A thread manages certain resources, e.g., stack, registers, signal masks, priorities, and thread-specific data</li>
+<li><strong>Pros</strong>: IPC between threads is more efficient that IPC between processes.</li>
+<li><strong>Cons</strong>: Threads can interfere with each other.</li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="process_vs_kernel">Process vs Kernel</div>
+<p>In Linux systems, a <strong>kernel</strong> knows and controls everything of a running system but a <strong>process</strong> does not. A process is an instance of an executing program. When a program
+is executed, the kernel loads the code of the program into virtual memory, allocates space for program variables, and sets up kernel bookkeeping data structures
+to record various information (such as process ID, termination status, user IDs, and
+group IDs) about the process.</p>
+<p><strong>Process</strong><br/></p>
+<ol>
+<li>A running system typically has numerous processes. </li>
+<li> For a process, many things happen asynchronously. </li>
+<li>An executing process doesn't know when it will next time
+out, which other processes will then be scheduled for the CPU (and in what order),
+or when it will next be scheduled. The delivery of signals and the occurrence of
+interprocess communication events are mediated by the kernel, and can occur at
+any time for a process. </li>
+<li>Many things happen transparently for a process. A process doesn't know where it is located in RAM or, in general, whether a particular part of
+its memory space is currently resident in memory or held in the swap area (a
+reserved area of disk space used to supplement the computer's RAM). </li>
+<li>Similarly, a
+process doesn't know where on the disk drive the files it accesses are being held; it
+simply refers to the files by name. </li>
+<li>A process operates in isolation; it can't directly
+communicate with another process. </li>
+<li>A process can't itself create a new process or
+even end its own existence. Actually, a process can create a new process using the <a href="../Linux/linux_process_and_signals.html" taarget="_blank">fork()</a> system call. The process that
+calls <strong>fork()</strong> is referred to as the parent process, and the new process is referred to as
+the child process. The <strong>kernel</strong> creates the child process by making a duplicate of the parent process.</li>
+<li>Finally, a process can't communicate directly with the
+input and output devices attached to the computer.</li>
+</ol>
+<p><strong>Kernel</strong><br/></p>
+<ol>
+<li>The kernel facilitates the running of all processes on the system. </li>
+<li>The kernel decides which process will next obtain access to the CPU, when it will do so, and for
+how long. </li>
+<li>The kernel maintains data structures containing information about all
+running processes and updates these structures as processes are created, change
+state, and terminate. </li>
+<li>The kernel maintains all of the low-level data structures that
+enable the filenames used by programs to be translated into physical locations on
+the disk. </li>
+<li>The kernel also maintains data structures that map the virtual memory of
+each process into the physical memory of the computer and the swap area(s) on
+disk. </li>
+<li>All communication between processes is done via mechanisms provided by
+the kernel. In response to requests from processes, the kernel creates new processes and terminates existing processes. </li>
+<li>Lastly, the kernel (in particular, device
+drivers) performs all direct communication with input and output devices, transferring information to and from user processes as required.</li>
+</ol>
+<p>Edited from "Process versus kernel views of the system" of "Linux Programming Interface"</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="scheduling">Scheduling Methods in RTOS</div>
+<ol>
+<li><strong>Preemptive</strong><br/>
+<ol>
+<li>Each Task has a priority relative to all other tasks</li>
+<li>The most critical Task is assigned the highest priority</li>
+<li>The highest priority Task that is ready to run gets control of the processor</li>
+<li>A Task runs until it yields, terminates, or blocks</li>
+<li>Each Task has its own memory stack</li>
+<li>Before a Task can run it must load its context from its memory stack (this can take many cycles)</li>
+<li>If a Task is preempted it must save its current state/context; this context is  restored when the Task is given control of the processor</li>
+</ol>
+<br/> 
+   In this preemptive scheduling a thread (or a process) must be in one of the following four states:
+   <ol>
+<li>Running - the task is in control of the CPU</li>
+<li>Ready - the task is not blocked and is ready to receive control of the CPU 
+   when the scheduling policy indicates it is the highest priority task in the system that is not blocked.</li>
+<li>Inactive - the task is blocked and requires initialization in order to become ready.</li>
+<li>Blocked - the task is waiting for something to happen or for a resource to become available.</li>
+</ol>
+</li>
+<br/>
+<li><strong>Round Robin</strong><br/>
+  In this method, time slices are assigned to each process in equal portions and in circular order, handling all processes without priority (also known as cyclic executive). Round-robin scheduling is simple, easy to implement, and starvation-free.
+  </li>
+</ol>
+<p>For more info on RTOS, visit <br/>
+<a href="embeddedSystemsProgramming.html#RTOS">Embedded Systems Programming: RTOS (real-time operating system)</a></p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="priority_inversion">Priority Inversion</div>
+<p>The existence of this problem has been known for a while, however, there is no fool-proof method to predict the situation.</p>
+<p>To ensure rapid response times, an embedded <strong>RTOS</strong> can use <strong>preemption (higher-priority task can interrupt a low-priority task that's running)</strong>. When the high-priority task finishes running, the low-priority task resumes executing from the point at which it was interrupted.</p>
+<p>Unfortunately, the need to share resources between tasks operating in a preemptive multitasking environment can create conflicts. Along with a deadlock, the <strong>priority inversion</strong> is one of the two of the most common problems which can result in application failure. (<a href="http://www.cs.duke.edu/~carla/mars.html" target="_unknown">Mars Pathfinder mission</a>)</p>
+<p>The typical example is a medium priority task (M) preempts a high priority task, resulting in a priority inversion. A low priority process (L) acquiring a resource that a high priority process (H) wants to access, but  being preempted by a medium priority process (M), so the high priority process (H) is blocked on the resource while the medium priority one (M) finishes. This can occur when any third task of medium priority (M) becomes runnable during low priority process' use of resource. Once high priority task becomes unrunnable, third task of medium priority (M) is the highest priority runnable task, thus it runs and while it does L cannot relinquish the resource. So in this scenario, the medium priority task (M) preempts the high priority task (H), resulting in a priority inversion.</p>
+<br/>
+<img alt="UnboundedPriorityInversion.png" src="images/multithread/UnboundedPriorityInversion.png"/>
+<br/>
+Picture from <a href="http://www.embedded.com/design/embedded/4024970/How-to-use-priority-inheritance" target="_blank">How to use priority inheritance</a>
+<br/>
+<p>To avoid priority inversion, the priority is set (hoisted) to a predefined priority higher than or equal to the highest priority of all the threads that might lock the particular mutex. This is known as <strong>Priority Ceiling</strong>.</p>
+<p>When a task acquires a shared resource, the task is hoisted (has its priority temporarily raised) to the priority ceiling of that resource (This unconditional hoist is the different from the <strong>priority inheritance</strong>). The priority ceiling must be higher than the highest priority of all tasks that can access the resource to ensure that a task owning a shared resource <strong>won't be preempted</strong> by any other task attempting to access the same resource. When the hoisted task releases the resource, the task is returned to its original priority level.</p>
+<p>An alternative to the priority ceiling is the <strong>priority inheritance</strong>, a variation that uses <strong>dynamic priority adjustments</strong>. When a low-priority task acquires a shared resource, the task continues running at its original priority level. If a higher-priority thread requests ownership of the shared resource, the low-priority task is hoisted to the priority level of the requesting thread (the higher-priority thread waiting for the mutex) by inheriting that priority. The low-priority task can then continue executing its critical section until it releases the resource. Once the resource is released, the task is dropped back to its original low-priority level, permitting the high-priority task to use the resource it has just acquired.</p>
+<p>Because the majority of locks in real-time applications aren't contended, the priority inheritance protocol has good average-case performance. When a lock isn't contended, priorities don't change; there is no additional overhead.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="invariants">Invariants</div>
+<p><strong>Invariants</strong> is one of the widely used concepts to help programmers reason about their code.
+The invariants-statements that are always true about a particular data structure, such as linked list. 
+These <strong>invariants</strong> are
+often broken during an update, especially if </p>
+<ol>
+<li>the data structure is of any complexity </li>
+<li>the update requires modification of more than one value. </li>
+</ol>
+<p>Let's think about a doubly linked list, where each node holds a pointer to both the next
+node in the list and the previous one. One of the <strong>Invariants</strong> is that if we follow a
+<strong>next</strong> pointer from one node (1) to another (2), the previous pointer from that
+node (2) points back to the first node (1). In order to remove a node from the list,
+the nodes on either side have to be updated to point to each other. Once one has
+been updated, the invariant is broken until the node on the other side has been
+updated too. Only after all the updates necessary have completed, the invariant holds again.
+The steps in deleting an entry from such a list are:</p>
+<ol>
+<li>Identify the node to delete, <strong>n</strong>.</li>
+<li>Update the link from the node prior to <strong>n</strong> to point to the node after <strong>n</strong>.</li>
+<li>Update the link from the node after <strong>n</strong> to point to the node prior to <strong>n</strong>.</li>
+<li>Delete node <strong>n</strong>.</li>
+</ol>
+<p>However, when the links going in one direction could become inconsistent
+with the links going in the opposite direction, and the <strong>invariant is broken</strong>.</p>
+<p>Broken invariant is the simplest potential problem with modifying data shared between threads. 
+If we don't do anything special to ensure otherwise, if
+one thread is reading the doubly linked list while another is removing a node, it's
+quite possible for the reading thread to see the list with a node only partially removed
+(because only one of the links has been changed), so the invariant
+is broken.</p>
+<p>The consequences of this broken invariant can vary. If the other thread is
+just reading the list items from left to right, it will skip the node being deleted. 
+On the other hand, if the second thread is trying to delete the rightmost
+node in the list, it might end up permanently corrupting the data structure and
+eventually crashing the program. Whatever the outcome, this is an example of one of
+the most common causes of bugs in concurrent code: a <a href="#RaceCondition">race condition</a>.</p>
+<p>This section is mostly from the book "C++ Concurrency in Action Practical Multithreading" by Anthony Williams.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fork">fork() system call vs. creating a thread</div>
+<p>We need to be clear about the difference between the <a href="../Linux/linux_process_and_signals.html#fork" target="_blank">fork()</a> system call and the creation of new threads.</p>
+<p>When a process executes a <strong>fork()</strong> call, a new copy of the process is created with its own variables and its own process id (PID), and this new process is scheduled independently, and executed almost independently of the parent process.</p>
+<p>When we create a new thread within a process, on the other hand, the new thread gets its own stack (local variables) but shares global variables, file descriptors, signal handlers, and its current directory state with the process which created it.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Eager_spawning_vs_ondemand_spawning">Thread pool vs. On-demand thread</div>
+<ol>
+<li><strong>Multiprocessing</strong><br/>
+<ol>
+<li>Prespawn threads to amortize creation costs via eager spawning strategies.</li>
+</ol>
+</li>
+<li><strong>On-demand thread spawning</strong><br/>
+<ol>
+<li>Used to implement thread-per-request and thread-per-connection models.</li>
+<li><strong>Pros</strong>: Reduces wasted resource consumption of unused prespawned threads.</li>
+<li><strong>Cons</strong>: Can degrade performance in heavily loaded servers and determinism due to overhead of spawning threads and starting services.</li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="AdvantageofMultiThreading">Advantage of Multi-Threading</div>
+<ol>
+<li>Faster on a multi-CPU system.</li>
+<li>Even in a single CPU system, application can remain responsive by using worker thread runs concurrently with the main thread.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Identifying">Identifying Multithread Opportunities</div>
+<p>So, multithreading is a good thing. How can we identify multithreading oppurtinities in codes?</p>
+<ol>
+<li>We need runtime profile data of our application. Then, we can identify the bottleneck of code.</li>
+<li>Eaxmine the region, and check for dependencies. Then, determine whether the dependencies can be broken into either
+        <ol>
+<li>multiple parallel task, or</li>
+<li>loop over multiple parallel iteration.</li>
+</ol>
+</li>
+<li>At this stage, we may consider a different algorithm.</li>
+<li>We need to estimate the overhead and performance gains. Will it give us linear scaling with the number of thread? 
+   </li>
+<li>If the scaling does not look promising, we may have to broaden the scope of our analysis.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ContextSwitch">Context Switch</div>
+<p>Switching the CPU from one process or thread to another is called <strong>context switch</strong>. It requires saving the state of the old process or thread and loading the state of the new one. Since there may be several hundred context switches per second, context switches can potentially add significant overhead to an execution.</p>
+<br/>
+<img alt="Context_switch.png" src="images/multithread/Context_switch.png"/>
+<br/>
+<p>Context switch is implemented using exception control flow. (for more <a href="exceptions.html" target="_blank">exception control flow</a>)</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="RaceCondition">Race Condition</div>
+<p>This section is mostly from the book "C++ Concurrency in Action Practical Multithreading" by Anthony Williams.</p>
+<p>In concurrency, a <strong>race condition</strong> is anything where the outcome depends on the
+relative ordering of execution of operations on two or more threads where the threads
+race to perform their respective operations. Most of the time, this is quite benign
+because all possible outcomes are acceptable, even though they may change with different
+relative orderings. For example, if two threads are adding items to a queue
+for processing, it generally doesn't matter which item gets added first, provided that
+the <a href="#invariants">invariants</a> of the system are maintained. </p>
+<p>It's when the race condition leads to
+broken invariants that there's a problem, such as with the doubly linked list example
+mentioned in <a href="#invariants">Invariants</a> section of this chapter. </p>
+<p>When talking about concurrency, the term race condition is usually
+used to mean a problematic race condition; benign race condition is not so
+interesting and should not be a cause of bugs. The C++ Standard also defines the term data
+race to mean the specific type of race condition that arises because of <strong>concurrent
+modification to a single object such that data races cause the undefined behavior</strong>.</p>
+<p>This happens when a <a href="#criticalsection">critical section</a> is not executed atomically.<br/>
+An execution of threads depends on shared state. For example, two threads share variable <strong>i</strong> and trying to increment it by 1.
+It is highly dependent on when they get it and when they save it.</p>
+<p><p>Typically, problematic race conditions occur where completing an operation
+requires modification of two or more distinct pieces of data, such as the two link
+pointers in the example of <a href="#invariants">Invariants</a> section. 
+Because the operation must access two separate pieces of
+data, these must be modified in separate instructions, and another thread could
+potentially access the data structure when only one of them has been completed.</p>
+<p> Race conditions can often be hard to find and hard to duplicate because the window of
+opportunity is small. If the modifications are done as consecutive CPU instructions,
+the chance of the problem exhibiting on any one run-through is very small, even if the
+data structure is being accessed by another thread concurrently. As the load on the system
+increases, and the number of times the operation is performed increases, the
+chance of the problematic execution sequence occurring also increases. It's almost
+inevitable that such problems will show up at the most inconvenient time. </p>
+<p>Because race conditions are generally timing sensitive, they can often disappear entirely when
+the application is run under the debugger, because the debugger affects the timing
+of the program, even if only slightly.</p>
+<p>If we are writing multithreaded programs, race conditions can easily be the bane
+of our life. A great deal of the complexity in writing software that uses concurrency
+comes from avoiding problematic race conditions.</p>
+<p>There are several ways to deal with problematic race conditions. The simplest option is
+to wrap your data structure with a <strong>protection mechanism</strong>, to ensure that only the thread
+actually performing a modification can see the intermediate states where the invariants
+are broken. From the point of view of other threads accessing that data structure,
+such modifications either haven't started or have completed. </p>
+<p>Another option is to modify the design of your data structure and its invariants so
+that modifications are done as a series of indivisible changes, each of which preserves
+the invariants. This is generally referred to as <strong>lock-free programming</strong> and is difficult to get
+right. If we're working at this level, the nuances of the <strong>memory model</strong> and identifying
+which threads can potentially see which set of values can get complicated.</p>
+<p>Another way of dealing with race conditions is to handle the updates to the data
+structure as a transaction, just as updates to a database are done within a transaction.
+The required series of data modifications and reads is stored in a transaction log and
+then committed in a single step. If the commit can't proceed because the data structure
+has been modified by another thread, the transaction is restarted. This is termed
+<strong>software transactional memory (STM)</strong>, and currently, it's an active research area.</p>
+<p>The most basic mechanism for protecting shared data is probably the <strong>mutex</strong>.</p>
+<p>Suppose, two person <strong>A</strong> and <strong>B</strong> share the same account and try to deposit roughly at the same time. In the following example, they deposited 1$ million times. So, we expect the balance would be $2,000,000. However, it turns out that's not the case as we see from the output:</p>
+<pre>
+// global1.c
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+
+static volatile int balance = 0;
+
+void *deposit(void *param)
+{
+    char *who = param;
+
+    int i;
+    printf("%s: begin\n", who);
+    for (i = 0; i &lt; 1000000; i++) {
+        balance = balance + 1;
+    }
+    printf("%s: done\n", who);
+    return NULL;
+}
+
+int main()
+{
+    pthread_t p1, p2;
+    printf("main() starts depositing, balance = %d\n", balance);
+    pthread_create(&amp;p1;, NULL, deposit, "A");
+    pthread_create(&amp;p2;, NULL, deposit, "B");
+
+    // join waits for the threads to finish
+    pthread_join(p1, NULL);
+    pthread_join(p2, NULL);
+    printf("main() A and B finished, balance = %d\n", balance);
+    return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+$ ./global
+main() starts depositing, balance = 0
+B: begin
+A: begin
+B: done
+A: done
+main() A and B finished, balance = 1270850
+----
+$ ./global
+main() starts depositing, balance = 0
+B: begin
+A: begin
+B: done
+A: done
+main() A and B finished, balance = 1423705
+</pre>
+<p>Note that both threads accessing the same function and share global variable <strong>balance</strong>. </p>
+<p>Put simply, what could happened is this: the code to increment balance has been
+run twice by A and B, in both cases, however, the balance might started at 0 without noticing the other person was in the process of putting money into the same account.</p>
+<p>Technically, the deposit process may not be just one instruction, it may have three-instruction sequences as below:</p>
+<pre>
+ (1)
+ // the variable balance is located at address 0x8049a1c
+ // mov instruction is used first to get the memory value at the address 
+ // and put it into register eax
+ mov 0x8049a1c, %eax 
+
+ (2)
+ // the add is performed, adding 1 (0x1) to the contents of the eax register       
+ add $0x1, %eax
+
+ (3)
+ // the contents of eax are stored back into memory at the same address.
+ mov %eax, 0x8049a1c
+</pre>
+<p>We need to make the balance updating code (<strong>critical section</strong>) as atomic:</p>
+<pre>
+// global2.c
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+
+static volatile int balance = 0;
+<font color="red">pthread_mutex_t myMutex;</font>
+
+void *deposit(void *param)
+{
+    char *who = param;
+
+    int i;
+    printf("%s: begin\n", who);
+    for (i = 0; i &lt; 1000000; i++) {
+
+        // <font color="blue">critical section</font>
+        <font color="red">pthread_mutex_lock(&amp;myMutex;);</font>
+        balance = balance + 1;
+        <font color="red">pthread_mutex_unlock(&amp;myMutex;);</font>
+
+    }
+    printf("%s: done\n", who);
+    return NULL;
+}
+
+int main()
+{
+    pthread_t p1, p2;
+    printf("main() starts depositing, balance = %d\n", balance);
+    <font color="red">pthread_mutex_init(&amp;myMutex;,0);</font>
+    pthread_create(&amp;p1;, NULL, deposit, "A");
+    pthread_create(&amp;p2;, NULL, deposit, "B");
+
+    // join waits for the threads to finish
+    pthread_join(p1, NULL);
+    pthread_join(p2, NULL);
+    <font color="red">pthread_mutex_destroy(&amp;myMutex;);</font>
+    printf("main() A and B finished, balance = %d\n", balance);
+    return 0;
+}
+</pre>
+<p>Makefile:</p>
+<pre>
+global2: global2.o
+        gcc -D_REENTRANT -o global2 global2.o -Wall -lpthread
+global2.o: global2.c
+        gcc -c global2.c
+clean:
+        rm -f *.o global2
+</pre>
+<p>Now, our output looks desirable:</p>
+<pre>
+$ make
+gcc -c global2.c
+gcc -D_REENTRANT -o global2 global2.o -Wall -lpthread
+$ ./global2
+main() starts depositing, balance = 0
+B: begin
+A: begin
+B: done
+A: done
+main() A and B finished, balance = 2000000
+</pre>
+<p>We can detect the potential race condition using <strong>valgrind --tool=helgrind program_name</strong>. Visit <a href="multithreadedDebugging.html#mth1" target="_blank">Multithread Debugging</a>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Deadlock">Deadlock</div>
+<p>Two or more competing actions are waiting for other to finish.
+No threads are changing their states.</p>
+<p>In other words, deadlock occurs when some threads are blocked to acquire resources held by other blocked threads. A deadlock may arise due to dependence between two or more threads that request resources and two or more threads that hold those resources. </p>
+<p>Example 1: Alphonse and Gaston are friends, and great believers in courtesy. A strict rule of courtesy is that when you bow to a friend, you must remain bowed until your friend has a chance to return the bow. Unfortunately, this rule does not account for the possibility that two friends might bow to each other at the same time.</p>
+<p>Example 2: Two threads want to acquire mutex locks A and B to finish their task. Suppose thread 1 has already acquired lock A and thread 2 has already acquired B. Then, thread 1 cannot make progress because it is waiting for lock B, and thread 2 cannot make progress because it is waiting for lock A. So, the two thread are in <strong>deadlock</strong>.</p>
+<br/>
+<img alt="deadlock" src="images/multithread/deadlock.png"/>
+<br/>
+<br/>
+<p>How to avoid deadlock</p>
+<ol>
+<li>Don't request another resource while holding one resource. </li>
+<li>If you ever need to acquire two locks at once acquire locks in a fixed order. </li>
+<li>Don't wait for another thread if there's a chance it's waiting for you. </li>
+<li>Try to avoid holding locks for longer than we need to. </li>
+</ol>
+<p><a href="multithreaded4_cplusplus11B.html#how_to_avoid_deadlock" target="_blank">How to avoid deadlock - C++11</a></p>
+<p><a href="multithreading_pthread.html#Synchronization_producer_consumer" target="_blank">How to avoid deadlock - Producer/Consumer Problem</a> <br/>
+Starting from a very simple example, it provides a solution for producer/consumer ((aka Bounded Buffer) problem using mutex(binary semaphore). It has the dead lock case as well, and solves it by reducing the scope of lock.
+</p>
+</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Livelock">Livelock</div>
+<p>A situation that process is not progressing. Example: When two people meet at narrow path, and both of them  are repeatedly trying to yield to the other person. Both are changing their states but with no progress.</p>
+<p>A thread often acts in response to the action of another thread. If the other thread's action is also a response to the action of another thread, then livelock may result. As with deadlock, livelocked threads are unable to make further progress. However, the threads are not blocked - they are simply too busy responding to each other to resume work.</p>
+<p>In the following example, the code was written in an attempt to avoid deadlock, however, if the two threads executed at the same time, they will be trapped in a <strong>livelock</strong> of constantly acquiring and releasing mutexes. It is very unlikely that either will make progress. Each thread acquires a lock and then attempts to acquire the other lock. If it fails to acquire the other lock, it releases the lock it is holding before another try to get both locks again. The thread exits the loop when it manages to acquire both locks, and it may happen, but until then, the application will make no progress:</p>
+<br/>
+<img alt="livelock" src="images/multithread/livelock.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Starvation">Starvation</div>
+<p>When a process having been denied necessary resources. Without the resources the program can not finish.</p>
+<p>Example: An object provides a synchronized method that often takes a long time to return. If one thread invokes this method frequently, other threads that also need frequent synchronized access to the same object will often be blocked. </p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Disadvantages_Locks">Disadvantages of Locks</div>
+<p>From <a href="http://msdn.microsoft.com/en-us/library/a8544e2s(v=vs.71).aspx" target="_blank">MSDN: Thread-Safe Components</a></p>
+<p>Although using locks will guarantee that multiple threads do not simultaneously access an object, they can cause significant <strong>performance degradation </strong>. Imagine a program with many different threads running. If each thread needs to use a particular object and has to wait to obtain an exclusive lock on that object before executing, the threads will all cease executing and back up behind one another, causing poor performance. For these reasons, we should only use locks when we have code that must be executed as a unit. For example, we might update multiple resources that were interdependent. Such code is said to be atomic. Restricting our locks only to code that must be executed atomically will allow us to write multithreaded components that ensure the safety of our data while still maintaining good performance.</p>
+<p>
+We must also be careful to avoid situations where  <strong>deadlocks </strong> might occur. In this case, multiple threads wait for each other to release shared resources. For example, Thread 1 might hold a lock on resource A and is waiting for resource B. Thread 2, on the other hand, might have a lock on resource B and awaits resource A. In such a case, neither thread will be allowed to proceed. The only way to avoid deadlock situations is through careful programming.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="DiningPhilosophersProblem">Dining Philosophers Problem</div>
+<p>The dining philosophers problem is summarized as five philosophers sitting at a table doing one of two things: eating or thinking. While eating, they are not thinking, and while thinking, they are not eating. The five philosophers sit at a circular table with a large bowl of spaghetti in the center. A fork is placed in between each pair of adjacent philosophers, and as such, each philosopher has one fork to his left and one fork to his right. As spaghetti is difficult to serve and eat with a single fork, it is assumed that a philosopher must eat with two forks. Each philosopher can only use the forks on his immediate left and immediate right.</p>
+<img alt="Dining_philosophers" src="images/multithread/Dining_philosophers.png"/>
+<p>source <a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank">wiki</a></p>
+<p>
+The philosophers never speak to each other, which creates a dangerous possibility of <strong>deadlock</strong> when every philosopher holds a left fork and waits perpetually for a right fork (or vice versa).</p>
+<p>
+Originally used as a means of illustrating the problem of deadlock, this system reaches deadlock when there is a 'cycle of unwarranted requests'. In this case philosopher P1 waits for the fork grabbed by philosopher P2 who is waiting for the fork of philosopher P3 and so forth, making a circular chain.</p>
+<p>
+<strong>Starvation</strong> (and the pun was intended in the original problem description) might also occur independently of deadlock if a philosopher is unable to acquire both forks because of a timing problem. For example there might be a rule that the philosophers put down a fork after waiting five minutes for the other fork to become available and wait a further five minutes before making their next attempt. This scheme eliminates the possibility of deadlock (the system can always advance to a different state) but still suffers from the problem of <strong>livelock</strong>. If all five philosophers appear in the dining room at exactly the same time and each picks up the left fork at the same time the philosophers will wait five minutes until they all put their forks down and then wait a further five minutes before they all pick them up again.</p>
+<p>
+In general the dining philosophers problem is a generic and abstract problem used for explaining various issues which arise in problems which hold <strong>mutual exclusion</strong> as a core idea. The various kinds of failures these philosophers may experience are analogous to the difficulties that arise in real computer programming when multiple programs need exclusive access to shared resources. These issues are studied in the branch of <strong>Concurrent Programming</strong>. The original problems of Dijkstra were related to external devices like tape drives. However, the difficulties studied in the Dining Philosophers problem arise far more often when multiple processes access sets of data that are being updated. Systems that must deal with a large number of parallel processes, such as operating system kernels, use thousands of locks and synchronizations that require strict adherence to methods and protocols if such problems as deadlock, starvation, or data corruption are to be avoided.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Mutex">Mutex (Mutual Exclusion)</div>
+<p>we want to protect data from race conditions and the potential broken invariants
+that can ensue. It would be nice if we could mark all the pieces of code that access
+the data structure as mutually exclusive, so that if any thread was running one of them,
+any other thread that tried to access that data structure had to wait until the first
+thread was finished. That would make it impossible for a thread to see a broken
+<a href="#invariants">invariants</a> except when it was the thread doing the modification.</p>
+<p>There are <strong>two</strong> types of <strong>synchronization</strong>:<p>
+<ol>
+<li><strong>Mutual Exclusion</strong><br/>
+	Mutual exclusion ensures that a group of atomic actions (<strong>critical section</strong> 
+        cannot be executed by more than one thread at a time). <br/>
+        Before accessing a shared data structure, 
+        we lock the mutex associated with that data, and when we've finished accessing 
+        the data structure, we unlock the mutex. Then ensures that once 
+        one thread has locked a specific mutex, all other threads that try to lock the same 
+        mutex have to wait until the thread that successfully locked the mutex unlocks it.<br/>
+        This ensures that all threads see a self-consistent view of the shared data, without any broken
+        invariants.<br/>
+        Though <strong>mutexes</strong> are the most general of the data-protection mechanisms,
+        it's important to structure our code to protect the right data and avoid race conditions inherent 
+        in our interfaces.<br/>
+        Mutexes also come with their own problems, in the form of a <a href="Deadlock.html">deadlock</a> 
+        and protecting either too much or too little data.</li>
+<br/>
+<li><strong>Condition Synchronization</strong><br/>
+        A condition variable provides a different type of synchronization than a
+mutex, readers/writer, or semaphore lock. While the latter three mechanisms
+make other threads wait while the thread holding the lock executes code
+in a critical section, a condition variable allows to
+coordinate and schedule its own processing (note: semaphore can be used condition sync by signaling the condition to other threads).<br/>
+	This ensures that the state of a program satisfies a particular condition before some action occurs. For example, in the bank account problem, there is a need for both condition synchronization and mutual exclusion. The balance must not be in an empty condition before method <strong>withdraw()</strong> is executed, and mutual exclusion is required for ensuring that the withdraw not be executed more than once.</li>
+</ol>
+<p>It is used to avoid simultaneous use of resources such as global variables by the critical sections. A Critical section is a piece of code where a process or thread accesses a common resource.</p>
+<p>Mutex locks ensure that only one thread has access to a resource at a time. If the lock is held by another thread, the thread attempting to acquire the lock will sleep until the lock is released. A timeout can also be specified so that lock acquisition will fail if the lock does not become available within the specified interval. One problem with this approach is that it can <strong>serialize</strong> a program. This causes the multithreaded program to have only a single executing thread, which stops the program from taking advantage of multiple cores.<p>
+<p>If multiple threads are waiting for the lock, the order in which the waiting threads will acquire the mutex is not guaranteed. <strong>Mutexes can be shared between processes</strong>. In comparison, <strong>critical sections cannot be shared between processes</strong>; consequently, performance overhead of critical sections is lower.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="spin_locks">Spin Locks</div>
+<p><strong>Spin locks</strong> are essentially mutex locks.</p>
+<p>A spin lock <strong>polls</strong> its lock condition repeatedly until that condition becomes true. Spin locks are most often used on multiprocessor systems where the expected wait time for a lock is small. In these situations, it is often more efficient to poll than to block the thread, which involves a <a href="multithreaded.html#ContextSwitch" target="_blank">Context switch</a> and the updating of thread data structures.</p>
+<p> The difference between a mutex lock and a spin lock is that a thread waiting to acquire a spin lock will keep trying to acquire the lock without sleeping and consuming processor resources until it finally acquires the lock. On the contrary, a <strong>mutex lock</strong> may sleep if it is unable to acquire the lock. But under normal mutex implementation, multex locks will immediately put a thread to sleep when it cannot get the mutex.</p>
+<p>The advantage of using spin locks is that they will acquire the lock as soon as it is released, while a mutex lock will need to be woken by the OS before it can get the lock. The disadvantage is that a spin lock will spin on a virtual CPU monopolizing that resource, but a mutex lock will sleep and free the CPU for another thread to use. So, in practice, mutex locks are often implemented to be a hybrid of a spin locks and more traditional mutex locks. This kind of mutx is called <strong>adaptive mutex lock</strong>.</p>
+<p>For example code, please visit <a href="multithreading_pthread.html#spin_locks" target="_blank">PThread: Spin Locks</a>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="How_are_mutexes_implemented">How are mutexes implemented?</div>
+<p>Most language-level mutex implementations rely on machine-level support such as <a href="http://en.wikipedia.org/wiki/Test-and-set" target="_blank">http://en.wikipedia.org/wiki/Test-and-set</a>.</p>
+</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="criticalsection">Critical Section</div>
+<p>A code segment that accesses shared variable (or other shared resources) and that has to be executed as an atomic action is referred to as a <strong>critical section</strong>. Depending on the OS, usually OS provides several atomic versions of the <strong>compare-and-swap</strong>, <strong>test-and-set</strong>, and <strong>test-and-clear</strong> operations.</p>
+<pre>
+while (true) {
+	<i>entry-section</i>
+	critical section 	//accesses shared variables
+	<i>exit-section</i>
+	noncritical section
+}
+</pre>
+<p>The entry- and exit-sections that surround a critical section must satisfy the following correctness requirements:</p>
+<ol>
+<li><strong>Mutual exclusion</strong> <br/>
+	When a thread is executing in its critical section, no other threads can be executing in their critical sections.</li>
+<li><strong>Progress</strong> <br/>
+	If no thread is executing in its critical section and there are threads that wish to enter their critical sections, only the threads that are executing in their entry- or exit-sections can participate in the decision about which thread will enter its critical section next, and this decision cannot be postponed indefinitely.</li>
+<li><strong>Bounded waiting</strong> <br/>
+	After a thread makes a request to enter its critical section, there is a bound on the number of times that other threads are allowed to enter their critical sections before this thread's request is granted.</li>
+</ol>
+<p>Critical sections are similar to mutex locks. The difference is that <strong>critical sections cannot be shared between processes</strong>. Therefore, their performance overhead is lower. Critical sections also have a different interface from that provided by mutex locks. Critical sections do not take a timeout value but do have an interface that allows the calling thread to try to enter the critical section. If this fails, the call immediately returns, enabling the thread to continue execution. They also have the facility of spinning for a number of iterations before the thread goes to sleep in the situation where the thread is unable to enter the critical section.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="slimreader">Slim Reader/Writer Locks</div>
+<p>Slim reader/writer locks provide support for the situation where there are multiple threads that read shared data, but on rare occasions the shared data needs to be written. Data that is being read can be simultaneously accessed by multiple threads without concern for problems with corruption of the data being shared. However, only a single thread can have access to update the data at any one time, and other threads cannot access that data during the write operation. This is to prevent threads from reading incomplete or corrupted data that is in the process of being written. Slim reader/write locks cannot be shared across processes.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Semaphores">Semaphores</div>
+<p><strong>Semaphores</strong> are counters that can be either incremented or decremented. They can be used in situations where there is a finite limit to a resource and a mechanism is needed to impose that limit. An example is a buffer that has a fixed size. Whenever an element is added to a buffer, the number of available positions is decreased. Every time an element is removed, the number available is increased.</p>
+<p>A thread blocks when it tries to decrement a semaphore whose value equals 0. A blocked thread will be released only after another thread <strong>posts</strong> the semaphore, causing its count
+to become greater than 0.
+Semaphores retain state to keep track of the count and the number
+of blocked threads. They are often implemented using <strong>sleep locks</strong>, which
+trigger a context switch that allows other threads to execute. Unlike <strong>mutexes</strong>, they need not be released by the same thread that acquired them
+initially. This capability allows semaphores to be used in a broader range
+of execution contexts, such as signal/interrupt handlers.</p>
+<p>Semaphores can also be used to mimic mutexes. If there is only one element in the semaphore, then it can be either acquired or available, exactly as a mutex can be either locked or unlocked.</p>
+<p>Semaphores will also signal or wake up threads that are waiting on them to use available resources. So, they can be used for signaling between threads.</p>
+<p><strong>Semaphores</strong> are used to provide <strong>mutual exclusion</strong> and <strong>condition synchronization</strong>.</p>
+<p>It is a variable either a <strong>binary</strong> semaphore (true or false) or a <strong>counter (counting)</strong> semaphore. Semaphore is used to prevent race condition. Semaphores provide a means of restricting access to a finite set of resources or of signaling that a resource is available. As in the case with mutex locks, semaphores can be shared across processes.</p>
+<ol>
+<li><strong>Counting Semaphore</strong> <br/>
+<br/>
+	A <strong>counting semaphore</strong> is a synchronization object  that is initialized with an integer value and then accessed through two operations, named <strong>P</strong> and <strong>V</strong>, meaning <strong>down, up</strong> or <strong>decrement, increment</strong>, <strong>wait, signal</strong>, respectively (Dijkstra).
+<pre>
+class countingSemaphore {
+public:
+	countingSemaphore(int initialPermits) {
+		permits = initialPermits;
+	}
+	void P() {}
+	void V() {}
+private:
+	int permits;
+};
+
+void countingSemaphore::P() {
+	if(permits &gt; 0)
+		--permits;	// take a permit from the pool
+	else			// the pool is empty so wait for a permit
+		<i>wait</i> until <i>permits</i> becomes positive and the decrement <i>permits</i> by one.
+}
+
+void CountingSemaphore::V() {
+	++permits;		// return a permit to the pool
+}
+
+</pre>
+It is helpful to interpret a <strong>counting semaphore</strong> as having a <strong>pool of permits</strong>. A thread calls method <strong>P()</strong> to request a permit. If the pool is empty, the thread waits until a permit becomes available. A thread calls method <strong>V()</strong> to return a permit to the pool. A counting semaphore <strong>s</strong> is declared and initialized using
+<pre>
+countingSemaphore s(1);
+</pre>
+The initial value, in this case 1, represents the initial number of permits in the pool. For a counting semaphore <strong>s</strong>, at any time, the following relation holds:
+<pre>
+(the initial number of permits) + (the number of completed <i>s.V()</i> operations)
+ &gt;= (the number of completed <i>s.P()</i> operations
+</pre>
+This relation is referred to as the <strong>invariant</strong> for semaphore <strong>s</strong>. <strong>Counting semaphore rely on a semaphore invariant to define its behavior</strong>.
+	</li>
+<br/> <br/>
+<li><strong>Binary Semaphore</strong> <br/>
+	
+	A semaphore named <strong>mutex</strong> is initialized with the value of <strong>1</strong>. The calls to <strong>mutex.P()</strong> and <strong>mutex.V()</strong> create a critical section:
+<pre>
+	Thread1			Thread2
+	----------------------------------
+	mutex.P();		mutex.P();
+	/*critial section*/ 	/*critical section*/
+	mutex.V();		mutex.V();
+</pre>
+Due to the initial value <strong>1</strong> for <strong>mutex</strong> and the placement of <strong>mutex.P()</strong> and <strong>mutex.V()</strong> around the critical section, a <strong>mutex.P()</strong> operation will be completed first, then <strong>mutex.V()</strong>, and so on. For this pattern, we can let <strong>mutex</strong> be a counting semaphore, or we can use a more restrictive type of semaphore called a <strong>binary semaphore</strong>.
+	</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="semaphore_mutex">Semaphores vs Mutexes</div>
+<p>Semephore is another generaliztion of mutexes, and semaphores can be used to guard a certain number of identical resources. A mutex (binary semaphore) allows only the thread that locks it to have access to the protected resource. Semaphore can be signalled by any of the thread by using <strong>sem_post()</strong> for pThread but a mutex can be unlocked only by the thread which owns it.</p>
+<table border="1" cellpadding="5">
+<tr>
+<td>Semaphore semaphore(1);</td>
+<td>Mutext mutex;</td>
+</tr>
+<tr>
+<td>semaphore.acquire();</td>
+<td>mutex.lock();</td>
+</tr>
+<tr>
+<td>semaphore.release();</td>
+<td>mutex.unlock();</td>
+</tr>
+</table>
+<p>We pass 1 to the semaphore constructor, and tell the semaphore that it controls a single resource. Obviously, this is the advantage of using a semaphore because we can pass numbers other than 1 to the constructor, and then call <strong>acquire()</strong> multiple times to acquire many resources.</p>
+<br/>
+<p>
+A mutex is essentially the same thing as a binary semaphore and sometimes uses the same basic implementation. The differences between them are (<a href="http://en.wikipedia.org/wiki/Semaphore_(programming)" target="_blank">wiki</a>):</p>
+<ol>
+<li>Mutexes have a concept of an owner, which is the process that locked the mutex. Only the process that locked the mutex can unlock it. In contrast, a semaphore has no concept of an owner. Any process can unlock a semaphore.</li>
+<li>Unlike semaphores, mutexes provide priority inversion safety. Since the mutex knows its current owner, it is possible to promote the priority of the owner whenever a higher-priority task starts waiting on the mutex.</li>
+<li>Mutexes also provide deletion safety, where the process holding the mutex cannot be accidentally deleted. Semaphores do not provide this.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Monitors">Monitors</div>
+<p><strong>Semaphores</strong> were defined before the introduction of programming concepts such as data encapsulation and information hiding. In semaphore-based programs, shared variables and the semaphores that protect them are global variables. This causes shared variable and semaphore operations to be distributed throughout the program.</p>
+<p>Since <strong>P</strong> and <strong>V</strong> operations are used for both mutual exclusion and condition synchronization, it is difficult to determine how a semaphore is being used without examining all the code.</p>
+<p>Monitors were invented to overcome these problems.</p>
+<p>A monitor encapsulates shared data, all the operations on the data, and any synchronization required for accessing the data. A monitor has separate constructs for mutual exclusion and condition synchronization. In fact, mutual exclusion is provided automatically by the monitor's implementation, freeing the programmer from the burden of implementing critical sections.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="semaphorevsmonitor">Synchronization - Semaphore vs. Monitor</div>
+<p>In order to avoid data corruption and other problems, applications must control how threads access to shared resources. It is referred to as thread synchronization. The fundamental thread synchronization constructs are monitors and semaphores. Which one should we use? It depends on what the system or language supports.<p>
+<ol>
+<li>A <strong>monitor</strong> is a set of routines that are protected by a mutual exclusion lock. A thread cannot execute any of the routines in the monitor until it acquires the lock, which means that only one thread at a time can execute within the monitor. All other threads must wait for the currently executing thread to release the lock. A thread can suspend itself in the monitor and wait for an event to occur, in which case another thread is given the chance to enter the monitor. At some point the suspended thread is notified that the event has occurred, allowing it to awake and reacquire the lock as soon as possible.</li>
+<br/>
+<li>A <strong>semaphore</strong> is a simpler construct, just a lock that protects a shared resource. Before using a shared resource, the application must acquire the lock. Any other thread that tries to use the resource is blocked until the owning thread releases the lock, at which point one of the waiting threads acquires the lock and is unblocked. This is the most basic kind of semaphore, a mutual exclusion, or mutex, semaphore. There are other semaphore types, such as counting semaphores (which let a maximum of n threads access a resource at any given time) and event semaphores (which notify one or all waiting threads that en event has occurred), but they all work in much the same way.<br/>
+Monitors and semaphores are equivalent, but monitors are simpler to use because they handle all details of lock acquisition and release. When using semaphores, an application must be very careful to release any locks a thread has acquired when it terminates. Otherwise, no other thread that needs the shared resource can proceed. In addition, every routine that accesses the shared resource must explicitly acquire a lock before using the resource, something that is easily forgotten when coding. Monitors always and automatically acquire the necessary locks.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="memory_barrier">Memory Barrier</div>
+<p>A <strong>memory barrier</strong> is a type of <strong>nonblocking</strong> synchronization tool used to ensure that <strong>memory operations occur in the correct order</strong>. A memory barrier acts like a fence, forcing the processor to complete any load and store operations positioned in front of the barrier before it is allowed to perform load and store operations positioned after the barrier. </p>
+<p>Memory barriers are typically used to ensure that memory operations by one thread always occur in an <strong>expected order</strong>. The lack of a memory barrier in such a situation might allow other threads to see seemingly impossible results. To employ a memory barrier, we simply call the memory barrier function (acquire_memory_barrier()/release_memory_barrier(), etc) at the appropriate point in our code.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="volatile_variable">Volatile Variable</div>
+<p><strong>Volatile</strong> variables apply another type of memory constraint to individual variables. The compiler often optimizes code by loading the values for variables into registers. For local variables, this is usually not a problem. If the variable is visible from another thread however, such an optimization might prevent the other thread from noticing any changes to it.</p>
+<p> Applying the volatile keyword to a variable forces the compiler to load that variable from memory each time it is used. We may declare a variable as volatile if its value could be changed at any time by an external source that the compiler may not be able to detect.</p>
+<p>However, like the <a href="multithreaded.html#memory_barrier">memory barriers</a>, because the <strong>volatile variables</strong> limits the compiler performance of optimizations, it should be used sparingly and only where needed to ensure correctness. </p>
+<p>If we are already using a <strong>mutex</strong> to protect a section of code, do not automatically assume we need to use the <strong>volatile</strong> keyword to protect important variables inside that section. A mutex includes a memory barrier to ensure the proper ordering of load and store operations. Adding the volatile keyword to a variable within a critical section forces the value to be loaded from memory each time it is accessed. The combination of the two synchronization techniques may be necessary in specific cases but also leads to a significant <strong>performance penalty</strong>. If the mutex alone is enough to protect the variable, omit the volatile keyword.</p>
+<p>
+It is also important that we do not use volatile variables in an attempt to avoid the use of mutexes. In general, mutexes and other synchronization mechanisms are a better way to protect the integrity of our data structures than volatile variables. The volatile keyword only ensures that a variable is loaded from memory rather than stored in a register. The <strong>volatile keyword does not ensure that the variable is accessed correctly by our code</strong>.</p>
+<p>For more info, please visit <a href="cplusplus_keywords.html#volatile" target="_blank">volatile keywords</a>.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ThreadSafe">Thread Safe</div>
+<p>A code is thread safe if it functions correctly in concurrent executions by multiple threads.</p>
+<p>We can say a function is thread safe when it can safely be called from different threads simultaneously. The result is always defined if two thread safe functions are called concurrently. A class is thread safe when all of its functions can be called from different threads simultaneously without inferring with each other, even when operating on the same object.</p>
+<p>To <strong>check</strong> if a piece of code is safe:</p>
+<ol>
+<li>When it accesses global variable.</li>
+<li>Alloc/realloc/freeing resources of global scope.</li>
+<li>Indirect access through handles or pointers. </li>
+</ol>
+<p>To <strong>achieve</strong> a thread safety. </p>
+<ol>
+<li>Atomic operations - available runtime library (machine language instructions).</li>
+<li>Mutex </li>
+<li>Using Re-entrancy.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Reentrancy">Re-entrancy</div>
+<p>A code is re-entrant if it can be safely called again. In other words, re-entrant code can be called more than once, even though called by different threads, it still works correctly. So, the re-entrant section of code usually use local variables only in such a way that each and every call to the code gets its own unique copy of data.</p>
+<p>Re-entrant methods are more constrained than thread-safe methods. This is because it is safe to call re-entrant methods simultaneously from multiple threads only if each invocation results only in unique data being accessed, such as local variables.</p>
+<ol>
+<li><strong>Non-entrant code:</strong><br/>
+<pre>
+int g_var = 1;
+
+int f(){
+  g_var = g_var + 2;
+  return g_var;
+}
+int g(){
+  return f() + 2;
+}
+</pre>
+<p>
+If two concurrent threads access g_var, the result depends on the time of execution of each thread.</p></li>
+<li>
+<strong>Re-entrant code:</strong><br/>
+<pre>
+int f(int i) { 
+return i + 2; 
+} 
+int g(int i) { 
+return f(i) + 2; 
+} 
+</pre>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ThreadSafty_and_signals">Thread Safty and Signals</div>
+<p>This section is borrowed from <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html" target="_blank">Threading Programming Guide</a>.</p>
+<p>When it comes to threaded applications, nothing causes more fear or confusion than the issue of handling signals. Signals are a low-level BSD mechanism that can be used to deliver information to a process or manipulate it in some way. Some programs use signals to detect certain events, such as the death of a child process. The system uses signals to terminate runaway processes and communicate other types of information.</p>
+<p>
+The problem with signals is not what they do, but their <strong>behavior</strong> when our application has multiple threads. In a single-threaded application, all signal handlers run on the main thread. In a multithreaded application, signals that are not tied to a specific hardware error (such as an illegal instruction) are <strong>delivered to whichever thread happens to be running at the time</strong>. If multiple threads are running simultaneously, the signal is delivered to whichever one the system happens to pick. In other words, signals can be delivered to any thread of our application.</p>
+<p>
+The first rule for implementing signal handlers in applications is to <strong>avoid assumptions about which thread is handling the signal</strong>. If a specific thread wants to handle a given signal, we need to work out some way of notifying that thread when the signal arrives. We cannot just assume that installation of a signal handler from that thread will result in the signal being delivered to the same thread.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="LockFreeCode">Lock-Free Code</div>
+<p>An <strong>atomic operation</strong> is one that will either successfully complete or fail. It is not possible for the operation to either result in a <strong>bad</strong> value or allow other threads on the system to have a transient value. An example of this would be an atomic increment, which would mean that the calling thread would swap <strong>n</strong> with <strong>n+1</strong>. This may look trivial, but the operation can involve several steps:</p>
+<pre>
+Load initial value to register
+Increment the value
+Store the new value back to memory
+</pre>
+<p>So, during the three steps, another thread could have come in and interfered, and replaced the value with a new one, creating a data race.</p>
+<p>Typically, hardware provides support for a range of atomic operations. Atomic operations are often used to enable the writing of <strong>lock-free</strong> code. A lock-free implementation would not rely on a mutex lock to protect access. Instead, it would use a sequence of operations that would perform the operation without having to acquire an explicit lock. This can be higher performance than controlling access with a lock. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Join">Join</div>
+<p> A thread can execute a thread <strong>join</strong> to <strong>wait until the other thread terminates</strong>.<br/>
+Let's think about the following scenario. You are preparing for tomorrow's presentation with your colleague. As a primary member of your team, you need to continue working while the other team member going out and bring a lunch for you. In this case, you are the main thread and your colleague is a child thread, and both you and your colleague are doing their job concurrently (i.e., working and bring a lunch bag). Now, we have two cases to consider. First, your colleague brings your lunch and terminates while you are working. In this case, you can stop working and enjoy the lunch. Second, you finish your work early and take a nap before the lunch is available. Of course, you cannot fall into a deep sleep; otherwise, you won't have a chance to eat the lunch. What you are going to do is to wait until your colleague brings the lunch back. </p>
+<p>Thread join is designed to solve this problem. A thread can execute a thread join to wait until the other thread terminates. In our case, you - the main thread - should execute a thread join waiting for your colleague - a child thread - to terminate. In general, <font color="blue">thread join is for a parent (<strong>P</strong>) to join with one of its child threads (<strong>C</strong>)</font>. Thread join has the following activities, assuming that a parent thread <strong>P</strong> wants to join with one of its child threads <strong>C</strong>:</p>
+<ol>
+<li>When <strong>P</strong> executes a thread join in order to join with <strong>C</strong>, which is still running, <strong>P</strong> is suspended until <strong>C</strong> terminates. Once <strong>C</strong> terminates, <strong>P</strong> resumes. </li>
+<li>
+When <strong>P</strong> executes a thread join and <strong>C</strong> has already terminated, <strong>P</strong> continues as if no such thread join has ever executed (i.e., join has no effect). </li>
+</ol>
+<p>A parent thread may join with many child threads created by the parent. Or, a parent only join with some of its child threads, and ignore other child threads. In this case, those child threads that are ignored by the parent will be terminated when the parent terminates. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="HowMany">How may threads are available on my machine?</div>
+<p>In this section, I'll limit my writing to linux systems.<br/>
+Theoretically, to come up with the possible number of threads available on our machine, we can use the <strong>stack size</strong> and <strong>size of the virtual space (swap)</strong>:
+<pre>
+swap/stack
+</pre>
+<p>So, if a machine of 20GB swap size and default stack size (we can use "ulimit -s" to check it) of 10MB, we can have 2,000 threads. However, we will have performance hit well before it.</p>
+<p>Though there are some debates on scalability of threads with the performance, the rule of thumb may be the number of threads  should match the number processors.</p>
+<p>If we use <strong>cat /proc/cpuinfo</strong> on linux system, we will get the number of processors. That should be the optimum number of threads we should use.</p>
+<pre>
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 26
+model name      : Intel(R) Xeon(R) CPU           E5520  @ 2.27GHz
+stepping        : 5
+cpu MHz         : 1596.000
+cache size      : 8192 KB
+physical id     : 1
+siblings        : 8
+core id         : 0
+cpu cores       : 4
+
+.....
+.....
+.....
+
+<font color="red">processor       : 15</font>
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 26
+model name      : Intel(R) Xeon(R) CPU           E5520  @ 2.27GHz
+stepping        : 5
+cpu MHz         : 1596.000
+cache size      : 8192 KB
+<font color="red">physical id     : 0</font>
+<font color="red">siblings        : 8</font>
+core id         : 3
+<font color="red">cpu cores       : 4</font>
+apicid          : 7
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 11
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush d
+ts acpi mmx fxsr sse sse2 ss ht tm syscall nx rdtscp lm constant_tsc ida pni monitor ds_cpl vmx est
+ tm2 cx16 xtpr popcnt lahf_lm
+bogomips        : 4522.03
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 40 bits physical, 48 bits virtual
+power management:
+</pre>
+<p>The important parameters are:</p>
+<ol>
+<li>processor       : 0-15
+</li>
+<li>physical id     : 0-1
+</li>
+<li>
+siblings        : 8
+</li>
+<li>
+cpu cores       : 4
+</li>
+</ol>
+<p>The machine is using hyper-thread. We know this because the siblings (8) is double the number of cpu cores (4).
+If not hyper-thread, siblings should be equal to cpu cores. 
+So, we have 8 processors (4 cores x hyperthread(2) = 8) for each cpu package (physical id = 0, 1), which give us 8 x 2 = 16 processors. 
+</p>
+<p>In Qt, <strong>QtCore.QThread.idealThreadCount()</strong> can be the proper inquiry function we can use to decide the number of threads we can use.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="kernel_user_threads">Kernel-level and User-level Threads</div>
+<ol>
+<li>OS scheduling ensures apps use host CPU/core resources appropriately.</li>
+<li>Modern OS platforms provide various models for scheduling threads.</li>
+<li>A key difference between the models is the <strong>contention scope</strong> in which threads compete for system resources, such as CPU time.
+    <ol>
+<li><strong>System contention scope (kernel threading)</strong>
+<ol>
+<li>Threads compete directly with other system scope threads regardless of what process they're in.</li>
+<li>1:1 mapping between user and kernel threads.</li>
+<li><strong>Pros:</strong>: Can leverage hardware parallelism effectively.</li>
+<li><strong>Cons:</strong>: Higher thread creation and <a href="#ContextSwitch" target="_blank">Context switching</a> overhead.</li>
+</ol>
+</li>
+<li><strong>Process contention scope (user threading)</strong>
+<ol>
+<li>Threads in the same process compete with each other though not directly with threads in other processes.</li>
+<li>N:1 mapping between user and kernel threads.</li>
+<li><strong>Pros:</strong>: Lower thread creation and context switching overhead.</li>
+<li><strong>Cons:</strong>: Can't leverage hardware parallelism effectively and has odd blocking semantics.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="OS_Multithreading_mechanisms">OS Multithreading Mechanisms</div>
+<p>Multithreading mechanisms are provided by the OS to handle lifetime management, synchronization, properties, and thread-specific storage. The <strong>thread lifetime operations</strong> include operations to
+<ol>
+<li>Create threads
+    <ol>
+<li><strong>pthread_create()</strong> (PThreads)</li>
+<li><strong>CreateThread()</strong> (WindowsO</li>
+</ol>
+</li>
+<li>Terminate threads
+    <ol>
+<li>Voluntarily- by reaching the end point of the thread entry function<br/>
+      or calling <strong>pthread_exit()</strong>(PThreads) or <strong>ExitThread()</strong>(Windows).</li>
+<li>Involuntarily- by being killed via a signal or an asynchronous thread cancellation operations<br/>
+<strong>pthread_cancel()</strong>(PThreads) or <strong>TerminateThread()</strong>(Windows).</li>
+</ol>
+</li>
+<li>Thread synchronization operations that enable created threads to be
+    <ol>
+<li><strong>Detached</strong> - where the OS reclaims storage used for the thread's state and exit status after it has exited.</li>
+<li><strong>Joinable</strong> where the OS retains identity and exit status of a terminating thread so other threads can synchronize with it.</li>
+</ol>
+</li>
+<li>Thread property operations include <br/>
+      operations to set and get thread properties, such as priority and scheduling class.
+  </li>
+<li>Thread-specific storage <br/>
+     This is similar to global data except that the data is only global in the scope of the executing thread.
+  </li>
+<li>(Note) Developing concurrent apps using native OS concurrency mechanisms can cause portability and reliability problems.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Socket">Socket</div>
+<p>To connect to another machine, we need a <strong>socket</strong> connection. By the way, what's a connection? A <strong>relationship</strong> between two machines, where <strong>two pieces of software know about each other</strong>. Those two pieces of software know how to communicate with each other. In other words, they know how to send <strong>bits</strong> to each other.<br/>
+A socket connection means the two machines have information about each other, including <strong>network location (IP address)</strong> and <strong>TCP port</strong>.<br/>
+<p>A socket is a resource assigned to the server process.</p>
+<p>There are several different types of socket that determine the structure of the transport layer. The most common types are <strong>stream</strong> sockets and <strong>datagram</strong> sockets.</p>
+<ol>
+<li><strong>Stream Sockets</strong><br/>
+	Stream sockets provide <strong>reliable two-way</strong> communication similar to when we call someone on the phone. One side initiates the connection to the other, and after the connection is established, either side can communicate to the other.<br/>
+In addition, there is immediate confirmation that what we said actually reached its destination. <br/>
+Stream sockets use a <strong>Transmission Control Protocol (TCP)</strong>, which exists on the transport layer of the Open Systems Interconnection (OSI) model. The data is usually transmitted in packets. TCP is designed so that the packets of data will arrive without errors and in sequence. <br/>
+Webservers, mail servers, and their respective client applications all use TCP and stream socket to communicate.</li><br/>
+<li><strong>Datagram Sockets</strong><br/>
+	Communicating with a datagram socket is more like mailing a letter than making a phone call. The connection is <strong>one-way</strong> only and <strong>unreliable</strong>. <br/>
+If we mail several letters, we can't be sure that they arrive in the same order, or even that they reached their destination at all. Datagram sockets use <strong>User Datagram Protocol (UDP)</strong>. Actually, it's not a real connection, just a basic method for sending data from one point to another.<br/>
+Datagram sockets and UDP are commonly used in networked games and streaming media.</li>
+</ol>
+<br/>
+<p>Visit <a href="sockets_server_client.html" target="_blank">Socket program</a>.</p>
+<br/>
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h1 class="teaser title">Bogotobogo's contents</h1>
+<p>
+  To see more items, click left or right arrow.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div>
+      <a href="cpptut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Cpp_Image.png" /> </a>
+      <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html" target="_blank">
+      <img src="../media/img/TopicLogo/Qt5_Image.png" /></a>
+      <a href="../python/pytut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Python_Image.png" /> </a>
+      <a href="../Android/android.html" target="_blank">
+      <img src="../media/img/TopicLogo/Android_Image.png" /> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div>
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" /> </a>
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV3_Image.png" /></a>
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" /></a>
+      <a href="../php/phptut.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/PHP_Image.png" /></a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div>
+      <a href="../CSharp/.netframework.html" target="_blank">
+      <img src="../media/img/TopicLogo/CSharp_Image.png" /></a>
+      <a href="../VisualBasicSQL/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/VisualBacis_Image.png" /></a>
+      <a href="../AngularJS/AngularJS_Introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/AngularJS_logo.png" /> </a>
+      <a href="../JQuery/JQuery_document_ready_click_function.html" target="_blank">
+      <img src="../media/img/TopicLogo/jQuery_Image.png" /></a>
+    </div>
+ 
+    <!-- 16-20 -->
+    <div>
+      <a href="../Algorithms/algorithms.html" target="_blank">
+      <img src="../media/img/TopicLogo/Algorithms_Image.png" /></a>
+      <a href="../DesignPatterns/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Design_Patterns_Image.png" /></a>
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming_Image.png" /></a>
+      <a href="../Java/tutorials/on_java.html" target="_blank">
+      <img src="../media/img/TopicLogo/Java_Image.png" /></a>
+    </div>
+
+    <!-- 21-25 -->
+    <div>
+      <a href="../RubyOnRails/RubyOnRails.html" target="_blank">
+      <img src="../media/img/TopicLogo/RubyOnRails_Image.png" /></a>
+      <a href="../iPhone/iPhone.html" target="_blank">
+      <img src="../media/img/TopicLogo/iOS_Image.png" /></a>
+      <a href="../HTML5/OnHTML5.html" target="_blank">
+      <img src="../media/img/TopicLogo/HTML5_Image.png" /></a>
+      <a href="../Linux/linux_tips1.html" target="_blank">
+      <img src="../media/img/TopicLogo/Linux_Image.png" /> </a>    
+    </div>
+
+    <!-- 26-30 -->
+    <div>
+      <a href="../python/Django/Python_Django_tutorial_introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Django_Image.png" /></a>
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html"/ target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" /></a>
+      <a href="../php/Laravel4/php_laravel4_framework_install_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/Laravel_Image.png" /></a>
+      
+      <a href="embeddedSystemsProgramming.html" target="_blank">
+      <img src="../media/img/TopicLogo/EmbeddedRTOS.png" /></a>
+    </div>
+
+    <!-- 31-35 -->
+    <div>
+      <a href="Git/Git_GitHub_Express.html" target="_blank">
+      <img src="../media/img/TopicLogo/git_github_image.png" /></a>
+      <a href="../SVG/svg.html" target="_blank">
+      <img src="../media/img/TopicLogo/SVG_Image.png" /> </a>
+      <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html" target="_blank">
+      <img src="../media/img/TopicLogo/DevOps_icon.png" /> </a>
+      <img src="../media/img/TopicLogo/Coming_Soon_Image.png" />
+      <img src="../media/img/TopicLogo/Hadoop_Blur_Image.png" />
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div>
+      <img src="../media/img/TopicLogo/OpenCL_Blur_Image.png" />
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+</script>
+</div> <!-- box full -->
+ 
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+ 
+</div> <!-- blurb -->
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title sub">Bogotobogo Image / Video Processing </h1>
+<h1 class="teaser title">Computer Vision & Machine Learning</h2>
+<p>
+  with OpenCV, MATLAB, FFmpeg, and scikit-learn.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_ubuntu13_install_cmake.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/lena_Ubuntu_opencv.png" 
+      title="Installing on Ubuntu 13 and loading an image"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_mat_object_image_matrix_image_container.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/matrix_Mat_object.png" 
+      title="Mat(rix) object (Image Container)"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_creating_mat_objects.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/ThreeChannelArray.png" 
+      title="Creating Mat objects, zeros(), ones(), eye() and clone()"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_load_convert_save_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Dostoevsky.png" 
+      title="The core - Image load, convert and save"/> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra1.png" 
+      title="Smoothing Filters A - Average and Gaussian Blur"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing_B.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra2.png" 
+      title="Smoothing Filters B - Median, Bilateral"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCVwithPython.png" 
+      title="OpenCV 3 with Python"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bgr_Matplot.png" 
+      title="OpenCV BGR : Matplotlib RGB, There is a difference in pixel ordering in OpenCV and Matplotlib."/> </a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/CloudyGoldenGate_grayscale.jpg" 
+      title="Basic image operations - pixel access"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/iPython_FFT_Random.png" 
+      title="iPython - Signal Processing with NumPy"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Signal_FFT_square_5_Hz.png" 
+      title="Signal Processing with NumPy I - FFT & DFT for sine, square waves, unitpulse, and random signal"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/NumPyFFT_maze.png" 
+      title="Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT"/> </a>
+      
+    </div>
+ 
+    <!-- 16-20 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/cv2_dft_xfiles.png" 
+      title="Inverse Fourier Transform of an Image with low pass filter: cv2.idft()"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Histo_gray.png" 
+      title="Image Histogram"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/RGB_HSV.png" 
+      title="Video Capture & Switching colorspaces - RGB / HSV"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCV_Otsu_Thresholding3.png" 
+      title="Adaptive Thresholding - Otsu's clustering-based image thresholding"/> </a>
+      
+    </div>
+
+    <!-- 21-25 -->
+
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/SanFrancisco_out.png" 
+      title="Edge Detection - Sobel and Laplacian Kernels"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Canny_Edge_Detection.png" 
+      title="Canny Edge Detection"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hough_eye_51.png" 
+      title="Hough Transform - Circles"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_Dilation.png" 
+      title="Watershed Algorithm : Marker-based Segmentation I"/> </a>
+      
+    </div>
+
+    <!-- 26-30 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_input_output.png" 
+      title="Watershed Algorithm : Marker-based Segmentation II"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Denoising_Gaussian_Gray.png" 
+      title="Image noise reduction : Non-local Means denoising algorithm"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/xfiles4.png" 
+      title="Image object detection : Face detection using Haar Cascade Classifiers"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bolt.jpg" 
+      title="Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts"/> </a>
+      
+    </div>
+
+    <!-- 31-35 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Output_4_pics.png" 
+      title="Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/MeanShiftPic.png" 
+      title="Video : Mean shift object tracking"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D.png" 
+      title="Machine Learning : Clustering - K-Means clustering I"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D_2.png" 
+      title="Machine Learning : Clustering - K-Means clustering II"/> </a>
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/kNN_2.png" 
+      title="Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm"/> </a>
+
+      <img src="../media/img/TopicLogo/OpenCV/more_image_processing.png" 
+      title="Continue..."/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" 
+      title="Matlab - Vectors and Matrices"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_M_Files_scripts.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/m_files.png" 
+      title="mfiles - Matlab script files"/> </a>
+      
+    </div>
+
+    <!-- 41-45 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_For_Loop.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/sum_1_to_10_ForLoop.png" 
+      title="For loop for loop_index = vector"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Indexing_Masking_Array_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ArrayMasking.png" 
+      title="Indexing and masking"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Array_Audio_Wave_File_Plot_Play.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DrumAudioTwoChannels_2.png" 
+      title="Vectors and arrays with audio files"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ReversedAudio.png" 
+      title="Manipulating Audio I : Reverse play and delay audio"/> </a>
+      
+    </div>
+
+    <!-- 46-50 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_2_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Audio2.png" 
+      title="Manipulating Audio II : Playing with stereo sound, tone control, changing Speed, removing vocals"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Introduction_to_FFT_DFT_Fast_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/FFT_DFT_Diagram.png" 
+      title="Introduction to FFT & DFT"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_DFT_Discrete_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DFT_results.png" 
+      title="Discrete Fourier Transform (DFT)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_I.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/RGB_BerkeleyTower.png" 
+      title="Digital Image Processing 1 - 7 basic functions "/> </a>
+ 
+    </div>
+
+    <!-- 51-55 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_2_RGB_Indexed_Color_Info.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ImgProc2.png" 
+      title="Digital Image Processing 2 - RGB image & indexed image"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_3_Grayscale_RGB.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Einstein.jpg" 
+      title="Digital Image Processing 3 - Grayscale image I"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_4_Grayscale_RGB_II.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/bit_plane1.png" 
+      title="Digital Image Processing 4 - Grayscale image II (image data type and bit-plane)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_5_Histogram_Equalization_imhist_histeq_imadjust.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/two_histogram_in_one_pic.png" 
+      title="Digital Image Processing 5 - Histogram equalization"/> </a>
+      
+    </div>
+
+    <!-- 56-60 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_6_Filter_Smoothing_Low_Pass_fspecial_filter2.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/noise_in_rgb_image.png" 
+      title="Digital Image Processing 6 - Image Filter (Low pass filters)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_1_Object_Detection_by_Color_Thresholding.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Object_Detect_Run2.png" 
+      title="Video Processing 1 - Object detection (tagging cars) by thresholding color"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_2_Face_Detection_CamShift_Tracking.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DetectedFace.png" 
+      title="Video Processing 2 - Face Detection and CAMShift Tracking"/> </a>
+
+      <img src="../media/img/TopicLogo/Matlab/more_image_processing.png" 
+      title="More image processing"/> 
+      
+    </div>
+
+    <!-- 61-65 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_image_scaling_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" 
+      title="Image/video scaling"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropping_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/cropped_blue_umbrella_025.png" 
+      title="Image/video cropping - crop=712:534"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_cropdetect.png" 
+      title="Cropdetect and ffplay : crop=out_width:out_height:x:y"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_speed_up_dlow_down.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_video_speed_up_dlow_down.png" 
+      title="Speeding-up & slowing-down video"/> </a>
+      
+    </div>
+
+    <!-- 66-70 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_basic_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_show.png" 
+      title="Basic slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_adv_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/Adv_Slide_Show.png" 
+      title="Advanced slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_thumbnails_select_scene_iframe.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/thumnail_iframe.png" 
+      title="Thumbnails -Selecting specific frames : I-frame extraction etc."/> </a>
+
+      <a href="../FFMpeg/ffmpeg_seeking_ss_option_cutting_section_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/seek_cut_sections.png" 
+      title="Seeking and cutting sections of a video & audio"/> </a>
+      
+    </div>
+
+    <!-- 71-75 -->
+    <div id = "pics">
+
+      <a href="../FFMpeg/ffmpeg_concatenating_two_videos.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/concat.png" 
+      title="Concatenating two video files or two audio files"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out.png" 
+      title="Transitions : fade-in & fade-out for 1 slide"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out_two.png" 
+      title="Transitions : python script for fade-in & fade-out with two slides"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_concat.png" 
+      title="Concatenate slides"/> </a>
+      
+    </div>
+
+    <!-- 76-80 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_video_test_patterns_src.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/creating_test_video.png" 
+      title="Creating test videos"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/screencasting.png" 
+      title="Screen Recording on Ubuntu A"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture_active_current_top_window.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ActiveCapture.png" 
+      title="Active window capture with Python on Ubuntu B"/> </a>
+
+      <img src="../media/img/TopicLogo/arrow_scikit-learn.png" 
+      title="Machine Learning with scikit-learn"/> 
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" 
+      title="scikit-learn installation"/> </a>
+
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/feature_extraction.png" 
+      title="Features and feature extraction - iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/supervised.png" 
+      title="Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/un_supervised.png" 
+      title="Unsupervised_Learning - KMeans clustering with iris dataset"/> </a>
+
+
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/NonlinearlySeparable.png" 
+      title="Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/svm.png" 
+      title="Support Vector Machines (SVM)"/> </a>
+
+      
+    </div>
+
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<br/>
+<br/>
+<div class="subtitle_2nd" id="TCPport">TCP port</div>
+<p>A <strong>TCP port</strong> is just a number. A 16-bit number that identifies a specific program on the server.<br/>
+Our internet web (HTTP) server runs on port 80. If we've got a Telnet server, it's running on port 23. FTP on 20. SMTP 25.<br/>
+They represent a logical connection to a particular piece of software running on the server. Without port number, the server would have no way of knowing which application a client wanted to connect to. When we  write a server program, we'll include code that tells the program which port number we want it to run on. <br/>
+The TCP port numbers from 0 to 1023 are reserved for well know services:</p>
+<table border="2" cellpadding="3" width="400">
+<tr>
+<th>Port Number</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td><td>TCP Port Service Multiplexer (TCPMUX)</td></tr>
+<td>5</td><td>Remote Job Entry (RJE)</td>
+<td>7</td><td>ECHO</td>
+<td>18</td><td>Message Send Protocol (MSP)</td>
+<td>20</td><td>FTP -- Data</td>
+<td>21</td><td>FTP -- Control</td>
+<td>22</td><td>SSH Remote Login Protocol</td>
+<td>23</td><td>Telnet</td>
+<td>25</td><td>Simple Mail Transfer Protocol (SMTP)</td>
+<td>29</td><td>MSG ICP</td>
+<td>37</td><td>Time</td>
+<td>42</td><td>Host Name Server (Nameserv)</td>
+<td>43</td><td>WhoIs</td>
+<td>49</td><td>Login Host Protocol (Login)</td>
+<td>53</td><td>Domain Name System (DNS)</td>
+<td>69</td><td>Trivial File Transfer Protocol (TFTP)</td>
+<td>70</td><td>Gopher Services</td>
+<td>79</td><td>Finger</td>
+<td>80</td><td>HTTP</td>
+<td>103</td><td>X.400 Standard</td>
+<td>108</td><td>SNA Gateway Access Server</td>
+<td>109</td><td>POP2</td>
+<td>110</td><td>POP3</td>
+<td>115</td><td>Simple File Transfer Protocol (SFTP)</td>
+<td>118</td><td>SQL Services</td>
+<td>119</td><td>Newsgroup NNTP</td>
+<td>137</td><td>NetBIOS Name Service</td>
+<td>139</td><td>NetBIOS Datagram Service</td>
+<td>143</td><td>Interim Mail Access Protocol (IMAP)</td>
+<td>150</td><td>NetBIOS Session Service</td>
+<td>156</td><td>SQL Server</td>
+<td>161</td><td>SNMP</td>
+<td>179</td><td>Border Gateway Protocol (BGP)</td>
+<td>190</td><td>Gateway Access Control Protocol (GACP)</td>
+<td>194</td><td>Internet Relay Chat (IRC)</td>
+<td>197</td><td>Directory Location Service (DLS)</td>
+<td>389</td><td>Lightweight Directory Access Protocol (LDAP)</td>
+<td>396</td><td>Novell Netware over IP</td>
+<td>443</td><td>HTTPS</td>
+<td>444</td><td>Simple Network Paging Protocol (SNPP)</td>
+<td>445</td><td>Microsoft-DS</td>
+<td>458</td><td>Apple QuickTime</td>
+<td>546</td><td>DHCP Client</td>
+<td>547</td><td>DHCP Server</td>
+<td>563</td><td>SNEWS</td>
+<td>569</td><td>MSN</td>
+<td>1080</td><td>Socks</td>
+</table>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="TCPIP">TCP/IP</div>
+<img alt="tcpip_stack_connections" src="images/multithread/tcpip_stack_connections.png"/>
+<p>TCP/IP stack operating on two hosts connected via two routers and the corresponding layers used at each hop</p>
+<br/>
+<br/>
+<img alt="Encapsulation of application data 
+" src="images/multithread/data_encap.png"/>
+<p>Encapsulation of application data descending through the protocol stack.<br/>
+image source <a href="http://en.wikipedia.org/wiki/Internet_Protocol_Suite" target="_blank">wiki</a></p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="tcpvsudp">TCP vs. UDP</div>
+<p>What's the difference between <strong>TCP</strong> and <strong>UDP</strong>?</p>
+<ol>
+<li><strong>TCP (Transmission Control Protocol) </strong> <br/>
+	TCP is a <strong>connection-oriented</strong> protocol. A connection can be made from client to server, and from then on any data can be sent along that connection.
+		<ol>
+<li><strong>Reliable</strong> <br/>
+		When we send a message along a TCP socket, we know it will get there unless the connection fails completely. If it gets lost along the way, the server will re-request the lost part. This means complete integrity. In other words, the data will not get corrupted.</li>
+<li><strong>Ordered</strong> <br/>
+		If we send two messages along a connection, one after the other, we know the first message will get there first. We don't have to worry about data arriving in the wrong order.</li>
+<li><strong>Heavyweight</strong> <br/>
+		When the low level parts of the TCP stream arrive in the wrong order, resend requests have to be sent. All the out of sequence parts must be put back together, which requires a bit of work.</li>
+</ol>
+</li>
+<br/>
+<li><strong>UDP (User Datagram Protocol)</strong> <br/>
+	UDP is <strong>connectionless</strong> protocol. With UDP we send messages (packets) across the network in chunks.
+		<ol>
+<li><strong>Unreliable</strong> <br/>
+		When we send a message, we don't know if it'll get there. It could get lost on the way.</li>
+<li><strong>Not ordered</strong> <br/>
+		If we send two messages out, we don't know what order they'll arrive in.</li>
+<li><strong>Lightweight</strong> <br/>
+		No ordering of messages, no tracking connections, etc. It's just fire and forget! This means it's a lot quicker, and the network card/OS have to do very little work to translate the data back from the packets.</li>
+</ol>
+</li>
+</ol>
+<br/>
+<img alt="transport_protocols.png 
+" src="images/multithread/transport_protocols.png"/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="packet_switching_vs_circuit_switching">Circuit Switching vs. Packet Switching</div>
+<ol>
+<li><strong>Circuit Switching</strong><br/>
+	In a circuit-switched network, before communication can occur between two devices, 
+	a circuit is established between them. Once it's setup, 
+	all communication between these devices takes place over this circuit,
+	even though there are othr possible ways between them.
+	</li>
+<li><strong>Packet Switching</strong><br/>
+	In a packet-switched network, no circuit is set up before exchanging data between devices.
+	Any data, even from the same file or communication, may take place any number of paths 
+	as they travel from one device to another. <br/>
+	The data is broken up into packets and sent over the network. 
+	We can route, combine, or fragment the the packets as required to get them to their destination.
+	On the receiving end, the process is reversed-the data is read from the packets and reassembled 
+	to form the original data.<br/>
+<strong>Advantages</strong>:<br/>
+<ol>
+<li>No per-flow state required : packet switches don't need state for each flow. In other words,
+         each packet is self-contained. So, no per-flow state to be added/removed/stored and changed upon failure.</li>
+<li>Efficient sharing of links: If we reserved a fraction of links for each flow, the links would be used inefficiently. Packet switching allows flows to use all available link capacity.</li>
+<li>Actually, the packet switching enables us to utilize the burst of network traffic. For example, while we are talking with another person on the phone, there are more silent periods than actual talking periods. So, for those silent periods we do not have to send packets, and we end up reducing the traffic by using pack switching.</li></ol></li></ol></p>
+
+
+
+<br/>
+<div class="subtitle" id="embeddedsystems_list">Embedded Systems related pages</div>
+<ol>
+   <li><a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a></li>
+    <li><a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain ans Simple Code on Ubuntu and Fedora</a></li>
+   <li><a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a></li>
+   <li><a href="../Embedded/memory_mapped_io_vs_port_mapped_isolated_io.html">Memory-mapped I/O vs Port-mapped I/O</a> </li>
+   <li><a href="../Embedded/hardware_interrupt_software_interrupt_latency_irq_vs_fiq.html">Interrupt & Interrupt Latency</a> </li>
+    <li><a href="../Embedded/Little_endian_big_endian_htons_htonl.html">Little Endian/Big Endian & TCP Sockets</a> </li>
+   <li><a href="quiz_bit_manipulation.html">Bit Manipulation</a> </li> 
+   <li><a href="../Linux/linux_process_and_signals.html">Linux Processes and Signals</a> </li>
+   <li><a href="../Linux/linux_drivers_1.html">Linux Drivers 1</a> </li>   
+</ol><br/>
+<br/>
+</p></p></p></p></p></p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreaded.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:09:49 GMT -->
+</html>
+

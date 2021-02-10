@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/m/online-calculator/hypergeometric.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Hypergeometric Calculator
+</title>
+    <script src="../../js/utilities.js" type="text/javascript"></script>
+    <script src="../../js/calculator.js" type="text/javascript"></script>
+
+
+    <!-- Add javascript and jquery  -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+        //Override jQuery Mobile's defaults. These statements should appear before jQuery Mobile is loaded.
+        //Source: http://demos.jquerymobile.com/1.0.1/docs/api/globalconfig.html
+        $(document).bind("mobileinit", function () {
+            // Load urls as regular http requests.
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+        // Fallback to loading jQuery from a local path if the CDN is unavailable.
+        // Source: http://www.asp.net/ajax/cdn#Using_jQuery_from_the_CDN_21
+        (window.jQuery || document.write('<script src="../../scripts/jquery-1.10.2.min.js"><\/script>'));
+    </script>
+
+    <!-- Add javascript that goes on all mobile pages  -->
+    <script src="../../js/top.js"></script>
+
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Identify site as mobile  -->
+    <meta name="HandheldFriendly" content="True" />
+
+    <!-- Size content to the viewport  
+        Source: https://developers.google.com/web/fundamentals/layouts/rwd-fundamentals/set-the-viewport?hl=en -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../../App_Themes/mobile1/mobile1.css" type="text/css" rel="stylesheet" /><meta name="description" content="Hypergeometric calculator finds hypergeometric (PDF) and cumulative hypergeometric (CDF) probability. Fast, easy, accurate. An online hypergeometric table." /><meta name="keywords" content="hypergeometric probability calculator, hypergeometric calculator, cumulative hypergeometric probability calculator, hypergeometric table, hypergeometric statistical table" /><link href="../../online-calculator/hypergeometric.html" rel="canonical" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/m/online-calculator/hypergeometric.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../../WebResource6be8.js?d=pynGkmcFUV13He1Qd6_TZJyTLRPAEQbgqGqj7Lcr1CQU0ndi9eWwKk-Piephd5aw-zOe7OEDc1xtK7fZAWNzqg2&amp;t=636259109931503955" type="text/javascript"></script>
+
+<script src="../../51Degrees.core.js" type="text/javascript"></script>
+<script src="../../ScriptResource8a75.js?d=NJmAwtEo3Ipnlaxl6CMhvtlGrLlqttVXTiUf4-n3BlMgK9V4xZCTjxh5XbGZfMswPnAfRB5yYniQnwr19ZcBRSukkruqMvK0cL-VxyZ6fp7cc_9FJwQ0oJGzYCxvsTaSO2AJHUvbdaqKjmqymxNEpG_hD8Y3tLWVlArSV4onIOI1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<script src="../../ScriptResourcef907.js?d=dwY9oWetJoJoVpgL6Zq8OG0G_ge7331AaodcZXWQMSrdlNLxSC76CuDzyLwc-_79_nsmAwuizxHWQ0L_z_N0grzRUu4X73KRlpqKdVodrWK-KGlluKCSWxoAuQuSo8MlG35Iv6sAN1FekUAT_o47yuTAy6jKjmz5Ap5hM0AJh5A1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6CC68AAD" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="mEzu11Lr+EKP26Ecv/xXZ8IuK+lZctZsgW6oz2lGcFxdyKYU81Oe5eBfT57AyzFeSjW55xXgsb1+hhBFoP/Lvxd6MPC6vXAS5jVXuTofN8WkYmPFbiw6C1Y2QKsZJWFcnlDmrlT45aMx0lxLUMkQXg5vNPBNt3l5Zg+1CBVxQGufjycmrKujc5AhRotM3BAWw6DwgUu8453UCiXp6oqXMYFddnNPNkeLni4wP2Mc+M9ekoTu1pY/My/Sq9gRLmHdRsH1IiAZVcxAZztar6aR9ISJBRNGKxBALijY04EmsVEc4dwl5IV2BFr2UTG8zCBz4fnVTUaDizFS6ogfyu9C2A==" />
+</div>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$cpMain$UpdatePanel1','UpdatePanel1','tctl00$cpFooter$footerM1$UpdatePanelFooter','UpdatePanelFooter'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <!-- NOTES:
+            1. jQuery mobile uses a div wrapper with a "data-role=page" attribute to identify the page. 
+            2. The data-url attribute allows asp.net to use response.redirect correctly in jQuery mobile.
+               Source: http://stackoverflow.com/questions/14138014/page-url-is-not-changing-on-redirecting -->
+        <div data-role="page" id="pageWrapper"  > 
+            
+                    
+
+            <!-- Enable Google page-level ads for mobile devices.
+                 Place this ad code in the <head> tag (or at the top of the <body>) of the pages where you want to show the ads -->
+            <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-5637116312293301",
+                enable_page_level_ads: true
+              });
+            </script>
+
+                   
+
+        
+            <header id="headerTop" class="ui-bar ui-bar-a" style="text-align:center;" data-role="none">
+        <a name="TopPage" data-role="none"></a>
+
+            <h1 id="h1Header"><a href="../default.html" rel="external" 
+                    style="text-decoration:none; font-size:1.5em; font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;">Stat Trek</a></h1>
+
+    </header>
+        
+
+        
+            
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<nav id="NavMain" data-role="navbar" >
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavDictionary" data-role="navbar" style="display:none;">
+    <ul role="navigation" >
+        <li style="width:25%;"><a rel="external" href="../index.html" class="ui-btn-active">Home</a></li>
+        <li style="width:25%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:25%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:25%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavTest" data-role="navbar" style="display:none;">
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<script>
+
+    $(document).ready(function () {
+        DefineNav();
+    });
+
+    function DefineNav() {
+        
+        //Get the current path to this page
+        var MyPath = window.location.href;
+
+        //Determine whether this page is dictionary.aspx. 
+        var Position1 = MyPath.search("ictionary.aspx");
+
+        //Determine whether this page is practice-test.aspx
+        var Position2 = MyPath.search("ractice-test.aspx");
+
+        //Display main navigation and hide others
+        if ((Position1 < 2) && (Position2 < 2)) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').show();
+            $('#NavTest').hide();
+            $('#NavDictionary').hide();
+            return;
+        }
+
+        //Display the correct navigation bar for dictionary.aspx
+        if (Position1 > 1) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').hide();
+            $('#NavTest').hide();
+            $('#NavDictionary').show();
+            return;
+        } 
+
+        //Display the correct navigation bar for practice-test.aspx
+        if (Position2 > 1) {
+            //Hide NavMain, and NavDictionary; and show NavTest
+            $('#NavMain').hide();
+            $('#NavDictionary').hide();
+            $('#NavTest').show();
+            return;
+        }
+    }
+
+</script>
+        
+
+        
+
+            <!-- First Google ad -->
+            <div id="divAd1" class="ad1">
+                <aside id="Ad1" class="adMasterPage1 marginTop15 marginBottomMinus20" data-role="none"></aside>
+            </div>
+
+        
+
+           
+
+    <!-- When using jQuery mobile, you can use following code to disable ajax through the page. 
+         NOTE: You can also add the attribute data-ajax="false" to the <form> tag on the page. That way when the form is 
+         submitted, jQuery Mobile won't try to update the page using AJAX. 
+         Source: http://stackoverflow.com/questions/6697959/jquery-mobile-is-there-a-way-to-turn-off-ajax-for-the-whole-page
+    <script>
+        $.mobile.ajaxEnabled = false;
+    </script>  -->
+
+    <section role="main" data-role="content">
+
+    <!-- google_ad_section_start -->
+    <a name="MainContent"></a>
+    <h1>Hypergeometric Calculator</h1>
+    
+    <!-- Intro  -->
+    <p>The Hypergeometric Calculator makes it easy to compute individual and cumulative 
+	    hypergeometric probabilities. 
+	    For help, read the <a rel="external" href="#faq">
+	    Frequently-Asked Questions</a> or review the <a rel="external" href="#examples">
+	    Sample Problems</a>.
+    </p>
+    <p>To learn more, read Stat Trek's
+	    <a rel="external" href="../../probability-distributions/hypergeometric.html">tutorial on the hypergeometric distribution</a>.
+    </p>
+    <br />
+
+        <!-- First Google ad -->
+        <div id="divAd1" class="ad1">
+            <aside id="Ad4" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- ST300x250T1 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="2012938347"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+
+        <br />
+
+    <div id="UpdatePanel1">
+	
+
+    <!-- ***************************************************  
+    <!-- **** Insert Calculator here    
+    <!-- ***************************************************  --> 
+    <a name="Calculator"></a>
+    <table align="center">
+	    <tr>
+		    <td valign="bottom">
+			    <table class="Calc">
+				    <tr class="Calc">
+					    <th class="Calc">
+						    <ul>
+							    <li class="Calc">
+							    Enter a value in each of the first four text boxes (the unshaded boxes).
+							    <li class="Calc">
+								    Click the <strong>Calculate</strong>
+							    button.
+							    </li>
+						    </ul>
+					    </th>
+				    </tr>
+				    <tr>
+					    <td>
+						    <table cellpadding="5" align="center">
+							    <tr>
+								    <td class="Calc" align="right">Population size
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtPopSize" type="text" id="txtPopSize" onchange="UpdateProbabilityLabelsForHypergeometricCalculator();ClearOutputForHypergeometricCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td class="Calc" align="right">Number of successes in population
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtPopSuccess" type="text" id="txtPopSuccess" onchange="UpdateProbabilityLabelsForHypergeometricCalculator();ClearOutputForHypergeometricCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td class="Calc" align="right">Sample size
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtSampSize" type="text" id="txtSampSize" onchange="UpdateProbabilityLabelsForHypergeometricCalculator();ClearOutputForHypergeometricCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdSampSuccess" class="Calc" align="right">Number of successes in sample (x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtSampSuccess" type="text" id="txtSampSuccess" onchange="UpdateProbabilityLabelsForHypergeometricCalculator();ClearOutputForHypergeometricCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXEQx" class="Calc" align="right">Hypergeometric Probability: P(X = x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtXEQx" type="text" id="txtXEQx" disabled="disabled" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXLTx" class="Calc" align="right">Cumulative Probability: P(X < x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtXLTx" type="text" id="txtXLTx" disabled="disabled" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXLEx" class="Calc" align="right">Cumulative Probability: P(X <u><</u> x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtXLEx" type="text" id="txtXLEx" disabled="disabled" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXGTx" class="Calc" align="right">Cumulative Probability: P(X > x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtXGTx" type="text" id="txtXGTx" disabled="disabled" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXGEx" class="Calc" align="right">Cumulative Probability: P(X <u>></u> x)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtXGEx" type="text" id="txtXGEx" disabled="disabled" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+						    </table>
+					    </td>
+				    </tr>
+				    <tr><td>
+                    <!-- Error message -->
+                      
+				    </td></tr>
+			    </table>
+		    </td>
+		    <td valign="bottom">&nbsp;&nbsp;&nbsp;&nbsp;
+		    </td>
+	    </tr>
+    </table>
+        
+         <div onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnCalculate&#39;)">
+		
+
+            <div class="CenterButton" style="width:70%;" >
+                <input type="submit" name="ctl00$cpMain$btnCalculate" value="Calculate" id="btnCalculate" class="CenterButton" data-role="none" />
+            </div>
+
+         
+	</div>
+
+    
+</div>
+
+        <!-- Second Google ad -->
+        <div id="divAd2" class="ad1">
+            <aside id="Ad5" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- ST320x50 -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:320px;height:50px"
+               data-ad-client="ca-pub-5637116312293301"
+               data-ad-slot="2571341541"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script></aside>
+        </div>
+        <br />
+
+    <!-- Frequently-asked Questions -->
+    <a name="faq"></a>
+    <div class="BlueBar">
+	    <h2 class="BlueBarHeading">
+		    Frequently-Asked Questions
+	    </h2>
+    </div>
+    <br />
+    <div align="center"><a rel="external" href="#Calculator">Hypergeometric Calculator</a>
+	    | <a rel="external" href="#examples">Sample Problems</a>
+    </div>
+    <p><strong>Instructions:</strong> To find the answer to a frequently-asked 
+	    question, simply click on the question. If none of the questions addresses your 
+	    need, refer to Stat Trek's <a rel="external" href="../../probability-distributions/hypergeometric.html">
+		    tutorial on the hypergeometric distribution</a> or visit the <a rel="external" href="../../statistics/dictionary.html">
+		    Statistics Glossary</a>. On-line help is just a mouse click away.
+    </p>        
+
+    <div data-role="collapsible">
+        <h3>What is a hypergeometric experiment?</h3>
+        <p>A hypergeometric experiment has two distinguishing characteristics:</p>
+        <ul>
+	        <li>
+	        The researcher randomly selects, without replacement, a subset of items from a 
+	        finite population.
+	        <li>
+		        Each item in the population can be classified as a success or a failure.
+	        </li>
+        </ul>
+        <p>Suppose, for example, that we randomly select 5 cards from an 
+	    ordinary deck of playing cards. We might ask: What is the probability of 
+	    selecting exactly 3 red cards? In this example, selecting a red card (a heart 
+	    or a diamond) would be classified as a success; and selecting a black card (a 
+	    club or a spade) would be classified as a failure.</p>
+    </div> 
+
+    <div data-role="collapsible">
+        <h3>What is a hypergeometric distribution?</h3>
+        <p>A hypergeometric distribution is a <a rel="external" href="../../statistics/dictionaryaa48.html?Target=Probability_distribution">
+		    probability distribution</a>. It refers to the probabilities associated 
+	    with the number of successes in a hypergeometric experiment.</p>
+        <p>For example, suppose we randomly select 5 cards from an ordinary 
+	    deck of playing cards. We might ask: What is the probability distribution for 
+	    the number of red cards in our selection. In this example, selecting a red card 
+	    would be classified as a success. The probabilities associated with each 
+	    possible outcome are an example of a hypergeometric distribution, as shown 
+	    below.</p>
+        <a name="table"></a>
+    <table class="StdTabB">
+	    <tr>
+		    <th class="StdTabB">Outcome</th>
+		    <th class="StdTabB">Hypergeo Prob</th>
+		    <th class="StdTabB">Cum Prob</th>
+	    </tr>
+	    <tr>
+		    <td  class="StdTabB">0 red cards</td>
+		    <td align="center">0.025</td>
+		    <td align="center">0.025</td>
+	    </tr>
+	    <tr>
+		    <td class="StdTabB">1 red card</td>
+		    <td align="center">0.150</td>
+		    <td align="center">0.175</td>
+	    </tr>
+	    <tr>
+		    <td class="StdTabB">2 red cards</td>
+		    <td align="center">0.325</td>
+		    <td align="center">0.500</td>
+	    </tr>
+	    <tr>
+		    <td class="StdTabB">3 red cards</td>
+		    <td align="center">0.325</td>
+		    <td align="center">0.825</td>
+	    </tr>
+	    <tr>
+		    <td class="StdTabB">4 red cards</td>
+		    <td align="center">0.150</td>
+		    <td align="center">0.975</td>
+	    </tr>
+	    <tr>
+		    <td class="StdTabB">5 red cards</td>
+		    <td align="center">0.025</td>
+		    <td align="center">1.00</td>
+	    </tr>
+    </table>
+    </div> 
+
+    <div data-role="collapsible">
+        <h3>What is a population size?</h3>
+        <p>In a hypergeometric experiment, a set of items are randomly 
+	    selected from a finite population. The total number of items in the population 
+	    is the population size.</p>
+        <p>For example, suppose 5 cards are selected from an ordinary deck 
+	    of playing cards. Here, the population size is the total number of cards from 
+	    which the selection is made. Since an ordinary deck consists of 52 cards, the 
+	    population size would be 52.</p>
+    </div>   
+
+    <div data-role="collapsible">
+        <h3>What is a sample size?</h3>
+        <p>In a hypergeometric experiment, a set of items are randomly 
+	    selected from a finite population. The total number of items selected from the 
+	    population is the sample size.</p>
+        <p>For example, suppose 5 cards are selected from an ordinary deck 
+	    of playing cards. Here, the sample size is the total number of cards selected. 
+	    Thus, the sample size would be 5.</p>
+    </div>   
+
+    <div data-role="collapsible">
+        <h3>What is the number of successes?</h3>
+        <p>In a hypergeometric experiment, each element in the population 
+	    can be classified as a success or a failure. The number of successes is a count 
+	    of the successes in a particular grouping. Thus, the number of successes in the 
+	    sample is a count of successes in the sample; and the number of successes in 
+	    the population is a count of successes in the population.</p>
+    </div>   
+
+    <div data-role="collapsible">
+        <h3>What is a hypergeometric probability?</h3>
+        <p>A hypergeometric probability refers to a probability associated 
+	    with a hypergeometric experiment. For example, suppose we randomly select 5 
+	    cards from an ordinary deck of playing cards. We might ask: What is the 
+	    probability of selecting EXACTLY 3 red cards? The probability of getting 
+	    EXACTLY 3 red cards would be an example of a hypergeometric probability,
+	    which is indicated by the following notation: P(X = 3).</p>
+        <p>The probability 
+	    of getting exactly 3 red cards is 0.325. Thus, P(X = 3) = 0.325. (The probability
+        distribution showing this result can be seen above in the question: 
+        What is a hypergeometric distribution?)</p>
+    </div>            
+
+    <div data-role="collapsible">
+        <h3>What is a cumulative hypergeometric probability?</h3>
+        <p>A cumulative hypergeometric probability refers to a sum of 
+	    probabilities associated with a hypergeometric experiment. To compute a 
+	    cumulative hypergeometric probability, we may need to add one or more 
+	    individual probabilities.</p>
+        <p>For example, suppose we randomly select 5 cards from an ordinary 
+	    deck of playing card. We might ask: What is the probability of selecting AT 
+	    MOST 2 red cards? The cumulative probability of getting AT MOST 2 red cards 
+	    would be equal to the probability of selecting 0 red cards plus the probability 
+	    of selecting 1 red card plus the probability of selecting 2 red cards. 
+	    Notationally, this probability would be indicated by P(X <u><</u> 2).</p>
+        <p>The cumulative probability for getting at most 2 red cards in a random deal of 5 
+	    cards. That probability is 0.500. Thus, P(X <u><</u> 2) = 0.500. (The probability
+        distribution showing this result can be seen above in the question: 
+        What is a hypergeometric distribution?)</p>
+    </div>
+
+        <br />
+        <!-- Third Google ad -->
+        <div id="divAd3" class="ad1">
+            <aside id="Ad6" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- ST250x250 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:250px;height:250px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="6582738741"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+        <br />
+
+    <!-- Sample problems -->
+    <a name="examples"></a>
+    <div  class="BlueBar">
+	    <h2 class="BlueBarHeading">Sample Problems
+	    </h2>
+    </div>
+    <br />
+    <div align="center"><a rel="external" href="#Calculator">Hypergeometric Calculator</a>
+	    | <a rel="external" href="#faq">Frequently-Asked Questions</a>
+    </div>
+    <ol>
+	    <li class="Linebreak">
+		    Suppose you select randomly select 12 cards without replacement from an 
+		    ordinary deck of playing cards. What is the probability that EXACTLY 7 of those 
+		    cards will be black (i.e., either a club or spade)?
+		    <br />
+		    <br />
+		    <b>Solution:</b><br />
+		    <br />
+		    We know the following:<br />
+		    <br />
+		    <ul type="square">
+			    <li>
+			    The total population size is 52 (since there are 52 cards in the deck).</li>
+			    <li>
+			    The total sample size is 12 (since we are selecting 12 cards).</li>
+			    <li>
+			    The number of successes in the population is 26. (Here, we define a success as 
+			    choosing a black card, and there are 26 black cards in an ordinary deck of 
+			    playing cards.).</li>
+			    <li>
+				    The number of successes in the sample is 7 (since there are 7 black cards in 
+				    the sample that we select).
+			    </li>
+		    </ul>
+		    <br />
+		    Therefore, we plug those numbers into the <a rel="external" href="#Calculator">Hypergeometric 
+			    Calculator</a>
+	    and hit the Calculate button. The calculator reports that the hypergeometric 
+	    probability is 0.210. That is the probability of getting EXACTLY 7 black cards 
+	    in our randomly-selected sample of 12 cards.
+	    <br /><br />
+	    The calculator also reports cumulative probabilities.  
+	    For example, the probability of getting AT MOST 7 black cards in 
+	    our sample is 0.838.  That is, P(X <u><</u> 7) = 0.838.<br /><br /></li>
+	    <li>
+		    Suppose we are playing 5-card stud with honest players using a fair deck. What 
+		    is the probability that you will be dealt AT MOST 2 aces? (Note: In 5-card 
+		    stud, each player is dealt 5 cards.)
+		    <br />
+		    <br />
+		    <b>Solution:</b><br />
+		    <br />
+		    We know the following:<br />
+		    <br />
+		    <ul type="square">
+			    <li>
+			    The total population size is 52 (since there are 52 cards in the full deck).</li>
+			    <li>
+			    The total sample size is 5 (since we are dealt 5 cards).</li>
+			    <li>
+			    The number of successes in the population is 4 (since there are 4 aces in a 
+			    full deck of cards).</li>
+			    <li>
+				    The number of successes in the sample is 2 (since we are dealt 2 aces, at 
+				    most.).
+			    </li>
+		    </ul>
+		    <br />
+		    Therefore, we plug those numbers into the <a rel="external" href="#Calculator">Hypergeometric 
+			    Calculator</a> and hit the Calculate button. The calculator reports that 
+		    the P(X <u><</u> 2) is 0.998. That is the probability we 
+		    are dealt AT MOST 2 aces. The cumulative probability is the sum of three 
+		    probabilities: the probability that we have zero aces, the probability that we 
+		    have 1 ace, and the probability that we have 2 aces.
+		    <br />
+		    <br />
+		    Note that the calculator also displays the hypergeometric probability - the 
+		    probability that we have EXACTLY 2 aces. The hypergeometric probability is 
+		    0.040.</li>
+    </ol>
+
+    </section>
+
+    <!-- google_ad_section_end -->
+
+
+        
+            <!-- Scroll to top button  -->
+             
+
+<style type="text/css">
+    .divScrollToTop {
+        padding: 1px 0px;
+        background-color: #ddd;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+        width: 18%;
+        z-index: 10;
+        position:fixed; bottom:5%; right:5%;
+        display:none;
+        z-index:5;
+    }
+
+    a.aScrollToTop:link, a.aScrollToTop:visited, a.aScrollToTop:active, a.aScrollToTop:hover {
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: normal;
+        font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+    }
+
+    a.aScrollToTop:visited {
+        color: #000;
+    }
+
+    a.aScrollToTop:hover {
+        text-decoration:none;
+        color: #000;
+    }
+</style>
+
+<!-- The binding of event handlers needs to happen before jQuery mobile loads, according to
+        Hadlock, p. 55 -->
+<script>
+    $(document).ready(function () {
+
+        //Initialize global variables
+        TimeShowButton = new Date() - 5000;
+        TimeScrollStops = new Date();
+
+    });
+
+    $(window).on("scrollstart", function () {
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        //If conditions are favorable, display button
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+    });
+
+    $(window).on("scrollstop", function () {
+
+        //Get the time when the scroll stops
+        var TimeScrollStops = new Date;
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+
+        //Fade button
+        $('#divScrollTop').fadeOut(500);
+
+        //Hide button if scrolling stops near the top of the page.
+        //NOTE: This prevents button from overlaying ads that appear near top of page (i.e., divAd1).
+        if (scrollVal <= 320) {
+            $('#divScrollTop').hide();
+        }
+
+        //Get vertical position for "top" box
+        //var offsets = $('#divScrollTop').offset();
+        //var offsets = document.getElementById('divScrollTop').getBoundingClientRect();
+        //var topBox = offsets.top;
+        //var botBox = offsets.bottom;
+
+        //Get vertical position for ad 2
+        //var offsets = $('#divAd2').offset();
+        //var offsets = document.getElementById('divAd2').getBoundingClientRect();
+        //var topAd = offsets.top;
+        //var botAd = offsets.bottom;
+
+        //Hide button if it stops over ad 2
+        //if ((topBox < topAd && topBox > botAd) || (botBox < topAd && botBox > botAd)) {
+        //    $('#divScrollTop').hide();
+        //}
+    });
+</script>
+
+<div class="divScrollToTop" id="divScrollTop" data-role="none">
+
+    <a rel="external" href="#TopPage" class="aScrollToTop" >Top</a>
+
+</div> 
+        
+
+        
+
+            <!-- Second Google ad -->
+            <div id="divAd2" class="ad1">
+                <aside id="Ad2" class="adMasterPage1 marginTopMinus10 marginBottom20"></aside>
+            </div>
+        
+
+          
+            
+
+<!-- The UpdatePanel control is necessary to display some desktop pages correctly after the User taps
+    the "View Desktop Version" button. It seems to allow a complete refresh of the desktop version page, 
+    which is needed for some pages (e.g., /ap-statistics/practice-test.aspx) to display correctly.
+    
+    On the other hand, it interferes with the correct display of the About/Contact/Privacy buttons on 
+    mobile versions of the page. This problem crops up after a postback to the mobile version of the page. 
+    For example, it occurs after tapping the "Begin" button on /ap-statistics/practice-test.aspx .   
+    
+    The solution is to place the UpdatePanel control around the "View Desktop" button, but not around the 
+    footer element -->
+
+<footer data-role="footer" >
+
+    <div data-role="navbar">
+
+        <ul role="navigation">
+            <li><a href="../site/about.html" rel="external">About</a></li>
+            <li><a href="../../site/contact.html" rel="external">Contact</a></li>
+            <li><a href="../../site/privacy.html" rel="external">Privacy</a></li>
+            <li><a href="../../site/advertising.html" rel="external">Ads</a></li>
+        </ul>
+
+    </div>
+
+</footer>
+
+
+<div id="UpdatePanelFooter">
+	
+    
+<p style="text-align:center;">Copyright &copy; 2017 StatTrek.com <br /> <a href="../site/terms.html" rel="external">Terms and Conditions</a></p>
+
+<div style="text-align:center; width:100%; margin-top:20px;">
+    <input type="submit" name="ctl00$cpFooter$footerM1$btnViewDesktop" value="View Desktop Version" id="btnViewDesktop" data-role="none" style="font-size:1em; font-weight:bold; border-radius: 5px; padding:10px 15px; text-shadow: none; 
+            border:1px solid #ddd; background-color:#eee; font-family: 'Segoe UI, Verdana, Arial Unicode MS', Arial, sans-serif;" />
+</div>             
+
+
+</div>        
+        
+
+        
+
+            <!-- last Google ad -->
+            <div id="divAd3" class="ad1">
+                <aside id="Ad3" class="adMasterPage1 marginTop25"></aside>
+            </div>
+
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+        
+        
+
+        
+        
+            <!--
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow37.js"></script>
+            <noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+            -->
+
+        
+        
+    </div>
+
+        
+            
+        
+
+        
+
+        <!-- Data Camp ad -->
+        <div style="width:100%; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/m/online-calculator/hypergeometric.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:56 GMT -->
+</html>

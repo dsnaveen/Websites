@@ -1,0 +1,1030 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/chi-square-test/goodness-of-fit.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:19:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Chi-Square Goodness of Fit Test
+</title>
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="This lesson describes when and how to conduct a chi-square goodness of fit test. Key points are illustrated by a sample problem with solution." /><meta name="keywords" content="chi-square goodness of fit, chi-square goodness of fit test, chi-squared goodness of fit, chi-squared goodness of fit test, goodness of fit, goodness of fit test" /><link href="goodness-of-fit.html" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/chi-square-test/goodness-of-fit.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E0669C86" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="a5jNun7MH4syHstJzGu65XRHqQmpW5Z2XKMftFOasVxkqXsCLHP932m61Pe0ahXr3E4MdQAnxS57k3DK1UzSJyssNfTbEyMANa53H3I9q9Tq7tNkfn7LCB2Rk6mTZqWK54HqSqumAyq1ISV4SNN2ujv9uBpiKZwLo8MTsbxyacx2GZuKJ8+dHzCRr2IBD4OFXq4gPckvkXm50nZuVFvoHg==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1 id="h1Title">Chi-Square Goodness of Fit Test</h1>
+                    <p>This lesson explains how to conduct a 
+                        <strong>chi-square goodness of fit test</strong>.  
+                        The test is applied when you have one 
+                        <a href="../statistics/dictionary941b.html?Target=Categorical%20variable">
+                        categorical variable</a>
+                        from a single population.  It is used to determine whether sample
+                        data are consistent with a hypothesized distribution.</p>
+
+                    <p>For example, suppose a company printed baseball cards.  It 
+                        claimed that 30% of its cards were rookies; 60%, veterans; and 
+                        10%, All-Stars.  We could gather a random sample of baseball
+                        cards and use a chi-square goodness of fit test to see whether
+                        our sample distribution differed significantly from the 
+                        distribution claimed by the company.  The 
+                        <a href="#example1">sample problem</a> at the end of the lesson
+                        considers this example.</p>
+
+                    <h2>When to Use the Chi-Square Goodness of Fit Test</h2>
+                    <p>The chi-square goodness of fit test is appropriate when the 
+                        following conditions are met:</p>
+    
+                    <ul>
+                        <li class="extraLineSpace">The sampling method is 
+                        <a href="../statistics/dictionary6281.html?Target=Simple%20random%20sampling">
+	                    simple random sampling</a>.</li>
+                        <li class="extraLineSpace">The variable under study is  
+                        <a href="../statistics/dictionary941b.html?Target=Categorical%20variable">
+	                    categorical</a>.</li>
+                        <li>The expected value of the number of sample observations in each   
+                        <a href="../statistics/dictionaryf56b.html?Target=Level">level</a>
+	                    of the variable is at least 5.</li>
+                    </ul>
+
+                    <p>This approach consists of four steps: (1) state the hypotheses, 
+                        (2) formulate an analysis plan, (3) analyze sample data, and 
+                        (4) interpret results.
+                    </p>
+
+                    <h2>State the Hypotheses</h2>
+                    <p>Every hypothesis test requires the analyst 
+                        to state a  
+                        <a href="../statistics/dictionary8347.html?Target=Null%20hypothesis">
+                        null hypothesis</a> (H<sub>0</sub>) 
+                        and an  
+                        <a href="../statistics/dictionary986b.html?Target=Alternative%20hypothesis">
+                        alternative hypothesis</a> (H<sub>a</sub>).  The hypotheses are stated in such 
+                        a way that they are mutually exclusive. That is, if one is 
+                        true, the other must be false; and vice versa.</p>
+    
+                    <p>For a chi-square goodness of fit test, the hypotheses take 
+                        the following form.</p>
+    
+                    <div align="center">
+                        <table>
+                            <tr>
+                                <td style="text-align:left;">
+                        <p>
+                        H<sub>0</sub>:  The data are consistent with a specified distribution.
+                        <br />
+                        H<sub>a</sub>:  The data are <em>not</em> consistent with a 
+                        specified distribution.
+                        </p>        
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p>Typically, the null hypothesis (H<sub>0</sub>) specifies the proportion of 
+                        observations at each level of the categorical variable.  The
+                        alternative hypothesis (H<sub>a</sub>) is that <em>at least</em> one of
+                        the specified proportions is not true.</p>
+
+                    <h2>Formulate an Analysis Plan</h2>
+                    <p>The analysis plan describes 
+                        how to use sample data to accept or reject the null 
+                        hypothesis.  The plan should specify the following elements.</p>
+                    <ul>
+                        <li>Significance level. Often, researchers choose   
+                            <a href="../statistics/dictionary1575.html?Target=Significance%20level">
+                            significance levels</a>
+                            equal to 
+                            0.01, 0.05, or 0.10; but any value between 0 and 
+                            1 can be used.<br /><br /></li>
+                        <li>Test method. Use the    
+                            <a href="../statistics/dictionary6e6f.html?Target=Chi-square%20goodness%20of%20fit%20test">
+                            chi-square goodness of fit test</a>
+                            to determine whether 
+                            observed sample frequencies differ 
+                            significantly from expected frequencies specified in the
+                            null hypothesis.  The chi-square goodness of fit test is 
+                            described in the next section, and demonstrated in the sample
+                            problem at the end of this lesson.</li>
+                    </ul> 
+
+                    <h2>Analyze Sample Data</h2>
+                    <p>Using sample data, find the  
+                        degrees of freedom, expected frequency counts, 
+                        test statistic, and the P-value associated with the test statistic.</p>
+                    <ul>
+                        <li>Degrees of freedom.  The 
+                            <a href="../statistics/dictionary3e52.html?Target=Degrees%20of%20freedom">
+		                    degrees of freedom</a> (DF) is equal to the 
+		                    number of levels (k) of the categorical variable minus 1: 
+		                    DF = k - 1 .<br /><br /></li>
+                        <li>Expected frequency counts.  The expected frequency counts
+                            at each level of the categorical variable are equal to 
+                            the sample size times the hypothesized proportion 
+                            from the null hypothesis<p align="center">
+                            E<sub>i</sub> = np<sub>i</sub>
+                            </p>
+                            where 
+                            E<sub>i</sub> is the expected frequency count for the
+                            <em>i</em>th level of the categorical variable, 
+                            n is the total sample size, and 
+                            p<sub>i</sub> is the hypothesized proportion of observations
+                            in level <em>i</em>.<br /><br /></li>
+                        <li>Test statistic. The test statistic is a chi-square random variable
+                            (&Chi;<sup>2</sup>) defined by
+                            the following equation.
+                            <p align="center">
+                            &Chi;<sup>2</sup> = 
+                            &Sigma; [ (O<sub>i</sub> - E<sub>i</sub>)<sup>2</sup> / E<sub>i</sub> ]
+                            </p>
+                            where 
+                            O<sub>i</sub> is the observed frequency count for the
+                            <em>i</em>th level of the categorical variable, and
+                            E<sub>i</sub> is the expected frequency count for the
+                            <em>i</em>th level of the categorical variable.<br /><br /></li>
+                        <li>P-value.  The P-value is the probability of observing a 
+                            sample statistic as extreme as the test statistic.  Since the
+                            test statistic is a chi-square, use the 
+                            <a href="../online-calculator/chi-square.html">Chi-Square Distribution Calculator</a>
+                            to assess the probability associated with the test statistic.  Use 
+                            the degrees of freedom computed above.</li>
+                    </ul>
+        
+                    <h2>Interpret Results</h2>
+                    <p>If the sample findings are unlikely, given
+                        the null hypothesis, the researcher rejects the null hypothesis.
+                        Typically, this involves comparing the P-value to the 
+                        <a href="../statistics/dictionary1575.html?Target=Significance%20level">
+                        significance level</a>,
+                        and rejecting the null hypothesis when the P-value is less than 
+                        the significance level.</p>
+
+                    <a name="example1"></a>
+                    <h2>Test Your Understanding</h2>        
+
+                    <p><b>Problem</b></p>
+                    <p>Acme Toy Company prints baseball cards.  The company claims that 30% of 
+                        the cards are rookies, 60% veterans, and 10% are All-Stars.</p>
+                    <p>Suppose a random sample of 100 cards has 50 rookies, 45 
+                        veterans, and 5 All-Stars. Is this consistent with Acme's claim?
+                        Use a 0.05 level of significance.</p>
+
+                    <p><b>Solution</b></p>
+                    <p>The solution to this problem takes four steps: 
+                        (1) state the hypotheses, (2) formulate an analysis plan, 
+                        (3) analyze sample data, and (4) interpret results. 
+                        We work through those steps below:
+                    </p>
+                    <ul>
+	                    <li><p><strong>State the hypotheses.</strong> The first step is to 
+		                        state the null hypothesis and an alternative hypothesis.</p>
+		                    <ul>
+		                        <li>Null hypothesis: The proportion of rookies, veterans, and 
+		                        All-Stars is 30%, 60% and 10%, respectively.</li>
+			                    <li>Alternative hypothesis: At least one of the proportions in the
+			                    null hypothesis is false.<br /><br /></li>
+		                    </ul></li>
+	                    <li><p><strong>Formulate an analysis plan</strong>.  For this analysis,
+	                        the significance level is 0.05.  Using sample data, we will 
+	                        conduct a 
+                            <a href="../statistics/dictionary6e6f.html?Target=Chi-square%20goodness%20of%20fit%20test">
+                            chi-square goodness of fit test</a>
+                            of the null hypothesis.</p></li>
+	                    <li><p><strong>Analyze sample data</strong>.  Applying the chi-square
+	                        goodness of fit test to sample data, we compute  
+	                        the degrees of freedom, 
+	                        the expected frequency counts, and
+	                        the chi-square test statistic.  Based on the
+	                        chi-square statistic and the  
+                            <a href="../statistics/dictionary3e52.html?Target=Degrees%20of%20freedom">
+                            degrees of freedom</a>, we determine the
+	                        <a href="../statistics/dictionarye90b.html?Target=P-value">
+                            P-value</a>.</p>
+        
+                            <p align="center">
+                                DF = k - 1 = 3 - 1 = 2
+                                <br /><br />
+            
+                                (E<sub>i</sub>) = n * p<sub>i</sub><br />
+                                (E<sub>1</sub>) = 100 * 0.30 = 30<br />
+                                (E<sub>2</sub>) = 100 * 0.60 = 60<br />
+                                (E<sub>3</sub>) = 100 * 0.10 = 10
+                                <br /><br />
+            
+                                &Chi;<sup>2</sup> = 
+                                &Sigma; [ (O<sub>i</sub> - E<sub>i</sub>)<sup>2</sup> 
+                                        / E<sub>i</sub> ] <br />
+                                &Chi;<sup>2</sup> = 
+                                      [ (50 - 30)<sup>2</sup> / 30 ] 
+                                    + [ (45 - 60)<sup>2</sup> / 60 ] 
+                                    + [ (5 - 10)<sup>2</sup> / 10 ]<br /> 
+                                &Chi;<sup>2</sup> = 
+                                      (400 / 30) + (225 / 60) + (25 / 10) 
+                                      = 13.33 + 3.75 + 2.50 = 19.58<br />
+                            </p>
+        
+	                        <p>where 
+	                        DF is the degrees of freedom, 
+	                        k is the number of levels of the categorical variable, 
+	                        n is the number of observations in the sample,
+	                        E<sub>i</sub> is the expected frequency count for level i, 
+	                        O<sub>i</sub> is the observed frequency count for level i, and
+	                        &Chi;<sup>2</sup> is the chi-square test statistic.</p>
+                            <p>The P-value is the probability that a chi-square statistic
+                            having 2 degrees of freedom is more extreme than 19.58.</p>
+                            <p>We use the 
+                            <a href="../online-calculator/chi-square.html">Chi-Square Distribution Calculator</a>
+                            to find P(&Chi;<sup>2</sup> > 19.58) = 0.0001. 
+                            </p></li>
+	                    <li><p><strong>Interpret results</strong>. Since the P-value (0.0001) is
+	                        less than the significance level (0.05), we cannot accept the
+	                        null hypothesis.</p></li>
+                    </ul>
+                    <p><strong>Note:</strong> If you use this approach on an exam, you may also want to mention
+                        why this approach is appropriate. Specifically, the approach is 
+                        appropriate because the sampling method was simple random sampling, the
+                        variable under study was categorical, and each level of the categorical
+                        variable had an expected frequency count of at least 5.</p>
+
+                    <br />
+
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                    <!-- google_ad_section_end -->
+
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                    
+
+<link href="../css/theme1/stat-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-stat.js" type="text/javascript"></script> 
+
+<div id="divAP">
+<nav>
+<div class="st_Title">
+    <a class="st_Title" title="Introduction to AP Statistics Tutorial" href="../tutorials/ap-statistics-tutorial.html">
+    AP Statistics Tutorial
+    </a>
+</div>
+
+<div id="divAPMenuItems" class="st_contents">
+    <div class="st_heading">Exploring Data</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">The basics</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variablesb15b.html?Tutorial=AP">Variables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/populations-and-samplesb15b.html?Tutorial=AP">Population vs sample</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/central-tendencyb15b.html?Tutorial=AP">Central tendency</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variabilityb15b.html?Tutorial=AP">Variability</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/measures-of-positionb15b.html?Tutorial=AP">Position</a></p>
+        </div>
+     </div>
+        
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Charts and graphs</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/data-patternsb15b.html?Tutorial=AP">Patterns in data</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/dot-plotb15b.html?Tutorial=AP">Dotplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/histogramb15b.html?Tutorial=AP">Histograms</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/stemplotb15b.html?Tutorial=AP">Stemplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/boxplotb15b.html?Tutorial=AP">Boxplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/cumulative-plotb15b.html?Tutorial=AP">Cumulative plots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/scatterplotb15b.html?Tutorial=AP">Scatterplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/compare-data-setsb15b.html?Tutorial=AP">Comparing data sets</a></p>
+         </div>   
+     </div>
+     
+     <div>
+        <div class="st_topmenu">
+            <span id="spTop2" class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Regression</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/measurement-scalesb15b.html?Tutorial=AP">Measurement scales</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/correlationb15b.html?Tutorial=AP">Linear correlation</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/linear-regressionb15b.html?Tutorial=AP">Linear regression</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/regression-exampleb15b.html?Tutorial=AP">Regression example</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/residual-analysisb15b.html?Tutorial=AP">Residual analysis</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/linear-transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/influential-pointsb15b.html?Tutorial=AP">Influential points</a></p>
+        </div>
+     </div> 
+      
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Categorical data</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/one-way-tableb15b.html?Tutorial=AP">One-way tables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/two-way-tableb15b.html?Tutorial=AP">Two-way tables</a></p>
+        </div>
+     </div>
+    
+    <div class="st_heading">Planning a Study</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Surveys</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span id="spSub21a" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/data-collection-methodsb15b.html?Tutorial=AP">Data collection</a></p>
+            <p class="st_submenu"><span id="spSub22" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/sampling-methodsb15b.html?Tutorial=AP">Sampling methods</a></p>
+            <p class="st_submenu"><span id="spSub23" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/survey-biasb15b.html?Tutorial=AP">Bias in surveys</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" href="#">Experiments</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/what-is-an-experimentb15b.html?Tutorial=AP">Intro to experiments</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/experimental-designb15b.html?Tutorial=AP">Experimental design</a></p>
+        </div>
+    </div>
+    
+    <div class="st_heading">Anticipating Patterns</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Probability</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/what-is-probabilityb15b.html?Tutorial=AP">Probability intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-rulesb15b.html?Tutorial=AP">Rules of probability</a></p>
+        </div>    
+    </div>
+        
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Random variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/random-variableb15b.html?Tutorial=AP">Introduction</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-distributionb15b.html?Tutorial=AP">Distributions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/mean-varianceb15b.html?Tutorial=AP">Mean and variance</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/combinationb15b.html?Tutorial=AP">Combinations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../experiments/simulationb15b.html?Tutorial=AP">Simulation of events</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Discrete variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/binomialb15b.html?Tutorial=AP">Binomial distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/negative-binomialb15b.html?Tutorial=AP">Negative binomial</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Continuous variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/normalb15b.html?Tutorial=AP">Normal distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/standard-normalb15b.html?Tutorial=AP">Standard normal</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/t-distributionb15b.html?Tutorial=AP">t Distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/chi-squareb15b.html?Tutorial=AP">Chi-square</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Sampling distributions</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/sampling-distributionb15b.html?Tutorial=AP">Sampling distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-proportionb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Statistical Inference</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/estimation-in-statisticsb15b.html?Tutorial=AP">Estimation problems</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/standard-errorb15b.html?Tutorial=AP">Standard error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/margin-of-errorb15b.html?Tutorial=AP">Margin of error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-intervalb15b.html?Tutorial=AP">Confidence intervals</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation problems</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-meanb15b.html?Tutorial=AP">Means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/mean-difference-pairsb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/slope-confidence-intervalb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis testing</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/hypothesis-testingb15b.html?Tutorial=AP">Hypothesis test intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/power-of-testb15b.html?Tutorial=AP">Power of test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/how-to-test-hypothesisb15b.html?Tutorial=AP">How to test</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis tests</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/meanb15b.html?Tutorial=AP">Mean</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/paired-meansb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="goodness-of-fitb15b.html?Tutorial=AP">Goodness of fit test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="homogeneityb15b.html?Tutorial=AP">Homogeneity</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/slope-testb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Appendices</div>    
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../ap-statistics/practice-testb15b.html?Tutorial=AP">Practice Exam</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../statistics/notationb15b.html?Tutorial=AP">Notation</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix" 
+        href="../ap-statistics/formulasb15b.html?Tutorial=AP">AP Statistics Formulas</a>
+    </div>    
+
+</div>  <!-- End of AP menu items,id ="divAPMenuItems" -->
+</nav>
+</div>  <!-- End AP Stat tutorial, id="divAP" -->
+
+
+  <!-- End Statistics tutorial, id="divStat" -->
+
+<script type="text/javascript">
+    st_init();
+</script>
+
+<br />
+<div id="divAPFootnote" style="BACKGROUND-COLOR: #eeeeee; border:solid 1px #3333ff; padding: 10px; width:140px;">
+    <table><tr>
+		<td style="vertical-align:top;">*&nbsp;&nbsp;</td>
+		<td style="font-size:9pt;">AP and Advanced Placement Program are registered 
+		trademarks of the College Board, which was not involved in the 
+		production of, and does not endorse this website.</td>
+		</tr></table>
+</div>    <!-- End AP disclaimer -->
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'>Casio fx-9860GII Graphing Calculator, Black</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'><img src='https://images-na.ssl-images-amazon.com/images/I/51XQz24CyGL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$78.99</span><br />Buy Used: <span style='color:#990000;'>$58.95</span><br />Buy New: <span style='color:#990000;'>$78.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0596510497?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596510497'>Statistics in a Nutshell: A Desktop Quick Reference (In a Nutshell (O'Reilly))</a><br /><span class='verticalAdAuthor'>Sarah Boslaugh, Paul Andrew, Dr. Watters</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0596510497?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596510497'><img src='https://images-na.ssl-images-amazon.com/images/I/51RoAM7t1JL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$34.99</span><br />Buy Used: <span style='color:#990000;'>$6.67</span><br />Buy New: <span style='color:#990000;'>$28.71</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0764147021?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0764147021'>Barron's AP Statistics, 6th Edition</a><br /><span class='verticalAdAuthor'>Martin Sternstein Ph.D.</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0764147021?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0764147021'><img src='https://images-na.ssl-images-amazon.com/images/I/51wuwtt+QxL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$18.99</span><br />Buy Used: <span style='color:#990000;'>$1.94</span><br />Buy New: <span style='color:#990000;'>$35.61</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0764584669?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0764584669'>Statistics Workbook For Dummies</a><br /><span class='verticalAdAuthor'>Deborah J. Rumsey</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0764584669?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0764584669'><img src='https://images-na.ssl-images-amazon.com/images/I/51Dku63r+qL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$16.99</span><br />Buy Used: <span style='color:#990000;'>$3.83</span><br />Buy New: <span style='color:#990000;'>$7.99</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/188652940X?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=188652940X'>Introduction to Probability</a><br /><span class='verticalAdAuthor'>Dimitri P. Bertsekas, John N. Tsitsiklis</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/188652940X?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=188652940X'><img src='https://images-na.ssl-images-amazon.com/images/I/519BZAMACCL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$79.00</span><br />Buy Used: <span style='color:#990000;'>$38.09</span><br />Buy New: <span style='color:#990000;'>$135.00</span></font></div></div><br /></aside><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'>Casio fx-9860GII Graphing Calculator, Black</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'><img src='https://images-na.ssl-images-amazon.com/images/I/51XQz24CyGL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$78.99</span><br />Buy Used: <span style='color:#990000;'>$58.95</span><br />Buy New: <span style='color:#990000;'>$78.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0023I9QCU?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0023I9QCU'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/chi-square-test/goodness-of-fit.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:19:59 GMT -->
+</html>

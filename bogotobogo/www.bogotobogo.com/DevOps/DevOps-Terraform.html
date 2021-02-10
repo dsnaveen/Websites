@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/DevOps-Terraform.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:24:45 GMT -->
+<head>
+  <title>Introduction to Terraform with AWS elb & nginx - 2017</title>
+  <meta content="Introduction to Terraform with AWS elb & nginx" name="description" />
+  <meta content="Introduction to Terraform with AWS elb & nginx" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Introduction to Terraform with AWS elb & nginx       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/DevOps/Terraform-Icon.png" alt="Terraform-Icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+
+<br/>
+<div class="subtitle_2nd" id="what-is-Terraform">What is Terraform?</div>
+<p>As an open source tool, Terraform provides a flexible abstraction of resources and providers.</p>
+<p>While configuration management tools such as Chef, Puppet, and Ansible install and manage software on a machine that already exists, Terraform is not a configuration management tool, and it allows existing tooling to focus on their strengths: bootstrapping and initializing resources.</p>
+<p>Terraform separates the planning phase from the execution phase, by using the concept of an execution plan.</p>
+<p>Terraform is not intended to give low-level programmatic access (e.g. boto) to providers, but instead provides a high level syntax for describing how cloud resources and services should be created, provisioned, and combined. Terraform is very flexible, using a plugin-based model to support providers and provisioners, giving it the ability to support almost any service that exposes APIs.</p>
+<br>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<p>Here are lists some concrete <a href="https://www.terraform.io/intro/use-cases.html" target="_blank">use cases for Terraform</a>:</p>
+<ol>
+  <li><b>Multi-Tier Applications</b>: The most common 2-tier architecture is a pool of web servers that use a database tier. Additional tiers get added for API servers, caching servers, routing meshes, etc. This pattern is used because the tiers can be scaled independently and provide a separation of concerns.<br>
+Terraform is an ideal tool for building and managing these infrastructures. Each tier can be described as a collection of resources, and the dependencies between each tier are handled automatically; Terraform will ensure the database tier is available before the web servers are started and that the load balancers are aware of the web nodes. Each tier can then be scaled easily using Terraform by modifying a single count configuration value. Because the creation and provisioning of a resource is codified and automated, elastically scaling with load becomes trivial.
+  </li>
+  <li><b>Self-Service Clusters</b>: Terraform configurations can be shared within an organization enabling customer teams to use the configuration as a black box and use Terraform as a tool to manage their services.
+  </li>
+  <li><b>Software Demos</b>: Software writers can provide a Terraform configuration to create, provision and bootstrap a demo on cloud providers like AWS.  
+  </li>
+  <li><b>Disposable Environments</b>: Using Terraform, the production environment can be codified and then shared with staging and dev. These configurations can be used to rapidly spin up new environments to test in, and then be easily disposed of. 
+  </li>
+  <li><b>Resource Schedulers</b>: There are a number of schedulers like Borg, Mesos, YARN, and Kubernetes.
+  </li>
+  <li><b>Multi-Cloud Deployment</b>: Terraform is cloud-agnostic and allows a single configuration to be used to manage multiple providers, and to even handle cross-cloud dependencies. Terraform can be used to orchestrate an AWS and OpenStack cluster simultaneously, while enabling 3rd-party providers like Cloudflare and DNSimple to be integrated to provide CDN and DNS services. 
+  </li>
+  <li><b>Software Defined Networking (SDN)</b>: Most SDN implementations have a control layer and infrastructure layer. Terraform can be used to codify the configuration for software defined networks. This configuration can then be used by Terraform to automatically setup and modify settings by interfacing with the control layer. This allows configuration to be versioned and changes to be automated. AWS VPC is one of the most commonly used SDN implementations, and can be configured by Terraform.
+  </li>
+</ol>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Install-Terraform">Install Terraform</div>
+<p>To install Terraform, find the appropriate <a href="https://www.terraform.io/downloads.html" target="_blank">package</a> and download it. Terraform is packaged as a zip archive.</p>
+<p>After downloading Terraform, unzip the package. Terraform runs as a single binary named <b>terraform</b>.</p>
+<p>Make sure that the terraform binary is available on the PATH:</p>
+<pre>
+$ sudo cp terraform /usr/local/bin
+</pre>
+<br>
+<p>We can verify the installation:</p>
+<pre>
+$ <font color="blue">terraform</font>
+Usage: terraform [--version] [--help] &lt;command&gt; [args]
+
+The available commands for execution are listed below.
+The most common, useful commands are shown first, followed by
+less common or more advanced commands. If you're just getting
+started with Terraform, stick with the common commands. For the
+other commands, please read the help and docs before usage.
+
+Common commands:
+    apply              Builds or changes infrastructure
+    console            Interactive console for Terraform interpolations
+...
+</pre>
+<br>
+<p>With Terraform installed, it's time to build infrastructure using a minimal Terraform configuration file. We will be able to examine Terraform's execution plan before we deploy it to AWS.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Configuration">Configuration</div>
+<p>We're going to write our first configuration now to launch a single AWS EC2 instance.</p>
+<p>Terraform will automatically search for saved API credentials in <b>~/.aws/credentials</b>:</p>
+<pre>
+[default]
+aws_access_key_id = B...T
+aws_secret_access_key = 8...Z
+</pre>
+<br/>
+<p>The configuration file should look like this in its simplest form:</p>
+<pre>
+<font color="green">provider</font> "<font color="green">aws</font>" {
+  region     = "us-east-1"
+}
+
+<font color="purple">resource</font> "<font color="green">aws</font>_instance" "terra-sample" {
+  ami           = "ami-f4cc1de2"
+  instance_type = "t2.nano"
+  key_name = "einsteinish"
+}
+</pre>
+<br/>
+<p>Save the contents to a file named <b>terra-sample.tf</b>. We need to make sure that there are no other *.tf files in our directory, since Terraform loads all of them.</p>
+<p>The above configuration is designed to work on most EC2 accounts, with access to a default VPC. This is a complete configuration that Terraform is ready to apply. </p>
+<p>The <b>provider</b> block is used to configure the named provider, in our case "aws." A provider is responsible for creating and managing resources. Multiple provider blocks can exist if a Terraform configuration is composed of multiple providers.</p>
+<p>
+The <b>resource</b> block defines a resource that exists within the infrastructure. A resource might be a physical component such as an EC2 instance, or it can be a logical resource such as a Heroku application.</p>
+<p>
+The <b>resource</b> block has three strings before opening the block: the <b>resource type</b>, the <b>resource name</b>, and the <b>key_name</b>.</p> 
+<p>In our example, the <b>resource type</b> is "aws_instance" and the <b>resource name</b> is "terra-sample." The <font color="green">prefix</font> of the type maps to the <font color="green">provider</font>. In our case "<font color="green">aws</font>_instance" automatically tells Terraform that it is managed by the "<font color="green">aws</font>" provider. In order to access an EC2 instance once it is created, we need to assign an AWS EC2 Key Pair at the time of instantiating the instance. </p>
+<p>
+Within the resource block itself is configuration for that resource. This is dependent on each resource provider and is fully documented within our providers reference. For our EC2 instance, we specify an AMI for Ubuntu 16.04, and request a "t2.nano" instance.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Execution-Plan">Execution Plan</div>
+<p>Let's see what Terraform would do if we asked it to apply this configuration. In the same directory as the <b>terra-sample.tf</b> file we created, run <b>terraform plan</b>. We should see output similar to the following:</p>
+<pre>
+$ <font color="blue">terraform plan</font>
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+The Terraform execution plan has been generated and is shown below.
+Resources are shown in alphabetical order for quick scanning. Green resources
+will be created (or destroyed and then created if an existing resource
+exists), yellow resources are being changed in-place, and red resources
+will be destroyed. Cyan entries are data sources to be read.
+
+Note: You didn't specify an "-out" parameter to save this plan, so when
+"apply" is called, Terraform can't guarantee this is what will execute.
+
+<font color="green">+ aws_instance.terra-sample</font>
+    ami:                         "ami-f4cc1de2"
+    associate_public_ip_address: "&lt;computed&gt;"
+    availability_zone:           "&lt;computed&gt;"
+    ebs_block_device.#:          "&lt;computed&gt;"
+    ephemeral_block_device.#:    "&lt;computed&gt;"
+    instance_state:              "&lt;computed&gt;"
+    instance_type:               "t2.nano"
+    ipv6_addresses.#:            "&lt;computed&gt;"
+    key_name:                    "einsteinish"
+    network_interface_id:        "&lt;computed&gt;"
+    placement_group:             "&lt;computed&gt;"
+    private_dns:                 "&lt;computed&gt;"
+    private_ip:                  "&lt;computed&gt;"
+    public_dns:                  "&lt;computed&gt;"
+    public_ip:                   "&lt;computed&gt;"
+    root_block_device.#:         "&lt;computed&gt;"
+    security_groups.#:           "&lt;computed&gt;"
+    source_dest_check:           "true"
+    subnet_id:                   "&lt;computed&gt;"
+    tenancy:                     "&lt;computed&gt;"
+    vpc_security_group_ids.#:    "&lt;computed&gt;"
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+</pre>
+<br>
+<p><font color="blue">terraform plan</font> shows what changes Terraform will apply to our infrastructure given the current state of our infrastructure as well as the current contents of our configuration.</p>
+
+<p>If <font color="blue">terraform plan</font> failed with an error, read the error message and fix the error that occurred. At this stage, it is probably a syntax error in the configuration.</p>
+
+<p>The output format is similar to the diff format generated by tools such as Git. The output has a "+" next to "aws_instance.terra-sample", meaning that Terraform will create this resource. Beneath that, it shows the attributes that will be set. When the value displayed is &lt;computed&gt;, it means that the value won't be known until the resource is created.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Apply">Apply</div>
+<p>The plan looks good, our configuration appears valid, so it's time to create real resources. Run <b>terraform apply</b> in the same directory as our <b>terra-sample.tf</b>, and watch it go! It will take a few minutes since Terraform waits for the EC2 instance to become available.</p>
+<pre>
+$ <font color="blue">terraform apply</font>
+aws_instance.terra-sample: Creating...
+  ami:                         "" => "ami-f4cc1de2"
+  associate_public_ip_address: "" =&gt; "&lt;computed&gt;"
+  availability_zone:           "" =&gt; "&lt;computed&gt;"
+  ebs_block_device.#:          "" =&gt; "&lt;computed&gt;"
+  ephemeral_block_device.#:    "" =&gt; "&lt;computed&gt;"
+  instance_state:              "" =&gt; "&lt;computed&gt;"
+  instance_type:               "" =&gt; "t2.nano"
+  ipv6_addresses.#:            "" =&gt; "&lt;computed&gt;"
+  key_name:                    "" =&gt; "einsteinish"
+  network_interface_id:        "" =&gt; "&lt;computed&gt;"
+  placement_group:             "" =&gt; "&lt;computed&gt;"
+  private_dns:                 "" =&gt; "&lt;computed&gt;"
+  private_ip:                  "" =&gt; "&lt;computed&gt;"
+  public_dns:                  "" =&gt; "&lt;computed&gt;"
+  public_ip:                   "" =&gt; "&lt;computed&gt;"
+  root_block_device.#:         "" =&gt; "&lt;computed&gt;"
+  security_groups.#:           "" =&gt; "&lt;computed&gt;"
+  source_dest_check:           "" =&gt; "true"
+  subnet_id:                   "" =&gt; "&lt;computed&gt;"
+  tenancy:                     "" =&gt; "&lt;computed&gt;"
+  vpc_security_group_ids.#:    "" =&gt; "&lt;computed&gt;"
+aws_instance.terra-sample: Still creating... (10s elapsed)
+aws_instance.terra-sample: Still creating... (20s elapsed)
+aws_instance.terra-sample: Creation complete (ID: i-07dc2310ed30d6dba)
+
+<font color="green">Apply complete! Resources: 1 added, 0 changed, 0 destroyed.</font>
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: 
+</pre>
+<br>
+<p>Done! We can go to the AWS console and check the EC2 instance has been created:</p>
+<img src="images/DevOps/Terraform-1/terra-instance-created.png" alt="terra-instance-created.png"/>
+<br>
+<p>Terraform also puts some state into the <b>terraform.tfstate</b> file by default.</p>
+<p>This state file is extremely important; it maps various resource metadata to actual resource IDs so that Terraform knows what it is managing. This file must be saved and distributed to anyone who might run Terraform. It is generally recommended to setup remote state when working with Terraform. This will mean that any potential secrets stored in the state file, will not be checked into version control.</p>
+<p>WE can inspect the state using <b>terraform show</b>:</p>
+<pre>
+$ <font color="blue">terraform show</font>
+aws_instance.terra-sample:
+  id = i-07dc2310ed30d6dba
+  ami = ami-f4cc1de2
+  associate_public_ip_address = true
+  availability_zone = us-east-1b
+  disable_api_termination = false
+  ebs_block_device.# = 0
+  ebs_optimized = false
+  ephemeral_block_device.# = 0
+  iam_instance_profile = 
+  instance_state = running
+  instance_type = t2.nano
+  ipv6_address_count = 0
+  ipv6_addresses.# = 0
+  key_name = einsteinish
+  monitoring = false
+  network_interface_id = eni-4b7915bc
+  private_dns = ip-172-31-53-130.ec2.internal
+  private_ip = 172.31.53.130
+  public_dns = ec2-54-144-127-106.compute-1.amazonaws.com
+  public_ip = 54.144.127.106
+  root_block_device.# = 1
+  root_block_device.0.delete_on_termination = true
+  root_block_device.0.iops = 100
+  root_block_device.0.volume_size = 8
+  root_block_device.0.volume_type = gp2
+  security_groups.# = 0
+  source_dest_check = true
+  subnet_id = subnet-6ac90441
+  tags.% = 0
+  tenancy = default
+  vpc_security_group_ids.# = 1
+  vpc_security_group_ids.3461207847 = sg-22897246
+</pre>
+<br>
+<p>We've created our first infrastructure with Terraform: a single EC2 instance. Next, we're going to modify that resource, and see how Terraform handles change.</p>
+<p>
+Infrastructure is continuously evolving, and Terraform was built to help manage and enact that change. As we  change Terraform configurations, Terraform builds an execution plan that only modifies what is necessary to reach your desired state.</p>
+<p>
+By using Terraform to change infrastructure, we can version control not only our configurations but also our state so we can see how the infrastructure evolved over time.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Modifying-Configuration">Modifying Configuration</div>
+<p>Let's modify the ami of our instance from Ubuntu 16.04 LTS AMI to Ubuntu 16.10 AMI (ami-b374d5a5):</p>
+<pre>
+provider "aws" {
+  region     = "us-east-1"
+}
+
+resource "aws_instance" "terra-sample" {
+  ami           = "<font color="green">ami-b374d5a5</font>"
+  instance_type = "t2.nano"
+  key_name = "einsteinish"
+}
+</pre>
+<br>
+<p>We can see what Terraform will do with the change we made:</p>
+<pre>
+$ <font color="blue">terraform plan</font>
+...
+<font color="green">-/+ aws_instance.terra-sample</font>
+    ami:                         "ami-f4cc1de2" =&gt; "ami-b374d5a5" <font color="red">(forces new resource)</font>
+    associate_public_ip_address: "true" =&gt; "&lt;computed&gt;"
+    availability_zone:           "us-east-1b" =&gt; "&lt;computed&gt;"
+    ebs_block_device.#:          "0" =&gt; "&lt;computed&gt;"
+    ephemeral_block_device.#:    "0" =&gt; "&lt;computed&gt;"
+    instance_state:              "running" =&gt; "&lt;computed&gt;"
+    instance_type:               "t2.nano" =&gt; "t2.nano"
+    ipv6_addresses.#:            "0" =&gt; "&lt;computed&gt;"
+    key_name:                    "einsteinish" =&gt; "einsteinish"
+    network_interface_id:        "eni-4b7915bc" =&gt; "&lt;computed&gt;"
+    placement_group:             "" =&gt; "&lt;computed&gt;"
+    private_dns:                 "ip-172-31-53-130.ec2.internal" =&gt; "&lt;computed&gt;"
+    private_ip:                  "172.31.53.130" =&gt; "&lt;computed&gt;"
+    public_dns:                  "ec2-54-144-127-106.compute-1.amazonaws.com" =&gt; "&lt;computed&gt;"
+    public_ip:                   "54.144.127.106" =&gt; "&lt;computed&gt;"
+    root_block_device.#:         "1" =&gt; "&lt;computed&gt;"
+    security_groups.#:           "0" =&gt; "&lt;computed&gt;"
+    source_dest_check:           "true" =&gt; "true"
+    subnet_id:                   "subnet-6ac90441" =&gt; "&lt;computed&gt;"
+    tenancy:                     "default" =&gt; "&lt;computed&gt;"
+    vpc_security_group_ids.#:    "1" =&gt; "&lt;computed&gt;"
+
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+</pre>
+<br>
+<p>The prefix "-/+" means that Terraform will destroy and recreate the resource, versus purely updating it in-place. While some attributes can do in-place updates (which are shown with a "~" prefix), AMI changing on EC2 instance requires a new resource. Terraform handles these details for you, and the execution plan makes it clear what Terraform will do.</p>
+<br>
+<p>Let's apply the change:</p>
+<pre>
+$ <font color="blue">terraform apply</font>
+aws_instance.terra-sample: Refreshing state... (ID: i-07dc2310ed30d6dba)
+aws_instance.terra-sample: Destroying... (ID: i-07dc2310ed30d6dba)
+aws_instance.terra-sample: Still destroying... (ID: i-07dc2310ed30d6dba, 10s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-07dc2310ed30d6dba, 20s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-07dc2310ed30d6dba, 30s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-07dc2310ed30d6dba, 40s elapsed)
+aws_instance.terra-sample: Destruction complete
+aws_instance.terra-sample: Creating...
+  ami:                         "" =&gt; "ami-b374d5a5"
+  associate_public_ip_address: "" =&gt; "&lt;computed&gt;"
+  availability_zone:           "" =&gt; "&lt;computed&gt;"
+  ebs_block_device.#:          "" =&gt; "&lt;computed&gt;"
+  ephemeral_block_device.#:    "" =&gt; "&lt;computed&gt;"
+  instance_state:              "" =&gt; "&lt;computed&gt;"
+  instance_type:               "" =&gt; "t2.nano"
+  ipv6_addresses.#:            "" =&gt; "&lt;computed&gt;"
+  key_name:                    "" =&gt; "einsteinish"
+  network_interface_id:        "" =&gt; "&lt;computed&gt;"
+  placement_group:             "" =&gt; "&lt;computed&gt;"
+  private_dns:                 "" =&gt; "&lt;computed&gt;"
+  private_ip:                  "" =&gt; "&lt;computed&gt;"
+  public_dns:                  "" =&gt; "&lt;computed&gt;"
+  public_ip:                   "" =&gt; "&lt;computed&gt;"
+  root_block_device.#:         "" =&gt; "&lt;computed&gt;"
+  security_groups.#:           "" =&gt; "&lt;computed&gt;"
+  source_dest_check:           "" =&gt; "true"
+  subnet_id:                   "" =&gt; "&lt;computed&gt;"
+  tenancy:                     "" =&gt; "&lt;computed&gt;"
+  vpc_security_group_ids.#:    "" =&gt; "&lt;computed&gt;"
+aws_instance.terra-sample: Still creating... (10s elapsed)
+aws_instance.terra-sample: Creation complete (ID: i-04fc1d12812148636)
+
+<font color="green">Apply complete! Resources: 1 added, 0 changed, 1 destroyed.</font>
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: 
+
+</pre>
+<br>
+<p>Login to the instance and then the release:</p>
+<pre>
+ubuntu@ip-172-31-62-33:~$ <font color="blue">lsb_release -a</font>
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.10
+Release:	16.10
+Codename:	yakkety
+</pre>
+<br/>
+<p>As the plan predicted, Terraform started by destroying our old instance, then creating the new one. We can use <b>terraform show again</b> to see the new properties associated with this instance.</p>
+<p> In the next section we're going to destroy our infrastructure.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Destroy-Infrastructure">Destroy Infrastructure</div>
+<p>In this section, we're going to see how to completely destroy the Terraform-managed infrastructure.</p>
+<br>
+<p>Before destroying our infrastructure, we can use the plan command to see what resources Terraform will destroy:</p>
+<pre>
+$ <font color="blue">terraform plan -destroy</font>
+...
+<font color="red">- aws_instance.terra-sample</font>
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+</pre>
+<br>
+<p>With the <b>-destroy</b> flag, we're asking Terraform to plan a destroy, where all resources under Terraform management are destroyed. We can use this output to verify exactly what resources Terraform is managing and will destroy.</p>
+<br>
+<p>Let's destroy the infrastructure:</p>
+<pre>
+$ <font color="blue">terraform destroy</font>
+Do you really want to destroy?
+  Terraform will delete all your managed infrastructure.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_instance.terra-sample: Refreshing state... (ID: i-04fc1d12812148636)
+aws_instance.terra-sample: Destroying... (ID: i-04fc1d12812148636)
+aws_instance.terra-sample: Still destroying... (ID: i-04fc1d12812148636, 10s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-04fc1d12812148636, 20s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-04fc1d12812148636, 30s elapsed)
+aws_instance.terra-sample: Still destroying... (ID: i-04fc1d12812148636, 40s elapsed)
+aws_instance.terra-sample: Destruction complete
+
+<font color="green">Destroy complete! Resources: 1 destroyed.</font>
+</pre>
+<br>
+<p>The terraform destroy command should ask us to verify that we really want to destroy the infrastructure. Terraform only accepts the literal "yes" as an answer as a safety mechanism. Once entered, Terraform will go through and destroy the infrastructure.</p>
+<p>
+Just like with apply, Terraform is smart enough to determine what order things should be destroyed. In our case, we only had one resource, so there wasn't any ordering necessary. But in more complicated cases with multiple resources, Terraform will destroy in the proper order.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Assigning-an-Elastic-IP">Assigning an Elastic IP</div>
+<p>Up to this point, our example has only contained a single resource, however, real infrastructure has a diverse set of resources and resource types.</p>
+<p>We're going to introduce resource dependencies, where we'll not only see a configuration with multiple resources for the first time, but also scenarios where resource parameters use information from other resources.</p>
+<p>We'll improve our configuration by assigning an elastic IP to the EC2 instance we're managing. Modify our terra-sample.tf and add the following:</p>
+<pre>
+provider "aws" {
+  region     = "us-east-1"
+}
+
+resource "aws_instance" "terra-sample" {
+  ami           = "ami-b374d5a5"
+  instance_type = "t2.nano"
+  key_name = "einsteinish"
+}
+
+resource "aws_eip" "ip" {
+  <font color="green">instance</font> = "${aws_instance.terra-sample.id}"
+}</font>
+</pre>
+<br>
+<p>Note that we're building an "aws_eip" resource type. This resource type allocates and associates an elastic IP to an EC2 instance.</p>
+<p>
+The only parameter for aws_eip is "instance" which is the EC2 instance to assign the IP to. For this value, we use an interpolation to use an attribute from the EC2 instance we managed earlier.</p>
+<p>
+The syntax for this interpolation should be straightforward: it requests the "id" attribute from the "aws_instance.terra-sample" resource.</p>
+<p>Run <b>terraform plan</b> to view the execution plan:</p>
+<pre>
+$ <font color="blue">terraform plan</font>
+...
+<font color="green">+ aws_eip.ip</font>
+    allocation_id:     "&lt;computed&gt;"
+    association_id:    "&lt;computed&gt;"
+    domain:            "&lt;computed&gt;"
+    instance:          "${aws_instance.terra-sample.id}"
+    network_interface: "&lt;computed&gt;"
+    private_ip:        "&lt;computed&gt;"
+    public_ip:         "&lt;computed&gt;"
+    vpc:               "&lt;computed&gt;"
+
+<font color="green">+ aws_instance.terra-sample</font>
+    ami:                         "ami-b374d5a5"
+    associate_public_ip_address: "&lt;computed&gt;"
+    availability_zone:           "&lt;computed&gt;"
+    ebs_block_device.#:          "&lt;computed&gt;"
+    ephemeral_block_device.#:    "&lt;computed&gt;"
+    instance_state:              "&lt;computed&gt;"
+    instance_type:               "t2.nano"
+    ipv6_addresses.#:            "&lt;computed&gt;"
+    key_name:                    "einsteinish"
+    network_interface_id:        "&lt;computed&gt;"
+    placement_group:             "&lt;computed&gt;"
+    private_dns:                 "&lt;computed&gt;"
+    private_ip:                  "&lt;computed&gt;"
+    public_dns:                  "&lt;computed&gt;"
+    public_ip:                   "&lt;computed&gt;"
+    root_block_device.#:         "&lt;computed&gt;"
+    security_groups.#:           "&lt;computed&gt;"
+    source_dest_check:           "true"
+    subnet_id:                   "&lt;computed&gt;"
+    tenancy:                     "&lt;computed&gt;"
+    vpc_security_group_ids.#:    "&lt;computed&gt;"
+
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+</pre>
+<br>
+<p>Terraform will create two resources: the instance and the elastic IP. In the "instance" value for the "aws_eip", we can see the raw interpolation is still present. This is because this variable won't be known until the "aws_instance" is created. It will be replaced at apply-time.</p>
+<p>
+Next, run <b>terraform apply</b>:</p>
+<pre>
+$ <font color="blue">terraform apply</font>
+aws_instance.terra-sample: Creating...
+  ami:                         "" =&gt; "ami-b374d5a5"
+  associate_public_ip_address: "" =&gt; "&lt;computed&gt;"
+  availability_zone:           "" =&gt; "&lt;computed&gt;"
+  ebs_block_device.#:          "" =&gt; "&lt;computed&gt;"
+  ephemeral_block_device.#:    "" =&gt; "&lt;computed&gt;"
+  instance_state:              "" =&gt; "&lt;computed&gt;"
+  instance_type:               "" =&gt; "t2.nano"
+  ipv6_addresses.#:            "" =&gt; "&lt;computed&gt;"
+  key_name:                    "" =&gt; "einsteinish"
+  network_interface_id:        "" =&gt; "&lt;computed&gt;"
+  placement_group:             "" =&gt; "&lt;computed&gt;"
+  private_dns:                 "" =&gt; "&lt;computed&gt;"
+  private_ip:                  "" =&gt; "&lt;computed&gt;"
+  public_dns:                  "" =&gt; "&lt;computed&gt;"
+  public_ip:                   "" =&gt; "&lt;computed&gt;"
+  root_block_device.#:         "" =&gt; "&lt;computed&gt;"
+  security_groups.#:           "" =&gt; "&lt;computed&gt;"
+  source_dest_check:           "" =&gt; "true"
+  subnet_id:                   "" =&gt; "&lt;computed&gt;"
+  tenancy:                     "" =&gt; "&lt;computed&gt;"
+  vpc_security_group_ids.#:    "" =&gt; "&lt;computed&gt;"
+aws_instance.terra-sample: Still creating... (10s elapsed)
+aws_instance.terra-sample: Still creating... (20s elapsed)
+aws_instance.terra-sample: Creation complete (ID: i-0cd25097632bf9022)
+aws_eip.ip: Creating...
+  allocation_id:     "" =&gt; "&lt;computed&gt;"
+  association_id:    "" =&gt; "&lt;computed&gt;"
+  domain:            "" =&gt; "&lt;computed&gt;"
+  instance:          "" =&gt; "i-0cd25097632bf9022"
+  network_interface: "" =&gt; "&lt;computed&gt;"
+  private_ip:        "" =&gt; "&lt;computed&gt;"
+  public_ip:         "" =&gt; "&lt;computed&gt;"
+  vpc:               "" =&gt; "&lt;computed&gt;"
+aws_eip.ip: Creation complete (ID: eipalloc-35aee604)
+
+<font color="green">Apply complete! Resources: 2 added, 0 changed, 0 destroyed.</font>
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: 
+</pre>
+<br>
+<p>Terraform creates the EC2 instance before the elastic IP address. Due to the interpolation earlier where the elastic IP requires the ID of the EC2 instance, Terraform is able to infer a dependency, and knows to create the instance first.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Implicit-and-Explicit-Dependencies">Implicit and Explicit Dependencies</div>
+<p>Most dependencies in Terraform are implicit: Terraform is able to infer dependencies based on usage of attributes of other resources.</p>
+<p>
+Using this information, Terraform builds a graph of resources. This tells Terraform not only in what order to create resources, but also what resources can be created in parallel. In our example, since the IP address depended on the EC2 instance, they could not be created in parallel.</p>
+<p>
+Implicit dependencies work well and are usually all we ever need. However, we can also specify explicit dependencies with the depends_on parameter which is available on any resource. For example, we could modify the "aws_eip" resource to the following, which effectively does the same thing and is redundant:</p>
+<pre>
+resource "aws_eip" "ip" {
+  instance   = "${aws_instance.terra-sample.id}"
+  depends_on = ["aws_instance.terra-sample"]
+}
+</pre>
+<br>
+<p>If not sure for the dependency chain that Terraform is creating, we can use the <b>terraform graph</b> command to view the graph. This command outputs a dot-formatted graph which can be viewed with Graphviz.</p>
+<pre>
+$ <font color="blue">terraform graph</font>
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.ip" [label = "aws_eip.ip", shape = "box"]
+		"[root] aws_instance.terra-sample" [label = "aws_instance.terra-sample", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_eip.ip" -> "[root] aws_instance.terra-sample"
+		"[root] aws_instance.terra-sample" -> "[root] provider.aws"
+	}
+}
+</pre>
+<br>
+<pre>
+$ <font color="blue">terraform graph | dot -Tpng > graph.png</font>
+</pre>
+<br>
+<img src="images/DevOps/Terraform-1/terra-graph.png" alt="terra-graph.png"/>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Non-Dependent-Resources">Non-Dependent Resources</div>
+<p>We can now augment the configuration with another EC2 instance. Because this doesn't rely on any other resource, it can be created in parallel to everything else.</p>
+<p>Here is our tf file with two independent instances:</p>
+<pre>
+provider "aws" {
+  region     = "us-east-1"
+}
+
+resource "aws_instance" "<font color="green">terra-sample</font>" {
+  ami           = "ami-b374d5a5"
+  instance_type = "t2.nano"
+  key_name = "einsteinish"
+}
+
+resource "aws_eip" "ip" {
+  instance = "${aws_instance.terra-sample.id}"
+}
+
+resource "aws_instance" "<font color="green">another</font>" {
+  ami           = "ami-b374d5a5"
+  instance_type = "t2.nano"
+}
+</pre>
+<br>
+<pre>
+$ <font color="blue">terraform graph | dot -Tpng > graph2.png</font>
+</pre>
+<br>
+<img src="images/DevOps/Terraform-1/terra-graph2.png" alt="terra-graph2.png"/>
+<br>
+<p>We see that nothing depends on this and that it will likely be created in parallel.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Defining-a-Provisioner">Defining a Provisioner</div>
+<p>Provisioning is important for being able to bootstrap instances. As another reminder, it is not a replacement for configuration management. It is meant to simply bootstrap machines. If we use configuration management, we should use the provisioning as a way to bootstrap the configuration management tool.</p>
+<p>Now let's see how to use provisioners to initialize instances when they're created.</p>
+<p>If we need to do some initial setup on our instances, then provisioners let us upload files, run shell scripts, or install and trigger other software like configuration management tools, etc.</p>
+<p>To define a provisioner, modify the resource block defining the "terra-sample" EC2 instance to look like the following:</p>
+<pre>
+provider "aws" {
+  region     = "us-east-1"
+}
+
+resource "aws_instance" "terra-sample" {
+  ami           = "ami-b374d5a5"
+  instance_type = "t2.nano"
+  key_name = "einsteinish"
+
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
+  }
+}
+</pre>
+<br>
+<p>This adds a <b>provisioner</b> block within the resource block. Multiple <b>provisioner</b> blocks can be added to define multiple provisioning steps. Terraform supports multiple provisioners, but for this example we are using the <b>local-exec</b> provisioner.</p>
+<p>
+The <b>local-exec</b> provisioner executes a command locally on the machine running Terraform. We're using this provisioner versus the others so we don't have to worry about specifying any connection info right now.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Running-Provisioners">Running Provisioners</div>
+<p><font color="maroon">Provisioners are only run when a resource is created</font>. They are not a replacement for configuration management and changing the software of an already-running server, and are instead just meant as a way to <b>bootstrap</b> a server. For configuration management, we should use Terraform provisioning to invoke a real configuration management solution.</p>
+<p>
+Make sure that our infrastructure is destroyed if it isn't already, then run apply:</p>
+<pre>
+$ <font color="blue">terraform destroy</font>
+aws_instance.terra-sample: Creating...
+  ami:                         "" => "ami-b374d5a5"
+  instance_type:               "" => "t2.nano"
+  key_name:                    "" => "einsteinish"
+  source_dest_check:           "" => "true"
+aws_instance.terra-sample: Still creating... (10s elapsed)
+aws_instance.terra-sample: Creation complete (ID: i-09ba39b1cbda14d92)
+aws_eip.ip: Creating...
+  instance:          "" => "i-09ba39b1cbda14d92"
+aws_eip.ip: Creation complete (ID: eipalloc-6cc48c5d)
+
+<font color="green">Apply complete! Resources: 2 added, 0 changed, 0 destroyed.</font>
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Defining-Variables">Defining Variables</div>
+<p>Let's first extract our access key, secret key, and region into a few variables. Create another file <b>variables.tf</b>:</p>
+<pre>
+variable "access_key" {}
+variable "secret_key" {}
+variable "region" {
+  default = "us-east-1"
+}
+</pre>
+<br>
+<p>This defines three variables within your Terraform configuration. The first two have empty blocks {}. The third sets a default. If a default value is set, the variable is optional. Otherwise, the variable is required. If we run <b>terraform plan</b> now, Terraform will prompt us for the values for unset string variables:</p>
+<pre>
+$ terraform plan
+var.access_key
+  Enter a value: AKI...WUQ
+
+var.secret_key
+  Enter a value: 3qv...DSY
+</pre>
+<br>
+<p>Next, replace the AWS provider configuration with the following:</p>
+<pre>
+provider "aws" {
+  access_key = "${var.access_key}"
+  secret_key = "${var.secret_key}"
+  region     = "${var.region}"
+}
+</pre>
+<br>
+<p>This uses more interpolations, this time prefixed with <b>var.</b> which tells Terraform that we're accessing variables. This configures the AWS provider with the given variables.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Assigning-Variables">Assigning Variables</div>
+<p>There are multiple ways to assign variables. Below is also the order in which variable values are chosen. The following is the descending order of precedence in which variables are considered.</p>
+<p>We can set variables directly on the command-line with the <b>-var</b> flag. Any command in Terraform that inspects the configuration accepts this flag, such as <b>apply</b>, <b>plan</b>, and <b>refresh</b>:</p>
+<pre>
+$ <font color="blue">terraform plan \
+  -var 'access_key=foo' \
+  -var 'secret_key=bar'</font>
+</pre>
+<br>
+<p>Once again, setting variables this way will not save them, and they'll have to be input repeatedly as commands are executed.</p>
+<p>To persist variable values, create a file and assign variables within this file. Create a file named <b>terraform.tfvars</b> with the following contents:</p>
+<pre>
+access_key = "foo"
+secret_key = "bar"
+</pre>
+<br>
+<p>
+If a <b>terraform.tfvars</b> file is present in the current directory, Terraform automatically loads it to populate variables. If the file is named something else, we can use the <b>-var-file</b> flag directly to specify a file. These files are the same syntax as Terraform configuration files. And like Terraform configuration files, these files can also be JSON.</p>
+<p>
+We don't recommend saving usernames and password to version control, But you can create a local secret variables file and use <b>-var-file</b> to load it.</p>
+<p>We can use multiple <b>-var-file</b> arguments in a single command, with some checked in to version control and others not checked in. For example:</p>
+<pre>
+$ <font color="blue">terraform plan \
+  -var-file="secret.tfvars" \
+  -var-file="production.tfvars"</font>
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Environment-Variables">Environment Variables</div>
+<p>We can provide our credentials via the <b>AWS_ACCESS_KEY_ID</b> and <b>AWS_SECRET_ACCESS_KEY</b>, environment variables, representing your <b>AWS Access Key</b> and <b>AWS Secret Key</b>, respectively. The <b>AWS_DEFAULT_REGION</b> and <b>AWS_SESSION_TOKEN</b> environment variables are also used, if applicable:</p>
+<pre>
+provider "aws" {}
+</pre>
+<br>
+<p>
+Usage:</p>
+<pre>
+$ export AWS_ACCESS_KEY_ID="anaccesskey"
+$ export AWS_SECRET_ACCESS_KEY="asecretkey"
+$ export AWS_DEFAULT_REGION="us-west-2"
+</pre>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Shared-Credentials-file">Shared Credentials file</div>
+<p>We can use an AWS credentials file to specify our credentials. The default location is <b>$HOME/.aws/credentials</b> on Linux. If we fail to detect credentials inline, or in the environment, Terraform will check this location. We can optionally specify a different location in the configuration by providing the <b>shared_credentials_file</b> attribute, or in the environment with the AWS_SHARED_CREDENTIALS_FILE variable:</p>
+<pre>
+provider "aws" {
+  region                  = "us-east-1"
+  shared_credentials_file = "/home/k/.aws/credentials"
+}
+</pre>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="output-variables">Output variables</div>
+<p>We can use output variables as a way to organize data to be easily queried and shown back to the Terraform user.</p>
+<p>
+When building potentially complex infrastructure, Terraform stores hundreds or thousands of attribute values for all our resources. But as a user of Terraform, we may only be interested in a few values of importance, such as a load balancer IP, VPN address, etc.</p>
+<p>
+Outputs are a way to tell Terraform what data is important. This data is outputted when <b>apply</b> is called, and can be queried using the <b>terraform output</b> command.</p>
+<p>Let's define an output to show us the public IP address of the elastic IP address that we create. Add this to any of our <b>*.tf</b> files:</p>
+<pre>
+output "ip" {
+  value = "${aws_eip.ip.public_ip}"
+}
+</pre>
+<p>
+This defines an output variable named "ip". The <b>value</b> field specifies what the value will be, and almost always contains one or more interpolations, since the output data is typically dynamic. In this case, we're outputting the <b>public_ip</b> attribute of the elastic IP address.</p>
+<p>We run <b>terraform apply</b> to populate the output. This only needs to be done once after the output is defined. The apply output should change slightly. At the end we should see this:</p>
+<pre>
+$ <font color="blue">terraform apply</font>
+...
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+  ip = 50.17.232.209
+</pre>
+<br>
+<p>
+<b>apply</b> highlights the outputs. We can also query the outputs after apply-time using <b>terraform output</b>:</p>
+<pre>
+$ <font color="blue">terraform output ip</font>
+50.17.232.209
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="subtitle_2nd" id="Maps">Maps</div>
+<p>AMIs are specific to the region that is in use. One option is to just ask the user to input the proper AMI for the region, but Terraform can do better than that with maps.</p>
+<p>
+Maps are a way to create variables that are lookup tables. An example will show this best. Let's extract our AMIs into a map and add support for the us-west-2 region as well:</p>
+<pre>
+variable "amis" {
+  type = "map"
+  default = {
+    "us-east-1" = "ami-b374d5a5"
+    "us-west-2" = "ami-4b32be2b"
+  }
+}
+</pre>
+<br>
+<p>
+A variable can have a <b>map</b> type assigned explicitly, or it can be implicitly declared as a map by specifying a default value that is a map. The above demonstrates both.</p>
+<p>
+Then, replace the <b>aws_instance</b> with the following:</p>
+<pre>
+resource "aws_instance" "example" {
+  ami           = "${lookup(var.amis, var.region)}"
+  instance_type = "t2.micro"
+}
+</pre>
+<p>This introduces a new type of interpolation: a function call. The <b>lookup</b> function does a dynamic lookup in a map for a key. The key is "var.region", which specifies that the value of the region variables is the key.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Two-Tier-AWS-Architecture">Two-Tier AWS Architecture</div>
+<p>This provides a template for running a simple two-tier architecture on Amazon Web Services. The premise is that we have stateless app servers running behind an ELB serving traffic.</p>
+<p>
+To simplify the example, it intentionally ignores deploying and getting our application onto the servers. However, we could do so either via provisioners and a configuration management tool, or by pre-baking configured AMIs with Packer.</p>
+<p>
+After we run <b>terraform apply</b> on this configuration, it will automatically output the DNS address of the ELB. After our instance registers, this should respond with the default Nginx web page.</p>
+<p>
+As with all the examples, just copy and paste the example and run <b>terraform apply</b> to see it work.</p>
+<br>
+<p>We can get the example from <a href="https://github.com/hashicorp/terraform/tree/master/examples/aws-two-tier" target="_blank">aws-two-tier</a>.</p>
+<br>
+<pre>
+$ <font color="blue">terraform apply</font>
+var.key_name
+  Desired name of AWS key pair
+
+  Enter a value: ~/.ssh/einsteinish.pem
+
+var.public_key_path
+  Path to the SSH public key to be used for authentication.
+  Ensure this keypair is added to your local SSH agent so provisioners can
+  connect.
+  Example: ~/.ssh/terraform.pub
+
+  Enter a value: ~/.ssh/id_rsa.pub
+
+aws_vpc.default: Refreshing state... (ID: vpc-adc2e1ca)
+aws_key_pair.auth: Refreshing state... (ID: ~/.ssh/einsteinish.pem)
+aws_security_group.default: Refreshing state... (ID: sg-39df7c42)
+aws_internet_gateway.default: Refreshing state... (ID: igw-552bcb32)
+aws_security_group.elb: Refreshing state... (ID: sg-a1d87bda)
+aws_subnet.default: Refreshing state... (ID: subnet-b5750bd2)
+aws_route.internet_access: Refreshing state... (ID: r-rtb-74a071121080289494)
+aws_vpc.default: Creating...
+  assign_generated_ipv6_cidr_block: "" =&gt; "false"
+  cidr_block:                       "" =&gt; "10.0.0.0/16"
+  default_network_acl_id:           "" =&gt; "&lt;computed&gt;"
+  default_route_table_id:           "" =&gt; "&lt;computed&gt;"
+  default_security_group_id:        "" =&gt; "&lt;computed&gt;"
+  dhcp_options_id:                  "" =&gt; "&lt;computed&gt;"
+  enable_classiclink:               "" =&gt; "&lt;computed&gt;"
+  enable_dns_hostnames:             "" =&gt; "&lt;computed&gt;"
+  enable_dns_support:               "" =&gt; "true"
+  instance_tenancy:                 "" =&gt; "&lt;computed&gt;"
+  ipv6_association_id:              "" =&gt; "&lt;computed&gt;"
+  ipv6_cidr_block:                  "" =&gt; "&lt;computed&gt;"
+  main_route_table_id:              "" =&gt; "&lt;computed&gt;"
+aws_key_pair.auth: Creating...
+  fingerprint: "" =&gt; "&lt;computed&gt;"
+  key_name:    "" =&gt; "~/.ssh/einsteinish.pem"
+  public_key:  "" =&gt; "ssh-rsa AA...F9PR k@laptop"
+aws_key_pair.auth: Creation complete (ID: ~/.ssh/einsteinish.pem)
+aws_vpc.default: Creation complete (ID: vpc-d01a16b6)
+aws_internet_gateway.default: Creating...
+  vpc_id: "" =&gt; "vpc-d01a16b6"
+aws_subnet.default: Creating...
+  assign_ipv6_address_on_creation: "" =&gt; "false"
+  availability_zone:               "" =&gt; "&lt;computed&gt;"
+  cidr_block:                      "" =&gt; "10.0.1.0/24"
+  ipv6_cidr_block_association_id:  "" =&gt; "&lt;computed&gt;"
+  map_public_ip_on_launch:         "" =&gt; "true"
+  vpc_id:                          "" =&gt; "vpc-d01a16b6"
+aws_security_group.default: Creating...
+  description:                           "" =&gt; "Used in the terraform"
+  egress.#:                              "" =&gt; "1"
+  egress.482069346.cidr_blocks.#:        "" =&gt; "1"
+  egress.482069346.cidr_blocks.0:        "" =&gt; "0.0.0.0/0"
+  egress.482069346.from_port:            "" =&gt; "0"
+  egress.482069346.ipv6_cidr_blocks.#:   "" =&gt; "0"
+  egress.482069346.prefix_list_ids.#:    "" =&gt; "0"
+  egress.482069346.protocol:             "" =&gt; "-1"
+  egress.482069346.security_groups.#:    "" =&gt; "0"
+  egress.482069346.self:                 "" =&gt; "false"
+  egress.482069346.to_port:              "" =&gt; "0"
+  ingress.#:                             "" =&gt; "2"
+  ingress.2165049311.cidr_blocks.#:      "" =&gt; "1"
+  ingress.2165049311.cidr_blocks.0:      "" =&gt; "10.0.0.0/16"
+  ingress.2165049311.from_port:          "" =&gt; "80"
+  ingress.2165049311.ipv6_cidr_blocks.#: "" =&gt; "0"
+  ingress.2165049311.protocol:           "" =&gt; "tcp"
+  ingress.2165049311.security_groups.#:  "" =&gt; "0"
+  ingress.2165049311.self:               "" =&gt; "false"
+  ingress.2165049311.to_port:            "" =&gt; "80"
+  ingress.2541437006.cidr_blocks.#:      "" =&gt; "1"
+  ingress.2541437006.cidr_blocks.0:      "" =&gt; "0.0.0.0/0"
+  ingress.2541437006.from_port:          "" =&gt; "22"
+  ingress.2541437006.ipv6_cidr_blocks.#: "" =&gt; "0"
+  ingress.2541437006.protocol:           "" =&gt; "tcp"
+  ingress.2541437006.security_groups.#:  "" =&gt; "0"
+  ingress.2541437006.self:               "" =&gt; "false"
+  ingress.2541437006.to_port:            "" =&gt; "22"
+  name:                                  "" =&gt; "terraform_example"
+  owner_id:                              "" =&gt; "&lt;computed&gt;"
+  vpc_id:                                "" =&gt; "vpc-d01a16b6"
+aws_security_group.elb: Creating...
+  description:                           "" =&gt; "Used in the terraform"
+  egress.#:                              "" =&gt; "1"
+  egress.482069346.cidr_blocks.#:        "" =&gt; "1"
+  egress.482069346.cidr_blocks.0:        "" =&gt; "0.0.0.0/0"
+  egress.482069346.from_port:            "" =&gt; "0"
+  egress.482069346.ipv6_cidr_blocks.#:   "" =&gt; "0"
+  egress.482069346.prefix_list_ids.#:    "" =&gt; "0"
+  egress.482069346.protocol:             "" =&gt; "-1"
+  egress.482069346.security_groups.#:    "" =&gt; "0"
+  egress.482069346.self:                 "" =&gt; "false"
+  egress.482069346.to_port:              "" =&gt; "0"
+  ingress.#:                             "" =&gt; "1"
+  ingress.2214680975.cidr_blocks.#:      "" =&gt; "1"
+  ingress.2214680975.cidr_blocks.0:      "" =&gt; "0.0.0.0/0"
+  ingress.2214680975.from_port:          "" =&gt; "80"
+  ingress.2214680975.ipv6_cidr_blocks.#: "" =&gt; "0"
+  ingress.2214680975.protocol:           "" =&gt; "tcp"
+  ingress.2214680975.security_groups.#:  "" =&gt; "0"
+  ingress.2214680975.self:               "" =&gt; "false"
+  ingress.2214680975.to_port:            "" =&gt; "80"
+  name:                                  "" =&gt; "terraform_example_elb"
+  owner_id:                              "" =&gt; "&lt;computed&gt;"
+  vpc_id:                                "" =&gt; "vpc-d01a16b6"
+aws_internet_gateway.default: Creation complete (ID: igw-4c24e02a)
+aws_route.internet_access: Creating...
+  destination_cidr_block:     "" =&gt; "0.0.0.0/0"
+  destination_prefix_list_id: "" =&gt; "&lt;computed&gt;"
+  egress_only_gateway_id:     "" =&gt; "&lt;computed&gt;"
+  gateway_id:                 "" =&gt; "igw-4c24e02a"
+  instance_id:                "" =&gt; "&lt;computed&gt;"
+  instance_owner_id:          "" =&gt; "&lt;computed&gt;"
+  nat_gateway_id:             "" =&gt; "&lt;computed&gt;"
+  network_interface_id:       "" =&gt; "&lt;computed&gt;"
+  origin:                     "" =&gt; "&lt;computed&gt;"
+  route_table_id:             "" =&gt; "rtb-5d0b2f24"
+  state:                      "" =&gt; "&lt;computed&gt;"
+aws_subnet.default: Creation complete (ID: subnet-b826f5f0)
+aws_route.internet_access: Creation complete (ID: r-rtb-5d0b2f241080289494)
+aws_security_group.elb: Creation complete (ID: sg-7bfcd904)
+aws_security_group.default: Creation complete (ID: sg-b7fcd9c8)
+aws_instance.web: Creating...
+  ami:                               "" =&gt; "ami-f4cc1de2"
+  associate_public_ip_address:       "" =&gt; "&lt;computed&gt;"
+  availability_zone:                 "" =&gt; "&lt;computed&gt;"
+  ebs_block_device.#:                "" =&gt; "&lt;computed&gt;"
+  ephemeral_block_device.#:          "" =&gt; "&lt;computed&gt;"
+  instance_state:                    "" =&gt; "&lt;computed&gt;"
+  instance_type:                     "" =&gt; "t2.nano"
+  ipv6_addresses.#:                  "" =&gt; "&lt;computed&gt;"
+  key_name:                          "" =&gt; "~/.ssh/einsteinish.pem"
+  network_interface_id:              "" =&gt; "&lt;computed&gt;"
+  placement_group:                   "" =&gt; "&lt;computed&gt;"
+  private_dns:                       "" =&gt; "&lt;computed&gt;"
+  private_ip:                        "" =&gt; "&lt;computed&gt;"
+  public_dns:                        "" =&gt; "&lt;computed&gt;"
+  public_ip:                         "" =&gt; "&lt;computed&gt;"
+  root_block_device.#:               "" =&gt; "&lt;computed&gt;"
+  security_groups.#:                 "" =&gt; "&lt;computed&gt;"
+  source_dest_check:                 "" =&gt; "true"
+  subnet_id:                         "" =&gt; "subnet-b826f5f0"
+  tenancy:                           "" =&gt; "&lt;computed&gt;"
+  vpc_security_group_ids.#:          "" =&gt; "1"
+  vpc_security_group_ids.1255873682: "" =&gt; "sg-b7fcd9c8"
+aws_instance.web: Still creating... (10s elapsed)
+aws_instance.web: Still creating... (20s elapsed)
+aws_instance.web: Provisioning with 'remote-exec'...
+aws_instance.web (remote-exec): Connecting to remote host via SSH...
+aws_instance.web (remote-exec):   Host: 52.201.230.107
+aws_instance.web (remote-exec):   User: ubuntu
+aws_instance.web (remote-exec):   Password: false
+aws_instance.web (remote-exec):   Private key: false
+aws_instance.web (remote-exec):   SSH Agent: true
+aws_instance.web: Still creating... (30s elapsed)
+aws_instance.web: Still creating... (40s elapsed)
+...
+aws_instance.web (remote-exec): Processing triggers for ufw (0.35-0ubuntu2) ...
+aws_instance.web (remote-exec): sudo: unable to resolve host ip-10-0-1-102
+aws_instance.web: Creation complete (ID: i-096c9cb80c3cc55a5)
+aws_elb.web: Creating...
+  availability_zones.#:                   "" =&gt; "&lt;computed&gt;"
+  connection_draining:                    "" =&gt; "false"
+  connection_draining_timeout:            "" =&gt; "300"
+  cross_zone_load_balancing:              "" =&gt; "true"
+  dns_name:                               "" =&gt; "&lt;computed&gt;"
+  health_check.#:                         "" =&gt; "&lt;computed&gt;"
+  idle_timeout:                           "" =&gt; "60"
+  instances.#:                            "" =&gt; "1"
+  instances.281684789:                    "" =&gt; "i-096c9cb80c3cc55a5"
+  internal:                               "" =&gt; "&lt;computed&gt;"
+  listener.#:                             "" =&gt; "1"
+  listener.3057123346.instance_port:      "" =&gt; "80"
+  listener.3057123346.instance_protocol:  "" =&gt; "http"
+  listener.3057123346.lb_port:            "" =&gt; "80"
+  listener.3057123346.lb_protocol:        "" =&gt; "http"
+  listener.3057123346.ssl_certificate_id: "" =&gt; ""
+  name:                                   "" =&gt; "terraform-example-elb"
+  security_groups.#:                      "" =&gt; "1"
+  security_groups.3201328540:             "" =&gt; "sg-7bfcd904"
+  source_security_group:                  "" =&gt; "&lt;computed&gt;"
+  source_security_group_id:               "" =&gt; "&lt;computed&gt;"
+  subnets.#:                              "" =&gt; "1"
+  subnets.3949924399:                     "" =&gt; "subnet-b826f5f0"
+  zone_id:                                "" =&gt; "&lt;computed&gt;"
+aws_elb.web: Still creating... (10s elapsed)
+aws_elb.web: Creation complete (ID: terraform-example-elb)
+
+<font color="green">Apply complete! Resources: 9 added, 0 changed, 0 destroyed.</font>
+
+The state of your infrastructure has been saved to the path
+below. This state is required to modify and destroy your
+infrastructure, so keep it safe. To inspect the complete state
+use the `terraform show` command.
+
+State path: 
+
+<font color="green">Outputs:
+
+address = terraform-example-elb-1938749564.us-east-1.elb.amazonaws.com</font>
+</pre>
+<br>
+<p>We can check our nginx web server is running:</p>
+<img src="images/DevOps/Terraform-1/terra-elb-nginx.png" alt="terra-elb-nginx.png"/>
+
+<br>
+<br>
+<br>
+<img src="images/DevOps/Terraform-1/two-tier-graph.png" alt="two-tier-graph.png"/>
+<br>
+<br>
+
+<p>Here are the files used.</p>
+<p><b>variables.tf</b>:</p>
+<pre>
+variable "key_name" {
+  description = "Desired name of AWS key pair"
+}
+
+variable "aws_region" {
+  description = "AWS region to launch servers."
+  default     = "us-east-1"
+}
+
+# Ubuntu Precise 16.04 LTS (x64)
+variable "aws_amis" {
+  default = {
+    us-east-1 = "ami-f4cc1de2"
+    us-east-2 = "ami-fcc19b99"
+    us-west-1 = "ami-16efb076"
+    us-west-2 = "ami-a58d0dc5"
+  }
+}
+</pre>
+<br>
+<p><b>variables.tf</b>:</p>
+<pre>
+output "address" {
+  value = "${aws_elb.web.dns_name}"
+}
+</pre>
+<br>
+<p><b>main.tf</b>:</p>
+<pre>
+# Specify the provider and access details
+provider "aws" {
+  region = "${var.aws_region}"
+}
+
+# Create a VPC to launch our instances into
+resource "aws_vpc" "default" {
+  cidr_block = "10.0.0.0/16"
+}
+
+# Create an internet gateway to give our subnet access to the outside world
+resource "aws_internet_gateway" "default" {
+  vpc_id = "${aws_vpc.default.id}"
+}
+
+# Grant the VPC internet access on its main route table
+resource "aws_route" "internet_access" {
+  route_table_id         = "${aws_vpc.default.main_route_table_id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.default.id}"
+}
+
+# Create a subnet to launch our instances into
+resource "aws_subnet" "default" {
+  vpc_id                  = "${aws_vpc.default.id}"
+  cidr_block              = "10.0.1.0/24"
+  map_public_ip_on_launch = true
+}
+
+# A security group for the ELB so it is accessible via the web
+resource "aws_security_group" "elb" {
+  name        = "terraform_example_elb"
+  description = "Used in the terraform"
+  vpc_id      = "${aws_vpc.default.id}"
+
+  # HTTP access from anywhere
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # outbound internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Our default security group to access
+# the instances over SSH and HTTP
+resource "aws_security_group" "default" {
+  name        = "terraform_example"
+  description = "Used in the terraform"
+  vpc_id      = "${aws_vpc.default.id}"
+
+  # SSH access from anywhere
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # HTTP access from the VPC
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  # outbound internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_elb" "web" {
+  name = "terraform-example-elb"
+
+  subnets         = ["${aws_subnet.default.id}"]
+  security_groups = ["${aws_security_group.elb.id}"]
+  instances       = ["${aws_instance.web.id}"]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+}
+
+resource "aws_key_pair" "auth" {
+  key_name   = "${var.key_name}"
+  public_key = "${file(var.public_key_path)}"
+}
+
+resource "aws_instance" "web" {
+  # The connection block tells our provisioner how to
+  # communicate with the resource (instance)
+  connection {
+    # The default username for our AMI
+    user = "ubuntu"
+
+    # The connection will use the local SSH agent for authentication.
+  }
+
+  instance_type = "t2.nano"
+
+  # Lookup the correct AMI based on the region
+  # we specified
+  ami = "${lookup(var.aws_amis, var.aws_region)}"
+
+  # The name of our SSH keypair we created above.
+  key_name = "${aws_key_pair.auth.id}"
+
+  # Our Security group to allow HTTP and SSH access
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
+
+  # We're going to launch into the same subnet as our ELB. In a production
+  # environment it's more common to have a separate private subnet for
+  # backend instances.
+  subnet_id = "${aws_subnet.default.id}"
+
+  # We run a remote provisioner on the instance after creating it.
+  # In this case, we just install nginx and start it. By default,
+  # this should be on port 80
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get -y update",
+      "sudo apt-get -y install nginx",
+      "sudo service nginx start",
+    ]
+  }
+}
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="Refs">Refs</div>
+<p><a href="https://blog.gruntwork.io/why-we-use-terraform-and-not-chef-puppet-ansible-saltstack-or-cloudformation-7989dad2865c" target="_blank">Why we use Terraform and not Chef, Puppet, Ansible, SaltStack, or CloudFormation</a>.</p>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+<br>
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br /><br />
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br /><br />
+<br><br>
+<h1>Elasticsearch search engine, Logstash, and Kibana</h1>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Elastic_Search_Tutorial.html">Elasticsearch, search engine</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_ElasticSearch_Logstash.html">Logstash with Elasticsearch</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, Elasticsearch, and Kibana 4</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a>
+
+<br /><br />
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="AWS/aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="AWS/aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="AWS/aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="AWS/aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="AWS/Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="AWS/aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="AWS/aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="AWS/aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="AWS/aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="AWS/aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="AWS/aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="AWS/aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="AWS/aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="AWS/aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="AWS/aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="AWS/aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="AWS/aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="AWS/aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="AWS/aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="AWS/aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="AWS/aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="AWS/aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="AWS/aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="AWS/aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="AWS/aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="AWS/aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="AWS/aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="AWS/aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="AWS/aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="AWS/aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="AWS/aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="AWS/aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="AWS/aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="AWS/aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="AWS/aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="AWS/aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="AWS/aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="AWS/aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="AWS/aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="AWS/aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="AWS/aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="AWS/aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>Big Data & Hadoop Tutorials</h1>
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Hadoop 2.6 - Installing on Ubuntu 14.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_16_04_single_node_cluster.html">Hadoop 2.6.5 - Installing on Ubuntu 16.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Running_MapReduce_Job.html">Hadoop - Running MapReduce Job</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Ecosystem.html">Hadoop - Ecosystem</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Install.html">CDH5.3 Install on four EC2 instances (1 Name node and 3 Datanodes) using Cloudera Manager 5</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_APIs.html">CDH5 APIs</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x.html">QuickStart VMs for CDH 5.3</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_II.html">QuickStart VMs for CDH 5.3 II - Testing with wordcount</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Hive_Table_Query.html">QuickStart VMs for CDH 5.3 II - Hive DB query</a> 
+   <br><br>
+
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Scheduled start and stop CDH services</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka.html">Zookeeper & Kafka Install</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_single_broker_cluster.html">Zookeeper & Kafka - single node single broker</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_Multiple_broker_cluster.html">Zookeeper & Kafka - Single node and multiple brokers</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_OLTP_vs_OLAP.html">OLTP vs OLAP</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Cloudera_Cluster_Tutorial_I.html">Apache Hadoop Tutorial I with CDH - Overview</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_II.html">Apache Hadoop Tutorial II with CDH - MapReduce Word Count</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_III.html">Apache Hadoop Tutorial III with CDH - MapReduce Word Count 2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Hive_Introduction.html">Apache Hadoop (CDH 5) Hive Introduction</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Hive_Upgrade_2.html">CDH5 - Hive Upgrade to 1.3 to from 1.2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Hive_Install_On_Ubuntu_16_04.html">Apache Hive 2.1.0 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Pseudo_Distributed.html">Apache HBase in Pseudo-Distributed mode</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Creating_a_Table_with_Hbase_Shell_and_Hue.html">Creating HBase table with HBase shell and HUE</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Hue_Install_On_Ubuntu_16_04.html">Apache Hadoop : Hue 3.11 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Table_with_Java_API.html">Creating HBase table with Java API</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_BigTable_Map_Persistent_Sparse_Sorted_Distributed_Multidimensional.html">HBase - Map, Persistent, Sparse, Sorted, Distributed and Multidimensional</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Flume_Introduction.html">Flume with CDH5: a single-node Flume deployment (telnet example) </a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Flume_CDH5_and_VirtualBox_NettyAvroRpcClient_syslog.html">Apache Hadoop (CDH 5) Flume with VirtualBox : syslog example via NettyAvroRpcClient</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_Hadoop_fs_commands_list.html">List of Apache Hadoop hdfs commands</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 1</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2_Part2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Card_Project_with_Eclipse_MapReduce2_Using_UnoExample_Project_Local_Run.html">Apache Hadoop : Creating Card Java Project with Eclipse using Cloudera VM UnoExample for CDH5 - local run</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Wordcount_Maven_Project_Eclipse_MapReduce.html">Apache Hadoop : Creating Wordcount Maven Project with Eclipse</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Oozie_Workflow.html">Wordcount MapReduce with Oozie workflow with Hue browser - CDH 5.3 Hadoop cluster using VirtualBox and QuickStart VM </a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark.html">Spark 1.2 using VirtualBox and QuickStart VM - wordcount</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Programming_Model_RDD.html">Spark Programming Model : Resilient Distributed Dataset (RDD) with CDH</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 2.0.2 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_RDD_Programming.html">Apache Spark 2.0.2 tutorial with PySpark : RDD</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_Analyzing_Neuroimaging_Data_with_Thunder.html">Apache Spark 2.0.0 tutorial with PySpark : Analyzing Neuroimaging Data with Thunder</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming_Kafka_Cassandra.html">Apache Spark Streaming with Kafka and Cassandra</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_using_CDH5.html">Apache Spark 1.2 with PySpark (Spark Python API) Wordcount using CDH5</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Install_on_ubuntu_16_04.html">Apache Drill with ZooKeeper install on Ubuntu 16.04 - Embedded & Distributed</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_File_System_JSON_Parquet.html">Apache Drill - Query File System, JSON, and Parquet</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_HBase.html">Apache Drill - HBase query</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_Hive.html">Apache Drill - Hive query</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_MongoDB.html">Apache Drill - MongoDB query</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>Redis In-Memory Database</h1>
+   <br><br>
+   <a href="Redis/Redis_vs_Memcached.html">Redis vs Memcached</a>
+   <br><br>
+   <a href="Redis/Redis_Install.html">Redis 3.0.1 Install</a> 
+   <br><br>
+   <a href="Redis/Redis_Setting_up_mulitple_server_instances_on_a_linux_host.html">Setting up mulitple server instances on a Linux host</a> 
+   <br><br>
+   <a href="../python/python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">ELK : Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+
+
+
+<br /><br />
+<br><br>
+<h1>Ansible 2</h1>
+   <br><br>
+   <a href="Ansible/Ansible_What_is_Ansible.html">What is Ansible?</a> 
+   <br><br>
+   <a href="Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="Ansible/Ansible-SSH-Connection-Setup-Run-Command.html">SSH connection & running commands</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Modules.html">Modules</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Playbooks.html">Playbooks</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Handlers.html">Handlers</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Roles.html">Roles</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Playbook-Lamp-HAProxy.html">Playbook for LAMP HAProxy</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Deploy-Nginx-to-Docker.html">Installing Nginx on a Docker container</a> 
+   <br><br>
+   <a href="Ansible/Ansible-aws-creating-ec2-instance.html">AWS : Creating an ec2 instance & adding keys to authorized_keys</a>
+   <br><br>
+   <a href="Ansible/Ansible-aws-AutoScaling.html">AWS : Auto Scaling via AMI</a>
+   <br><br>
+   <a href="Ansible/Ansible-aws-creating-elb-and-register-ec2-instance.html">AWS : creating an ELB & registers an EC2 instance from the ELB</a>
+   <br><br>
+   <a href="Ansible/Docker-WordPress-Microservices-with-Nginx-reverse-proxy-Varnish-Mysql-Deployed-via-Ansible.html">Deploying Wordpress micro-services with Docker containers on Vagrant box via Ansible</a> 
+   <br><br>
+   <a href="Ansible/Ansible_SettingUp_Webservers_Apache.html">Setting up Apache web server</a> 
+   <br><br>
+
+
+
+ 
+
+<br /><br />
+
+<br /><br />
+<br><br>
+<h1>Powershell 4 Tutorial</h1>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">Powersehll : Introduction</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_help_system.html" target="_blank">Powersehll : Help System</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_running_commands.html" target="_blank">Powersehll : Running commands</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Providers.html" target="_blank">Powersehll : Providers</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Pipeline.html" target="_blank">Powersehll : Pipeline</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Objects.html" target="_blank">Powersehll : Objects</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Remote_Control.html" target="_blank">Powersehll : Remote Control</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Windows_Management_Instrumentation_WMI.html" target="_blank">Windows Management Instrumentation (WMI)</a>
+   <br><br>
+   <a href="../Powershell/How_to_Enable_Multiple_RDP_Sessions_in_Windows_2012.html" target="_blank">How to Enable Multiple RDP Sessions in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_install_Configure_FTP_Server_on_IIS_8_in_Windows_Server_2012.html" target="_blank">How to install and configure FTP server on IIS 8 in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_Run_Exe_as_a_Service_in_Windows_Server_2012.html" target="_blank">How to Run Exe as a Service on Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/SQL_Inner_Left_Right_Outter_Join.html" target="_blank">SQL Inner, Left, Right, and Outer Joins</a>
+<br><br>
+
+<br /><br />
+<br><br>
+<h1>Git/GitHub Tutorial</h1>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Express.html" target="_blank">One page express tutorial for GIT and GitHub</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Installation.html" target="_blank">Installation</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_status_add_status_log.html" target="_blank">add/status/log</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_commit_diff.html" target="_blank">commit and diff</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_commit_amend.html" target="_blank">git commit --amend</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Deleting_Renaming_Files.html" target="_blank">Deleting and Renaming files</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Undoing_Checkout_Unstaging.html" target="_blank">Undoing Things : File Checkout & Unstaging</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Reverting_Commit.html" target="_blank">Reverting commit</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Soft_Reset.html" target="_blank">Soft Reset - (git reset --soft &lt;SHA key&gt;) </a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Mixed_Default_Reset.html" target="_blank">Mixed Reset - Default</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Hard_Reset.html" target="_blank">Hard Reset - (git reset --hard &lt;SHA key&gt;)</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Creating_Switching_Branches.html" target="_blank">Creating & switching Branches</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Fast-Forward_Merge.html" target="_blank">Fast-forward merge</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Rebase.html" target="_blank">Rebase & Three-way merge</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Merge_Conflicts_with_Simple_Example.html" target="_blank">Merge conflicts with a simple example</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Account_SSH_Key.html" target="_blank">GitHub Account and SSH</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Uploading.html" target="_blank">Uploading to GitHub</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_GUI.html" target="_blank">GUI</a>
+   <br><br>
+   <a href="SCM/Git/Git_Branching_Merging.html" target="_blank">Branching & Merging</a>
+   <br><br>
+   <a href="SCM/Git/Git_Branching_Merging_Conflicts.html" target="_blank">Merging conflicts</a>
+   <br><br>
+   <a href="SCM/Git/Git_Ubuntu.html" target="_blank">GIT on Ubuntu and OS X - Focused on Branching</a>
+   <br><br>
+   <a href="SCM/Git/Git_Setting_Up_Remote_Repository.html" target="_blank">Setting up a remote repository / pushing local project and cloning the remote repo</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Fork_Clone_Origin_Upstream.html" target="_blank">Fork vs Clone, Origin vs Upstream</a>
+   <br><br>
+   <a href="SCM/Git/Git_Terminologies.html" target="_blank">Git/GitHub Terminologies</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_1_Commit_Push.html" target="_blank">Git/GitHub via SourceTree I : Commit & Push</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_2_Branching_Merging.html" target="_blank">Git/GitHub via SourceTree II : Branching & Merging</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_3_Git_WorkFlow.html" target="_blank">Git/GitHub via SourceTree III : Git Work Flow</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_4_Reset.html" target="_blank">Git/GitHub via SourceTree IV : Git Reset</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_quick_command_reference_wiki_cheat_sheet.html" target="_blank">Git Cheat sheet - quick command reference</a>
+   <br><br>
+<br /><br />
+
+<br><br><br>
+<h1>Subversion</h1>
+   <a href="../cplusplus/Subversion/Subversion_Install_On_Ubuntu.html" target="_blank">Subversion Install On Ubuntu  14.04</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo.html" target="_blank">Subversion creating and accessing I</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo2.html" target="_blank">Subversion creating and accessing II</a>
+<br />
+</div>
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/DevOps-Terraform.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:24:57 GMT -->
+</html>
+

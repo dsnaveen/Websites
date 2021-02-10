@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/threads3.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 03:56:01 GMT -->
+<head>
+  <title>Java Tutorial: Threads III - 2017</title>
+  <meta content="Java Tutorial: Threads III - Synchronization" name="description" />
+  <meta content="Java Tutorial , Threads III, Synchronization, Priorities, Yield, Join, Concurrency, deadlock, starvation, thread-safe" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../python/pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Threads III : Synchronization - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../../images/java/tutorials/java_images/Duke256.png" alt="Duke 512" width="128" height="128"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<div class="subtitle" id="prioritiesYield">Priorities and Yield()</div>
+<p>Without clear understanding of <strong>priorities</strong>, it will be hard to understand the <strong>yield()</strong> method. Thread always runs with priority, usually represented as a number between 1 and 10.</p>
+<p> The scheduler uses priority-based scheduling which implies some sort of time slicing. This does not mean that all JVMs use time slicing. The JVM specification does not require a JVM to implement a time-slicing scheduler, where each thread is allocated a fair amount of time and then sent back to runnable to give another thread a chance.</p>
+<p>If a thread enters the runnable state, and it has a higher priority than any of the threads in the pool and a higher priority than the currently running thread, the lower-priority running thread usually will be bumped back to runnable and the highest-priority thread will be chosen to run. In other words, at any given time the currently running thread usually will not have a priority that is lower than any of the threads in the pool. In most cases, <i>the running thread will be of equal or greater priority than the highest priority threads in the pool</i>.</p>
+<p>This is as close to a guarantee about the scheduling as we'll get from the JVM specification, so we must not rely on thread priorities to guarantee the correct behavior of our program.</p>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<p>Don't rely on thread <strong>priorities</strong> when designing your multithreaded application. Because thread-scheduling priority behavior is not guaranteed, use thread priorities as a way to <strong>improve the efficiency</strong> of your code, but just be sure your program doesn't depend on that behavior for correctness.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="priorities">Priorities</div>
+<p>Here is a code which has three thread each has different value of priority: a (minimum), b(normal), and c (maximum).</p>
+<pre>
+ 
+class MyRunnable implements Runnable {
+	public static void main(String[] args) {
+		MyRunnable r = new MyRunnable();
+		Thread a = new Thread(r);
+		Thread b = new Thread(r);
+		Thread c = new Thread(r);
+		a.setName("thread a ");
+		b.setName("thread b ");
+		c.setName("thread c ");
+		a.setPriority(Thread.MIN_PRIORITY);
+		b.setPriority(Thread.NORM_PRIORITY);
+		c.setPriority(Thread.MAX_PRIORITY);
+		a.start();
+		b.start();
+		c.start();
+	}
+	
+	public void run() {
+		for (int i = 1; i &lt;= 10; i++) {
+		System.out.println(
+			Thread.currentThread().getName() 
+				+ i + " is running");
+			try {
+				Thread.sleep(2000);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
+}
+</pre>
+<p>Output from the code is:</p>
+<pre>
+thread a 1 is running
+thread c 1 is running
+thread b 1 is running
+thread c 2 is running
+thread b 2 is running
+thread a 2 is running
+thread c 3 is running
+thread b 3 is running
+thread a 3 is running
+thread c 4 is running
+thread a 4 is running
+thread b 4 is running
+thread b 5 is running
+thread a 5 is running
+thread c 5 is running
+thread c 6 is running
+thread a 6 is running
+thread b 6 is running
+thread c 7 is running
+thread a 7 is running
+thread b 7 is running
+thread c 8 is running
+thread b 8 is running
+thread a 8 is running
+thread c 9 is running
+thread b 9 is running
+thread a 9 is running
+thread c 10 is running
+thread a 10 is running
+thread b 10 is running
+</pre>
+<p>Although the thread <strong>c</strong> gets the most running state, priority does not seem to give us the guarantee for the correct behavior.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="yield">yield() Method</div>
+<p>What <strong>yield()</strong> is supposed to do is to make the currently running thread head back to runnable to allow other threads of the same priority to get their run. So the intention is to use <strong>yield()</strong> to promote run-taking among equal-priority threads. But the <strong>yield()</strong> method isn't guaranteed to do what it claims. No guarantee! </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="join">join() Method</div>
+<p>The non-static joins() method of class Thread lets one thread <strong>join onto the end</strong> of another thread. If we have a thread B can't do its work until another thread A has completed its work, then we want thread B to <strong>join</strong> thread A. This means that thread B will not become runnable until thread A has finished.</p>
+<p>The code takes the currently running thread and <strong>joins</strong> it to the end of the thread <strong>t</strong>. This blocks the current thread from becoming runnable until after the thread <strong>t</strong> is no longer alive. In other words, the code 
+<pre>
+t.join();
+</pre>
+means "Join me (the current thread) to the end of <strong>t</strong>. so that <strong>t</strong> must finish before I (the current thread) can run again.</p>
+<pre>
+Thread t = new Thread();
+t.start();
+t.join();
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="Synchronizing">Synchronizing</div>
+<br/>
+<div class="subtitle_2nd" id="concurrency">Concurrency</div>
+<p><strong>Concurrency</strong> issues lead to <strong>race conditions</strong>. Race conditions lead to data corruption. And so on....</p>
+<p>It all comes down to one potentially deadly scenario: two or more threads have access to a single object's data or resource. In other words, methods executing on two different stacks are both calling getters or setters on a single object on the heap. </p>
+<p>Here is a brief description from <a href="http://en.wikipedia.org/wiki/Concurrency_(computer_science)" target="_blank">wiki</a><br/>
+Because computations in a concurrent system can interact with each other while they are executing, the number of possible execution paths in the system can be extremely large, and the resulting outcome can be indeterminate. Concurrent use of shared resources can be a source of indeterminacy leading to issues such as deadlock, and starvation.[1]<br/>
+The design of concurrent systems often entails finding reliable techniques for coordinating their execution, data exchange, memory allocation, and execution scheduling to minimize response time and maximize throughput.</p>
+<p>Here is one of the well known Bank Account example. The two main characters of John Steinbeck's novel "The Pearl" were sharing an account. They were puzzled when they found the balance became minus even though they checked the balance before making any withdrawals. So, what happened?</p>
+<pre>
+public class AsyncAccount implements Runnable {
+	class Account {
+		private int balance = 100;
+		public int getBalance() {
+			return balance;
+		}
+		public void withdraw (int amount) {
+			balance -= amount;
+		}
+	}
+	
+	private Account ac = new Account();
+	public static void main(String[] args) {
+		AsyncAccount r = new AsyncAccount();
+		Thread kino = new Thread(r);
+		Thread juana = new Thread(r);
+		kino.setName("Kino");
+		juana.setName("Juana");
+		kino.start();
+		juana.start();
+	}
+	
+	public void run() {
+		for (int i = 1; i &lt; 5; i++) {
+			makeWithdrawal(20);
+			if(ac.getBalance() &lt; 0) {
+				System.out.println("Overdrawn!");
+			}
+		}
+	}
+	private void makeWithdrawal(int amount) {
+		if (ac.getBalance() &gt;= amount) {
+			System.out.println(
+				Thread.currentThread().getName()
+				+ " is about to withdraw");
+			try {
+				Thread.sleep(1000);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();	
+			}
+			ac.withdraw(amount);
+			System.out.println(
+				Thread.currentThread().getName()
+				+ " completes the withdrawal");
+			
+		}
+		else {
+			System.out.println(
+				Thread.currentThread().getName()
+				+ ", sorry, not enough fund:"
+				+ " your current balance is "
+				+ ac.getBalance());
+		}
+	}	
+}
+</pre>
+<p>The output is:</p>
+<pre>
+1.Kino is about to withdraw
+2. Juana is about to withdraw
+3. Juana completes the withdrawal: 80
+4. Kino completes the withdrawal: 60
+5. Juana is about to withdraw
+6. Kino is about to withdraw
+7. Kino completes the withdrawal: 40
+8. Kino is about to withdraw
+9. Juana completes the withdrawal: 20
+10. Juana is about to withdraw
+11. Juana completes the withdrawal: 0
+12. Kino completes the withdrawal: -20
+13. Overdrawn!
+14. Kino, sorry, not enough fund: your current balance is -20
+15. Overdrawn!
+16. Overdrawn!
+17. Juana, sorry, not enough fund: your current balance is -20
+18. Overdrawn!
+</pre>
+<p>On line 8, Kino checked the balance and found that he can safely withdraw and then fell asleep. Mean while, Juana withdrew the money and they had no balance left in their account. Then, Kino withdrew 20 thinking he still had money because he checked it before he fell asleep. So, after all the efforts, they failed. Why?</p>
+<p>The account is now overdrawn by 20.</p>
+<p>This problem is known as a <strong>race condition</strong>, where multiple threads can access the same resource, and can produce corrupted data if one thread <strong>races in</strong> too quickly before an operation that supposed to be <strong>atomic</strong> has completed.</p>
+<p>The solution is that we must guarantee the two steps of the withdrawal: <strong>checking</strong> the balance and <strong>making</strong> the withdrawal shouldn't be split apart. We need to make sure the two steps to be performed as one operation. In other words, the two steps must be an <strong>atomic operation</strong>. That means any other thread should act on the same data.</p>
+<p>Issue here is that <i>we can't guarantee that a single thread will stay running throughout the entire atomic operation</i>.</p> However, we <strong>can</strong> guarantee that even if the thread running the atomic operation moves in and out of the running state, <strong>no other running thread will be able to act on the same data</strong>. In other words, if Kino falls asleep after checking the balance, we can stop Juana from checking the balance until <strong>after</strong> Kino wakes up and completes his withdrawal.
+<p>The best solution is to:</p>
+<ol>
+<li>Mark the variable <strong>private</strong> and </li>
+<li>Synchronize the code that modifies the variables. </li>
+</ol>
+<p>Here is a new code for the method <strong>makeWithdrawal(), we used the <strong>synchronized</strong> keyword to modify the method:</strong></p>
+<pre>
+	private <font color="blue">synchronized</font> void makeWithdrawal(int amount) {
+		if (ac.getBalance() &gt;= amount) {
+			System.out.println(
+				Thread.currentThread().getName()
+				+ " is about to withdraw");
+			try {
+				Thread.sleep(1000);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();	
+			}
+			ac.withdraw(amount);
+			System.out.println(
+				Thread.currentThread().getName()
+				+ " completes the withdrawal");
+			
+		}
+		else {
+			System.out.println(
+				Thread.currentThread().getName()
+				+ ", sorry, not enough fund:"
+				+ " your current balance is "
+				+ ac.getBalance());
+		}
+	}
+</pre>
+<p>With the change, we have a new output. No overdrawn anymore!</p>
+<p>That's how we protect the bank account. We don't put a lock on the back account itself. We lock the method that does the banking transaction. That way, one thread gets to complete the whole transaction, start to finish, even if that thread falls asleep in the middle of the method.</p>
+<p>So if we don't lock the bank account, then what exactly <strong>is</strong> locked?</p>
+<pre>
+Kino is about to withdraw
+Kino completes the withdrawal: 80
+Kino is about to withdraw
+Kino completes the withdrawal: 60
+Kino is about to withdraw
+Kino completes the withdrawal: 40
+Kino is about to withdraw
+Kino completes the withdrawal: 20
+Juana is about to withdraw
+Juana completes the withdrawal: 0
+Juana, sorry, not enough fund: your current balance is 0
+Juana, sorry, not enough fund: your current balance is 0
+Juana, sorry, not enough fund: your current balance is 0
+</pre>
+<p>Now we've guaranteed that once a thread starts the withdrawal process, the other thread cannot enter makeWithdrawal() until the first one completes the process.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lock">Locks</div>
+<p>Every object has a lock. Most of the time it's unlocked. Object lock only comes into play when the object has synchronized method code. When we enter a synchronized not-static method, we automatically acquire the lock associated with the current instance of the class whose code we're execution (<strong>this</strong> instance). Acquiring a lock for an object is also known as getting the lock, or locking the object, locking <strong>on</strong> the object, or synchronizing on the object. </p>
+<p>The locks are not per <strong>method</strong>, they are per <strong>object</strong>. If one thread has the lock, no other thread can acquire the lock until the first thread releases the lock. This means no other thread can enter the synchronized method of that object until the lock has been returned. Releasing a lock usually means the thread holding the lock exits the synchronized method. At that point, the lock is free until some other thread enters a synchronized method on that object.</p>
+<p>Here are some key points on lockand and synchronization.</p>
+<ol>
+<li>Only <strong>method</strong> can be synchronized, not variables or classes.</li>
+<li>Each object has just <strong>one</strong> lock.</li>
+<li>Not all methods in a class need to be synchronized. </li>
+<li>Once a thread acquires the lock on an object, no other thread can enter any of the synchronized methods in that class for that object.</li>
+<li>If a thread goes to sleep, it holds any locks it has and it doesn't release them.</li>
+<li>We can synchronize a block of code rather than a method.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ExecutionModels">Know your execution Models</div>
+<p>There are several different ways to partition behavior in a concurrent application. Here are some basic definitions.</p>
+<ol>
+<li><strong>Deadlock</strong> <br/>
+	We should be careful when we use synchronized our code, because nothing will bring our code to its knees like thread deadlock. Thread deadlock happens when we have two threads, both of which are holding a key the other thread wants. There's no way out of this scenario, so the two threads will simply sit and wait. And wait. And wait.....</li>
+<li><strong>Bound Resources</strong> <br/>
+	Resource of a fixed size or number used in a concurrent environment. Examples include database connections and fixed-size read/write buffers.</li>
+<li><strong>Mutual Exclusion</strong> <br/>
+	Only one thread can access shared data or a shared resource at a time.</li>
+<li><strong>Starvation</strong> <br/>
+	One thread or a group of threads is prohibited from proceeding for an excessively long time or forever. For example, always letting fast-running threads through first could starve out longer running threads if there is no end to the fast-running threads.</li>
+<li><strong>Livelock</strong> <br/>
+<li>Thread in lockstep, each trying to do work but finding another "in the way." Due to resonance, threads continue trying to make progress but are unable to for an excessively long time or forever.</li>
+</li></ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadsafeclasses">Thread-safe classes</div>
+<p>When a class has been carefully synchronized to protect its data, we say the class is "thread-safe." Many classes in Java APIs already use synchronization internally in order to make the class "thread-safe."</p>
+<p>For example, <strong.stringbuffer< strong> and <strong>StringBuilderStringBuffer</strong> are synchronized when necessary, while those in <strong>StringBuilder</strong> are not.</strong.stringbuffer<></p>
+<p>However, even when a class is "thread-save," it is often dangerous to rely on these classes to provide the thread protection we need.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Java Tutorials</h1>
+   <br><br>
+   <a href="on_java.html">Java Tutorial Home</a> 
+   <br><br>
+   <a href="javabasics.html">Basics - Compiling and Launching</a> 
+   <br><br>
+   <a href="innerclass.html">Inner Classes</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="enums.html">Enums</a> 
+   <br><br>
+   <a href="statics.html">Static & Finally</a> 
+   <br><br>
+   <a href="defaultandprotected.html">Default and Protected</a>
+   <br><br>
+   <a href="polymorphism.html">Polymorphism</a>
+   <br><br>
+   <a href="exceptionhandling.html">Exception Handling</a>
+   <br><br>
+   <a href="exceptionhandling2.html">Exception Handling II</a>
+   <br><br>
+   <a href="stringclass.html">String Class</a>
+   <br><br>
+   <a href="threads.html">Threads</a>
+   <br><br>
+   <a href="threads2.html">Threads II - State Transition</a>
+   <br><br>
+   <a href="threads3.html">Threads III - Synchronization</a>
+   <br><br>
+   <a href="objectclass.html">Object Class</a>
+   <br><br>
+   <a href="fileio.html">File I/O</a>
+   <br><br>
+   <a href="serialization.html">Serialization</a>
+   <br><br>
+   <a href="arraylist.html">ArrayList</a>
+   <br><br>
+   <a href="autoboxing.html">Autoboxing</a>
+   <br><br>
+   <a href="javagraphics.html">Java Graphics Interface I - Basics</a>
+   <br><br>
+   <a href="javagraphics2.html">Java Graphics Interface II - Labels, Text Fields, Layouts</a>
+   <br><br>
+   <a href="javagraphics3.html">Java Graphics Interface III - paintComponent</a>
+   <br><br>
+   <a href="tcp_socket_server_client.html">TCP Sockets Server/Client</a>
+   <br><br>
+   <a href="scala_functional_java_programming.html">Scala - Functional Java Programming</a>
+   <br><br>
+   <a href="Apache_CXF.html">Apache CXF install</a>
+   <br><br>
+   <a href="Tomcat7_Ubuntu_14_Install_On_Amazon_EC2.html">Tomcat 7 Ubuntu 14 Install on Amazon EC2 instance</a>
+   <br><br>
+   <a href="Maven/What-is-Apache-Maven.html">What is Apache Maven?</a>
+   <br><br>
+   <a href="Maven/Apache-Maven-Lifecycle.html">Maven life cycle</a>
+   <br><br>
+   <a href="Maven/Eclipse_Maven3_Plugin.html">Eclipse Maven 3 plugin on Ubuntu 14.04</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Setting_Up.html">Apache Maven 3 - Setting up and creating a project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_compile_build_install.html">Apache Maven 3 - Compile, build, and install a Maven project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Dependencies.html">Apache Maven 3 - Dependencies</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Web_Application_War.html">Apache Maven 3 - Web Application</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins.html">Apache Maven 3 - Plugins (compiler)</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins_Jetty.html">Apache Maven 3 - Plugins (Jetty)</a>
+   <br><br>
+   <a href="../../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <br><br>
+   <b><i>Spring Framework</i></b>
+   <br><br>
+   <a href="SpringFramework/HelloWorld_App_with_Spring4_Maven3.html">Hello World App with Spring 4 & Maven 3 - Part I</a>
+
+   <br><br>
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Spring Boot</h1>
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Maven.html">Spring Boot : Hello world with Mavan 3</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Gradle.html">Spring Boot : Hello world with Gradle 2</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Authetication-Securing-Web-Application.php">Spring Boot (Gradle 2) : Hello world with Authentication</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Maven3-Elicpse-Tomcat-War-file.html">Spring Boot : Deploying War file to Tomcat 8's webapps</a> 
+   <br><br>
+   <a href="Spring-Boot/How-to-Setup-Apache-as-Reverse-Proxy-for-Tomcat8-Server-using-mod-proxy.html">How to Setup Apache as Reverse Proxy for Tomcat Server using mod proxy</a> 
+   <br><br>
+   <a href="Spring-Boot/Maven-mvn-command-cheat-sheet.html">Maven : mvn command cheat sheet</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-REST-API-CORS-Maven-Tomcat-Deploy-War.html">Spring-Boot REST API with CORS App Maven war file deploy to Tomcat</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-I.html">Spring-Boot / Spring Security with AngularJS - Part I (Introduction) </a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-II.html">Spring-Boot / Spring Security with AngularJS - Part II (Dynamic resource load from Angular)</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-III-Form-Based%20Authentication.html">Spring-Boot / Spring Security with AngularJS : Part III (Form-based Authentication)</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>JUnit & Maven Tutorial</h1>
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_HelloWorld.html">JUnit 4 Introduction (Hello World)</a> 
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Eclipse_Plugin.html">JUnit 4 Test with Eclipse Luna (Hello World)</a>
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Test_with_Maven.html">JUnit 4 Test with Maven (Hello World)</a> 
+
+   <br><br>
+
+
+
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/threads3.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 03:56:01 GMT -->
+</html>
+

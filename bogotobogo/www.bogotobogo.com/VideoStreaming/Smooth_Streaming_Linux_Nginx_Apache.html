@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 07:58:53 GMT -->
+<head>
+  <title>Smooth Streaming on Linux - 2017</title>
+  <meta content="Smooth Streaming on Linux - 2014" name="description" />
+  <meta content="Smooth Streaming on Linux, Apache, Nginx, mp4split, ffmpeg, ism, ismv, manifest, ismc, web server, silverlight, windows" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Smooth Streaming on Nginx/Apache - 2014
+       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/codecs_logo.png" alt="codecs logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<div class="subtitle" id="Note">Notes</div>
+<p>This chapter is not a success story but records of failures. In short, though the mp4 pseudo streaming seems to be working fine but not smooth streaming. I have spent some time on the module source, and it looks like there should be an initialization done before  the client's request: "http://.../Fragments()video=0)" which just contains a "moof" and "mdat" box. When I look at the source code,  segment initialization requires "moov" box. So, somehow, initialization should be done by a manifest file before the client's fragment request.</p>
+<p>Discussion about this issue can be found <a href="http://web.archiveorange.com/archive/v/yWJfLeyGWzv3Zk6z9L0H" target="_blank">here.</a>.</p>
+<p>Anyway, I need to investigate more on this.</p>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="Installation_package">Installing Nginx 1.4.4</div>
+<p>After <a href="http://nginx.org/en/download.html" target="_blank">download</a> the source, installation can be done by using 
+these commands from a terminal:</p>
+<pre>
+$ ./configure
+$ make
+$ sudo make install
+</pre>
+<p>
+By default, <b>nginx</b> will be installed under <b>/usr/local/nginx</b>.</p>
+<br/>
+<br/><br/>
+<div class="subtitle" id="ss_module">Smooth Streaming Module - nginx_mod_h264_streaming-2.2.7</div>
+<p>A module for smooth streaming for nginx is available at <br/><a href="http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-Nginx-Version2" target="_blank">http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-Nginx-Version2</a>.</p>
+<p>
+Run configure in the <b>nginx</b> directory with the following command:</p>
+<pre>
+$ cd ~/nginx-1.4.4
+$ ./configure --add-module=$HOME/nginx_mod_h264_streaming-2.2.7 --sbin-path=/usr/local/sbin --with-debug
+...
+Configuration summary
+  + using system PCRE library
+  + OpenSSL library is not used
+  + using builtin md5 code
+  + sha1 library is not found
+  + using system zlib library
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/sbin"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
+</pre>
+<p>Make and install nginx:</p>
+<pre>
+$ make
+make -f objs/Makefile
+make[1]: Entering directory `/home/khong/Downloads/nginx-1.4.4'
+cc -c -pipe  -O -W -Wall -Wpointer-arith -Wno-unused-parameter -Werror -g  -D_LARGEFILE_SOURCE -DBUILDING_NGINX  -I src/core -I src/event -I src/event/modules -I src/os/unix -I objs -I src/http -I src/http/modules -I src/mail \
+		-o objs/addon/src/ngx_http_h264_streaming_module.o \
+		/home/khong/nginx_mod_h264_streaming-2.2.7/src/ngx_http_h264_streaming_module.c
+In file included from /home/khong/nginx_mod_h264_streaming-2.2.7/src/ngx_http_h264_streaming_module.c:2:0:
+/home/khong/nginx_mod_h264_streaming-2.2.7/src/ngx_http_streaming_module.c: In function ângx_streaming_handlerâ:
+/home/khong/nginx_mod_h264_streaming-2.2.7/src/ngx_http_streaming_module.c:158:8: error: ângx_http_request_tâ has no member named âzero_in_uriâ
+   if (r-&gt;zero_in_uri)
+        ^
+make[1]: *** [objs/addon/src/ngx_http_h264_streaming_module.o] Error 1
+make[1]: Leaving directory `/home/khong/Downloads/nginx-1.4.4'
+make: *** [build] Error 2
+</pre>
+<p>To fix the error, we need to edit the file:</p>
+<pre>
+$ vi nginx_mod_h264_streaming-2.2.7/src/ngx_http_streaming_module.c
+</pre>
+<p>Comment the lines off as shown below:</p>
+<pre>
+ /* Commented out
+  if (r-&gt;zero_in_uri)
+  {
+    return NGX_DECLINED;
+  }
+  */
+</pre>
+<p>Still, we may have some issues like this:</p>
+<pre>
+$ make
+...
+cc1: all warnings being treated as errors
+make[1]: *** [objs/addon/src/mp4_reader.o] Error 1
+make[1]: Leaving directory `/home/khong/nginx-1.4.4'
+
+make: *** [build] Error 2
+</pre>
+<p>It's due to the following line of compile option in <b>nginx-1.4.4/objs/Makefile</b>:</p>
+<pre>
+CFLAGS =  -pipe  -O -W -Wall -Wpointer-arith -Wno-unused-parameter -Werror -g  -D_LARGEFILE_SOURCE -DBUILDING_NGINX
+</pre>
+<p>Since the <b>Werror</b> treats a warning as an error, I removed the <b>Werror</b> from the options.</p>
+<p>Now the compilation is successful.</p>
+<p>So, let's check what's been added?</p>
+<pre>
+$ ls ~/nginx-1.4.4/objs/addon/src
+moov.o    mp4_reader.o  ngx_http_h264_streaming_module.o  output_mp4.o
+mp4_io.o  mp4_writer.o  output_bucket.o
+</pre>
+<p>Let's install nginx.</p>
+<pre>
+$ sudo make install
+</pre>
+<p><b>nginx</b> can be located at <b>/usr/local/nginx/sbin</b>.</p>
+<br/>
+<br/><br/>
+<div class="subtitle" id="mp4split">mp4split</div>
+<p>Since we want to play Multi Bit Rate H.264 encoded videos, we will also need the command line tool <b>mp4split</b> to create the Smooth Streaming manifest files.</p>
+<pre>
+wget http://h264.code-shop.com/download/mp4split-2.2.0.tar.gz
+tar xvzf mp4split-2.2.0.tar.gz
+</pre>
+<p>We can make the <b>/usr/local/bin/mp4split</b> command as below:</p>
+<pre>
+$ cd ~/mp4split-2.2.0
+$ ./configure
+$ make
+$ sudo make install
+ and the executable can be located in <b>/usr/local/nginx/sbin</b>
+</pre>
+<br/>
+<br/><br/>
+<div class="subtitle" id="conf_mp4">Configure Nginx for mp4 and ismv</div>
+<p> Edit the configuration file in <b>/usr/local/nginx/conf/nginx.conf</b> so that file requests ending in <b>.mp4</b> and <b>.ismv</b> are handled by the <b>mp4</b> command.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="conf_mp4_rewriting">URL Rewriting for mp4 and ismv</div>
+<p>We need to add the following lines in our <b>server { ... }</b> section:</p>
+<pre>
+if ($is_args = "?") {
+ rewrite ^(.*)\.ism/manifest$ $1.mp4?manifest=1 last;
+}
+rewrite ^(.*)\.ism/Fragments\((.*)=([0-9]+)\)(.*)$ $1.mp4?$2=$3 last;
+rewrite ^(.*)/(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1/$2.ism/$2_$3.ismv?$4=$5 last;
+rewrite ^(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1.ism/$1_$2.ismv?$3=$4 last;
+
+location ~ \.mp4$ {
+  mp4;
+}
+location ~ \.ismv$ {
+  mp4;
+}
+</pre>
+<p>The <b>$is_args</b> evaluates to "?" if <b>$args</b> is set, "" otherwise:<br/>
+ where <b>$args</b> is the GET parameters in request line, e.g. foo=123&amp;bar;=blahblah; This variable could be changed.</p>
+<pre>
+    . (any character)
+    * (zero of more of the preceding)
+    + (one or more of the preceding)
+    {} (minimum to maximum quantifier)
+    ? (ungreedy modifier)
+    ! (at start of string means "negative pattern")
+    ^ (start of string, or "negative" if at the start of a range)
+    $ (end of string)
+    [] (match any of contents)
+    - (range if used between square brackets)
+    () (group, backreferenced group)
+    | (alternative, or)
+    \ (the escape character itself)
+</pre>
+<p>The <b>last</b> flag tells the server to complete processing of current rewrite directives.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="nginx_run">Re-run nginx</div>
+<p>Start <b>nginx</b>:</p>
+<pre>
+$ sudo /usr/local/sbin/nginx
+</pre>
+<p>We may get the following error:</p>
+<pre>
+nginx: [emerg] unknown directive "mp4" in /usr/local/nginx/conf/nginx.conf:58
+</pre>
+<p>If that's the case, we should make sure we configured <b>nginx</b> with H264. </p>
+<pre>
+./configure --add-module=$HOME/nginx_mod_h264_streaming --sbin-path=/usr/local/sbin --with-debug
+</pre>
+<br/><br/><br/>
+<div class="subtitle_2nd" id="nginx_localhost">Checking nginx with localhost</div>
+<p>When we type in <b>localhost</b> into the browser, we should get:</p>
+<img alt="localhost_nginx_welcome.png" src="images/ss_nginx/localhost_nginx_welcome.png"/>
+<p>It's the result of the rendering <b>/usr/loca/nginx/html/index.html</b> file.</p>
+<br/>
+<br/><br/>
+<div class="subtitle" id="x264">x264 Encoding</div>
+<p>This section is incomplete. This approach requires Windows utilities and I could not make it work on Linux (Ubuntu 13.1).</p>
+<br/><br/>
+<div class="subtitle_2nd" id="encodings">4 encodings using x264 </div>
+<p>This section follows the general guide from 
+<a href="http://h264.code-shop.com/trac/wiki/Smooth-Streaming-Encoding" target="_blank">Encoding Smooth Streaming videos</a></p>
+<p>We can get the sample from <a href="http://www.bigbuckbunny.org/index.php/download/" target="_blank">Big BUck Bunny</a>.</p>
+<p>Here are the videos to be generated:</p>
+<p>
+<table border="1" cellpadding="5">
+<tr>
+<th>Bit rate (Kbps)</th>
+<th>Resolution</th>
+</tr>
+<tr>
+<td>4500</td>
+<td>1920 x 1080</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>1096 x 616</td>
+</tr>
+<tr>
+<td>896</td>
+<td>624 x 352</td>
+</tr>
+<tr>
+<td>400</td>
+<td>356 x 200</td>
+</tr>
+</table>
+<p>4 encodings will be generated in 4500, 2008, 896 and 400 Kbps.</p>
+<pre>
+X264_OPTIONS= --threads 4 --min-keyint 50 --keyint 100 --bframes 0
+x264 %X264_OPTIONS -o bbb_4500000.mp4 --pass 1 --bitrate 4500 bbb0.avs
+x264 %X264_OPTIONS -o bbb_4500000.mp4 --pass 2 --bitrate 4500 bbb0.avs
+x264 %X264_OPTIONS -o bbb_2008000.mp4 --pass 2 --bitrate 2008 bbb1.avs
+x264 %X264_OPTIONS -o bbb_896000.mp4 --pass 2 --bitrate 896 bbb2.avs
+x264 %X264_OPTIONS -o bbb_400000.mp4 --pass 2 --bitrate 400 bbb3.avs next section.
+</pre>
+<p>The <b>avs</b> file looks like this:</p>
+<pre>
+QTInput("big_buck_bunny_1080p_h264.mov", audio=false)
+BicubicResize(1920, 1080)
+ConvertToYV12()
+</pre>
+<p>The jobs may be done properly because more stuffs to be installed. If that's the case, please follow the guide in the next section.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="avxSynth">AvxSynth Build</div>
+<p>To use <b>*.avs</b>, we need to install <b>AvxSynth</b>:<br/>
+<a href="https://github.com/avxsynth/avxsynth/wiki/System-Setup" target="_blank">Github - System Setup</a></p>
+<p>Here are the additional packages required:</p>
+<pre>
+sudo apt-get install build-essential checkinstall git pkg-config yasm autoconf automake libtool
+sudo apt-get install mplayer
+sudo apt-get install liblog4cpp5-dev liblog4cpp5
+sudo apt-get install libcairo2-dev
+sudo apt-get install libpango1.0-dev
+LibJPEG sudo apt-get install libjpeg-dev (required to build the frame capture plugin)
+sudo apt-get install libffms2-dev libavcodec-dev libavformat-dev libavutil-dev libpostproc-dev libswscale-dev (required to build the ffms2 plugin)
+</pre>
+<p>Install steps for <b>AvxSynth</b>:</p>
+<ol>
+<li>Get AvxSynth source code from github
+<pre>
+git clone https://github.com/avxsynth/avxsynth.git
+</pre>
+</li>
+<li>Generate build system from autotools templates. This must be done only the first time the project is checked out.
+<pre>
+autoreconf -i
+</pre>
+</li>
+<li>In avxsynth root directory:
+<pre>
+./configure &amp;&amp; make
+sudo make install
+</pre>
+</li>
+</ol>
+<p>If I try to run the 1 pass encoding, I get the following error:</p>
+<pre>
+$ x264 --threads 4 --min-keyint 50 --keyint 100 --bframes 0 -o bbb_4500000.mp4 --pass 1 --bitrate 4500 bbb0.avs
+avs [error]: Script error: there is no function named "QTInput"
+(bbb0.avs, line 1)
+x264 [error]: could not open input file `bbb0.avs'
+</pre>
+<br/>http://linkedin.com/
+<br/><br/>
+<div class="subtitle" id="ffmpeg encoding">Encoding - via ffmpeg</div>
+<p>Fragment and manifest files are created as in <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">ffmpeg Smooth Streaming</a>.</p>
+<br/><br/><br/>
+<br/><br/>
+<div class="subtitle" id="ss_vod_test">Smooth Streaming Play - VOD</div>
+<div class="subtitle_2nd" id="ovp">SMTHPlayer</div>
+<p>Open Video Player is available at <a href="http://sourceforge.net/projects/smthplayer/" target="_blank">http://sourceforge.net/projects/smthplayer/</a>.</p>
+<p>Examples:</p>
+<ol>
+<li>php smthplayer.php --ism http://video3.smoothhd.com.edgesuite.net/ondemand/Big%20Buck%20Bunny%20Adaptive.ism/ --vidx 2</li>
+<li>php smthplayer.php --ism http://mediadl.microsoft.com/mediadl/iisnet/smoothmedia/Experience/BigBuckBunny_720p.ism/ --vidx 0</li>
+<li>php smthplayer.php --ism http://mediadl.microsoft.com/mediadl/iisnet/smoothmedia/Experience/BigBuckBunny_1080p.ism/ --vidx ask</li>
+<li>php smthplayer.php --ism http://video3.smoothhd.com/ondemand/Akamai_ASP_Cutdown.ism/ --vidx ask</li>
+<li>php smthplayer.php --ism http://mediadl.microsoft.com/mediadl/iisnet/smoothmedia/Experience/BigBuckBunny_1080p.ism/ --vidx adaptive</li>
+<li>php smthplayer.php --ism http://aevod-hdnetwork.akamai.com.edgesuite.net/ondemand/demo/earth_seas_h264_1080/earth_seas_h264_1080.ism/ --vidx 0 --nosync</li>
+<li>php smthplayer.php --ism http://aevod-hdnetwork.akamai.com.edgesuite.net/ondemand/demo/earth_trailer_with_end_credit_1080p/earth_trailer_with_end_credit_1080p.ism/ --vidx 0 --nosync</li>
+</ol>
+<br/>
+<br/>
+<br/><br/>
+<div class="subtitle" id="apache">Apache HTTP Server Version 2.4.7 </div>
+<br/><br/>
+<div class="subtitle_2nd" id="apache_install">Install Apache HTTP Server Version 2.4.7 </div>
+<p>Steps:</p>
+<ol>
+<li>Download the <a href="http://httpd.apache.org/download.cgi" target="_blank">Apache HTTP Server Version 2.4.7</a>.</li>
+<li>
+<pre>
+tar xvzf httpd-2.4.7.tar.gz
+cd httpd-2.4.7/
+./configure --prefix=/usr/local/apache2
+make
+make install
+</pre>
+<li>To start:
+<pre>
+sudo /usr/local/apache2/bin/apachectl -f /usr/local/apache2/conf/httpd.conf
+</pre>
+<p>If you get "Could not reliably determine the server's fully qualified domain name, using 127.0.1.1.<br/>
+Set the 'ServerName' directive globally to suppress this message"<br/>
+Then, just set "ServerName localhost" in /usr/local/apache2/conf/httpd.conf file.</p>
+</li>
+<li>Test if it's running:<br/>
+Type in localhost into the url of the browser. Then we'll see:<br/>
+It works! <br/>
+It's rendering <b>/usr/local/apache2/htdocs/index.html</b>
+</li>
+</li></ol>
+<p>For general info on Apache Web Server, <br/>check <a href="https://help.ubuntu.com/13.10/serverguide/httpd.html" target="_blank">https://help.ubuntu.com/13.10/serverguide/httpd.html</a>.</p>
+<br/><br/>
+<br/><br/>
+<div class="subtitle_2nd" id="H264_install">Install H264 Streaming Module for Apache</div>
+<p>The Apache Module h264 Streaming enables stream the .mp4 video, otherwise we can only play the video after a complete download.</p>
+<p>This section is based on:</p>
+<ol>
+<li> <a href="http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-Apache-Version2" target="_blank">Downloading and building the H264 Streaming Module for Apache (version 2)</a>
+</li>
+<li>
+<a href="http://h264.code-shop.com/trac/wiki/Mod-Smooth-Streaming-Apache-Version1" target="_blank">Downloading and building the H264 Streaming Module for Apache (version 1)</a>
+</li>
+<li>
+<a href="http://h264.code-shop.com/trac/wiki/Encoding" target="_blank">How to encode video in H264 format</a>
+</li>
+</ol>
+<p>Steps to take:</p>
+<ol>
+<li>Make sure <b>apxs2</b> installed:
+<pre>
+$ which apxs2 
+/usr/bin/apxs2 
+</pre>
+if not insatlled<br/>
+<pre>
+$ sudo apt-get install apache2-threaded-dev
+</pre>
+</li>
+<li>
+Download the source of the <a href="http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-Apache-Version2" target="_blank">H264 Streaming Module for Apache (version 2).</a>
+<pre>
+cd ~
+wget http://h264.code-shop.com/download/apache_mod_h264_streaming-2.2.7.tar.gz
+tar -zxvf apache_mod_h264_streaming-2.2.7.tar.gz
+</pre>
+</li>
+<li>Build:
+<pre>
+cd ~/mod_h264_streaming-2.2.7
+./configure --with-apxs=`which apxs2`
+make
+sudo make install
+</pre>
+</li>
+<li>
+ Edit the configuration file (in /usr/local/apache2/conf/httpd.conf) so that file requests ending in ".mp4" or ".ismv" are handled by the h264_streaming_module.
+<pre>
+LoadModule h264_streaming_module /usr/lib/apache2/modules/mod_h264_streaming.so
+AddHandler h264-streaming.extensions .mp4 
+</pre>
+<p>The two lines above allow our web server to stream mp4.</p>
+<p>To make it work for smooth streaming, we need to add/modify the following lines:</p>
+<pre>
+AddHandler h264-streaming.extensions .mp4 .ismv
+
+LoadModule rewrite_module modules/mod_rewrite.so
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^.+$
+RewriteRule ^(.*)\.ism/manifest$ $1.mp4?manifest=1 [L]
+RewriteRule ^(.*)\.ism/Fragments\((.*)=([0-9]+)\)(.*)$ $1.mp4?$2=$3 [L]
+RewriteRule ^(.*)/(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1/$2.ism/$2_$3.ismv?$4=$5 [L]
+RewriteRule ^(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1.ism/$1_$2.ismv?$3=$4 [L]
+
+LogLevel rewrite:trace3
+</pre>
+<li>To restart Apache:
+<pre>
+sudo /usr/local/apache2/bin/apachectl restart
+</pre>
+</li>
+</li></ol>
+<ol>
+<li>The RewriteCond 
+<pre>%{QUERY_STRING} ^.+$"</pre>
+ tells the server not to apply if there is no query string.</li></ul></p>
+<pre>RewriteRule ^(.*)\.ism/manifest$ $1.mp4?manifest=1 [L]</pre>
+rewrites <b>bunny.ism/manifest</b> to <b>bunny.mp4?manifest=1</b>.
+
+<li>
+<pre>RewriteRule ^(.*)\.ism/Fragments\((.*)=([0-9]+)\)(.*)$ $1.mp4?$2=$3 [L]</pre>
+rewrites <b>bunny.ism/Fragments(video=60000000)</b> to <b>bunny.mp4?video=60000000</b>.
+</li>
+<li>
+<pre>RewriteRule ^(.*)/(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1/$2.ism/$2_$3.ismv?$4=$5 [L]</pre>
+rewrites <b>dir/bunny.ism/QualityLevels(200)/Fragments(video=60000000)</b> to 
+<b>dir/bunny.ism/bunny_200.ismv?video=60000000</b>
+</li>
+<li>
+<pre>RewriteRule ^(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1.ism/$1_$2.ismv?$3=$4 [L]</pre>
+rewrites  <b>bunny.ism/QualityLevels(200)/Fragments(video=60000000)</b> to 
+<b>bunny.ism/bunny_200.ismv?video=60000000</b>
+</li>
+<li><pre>LogLevel rewrite:trace3</pre>
+enables writing logs for rewrite to <b>/usr/local/apache2/logs/error_log</b> file.
+</li>
+</ol>
+
+<br/><br/>
+<div class="subtitle_2nd" id="H264_testing">Testing H264 Streaming Module</div>
+<ol>
+<li>Make a directory 'test', under the DocumentRoot, and get a mp4 file:
+<pre>
+cd /usr/local/apache2/htdocs/test
+wget http://bogotobogo.com/VideoStreaming/Files/nginxSmoothStream/oceans-clip.mp4
+</pre>
+</li>
+<li>Open a browser to see if we can get only 3 sec video by typing the following url:
+<pre>
+http://localhost/test/oceans-clip.mp4?start=20&amp;end;=23
+</pre>
+</li>
+<li>
+Another test we can do is 
+<pre>
+wget -O testclip.mp4 http://localhost/test/oceans-clip.mp4?start=20&amp;end;=23
+</pre>
+</li>
+<li>
+then browse to 
+<pre>
+http://localhost/test/testclip.mp4
+</pre>
+If we see 3 second clip, we are good to go!<br/>
+This may not work due to the '&amp;' and it may download the whole file not the part that we want.
+</li>
+</ol>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="ss_test">Testing Smooth Streaming </div>
+<p>The files required to do smooth streaming are listed below:</p>
+<pre>
+$ ls /usr/local/apache2/htdocs/BigBuckBunny.ism
+BigBuckBunny_1427.ismv  BigBuckBunny_2962.ismv  BigBuckBunny_688.ismv
+BigBuckBunny_2056.ismv  BigBuckBunny_331.ismv   BigBuckBunny_991.ismv
+BigBuckBunny_230.ismv   BigBuckBunny_477.ismv   manifest
+</pre>
+<p>Note that the files are under <b>BigBuckBunny.<font color="red">ism</font></b> directory. In other words, if we're Smooth Streaming Multiple Bit Rate MP4 files, the necessary files (manifest and one <b>.ismv</b> file for each bit rate) must be located in a directory ending with the extension <b>.ism</b>. When the user request <b>http://server/BigBuckBunny.ism/manifest</b>, it returns the manifest file. The manifest file looks like this:</p>
+<pre>
+&lt;!-- Created with Expression Encoder version 4.0.1628.0 --&gt;
+&lt;SmoothStreamingMedia MajorVersion="2" MinorVersion="1" Duration="5964583334"&gt;
+&lt;StreamIndex Type="video" Name="video" Chunks="299" QualityLevels="8" MaxWidth="1280" MaxHeight="720" DisplayWidth="1280" DisplayHeight="720" Url="QualityLevels({bitrate})/Fragments(video={start time})"&gt;
+&lt;QualityLevel Index="0" Bitrate="2962000" FourCC="H264" MaxWidth="1280" MaxHeight="720" CodecPrivateData="000000016764001FAC2CA5014016EFFC100010014808080A00112A860337F980C100005A648000B4C9FE31C6080002D3240005A64FF18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="1" Bitrate="2056000" FourCC="H264" MaxWidth="992" MaxHeight="560" CodecPrivateData="000000016764001FAC2CA503E047BFF040003FC5202020280044AA180CDFE603030003EBE8000FAFAFE31C6060007D7D0001F5F5FC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="2" Bitrate="1427000" FourCC="H264" MaxWidth="768" MaxHeight="432" CodecPrivateData="000000016764001EAC2CA50300DEFFC100010014808080A00112A860337F980C0C000AE300002B8C7F8C718180015C600005718FF18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="3" Bitrate="991000" FourCC="H264" MaxWidth="592" MaxHeight="332" CodecPrivateData="0000000167640015AC2CA50250AFEFFF03FD0400520C0C0C80044AA180CDFE6030200078F80003C7C7F8C71810003C7C0001E3E3FC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="4" Bitrate="688000" FourCC="H264" MaxWidth="448" MaxHeight="252" CodecPrivateData="0000000167640015AC2CA507021FBFFC100010014830303200112A860337F980C080014FF0000A7F8FE31C604000A7F800053FC7F18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="5" Bitrate="477000" FourCC="H264" MaxWidth="368" MaxHeight="208" CodecPrivateData="000000016764000DAC2CA505C6EFFC10000FED4830303200112A860337F980C04003A3A0003A3A7F8C718080074740007474FF18E1DA1225160000000168E9093525"/&gt;
+&lt;QualityLevel Index="6" Bitrate="331000" FourCC="H264" MaxWidth="284" MaxHeight="160" CodecPrivateData="000000016764000DAC2CA504857BFFF040003FE520C0C0C80044AA180CDFE60301000A198000A19FFE31C6020014330001433FFC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="7" Bitrate="230000" FourCC="H264" MaxWidth="224" MaxHeight="128" CodecPrivateData="000000016764000DAC2CA50E11BFF040003F0520C0C0C80044AA180CDFE60300001C1200038273F8C7180000E090001C139FC63876848945800000000168E9093525"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+...
+&lt;c d="20000000"/&gt;
+&lt;c d="4166667"/&gt;
+&lt;/StreamIndex&gt;
+&lt;StreamIndex Type="audio" Index="0" Name="audio" Chunks="299" QualityLevels="1" Url="QualityLevels({bitrate})/Fragments(audio={start time})"&gt;
+&lt;QualityLevel FourCC="AACL" Bitrate="160000" SamplingRate="44100" Channels="2" BitsPerSample="16" PacketSize="4" AudioTag="255" CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/&gt;
+&lt;c d="20201360"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+...
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="4643992"/&gt;
+&lt;/StreamIndex&gt;
+&lt;/SmoothStreamingMedia&gt;
+</pre>
+<p>If the client request 2962k, we can be played as shown below:</p>
+<img alt="BigBuckBunny_2962_ismv.png" src="images/ss_nginx/BigBuckBunny_2962_ismv.png"/>
+<br/><br/>
+<p>The actual url from client looks like this:</p>
+<pre>
+http://localhost/BigBuckBunny.ism/QualityLevels(2962)/Fragments(video=12000000000)
+</pre>
+<p>where bitrate = 2962k and time is 120 seconds from the start.</p>
+<p>Apache's rewrite rule translates it as:</p>
+<pre>
+BigBuckBunny.ism/BigBuckBunny_2962.ismv?video=12000000000
+</pre>
+<p>But right now it only starts from the beginning and the "Fragments()" is not working yet.</p>
+<p>So, I made another example to test it on IIS media service (see also <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_unknown">FFMpeg Smooth Streaming</a>).</p>
+<br/><br/>
+<br/><br/>
+<div class="subtitle_2nd" id="ffmpeg_ismv">ffmpeg - ismv</div>
+<pre>
+$ ffmpeg -y -i bunny.mov \
+&gt; -acodec libfaac -ac 2 -ab 64k \
+&gt; -vcodec libx264 -g 100 -keyint_min 100 \
+&gt; -x264opts pic-struct:no-scenecut -movflags frag_keyframe \
+&gt; -b 400k -s 640x480 \
+&gt; Bismv_400.<font color="red">ismv</font>
+ffmpeg version git-2013-12-18-03a5c44 Copyright (c) 2000-2013 the FFmpeg developers
+  built on Dec 18 2013 13:45:10 with gcc 4.8 (Ubuntu/Linaro 4.8.1-10ubuntu9)
+  configuration: --prefix=/home/khong/ffmpeg_build --extra-cflags=-I/home/khong/ffmpeg_build/include --extra-ldflags=-L/home/khong/ffmpeg_build/lib --bindir=/home/khong/bin --extra-libs=-ldl --enable-gpl --enable-libass --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --enable-libfaac
+  libavutil      52. 58.101 / 52. 58.101
+  libavcodec     55. 45.102 / 55. 45.102
+  libavformat    55. 22.100 / 55. 22.100
+  libavdevice    55.  5.102 / 55.  5.102
+  libavfilter     4.  0.100 /  4.  0.100
+  libswscale      2.  5.101 /  2.  5.101
+  libswresample   0. 17.104 /  0. 17.104
+  libpostproc    52.  3.100 / 52.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'bunny.mov':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 537199360
+    compatible_brands: qt  
+    creation_time   : 2008-05-27 18:32:32
+    timecode        : 00:00:00:00
+  Duration: 00:09:56.46, start: 0.000000, bitrate: 3342 kb/s
+    Stream #0:0(eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 854x480, 2899 kb/s, 24 fps, 24 tbr, 2400 tbn, 4800 tbc (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+    Stream #0:1(eng): Data: none (tmcd / 0x64636D74) (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+      timecode        : 00:00:00:00
+    Stream #0:2(eng): Audio: aac (mp4a / 0x6134706D), 48000 Hz, 5.1, fltp, 437 kb/s (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+Please use -b:a or -b:v, -b is ambiguous
+[libx264 @ 0x35fd920] using cpu capabilities: MMX2 SSE2Slow SSSE3 LZCNT SlowPalignr
+[libx264 @ 0x35fd920] profile High, level 3.0
+[libx264 @ 0x35fd920] 264 - core 140 r2 1ca7bb9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2013 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=3 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=100 keyint_min=51 scenecut=0 intra_refresh=0 rc_lookahead=40 rc=abr mbtree=1 bitrate=400 ratetol=1.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, ismv, to 'Bismv_400.ismv':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 537199360
+    compatible_brands: qt  
+    timecode        : 00:00:00:00
+    encoder         : Lavf55.22.100
+    Stream #0:0(eng): Video: h264 (libx264) ([33][0][0][0] / 0x0021), yuv420p, 640x480, q=-1--1, 400 kb/s, 10000k tbn, 24 tbc (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+    Stream #0:1(eng): Audio: aac (libfaac) ([64][0][0][0] / 0x0040), 48000 Hz, stereo, s16, 64 kb/s (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+Stream mapping:
+  Stream #0:0 -&gt; #0:0 (h264 -&gt; libx264)
+  Stream #0:2 -&gt; #0:1 (aac -&gt; libfaac)
+Press [q] to stop, [?] for help
+frame=14315 <font color="red">fps=8.3</font> q=-1.0 Lsize=   34148kB time=00:09:56.48 bitrate= 469.0kbits/s    
+video:29032kB audio:4673kB subtitle:0 global headers:0kB muxing overhead 1.313711%
+[libx264 @ 0x35fd920] frame I:144   Avg QP:22.21  size: 32303
+[libx264 @ 0x35fd920] frame P:5274  Avg QP:26.77  size:  3769
+[libx264 @ 0x35fd920] frame B:8897  Avg QP:30.70  size:   584
+[libx264 @ 0x35fd920] consecutive B-frames:  9.2% 18.8% 14.5% 57.5%
+[libx264 @ 0x35fd920] mb I  I16..4: 12.1% 62.7% 25.2%
+[libx264 @ 0x35fd920] mb P  I16..4:  1.9%  6.3%  1.1%  P16..4: 26.0%  7.8%  4.8%  0.0%  0.0%    skip:52.0%
+[libx264 @ 0x35fd920] mb B  I16..4:  0.1%  0.4%  0.1%  B16..8: 19.2%  1.5%  0.3%  direct: 0.4%  skip:78.1%  L0:38.5% L1:58.5% BI: 3.1%
+[libx264 @ 0x35fd920] final ratefactor: 26.73
+[libx264 @ 0x35fd920] 8x8 transform intra:66.8% inter:72.2%
+[libx264 @ 0x35fd920] coded y,uvDC,uvAC intra: 55.4% 64.3% 35.3% inter: 5.7% 6.0% 0.6%
+[libx264 @ 0x35fd920] i16 v,h,dc,p: 33% 25%  9% 33%
+[libx264 @ 0x35fd920] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 25% 13% 22%  5%  6% 10%  5%  8%  6%
+[libx264 @ 0x35fd920] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 26% 14% 14%  6%  9% 11%  7%  8%  6%
+[libx264 @ 0x35fd920] i8c dc,h,v,p: 53% 19% 20%  8%
+[libx264 @ 0x35fd920] Weighted P-Frames: Y:6.7% UV:3.4%
+[libx264 @ 0x35fd920] ref P L0: 60.8% 16.1% 13.9%  8.2%  1.0%
+[libx264 @ 0x35fd920] ref B L0: 87.8% 10.4%  1.8%
+[libx264 @ 0x35fd920] ref B L1: 95.1%  4.9%
+[libx264 @ 0x35fd920] kb/s:398.72
+</pre>
+<br/><br/>
+<br/><br/>
+<div class="subtitle_2nd" id="ffmpeg_mp4">ffmpeg - mp4</div>
+<pre>
+$ ffmpeg -y -i bunny.mov \
+&gt; -acodec libfaac -ac 2 -ab 64k \
+&gt; -vcodec libx264 -g 100 -keyint_min 100 \
+&gt; -x264opts pic-struct:no-scenecut -movflags frag_keyframe \
+&gt; -b 400k -s 640x480 \
+&gt; Bmp4_400.<font color="red">mp4</font>
+ffmpeg version git-2013-12-18-03a5c44 Copyright (c) 2000-2013 the FFmpeg developers
+  built on Dec 18 2013 13:45:10 with gcc 4.8 (Ubuntu/Linaro 4.8.1-10ubuntu9)
+  configuration: --prefix=/home/khong/ffmpeg_build --extra-cflags=-I/home/khong/ffmpeg_build/include --extra-ldflags=-L/home/khong/ffmpeg_build/lib --bindir=/home/khong/bin --extra-libs=-ldl --enable-gpl --enable-libass --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --enable-libfaac
+  libavutil      52. 58.101 / 52. 58.101
+  libavcodec     55. 45.102 / 55. 45.102
+  libavformat    55. 22.100 / 55. 22.100
+  libavdevice    55.  5.102 / 55.  5.102
+  libavfilter     4.  0.100 /  4.  0.100
+  libswscale      2.  5.101 /  2.  5.101
+  libswresample   0. 17.104 /  0. 17.104
+  libpostproc    52.  3.100 / 52.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'bunny.mov':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 537199360
+    compatible_brands: qt  
+    creation_time   : 2008-05-27 18:32:32
+    timecode        : 00:00:00:00
+  Duration: 00:09:56.46, start: 0.000000, bitrate: 3342 kb/s
+    Stream #0:0(eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 854x480, 2899 kb/s, 24 fps, 24 tbr, 2400 tbn, 4800 tbc (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+    Stream #0:1(eng): Data: none (tmcd / 0x64636D74) (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+      timecode        : 00:00:00:00
+    Stream #0:2(eng): Audio: aac (mp4a / 0x6134706D), 48000 Hz, 5.1, fltp, 437 kb/s (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+Please use -b:a or -b:v, -b is ambiguous
+[libx264 @ 0x2e49920] using cpu capabilities: MMX2 SSE2Slow SSSE3 LZCNT SlowPalignr
+[libx264 @ 0x2e49920] profile High, level 3.0
+[libx264 @ 0x2e49920] 264 - core 140 r2 1ca7bb9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2013 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=3 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=100 keyint_min=51 scenecut=0 intra_refresh=0 rc_lookahead=40 rc=abr mbtree=1 bitrate=400 ratetol=1.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'Bmp4_400.mp4':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 537199360
+    compatible_brands: qt  
+    timecode        : 00:00:00:00
+    encoder         : Lavf55.22.100
+    Stream #0:0(eng): Video: h264 (libx264) ([33][0][0][0] / 0x0021), yuv420p, 640x480, q=-1--1, 400 kb/s, 12288 tbn, 24 tbc (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+    Stream #0:1(eng): Audio: aac (libfaac) ([64][0][0][0] / 0x0040), 48000 Hz, stereo, s16, 64 kb/s (default)
+    Metadata:
+      creation_time   : 2008-05-27 18:32:32
+      handler_name    : Apple Alias Data Handler
+Stream mapping:
+  Stream #0:0 -&gt; #0:0 (h264 -&gt; libx264)
+  Stream #0:2 -&gt; #0:1 (aac -&gt; libfaac)
+Press [q] to stop, [?] for help
+frame=14315 <font color="red">fps= 18</font> q=-1.0 Lsize=   33966kB time=00:09:56.48 bitrate= 466.5kbits/s    
+video:29030kB audio:4673kB subtitle:0 global headers:0kB muxing overhead 0.781453%
+[libx264 @ 0x2e49920] frame I:144   Avg QP:22.21  size: 32307
+[libx264 @ 0x2e49920] frame P:5274  Avg QP:26.77  size:  3768
+[libx264 @ 0x2e49920] frame B:8897  Avg QP:30.71  size:   584
+[libx264 @ 0x2e49920] consecutive B-frames:  9.2% 18.8% 14.5% 57.5%
+[libx264 @ 0x2e49920] mb I  I16..4: 12.0% 62.8% 25.2%
+[libx264 @ 0x2e49920] mb P  I16..4:  1.9%  6.3%  1.1%  P16..4: 26.0%  7.8%  4.8%  0.0%  0.0%    skip:52.0%
+[libx264 @ 0x2e49920] mb B  I16..4:  0.1%  0.4%  0.1%  B16..8: 19.2%  1.5%  0.3%  direct: 0.4%  skip:78.2%  L0:38.4% L1:58.5% BI: 3.1%
+[libx264 @ 0x2e49920] final ratefactor: 26.73
+[libx264 @ 0x2e49920] 8x8 transform intra:66.7% inter:72.2%
+[libx264 @ 0x2e49920] coded y,uvDC,uvAC intra: 55.4% 64.2% 35.3% inter: 5.7% 6.0% 0.6%
+[libx264 @ 0x2e49920] i16 v,h,dc,p: 33% 25%  9% 33%
+[libx264 @ 0x2e49920] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 25% 13% 22%  5%  6% 10%  5%  8%  6%
+[libx264 @ 0x2e49920] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 26% 14% 14%  6%  9% 11%  7%  8%  6%
+[libx264 @ 0x2e49920] i8c dc,h,v,p: 53% 19% 20%  8%
+[libx264 @ 0x2e49920] Weighted P-Frames: Y:6.7% UV:3.4%
+[libx264 @ 0x2e49920] ref P L0: 60.8% 16.1% 13.9%  8.2%  1.0%
+[libx264 @ 0x2e49920] ref B L0: 87.7% 10.4%  1.9%
+[libx264 @ 0x2e49920] ref B L1: 95.1%  4.9%
+[libx264 @ 0x2e49920] kb/s:398.69
+</pre>
+<br/>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="Encoding_FFmpeg">More Samples Encoding with FFmpeg for Smooth Stream</div>
+<p>Here is the input video: <a href="Files/nginxSmoothStream/bear.mp4" target="_blank">bear.mp4</a>.</p>
+<br/>
+<img alt="vlc_playing_bear.png" src="images/ss_nginx/vlc_playing_bear.png"/>
+<br/>
+<p>From vlc:</p>
+<img alt="bear_mp4_vlc_codec_info.png" src="images/ss_nginx/bear_mp4_vlc_codec_info.png"/>
+<br/>
+<p>From mplayer:</p>
+<pre>
+Playing bear.mp4.
+libavformat version 53.21.1 (external)
+Mismatching header version 53.19.0
+libavformat file format detected.
+[lavf] stream 0: video (h264), -vid 0
+[lavf] stream 1: audio (aac), -aid 0, -alang und
+VIDEO:  [H264]  1280x720  24bpp  25.000 fps  2815.4 kbps (343.7 kbyte/s)
+Clip info:
+ major_brand: mp42
+ minor_version: 0
+ compatible_brands: isommp42
+ creation_time: 2013-11-21 00:01:55
+</pre>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="One_ismv">Encoding one video and one audio stream</div>
+<p>Here is an example of creating a fragmented MP4 file: bear.ismv.</p>
+<p>For the audio stream we select the AAC codec at a bitrate of 64 kbits/sec. For the video stream we select the H.264 codec at a bitrate of 400 kbits/sec and at a resolution of 848x400.</p>
+<pre>
+$ AUDIO_OPTIONS="-c:a libfaac -ac 2 -b:a 64k"
+$ VIDEO_OPTIONS="-c:v libx264 -preset fast -profile:v baseline -g 100 -keyint_min 100"
+$ FFMPEG_OPTIONS="-x264opts pic-struct:no-scenecut -movflags frag_keyframe"
+$ MAP="-map 0:v -b:v:0 400k -s:v:0 848x400 -map 0:a:0"
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS $MAP bear.ismv
+</pre>
+<p>The parameters used for the settings <br/>
+<ol>
+<li>preset - default: medium<br/>
+Change options to trade off compression efficiency against encoding speed. If you specify a preset, the changes it makes will be applied before all other parameters are applied.<br/>
+You should generally set this option to the slowest you can bear.<br/>
+Values available: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow, placebo.<br/>
+</li>
+<li>profile - default: not set<br/>
+Limit the profile of the output stream. If you specify a profile, it overrides all other settings, so if you use it, you will be guaranteed a compatible stream. If you set this option, you cannot use lossless encoding (--qp 0 or --crf 0).<br/>
+You should set this if you know your playback device only supports a certain profile. Most decoders support High profile, so there's no need to set this.<br/>
+Values available: baseline, main, high, high10, high422, high444.<br/>
+</li>
+<li>g - Keyframe interval, also known as GOP length. <br/>
+This determines the maximum distance between I-frames. <br/>
+Very high GOP lengths will result in slightly more efficient compression, but will make seeking in the video somewhat more difficult.<br/>
+Recommended default: 250 
+ </li>
+<li>keyint_min - Minimum GOP length<br/>
+ the minimum distance between I-frames.<br/>
+ Recommended default: 25
+ </li>
+<li>pic-struct<br/>
+Default: Not Set<br/>
+Force sending pic_struct in Picture Timing SEI.<br/>
+Implied when you use --pulldown or --tff/--bff.
+ </li>
+<li>no-scenecut<br/>
+Default: Not Set <br/>
+Completely disables adaptive I-frame decision.
+ </li>
+<li>movflags frag_keyframe<br/>
+Start a new fragment at each video keyframe.
+ </li>
+<li>ac 2<br/>
+  number of audio channels, in our case, 2 channels
+ </li>
+</ol>
+For more details on the settings parameters, please check the links below:</p>
+<ol>
+<li><a href="http://mewiki.project357.com/wiki/X264_Settings" target="_blank">http://mewiki.project357.com/wiki/X264_Settings</a> </li>
+<li><a href="https://sites.google.com/site/linuxencoding/x264-ffmpeg-mapping" target="_blank">https://sites.google.com/site/linuxencoding/x264-ffmpeg-mapping</a> </li>
+<li><a href="http://www.ffmpeg.org/ffmpeg-formats.html" target="_blank">http://www.ffmpeg.org/ffmpeg-formats.html</a> </li>
+</ol>
+<p>Info from mplayer while playing bear.ismv:</p>
+<pre>
+Playing bear.ismv.
+libavformat version 53.21.1 (external)
+Mismatching header version 53.19.0
+libavformat file format detected.
+[lavf] stream 0: video (h264), -vid 0
+[lavf] stream 1: audio (aac), -aid 0, -alang und
+VIDEO:  [H264]  848x400  24bpp  25.000 fps    0.0 kbps ( 0.0 kbyte/s)
+Clip info:
+ major_brand: isml
+ minor_version: 512
+ compatible_brands: piffiso2
+ encoder: Lavf55.22.100
+Load subtitles in ./
+</pre>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="Two_ismv">Encoding two video streams - single pass</div>
+<pre>
+$ AUDIO_NONE="-an"
+$ AUDIO_OPTIONS="-acodec libfaac -ac 2 -ab 64k"
+$ VIDEO_OPTIONS="-vcodec libx264 -preset veryfast -g 100 -keyint_min 100"
+$ FFMPEG_OPTIONS="-x264opts pic-struct:no-scenecut -movflags frag_keyframe"
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -b 200k -s 608x288 bear_200.ismv
+$ ffmpeg -y -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS -b 400k -s 848x400 bear_400.ismv
+</pre>
+<p>Making ism and ismc using ffmpeg ismindex:</p>
+<pre>
+$ ismindex -n bear bear_200.ismv bear_400.ismv
+</pre>
+<p>On vlc, the following two cases with network input play video:</p>
+<img alt="vlc_bear_quality_frags.png" src="images/ss_nginx/vlc_bear_quality_frags.png"/>
+<br/><br/>
+<img alt="vlc_ismv_video.png" src="images/ss_nginx/vlc_ismv_video.png"/>
+<br/>
+<p>Note that we need to prepend <font color="red">http://</font> before localhost.</p>
+<p>But neither of them does not seem to be starting at the specified time. It always starts from the beginning and plays to the end.</p>
+<p>The Firebox browser does not like both of them.</p>
+<p>The Apache server setup looks like this for the vlc run:</p>
+<pre>
+<font color="red">#</font> AddHandler h264-streaming.extensions .mp4 .ism 
+
+LoadModule rewrite_module modules/mod_rewrite.so
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^.+$
+RewriteRule ^(.*)\.ism/manifest$ $1.mp4?manifest=1 [L]
+RewriteRule ^(.*)\.ism/Fragments\((.*)=([0-9]+)\)(.*)$ $1.mp4?$2=$3 [L]
+RewriteRule ^(.*)/(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1/$2.ism/$2_$3.ismv?$4=$5 [L]
+RewriteRule ^(.*)\.ism/QualityLevels\(([0-9]+)\)/Fragments\((.*)=([0-9]+)\)(.*)$ $1.ism/$1_$2.ismv?$3=$4 [L]
+
+LogLevel rewrite:trace3
+</pre>
+<p>If we create the frags (ffmpeg ...) in mp4 container and copy it to ismv, things are different: it plays only the fragment though it still starts from the beginning. When we play ismv/mp4 files using vlc or mplayer, we see it have all the frags from the beginning to the end. But the H264 module for Apache does not process ismv directly generated from ffmpeg. It only processes ismv version copied from mp4. Also, as mentioned earlier, it does not properly process the timestamp (offset).</p>
+<br/>
+<img alt="ismv_firefox.png" src="images/ss_nginx/ismv_firefox.png"/>
+<br/><br/>
+<img alt="ismv_mp4_firefox.png" src="images/ss_nginx/ismv_mp4_firefox.png"/>
+<br/>
+<br/><br/>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="Two_pass_ismv">Encoding two video streams - two pass</div>
+<blockquote>This method is generally used if you are targeting a specific output file size and output quality from frame to frame is of less importance. This is best explained with an example. Your video is 10 minutes (600 seconds) long and an output of 50 MB is desired. Since bitrate = file size / duration:<br/>
+(from <a href="https://trac.ffmpeg.org/wiki/x264EncodingGuide" target="_blank">https://trac.ffmpeg.org/wiki/x264EncodingGuide</a>)</blockquote>
+<pre>
+(50 MB * 8192 [converts MB to kilobits]) / 600 seconds = ~683 kilobits/s total bitrate
+683k - 128k (desired audio bitrate) = 555k video bitrate
+</pre>
+<p>For my case, it looks like this:</p>
+<pre>
+$ AUDIO_NONE="-an"
+$ AUDIO_OPTIONS="-c:a libfaac -ac 2 -b:a 64k"
+$ VIDEO_OPTIONS="-c:v libx264 -preset medium -profile:v baseline -g 100 -keyint_min 100"
+$ FFMPEG_OPTIONS="-x264opts pic-struct:no-scenecut -movflags frag_keyframe"
+
+$ MAP1="-map 0:v -b:v:0 350k -s:v:0 408x228"
+$ MAP2="-map 0:v -b:v:0 700k -s:v:0 568x320"
+$ MAP3="-map 0:v -b:v:0 1000k -s:v:0 704x396 -map 0:a:0"
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP1 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP1 bear_350.ismv
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP2 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP2 bear_700.ismv
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP3 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP3 bear_1000.ismv
+</pre>
+<p>However, with those output, I failed to get manifest file because of the duration mismatch:</p>
+<pre>
+$ /home/khong/ffmpeg_sources/ffmpeg/tools/ismindex/ismindex -n bear bear_bear_350.ismv bear_700.ismv bear_1000.ismv
+Mismatched duration of video chunk 0 in bear_350.ismv and bear_1000.ismv
+</pre>
+<p>It turns out that audio "-map 0:a:0" in MAP3 was the culprit!<br/>
+Here are the new commands after removing it (no audio):</p>
+<pre>
+$ AUDIO_NONE="-an"
+$ AUDIO_OPTIONS="-c:a libfaac -ac 2 -b:a 64k"
+$ VIDEO_OPTIONS="-c:v libx264 -preset fast -profile:v baseline -g 100 -keyint_min 100"
+$ FFMPEG_OPTIONS="-x264opts pic-struct:no-scenecut -movflags frag_keyframe"
+
+$ MAP1="-map 0:v -b:v:0 350k -s:v:0 408x228"
+$ MAP2="-map 0:v -b:v:0 700k -s:v:0 568x320"
+// note No Audio here
+$ MAP3="-map 0:v -b:v:0 1000k -s:v:0 704x396"
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP1 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP1 bear_350.ismv
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP2 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_NONE $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP2 bear_700.ismv
+
+$ ffmpeg -y -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 1 $MAP3 -f ismv /dev/null &amp;&amp; \
+ffmpeg -i bear.mp4 $AUDIO_OPTIONS $VIDEO_OPTIONS $FFMPEG_OPTIONS -pass 2 $MAP3 bear_1000.ismv
+</pre>
+<p>Now, we do not have any problem creating manifest files (ism, ismc).</p>
+<pre>
+$ /home/khong/ffmpeg_sources/ffmpeg/tools/ismindex -n bear bear_350.ismv bear_700.ismv bear_1000.ismv
+$ ls
+bear_1000.ismv  bear_350.ismv  bear_700.ismv  bear.ism  bear.ismc  bear.mp4
+</pre>
+<p>However, those are for the case without any audio. So, I need to investigate the reason for the duration mismatch.</p>
+<p>If we take another input such as:</p>
+<pre>
+wget http://bogotobogo.com/VideoStreaming/Files/nginxSmoothStream/oceans.mp4
+</pre>
+<p>it will produce proper manifest files (ism and ismc).</p>
+<p>So, this might be an input file issue.</p>
+<br/><br/>
+<p>References used in this section:</p>
+<ol>
+<li> <a href="http://www.unified-streaming.com/support/documentation/content-encoding/encoding-profiles/" target="_blank">Encoding Profiles</a>
+</li>
+<li>
+<a href="http://www.unified-streaming.com/support/documentation/content-encoding/encoders/" target="_blank">Encoders</a>
+</li>
+<li>
+<a href="http://www.unified-streaming.com/support/tutorials/create-vodpack/" target="_blank">Creation of the Unified Streaming VOD pack</a>
+</li>
+</ol>
+<br/>
+<br/><br/><br/><br/>
+<div class="subtitle_2nd" id="from_windows">Testing Apache streaming from Windows Silverlight</div>
+<p>We probably want to test the smooth streaming using Silverlight. (for more info on testing on Windows, please visit <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">ffmpeg - smooth streaming</a>).</p>
+<p>In my case, I wanted to see server's response to a request for <b>http://192.168.1.1/bear.ism/manifest</b> from another Windows machine. To do that, I used Silverlight. The only thing for the Apache server to make it work is to bind the port with the address in <b>/usr/local/apache2/conf/httpd.conf</b>:</p>
+<pre>
+Listen 127.0.0.1:80
+Listen 192.168.1.1:80
+</pre>
+
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>Video Streaming</h1>
+   <br><br>
+   <a href="AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH </a>    
+   <br><br>
+   <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">Digital Image Processing - JPEG Compression
+</a> 
+   <br><br>
+   <a href="ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">FFmpeg on Linux - Audio Video Transcoding Mux Demux
+</a> 
+   <br><br>
+   <a href="ffmpeg_on_Windows.html" target="_blank">FFmpeg on Windows
+</a> 
+   <br><br>
+   <a href="ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">FFmpeg Video Capture from Webcam 
+</a> 
+   <br><br>
+   <a href="ffmpeg_http_live_streaming_hls.html" target="_blank">FFmpeg Http Live Streaming - HLS
+</a> 
+   <br><br>
+   <a href="ffmpeg_options_list.html" target="_blank">FFmpeg Command Options </a> 
+   <br><br>
+   <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">FFmpeg Smooth Streaming 
+</a> 
+   <br><br>
+   <a href="rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">HTTP vs RTMP
+</a>
+   <br><br>
+   <a href="../WebTechnologies/mobile.html" target="_blank">Mobile - Streaming
+</a> 
+   <br><br>
+<a href="h265_hevc.html" target="_blank">MPEG-4 Successor H.265/HEVC
+</a> 
+   <br><br>
+<a href="mpeg_dash.html" target="_blank">MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)
+</a> 
+   <br><br>
+   <a href="p2pStreaming.html">P2P Streaming</a>
+   <br><br>
+   <a href="videostreaming_etc.html" target="_blank">Streaming - Mobile
+</a> 
+   <br><br>
+   <a href="Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">Screen Recording (mp4/ogg) and HTML5 Video</a> 
+   <br><br>
+   <a href="AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">Smooth Streaming on iis 8
+</a> 
+   <br><br>
+   <a href="Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">Smooth Streaming on Nginx/Apache
+</a> 
+   <br><br>
+  <a href="AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">Smooth Streaming - Expression Encoder
+</a> 
+   <br><br>
+   <a href="optimization_transrating.html" target="_blank">Streaming (Data Traffic) - Optimization
+</a> 
+   <br><br>
+   <a href="VideoStreamingSharingSites.html" target="_blank">Video Streaming Sites
+</a> 
+   <br><br>
+   <a href="VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">VLC - How to Capture Screen to a Video File using VLC</a>
+   <br><br>
+   <a href="VLC/How_to_Streaming_Live_Network_http.html" target="_blank">VLC - Live Streaming over http using VLC</a>
+   <br><br>
+   <a href="VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">VLC - Live Streaming over RTP using VLC</a>
+   <br><br>
+   <a href="VLC/File_Convert_Transcoding_VLC.html" target="_blank">VLC - Transcoding using VLC</a>
+   <br><br>
+   <a href="VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">VLC - Downloading a YouTube Video using VLC</a>
+   <br><br>
+   <a href="YouTube/Downloading_YouTube_Vimeo_Video_using_youtube-dl.html" target="_blank">Downloading YouTube, Vimeo etc Videos using youtube-dl</a>
+   <br><br>
+   <a href="YouTube/youtube-dl-embedding.html" target="_blank">Using youtube-dl embedded with Python</a>
+   <br><br>
+   <a href="YouTube/Dissecting-YouTube-URLs.html" target="_blank">Dissecting Youtube URL with Python</a>
+   <br><br>
+   
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 07:59:48 GMT -->
+</html>
+

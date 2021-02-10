@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/RubyOnRails/RubyOnRails_Devise_Authentication_Sending_Confirmation_Email.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 11:19:27 GMT -->
+<head>
+  <title>Rails : Authentication and sending confirmation email using Devise - 2017</title>
+  <meta content="Ruby : Action Mailer App" name="description" />
+  <meta content="Ruby : Action Mailer App, web framework, email, devise, authentication, Authentication and sending confirmation email using Devise, Adding Custom Fields to Devise User Model" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Authentication and sending confirmation email using Devise   2017    <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/RubyOnRails_logo.png" alt="RubyOnRails_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle_2nd" id="Introduction">Introduction</div>
+<p>In this chapter, we'll learn how to send/receive email to/from our minimal application.</p>
+<p>We're going to use <a href="http://guides.rubyonrails.org/action_mailer_basics.html" target="_blank">Action Mailer</a> with <a href="https://github.com/plataformatec/devise" target="_blank">Devise</a> which  a popular, full-fledged authentication.</p>
+<p>We'll use gmail as a from mail but in next chapter (<a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email_Heroku_Deploy.html" target="_blank">Rails Heroku Deploy - Authentication and sending confirmation email using Devise</a>), we'll use SENDGRID on Heroku instead.</p>
+<p>Source available : <a href="https://github.com/PyGoogle/Rails4-Devise-Authentication-and-Sending-Confirmation-Email.git" target="_blank">Github : Rails4-Devise-Authentication-Confirmation</a>.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="project">Create a project</div>
+<p>Let's create a simple project called "DeviseActionMailer":</p>
+<pre class="prettyprint">
+$ rails new DeviseActionMailer
+
+$ cd DeviseActionMailer
+</pre>
+<p>We're using Rails 4.2.5.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="home-page">Home page</div>
+<p>We'll make a very simple home (landing) page:</p>
+<pre class="prettyprint">
+$ rails generate controller welcome index
+</pre>
+<p>Open the <b>app/views/welcome/index.html.erb</b> file and delete all of the existing code in the file, and replace it with the following single line of code:</p>
+<pre class="prettyprint">
+&lt;h1&gt;Hello, Rails!&lt;/h1&gt;
+</pre>
+<p>Now that we have made the controller and view, we need to tell Rails when we want "Hello, Rails!" to show up. In our case, we want it to show up when we navigate to the root URL of our site, <b>http://localhost:3000</b>.</p>
+<p>Open the file <b>config/routes.rb</b>:</p>
+<pre class="prettyprint">
+get 'welcome/index'
+root 'welcome#index'
+</pre>
+<p><b>root 'welcome#index'</b> tells Rails to map requests to the root of the application to the welcome controller's <b>index action</b> and <b>get 'welcome/index'</b> tells Rails to map requests to <b>http://localhost:3000/welcome/index</b> to the welcome controller's index action.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="gemfile">Adding Devise to Gemfile</div>
+<p>We may want to use <b>devise</b>:</p>
+<pre class="prettyprint">
+gem 'devise'
+</pre>
+<p>Then run the bundle command to install it:</p>
+<pre class="prettyprint">
+$ bundle install
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="generating-devise-config">Generating devise configuration file</div>
+<p>Let's run the following command to generate Devise's configuration file:</p>
+<pre class="prettyprint">
+$ rails generate devise:install
+</pre>
+<p>The generator will install an initializer (<b>config/initializers/devise.rb</b>) which describes all of Devise's configuration options. </p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="devise-config">Configure Devise</div>
+<p>In development environments, emails won't be sent by default. We will still be able to see their contents in the console though. To enable sending, we need to add the following line to <b>config/environments/development.rb</b>:</p>
+<pre class="prettyprint">
+config.action_mailer.perform_deliveries = true
+</pre>
+<p>We also need to define default url options for the Devise mailer in our environment file:</p>
+<pre class="prettyprint">
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.default_url_options = { host: 'localhost:3000' }
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="alert-notice">Notices and alerts</div>
+<p>Open up <b>app/views/layouts/application.html.erb</b> and add the following lines right above
+<b>&lt;%= yield %&gt;</b>:</p>
+<pre class="prettyprint">
+&lt;p class="notice"&gt;&lt;%= notice %&gt;&lt;/p&gt;
+&lt;p class="alert"&gt;&lt;%= alert %&gt;&lt;/p&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="User model">Setting up the User model </div>
+<p>We want to create our user model with devise.</p>
+We'll use a bundled generator script to create the <b>User</b> model.
+<pre class="prettyprint">
+$ rails generate devise User
+</pre>
+<p>The command generates a model with additional columns that are required by Devise. It will also create a <b>models/user.rb</b> model file and a migration (<b>db/migrate/xxx_devise_create_users.rb</b>) that adds all the necessary fields. If the <b>User</b> model already exists, it will be updated.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Confirmable">Devise migration file - Confirmable and Lockable modules</div>
+<p>We need to edit the migration file, so open it up and uncomment the following lines:<b>db/migrations/xxx_devise_create_users.rb</b>. These fields are required for the Confirmable and Lockable modules to operate correctly:</p>
+<pre class="prettyprint">
+## Confirmable
+t.string   :confirmation_token
+t.datetime :confirmed_at
+t.datetime :confirmation_sent_at
+t.string   :unconfirmed_email # Only if using reconfirmable
+
+## Lockable
+t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+t.string   :unlock_token # Only if unlock strategy is :email or :both
+t.datetime :locked_at
+</pre>
+<p>The code above is the key to send the user a confirmation email and to help when the user locked out.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="db-yml">config/database.yml - Optional</div>
+<p>We may want to switch our db to <b>postgres</b> from <b>sqlite3</b>:</p>
+<pre class="prettyprint">
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &amp;default;
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: DeviseMailer_dev
+  pool: 5
+  username: postgres
+  password: postgres
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  &lt;&lt;: *default
+  database: DeviseMailer_test
+
+production:
+  &lt;&lt;: *default
+  database: DeviseMailer_prod
+</pre>
+<p>We need to update Gemfile:</p>
+<pre class="prettyprint">
+gem 'pg'
+</pre>
+<p>Then, install:</p>
+<pre class="prettyprint">
+$ bundle install
+</pre>
+<p>Unlike the default sqlite3 db, we need to create our db:</p>
+<pre class="prettyprint">
+$ rake db:create
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="db-migrate">rake db:migrate</div>
+<p>DB migration for <b>DeviseCreateUsers</b>:</p>
+<pre class="prettyprint">
+$ rake db:migrate
+-- create_table(:users)
+-- add_index(:users, :email, {:unique=&gt;true})
+-- add_index(:users, :reset_password_token, {:unique=&gt;true})
+</pre>
+<p>To see what it does, we can check <b>db/migrate/schema.rb</b>:</p>
+<pre class="prettyprint">
+ActiveRecord::Schema.define(version: 20160126075418) do
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+end
+</pre>
+<p>Once we migrate, we're ready to go!</p>
+<p>Devise will create the Sign up and Login routes and views for us. If we go to <b>http://localhost:3000/users/sign_up</b>, we get "Sign up" page:</p>
+<img alt="Devise-Initial-SignUpPage.png" src="images/Devise/Devise-Initial-SignUpPage.png"/>
+<br/>
+<p>If we go to <b>http://localhost:3000/users/sign_in</b>, we get "Log in" page:</p>
+<img alt="Devise-Initial-Sign-In-Page.png" src="images/Devise/Devise-Initial-Sign-In-Page.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="links">Links on landing page - Optional</div>
+<p>When a user lands on our toot page (<b>localhost:3000</b>), our route file (<b>config/routes.rb</b>):</p>
+<pre class="prettyprint">
+get 'welcome/index'
+</pre>
+<p>The <b>welcome/index</b> tells Rails to map requests to <b>http://localhost:3000/welcome/index</b> to the <b>welcome</b> controller's <b>index</b> action. This was created earlier when we ran the controller generator (<b>rails generate controller welcome index</b>).</p>
+<p>Instead of a boring landing page, we may want to add some code (<b>app/views/welcome/index.html.erb</b>) which links to <b>Sign Up</b> and <b>Log In</b> pages:</p>
+<pre class="prettyprint">
+&lt;h1&gt;Hello, Rails!&lt;/h1&gt;
+&lt;% if user_signed_in? %&gt;
+  Logged in as &lt;strong&gt;&lt;%= current_user.email %&gt;&lt;/strong&gt;.
+  &lt;%= link_to 'Edit profile', edit_user_registration_path, :class =&gt; 'navbar-link' %&gt; |
+  &lt;%= link_to "Logout", destroy_user_session_path, method: :delete, :class =&gt; 'navbar-link'  %&gt;
+&lt;% else %&gt;
+  &lt;%= link_to "Sign up", new_user_registration_path, :class =&gt; 'navbar-link'  %&gt; |
+  &lt;%= link_to "Login", new_user_session_path, :class =&gt; 'navbar-link'  %&gt;
+&lt;% end %&gt;
+</pre>
+<p>So, a user who landed on our app will see the following page:</p>
+<img alt="LInksOnLandingPage.png" src="images/Devise/LInksOnLandingPage.png"/>
+<p>Note that we also added links to "Edit profile" and "Logout" for the users who are already logged in:</p>
+<img alt="AlreadyLoggedInUser.png" src="images/Devise/AlreadyLoggedInUser.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="rake-routes">rake routes</div>
+<p>If we want to see what routes Devise has been setup for us, we may want to use <b>rake routes</b> command:</p>
+<pre class="prettyprint">
+$ rake routes
+                  Prefix Verb   URI Pattern                       Controller#Action
+        new_user_session GET    /users/sign_in(.:format)          devise/sessions#new
+            user_session POST   /users/sign_in(.:format)          devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)         devise/sessions#destroy
+           user_password POST   /users/password(.:format)         devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)     devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)    devise/passwords#edit
+                         PATCH  /users/password(.:format)         devise/passwords#update
+                         PUT    /users/password(.:format)         devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)           devise/registrations#cancel
+       user_registration POST   /users(.:format)                  devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)          devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)             devise/registrations#edit
+                         PATCH  /users(.:format)                  devise/registrations#update
+                         PUT    /users(.:format)                  devise/registrations#update
+                         DELETE /users(.:format)                  devise/registrations#destroy
+       user_confirmation POST   /users/confirmation(.:format)     devise/confirmations#create
+   new_user_confirmation GET    /users/confirmation/new(.:format) devise/confirmations#new
+                         GET    /users/confirmation(.:format)     devise/confirmations#show
+</pre>
+<p>Amazingly, we can see that Devise has set up some <b>user routes</b> and corresponding <b>user views</b>, even though we don't see those views in our <b>views</b> directory. </p>
+<p>For example, if we log in, we see a link to edit our profile:</p>
+<img alt="AfterSignIn.png" src="images/Devise/AfterSignIn.png"/>
+<p>The "Edit profile" link will take us to the <b>/users/edit</b> route, allowing us to edit our devise settings, such as password, or canceling our account:</p>
+<img alt="EditProfile.png" src="images/Devise/EditProfile.png"/>
+<p>As show above, the routes we got from <b>rake routes</b> command, we see several routes dedicated to users.</p>
+<p>In addition to the routes created by devise, we have new controllers created by Devise: a <b>sessions</b> controller, a <b>passwords</b> controller, a <b>registrations</b> controller and a <b>confirmations</b> controller.</p>
+<p>Note that we cannot see these controllers in our controllers directory. At hist point, we have two controllers: <b>application_coltroller</b> and <b>welcome_controller</b>.</p>
+<p>Optionally, in the later section, we'll create one more controller for users (<b>app/controller/users_controller.rb</b>).</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Configuring-Devise-mailer">Configuring Devise mailer</div>
+<p>So far, we're able to make the user to sign-up and login. But we don't check the user's email if it's valid or not. So, we may want to have a confirmation from the user when they sign up.</p>
+<p>First, we need to have a setup for sending mails. In this tutorial, we'll use gmail's smtp service.</p>
+<p>Let' modify out dev environment (<b>config/environments/development.rb</b>):</p>
+<pre class="prettyprint">
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name:      ENV['SENDMAIL_USERNAME'],
+    password:       ENV['SENDMAIL_PASSWORD'],
+    domain:         ENV['MAIL_HOST'],
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+</pre>
+<p>I put the three ENV variables to <b>~/.bashrc</b>:</p>
+<pre class="prettyprint">
+export SENDMAIL_PASSWORD=password
+export SENDMAIL_USERNAME=KHongSanFrancisco@gmail.com
+export MAIL_HOST=localhost:3000
+</pre>
+<p>This setup will be used with the <b>:confirmable</b> in <b>models/user.rb</b> regarding the confirmation email to the user.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="models-user-rb">models/user.rb</div>
+<p>To make the confirmation to work, we should let Devise know we want the service.</p>
+<p>Open up the model file (<b>app/models/user.rb</b>) to see what it contains.</p>
+<pre class="prettyprint">
+class User &lt; ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+end
+</pre>
+<p>The list shows Devise modules that are active for this model.</p>
+<p>Let's add the <b>:confirmable</b> function available to the users:</p>
+<pre>
+class User &lt; ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, 
+         <font color="blue">:confirmable</font>
+end
+</pre>
+<p>Note also that we've done some migration (<b>db/migrate/xxxx_devise_create_users.rb</b>) related to this:</p>
+<pre class="prettyprint">
+## Confirmable
+t.string   :confirmation_token
+t.datetime :confirmed_at
+t.datetime :confirmation_sent_at
+t.string   :unconfirmed_email # Only if using reconfirmable
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="user-views">User views via Devise</div>
+<p>Now we need to run <b>rails g devise:views</b> to set up the rest of our views:</p>
+<pre class="prettyprint">
+$ rails g devise:views
+</pre>
+<p>This command will set up several views in our <b>views/devise</b> directory:</p>
+<img alt="Devise-views.png" src="images/Devise/Devise-views.png"/>
+<p>Now, we can see lots of <b>erb</b> files under <b>views/devise</b> folder. They are related to confirmations, mailer, passwords, registrations, sessions etc. They are the views that have been working for us hidden from us.</p>
+<p>Well, actually, all the forms are sitting inside Devise gem. If we want to edit the forms we need to ask Devise to export all templates to our views folder, which we just did using the <b>rails g devise:views</b> command.</p>
+<p>Recall we made our own landing page like this:</p>
+<pre>
+&lt;%= link_to "<font color="green">Sign up</font>", <font color="blue">new_user_registration_path</font>, :class =&gt; 'navbar-link'  %&gt; |
+&lt;%= link_to "<font color="green">Login</font>", <font color="blue">new_user_session_path</font>, :class =&gt; 'navbar-link'  %&gt;
+</pre>
+<p>When a user click the link to <b>Sign up</b>, it goes to the link url (<b>new_user_registration_path</b>). That takes us to <b>views/devise/<font color="maroon">registrations</font>/<font color="orange">new</font>.html.erb</b> which is the <b>Sign up</b> page:</p>
+<pre class="prettyprint">
+&lt;h2&gt;Sign up&lt;/h2&gt;
+...
+</pre>
+<p>In the same way, when a user click the link to <b>Log in</b>, it goes to the link url (<b>new_user_registration_path</b>). That takes us to <b>views/devise/<font color="maroon">sessions</font>/<font color="orange">new</font>.html.erb</b> which is the <b>Log in</b> page:</p>
+<pre class="prettyprint">
+&lt;h2&gt;Log in&lt;/h2&gt;
+...
+</pre>
+<p>Among the 4-links, the "Logout" is unique in that it specifies the method: "delete".</p>
+<pre>
+&lt;%= link_to "Logout", destroy_user_session_path, <font color="blue">method: :delete</font>, :class =&gt; 'navbar-link'  %&gt;
+</pre>
+<p>So, it's a good opportunity of breaking down how Rails works.</p>
+<p><b>link_to</b> will create the HTML for a link using the information we give. </p>
+"Logout" is the first one, and it's just a text that the user sees for the link. It doesn't have any impact on what the link actually does. So, we can use anything for the text, for example, "Get out of here".
+<p>
+<b>destroy_user_session_path</b> tells <b>link_to</b> where the browser should be directed upon clicking so that it can put that in the HTML it's going to generate.</p>
+<p>But where is <b>destroy_user_session_path</b> actually telling <b>link_to</b> to go, and how? </p>
+<p>We didn't create a <b>destroy_user_session_path variable</b>, did we?</p>
+<p>Actually, Devise created one for us when it created a <b>User</b> model. So what is this path pointing to?</p>
+<p>The command "rake routes" shows us what <b>destroy_user_session_path variable</b> represents:</p>
+<pre class="prettyprint">
+destroy_user_session DELETE /users/sign_out(.:format) 
+</pre>
+<p>The <b>method: :delete</b> tells <b>link_to</b> what type of request to add to the HTML link. This is really important, and is probably one of the most common problems people run into once they have Devise up and running.</p>
+<p>If we don't specify <b>method: :delete</b> here, then our <b>link_to</b> will probably just end up sending a GET request instead of a DELETE request. As we can see in the results of "rake routes", we don't have anything that responds to <b>destroy_user_session_path variable</b> and GET.</p>
+<p>Rails will freak out, and say "I literally do not know what you want me to do, because what you want me to do does not exist."</p>
+<p>There are good reasons for why destroy_user_session_path doesn't work with GET, but that's a longer conversation.</p>
+<p>This is one of the magics that Rails do for us. I hate it as much as I like it.</p>
+<p>(Note) The discussion on <b>method: :delete</b> is from <a href="https://www.reddit.com/r/rails/comments/2zwdv6/devise_logout_link/" target="_blank">Devise logout link</a></p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="user-views">Overriding mailer views by User views -Optional </div>
+<p>We could have created the user views directly under <b>app/views</b> folder not within <b>app/views/devise</b> folder using <b>rails generate devise:views users</b>.</p>
+<pre class="prettyprint">
+$ rails generate devise:views users
+</pre>
+<p>In other words, we are now able to customize the views.</p>
+<p>
+Now that we have a dedicated user controller, we can set up corresponding views as we normally would in our <b>views/users</b> directory â <b>index.html.erb</b>, <b>edit.html.erb</b> and <b>show.html.erb</b>.</p>
+<p>In connection with our edit view, we probably want to create a partial for the edit form the way a scaffold would. - <b>_form.html.erb</b>.</p>
+<p>
+We can now create a link to our user's profile:</p>
+<pre class="prettyprint">
+&lt;%= link_to "Profile", current_user %&gt;
+</pre>
+<p>which may contain a link to edit the user's attributes:</p>
+<pre class="prettyprint">
+&lt;%= link_to "Settings", edit_user_path(@user) %&gt;
+</pre>
+<p>Note that this will allow the user to edit any attributes we set (i.e., name, age, etc.). This is separate from the user's devise settings which control password reset and account cancellation.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="users_controller">controller/users_controller.rb - Optional</div>
+<p>The code of this section is not implemented in this tutorial.</p>
+<p>As mentioned in previous section, now we want to create a <b>users controller</b> and corresponding <b>user views</b>. To do that we need to run <b>rails g controller users</b>.</p>
+<p>This will create a <b>users_controller.rb</b> in our <b>controllers</b> directory, and will allow us to set up additional routes for our user model.</p>
+<pre class="prettyprint">
+$ rails g controller users
+...
+create  app/controllers/users_controller.rb
+...
+</pre>
+<p>The command will give us this (<b>controllers/users_controller.rb</b>):</p>
+<pre class="prettyprint">
+class UsersController &lt; ApplicationController
+end
+</pre>
+<p>Since devise handles create and other aspects of users, we don't want to create routes for these things. However, we may want to create routes for index, edit, show and update.</p>
+<pre class="prettyprint">
+class UsersController &lt; ApplicationController
+
+  before_action :set_user, only: [:show, :edit, :update] # probably want to keep using this
+
+  # GET /users
+  # GET /users.json
+  def index
+    @users = User.all
+  end
+
+  # # GET /users/1
+  # # GET /users/1.json
+  def show
+
+  end
+
+  # GET /users/1/edit
+  def edit
+
+  end
+
+  # # PATCH/PUT /users/1
+  # # PATCH/PUT /users/1.json
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:role, :user_name)
+    end
+
+end
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="sign-up">Sign up</div>
+<p>Here is the sign up page:</p>
+<img alt="PyGoogleSignUp.png" src="images/Devise/PyGoogleSignUp.png"/>
+<p>At the click on "Sign up" button, we get the following message:</p>
+<img alt="SentMessage.png" src="images/Devise/SentMessage.png"/>
+<p>From the console output, we can see the confirmation is in action, and the message requesting confirmation has been sent:</p>
+<pre class="prettyprint">
+Devise::Mailer#confirmation_instructions: processed outbound mail in 707.2ms
+
+Sent mail to pygoogle@aol.com (1571.4ms)
+Date: Tue, 26 Jan 2016 13:11:11 -0800
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: pygoogle@aol.com
+Message-ID: &lt;56a7e0ef38690_624a3f9500003488836bc@laptop.mail&gt;
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+&lt;p&gt;Welcome pygoogle@aol.com!&lt;/p&gt;
+
+&lt;p&gt;You can confirm your account email through the link below:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://localhost:3000/users/confirmation?confirmation_token=u6jLCVtWbqcWTrN8mFW3"&gt;Confirm my account&lt;/a&gt;&lt;/p&gt;
+</pre>
+<p>We can check actually we get the email:</p>
+<img alt="AOL-Got-Mail.png" src="images/Devise/AOL-Got-Mail.png"/>
+<p>If we click the provided link, it leads us to the sign-in page:</p>
+<img alt="Confirmation-Link-Click.png" src="images/Devise/Confirmation-Link-Click.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Update">Updating Devise's user model - adding fields</div>
+<p>To add some fields to the Devise's user model, please visit <a href="RubyOnRails_Devise_Adding_User_Field_and_Customization_Update_Saved.html">Adding custom fields to Devise User model and Customization</a>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Heroku-deploy">Heroku deploy</div>
+<p>Please visit <a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email_Heroku_Deploy.html" target="_blank">Rails Heroku Deploy - Authentication and sending confirmation email using Devise</a>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="git">git</div>
+<p>Source available : <a href="https://github.com/PyGoogle/Rails4-Devise-Authentication-and-Sending-Confirmation-Email.git" target="_blank">Github : Rails4-Devise-Authentication-Confirmation</a>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1>Ruby on Rails</h1>
+
+<ul>
+   <li><a href="RubyOnRails.html">Ruby On Rails Home</a> </li>
+   <li><a href="RubyOnRails_Input_Output_Files_Run_Load.html">Ruby - Input/Output, Objects, Load</a> </li>
+   <li><a href="RubyOnRails_condition_if_else_Comparison_Logial_Operators.html">Ruby - Condition (if), Operators (comparison/logical) & case statement</a> </li>
+   <li><a href="RubyOnRails_loop_while_until_for_each_range.html">Ruby - loop, while, until, for, each, (..)</a> </li>
+   <li><a href="RubyOnRails_Functions.html">Ruby - Functions</a> </li>
+   <li><a href="RubyOnRails_Exceptions_rescue_raise.html">Ruby - Exceptions (raise/rescue)</a> </li>
+   <li><a href="RubyOnRails_Strings_Double_quote_single_quote_multiline_string_concatenation_substring_include_startwith_index.html">Ruby - Strings (single quote vs double quote, multiline string - EOM, concatenation, substring, include, index, strip, justification, chop, chomp, split)</a> </li>
+   <li><a href="RubyOnRails_Class_Instance_Variables.html">Ruby - Class and Instance Variables</a></li>
+   <li><a href="RubyOnRails_Class_Instance_Variables2.html">Ruby - Class and Instance Variables II</a></li>
+   <li><a href="RubyOnRails_Modules.html">Ruby - Modules</a></li>
+   <li><a href="RubyOnRails_Iterators_Each.html">Ruby - Iterator : each</a></li>
+   <li><a href="RubyOnRails_Symbols.html">Ruby - Symbols (:)</a></li>
+   <li><a href="RubyOnRails_Hashes_associative_arrays_maps_dictionaries.html">Ruby - Hashes (aka associative arrays, maps, or dictionaries)</a></li>
+   <li><a href="RubyOnRails_Ruby_arrays.html">Ruby - Arrays</a></li>
+   <li><a href="RubyOnRails_Enumerables.html">Ruby - Enumerables</a></li>
+   <li><a href="RubyOnRails_Files.php">Ruby - Filess</a></li>
+   <li><a href="RubyOnRails_Blocks_and_Yield.html">Ruby - code blocks and yield</a></li>
+   <li><a href="RubyOnRails_Embedded_Ruby_RHTML.html">Rails - Embedded Ruby (ERb) and Rails html</a></li>
+   <li><a href="RubyOnRails_Partials_Partial_Template.html">Rails - Partial template</a></li>
+   <li><a href="RubyOnRails_Rails_HTML_Helpers_link_to_imag_tag.html">Rails - HTML Helpers (link_to, imag_tag, and form_for)</a></li>
+   <li><a href="RubyOnRails_Layouts_and_Rendering_1_yield_content_for.html">Layouts and Rendering I  - yield, content_for, content_for?</a></li>
+   <li><a href="RubyOnRails_Layouts_and_Rendering_2_asset%20tag%20helpers-stylesheet_link_tag-javascript_include_tag.html">Layouts and Rendering II - asset tag helpers, stylesheet_link_tag, javascript_include_tag</a></li>
+   <li><a href="RubyOnRails_Rails_Install_Project.html">Rails Project</a></li>
+   <li><a href="RubyOnRails_HelloWorld_Rails.html">Rails - Hello World</a></li>
+   <li><a href="RubyOnRails_Model_View_Controller_MVC.html">Rails - MVC and ActionController</a></li>
+   <li><a href="RubyOnRails_ActionController_Parameters_Hash_Array_json_Routing_Parameters.html">Rails - Parameters (hash, array, JSON, routing, and strong parameter)</a></li>
+   <li><a href="RubyOnRails_Filters_Controller_Actions_before_action_skip_before_action_around_action.html">Filters and controller actions - before_action, skip_before_action</a></li>
+   <li><a href="RubyOnRails_FirstApp_Install_Shared_Host.html">The simplest app - Rails default page on a Shared Host</a></li>
+   <li><a href="RubyOnRails_Redmine_Install_Shared_Host.html">Redmine Install on a Shared Host</a></li>
+   <li><a href="RubyOnRails_Git_BitBucket.html">Git and BitBucket</a></li>
+   <li><a href="RubyOnRails_Deployment_Heroku.html">Deploying Rails 4 to Heroku</a></li>
+   <li><a href="RubyOnRails_Blog_with_post_and_comment.html">Scaffold: A quickest way of building a blog with posts and comments</a></li>
+   <li><a href="RubyOnRails_database_migration.html">Databases and migration</a></li>
+   <li><a href="RubyOnRails_Active_Records.html">Active Record</a></li>
+   <li><a href="RubyOnRails_MicroBlog_App_1.html">Microblog 1</a></li>
+   <li><a href="RubyOnRails_MicroBlog_App_2.html">Microblog 2</a></li>
+   <li><a href="RubyOnRails_MicroBlog_App_3_Users_Resource.html">Microblog 3 (Users resource)</a></li>
+   <li><a href="RubyOnRails_MicroBlog_App_4_Microposts_Resource.html">Microblog 4 (Microposts resource I)</a></li>
+   <li><a href="RubyOnRails_MicroBlog_App_5_Microposts_Resource_2.html">Microblog 5 (Microposts resource II)</a></li>
+   <li><a href="RubyOnRails_Simple_App_1.html">Simple_app I - rails html pages</a></li>
+   <li><a href="RubyOnRails_Simple_App_2_TDD_Home_Help_page.html">Simple_app II - TDD (Home/Help page)</a></li>
+   <li><a href="RubyOnRails_Simple_App_3_TDD_About_page.html">Simple_app III - TDD (About page)</a></li>
+   <li><a href="RubyOnRails_Simple_App_4_TDD_Dynamic_Pages.html">Simple_app IV - TDD (Dynamic Pages)</a></li>
+   <li><a href="RubyOnRails_Simple_App_5_TDD_Embedded_Dynamic_Pages.html">Simple_app V - TDD (Dynamic Pages - Embedded Ruby)</a></li>
+   <li><a href="RubyOnRails_Simple_App_6_TDD_Layouts_Embedded_Dynamic_Pages.html">Simple_app VI - TDD (Dynamic Pages - Embedded Ruby, Layouts)</a></li>
+   <li><a href="RubyOnRailsFacebook-and-Twitter-Authentication-SignUp-Login-using-Omniauth-oauth2-with-redis-memcached-and-postgres-via-Starter-Kit.html">App : Facebook and Twitter Authentication using Omniauth oauth2</a></li>
+   <li><a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email.html">Authentication and sending confirmation email using Devise</a></li>
+   <li><a href="RubyOnRails_Devise_Adding_User_Field_and_Customization_Update_Saved.html">Adding custom fields to Devise User model and Customization</a></li>
+   <li><a href="RubyOnRails_Devise_Customization_2.html">Devise Customization 2. views/users</a></li>
+   <li><a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email_Heroku_Deploy.html">Rails Heroku Deploy - Authentication and sending confirmation email using Devise</a></li>
+   <li><a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger.html" target="_blank">Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger I</a></li>
+   <li><a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger-2.html" target="_blank">Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger II</a></li>
+   <li><a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger-0-Errors-Fixes.html" target="_blank">OOPS! Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger (Trouble shooting)</a></li>
+</ul><br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>Ruby on Rails</h1>
+   <br><br>
+   <a href="RubyOnRails.html">Ruby On Rails Home</a> 
+   <br><br>
+   <a href="RubyOnRails_Input_Output_Files_Run_Load.html">Ruby - Input/Output, Objects, Load</a> 
+   <br><br>
+   <a href="RubyOnRails_condition_if_else_Comparison_Logial_Operators.html">Ruby - Condition (if), Operators (comparison/logical) & case statement</a> 
+   <br><br>
+   <a href="RubyOnRails_loop_while_until_for_each_range.html">Ruby - loop, while, until, for, each, (..)</a> 
+   <br><br>
+   <a href="RubyOnRails_Functions.html">Ruby - Functions</a> 
+   <br><br>
+   <a href="RubyOnRails_Exceptions_rescue_raise.html">Ruby - Exceptions (raise/rescue)</a> 
+   <br><br>
+   <a href="RubyOnRails_Strings_Double_quote_single_quote_multiline_string_concatenation_substring_include_startwith_index.html">Ruby - Strings (single quote vs double quote, multiline string - EOM, concatenation, substring, include, index, strip, justification, chop, chomp, split)</a> 
+   <br><br>
+   <a href="RubyOnRails_Class_Instance_Variables.html">Ruby - Class and Instance Variables</a>
+   <br><br>
+   <a href="RubyOnRails_Class_Instance_Variables2.html">Ruby - Class and Instance Variables II</a>
+   <br><br>
+   <a href="RubyOnRails_Modules.html">Ruby - Modules</a>
+   <br><br>
+   <a href="RubyOnRails_Iterators_Each.html">Ruby - Iterator : each</a>
+   <br><br>
+   <a href="RubyOnRails_Symbols.html">Ruby - Symbols (:)</a>
+   <br><br>
+   <a href="RubyOnRails_Hashes_associative_arrays_maps_dictionaries.html">Ruby - Hashes (aka associative arrays, maps, or dictionaries)</a>
+   <br><br>
+   <a href="RubyOnRails_Ruby_arrays.html">Ruby - Arrays</a>
+   <br><br>
+   <a href="RubyOnRails_Enumerables.html">Ruby - Enumerables</a>
+   <br><br>
+   <a href="RubyOnRails_Files.php">Ruby - Filess</a>
+   <br><br>
+   <a href="RubyOnRails_Blocks_and_Yield.html">Ruby - code blocks and yield</a>
+   <br><br>
+   <a href="RubyOnRails_Embedded_Ruby_RHTML.html">Rails - Embedded Ruby (ERb) and Rails html</a>
+   <br><br>
+   <a href="RubyOnRails_Partials_Partial_Template.html">Rails - Partial template</a>
+   <br><br>
+   <a href="RubyOnRails_Rails_HTML_Helpers_link_to_imag_tag.html">Rails - HTML Helpers (link_to, imag_tag, and form_for)</a>
+   <br><br>
+   <a href="RubyOnRails_Layouts_and_Rendering_1_yield_content_for.html">Layouts and Rendering I  - yield, content_for, content_for?</a>
+   <br><br>
+   <a href="RubyOnRails_Layouts_and_Rendering_2_asset%20tag%20helpers-stylesheet_link_tag-javascript_include_tag.html">Layouts and Rendering II - asset tag helpers, stylesheet_link_tag, javascript_include_tag</a>
+   <br><br>
+   <a href="RubyOnRails_Rails_Install_Project.html">Rails Project</a>
+   <br><br>
+   <a href="RubyOnRails_HelloWorld_Rails.html">Rails - Hello World</a>
+   <br><br>
+   <a href="RubyOnRails_Model_View_Controller_MVC.html">Rails - MVC and ActionController</a>
+   <br><br>
+   <a href="RubyOnRails_ActionController_Parameters_Hash_Array_json_Routing_Parameters.html">Rails - Parameters (hash, array, JSON, routing, and strong parameter)</a>
+   <br><br>
+   <a href="RubyOnRails_Filters_Controller_Actions_before_action_skip_before_action_around_action.html">Filters and controller actions - before_action, skip_before_action</a>
+   <br><br>
+   <a href="RubyOnRails_FirstApp_Install_Shared_Host.html">The simplest app - Rails default page on a Shared Host</a>
+   <br><br>
+   <a href="RubyOnRails_Redmine_Install_Shared_Host.html">Redmine Install on a Shared Host</a>
+   <br><br>
+   <a href="RubyOnRails_Git_BitBucket.html">Git and BitBucket</a>
+   <br><br>
+   <a href="RubyOnRails_Deployment_Heroku.html">Deploying Rails 4 to Heroku</a>
+   <br><br>
+   <a href="RubyOnRails_Blog_with_post_and_comment.html">Scaffold: A quickest way of building a blog with posts and comments</a>
+   <br><br>
+   <a href="RubyOnRails_database_migration.html">Databases and migration</a>
+   <br><br>
+   <a href="RubyOnRails_Active_Records.html">Active Record</a>
+   <br><br>
+   <a href="RubyOnRails_MicroBlog_App_1.html">Microblog 1</a>
+   <br><br>
+   <a href="RubyOnRails_MicroBlog_App_2.html">Microblog 2</a>
+   <br><br>
+   <a href="RubyOnRails_MicroBlog_App_3_Users_Resource.html">Microblog 3 (Users resource)</a>
+   <br><br>
+   <a href="RubyOnRails_MicroBlog_App_4_Microposts_Resource.html">Microblog 4 (Microposts resource I)</a>
+   <br><br>
+   <a href="RubyOnRails_MicroBlog_App_5_Microposts_Resource_2.html">Microblog 5 (Microposts resource II)</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_1.html">Simple_app I - rails html pages</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_2_TDD_Home_Help_page.html">Simple_app II - TDD (Home/Help page)</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_3_TDD_About_page.html">Simple_app III - TDD (About page)</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_4_TDD_Dynamic_Pages.html">Simple_app IV - TDD (Dynamic Pages)</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_5_TDD_Embedded_Dynamic_Pages.html">Simple_app V - TDD (Dynamic Pages - Embedded Ruby)</a>
+   <br><br>
+   <a href="RubyOnRails_Simple_App_6_TDD_Layouts_Embedded_Dynamic_Pages.html">Simple_app VI - TDD (Dynamic Pages - Embedded Ruby, Layouts)</a>
+   <br><br>
+   <a href="RubyOnRailsFacebook-and-Twitter-Authentication-SignUp-Login-using-Omniauth-oauth2-with-redis-memcached-and-postgres-via-Starter-Kit.html">App : Facebook and Twitter Authentication using Omniauth oauth2</a>
+   <br><br>
+   <a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email.html">Authentication and sending confirmation email using Devise</a>
+   <br><br>
+   <a href="RubyOnRails_Devise_Adding_User_Field_and_Customization_Update_Saved.html">Adding custom fields to Devise User model and Customization</a>
+   <br><br>
+   <a href="RubyOnRails_Devise_Customization_2.html">Devise Customization 2. views/users</a>
+   <br><br>
+   <a href="RubyOnRails_Devise_Authentication_Sending_Confirmation_Email_Heroku_Deploy.html">Rails Heroku Deploy - Authentication and sending confirmation email using Devise</a>
+   <br><br>
+   <a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger.html" target="_blank">Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger I</a>
+   <br><br>
+   <a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger-2.html" target="_blank">Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger II</a>
+   <br><br>
+   <a href="RubyOnRails-Deploying-a-Rails4-App-on-CentOS7-production-server-with-Apache-and-Passenger-0-Errors-Fixes.html" target="_blank">OOPS! Deploying a Rails 4 app on CentOS 7 production server with Apache and Passenger (Trouble shooting)</a>
+   <br><br>
+
+<br /><br />
+
+
+
+
+
+
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/RubyOnRails/RubyOnRails_Devise_Authentication_Sending_Confirmation_Email.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 11:19:49 GMT -->
+</html>
+

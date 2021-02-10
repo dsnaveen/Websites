@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_subprocess_module.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:21:00 GMT -->
+<head>
+  <title>Python Tutorial: subprocesses module - 2017</title>
+  <meta content="Python Tutorial: subprocesses module" name="description" />
+  <meta content="Python Tutorial: subprocesses module. Popen, subprocesses.Popen, psutil" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Subprocess Module        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/python_logo.png" alt="python_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<div class="subtitle_2nd" id="note">Note</div>
+<p>Here are my additional python tutorials on:</p>
+<ol>
+<li><a href="OpenCV_Python/python_opencv3.html" target="_blank">Computer Vision with OpenCV 3</a></li>
+<li><a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">Machine Learning with scikit-learn</a> </li>
+<li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">Image and video processing with FFmpeg</a> </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="subprocess">Subprocess</div>
+<p>A running program is called a <strong>process</strong>. Each process has its own system state, which
+includes memory, lists of open files, a program counter that keeps track of the instruction
+being executed, and a call stack used to hold the local variables of functions.</p>
+<p>
+Normally, a process executes statements one after the other in a single sequence of control
+flow, which is sometimes called the main thread of the process. At any given time,
+the program is only doing one thing.</p>
+<p>
+A program can create new processes using library functions such as those found in
+the os or subprocess modules such as <strong>os.fork()</strong>, <strong>subprocess.Popen()</strong>, etc.
+However, these processes, known as <strong>subprocesses</strong>, run as completely independent
+entities-each with their own private system state and main thread of execution.</p>
+<p>
+Because a subprocess is independent, it executes concurrently with the original process.
+That is, the process that created the subprocess can go on to work on other things
+while the subprocess carries out its own work behind the scenes.</p>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle" id="subprocess_module">Subprocess Module</div>
+<p>The subprocess module allows us to:</p>
+<ol>
+<li>spawn new processes</li>
+<li>connect to their input/output/error pipes</li>
+<li> obtain their return codes</li>
+</ol>
+<p> It offers a higher-level interface than some of the other available modules, and is intended to replace the following functions:</p>
+<ol>
+<li>os.system()</li>
+<li>os.spawn*()</li>
+<li>os.popen*()</li>
+<li>popen2.*()</li>
+<li>commands.*()</li>
+</ol>
+<p>We cannot use UNIX commands in our Python script as if they were Python code. For example, <strong>echo name</strong> is causing a syntax error because <strong>echo</strong> is not a built-in statement or function in Python. So, in Python script, we're using <strong>print name</strong> instead.</p>
+<p>To run UNIX commands we need to create a <strong>subprocess</strong> that runs the command. The recommended approach to invoking <strong>subprocesses</strong> is to use the convenience functions for all use cases they can handle. Or we can use the underlying <strong>Popen</strong> interface can be used directly.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="os_system">os.system()</div>
+<p>The simplest way of running UNIX command is to use <strong>os.system()</strong>.</p>
+<pre>
+>>> import os
+>>> os.system('echo $HOME')
+/user/khong
+0
+
+>>> # or we can use
+>>> os.system('echo %s' %'$HOME')
+/user/khong
+0
+</pre>
+<p>As expected, we got <strong>$HOME</strong> as stdout (to a terminal). Also, we got a return value of 0 which is the result of executing this command, which means there was no error in the execution.</p>
+<p><strong>os.system</strong>('command with args') passes the command and arguments to our system's shell. By using this can actually run multiple commands at once and set up pipes and input/output redirections. :</p>
+<pre>
+os.system('command_1 &lt; input_file | command_2 &gt; output_file')
+</pre>
+<p>If we run the code above <strong>os.system('echo $HOME')</strong> in the Python IDLE, we only see the <strong>0</strong> because the stdout means a terminal. To see the command output we should redirect it to a file, and the read from it:</p>
+<pre>
+>>> import os
+>>> os.system('echo $HOME &gt; outfile')
+0
+>>> f = open('outfile','r')
+>>> f.read()
+'/user/khong\n'
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="os_popen">os.popen()</div>
+<p>Open a pipe to or from command. The return value is an open file object connected to the pipe, which can be read or written depending on whether mode is <strong>'r'</strong> (default) or <strong>'w'</strong>. The bufsize argument has the same meaning as the corresponding argument to the built-in <strong>open()</strong> function. The exit status of the command (encoded in the format specified for <strong>wait()</strong>) is available as the return value of the <strong>close()</strong> method of the file object, except that when the exit status is zero (termination without errors), <strong>None</strong> is returned.</p>
+<pre>
+>>> import os
+>>> stream = os.popen('echo $HOME')
+>>> stream.read()
+'/user/khong\n'
+</pre>
+<p><strong>os.popen()</strong> does the same thing as <strong>os.system</strong> except that it gives us a file-like stream object that we can use to access standard input/output for that process. There are 3 other variants of <strong>popen</strong> that all handle the i/o slightly differently.</p>
+<p>If we pass everything as a string, then our command is passed to the shell; if we pass them as a list then we don't need to worry about escaping anything.</p>
+<p>However, it's been <strong>deprecated</strong> since version 2.6: This function is obsolete. Use the <strong>subprocess</strong> module. <a href="http://docs.python.org/2/library/os.html#os.popen" target="_blank">docs.python.org</a></p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subprocess_call">subprocess.call()</div>
+<p>This is basically just like the <strong>Popen</strong> class and takes all of the same arguments, but it simply wait until the command completes and gives us the return code.</p>
+<pre>
+subprocess.call(args, *, stdin=None, stdout=None, stderr=None, shell=False)
+</pre>
+<p>Run the command described by <strong>args</strong>. Wait for command to complete, then return the <strong>returncode</strong> attribute.</p>
+<pre>
+>>> import os
+>>> os.chdir('/')
+>>> import subprocess
+>>> subprocess.call(['ls','-l'])
+total 181
+drwxr-xr-x    2 root root  4096 Mar  3  2012 bin
+drwxr-xr-x    4 root root  1024 Oct 26  2012 boot
+...
+</pre>
+<p>The command line arguments are passed as a list of strings, which avoids the need for escaping quotes or other special characters that might be interpreted by the shell.</p>
+<pre>
+>>> import subprocess
+>>> subprocess.call('echo $HOME')
+Traceback (most recent call last):
+...
+OSError: [Errno 2] No such file or directory
+>>>
+>>> subprocess.call('echo $HOME', <font color="red">shell=True</font>)
+/user/khong
+0
+</pre>
+<p>Setting the shell argument to a true value causes <b>subprocess</b> to spawn an intermediate shell process, and tell it to run the command. In other words, using an intermediate shell means that variables, glob patterns, and other special shell features in the command string are processed <font color="red"><b>before</b></font> the command is run. Here, in the example, <b>$HOME</b> was processed before the <b>echo</b> command. Actually, this is the case of <b>command with shell expansion</b> while the command <b>ls -l</b> considered as a simple command.</p>
+<p>Here is a sample code (<a href="https://github.com/PyGoogle/FFMpeg.git" target="_blank">PyGoogle/FFMpeg/iframe_extract.py</a>). It downloads YouTube video and then extracts I-frames to sub folder:</p>
+<pre>
+'''
+iframe_extract.py - download video and ffmpeg i-frame extraction
+Usage: 
+(ex) python iframe_extract.py -u https://www.youtube.com/watch?v=dP15zlyra3c
+This code does two things:
+1. Download using youtube-dl
+cmd = ['youtube-dl', '-f', videoSize, '-k', '-o', video_out, download_url]
+2. Extract i-frames via ffmpeg
+cmd = [ffmpeg,'-i', inFile,'-f', 'image2','-vf',
+        "select='eq(pict_type,PICT_TYPE_I)'",'-vsync','vfr', imgFilenames]
+'''
+
+from __future__ import unicode_literals
+import youtube_dl
+
+import sys
+import os
+import subprocess
+import argparse
+import glob
+
+if sys.platform == "Windows":
+    FFMPEG_BIN = "ffmpeg.exe"
+    MOVE = "move"
+    MKDIR = "mkdir"
+else:
+    FFMPEG_BIN = "ffmpeg"
+    MOVE = "mv"
+    MKDIR = "md"
+
+
+def iframe_extract(inFile):
+# ffmpeg -i inFile -f image2 -vf \
+#   "select='eq(pict_type,PICT_TYPE_I)'" -vsync vfr oString%03d.png
+
+    # infile : video file name 
+    #          (ex) 'FoxSnowDive-Yellowstone-BBCTwo.mp4'
+    imgPrefix = inFile.split('.')[0]
+    # imgPrefix : image file 
+
+    # start extracting i-frames
+    home = os.path.expanduser("~")
+    ffmpeg = home + '/bin/ffmpeg'
+
+    imgFilenames = imgPrefix + '%03d.png'
+  
+    cmd = [ffmpeg,'-i', inFile,'-f', 'image2','-vf',
+        "select='eq(pict_type,PICT_TYPE_I)'",'-vsync','vfr', imgFilenames]
+    
+    # create iframes
+    print "creating iframes ...."
+    <font color="blue">subprocess.call(cmd)</font>
+
+    # Move the extracted iframes to a subfolder
+    # imgPrefix is used as a subfolder name that stores iframe images
+    cmd = 'mkdir -p ' + imgPrefix
+    os.system(cmd)
+    print "make subdirectoy", cmd
+    mvcmd = 'mv ' + imgPrefix + '*.png ' + imgPrefix
+    print "moving images to subdirectoy", mvcmd
+    os.system(mvcmd)
+
+
+
+def get_info_and_download(download_url):
+
+    # Get video meta info and then download using youtube-dl
+
+    ydl_opts = {}
+
+    # get meta info from the video
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        meta = ydl.extract_info(download_url, download=False)
+
+    # renaming the file 
+    # remove special characters from the file name
+    print('meta[title]=%s' %meta['title'])
+    out = ''.join(c for c in meta['title'] if c.isalnum() or c =='-' or c =='_' ) 
+    print('out=%s' %out)
+    extension = meta['ext']
+    video_out = out + '.' + extension
+    print('video_out=%s' %video_out)
+    videoSize = 'bestvideo[height&lt;=540]+bestaudio/best[height&lt;=540]'
+    cmd = ['youtube-dl', '-f', videoSize, '-k', '-o', video_out, download_url]
+    print('cmd=%s' %cmd)
+
+    # download the video
+    <font color="blue">subprocess.call(cmd)</font>
+
+    # Sometimes output file has format code in name such as 'out.f248.webm'
+    # so, in this case, we want to rename it 'out.webm' 
+    found = False
+    extension_list = ['mkv', 'mp4', 'webm']
+    for e in extension_list:
+       glob_str = '*.' + e
+       for f in glob.glob(glob_str):
+          if out in f:
+             if os.path.isfile(f):
+                video_out = f
+                found = True
+                break
+       if found:
+          break
+       
+    # call iframe-extraction : ffmpeg
+    print('before iframe_extract() video_out=%s' %video_out)
+    iframe_extract(video_out)
+    return meta
+
+
+
+def check_arg(args=None):
+
+# Command line options
+# Currently, only the url option is used
+
+    parser = argparse.ArgumentParser(description='download video')
+    parser.add_argument('-u', '--url',
+                        help='download url',
+                        required='True')
+    parser.add_argument('-i', '--infile',
+                        help='input to iframe extract')
+    parser.add_argument('-o', '--outfile',
+                        help='output name for iframe image')
+
+    results = parser.parse_args(args)
+    return (results.url,
+            results.infile,
+            results.outfile)
+
+
+# Usage sample:
+#    syntax: python iframe_extract.py -u url
+#    (ex) python iframe_extract.py -u https://www.youtube.com/watch?v=dP15zlyra3c
+
+if __name__ == '__main__':
+    u,i,o = check_arg(sys.argv[1:])
+    meta = get_info_and_download(u)
+</pre>
+<br/>
+<br/>
+<video controls poster="images/python_subprocesses/thumbnails/GrandTetonNationalParkWyomingUSAin4KUltraHD033.png" width="100%">
+<source src="images/python_subprocesses/GrandTetonNationalParkWyomingUSAin4KUltraHD.webm.mp4" type="video/mp4" width="100%">
+<source src="images/python_subprocesses/GrandTetonNationalParkWyomingUSAin4KUltraHD.ogv" type="video/ogg" width="100%">
+<source src="images/python_subprocesses/GrandTetonNationalParkWyomingUSAin4KUltraHD.webm" type="video/webm" width="100%">
+  Your browser does not support the video tag.
+</source></source></source></video>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subprocess_check_call">subprocess.check_call()</div>
+<pre>
+subprocess.check_call(args, *, stdin=None, stdout=None, stderr=None, shell=False)
+</pre>
+<p>The <strong>check_call()</strong> function works like <strong>call()</strong> except that the exit code is checked, and if it indicates an error happened then a <strong>CalledProcessError</strong> exception is raised.</p>
+<pre>
+>>> import subprocess
+>>> subprocess.check_call(['false'])
+Traceback (most recent call last):
+...
+subprocess.CalledProcessError: Command '['false']' returned non-zero exit status 1
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subprocess_check_output">subprocess.check_output()</div>
+<pre>
+subprocess.check_output(args, *, stdin=None, stderr=None, 
+                                 shell=False, universal_newlines=False)
+</pre>
+<p>The standard input and output channels for the process started by <strong>call()</strong> are bound to the parent's input and output. That means the calling program cannot capture the output of the command. <strong>To capture the output</strong>, we can use <strong>check_output()</strong> for later processing.</p>
+<pre>
+>>> import subprocess
+>>> output = subprocess.check_output(['ls','-l'])
+>>> print output
+total 181
+drwxr-xr-x    2 root root  4096 Mar  3  2012 bin
+drwxr-xr-x    4 root root  1024 Oct 26  2012 boot
+...
+>>> output = subprocess.check_output(['echo','$HOME'], shell=True)
+>>> print output
+/user/khong
+</pre>
+<p>This function was added in Python 2.7.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="subprocess_popen">subprocess.Popen()</div>
+<p>The underlying process creation and management in this module is handled by the <strong>Popen</strong> class. 
+It offers a lot of flexibility so that developers are able to handle the less common cases not covered by the convenience functions.</p>
+<p><strong>subprocess.Popen()</strong> executes a child program in a new process. On Unix, the class uses <strong>os.execvp()</strong>-like behavior to execute the child program. On Windows, the class uses the Windows <strong>CreateProcess()</strong> function.</p>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="subprocess_popen_args">args of subprocess.Popen()</div>
+<pre>
+class subprocess.Popen(args, bufsize=0, executable=None, 
+                       stdin=None, stdout=None, stderr=None, 
+                       preexec_fn=None, close_fds=False, 
+                       shell=False, cwd=None, env=None, universal_newlines=False, 
+                       startupinfo=None, creationflags=0)
+</pre>
+<ol>
+<li><strong>args</strong>:<br/>
+    should be a sequence of program arguments or else a single string. By default, the program to execute is the first item in args if args is a sequence. If args is a string, the interpretation is platform-dependent. It is recommended to pass args as a sequence.<br/>
+</li><br/>
+<li><strong>shell</strong>:<br/>
+<strong>shell</strong> argument (which defaults to <strong>False</strong>) specifies whether to use the shell as the program to execute. If shell is <strong>True</strong>, it is recommended to pass args as a string rather than as a sequence.<br/>
+
+On Unix with <strong>shell=True</strong>, the shell defaults to <strong>/bin/sh</strong>. <br/>
+<ol>
+<li>If <strong>args</strong> is a <strong>string</strong>, the string specifies the command to execute through the shell. This means that the string must be formatted exactly as it would be when typed at the shell prompt. This includes, for example, quoting or backslash escaping filenames with spaces in them. </li>
+<li>If <strong>args</strong> is a <strong>sequence</strong>, the first item specifies the command string, and any additional items will be treated as additional arguments to the shell itself. That is to say, <strong>Popen</strong> does the equivalent of:
+      <pre>Popen(['/bin/sh', '-c', args[0], args[1], ...])</pre>
+</li>
+</ol>
+</li><br/>
+<li><strong>bufsize</strong>:<br/>
+   if given, has the same meaning as the corresponding argument to the built-in <strong>open()</strong> function: 
+   <ol>
+<li> 0 means unbuffered</li>
+<li> 1 means line buffered</li>
+<li> any other positive value means use a buffer of (approximately) that size</li>
+<li> A negative bufsize means to use the system default, which usually means fully buffered</li>
+<li> The default value for bufsize is 0 (unbuffered)</li>
+</ol>
+</li><br/>
+<li><strong>executable</strong>:<br/> 
+   specifies a replacement program to execute. It is very seldom needed. 
+  </li><br/>
+<li><strong>stdin, stdout and stderr</strong>:<br/>
+<ol>
+<li>specify the executed program's standard input, standard output and standard error file handles, respectively.</li> <li>Valid values are <strong>PIPE</strong>, an existing file descriptor (a positive integer), an existing file object, and None. </li>
+<li> <strong>PIPE</strong> indicates that a new pipe to the child should be created.</li>
+<li>With the default settings of <strong>None</strong>, no redirection will occur; the child's file handles will be inherited from the parent. </li>
+<li>Additionally, stderr can be STDOUT, which indicates that the stderr data from the child process should be captured into the same file handle as for stdout.</li>
+</ol>
+</li><br/>
+<li><strong>preexec_fn</strong>:<br/>  is set to a callable object, this object will be called in the child process just before the child is executed. (Unix only)
+  </li><br/>
+<li><strong>close_fds</strong>:<br/> is true, all file descriptors except 0, 1 and 2 will be closed before the child process is executed. (Unix only). Or, on Windows, if <strong>close_fds</strong> is true then no handles will be inherited by the child process. Note that on Windows, we cannot set <strong>close_fds</strong> to true and also redirect the standard handles by setting stdin, stdout or stderr.
+  </li><br/>
+<li><strong>cwd</strong>:<br/>   is not None the child's current directory will be changed to <strong>cwd</strong> before it is executed. Note that this directory is not considered when searching the executable, so we can't specify the program's path relative to <strong>cwd</strong>.
+ </li><br/>
+<li><strong>env</strong>:<br/> is not None, it must be a mapping that defines the environment variables for the new process; these are used instead of inheriting the current process' environment, which is the default behavior.
+ </li><br/>
+<li><strong>universal_newlines</strong>:<br/> is True, the file objects stdout and stderr are opened as text files in universal newlines mode. Lines may be terminated by any of <strong>'\n'</strong>, the Unix end-of-line convention, <strong>'\r'</strong>, the old Macintosh convention or <strong>'\r\n'</strong>, the Windows convention. All of these external representations are seen as <strong>'\n'</strong> by the Python program.
+ </li><br/>
+<li><strong>startupinfo</strong>:<br/> will be a <strong>STARTUPINFO</strong> object, which is passed to the underlying <strong>CreateProcess</strong> function. 
+ </li><br/>
+<li><strong>creationflags</strong>:<br/>  can be <strong>CREATE_NEW_CONSOLE</strong> or <strong>CREATE_NEW_PROCESS_GROUP</strong>. (Windows only)
+ </li><br/>
+</ol>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subprocess_popen_vs_os.popen">os.popen vs. subprocess.Popen()</div>
+<p>This is intended as a replacement for <strong>os.popen</strong>, but it is more complicated. For example, we use
+<pre>
+subprocess.Popen("echo Hello World", stdout=subprocess.PIPE, shell=True).stdout.read()
+</pre>
+instead of
+<pre>
+os.popen("echo Hello World").read()
+</pre>
+<p>But it is comprehensive and it has all of the options in one unified class instead of different <strong>os.popen</strong> functions.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="subprocess_popen_samples_stdout">subprocess.Popen() - stdout and stderr</div>
+<pre>
+>>> import subprocess
+>>> proc = subprocess.Popen(['echo', '"Hello world!"'], 
+...                          <font color="red">stdout=subprocess.PIPE</font>)
+>>> stddata = <font color="red">proc.communicate()</font>
+>>> stddata
+('"Hello world!"\n', None)
+</pre>
+<p>Note that the <strong>communicate()</strong> method returns a <strong>tuple</strong> (stdoutdata, stderrdata) : ('"Hello world!"\n' ,None). If we don't include <strong>stdout=subprocess.PIPE</strong> or <strong>stderr=subprocess.PIPE</strong> in the <strong>Popen</strong> call, we'll just get <strong>None</strong> back.</p>
+<pre>
+Popen.communicate(input=None)
+</pre>
+<b>Popen.communicate()</b> interacts with process: Send data to <b>stdin</b>. Read data from <b>stdout</b> and <b>stderr</b>, until end-of-file is reached. Wait for process to terminate. The optional input argument should be a string to be sent to the child process, or <b>None</b>, if no data should be sent to the child.</p>
+<p>So, actually, we could have done as below:</p>
+<pre>
+>>> import subprocess
+>>> proc = subprocess.Popen(['echo', '"Hello world!"'],
+...                          stdout=subprocess.PIPE)
+>>> <font color="red">(stdoutdata, stderrdata)</font> = proc.communicate()
+>>> stdoutdata
+'"Hello world!"\n'
+</pre>
+<p>or we can explicitly specify which one we want from <strong>proc.communicate()</strong>:</p>
+<pre>
+>>> import subprocess
+>>> proc = subprocess.Popen(['echo', '"Hello world!"'],
+...                          stdout=subprocess.PIPE)
+>>> stdoutdata = proc.communicate()<font color="red">[0]</font>
+>>> stdoutdata
+'"Hello world!"\n'
+</pre>
+<p>The simplest code for the example above might be sending the stream directly to console:</p>
+<pre>
+>>> import subprocess
+>>> proc = subprocess.Popen(['echo', '"Hello world!"'],
+...                          stdout=subprocess.PIPE)
+>>> proc.communicate()[0]
+'"Hello world!"\n'
+</pre>
+<p>The code below is to test the stdout and stderr behaviour:</p>
+<pre>
+# std_test.py
+import sys
+sys.stdout.write('Testing message to stdout\n')
+sys.stderr.write('Testing message to stderr\n')
+</pre>
+<p>If we run it:</p>
+<pre>
+>>> proc = subprocess.Popen(['python', '<font color="red">std_test.py</font>'],
+...                          <font color="red">stdout=subprocess.PIPE</font>)
+>>> Testing message to stderr
+>>> proc.communicate()
+(Testing message to stdout\n', None)
+>>>
+</pre>
+<p>Note that the message to <strong>stderr</strong> gets displayed as it is generated but the message to <strong>stdout</strong> is read via the pipe. This is because we only set up a pipe to <strong>stdout</strong>. </p>
+<p>Then, let's make both stdout and stderr to be accessed from Python:</p>
+<pre>
+>>> proc = subprocess.Popen(['python', 'std_test.py'],
+...                          stdout=subprocess.PIPE,
+...                          <font color="red">stderr=subprocess.PIPE</font>)
+>>> proc.communicate()
+(Testing message to stdout\n', Testing message to stderr\n')
+</pre>
+<p>The <strong>communicate()</strong> method only reads data from <strong>stdout</strong> and <strong>stderr</strong>, until end-of-file is reached. So, after all the messages have been printed, if we call <strong>communicate()</strong> again we get an error:</p>
+<pre>
+>>> proc.communicate()
+Traceback (most recent call last):
+...
+ValueError: I/O operation on closed file
+</pre>
+<p>If we want messages to <strong>stderr</strong> to be piped to <strong>stderr</strong>, we do: <strong>stderr=subprocess.STDOUT</strong>.</p>
+<pre>
+>>> proc = subprocess.Popen(['python', 'std_test.py'],
+...                          stdout=subprocess.PIPE,
+...                          <font color="red">stderr=subprocess.STDOUT</font>)
+>>> proc.communicate()
+('Testing message to stdout\r\nTesting message to stderr\r\n', <font color="red">None</font>)
+</pre>
+<p>As we see from the output, we do not have <strong>stderr</strong> because it's been redirected to <strong>stderr</strong>.</p>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="subprocess_popen_samples_stdin">subprocess.Popen() - stdin</div>
+<p>Writing to a process can be done in a very similar way. If we want to send data to the process's <strong>stdin</strong>, we need to create the <strong>Popen</strong> object with <strong>stdin=subprocess.PIPE</strong>.</p>
+<p>To test it let's write another program (<strong>write_to_stdin.py</strong>) which simply prints Received: and then repeats the message we send it:</p>
+<pre>
+# write_to_stdin.py
+import sys
+input = sys.stdin.read()
+sys.stdout.write('Received: %s'%input)
+</pre>
+<p>To send a message to <strong>stdin</strong>, we pass the string we want to send as the input argument to <strong>communicate()</strong>:</p>
+<pre>
+>>> proc = subprocess.Popen(['python', 'write_to_stdin.py'],  stdin=subprocess.PIPE)
+>>> proc.communicate('Hello?')
+Received: Hello?(None, None)
+</pre>
+<p>Notice that the message created in the <strong>write_to_stdin.py</strong> process was printed to <strong>stdout</strong> and then the return value <strong>(None, None)</strong> was printed. That's because no pipes were set up to <strong>stdout</strong> or <strong>stderr</strong>. </p>
+<p>Here is another output after we specified <strong>stdout=subprocess.PIPE</strong> and <strong>stderr=subprocess.PIPE</strong> just as before to set up the pipe.</p>
+<pre>
+>>> proc = subprocess.Popen(['python', 'write_to_stdin.py'],  
+...                          stdin=subprocess.PIPE, 
+...                          stdout=subprocess.PIPE, 
+...                          stderr=subprocess.PIPE)
+>>> proc.communicate('Hello?')
+('Received: Hello?', '')
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subprocess_shell_pipeline">subprocess.Popen() - shell pipeline</div>
+<pre>
+>>> p1 = subprocess.Popen(['df','-h'], stdout=subprocess.PIPE)
+>>> p2 = subprocess.Popen(['grep', 'sda1'], stdin=p1.stdout, stdout=subprocess.PIPE)
+>>> p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits
+>>> output = p2.communicate()[0]
+>>> output
+'/dev/sda1              19G  9.2G  8.3G  53% /\n'
+</pre>
+<p>The <strong>p1.stdout.close()</strong> call after starting the <strong>p2</strong> is important in order for <strong>p1</strong> to receive a <strong>SIGPIPE</strong> if <strong>p2</strong> exits before <strong>p1</strong>.</p>
+<br/>
+<p>Here is another example for a piped command. The code gets window ID for the currently active window. The command looks like this:</p>
+<pre>
+xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}'
+</pre>
+<p>Python code:</p>
+<pre>
+# This code runs the following awk to get a window id for the currently active X11 window
+# xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}'
+
+import subprocess
+
+def py_xwininfo():
+	winId = getCurrentWinId()
+	print 'winId = %s' %winId
+
+def getCurrentWinId():
+	cmd_1 = ['xprop', '-root']
+	cmd_2 = ['awk', '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}']
+	p1 = subprocess.Popen(cmd_1, stdout = subprocess.PIPE)
+	p2 = subprocess.Popen(cmd_2, stdin = <font color="red">p1.stdout</font>, stdout=subprocess.PIPE)
+	id = p2.communicate()[0]
+
+	return id
+
+if __name__ == '__main__':
+	py_xwininfo()
+</pre>
+<p>Output:</p>
+<pre>
+winId = 0x3c02035
+</pre>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="subprocess_shell_true">subprocess.Popen() - shell=True</div>
+<p>Avoid <strong>shell=True</strong> by all means.</p>
+<p><strong>shell=True</strong> means executing the code through the shell. In other words, executing programs through the shell means, that all user input passed to the program is interpreted according to the syntax and semantic rules of the invoked shell. At best, this only causes inconvenience to the user, because the user has to obey these rules. For instance, paths containing special shell characters like quotation marks or blanks must be escaped. At worst, it causes security leaks, because the user can execute arbitrary programs.</p>
+<p><strong>shell=True</strong> is sometimes convenient to make use of specific shell features like word splitting or parameter expansion. However, if such a feature is required, make use of other modules are given to you (e.g. <strong>os.path.expandvars()</strong> for parameter expansion or shlex for word splitting). This means more work, but avoids other problems. - from <a href="http://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess" target="_blank">Actual meaning of 'shell=True' in subprocess</a>.</p>
+<p>If <strong>args</strong> is a <strong>string</strong>, the string specifies the command to execute through the shell. This means that the string must be formatted exactly as it would be when typed at the shell prompt. This includes, for example, quoting or backslash escaping filenames with spaces in them:</p>
+<pre>
+>>> proc = subprocess.Popen('<font color="red">echo $HOME</font>', shell=<font color="red">True</font>)
+>>> /user/khong
+</pre>
+<p>The string is an exactly the formatted as it would be typed at the shell prompt:</p>
+<pre>
+$ echo $Home
+</pre>
+<p>So, the following would not work:</p>
+<pre>
+>>> proc = subprocess.Popen('<font color="red">echo $HOME</font>', shell=<font color="red">False</font>)
+Traceback (most recent call last):
+...
+OSError: [Errno 2] No such file or directory
+</pre>
+<p>Following would not work, either:</p>
+<pre>
+>>> subprocess.Popen('echo "Hello world!"', shell=<font color="red">False</font>)
+Traceback (most recent call last):
+...
+OSError: [Errno 2] No such file or directory
+</pre>
+<p>That's because we are still passing it as a string, Python assumes the entire string is the name of the program to execute and there isn't a program called <strong>echo "Hello world!"</strong> so it fails. Instead we have to pass each argument separately.</p>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/><br/>
+<div class="subtitle_2nd" id="psutil_subprocess">psutil and subprocess - psutil.popen()</div>
+<p><b>psutil.Popen(*args, **kwargs)</b> is a more convenient interface to stdlib <b>subprocess.Popen()</b>.</p>
+<p>"It starts a sub process and deals with it exactly as when using <b>subprocess.Popen</b> class but in addition also provides all the properties and methods of <b>psutil.Process</b> class in a single interface". <br/>
+- see <a href="http://code.google.com/p/psutil/wiki/Documentation" target="_blank">http://code.google.com/p/psutil/wiki/Documentation</a></p>
+<p>The following code runs <b>python -c "print 'hi, psutil'"</b> on a subprocess:</p>
+<pre>
+>>> import psutil
+>>> import subprocess
+>>> proc = psutil.Popen(["/usr/bin/python", "-c", "print 'hi, psuti'"], stdout=subprocess.PIPE)
+>>> proc
+&lt;psutil.Popen(pid=4304, name='python') at 140431306151888&gt;
+>>> proc.uids
+user(real=1000, effective=1000, saved=1000)
+>>> proc.username
+'khong'
+>>> proc.communicate()
+('hi, psuti\n', None)
+</pre>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="subprocess_references">References</div>
+<ol>
+<li><a href="http://docs.python.org/2/library/subprocess.html" target="_blank">docs.python.org</a></li>
+<li><a href="http://www.doughellmann.com/PyMOTW/subprocess/" target="_blank">subprocess - Work with additional processes</a></li>
+<li><a href="http://jimmyg.org/blog/2009/working-with-python-subprocess.html" target="_blank">subprocess - working with Python subprocess - Shells, Processes, Streams, Pipes, Redirects and More</a></li>
+</ol>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br/>
+<br/>
+<br/><br/>
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title sub">Bogotobogo Image / Video Processing </h1>
+<h1 class="teaser title">Computer Vision & Machine Learning</h2>
+<p>
+  with OpenCV, MATLAB, FFmpeg, and scikit-learn.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_ubuntu13_install_cmake.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/lena_Ubuntu_opencv.png" 
+      title="Installing on Ubuntu 13 and loading an image"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_mat_object_image_matrix_image_container.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/matrix_Mat_object.png" 
+      title="Mat(rix) object (Image Container)"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_creating_mat_objects.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/ThreeChannelArray.png" 
+      title="Creating Mat objects, zeros(), ones(), eye() and clone()"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_load_convert_save_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Dostoevsky.png" 
+      title="The core - Image load, convert and save"/> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra1.png" 
+      title="Smoothing Filters A - Average and Gaussian Blur"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing_B.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra2.png" 
+      title="Smoothing Filters B - Median, Bilateral"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCVwithPython.png" 
+      title="OpenCV 3 with Python"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bgr_Matplot.png" 
+      title="OpenCV BGR : Matplotlib RGB, There is a difference in pixel ordering in OpenCV and Matplotlib."/> </a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/CloudyGoldenGate_grayscale.jpg" 
+      title="Basic image operations - pixel access"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/iPython_FFT_Random.png" 
+      title="iPython - Signal Processing with NumPy"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Signal_FFT_square_5_Hz.png" 
+      title="Signal Processing with NumPy I - FFT & DFT for sine, square waves, unitpulse, and random signal"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/NumPyFFT_maze.png" 
+      title="Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT"/> </a>
+      
+    </div>
+ 
+    <!-- 16-20 -->
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/cv2_dft_xfiles.png" 
+      title="Inverse Fourier Transform of an Image with low pass filter: cv2.idft()"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Histo_gray.png" 
+      title="Image Histogram"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/RGB_HSV.png" 
+      title="Video Capture & Switching colorspaces - RGB / HSV"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCV_Otsu_Thresholding3.png" 
+      title="Adaptive Thresholding - Otsu's clustering-based image thresholding"/> </a>
+      
+    </div>
+
+    <!-- 21-25 -->
+
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/SanFrancisco_out.png" 
+      title="Edge Detection - Sobel and Laplacian Kernels"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Canny_Edge_Detection.png" 
+      title="Canny Edge Detection"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hough_eye_51.png" 
+      title="Hough Transform - Circles"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_Dilation.png" 
+      title="Watershed Algorithm : Marker-based Segmentation I"/> </a>
+      
+    </div>
+
+    <!-- 26-30 -->
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_input_output.png" 
+      title="Watershed Algorithm : Marker-based Segmentation II"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Denoising_Gaussian_Gray.png" 
+      title="Image noise reduction : Non-local Means denoising algorithm"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/xfiles4.png" 
+      title="Image object detection : Face detection using Haar Cascade Classifiers"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bolt.jpg" 
+      title="Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts"/> </a>
+      
+    </div>
+
+    <!-- 31-35 -->
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Output_4_pics.png" 
+      title="Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/MeanShiftPic.png" 
+      title="Video : Mean shift object tracking"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D.png" 
+      title="Machine Learning : Clustering - K-Means clustering I"/> </a>
+
+      <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D_2.png" 
+      title="Machine Learning : Clustering - K-Means clustering II"/> </a>
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div id = "pics">
+      <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/kNN_2.png" 
+      title="Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm"/> </a>
+
+      <img src="../media/img/TopicLogo/OpenCV/more_image_processing.png" 
+      title="Continue..."/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" 
+      title="Matlab - Vectors and Matrices"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_M_Files_scripts.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/m_files.png" 
+      title="mfiles - Matlab script files"/> </a>
+      
+    </div>
+
+    <!-- 41-45 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_For_Loop.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/sum_1_to_10_ForLoop.png" 
+      title="For loop for loop_index = vector"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Indexing_Masking_Array_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ArrayMasking.png" 
+      title="Indexing and masking"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Array_Audio_Wave_File_Plot_Play.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DrumAudioTwoChannels_2.png" 
+      title="Vectors and arrays with audio files"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ReversedAudio.png" 
+      title="Manipulating Audio I : Reverse play and delay audio"/> </a>
+      
+    </div>
+
+    <!-- 46-50 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_2_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Audio2.png" 
+      title="Manipulating Audio II : Playing with stereo sound, tone control, changing Speed, removing vocals"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Introduction_to_FFT_DFT_Fast_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/FFT_DFT_Diagram.png" 
+      title="Introduction to FFT & DFT"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_DFT_Discrete_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DFT_results.png" 
+      title="Discrete Fourier Transform (DFT)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_I.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/RGB_BerkeleyTower.png" 
+      title="Digital Image Processing 1 - 7 basic functions "/> </a>
+ 
+    </div>
+
+    <!-- 51-55 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_2_RGB_Indexed_Color_Info.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ImgProc2.png" 
+      title="Digital Image Processing 2 - RGB image & indexed image"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_3_Grayscale_RGB.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Einstein.jpg" 
+      title="Digital Image Processing 3 - Grayscale image I"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_4_Grayscale_RGB_II.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/bit_plane1.png" 
+      title="Digital Image Processing 4 - Grayscale image II (image data type and bit-plane)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_5_Histogram_Equalization_imhist_histeq_imadjust.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/two_histogram_in_one_pic.png" 
+      title="Digital Image Processing 5 - Histogram equalization"/> </a>
+      
+    </div>
+
+    <!-- 56-60 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_6_Filter_Smoothing_Low_Pass_fspecial_filter2.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/noise_in_rgb_image.png" 
+      title="Digital Image Processing 6 - Image Filter (Low pass filters)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_1_Object_Detection_by_Color_Thresholding.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Object_Detect_Run2.png" 
+      title="Video Processing 1 - Object detection (tagging cars) by thresholding color"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_2_Face_Detection_CamShift_Tracking.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DetectedFace.png" 
+      title="Video Processing 2 - Face Detection and CAMShift Tracking"/> </a>
+
+      <img src="../media/img/TopicLogo/Matlab/more_image_processing.png" 
+      title="More image processing"/> 
+      
+    </div>
+
+    <!-- 61-65 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_image_scaling_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" 
+      title="Image/video scaling"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropping_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/cropped_blue_umbrella_025.png" 
+      title="Image/video cropping - crop=712:534"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_cropdetect.png" 
+      title="Cropdetect and ffplay : crop=out_width:out_height:x:y"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_speed_up_dlow_down.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_video_speed_up_dlow_down.png" 
+      title="Speeding-up & slowing-down video"/> </a>
+      
+    </div>
+
+    <!-- 66-70 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_basic_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_show.png" 
+      title="Basic slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_adv_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/Adv_Slide_Show.png" 
+      title="Advanced slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_thumbnails_select_scene_iframe.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/thumnail_iframe.png" 
+      title="Thumbnails -Selecting specific frames : I-frame extraction etc."/> </a>
+
+      <a href="../FFMpeg/ffmpeg_seeking_ss_option_cutting_section_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/seek_cut_sections.png" 
+      title="Seeking and cutting sections of a video & audio"/> </a>
+      
+    </div>
+
+    <!-- 71-75 -->
+    <div id = "pics">
+
+      <a href="../FFMpeg/ffmpeg_concatenating_two_videos.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/concat.png" 
+      title="Concatenating two video files or two audio files"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out.png" 
+      title="Transitions : fade-in & fade-out for 1 slide"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out_two.png" 
+      title="Transitions : python script for fade-in & fade-out with two slides"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_concat.png" 
+      title="Concatenate slides"/> </a>
+      
+    </div>
+
+    <!-- 76-80 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_video_test_patterns_src.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/creating_test_video.png" 
+      title="Creating test videos"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/screencasting.png" 
+      title="Screen Recording on Ubuntu A"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture_active_current_top_window.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ActiveCapture.png" 
+      title="Active window capture with Python on Ubuntu B"/> </a>
+
+      <img src="../media/img/TopicLogo/arrow_scikit-learn.png" 
+      title="Machine Learning with scikit-learn"/> 
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" 
+      title="scikit-learn installation"/> </a>
+
+      <a href="scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/feature_extraction.png" 
+      title="Features and feature extraction - iris dataset"/> </a>
+
+      <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/supervised.png" 
+      title="Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset"/> </a>
+
+      <a href="scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/un_supervised.png" 
+      title="Unsupervised_Learning - KMeans clustering with iris dataset"/> </a>
+
+
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/NonlinearlySeparable.png" 
+      title="Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)"/> </a>
+
+      <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/svm.png" 
+      title="Support Vector Machines (SVM)"/> </a>
+
+      
+    </div>
+
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title">Bogotobogo's Video Streaming Technology </h1>
+<h1 class="teaser title sub">with FFmpeg, HLS, MPEG-DASH, H.265 (HEVC)</h2>
+
+
+<div class="box full" >
+<div style="margin:0 auto; width: 734px; height:120px;">
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/VideoStreaming_Image.png" 
+      title="Video Streaming Technology - General Introduction & Terminology"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Adaptive_Sorenson.png" 
+      title="Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH"/> </a>
+
+      <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/JPEG_Compression_process_YCbCr.png" 
+      title="Digital Image Processing : JPEG Compression - subsampling, subimage, DCT, quantize, Huffman encoding"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/planet_linux_i002.png" 
+      title="FFmpeg on Linux - Audio Video Transcoding,  Mux and Demux"/> </a>
+      
+    </div>
+
+    <!-- 6-10 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Conversion_To_Webm.png" 
+      title="FFmpeg install on Windows, file conversion, and FFmpeg converter"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTML5_player.png" 
+      title="FFmpeg Webcam video capture, HTML5 player"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_http_live_streaming_hls.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Segment.png" 
+      title="FFmpeg segment etc."/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_options_list.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_command_options.png" 
+      title="FFmpeg command options"/> </a>
+      
+    </div>
+
+    <!-- 11-15 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Smooth_Streaming.png" 
+      title="Multiple bit rate encoding with two pass, creating manifest using ismindex and mp4split"/> </a>
+
+      <a href="../VideoStreaming/rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTTPvsRTMP.png" 
+      title="HTTP vs RTMP"/> </a>
+
+      <a href="../WebTechnologies/mobile.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Mobile.png" 
+      title="Mobile in general and Mobile streaming"/> </a>
+
+      <a href="../VideoStreaming/h265_hevc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/H265.png" 
+      title="Introduction to H.265 (HEVC)"/> </a>
+      
+    </div>
+
+    <!-- 16-20-->
+    <div id = "pics">
+      <a href="../VideoStreaming/Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Export_BBFlash.png" 
+      title="Screen Recording (mp4/ogg) and HTML5 Video"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/iis8.png" 
+      title="SmoothStreaming iis8"/> </a>
+
+      <a href="../VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/localhost_nginx_welcome.png" 
+      title="Smooth Streaming on Nginx/Apache"/> </a>
+
+      <a href="../VideoStreaming/mpeg_dash.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/DASH_Profile.png" 
+      title="MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)"/> </a>
+      
+    </div>
+
+    <!-- 21-25-->
+    <div id = "pics">
+      <a href="../VideoStreaming/p2pStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/P2P.png" 
+      title="p2p"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/ExpressionEncoderSilverlightProject.png" 
+      title="Smooth Streaming - Expression Encoder"/> </a>
+
+      <a href="../VideoStreaming/optimization_transrating.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/opt_data.png" 
+      title="Streaming (Data Traffic) - Optimization"/> </a>
+
+      <a href="../VideoStreaming/VideoStreamingSharingSites.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/vimeo.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/convert_save.png" 
+      title="How to Capture Screen to a Video File using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_http.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Results_Two_Pictures.png" 
+      title="Live Streaming over http using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/OpenNetworkStream.png" 
+      title="Live Streaming over RTP using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/File_Convert_Transcoding_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/TranscodingStarted.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/YouTube.png" 
+      title="Downloading a YouTube Video using VLC"/> </a>
+      
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h1 class="teaser title">Bogotobogo's contents</h1>
+<p>
+  To see more items, click left or right arrow.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div>
+      <a href="../cplusplus/cpptut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Cpp_Image.png" /> </a>
+      <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html" target="_blank">
+      <img src="../media/img/TopicLogo/Qt5_Image.png" /></a>
+      <a href="pytut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Python_Image.png" /> </a>
+      <a href="../Android/android.html" target="_blank">
+      <img src="../media/img/TopicLogo/Android_Image.png" /> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div>
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" /> </a>
+      <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV3_Image.png" /></a>
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" /></a>
+      <a href="../php/phptut.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/PHP_Image.png" /></a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div>
+      <a href="../CSharp/.netframework.html" target="_blank">
+      <img src="../media/img/TopicLogo/CSharp_Image.png" /></a>
+      <a href="../VisualBasicSQL/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/VisualBacis_Image.png" /></a>
+      <a href="../AngularJS/AngularJS_Introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/AngularJS_logo.png" /> </a>
+      <a href="../JQuery/JQuery_document_ready_click_function.html" target="_blank">
+      <img src="../media/img/TopicLogo/jQuery_Image.png" /></a>
+    </div>
+ 
+    <!-- 16-20 -->
+    <div>
+      <a href="../Algorithms/algorithms.html" target="_blank">
+      <img src="../media/img/TopicLogo/Algorithms_Image.png" /></a>
+      <a href="../DesignPatterns/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Design_Patterns_Image.png" /></a>
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming_Image.png" /></a>
+      <a href="../Java/tutorials/on_java.html" target="_blank">
+      <img src="../media/img/TopicLogo/Java_Image.png" /></a>
+    </div>
+
+    <!-- 21-25 -->
+    <div>
+      <a href="../RubyOnRails/RubyOnRails.html" target="_blank">
+      <img src="../media/img/TopicLogo/RubyOnRails_Image.png" /></a>
+      <a href="../iPhone/iPhone.html" target="_blank">
+      <img src="../media/img/TopicLogo/iOS_Image.png" /></a>
+      <a href="../HTML5/OnHTML5.html" target="_blank">
+      <img src="../media/img/TopicLogo/HTML5_Image.png" /></a>
+      <a href="../Linux/linux_tips1.html" target="_blank">
+      <img src="../media/img/TopicLogo/Linux_Image.png" /> </a>    
+    </div>
+
+    <!-- 26-30 -->
+    <div>
+      <a href="Django/Python_Django_tutorial_introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Django_Image.png" /></a>
+      <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html"/ target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" /></a>
+      <a href="../php/Laravel4/php_laravel4_framework_install_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/Laravel_Image.png" /></a>
+      
+      <a href="../cplusplus/embeddedSystemsProgramming.html" target="_blank">
+      <img src="../media/img/TopicLogo/EmbeddedRTOS.png" /></a>
+    </div>
+
+    <!-- 31-35 -->
+    <div>
+      <a href="../cplusplus/Git/Git_GitHub_Express.html" target="_blank">
+      <img src="../media/img/TopicLogo/git_github_image.png" /></a>
+      <a href="../SVG/svg.html" target="_blank">
+      <img src="../media/img/TopicLogo/SVG_Image.png" /> </a>
+      <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html" target="_blank">
+      <img src="../media/img/TopicLogo/DevOps_icon.png" /> </a>
+      <img src="../media/img/TopicLogo/Coming_Soon_Image.png" />
+      <img src="../media/img/TopicLogo/Hadoop_Blur_Image.png" />
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div>
+      <img src="../media/img/TopicLogo/OpenCL_Blur_Image.png" />
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+</script>
+</div> <!-- box full -->
+ 
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+ 
+</div> <!-- blurb -->
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br /><br />
+
+
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="python_Selenium_WebDriver.html">Selenium WebDriver</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br><br><br>
+<h1>OpenCV 3 image and video processing with Python</h1>
+
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3.html" target="_blank">OpenCV 3 with Python</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">Image - OpenCV BGR : Matplotlib RGB</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">Basic image operations - pixel access</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">Signal Processing with NumPy I - FFT and DFT for sine, square waves, unitpulse, and random signal</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">Inverse Fourier Transform of an Image with low pass filter: cv2.idft() </a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">Image Histogram</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">Video Capture and Switching colorspaces - RGB / HSV</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">Adaptive Thresholding - Otsu's clustering-based image thresholding</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">Edge Detection - Sobel and Laplacian Kernels</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">Canny Edge Detection</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">Hough Transform - Circles</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">Watershed Algorithm : Marker-based Segmentation I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">Watershed Algorithm : Marker-based Segmentation II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">Image noise reduction : Non-local Means denoising algorithm</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">Image object detection : Face detection using Haar Cascade Classifiers</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">Video : Mean shift object tracking</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">Machine Learning : Clustering - K-Means clustering I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization_2.html" target="_blank">Machine Learning : Clustering - K-Means clustering II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm</a> 
+
+
+<br />
+<br />
+
+<br><br><br>
+<h1>Machine Learning with scikit-learn</h1>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_install.html" target="_blank">scikit-learn installation</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_features_extraction.html" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_quick_preview.html" target="_blank">scikit-learn : Machine Learning Quick Preview</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-Missing-Data-Categorical-Data.php" target="_blank">scikit-learn : Data Preprocessing I - Missing / Categorical data</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-II-Datasets-Partitioning-Feature-scaling-Feature-Selection-Regularization.html" target="_blank">scikit-learn : Data Preprocessing II - Partitioning a dataset / Feature scaling / Feature Selection / Regularization</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-III-Dimensionality-reduction-via-Sequential-feature-selection-Assessing-feature-importance-via-random-forests.html" target="_blank">scikit-learn : Data Preprocessing III - Dimensionality reduction vis Sequential feature selection / Assessing feature importance via random forests</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_1_Principal_component_analysis%20_PCA.html" target="_blank">Data Compression via Dimensionality Reduction I - Principal component analysis (PCA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_2_Linear_Discriminant_Analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction II - Linear Discriminant Analysis (LDA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_3-nonlinear-mappings-via-kernel-principal-component-analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction III - Nonlinear mappings via kernel principal component (KPCA) analysis</a>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_logistic_regression.html" target="_blank">scikit-learn : Logistic Regression, Overfitting & regularization</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">scikit-learn : Supervised Learning & Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">scikit-learn : Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)</a> 
+   <br><br>
+   <a href="scikit-learn/scikt_machine_learning_Decision_Tree_Learning_Informatioin_Gain_IG_Impurity_Entropy_Gini_Classification_Error.php" target="_blank">scikit-learn : Decision Tree Learning I - Entropy, Gini, and Information Gain</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Constructing_Decision_Tree_Learning_Information_Gain_IG_Impurity_Entropy_Gini_Classification_Error.html" target="_blank">scikit-learn : Decision Tree Learning II - Constructing the Decision Tree</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Random_Decision_Forests_Ensemble_Learning_Classification.html" target="_blank">scikit-learn : Random Decision Forests Classification</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM_2.html" target="_blank">scikit-learn : Support Vector Machines (SVM) II</a> 
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_1.html" target="_blank">Flask with Embedded Machine Learning I : Serializing with pickle and DB setup</a></li>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_2.html" target="_blank">Flask with Embedded Machine Learning II : Basic Flask App</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_3.html" target="_blank">Flask with Embedded Machine Learning III : Embedding Classifier</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_4.html" target="_blank">Flask with Embedded Machine Learning IV : Deploy</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_5.html" target="_blank">Flask with Embedded Machine Learning V : Updating the classifier</a>
+   <br><br>
+   <a href="scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.html" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> 
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Machine learning algorithms and concepts</h3>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="scikit-learn/Perceptron_Model_with_Iris_DataSet.html" target="_blank">Single Layer Neural Network - Perceptron model on the Iris dataset using Heaviside step activation function</a>
+   <br><br> 
+   <a href="scikit-learn/scikit-learn_batch-gradient-descent-versus-stochastic-gradient-descent.html" target="_blank">Batch gradient descent versus stochastic gradient descent</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron.html" target="_blank">Single Layer Neural Network - Adaptive Linear Neuron using linear (identity) activation function with batch gradient descent method</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron-with-Stochastic-Gradient-Descent.html" target="_blank">Single Layer Neural Network : Adaptive Linear Neuron using linear (identity) activation function with stochastic gradient descent (SGD)</a>
+   <br><br> 
+   <a href="scikit-learn/logistic_regression.html" target="_blank">Logistic Regression</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_VC_Dimension_Shatter.html" target="_blank">VC (Vapnik-Chervonenkis) Dimension and Shatter</a> 
+   <br><br> 
+   <a href="scikit-learn/scikit_machine_learning_Bias-variance-Tradeoff.html" target="_blank">Bias-variance tradeoff</a> 
+   <br><br> 
+   <a href="scikit-learn/Maximum-Likelyhood-Estimation-MLE.html" target="_blank">Maximum Likelihood Estimation (MLE)</a> 
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="../Algorithms/minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="../Algorithms/tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="../Algorithms/Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Artificial Neural Networks (ANN)</h3>
+
+   [Note] <a href="https://github.com/Einsteinish/Artificial-Neural-Networks-with-Jupyter.git" target="_blank">Sources are available at Github - Jupyter notebook files</a> 
+
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html" target="_blank">1. Introduction</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-2-Forward-Propagation.html" target="_blank">2. Forward Propagation</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-3-Gradient-Descent.html" target="_blank">3. Gradient Descent</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-4-Backpropagation.html" target="_blank">4. Backpropagation of Errors</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-5-Checking-Gradient.html" target="_blank">5. Checking gradient</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-6-Training-via-BFGS-Broyden-Fletcher-Goldfarb-Shanno-algorithm-a-variant-of-gradient-descent.html" target="_blank">6. Training via BFGS</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-7-Overfitting-Regularization.html" target="_blank">7. Overfitting & Regularization</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-8-Deep-Learning-1-Image-Recognition-Image-Uploading.html" target="_blank">8. Deep Learning I : Image Recognition (Image uploading)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-9-Deep-Learning-2-Image-Recognition-Image-Classification.html" target="_blank">9. Deep Learning II : Image Recognition (Image classification)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-10-Deep-Learning-3-Theano-TensorFlow-Keras.html" target="_blank">10 - Deep Learning III : Deep Learning III : Theano, TensorFlow, and Keras</a>
+<br />
+<br />
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_subprocess_module.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:21:48 GMT -->
+</html>
+

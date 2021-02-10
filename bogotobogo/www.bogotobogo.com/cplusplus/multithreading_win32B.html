@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32B.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:20 GMT -->
+<head>
+  <title>C++ Tutorial: Multi-Threaded Programming II - Thread for Win32 (B) - 2017</title>
+  <meta content="C++ Tutorial: Multi-Threaded Programming II - Thread for Win32 (B) - 2014" name="description" />
+  <meta content="C++ Tutorial, Multi-Threaded Programming II - Thread for Win32 (B), MultiThreading Programming, Synchronization, Resource Sharing, Thread for Win32, Critical Sections, Mutex Regions, Semaphores, Condition Variables, Signaling Event Completion, Thread Debugging, Thread Debugger, Visual Studio 2010" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial
+Multi-Threaded Programming II
+Native Thread for Win32 (B)
+(Synchronization and Resource Sharing) - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mth2pb">Native Thread for Win32 (B) - 
+Synchronization/Resource Sharing</div>
+<br/>
+<div class="subtitle_2nd" id="syncbetweenthreads">Synchronization Between Threads</div>
+<p>In the following example, two threads are used to calculate all the prime numbers in a given range. </p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>It demonstrates a test whether a number is prime number:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+volatile int counter = 0;
+
+int isPrime(int n)
+{
+	for(int i = 2; i &lt; (int)(sqrt((float)n) + 1.0) ; i++) {
+		if (n % i == 0) return 0;
+	}
+	return 1;
+}
+
+unsigned int __stdcall mythread(void*) 
+{
+	char* s;
+	<font color="blue">while (counter &lt; 25) {
+		int number = counter++;
+		s = "No";
+		if(isPrime(number)) s = "Yes";
+		printf("Thread %d value = %d is prime = %s\n",
+			GetCurrentThreadId(), number, s);
+	}</font>
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Thread 2652 value = 0 is prime = Yes
+Thread 2652 value = 2 is prime = Yes
+Thread 5972 value = 1 is prime = Yes
+Thread 5972 value = 4 is prime = No
+Thread 5972 value = 5 is prime = Yes
+Thread 5972 value = 6 is prime = No
+Thread 5972 value = 7 is prime = Yes
+Thread 5972 value = 8 is prime = No
+Thread 5972 value = 9 is prime = No
+Thread 5972 value = 10 is prime = No
+Thread 5972 value = 11 is prime = Yes
+Thread 5972 value = 12 is prime = No
+Thread 5972 value = 13 is prime = Yes
+Thread 5972 value = 14 is prime = No
+Thread 5972 value = 15 is prime = No
+Thread 5972 value = 16 is prime = No
+Thread 2652 value = 3 is prime = Yes
+Thread 5972 value = 17 is prime = Yes
+Thread 5972 value = 19 is prime = Yes
+Thread 5972 value = 20 is prime = No
+Thread 5972 value = 21 is prime = No
+Thread 5972 value = 22 is prime = No
+Thread 5972 value = 23 is prime = Yes
+Thread 5972 value = 24 is prime = No
+Thread 2652 value = 18 is prime = No
+</pre>
+<p>In the example, we created two threads which tested numbers. Using two threads, however, would cause a <strong>data race</strong> if both threads accessed the variable <strong>counter</strong> at the same time. So, we may need to protect the increment of the <strong>counter</strong> to avoid data races. In the following sections, after tasting the thread debugging briefly, we'll investigate several approaches to address this problem.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="debugA">Taste of Debug</div>
+<p>The debugging of multithreaded application is a huge topic, and it will be presented in other chapters of this tutorial. But I'll briefly show how to start debugging using Visual Studio 2010 using the same example from the previous section.</p>
+<ol>
+<li>Set a break point and run the example in debug mode.
+	</li>
+<li>Debug &gt; Windows &gt; Threads
+<br/><br/>
+<img alt="ThreadDebugWindowOpen" src="images/multithread2B/ThreadDebugWindowOpen.png"/>
+<br/><br/>
+</li>
+<li>Then, we get the Threads window.
+<br/><br/>
+<img alt="ThreadsWindow" src="images/multithread2B/ThreadsWindow.png"/>
+<br/><br/>
+</li>
+<li>In the Threads window, you can examine and work with threads in the application that you are debugging.<br/>
+The Threads window contains a table where each row represents a thread in your application. By default, the table lists all threads in your application, but you can filter the list to show only the threads that interest you. Each column contains a different type of information. You can also hide some columns. If you display all columns, the following information appears, from left to right: 
+	<ol>
+<li>The <strong>flag</strong> column, where you can mark a thread to which you want to pay special attention. For information about how to flag a thread.</li>
+<li>The <strong>active thread</strong> column, where a yellow arrow indicates an active thread. An outline of an arrow indicates the thread where execution broke into the debugger.</li>
+<li>The <strong>ID</strong> column, which contains the identification number for each thread.</li>
+<li>The <strong>Managed ID</strong> column, which contains the managed identification numbers for managed threads.</li>
+<li>The application <strong>Category</strong> column, which categorizes threads as user interface threads, remote procedure call handlers, or worker threads. A special category identifies the main thread of the application.</li>
+<li>The <strong>Name</strong> column, which identify each thread by name, if it has one, or as <no name>.</no></li>
+<li>The <strong>Location</strong> column, which shows where the thread is running. You can expand this location to show the full call stack for the thread.</li>
+<li>The <strong>Priority</strong> column, which contains the priority or precedence that the system has assigned to each thread.</li>
+<li>The <strong>Affinity Mask</strong> column, which is an advanced column that is usually hidden. This column shows the processor affinity mask for each thread. In a multiprocessor system, the affinity mask determines which processors on which a thread can run.</li>
+<li>The <strong>Suspended</strong> column shows the suspend count. A thread must have a suspend count of zero to execute. The native debugger will not show an increment of the Suspend counter when the <strong>Freeze</strong> command is selected from the context menu, but with managed debugging, the Suspend count will reflect <strong>Freeze</strong> and <strong>Thaw</strong> commands. </li>
+</ol>
+<br/>
+<li>While we step through the code, we can see which thread is working actively.
+<br/><br/>
+<img alt="BreakPoint" src="images/multithread2B/BreakPoint.png"/>
+<br/><br/>
+</li>
+<li>One of the features that thread window offers is the <strong>Thread Call Stack Tooltips</strong>. <br/><br/>
+<img alt="threadcallstacktooltips" src="images/multithread2B/threadcallstacktooltips.png"/>
+<br/><br/>
+</li>
+<li>Another features is <strong>Show Threads in Source 
+</strong>, which thread is at the break point. 
+<br/><br/>
+<img alt="ShowThreadsInSourceA" src="images/multithread2B/ShowThreadsInSourceA.png"/>
+<br/><br/>
+<br/><br/>
+<img alt="ShowThreadsInSourceB" src="images/multithread2B/ShowThreadsInSourceB.png"/>
+<br/><br/>
+</li>
+<li>Around this time, you may already know that there is a <strong>Debug Location Bar</strong>.
+<br/><br/>
+<img alt="DebugLocationBarMenu" src="images/multithread2B/DebugLocationBarMenu.png"/>
+<br/><br/>
+<br/><br/>
+<img alt="DebugLocationBar" src="images/multithread2B/DebugLocationBar.png"/>
+<br/><br/>
+</li>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="criticalsections">Critical Sections</div>
+<p>Win32 provides following types of objects that can be used for thread synchronization:</p>
+<ol>
+<li>Mutex</li>
+<li>CRITICAL_SECTION</li>
+<li>Semaphore</li>
+<li>Event</li>
+</ol>
+<p><strong>Mutex</strong> and <strong>CRITICAL_SECTION</strong> objects are Win32 versions of the <strong>lock objects</strong>, while <strong>Win32 Semaphores</strong> are counting semaphores.</p>
+<p><strong>Critical section</strong> (see <a href="multithreaded.html#criticalsection" target="blank">here</a>, too) is a method of ensuring only a single thread executes a region of code. It is declared <strong>within a process</strong> and are <strong>not resources provided by the kernel</strong>. In other words, critical section is a lock object that can only be used to <strong>synchronize threads in the same process</strong>, and they do not have handles. Because they are within the process, access to critical sections is quicker than it would be if access had to be brokered by the kernel. This is one of the defferences: <font color="blue"><strong>critical sections</strong> do not go down to the kernel level, but <strong>mutex</strong> does go down to the kernel level</font>.</p>
+<p>The following code declares a critical section structure, and then initializes it by calling <strong>InitializeCriticalSection()</strong>. Once the program has finished with it, deletes it by calling <strong>DeleteCriticalSection()</strong>:</p>
+<pre>
+InitializeCriticalSection(&amp;critical;);
+DeleteCriticalSection(&amp;critical;);
+</pre>
+<p>When a thread needs to enter the critical section, it calls <strong>EnterCriticalSection()</strong>. If no other thread is in the critical section, the calling thread acquires it and continues execution. If another thread is in the critical section, the calling thread will sleep until the thread executing the critical section leaves it by calling <strong>LeaveCriticalSection()</strong>. A thread calling <strong>LeaveCriticalSection()</strong> must be the owner of the critical section. The thread that calls <strong>EnterCriticalSection()</strong> will not return until it has obtained access to the critical section. There is no concept of a timeout.</p>
+<p>The following example demonstrates how we use a critical section to protect access to the <strong>counter</strong> variable:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+volatile int counter = 0;
+<font color="blue">CRITICAL_SECTION critical;</font>
+
+int isPrime(int n)
+{
+	for(int i = 2; i &lt; (int)(sqrt((float)n) + 1.0) ; i++) {
+		if (n % i == 0) return 0;
+	}
+	return 1;
+}
+
+unsigned int __stdcall mythread(void*) 
+{
+	char* s;
+	while (counter &lt; 25) {
+		<font color="red">EnterCriticalSection(&amp;critical;);</font>
+		int number = counter++;
+		<font color="red">LeaveCriticalSection(&amp;critical;);</font>
+		s = "No";
+		if(isPrime(number)) s = "Yes";
+		printf("Thread %d value = %d is prime = %s\n",
+			GetCurrentThreadId(), number, s);
+	}
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	<font color="blue">InitializeCriticalSection(&amp;critical;);</font>
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+
+	getchar();
+
+	<font color="blue">DeleteCriticalSection(&amp;critical;); </font>
+
+	return 0;
+}
+</pre>
+<p>The output from the run is similar to the results:</p>
+<pre>
+Thread 5716 value = 0 is prime = Yes
+Thread 5716 value = 1 is prime = Yes
+Thread 5716 value = 2 is prime = Yes
+Thread 5716 value = 3 is prime = Yes
+Thread 5716 value = 5 is prime = Yes
+Thread 5716 value = 6 is prime = No
+Thread 5716 value = 7 is prime = Yes
+Thread 5716 value = 8 is prime = No
+Thread 5716 value = 9 is prime = No
+Thread 5716 value = 10 is prime = No
+Thread 5716 value = 11 is prime = Yes
+Thread 5716 value = 12 is prime = No
+Thread 5716 value = 13 is prime = Yes
+Thread 5716 value = 14 is prime = No
+Thread 5716 value = 15 is prime = No
+Thread 5716 value = 16 is prime = No
+Thread 5716 value = 17 is prime = Yes
+Thread 5436 value = 4 is prime = No
+Thread 5436 value = 19 is prime = Yes
+Thread 5436 value = 20 is prime = No
+Thread 5436 value = 21 is prime = No
+Thread 5436 value = 22 is prime = No
+Thread 5716 value = 18 is prime = No
+Thread 5716 value = 24 is prime = No
+Thread 5436 value = 23 is prime = Yes
+</pre>
+<p>Putting threads to sleep and waking them up again is time-consuming since it involves entering the kernel. All critical sections should be designed to be as short-lived as possible. It is likely that by the time the thread has been put to sleep, the thread that was in the critical section will already have left it. So, making the waiting thread sleep and then waking it up again is just a waste of time.</p>
+<p>We have two alternatives:
+<ol>
+<li>We can call <strong>TryEnterCriticalSection()</strong>. </li>
+<li>The other approach is to have the thread which wants to enter the critical section <strong>spin</strong> briefly in the hope that the thread currently in the critical section will soon leave.</li>
+</ol>
+<p>
+<strong>TryEnterCriticalSection()</strong> will <font color="blue">return immediately</font> returning either true if the thread has acquired access to the critical section, or false if another thread is currently in the critical section. </p>
+<p>Here is the syntax of the function:</p>
+<pre>
+BOOL WINAPI TryEnterCriticalSection(
+ __inout LPCRITICAL_SECTION lpCriticalSection
+ ); 
+</pre>
+<p>where the <strong>lpCriticalSection</strong> [in, out]  is a pointer to the critical section object.</p>
+<p>So, the code that protects access to the <strong>counter</strong> variable could be written using <strong>TryEnterCriticalSection()</strong> as in the example below:</p>
+<pre>
+#ifndef _WIN32_WINNT		// Allow use of features specific to Windows XP or later.                   
+#define _WIN32_WINNT 0x0501	// Change this to the appropriate value to target other versions of Windows.
+#endif
+
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+volatile int counter = 0;
+CRITICAL_SECTION critical;
+
+int isPrime(int n)
+{
+	for(int i = 2; i &lt; (int)(sqrt((float)n) + 1.0) ; i++) {
+		if (n % i == 0) return 0;
+	}
+	return 1;
+}
+
+unsigned int __stdcall mythread(void*) 
+{
+	char* s;
+	while (counter &lt; 25) {
+		<font color="red">while(!TryEnterCriticalSection</font>(&amp;critical;)){}
+		int number = counter++;
+		<font color="red">LeaveCriticalSection</font>(&amp;critical;);
+		s = "No";
+		if(isPrime(number)) s = "Yes";
+		printf("Thread %d value = %d is prime = %s\n",
+			GetCurrentThreadId(), number, s);
+	}
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	<font color="blue">InitializeCriticalSection</font>(&amp;critical;);
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+
+	getchar();
+
+	<font color="blue">DeleteCriticalSection</font>(&amp;critical;); 
+
+	return 0;
+}
+</pre>
+<p>Output is almost identical to the previous results.</p>
+<p>In the code, 
+<pre>
+while(!TryEnterCriticalSection(&amp;critical;)){}
+</pre>
+the line would cause the process to <strong>spin</strong> continuously until it gets the lock. One of the problems with having a thread spin is that it is potentially depriving other threads of processor time. The primary concern would be the case when the spinning thread stops the other thread, which is currently in the critical section, from getting back onto the processor. So, this style of code is one that should be done very carefully.</p>
+<p>The other approach is to have the thread which wants to enter the critical section spin briefly in the hope that the thread currently in the critical section will soon leave. If the other thread leaves the critical section, the <strong>spinning thread</strong> can immediately enter the critical section. Once the thread has spun for a predetermined count, the thread goes to sleep until the other thread eventually leaves the critical section. This approach represents a tradeoff between the immediacy of spinning for access to the critical section and the poor utilization of resources that spinning causes.</p>
+<p>Critical sections support this idea of spinning for a short time before sleeping. There are two ways of setting the number of times that a thread calling <strong>EnterCriticalSection()</strong> will spin before it goes to sleep. The critical section can be initialized with the value through the call <strong>InitializeCriticalSectionAndSpinCount()</strong>, which takes the pointer to the critical section, and the spin count as parameters. Or, once the critical section has been created, 
+the spin count can be set through a call to <br/><strong>SetCriticalSectionSpinCount()</strong>:</p>
+<pre>
+InitializeCriticalSectionAndSpinCount(&amp;critical;, 1000);
+SetCriticalSectionSpinCount(&amp;critical;, 1000);
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="regionsmutexes">Mutex Regions</div>
+<p>In general, a <strong>mutex</strong> is a common name for a program object that negotiates mutual exclusion among threads, also called a <strong>lock</strong>.</p>
+<p><strong>Mutexes</strong> are <strong>kernel object</strong>, which enables them to be shared between processes. This also means that <strong>mutex-protected sections are heavier weight than critical sections</strong>.</p>
+<p>Mutexes are created by calling <strong>CreateMutex()</strong> or <strong>CreateMutexEx()</strong>. The call returns the handle to the newly created mutex object.</p>
+<p>Here is the syntax:</p>
+<pre>
+HANDLE WINAPI CreateMutex(
+ __in_opt LPSECURITY_ATTRIBUTES lpMutexAttributes,
+ __in BOOL bInitialOwner,
+ __in_opt LPCTSTR lpName
+ ); 
+</pre>
+<p><strong>Parameters:</strong><p>
+<ol>
+<li>The first parameter to the <strong>CreateMutex()</strong> call is a pointer to the security attributes, or zero if the default security attributes should be used.</li>
+<li>The second parameter is a boolean that indicates if the mutex should be created in the state of being already acquired by the calling thread.</li>
+<li>The final parameter is an optional name for the mutex.</li>
+</ol>
+<p>The <strong>CreateMutex()</strong> call takes the security attributes: an optional name for the mutex, a flag that has either the value <strong>0</strong> or the value <strong>CREATE_MUTEX_INITIAL_OWNER</strong>, which indicates that the mutex should be created as owned by the calling thread, and a mask that sets the access permissions for the mutex.</p>
+<p>Once the application has finished with the mutex, the kernel resources need to be freed by calling <strong>CloseHandle()</strong>. The following example demonstrates the process of creating and releasing a mutex:</p>
+<pre>
+HANDLE mutex;
+mutex = CreateMutex(0, 0, 0);
+CloseHandle(mutex);
+</pre>
+<p>The application should call <strong>WaitForSingleObject()</strong> to acquire the mutex. The function either returns with the mutex acquired or returns after the specified timeout. Once the thread has completed, the section of code protected by the mutex can be released by calling <strong>ReleaseMutex()</strong>. The operations <strong>WaitForSingleObject()</strong> and <strong>ReleaseMutex()</strong> are analogous to <strong>EnterCriticalSection()</strong> and <strong>LeaveCriticalSection()</strong>, respectively. The following code shows how:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+volatile int counter = 0;
+<font color="blue">HANDLE mutex;</font>
+
+int isPrime(int n)
+{
+	for(int i = 2; i &lt; (int)(sqrt((float)n) + 1.0) ; i++) {
+		if (n % i == 0) return 0;
+	}
+	return 1;
+}
+
+unsigned int __stdcall mythread(void*) 
+{
+	char* s;
+	while (counter &lt; 25) {
+		<font color="red">WaitForSingleObject(mutex, INFINITE);</font>
+		int number = counter++;
+		<font color="red">ReleaseMutex(mutex);</font>
+		s = "No";
+		if(isPrime(number)) s = "Yes";
+		printf("Thread %d value = %d is prime = %s\n",
+			GetCurrentThreadId(), number, s);
+	}
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	<font color="blue">mutex = CreateMutex(0, 0, 0);</font>
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)1, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+
+	getchar();
+
+	<font color="blue">CloseHandle(mutex);</font>
+
+	return 0;
+}
+</pre>
+<p>Output is almost identical to the previous results.</p>
+<p>As you may have noticed, <strong>mutex</strong> object have the following additional features compared to the <strong>critical section</strong>:</p>
+<ol>
+<li>A <strong>timeout</strong> can be specified on the request to access a mutex.</li>
+<li>When the mutex is created, there is an argument that specifies whether the thread that creates the mutex object is to be considered as the initial <strong>owner</strong> of the object.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="semaphores">Semaphores</div>
+<p>The <strong>semaphores</strong> are a way of keeping track of a count of numbers as well as a way of communicating resource availability between threads. They can be used as an alternative implementation of a mutex at the simplest level. For a more complex use would be to communicate readiness between multiple threads.</p>
+<p>A semaphore can be created by calling <strong>CreateSemaphore()</strong>, which takes four parameters:</p>
+<p><strong>syntax:</strong><br/>
+<pre>
+HANDLE WINAPI CreateSemaphore(
+ __in_opt LPSECURITY_ATTRIBUTES lpSemaphoreAttributes,
+ __in LONG lInitialCount, 
+__in LONG lMaximumCount, 
+__in_opt LPCTSTR lpName ); 
+</pre>
+<p><strong>parameters:</strong><br/>
+<ol>
+<li><strong>lpSemaphoreAttributes</strong> [in, optional] <br/>
+A pointer to a SECURITY_ATTRIBUTES structure. If this parameter is NULL, the handle cannot be inherited by child processes. <br/>
+The <strong>lpSecurityDescriptor</strong> member of the structure specifies a security descriptor for the new semaphore. If this parameter is NULL, the semaphore gets a default security descriptor. The ACLs in the default security descriptor for a semaphore come from the primary or impersonation token of the creator.</li>
+<li><strong>lInitialCount</strong> [in] <br/>
+The initial count for the semaphore object. This value must be greater than or equal to zero and less than or equal to <strong>lMaximumCount</strong>. The state of a semaphore is signaled when its count is greater than zero and nonsignaled when it is zero. The count is decreased by one whenever a wait function releases a thread that was waiting for the semaphore. The count is increased by a specified amount by calling the ReleaseSemaphore function.</li>
+<li><strong>lMaximumCount</strong> [in] <br/>
+The maximum count for the semaphore object. This value must be greater than zero.</li>
+<li><strong>lpName</strong> [in, optional] <br/>
+The name of the semaphore object. The name is limited to MAX_PATH characters. Name comparison is case sensitive. <br/>
+If <strong>lpName</strong> matches the name of an existing named semaphore object, this function requests the <strong>SEMAPHORE_ALL_ACCESS</strong> access right. In this case, the <strong>lInitialCount</strong> and <strong>lMaximumCount</strong> parameters are ignored because they have already been set by the creating process. If the <strong>lpSemaphoreAttributes</strong> parameter is not NULL, it determines whether the handle can be inherited, but its security-descriptor member is ignored.<br/>
+If <strong>lpName</strong> is NULL, the semaphore object is created without a name.
+If <strong>lpName</strong> matches the name of an existing event, mutex, waitable timer, job, or file-mapping object, the function fails and the GetLastError function returns <strong>ERROR_INVALID_HANDLE</strong>. This occurs because these objects share the same name space.<br/>
+The name can have a "Global\" or "Local\" prefix to explicitly create the object in the global or session name space. The remainder of the name can contain any character except the backslash character (\). Fast user switching is implemented using Terminal Services sessions. Kernel object names must follow the guidelines outlined for Terminal Services so that applications can support multiple users.</li>
+</ol>
+<p>The second way of creating a semaphore is through the <strong>CreateSemaphoreEx()</strong> call. This takes the same first four parameters but adds two more:</p>
+<p><strong>syntax:</strong><br/>
+<pre>
+HANDLE WINAPI CreateSemaphoreEx( 
+__in_opt LPSECURITY_ATTRIBUTES lpSemaphoreAttributes,
+ __in LONG lInitialCount, 
+__in LONG lMaximumCount, 
+__in_opt LPCTSTR lpName, 
+__reserved DWORD dwFlags, 
+__in DWORD dwDesiredAccess ); 
+</pre>
+<p><strong>parameters:</strong><br/>
+<ol>
+<li><strong>dwFlags </strong><br/>
+This parameter is reserved and must be 0. </li>
+<li><strong>dwDesiredAccess</strong> [in] 
+The access mask for the semaphore object. Passing <strong>SEMAPHORE_ALL_ACCESS</strong> as this parameter will create a semaphore that can be shared between processes. </li>
+</ol>
+<p>The last way of getting a handle to a semaphore is to call <strong>OpenSemaphore()</strong>, passing in three parameters:</p>
+<p><strong>syntax:</strong><br/>
+<pre>
+HANDLE WINAPI OpenSemaphore(
+ __in DWORD dwDesiredAccess,
+ __in BOOL bInheritHandle, 
+__in LPCTSTR lpName ); 
+</pre>
+<p><strong>parameters:</strong><br/>
+<ol>
+<li><strong>dwDesiredAccess </strong>[in] <br/>
+The access to the semaphore object. The function fails if the security descriptor of the specified object does not permit the requested access for the calling process. </li>
+<li><strong>bInheritHandle</strong> [in] <br/>
+If this value is TRUE, processes created by this process will inherit the handle. Otherwise, the processes do not inherit this handle.</li>
+<li><strong>lpName</strong> [in] <br/>
+The name of the semaphore to be opened. Name comparisons are case sensitive. </li>
+</ol>
+<p>Semaphores are <strong>kernel objects</strong>, so the create function will return a handle to the new semaphore. When the application has finished with the semaphore, it should release it by calling <strong>CloseHandle()</strong>. Once there are no outstanding handles to the semaphore, the kernel object is disposed of.</p>
+<p>A semaphore can be decremented through a call to one of the wait functions, <strong>WaitForSingleObject()</strong>, which takes the handle of the semaphore and a timeout. The function will either return having decremented the semaphore or return the timeout expires.</p>
+<p>In the same way, a semaphore can be incremented  by calling <strong>ReleaseSemaphore()</strong>. This call takes three parameters:</p>
+<ol>
+<li>the handle of the semaphore</li>
+<li>the amount to increment the semaphore by</li>
+<li>an optional pointer to a <strong>LONG</strong> variable where the previous value will be written</li>
+</ol>
+<p>Attempts to increment the semaphore beyond the maximum value that it can hold are ignored. Note that a <strong>semaphore has no concept of ownership</strong>, so it cannot tell whether a thread attempts to increment the semaphore by a greater amount than it was decremented.</p>
+<p>The following example demonstrates a semaphore being used as a replacement for a mutex. The semaphore is created to hold a maximum value of 1 and an initial value of 1, <strong>CreateSemaphore(0, 1, 1, 0)</strong>. Two threads are created, and both threads execute the same code, which increments the variable <strong>count</strong> by 100. The end result of this is that the variable <strong>count</strong> contains 200 when the application ends.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+<font color="blue">HANDLE semaphore;</font>
+int <font color="blue">count</font> = 0;
+
+void addCount(int increment)
+{
+	<font color="red">WaitForSingleObject</font>(semaphore, INFINITE);
+	count += increment;
+	<font color="red">ReleaseSemaphore</font>(semaphore, 1, 0);
+}
+
+unsigned int __stdcall mythread(void*) 
+{
+	for ( int i = 0; i &lt; 50; i++) {
+		addCount(2);
+	}
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	semaphore = <font color="red">CreateSemaphore</font>(0, 1, 1, 0);
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, (void*)0, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+	
+	printf("count = %d\n", count);
+
+	getchar();
+
+	CloseHandle(semaphore);
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+count = 200
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="condition">Condition Variables</div>
+<p>Condition variables were introduced in <strong>Vista</strong>. They work with either a <strong>critical section</strong> or a <strong>slim reader/writer lock</strong> to allow threads to <strong>sleep</strong> until a condition becomes true.</p>
+<p>A thread uses a <strong>condition variable</strong> either by acquiring a slim reader/writer lock and then calling <strong>SleepConditionVariableSRW()</strong> or by entering a critical section and calling <strong>SleepConditionVariableCS()</strong>. When the threads are woken from the sleep call, they will again have acquired either the critical section lock or the reader/writer lock depending on how the condition variable is being used. The first thing that the thread needs to do is to test to determine whether the conditions it is waiting on are true, since it is possible for the thread to be worker when the conditions are become false. If the conditions have not been met, the thread should return sleeping on a condition variable.</p>
+<p>The following example demonstrates the usage of a condition variable to mediate a producer-consumer pairing of threads. The producer thread would add items onto a queue. To do this, the thread first needs to enter the critical section where it is safe to manipulate the queue data structure. Once the item has been added to the queue, it is safe to exit the critical section. The number of items originally in the queue is returned by the <strong>addItemToQueue()</strong> function. If there were no items in the queue, then it is possible that other threads are waiting on the condition variable and need to be woken up by the producer thread.</p>
+<pre>
+/* Note:  This code is not complete. 
+It's showing just the usage of condition variable */
+
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+
+<font color="blue">CONDITION_VARIABLE CV;</font>
+CRITICAL_SECTION CS;
+
+void addItem (int value)
+{
+	LONG oldQueueLength;
+	EnterCriticalSection(&amp;CS;);
+	oldQueueLength = queueLength;
+	<font color="blue">addItemToQueue(value);</font>
+	LeaveCriticalSection(&amp;CS;);
+	if(oldQueueLength == 0) <font color="blue">WakeConditionVariable(&amp;CV;);</font>
+}
+
+int removeItem ()
+{
+	int item
+	EnterCriticalSection(&amp;CS;);
+	while(QueueLength == 0) <font color="blue">SleepConditionVariableCS(&amp;CV.; &amp;CS;, INFINITE);</font>
+	item = removeItemFromQueue();
+	<font color="blue">addItemFromQueue(value);</font>
+	LeaveCriticalSection(&amp;CS;);
+	return item;
+}
+
+int main(int argc, char* argv[])
+{
+	InitializeCriticalSection(&amp;CS;);
+	<font color="blue">InitializeConditionVariable(&amp;CV;);</font>
+	DeleteCriticalSection(&amp;CS;);
+
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="signalingevent">Events</div>
+<p>One thread can signal the occurrence of an activity or event to one or more threads using a Win32 object. An event can be either a manual-reset or auto-reset event. The state of an event is either <strong>signaled</strong> or <strong>nonsignaled</strong>. When an event is created, the initial state (signaled or nonsignaled) and the type (manual-reset or auto-reset) is specified. </p>
+<p>When the state of a manual-reset event object is set to signaled, it remains signaled until it is explicitly reset to nonsignaled by the <strong>ResetEvent()</strong> function. Any number of waiting threads, or threads that subsequently begin wait operations for the event object specified can be released while the object's state is signaled until a single waiting thread is released; the system then automatically resets the state to nonsignaled.</p>
+<p>In other words, <strong>events</strong> are used to signal the fact that an event has happened to one or more threads. It is possible to use semaphores, mutexes, or condition variables to perform the same task.</p>
+<p>The threads waiting for an event to occur will wait on that event object. The thread that completes the task will set the event into the signaled state and the waiting threads are then released. Events can be of two types:</p>
+<ol>
+<li><strong>manually reset</strong> event type<br/>
+	This requires the event to be reset before other threads will once again wait on it.</li>
+<li><strong>automatically reset</strong> event type<br/>
+	This will reset itself after a single thread has been allowed to pass.</li>
+</ol>
+<p>Events are kernel objects, so the call to <strong>CreateEvent()</strong> will return a handle. The call requires for parameters:</p>
+<p><strong>Syntax:</strong></p>
+<pre>
+HANDLE WINAPI CreateEvent(
+ __in_opt LPSECURITY_ATTRIBUTES lpEventAttributes, 
+__in BOOL bManualReset, 
+__in BOOL bInitialState, 
+__in_opt LPCTSTR lpName ); 
+</pre>
+<p><strong>Parameters:</strong></p>
+<ol>
+<li><strong>lpEventAttributes </strong> [in, optional] <br/>
+A pointer to a SECURITY_ATTRIBUTES structure. If this parameter is NULL, the handle cannot be inherited by child processes. <br/>
+The <strong>lpSecurityDescriptor</strong> member of the structure specifies a security descriptor for the new event. If <strong>lpEventAttributes</strong>  is NULL, the event gets a default security descriptor. The ACLs in the default security descriptor for an event come from the primary or impersonation token of the creator.  </li>
+<li><strong>bManualReset</strong>  [in] 
+If this parameter is TRUE, the function creates a manual-reset event object, which requires the use of the <strong>ResetEvent</strong> function to set the event state to nonsignaled. If this parameter is FALSE, the function creates an auto-reset event object, and system automatically resets the event state to nonsignaled after a single waiting thread has been released. </li>
+<li><strong>bInitialState </strong> [in] 
+If this parameter is TRUE, the initial state of the event object is signaled; otherwise, it is nonsignaled. </li>
+<li><strong>lpName</strong>  [in, optional] 
+The name of the event object. The name is limited to MAX_PATH  characters. Name comparison is case sensitive. <br/>
+If <strong>lpName</strong>  matches the name of an existing named event object, this function requests the <strong>EVENT_ALL_ACCESS</strong>  access right. In this case, the <strong>bManualReset</strong>  and <strong>bInitialState</strong>  parameters are ignored because they have already been set by the creating process. If the <strong>lpEventAttributes</strong>  parameter is not NULL, it determines whether the handle can be inherited, but its security-descriptor member is ignored. <br/>
+If <strong>lpName</strong>  is NULL, the event object is created without a name.
+If <strong>lpName</strong>  matches the name of another kind of object in the same name space (such as an existing semaphore, mutex, waitable timer, job, or file-mapping object), the function fails and the GetLastError function returns <strong>ERROR_INVALID_HANDLE</strong> . This occurs because these objects share the same name space.<br/>
+The name can have a "Global\" or "Local\" prefix to explicitly create the object in the global or session name space. The remainder of the name can contain any character except the backslash character (\). Fast user switching is implemented using Terminal Services sessions. Kernel object names must follow the guidelines outlined for Terminal Services so that applications can support multiple users.</li>
+</ol>
+<p>Existing events can be opened using a call to <strong>OpenEvent()</strong>. </p>
+<p><strong>Syntax:</strong></p>
+<pre>
+HANDLE WINAPI OpenEvent( 
+__in DWORD dwDesiredAccess, 
+__in BOOL bInheritHandle, 
+__in LPCTSTR lpName ); 
+</pre>
+<p>This call requires three parameters:</p>
+<ol>
+<li>The first parameter is the access permissions. If this is zero, default access permissions are requested.</li>
+<li>The second parameter is a boolean that indicates whether the handle should be inherited by child processes.</li>
+<li>The third parameter is the name of the event.</li>
+</ol>
+<p>A call to <strong>SetEvent()</strong> places the event into the signaled state. This allows threads waiting on the event using <strong>WaitForSingleObject()</strong> to be released. If the event requires a manual reset to get out of the signaled state, then this can be achieved by calling <strong>ResetEvent()</strong>, which also takes the handle to the event. If the event object resets automatically, then only a single thread will be released before the event is reset.</p>
+<p>The following example demonstrates the use of an event object to order two threads. An event object is created by calling <strong>CreateEvent()</strong>. This object requires manual reset and is created in the unsignaled state. Two threads are then created. The first thread executes the routine <strong>myThreadA()</strong> and waits on the event. The second thread executes the routine <strong>myThreadB()</strong>, which prints a message and then signals the event object. The signal allows the first thread to continue execution, and then it prints a second message.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+<font color="blue">HANDLE myEvent; </font>
+
+/* The first thread executes the routine myThreadA() and waits on the event. */
+unsigned int __stdcall mythreadA(void* param) 
+{
+	<font color="red">WaitForSingleObject(myEvent, INFINITE);</font>
+	printf("Thread A finished\n");
+	return 0;
+}
+
+/* The second thread executes the routine myThreadB(), 
+which prints a message and then signals the event object. */
+unsigned int __stdcall mythreadB(void* param) 
+{
+	printf("Thread B finished\n");
+
+	/* A call to SetEvent() places the event into the signaled state.
+	This allows threads waiting on the event 
+	using WaitForSingleObject() to be released. */
+	<font color="red">SetEvent(myEvent);</font>
+
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	/*This object requires manual reset 
+	and is created in the unsignaled state */
+	<font color="red">myEvent = CreateEvent(0, 0, 0, 0);</font>
+
+	myhandleA = (HANDLE)_beginthreadex(0, 0, &amp;mythreadA;, (void*)0, 0, 0);
+	myhandleB = (HANDLE)_beginthreadex(0, 0, &amp;mythreadB;, (void*)1, 0, 0);
+
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+
+	CloseHandle(myhandleA);
+	CloseHandle(myhandleB);
+
+	<font color="red">CloseHandle(myEvent);</font>
+
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Thread B finished
+Thread A finished
+</pre>
+<br/><br/>
+<br/>
+<p><b>Threading with QT5:</b></p>
+<ol>
+<li><a href="../Qt/Qt5_QThreads_Introduction.html">QThreads - Introduction</a></li>
+<li><a href="../Qt/Qt5_QThreads_Creating_Threads.html">QThreads - Creating Threads</a> </li>
+<li><a href="../Qt/Qt5_QThreads_Priority.html">QThreads - Priority</a> </li>
+<li><a href="../Qt/Qt5_QThreads_QMutex.html">QThreads - QMutex</a> </li>
+<li><a href="../Qt/Qt5_QThreads_GuiThread.html">QThreads - GuiThread</a> </li>
+<li><a href="../Qt/Qt5_QThreads_wait.html">QThreads - wait()</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_Multithreaded_Client_Server.html">QTcpServer - Client and Server using MultiThreading</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_QThreadPool_Multithreaded_Client_Server.html">QTcpServer - Client and Server using QThreadPool</a> </li>
+<li><a href="../Qt/Qt5_Asynchronous_QTcpServer_QThreadPool.html">Asynchronous QTcpServer - Client and Server using QThreadPool</a> </li>
+</ol>
+</p></p></p></p></p></p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32B.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:47 GMT -->
+</html>
+

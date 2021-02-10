@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Algorithms/bucketsort.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:10:17 GMT -->
+<head>
+  <title>Bucket Sort - 2017</title>
+  <meta content="Algorithms - Bucket sort is a sorting algorithm that works by partitioning an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm. It is a distribution sort, and is a cousin of radix sort in the most to least significant digit flavor. Bucket sort is a generalization of pigeonhole sort." name="description" />
+  <meta content="Algorithms - Bucket Sort, Linked list, Insertion Sort" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Algorithms - Bucket Sort       <g:plusone></g:plusone></h2>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="bucketsort">Bucket Sort</div>
+<p><strong>Bucket sort</strong> is a sorting algorithm that works by partitioning an array into a number of buckets.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm. It is a <strong>distribution sort</strong>, and is a cousin of <strong>radix sort</strong> in the most to least significant digit flavor. Bucket sort is a generalization of <strong>pigeonhole sort</strong>. Since bucket sort is <strong>not a comparison sort</strong>, the (<i>n log n</i>) lower bound is inapplicable. The computational complexity estimates involve the number of buckets.</p>
+<br/>
+<p>Bucket sort works as follows:</p>
+<ol>
+<li>Set up an array of initially empty buckets. </li>
+<li>Go over the original array, putting each object in its bucket. </li>
+<li>Sort each non-empty bucket. </li>
+<li>Visit the buckets in order and put all elements back into the original array. </li>
+</ol>
+<img alt="bucketsort_diagram1" src="images/bucketsort/bucketsort_diagram1.png"/>
+<br/>
+<img alt="bucketsort_diagram2" src="images/bucketsort/bucketsort_diagram2.png"/>
+<br/>
+<p>Diagram from <a href="http://en.wikipedia.org/wiki/Bucket_sort" target="_blank">wiki</a></p>
+<br/>
+<p>C++ code</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+#define NARRAY 8  /* array size */
+#define NBUCKET 5 /* bucket size */
+#define INTERVAL 10 /* bucket range */
+
+struct Node 
+{ 
+	int data;  
+	struct Node *next; 
+};
+
+void BucketSort(int arr[]);
+struct Node *InsertionSort(struct Node *list);
+void print(int arr[]);
+void printBuckets(struct Node *list);
+int getBucketIndex(int value);
+
+void BucketSort(int arr[])
+{	
+	int i,j;
+	struct Node **buckets;  
+
+	/* allocate memory for array of pointers to the buckets */
+	buckets = (struct Node **)malloc(sizeof(struct Node*) * NBUCKET); 
+
+	/* initialize pointers to the buckets */
+	for(i = 0; i &lt; NBUCKET;++i) {  
+		buckets[i] = NULL;
+	}
+
+	/* put items into the buckets */
+	for(i = 0; i &lt; NARRAY; ++i) {	
+		struct Node *current;
+		int pos = getBucketIndex(arr[i]);
+		current = (struct Node *) malloc(sizeof(struct Node));
+		current-&gt;data = arr[i]; 
+		current-&gt;next = buckets[pos];  
+		buckets[pos] = current;
+	}
+
+	/* check what's in each bucket */
+	for(i = 0; i &lt; NBUCKET; i++) {
+		cout &lt;&lt; "Bucket[" &lt;&lt; i &lt;&lt; "] : ";
+	        printBuckets(buckets[i]);
+		cout &lt;&lt; endl;
+	}
+
+	/* sorting bucket using Insertion Sort */
+	for(i = 0; i &lt; NBUCKET; ++i) {  
+		buckets[i] = InsertionSort(buckets[i]); 
+	}
+
+	/* check what's in each bucket */
+	cout &lt;&lt; "-------------" &lt;&lt; endl;
+	cout &lt;&lt; "Bucktets after sorted" &lt;&lt; endl;
+	for(i = 0; i &lt; NBUCKET; i++) {
+		cout &lt;&lt; "Bucket[" &lt;&lt; i &lt;&lt; "] : ";
+	        printBuckets(buckets[i]);
+		cout &lt;&lt; endl;
+	}
+
+	/* put items back to original array */
+	for(j =0, i = 0; i &lt; NBUCKET; ++i) {	
+		struct Node *node;
+		node = buckets[i];
+		while(node) {
+			arr[j++] = node-&gt;data;
+			node = node-&gt;next;
+		}
+	}
+	
+	/* free memory */
+	for(i = 0; i &lt; NBUCKET;++i) {	
+		struct Node *node;
+		node = buckets[i];
+		while(node) {
+			struct Node *tmp;
+			tmp = node; 
+			node = node-&gt;next; 
+			free(tmp);
+		}
+	}
+	free(buckets); 
+	return;
+}
+
+/* Insertion Sort */
+struct Node *InsertionSort(struct Node *list)
+{	
+	struct Node *k,*nodeList;
+	/* need at least two items to sort */
+	if(list == 0 || list-&gt;next == 0) { 
+		return list; 
+	}
+	
+	nodeList = list; 
+	k = list-&gt;next; 
+	nodeList-&gt;next = 0; /* 1st node is new list */
+	while(k != 0) {	
+		struct Node *ptr;
+		/* check if insert before first */
+		if(nodeList-&gt;data &gt; k-&gt;data)  { 
+			struct Node *tmp;
+			tmp = k;  
+			k = k-&gt;next; 
+			tmp-&gt;next = nodeList;
+			nodeList = tmp; 
+			continue;
+		}
+
+		for(ptr = nodeList; ptr-&gt;next != 0; ptr = ptr-&gt;next) {
+			if(ptr-&gt;next-&gt;data &gt; k-&gt;data) break;
+		}
+
+		if(ptr-&gt;next!=0){  
+			struct Node *tmp;
+			tmp = k;  
+			k = k-&gt;next; 
+			tmp-&gt;next = ptr-&gt;next;
+			ptr-&gt;next = tmp; 
+			continue;
+		}
+		else{
+			ptr-&gt;next = k;  
+			k = k-&gt;next;  
+			ptr-&gt;next-&gt;next = 0; 
+			continue;
+		}
+	}
+	return nodeList;
+}
+
+int getBucketIndex(int value)
+{
+	return value/INTERVAL;
+}
+
+void print(int ar[])
+{	
+	int i;
+	for(i = 0; i &lt; NARRAY; ++i) { 
+		cout &lt;&lt; setw(3) &lt;&lt; ar[i]; 
+	}
+	cout &lt;&lt; endl;
+}
+
+void printBuckets(struct Node *list)
+{
+	struct Node *cur = list;
+	while(cur) {
+		cout &lt;&lt; setw(3) &lt;&lt; cur-&gt;data;
+		cur = cur-&gt;next;
+	}
+}
+
+int main(void)
+{	
+	int array[NARRAY] = {29,25,3,49,9,37,21,43};
+
+	cout &lt;&lt; "Initial array" &lt;&lt; endl;
+	print(array);
+	cout &lt;&lt; "-------------" &lt;&lt; endl;
+
+	BucketSort(array); 
+	cout &lt;&lt; "-------------" &lt;&lt; endl;
+	cout &lt;&lt; "Sorted array"  &lt;&lt; endl;
+	print(array); 
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+Initial array
+ 29 25  3 49  9 37 21 43
+-------------
+Bucket[0] :   9  3
+Bucket[1] :
+Bucket[2] :  21 25 29
+Bucket[3] :  37
+Bucket[4] :  43 49
+-------------
+Bucktets after sorted
+Bucket[0] :   3  9
+Bucket[1] :
+Bucket[2] :  21 25 29
+Bucket[3] :  37
+Bucket[4] :  43 49
+-------------
+Sorted array
+  3  9 21 25 29 37 43 49
+</pre>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br><br>
+<h1>LIST OF ALGORITHMS</h1>
+
+   <br><br>
+   <a href="algorithms.html">Algorithms - Introduction</a> 
+   <br><br>
+   
+   <a href="bubblesort.html">Bubble Sort</a> 
+   <br><br>
+   <a href="bucketsort.html">Bucket Sort</a> 
+   <br><br>
+   <a href="countingsort.html">Counting Sort</a> 
+   <br><br>
+   <a href="heapsort.html">Heap Sort</a> 
+   <br><br>
+   <a href="insertionsort.html">Insertion Sort</a> 
+   <br><br>
+   <a href="mergesort.html">Merge Sort</a> 
+   <br><br>
+   <a href="quicksort.html">Quick Sort</a> 
+   <br><br>
+   <a href="radixsort.html">Radix Sort - LSD</a> 
+   <br><br>
+   <a href="selectionsort.html">Selection Sort</a> 
+   <br><br>
+   <a href="shellsort.html">Shell Sort</a> 
+   <br><br>
+   <br><br>
+
+   <a href="queue.html">Queue/Priority Queue - Using linked list & Heap</a> 
+   <br><br>
+   <a href="stacks.html">Stack Data Structure</a> 
+   <br><br>
+   <a href="trie.html">Trie Data Structure</a> 
+   <br><br>
+   <a href="../cplusplus/binarytree.html">Binary Tree Data Structure - BST</a> 
+   <br><br>
+   <a href="hashmap_hashtable.html">Hash Map/Hash Table</a> 
+   <br><br>
+   <a href="../cplusplus/linkedlist.html">Linked List Data Structure</a>  
+   <br><br>
+   <a href="closest_points_pair.html">Closest Pair of Points</a>    
+   <br><br>
+   <a href="../Games/spatialdatastructure.html">Spatial Data Structure and Physics Engines</a> 
+   <br><br>
+   <br><br>
+
+   <a href="../cplusplus/quiz_recursion.html">Recursive Algorithms</a> 
+   <br><br>
+   <a href="dynamic_programming.html">Dynamic Programming</a> 
+   <br><br>
+   <a href="knapsack.html">Knapsack Problems - Discrete Optimization</a> 
+   <br><br>
+   <a href="../python/python_numpy_batch_gradient_descent_algorithm.html">(Batch) Gradient Descent in python and scikit</a> 
+   <br><br>
+   <br><br>
+   <a href="uniform_distribution_sphere.html">Uniform Sampling on the Surface of a Sphere.</a> 
+   <br><br>
+   <a href="Bayes/Bayes_Rule_Formula.html">Bayes' Rule</a> 
+   <br><br>
+   <a href="Monty_Hall_Paradox_Problem_Python_Code.html">Monty Hall Paradox</a> 
+   <br><br>
+   <a href="compression_huffman_encoding.html">Compression Algorithm - Huffman Codes</a> 
+   <br><br>
+   <a href="Shannon_Entropy_Information_Theory_Compression.html">Shannon Entropy</a> 
+   <br><br>
+   <a href="path_finding_algorithm.html">Path Finding Algorithm - A*</a> 
+   <br><br>
+   <a href="Dijkstra_Shortest_Path.html">Dijkstra's Shortest Path</a>   
+   <br><br>
+   <a href="../python/python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm in Python</a>  
+   <br><br>
+   <a href="Bellman_Ford_shortestpath_algorithm.html">Bellman-Ford Shortest Path</a>     
+   <br><br>
+   <a href="encryption_cryptography.html">Encryption/Cryptography Algorithms</a>
+   <br><br>
+   <a href="minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+   <br><br>
+
+<br>
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+<br>
+<br><br><br>
+<h1>Machine Learning with scikit-learn</h1>
+   <br><br>
+   <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">scikit-learn installation</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_features_extraction.html" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_quick_preview.html" target="_blank">scikit-learn : Machine Learning Quick Preview</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Preprocessing-Missing-Data-Categorical-Data.php" target="_blank">scikit-learn : Data Preprocessing I - Missing / Categorical data</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Preprocessing-II-Datasets-Partitioning-Feature-scaling-Feature-Selection-Regularization.html" target="_blank">scikit-learn : Data Preprocessing II - Partitioning a dataset / Feature scaling / Feature Selection / Regularization</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Preprocessing-III-Dimensionality-reduction-via-Sequential-feature-selection-Assessing-feature-importance-via-random-forests.html" target="_blank">scikit-learn : Data Preprocessing III - Dimensionality reduction vis Sequential feature selection / Assessing feature importance via random forests</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_1_Principal_component_analysis%20_PCA.html" target="_blank">Data Compression via Dimensionality Reduction I - Principal component analysis (PCA)</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_2_Linear_Discriminant_Analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction II - Linear Discriminant Analysis (LDA)</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_3-nonlinear-mappings-via-kernel-principal-component-analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction III - Nonlinear mappings via kernel principal component (KPCA) analysis</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit-learn_logistic_regression.html" target="_blank">scikit-learn : Logistic Regression, Overfitting & regularization</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">scikit-learn : Supervised Learning & Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">scikit-learn : Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikt_machine_learning_Decision_Tree_Learning_Informatioin_Gain_IG_Impurity_Entropy_Gini_Classification_Error.php" target="_blank">scikit-learn : Decision Tree Learning I - Entropy, Gini, and Information Gain</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Constructing_Decision_Tree_Learning_Information_Gain_IG_Impurity_Entropy_Gini_Classification_Error.html" target="_blank">scikit-learn : Decision Tree Learning II - Constructing the Decision Tree</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Random_Decision_Forests_Ensemble_Learning_Classification.html" target="_blank">scikit-learn : Random Decision Forests Classification</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM_2.html" target="_blank">scikit-learn : Support Vector Machines (SVM) II</a> 
+    <br><br>
+    <a href="../python/Flask/Python_Flask_Embedding_Machine_Learning_1.html" target="_blank">Flask with Embedded Machine Learning I : Serializing with pickle and DB setup</a></li>
+    <br><br>
+    <a href="../python/Flask/Python_Flask_Embedding_Machine_Learning_2.html" target="_blank">Flask with Embedded Machine Learning II : Basic Flask App</a>
+    <br><br>
+    <a href="../python/Flask/Python_Flask_Embedding_Machine_Learning_3.html" target="_blank">Flask with Embedded Machine Learning III : Embedding Classifier</a>
+    <br><br>
+    <a href="../python/Flask/Python_Flask_Embedding_Machine_Learning_4.html" target="_blank">Flask with Embedded Machine Learning IV : Deploy</a>
+    <br><br>
+    <a href="../python/Flask/Python_Flask_Embedding_Machine_Learning_5.html" target="_blank">Flask with Embedded Machine Learning V : Updating the classifier</a>
+   <br><br>
+   <a href="../python/scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.html" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> 
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Machine learning algorithms and concepts</h3>
+   <a href="../python/python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Perceptron_Model_with_Iris_DataSet.html" target="_blank">Single Layer Neural Network - Perceptron model on the Iris dataset using Heaviside step activation function</a>
+   <br><br> 
+   <a href="../python/scikit-learn/scikit-learn_batch-gradient-descent-versus-stochastic-gradient-descent.html" target="_blank">Batch gradient descent versus stochastic gradient descent</a>
+   <br><br> 
+   <a href="../python/scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron.html" target="_blank">Single Layer Neural Network - Adaptive Linear Neuron using linear (identity) activation function with batch gradient descent method</a>
+   <br><br> 
+   <a href="../python/scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron-with-Stochastic-Gradient-Descent.html" target="_blank">Single Layer Neural Network : Adaptive Linear Neuron using linear (identity) activation function with stochastic gradient descent (SGD)</a>
+   <br><br> 
+   <a href="../python/scikit-learn/logistic_regression.html" target="_blank">Logistic Regression</a> 
+   <br><br>
+   <a href="../python/scikit-learn/scikit_machine_learning_VC_Dimension_Shatter.html" target="_blank">VC (Vapnik-Chervonenkis) Dimension and Shatter</a> 
+   <br><br> 
+   <a href="../python/scikit-learn/scikit_machine_learning_Bias-variance-Tradeoff.html" target="_blank">Bias-variance tradeoff</a> 
+   <br><br> 
+   <a href="../python/scikit-learn/Maximum-Likelyhood-Estimation-MLE.html" target="_blank">Maximum Likelihood Estimation (MLE)</a> 
+   <br><br>
+   <a href="../python/python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Artificial Neural Networks (ANN)</h3>
+
+   [Note] <a href="https://github.com/Einsteinish/Artificial-Neural-Networks-with-Jupyter.git" target="_blank">Sources are available at Github - Jupyter notebook files</a> 
+
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html" target="_blank">1. Introduction</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-2-Forward-Propagation.html" target="_blank">2. Forward Propagation</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-3-Gradient-Descent.html" target="_blank">3. Gradient Descent</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-4-Backpropagation.html" target="_blank">4. Backpropagation of Errors</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-5-Checking-Gradient.html" target="_blank">5. Checking gradient</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-6-Training-via-BFGS-Broyden-Fletcher-Goldfarb-Shanno-algorithm-a-variant-of-gradient-descent.html" target="_blank">6. Training via BFGS</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-7-Overfitting-Regularization.html" target="_blank">7. Overfitting & Regularization</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-8-Deep-Learning-1-Image-Recognition-Image-Uploading.html" target="_blank">8. Deep Learning I : Image Recognition (Image uploading)</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-9-Deep-Learning-2-Image-Recognition-Image-Classification.html" target="_blank">9. Deep Learning II : Image Recognition (Image classification)</a> 
+   <br><br>
+   <a href="../python/scikit-learn/Artificial-Neural-Network-ANN-10-Deep-Learning-3-Theano-TensorFlow-Keras.html" target="_blank">10 - Deep Learning III : Deep Learning III : Theano, TensorFlow, and Keras</a>
+<br />
+
+<br>
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="../cplusplus/cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="../cplusplus/application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="../cplusplus/autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="../cplusplus/binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="../cplusplus/blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="../cplusplus/boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="../cplusplus/Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="../cplusplus/class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="../cplusplus/constructor.html">Constructor</a> 
+   <br><br>
+   <a href="../cplusplus/cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="../cplusplus/cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="../cplusplus/cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="../cplusplus/CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="../cplusplus/dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="../cplusplus/exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="../cplusplus/friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="../cplusplus/fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="../cplusplus/function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="../cplusplus/functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="../cplusplus/functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="../cplusplus/functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="../cplusplus/Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="../cplusplus/google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="../cplusplus/multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="../cplusplus/libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="../cplusplus/linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="../cplusplus/linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="../cplusplus/make.html">make & CMake</a>
+   <br><br>
+   <a href="../cplusplus/gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="../cplusplus/memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="../cplusplus/multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="../cplusplus/object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="../cplusplus/slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="../cplusplus/opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="../cplusplus/operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="../cplusplus/operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="../cplusplus/valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="../cplusplus/pointers.html">Pointers</a>
+   <br><br>
+   <a href="../cplusplus/pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="../cplusplus/pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="../cplusplus/preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="../cplusplus/private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="../cplusplus/RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="../cplusplus/references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="../cplusplus/sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="../cplusplus/sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="../cplusplus/stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="../cplusplus/stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="../cplusplus/stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="../cplusplus/stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="../cplusplus/stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="../cplusplus/stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="../cplusplus/stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="../cplusplus/stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="../cplusplus/statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="../cplusplus/string.html">String</a> 
+   <br><br>
+   <a href="../cplusplus/string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="../cplusplus/assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="../cplusplus/templates.html">Templates</a>
+   <br><br>
+   <a href="../cplusplus/template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="../cplusplus/template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="../cplusplus/template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="../cplusplus/this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="../cplusplus/typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="../cplusplus/upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="../cplusplus/virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="../cplusplus/virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="../cplusplus/quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="../cplusplus/quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="../cplusplus/quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="../cplusplus/quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="../cplusplus/smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="../cplusplus/quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="../cplusplus/quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="../cplusplus/google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="../cplusplus/cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="../cplusplus/C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="../cplusplus/C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+<br>
+<br><br>
+<h1>List of Design Patterns</h1>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Introduction</a> 
+   <br><br>
+   <a href="../DesignPatterns/abstractfactorymethod.html">Abstract Factory Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/adapter.html">Adapter Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/bridge.html">Bridge Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/chain_of_responsibility.html">Chain of Responsibility</a> 
+   <br><br>
+   <a href="../DesignPatterns/command.html">Command Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/composite.html">Composite Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/decorator.html">Decorator Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/delegation.html">Delegation</a> 
+   <br><br>
+   <a href="../DesignPatterns/Dependency_Injection_Design_Pattern_Inversion_Of_Control_IoC.html">Dependency Injection(DI) and Inversion of Control(IoC)</a> 
+   <br><br>
+   <a href="../DesignPatterns/facade.html">Fa&ccedil;ade Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/factorymethod.html">Factory Method</a> 
+   <br><br>
+   <a href="../DesignPatterns/mvc_model_view_controller_pattern.html">Model View Controller (MVC) Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/observer.html">Observer Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/prototype.html">Prototype Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/proxy.html">Proxy Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/singleton.html">Singleton Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/strategy.html">Strategy Pattern</a> 
+   <br><br>
+   <a href="../DesignPatterns/template.html">Template Method Pattern</a> 
+
+<br>
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Algorithms/bucketsort.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:10:21 GMT -->
+</html>
+

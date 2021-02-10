@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32A.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:07 GMT -->
+<head>
+  <title>C++ Tutorial: Multi-Threaded Programming - Thread for Win32 - 2017</title>
+  <meta content="C++ Tutorial: Multi-Threaded Programming II - Part A" name="description" />
+  <meta content="C++ Tutorial, Multi-Threaded Programming II - Part A, _beginthreadex(), _beginthread(), WaitForSingleObject(), WaitForMultipleObjects(), ResumeThread(), Thread for Win32, Kernel Resources" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial
+Multi-Threaded Programming II Part A 
+ Native Thread for Win32 - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mth2pa">Native Thread for Win32 - Part A</div>
+<p>Microsoft Windows operating system's support for multithreaded programming is almost similar to the support provided by POSIX threads. The differences are not in the actual functionality but the names in the API functions.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>Every Win32 process has at least one thread, which we call as the <strong>main</strong> thread. We will assume that the OS will give a time slice to each program thread, in round-robin fashion. In fact, the threads in a Win32 program will be competing for the CPU with threads in other programs and with system threads, and these other threads may have higher priorities.</p>
+Let's look at the simple example. <br/>
+The main thread spawns a new thread to increment the <strong>myCounter</strong> inside <strong>myThread</strong> function, while the main thread keeps waiting for a character input (<strong>getchar()</strong>) from the user, and prints out  counter value whenever we type other than 'q' character:
+<p>To use Windows multithreading functions, we must include &lt;windows.h&gt; in our program.
+To create a thread, the Windows API supplies the <strong>CreateThread( )</strong> function.</p>
+<p><strong>Each thread has its own stack</strong> (see <a href="multithreaded.html" taret="_blank">thread vs processes</a>). You can specify the size of the new thread's stack in bytes using the stackSize parameter which is the 2nd argument of <strong>CreateThread( )</strong> function in the example below.
+If this integer value is zero, then the thread will be given a stack that is the same size as the creating thread. </p>
+<pre>
+#include &lt;windows.h&gt;
+#include &lt;iostream&gt;
+
+DWORD WINAPI myThread(LPVOID lpParameter)
+{
+	unsigned int&amp; myCounter = *((unsigned int*)lpParameter);
+	while(myCounter &lt; 0xFFFFFFFF) ++myCounter;
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	using namespace std;
+
+	unsigned int myCounter = 0;
+	DWORD myThreadID;
+	HANDLE myHandle = <font color="red">CreateThread</font>(0, 0, myThread, <font color="red">&amp;myCounter;</font>, 0, &amp;myThreadID;);
+	char myChar = ' ';
+	while(myChar != 'q') {
+		cout &lt;&lt; myCounter &lt;&lt; endl;
+		myChar = getchar();
+	}
+	
+	CloseHandle(myHandle);
+	return 0;
+}
+</pre>
+<p>The output is:</p>
+<pre>
+0
+868171493
+1177338657
+3782005161
+4294967295
+4294967295
+...
+</pre>
+<p>Each thread of execution begins with a call to a function, called the thread function, within the creating process. The 3rd argument of <strong>CreateThread( )</strong> function, <strong>myThread</strong> is that thread function. Execution of the thread continues until the thread function returns. The address of this function (that is, the entry point to the thread) is specified in threadFunc.</p>
+<p>By typing a character 'q', we can end the program.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="creatingwindowsthread">Creating Windows Threads</div>
+<p>The most basic Windows applications start with a single thread. The function call we use to create a child thread is <strong>CreateThread()</strong>. The following syntax shows the parameters passed to <strong>CreateThread()</strong>.</p>
+<pre>
+HANDLE WINAPI CreateThread(
+__in_opt LPSECURITY_ATTRIBUTES lpThreadAttributes,
+__in SIZE_T dwStackSize,
+__in LPTHREAD_START_ROUTINE lpStartAddress, 
+__in_opt LPVOID lpParameter, 
+__in DWORD dwCreationFlags,
+__out_opt LPDWORD lpThreadId 
+); 
+</pre>
+<p><strong>Parameters</strong></p>
+<ol>
+<li><strong>lpThreadAttributes </strong>[in, optional] <br/>
+A pointer to a SECURITY_ATTRIBUTES structure that determines whether the returned handle can be inherited by child processes. If <strong>lpThreadAttributes</strong> is NULL, the handle cannot be inherited. <br/>
+The <strong>lpSecurityDescriptor</strong> member of the structure specifies a security descriptor for the new thread. If <strong>lpThreadAttributes</strong> is NULL, the thread gets a default security descriptor. The ACLs in the default security descriptor for a thread come from the primary token of the creator.</li>
+<li><strong>dwStackSize</strong> [in] <br/>
+The initial size of the stack, in bytes. The system rounds this value to the nearest page. If this parameter is zero, the new thread uses the default size for the executable. </li>
+<li><strong>lpStartAddress</strong> [in] <br/>
+A pointer to the application-defined function to be executed by the thread. This pointer represents the starting address of the thread. </li>
+<li><strong>lpParameter</strong> [in, optional] <br/> 
+A pointer to a variable to be passed to the thread.</li>
+<li><strong>dwCreationFlags</strong> [in] <br/>
+The flags that control the creation of the thread.</li>
+<li><strong>lpThreadId</strong> [out, optional] <br/> 
+A pointer to a variable that receives the thread identifier. If this parameter is NULL, the thread identifier is not returned. </li>
+</ol>
+<p>The return value from the function call is a <strong>handler</strong> for the thread, which is a different construct than the <strong>thread ID</strong>. When the call was unsuccessful, it returns 0. With the exception of the address of the function to execute, all of the parameters will take default values if they are provided the null. The following code shows how to create a child thread using the <strong>CreateThread()</strong>. The call to <strong>GetCurrentThreadId()</strong> returns an integer ID for the calling thread. It also captures the ID of the created thread. The threadID is not very useful since most functions take the thread handle as a parameter.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+DWORD WINAPI mythread(__in LPVOID lpParameter)
+{
+	printf("Thread inside %d \n", GetCurrentThreadId());
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandle;
+	DWORD mythreadid;
+	myhandle = <font color="red">CreateThread</font>(0, 0, mythread, 0, 0, &amp;mythreadid;);
+	printf("Thread after %d \n", mythreadid);
+	getchar();
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Thread after 6784
+Thread inside 6784
+</pre>
+<p><strong>CreateThread()</strong> tells the OS to make a new thread. But it does not set up the thread to work with the libraries provided by the developer environment. </p>
+<p>In other words, though Windows creates the thread and returns a handle to that thread, the runtime libraries haven't set up the thread-local data structures that they need. </p>
+<p>So, instead of calling <strong>CreateThread()</strong>, we should use the calls by the runtime libraries. The two recommended ways of creating a thread are the calls <strong>_beginthread()</strong> and <strong>_beginthreadex()</strong>. When using <strong>_beginthread()</strong> and <strong>_beginthreadex()</strong>, we must remember to link in the multithreaded library. This will vary from compiler to compiler. </p>
+<p>These two functions take different parameters: </p>
+<pre>
+uintptr_t _beginthread( 
+   void( *start_address )( void * ),
+   unsigned stack_size,
+   void *arglist 
+);
+
+uintptr_t _beginthreadex( 
+   void *security,
+   unsigned stack_size,
+   unsigned ( *start_address )( void * ),
+   void *arglist,
+   unsigned initflag,
+   unsigned *thrdaddr 
+);
+</pre>
+<p><strong>Parameters</strong></p>
+<ol>
+<li><strong> start_address </strong><br/>
+Start address of a routine that begins execution of a new thread. For <strong> _beginthread</strong>, the calling convention is either __cdecl or __clrcall; for <strong>_beginthreadex</strong>, it is either __stdcall or __clrcall.<br/>
+<li><strong> stack_size</strong><br/>
+Stack size for a new thread or 0. </li>
+<li><strong> arglist </strong><br/>
+Argument list to be passed to a new thread or NULL.</li>
+<li><strong> security </strong><br/>
+Pointer to a SECURITY_ATTRIBUTES structure that determines whether the returned handle can be inherited by child processes. If NULL, the handle cannot be inherited.</li>
+<li><strong> initflag </strong><br/>
+Initial state of a new thread (0 for running or CREATE_SUSPENDED for suspended); use ResumeThread to execute the thread.</li>
+<li><strong> thrdaddr </strong><br/>
+Points to a 32-bit variable that receives the thread identifier. Might be NULL, in which case it is not used.</li>
+</li></ol>
+<p>There is another difference between these two functions other than the parameters they take. A thread created by <strong> _beginthread()</strong> will close the handle to the thread when the thread exits, while the handle returned by <strong>_beginthreadex()</strong> will have to be explicitly closed by calling <strong>CloseHandle()</strong>, which is a similar to the detached thread in POSIX.</p>
+<p>As we see in the description of the two functions above, they are also differ by the type of function that the thread execute: <strong> _beginthread()</strong> is a <strong>void</strong> function and uses the default calling convention <strong>__cdecl</strong>, while <strong>_beginthreadex()</strong> returns an unsigned <strong>int</strong> and uses the <strong>__stdcall</strong> calling convention.</p>
+<p>The <strong> _beginthread()</strong> and  <strong> _beginthreadex()</strong> functions return handles to the newly created threads. But the actual return type of the function call is <strong>uintptr_t</strong> which has to be type cast to a <strong>HANDLE</strong> before it can be used in function calls that expect an object handle.</p>
+<p>The following example creates threads using the three different ways:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+DWORD WINAPI mythreadA(__in LPVOID lpParameter)
+{
+	printf("CreateThread %d \n", GetCurrentThreadId());
+	return 0;
+}
+
+unsigned int __stdcall mythreadB(void* data)
+{
+	printf("_beginthreadex %d \n", GetCurrentThreadId());
+	return 0;
+}
+
+void mythreadC(void* data)
+{
+	printf("_beginthread %d \n", GetCurrentThreadId());
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB, myhandleC;
+
+	myhandleA = <font color="red">CreateThread</font>(0, 0, mythreadA, 0, 0, 0);
+
+	myhandleB = (HANDLE)<font color="red">_beginthreadex</font>(0, 0, &amp;mythreadB;, 0, 0, 0);
+	<font color="blue">WaitForSingleObject</font>(myhandleB, INFINITE);
+
+
+	myhandleC = (HANDLE)<font color="red">_beginthread</font>(&amp;mythreadC;, 0, 0);
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+_beginthreadex 5256
+CreateThread 5924
+_beginthread 4292
+</pre>
+<p>The call to <strong>WaitForSingleObject()</strong> waits for an object to signal its readiness. In other words, the routine passes the handle to a thread and waits for that thread to terminate.</p>
+<p>Threads created in <strong>main()</strong> will not continue to run after the <strong>main</strong> thread exits. So, the <strong>main</strong> thread must wait for the threads it created to complete before it exits the <strong>main()</strong> function. It does this by calling function <strong>WaitForMultipleObjects()</strong>.</p>
+<p>Calling <strong>_beginthread()</strong> looks more convenient because it takes fewer parameters and clean up the handle after the thread exits, however, it is better to use <strong>_beginthreadex()</strong>.</p>
+<p>Calling <strong>_beginthreadex()</strong> avoids a difficulty with <strong>_beginthread()</strong>. If the thread terminates, the handle returned by the call to <strong>_beginthread()</strong> will be invalid or even reused. Therefore, it is impossible to query the status of the thread or even be confident that the handle to the thread is a handle to the same thread to which is originally pointed. The following example demonstrates this issue:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+void mythreadA(void* data)
+{
+	printf("mythreadA %d \n", GetCurrentThreadId());
+}
+
+void mythreadB(void* data)
+{
+	volatile int i;
+
+	// Most compiler won't eliminate the loop
+	// since i is volatile
+	for (i = 0; i &lt; 100000; i++) {}
+
+	printf("mythreadB %d \n", GetCurrentThreadId());
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	myhandleA = (HANDLE)<font color="red">_beginthread</font>(&amp;mythreadA;, 0, 0);
+	myhandleB = (HANDLE)<font color="red">_beginthread</font>(&amp;mythreadB;, 0, 0);
+	<font color="red">WaitForSingleObject</font>(myhandleA, INFINITE);
+	<font color="red">WaitForSingleObject</font>(myhandleB, INFINITE);
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+mythreadA 5912
+mythreadB 3092
+</pre>
+<p>The <strong>mythreadA()</strong> terminates quickly and may have already terminated by the time that the main thread reaches the call to create the second thread. If the first thread has terminated, the handle to the first thread may be reused as the handle to the second thread. Queries using the handle of the first thread might succeed, but they will work on the wrong thread. The calls to <strong>WaitForSingleObject()</strong> may not be using a correct or valid handle for either of the threads depending on the completion time of the threads. Though it is not clear from the output, still, there is a potential for things not going to work as we expect.</p>
+<p>The following example for using <strong>_beginthreadex()</strong>  is equivalent to the previous code. Thread created by <strong>_beginthreadex()</strong> need to be cleaned up by calling <strong>CloseHandle()</strong>. So, the calls to <strong>WaitForSingleObject()</strong> are certain to get the correct handles:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+
+unsigned int __stdcall mythreadA(void* data) 
+{
+	return 0;
+}
+
+unsigned int __stdcall  mythreadB(void* data)
+{
+	volatile int i;
+
+	// Most compiler won't eliminate the loop
+	// since i is volatile
+	for (i = 0; i &lt; 100000; i++) {}
+
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandleA, myhandleB;
+
+	myhandleA = (HANDLE)<font color="blue">_beginthreadex</font>(0, 0, &amp;mythreadA;, 0, 0, 0);
+	myhandleB = (HANDLE)<font color="blue">_beginthreadex</font>(0, 0, &amp;mythreadB;, 0, 0, 0);
+	WaitForSingleObject(myhandleA, INFINITE);
+	WaitForSingleObject(myhandleB, INFINITE);
+	<font color="red">CloseHandle</font>(myhandleA);
+	<font color="red">CloseHandle</font>(myhandleB);
+
+	return 0;
+}
+</pre>
+<p>And the output:</p>
+<pre>
+mythreadA 5860
+mythreadB 5312
+</pre>
+<br/>
+<br/>
+<br/>
+<img alt="snsd Taeyun" src="images/multithread2A/Taeyun_Asm.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="terminatingwindowsthread">Terminating Threads</div>
+<p>There are several ways to make a thread to terminate. But the recommended way is for the thread to exit the function that it was instructed to run. In the following example, the thread will print out its ID and then exit:</p>
+<pre>
+DWORD WINAPI mythreadA(__in LPVOID lpParameter)
+{
+	printf("CreateThread %d \n", GetCurrentThreadId());
+	return 0;
+}
+</pre>
+<p>It is also possible to make threads to terminate using the <strong>ExitThread()</strong> or <strong>TerminateThread()</strong>.
+<ol>
+<li> But these function calls are not recommended since they may leave the application in an unspecified state. The thread does not get the chance to release any held mutexes or free any other allocated resources.</li>
+<li> They also don't give the run-time libraries the opportunity to clean up any resources that they have allocated for the thread.</li>
+</ol></p>
+<p>A thread may terminate with a call to <strong>_endthread()</strong> or <strong>_endthreadex()</strong>, as long as care is taken to ensure that resources the thread has acquired are appropriately freed. This call (<strong>_endthread()</strong> or <strong>_endthreadex()</strong>) needs to match the call that was used to create the thread. If the thread exits with a call to <strong>_endthreadex()</strong>, the handle to the thread still needs to be closed by another thread calling <strong>cloaseHandle()</strong>.</p>
+<p>For a fork-join type model, there will be a master thread that creates multiple worker threads and then waits for the worker threads to exit. There are two routines that the master thread can use to wait for the worker to complete: <strong>WaitForSingleObject()</strong> or <strong>WaitForMultipleObjects()</strong>. These two functions will wait either for the completion of a single thread or for the completion of an array of threads. The routines take the handle of the thread as a parameter together with a timeout value that indicates how long the master thread should wait for the worker thread to complete. Usually, the value <strong>INFINITE</strong> will be appropriate. The following code demonstrates the code necessary to wait for a single thread to complete:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+unsigned int __stdcall mythread(void* data) 
+{
+	printf("Thread %d\n", GetCurrentThreadId());
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandle[2];
+
+	myhandle[0] = (HANDLE)<font color="blue">_beginthreadex</font>(0, 0, &amp;mythread;, 0, 0, 0);
+	myhandle[1] = (HANDLE)<font color="blue">_beginthreadex</font>(0, 0, &amp;mythread;, 0, 0, 0);
+	<font color="blue">WaitForSingleObject</font>(myhandle[0], INFINITE);
+	<font color="blue">WaitForSingleObject</font>(myhandle[1], INFINITE);
+	<font color="blue">CloseHandle</font>(myhandle[0]);
+	<font color="blue">CloseHandle</font>(myhandle[1]);
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+Thread 4360
+Thread 1368
+</pre>
+<br/>
+<p>The following code is equivalent to the previous one. But this example is using <strong>WaitForMultipleObjects()</strong>. <p>
+<ol>
+<li>The first parameter to the function call is the number of threads that are to be waited for. </li>
+<li>The second parameter is a pointer to the array of handles to these threads. </li>
+<li>The third parameter is a boolean. If true, it indicates that the function should return when all the threads are complete. If false, it indicates the function should return on the completion of the first worker thread.</li>
+<li>The last parameter is the length of time that the master thread should wait before returning anyway.</li>
+</ol>
+<br/>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+unsigned int __stdcall mythread(void* data) 
+{
+	printf("Thread %d\n", GetCurrentThreadId());
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandle[2];
+
+	myhandle[0] = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, 0, 0, 0);
+	myhandle[1] = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, 0, 0, 0);
+
+	<font color="red">WaitForMultipleObjects(2, myhandle, true, INFINITE);</font>
+
+	CloseHandle(myhandle[0]);
+	CloseHandle(myhandle[1]);
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Thread 4712
+Thread 4244
+</pre>
+<br/>
+<p>Even after a thread created by calling <strong>_beginthreadex</strong> has exited, it will continue to hold resources. These resources need to be freed by calling the <strong>CloseHandle()</strong> function on the handle to the thread. The following example demonstrates the complete sequence of creating a thread, waiting for it to complete, and then freeing its resources:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+unsigned int __stdcall mythread(void* data) 
+{
+	printf("Thread %d\n", GetCurrentThreadId());
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandle;
+
+	myhandle = (HANDLE)<font color="blue">_beginthreadex</font>(0, 0, &amp;mythread;, 0, 0, 0);
+
+	<font color="blue">WaitForSingleObject</font>(myhandle, INFINITE);
+
+	<font color="blue">CloseHandle</font>(myhandle);
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Thread 4272
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="resumethread">Resuming Suspended Threads</div>
+<p>A <strong>suspended</strong> thread is the one that is not currently running. Threads can be created in the suspended state and then started later. If a thread is in the suspended state, then the call to start the thread executing is <strong>ResumeThread()</strong>. It takes the handle of the thread as a parameter. </p>
+<p>There is a <strong>SuspendThread()</strong> call that will cause a running thread to be suspended. This call is expected to be used only by tools such as debugger. Suspending a running thread may lead to problems if the thread currently holds resources such as mutexes. </p>
+<p>The following code demonstrates the creation of a suspended thread and then calling <strong>ResumeThread()</strong> on that thread. The code uses a call to <strong>getchar()</strong>, which waits for the enter key to be pressed, to separate the creation of the thread from the act of resuming thread:</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+
+unsigned int __stdcall mythread(void* data) 
+{
+	printf("Thread %d\n", GetCurrentThreadId());
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	HANDLE myhandle;
+
+	<font color="blue">myhandle</font> = (HANDLE)_beginthreadex(0, 0, &amp;mythread;, 0, <font color="red">CREATE_SUSPENDED</font>, 0);
+	getchar();
+	<font color="red">ResumeThread</font><font color="blue">(myhandle)</font>;
+	getchar();
+	WaitForSingleObject(myhandle, INFINITE);
+	CloseHandle(myhandle);
+
+	return 0;
+}
+</pre>
+<p>Output we get after we hit the return key:</p>
+<pre>
+(hit Return key)
+Thread 4580
+</pre>
+<p>The suspended state of the thread is handled as a counter, so multiple calls to <strong>SuspendThread()</strong> need to be matched with multiple calls to <strong>ResumeThread()</strong>.</p>
+<p>Each thread of execution has associated with it a suspend count. If this count is zero, then the thread is not suspended. If it is nonzero, the thread is in a suspended state. Each call to <strong>SuspendThread( )</strong> increments the suspend count. Each call to <strong>ResumeThread( )</strong> decrements the suspend count. A suspended thread will resume only when its suspend count has reached zero. Therefore, to resume a suspended thread implies that there must be the same number of calls to <strong>ResumeThread( )</strong> as there have been calls to <strong>SuspendThread( )</strong>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="kernel">Kernel Resources</div>
+<p>Many of the Windows API functions return <strong>handles</strong>. As we saw from the earlier discussion of type casting, these are really just unsigned integers. However, they have a particular purpose. <font color="red">Windows API calls that return handles have actually caused a resource to be created within the <strong>kernel space</strong></font>. The handle is just an index for that resource. When the application has finished with the resource, the call to <strong>CloseHandle()</strong> enables the kernel to free the associated kernel space resources.</p>
+<p><font color="blue"><strong>Resources with handles can be shared between processes</strong></font>. Once a resource exists, other processes can open a handle to that resource or duplicate an existing handle to the resource. It is important to know that the handle of a kernel resource makes sense only within the context of the process that has access to the resource. Passing the value of the handle to another process does not enable the other process to get access to the resource. The kernel needs to enable access to the resource and provide a new handle for the existing resource in the new process.</p>
+<p>Some functions do not return a handle. For these functions, there is no associated kernel resource. So, it is not necessary to call <strong>CloseHandle()</strong> once the resource is no longer needed.</p>
+<br/>
+<br/>
+<p><b>Threading with QT5:</b></p>
+<ol>
+<li><a href="../Qt/Qt5_QThreads_Introduction.html">QThreads - Introduction</a></li>
+<li><a href="../Qt/Qt5_QThreads_Creating_Threads.html">QThreads - Creating Threads</a> </li>
+<li><a href="../Qt/Qt5_QThreads_Priority.html">QThreads - Priority</a> </li>
+<li><a href="../Qt/Qt5_QThreads_QMutex.html">QThreads - QMutex</a> </li>
+<li><a href="../Qt/Qt5_QThreads_GuiThread.html">QThreads - GuiThread</a> </li>
+<li><a href="../Qt/Qt5_QThreads_wait.html">QThreads - wait()</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_Multithreaded_Client_Server.html">QTcpServer - Client and Server using MultiThreading</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_QThreadPool_Multithreaded_Client_Server.html">QTcpServer - Client and Server using QThreadPool</a> </li>
+<li><a href="../Qt/Qt5_Asynchronous_QTcpServer_QThreadPool.html">Asynchronous QTcpServer - Client and Server using QThreadPool</a> </li>
+</ol>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32A.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:20 GMT -->
+</html>
+

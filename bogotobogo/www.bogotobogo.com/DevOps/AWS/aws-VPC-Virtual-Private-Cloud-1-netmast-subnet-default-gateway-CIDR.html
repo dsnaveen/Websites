@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 09:20:16 GMT -->
+<head>
+  <title>AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR - 2017</title>
+  <meta content="AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR" name="description" />
+  <meta content="AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../python/pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR         <g:plusone></g:plusone></h2>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Introduction">Introduction</div>
+<p>Configuring complex environments for VPC requires deep understanding of networking. VPC is about communicating between servers efficiently, developing secure network policies, and keeping our nodes organized.</p>
+<p>In this chapter, we will discuss the concepts that are involved with designing or interacting with networked computers such as subnets and CIDR notation for grouping IP addresses.</p>
+<br/>
+<iframe allowfullscreen frameborder="0" height="315" src="https://www.youtube.com/embed/5_bQ6Dgk6k8" width="560"></iframe>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="IP-addresses">IP addresses</div>
+<p>While IPv6 is becoming more common, in this article, we will be studying the remaining concepts using IPv4 addresses because it is much easier to discuss since its smaller address space.</p>
+<p>IP addresses are made of two separate components. The first part of the address is used to identify the <b>network</b>, and the other past is used to specify a specific <b>host</b> within that network.</p>
+<br/>
+<img alt="IP-ClassABC.png" src="images/VPC/IP-ClassABC.png"/>
+<br/>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ReservedPrivateRanges">Reserved Private Ranges</div>
+<p>There are also some portions of the IPv4 space that are reserved for specific uses.</p>
+<p>
+One of the most useful reserved ranges is the <b>loopback</b> range specified by addresses from 127.0.0.0 to 127.255.255.255. This range is used by each host to test networking to itself. Typically, this is expressed by the first address in this range: <b>127.0.0.1</b>.</p>
+<p>Each of the normal classes also have a range within them that is used to designate private network addresses.</p>
+<ol>
+<li><b>class A</b><br/>
+  10.0.0.0 - 10.255.255.255
+  </li>
+<li><b>class B</b><br/>
+  172.16.0.0 - 172.31.255.255
+  </li>
+<li><b>class C</b><br/>
+  192.168.0.0 - 192.168.255.255 
+  </li>
+</ol>
+<br/>
+<img alt="privateIPs.png" src="images/VPC/privateIPs.png" width="100%"/>
+<p>Picture from <a href="https://en.wikipedia.org/wiki/Private_network" target="_blank">Private network - wiki</a></p>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Netmasks">Netmasks</div>
+<p><b>Subnetting</b> is the process of dividing a network into smaller network sections. This helps to isolate groups of hosts together.</p>
+<p>As we discussed in the section (<a href="#IP-addresses">IP addresses</a>), each address space is divided into a <b>network</b> portion and a <b>host</b> portion. For instance, for class C addresses, the first 3 octets are used to describe the network. For the address <font color="red">192.168.0</font>.<font color="blue">12</font>, the <b>192.168.0</b> portion describes the network and the <b>12</b> describes the host.</p>
+<p>Each network, by default, has only one subnet, which contains all of the host addresses defined within. A <b>netmask</b> is basically a specification of the amount of address bits that are used for the network portion. A <b>subnet</b> mask is another netmask within used to further divide the network.</p>
+<p>Each bit of the address that is considered significant for describing the network should be represented as a "1" in the netmask.</p>
+<p>
+For instance, the address we discussed above, in a binary format, 192.168.0.12 looks like this:</p>
+<pre>
+1100 0000 - 1010 1000 - 0000 0000 - 0000 1100
+</pre>
+<p>The network portion for class C addresses is the first 3 octets, or the first 24 bits. Since these are the significant bits that we want to preserve, the <b>netmask</b> would be:</p>
+<pre>
+<font color="blue">1111 1111 - 1111 1111 - 1111 1111</font> - 0000 0000
+</pre>
+<p>In the normal IPv4 format, this can be expressed as <b><font color="blue">255.255.255</font>.0</b>. Any bit that is a "0" in the binary representation of the netmask is considered part of the <b>host</b> portion of the address. </p>
+<p>We determine the <b>network</b> portion of the address by applying a bitwise AND operation to between the <b>address</b> and the <b>netmask</b>. A bitwise AND operation will basically save the networking portion of the address and discard the host portion. The result of this on our above example that represents our network is:</p>
+<pre>
+1100 0000 - 1010 1000 - 0000 0000 - 0000 1100  address
+1111 1111 - 1111 1111 - 1111 1111 - 0000 0000  netmast
+----------------------------------------------
+1100 0000 - 1010 1000 - 0000 0000 - 0000 0000  network
+</pre>
+<p>This can be expressed as <b>192.168.0.0</b>. The host specification is then the difference between these original value and the host portion. In our case, the host is "0000 1100" or 12.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Subnets">Subnets</div>
+<p>Subnetting is to take a portion of the host space of an address, and use it as an additional networking specification to divide the address space again.</p>
+<p>
+For instance, a netmask of 255.255.255.0 as we saw in previous section leaves us with 254 hosts in the network (Note that we cannot end in 0 or 255 because these are reserved). If we wanted to divide this into two subnetworks, we could use one bit of the conventional host portion of the address as the subnet mask.</p>
+<p>For the sample (192.168.0.12), the networking portion is:</p>
+<pre>
+1100 0000 - 1010 1000 - 0000 0000
+</pre>
+<p>Host portion is:</p>
+<pre>
+0000 1100
+</pre>
+<p>We can use the first bit of our host to designate a sub-network. We can do this by adjusting the subnet mask from:</p>
+<pre>
+1111 1111 - 1111 1111 - 1111 1111 - 0000 0000
+</pre>
+<p>
+To :</p>
+<pre>
+1111 1111 - 1111 1111 - 1111 1111 - <font color="red"><b>1</b></font>000 0000
+</pre>
+<p>This netmask can be expressed as 192.168.0.128.</p>
+<p>We designated the first bit of the last octet as significant in addressing the network! This effectively produced two subnetworks. </p>
+<ol>
+<li>The first subnetwork is from 192.168.0.<font color="red"><b>1</b></font> to 192.168.0.127. </li>
+<li>The second subnetwork contains the hosts 192.168.0.<font color="red"><b>129</b></font> to 192.168.0.255.</li>
+</ol>
+<p>Note that the subnet itself must not be used as an address. </p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="cidr">CIDR</div>
+<p><b>Classless Inter-Domain Routing (CIDR)</b> is a method for allocating IP addresses and routing Internet Protocol packets. </p>
+<p>It is an IP addressing scheme that replaces the older system based on classes A, B, and C.</p>
+<p>A single IP address can be used to designate many unique IP addresses with CIDR. A CIDR IP address looks like a normal IP address except that it ends with a slash followed by a number, called the IP network prefix.</p>
+<p>CIDR addresses reduce the size of routing tables and make more IP addresses available within organizations.</p>
+<img alt="IPv4-CIDR-Chart.png" src="images/VPC/IPv4-CIDR-Chart.png"/>
+<br/>
+<p>To be more specific, let's use the example in the previous sections. </p>
+<p>We can express the idea that the IP address 192.168.0.12 is associated with the netmask 255.255.255.0 by using the CIDR notation of 192.168.0.12/<font color="red">24</font>. This means that the first 24 bits of the IP address given are considered significant for the network routing.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Default-gateway">Default gateway</div>
+<p>A <b>default gateway</b> in computer networking, is the node that is assumed to know how to forward packets on to other networks.<p>
+<p>Typically, in a TCP/IP network, nodes such as servers, workstations and network devices each have a defined default route setting, (pointing to the default gateway), defining where to send packets for IP addresses for which they can determine specific route. The gateway is by definition a <b>router</b>.</p>
+<p>As a simple example, let's think about the following 2 networks :</p>
+<ol>
+<li>
+<pre>
+Network:   192.168.1.0/30
+<font color="red">Gateway:   192.168.1.1</font>
+Usable:    192.168.1.2
+Broadcast: 192.168.1.3
+</pre>
+</li>
+<li>
+<pre>
+Network:   192.168.1.0/29
+<font color="red">Gateway:   192.168.1.1</font>
+Usable:    192.168.1.2-6
+Broadcast: 192.168.1.7
+</pre>
+</li>
+</ol>
+<p>Note that <b>/29</b> may cover a range of 8 addresses, but only 5 of them can be used as host endpoints. <b>/30</b> has only 1 usable address.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="AWS-VPC">CIDR sample from AWS VPC</div>
+<br/>
+<img alt="ELB-outside-VPC.png" src="images/VPC/ELB-outside-VPC.png"/>
+<br/>
+<img alt="instances-vpc-AZ.png" src="images/VPC/instances-vpc-AZ.png"/>
+<br/><br/>
+<img alt="cidr0.png" src="images/VPC/cidr0.png"/>
+<br/><br/>
+<ol>
+<li>172.31.0.0/20 <br/><br/>
+<img alt="cidr1.png" src="images/VPC/cidr1.png"/>
+<br/><br/>
+</li>
+<li>172.31.16.0/20 <br/><br/>
+<img alt="cidr2.png" src="images/VPC/cidr2.png"/>
+<br/><br/>
+</li>
+<li>172.31.32.0/20 <br/><br/>
+<img alt="cidr3.png" src="images/VPC/cidr3.png"/>
+<br/><br/>
+</li>
+<li>172.31.48.0/20 <br/><br/>
+<img alt="cidr4.png" src="images/VPC/cidr4.png"/>
+<br/><br/>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1>AWS (Amazon Web Services)</h1>
+   <li><a href="aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> </li>
+   <li><a href="aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> </li>
+   <li><a href="aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> </li>
+   <li><a href="aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> </li>
+   <li><a href="Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> </li>
+   <li><a href="aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> </li>
+   <li><a href="aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> </li>
+   <li><a href="aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> </li>
+   <li><a href="aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> </li>
+   <li><a href="aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> </li>
+   <li><a href="aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> </li>
+   <li><a href="aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> </li>
+   <li><a href="aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> </li>
+   <li><a href="aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> </li>
+   <li><a href="aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> </li>
+   <li><a href="aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> </li>
+   <li><a href="aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> </li>
+   <li><a href="aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a></li> 
+   <li>   <a href="aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a></li>
+   <li><a href="aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> </li>
+
+   <li><a href="aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> </li>
+   <li><a href="aws_NTP.html">AWS : NTP setup on EC2</a> </li>
+   <li><a href="aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> </li>
+   <li><a href="aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> </li>
+   <li><a href="aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> </li>
+   <li><a href="aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> </li>
+   <li><a href="aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> </li>
+   <li><a href="../DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> </li>
+   <li><a href="aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> </li>
+   <li><a href="aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> </li>
+   <li><a href="aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> </li>
+   <li><a href="aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> </li>
+   <li><a href="aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> </li>
+   <li><a href="aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> </li>
+   <li><a href="aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> </li>
+   <li><a href="aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> </li>
+   <li><a href="aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a></li>
+   <li><a href="aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> </li>
+   <li><a href="aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> </li>
+   <li><a href="aws-Route53-DNS.html">AWS : Amazon Route 53</a> </li>
+   <li><a href="aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> </li>
+   <li><a href="aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> </li>
+   <li><a href="aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a></li>
+   <li><a href="aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a>  </li>
+      <li><a href="aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> </li>
+   <li><a href="aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a></li>
+   <li><a href="aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> </li>
+   <li><a href="aws-CloudFormation-Templates.html">AWS : CloudFormation</a> </li>
+   <li><a href="aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> </li>
+   <li><a href="aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> </li>
+   <li><a href="aws-OpsWorks.html">AWS : OpsWorks</a> </li>
+   <li><a href="aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> </li>
+   <li><a href="aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> </li>
+   <li><a href="aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> </li>
+   <li><a href="aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a></li>
+   <li><a href="aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> </li>
+   <li><a href="aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> </li>
+   <li><a href="aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> </li>
+   <li><a href="aws-SSM.html">Simple Systems Manager (SSM)</a> </li>
+   <br><br>
+   <li><a href="aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> </li>
+   <li><a href="aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> </li>
+   <li><a href="aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> </li>
+   <li><a href="aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> </li>
+   <li><a href="aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> </li>
+   <li><a href="aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> </li>
+   <li><a href="aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> </li>
+   <li><a href="aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> </li>
+   <li><a href="aws-Scaling-Up.html">AWS : Scaling-Up</a> </li>
+<br/>
+<br/>
+<br/>
+<br/>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br /><br />
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="../Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="../DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="../DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="../DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="../../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="../DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="../DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="../DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="../DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="../DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="../DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="../DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="../DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="../DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="../OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="../DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="../DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="../DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="../DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="../DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="../DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="../DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="../DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="../DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+<br>
+
+<br /><br />
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="../Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="../Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br /><br />
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="../Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="../Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="../Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="../Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="../Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="../Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="../Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="../Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="../Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="../Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="../Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="../Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="../Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="../Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="../Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="../Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="../Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="../Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="../Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="../Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="../Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="../Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="../Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="../Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="../Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="../Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="../Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="../Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="../Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="../Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="../Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="../Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="../Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="../Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="../Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="../Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="../Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="../Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="../Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="../Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="../Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="../Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="../Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="../Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="../Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="../Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="../Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="../Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="../Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br /><br />
+<br><br>
+<h1>Elasticsearch search engine, Logstash, and Kibana</h1>
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_Elastic_Search_Tutorial.html">Elasticsearch, search engine</a> 
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_ElasticSearch_Logstash.html">Logstash with Elasticsearch</a> 
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, Elasticsearch, and Kibana 4</a> 
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a>
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a>
+
+<br /><br />
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="../Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="../Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="../Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="../Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="../Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="../Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Big Data & Hadoop Tutorials</h1>
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Hadoop 2.6 - Installing on Ubuntu 14.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_16_04_single_node_cluster.html">Hadoop 2.6.5 - Installing on Ubuntu 16.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Running_MapReduce_Job.html">Hadoop - Running MapReduce Job</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Ecosystem.html">Hadoop - Ecosystem</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_Install.html">CDH5.3 Install on four EC2 instances (1 Name node and 3 Datanodes) using Cloudera Manager 5</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_APIs.html">CDH5 APIs</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x.html">QuickStart VMs for CDH 5.3</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_II.html">QuickStart VMs for CDH 5.3 II - Testing with wordcount</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Hive_Table_Query.html">QuickStart VMs for CDH 5.3 II - Hive DB query</a> 
+   <br><br>
+
+   <a href="../../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Scheduled start and stop CDH services</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Zookeeper_Kafka.html">Zookeeper & Kafka Install</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_single_broker_cluster.html">Zookeeper & Kafka - single node single broker</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_Multiple_broker_cluster.html">Zookeeper & Kafka - Single node and multiple brokers</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_OLTP_vs_OLAP.html">OLTP vs OLAP</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Cloudera_Cluster_Tutorial_I.html">Apache Hadoop Tutorial I with CDH - Overview</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_II.html">Apache Hadoop Tutorial II with CDH - MapReduce Word Count</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_III.html">Apache Hadoop Tutorial III with CDH - MapReduce Word Count 2</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_Hive_Introduction.html">Apache Hadoop (CDH 5) Hive Introduction</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_Hive_Upgrade_2.html">CDH5 - Hive Upgrade to 1.3 to from 1.2</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Hive_Install_On_Ubuntu_16_04.html">Apache Hive 2.1.0 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_HBase_Pseudo_Distributed.html">Apache HBase in Pseudo-Distributed mode</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_HBase_Creating_a_Table_with_Hbase_Shell_and_Hue.html">Creating HBase table with HBase shell and HUE</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Hue_Install_On_Ubuntu_16_04.html">Apache Hadoop : Hue 3.11 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_HBase_Table_with_Java_API.html">Creating HBase table with Java API</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_HBase_BigTable_Map_Persistent_Sparse_Sorted_Distributed_Multidimensional.html">HBase - Map, Persistent, Sparse, Sorted, Distributed and Multidimensional</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_Flume_Introduction.html">Flume with CDH5: a single-node Flume deployment (telnet example) </a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_Flume_CDH5_and_VirtualBox_NettyAvroRpcClient_syslog.html">Apache Hadoop (CDH 5) Flume with VirtualBox : syslog example via NettyAvroRpcClient</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_Hadoop_fs_commands_list.html">List of Apache Hadoop hdfs commands</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 1</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2_Part2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 2</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Creating_Java_Card_Project_with_Eclipse_MapReduce2_Using_UnoExample_Project_Local_Run.html">Apache Hadoop : Creating Card Java Project with Eclipse using Cloudera VM UnoExample for CDH5 - local run</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Creating_Wordcount_Maven_Project_Eclipse_MapReduce.html">Apache Hadoop : Creating Wordcount Maven Project with Eclipse</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Oozie_Workflow.html">Wordcount MapReduce with Oozie workflow with Hue browser - CDH 5.3 Hadoop cluster using VirtualBox and QuickStart VM </a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark.html">Spark 1.2 using VirtualBox and QuickStart VM - wordcount</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_Programming_Model_RDD.html">Spark Programming Model : Resilient Distributed Dataset (RDD) with CDH</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 2.0.2 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_PySpark_RDD_Programming.html">Apache Spark 2.0.2 tutorial with PySpark : RDD</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_PySpark_Analyzing_Neuroimaging_Data_with_Thunder.html">Apache Spark 2.0.0 tutorial with PySpark : Analyzing Neuroimaging Data with Thunder</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_Streaming_Kafka_Cassandra.html">Apache Spark Streaming with Kafka and Cassandra</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_PySpark_using_CDH5.html">Apache Spark 1.2 with PySpark (Spark Python API) Wordcount using CDH5</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Install_on_ubuntu_16_04.html">Apache Drill with ZooKeeper install on Ubuntu 16.04 - Embedded & Distributed</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_File_System_JSON_Parquet.html">Apache Drill - Query File System, JSON, and Parquet</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_HBase.html">Apache Drill - HBase query</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_Hive.html">Apache Drill - Hive query</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_MongoDB.html">Apache Drill - MongoDB query</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>Redis In-Memory Database</h1>
+   <br><br>
+   <a href="../Redis/Redis_vs_Memcached.html">Redis vs Memcached</a>
+   <br><br>
+   <a href="../Redis/Redis_Install.html">Redis 3.0.1 Install</a> 
+   <br><br>
+   <a href="../Redis/Redis_Setting_up_mulitple_server_instances_on_a_linux_host.html">Setting up mulitple server instances on a Linux host</a> 
+   <br><br>
+   <a href="../../python/python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="../../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">ELK : Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+
+
+
+<br /><br />
+<br><br>
+<h1>Ansible 2</h1>
+   <br><br>
+   <a href="../Ansible/Ansible_What_is_Ansible.html">What is Ansible?</a> 
+   <br><br>
+   <a href="../Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="../Ansible/Ansible-SSH-Connection-Setup-Run-Command.html">SSH connection & running commands</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Modules.html">Modules</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Playbooks.html">Playbooks</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Handlers.html">Handlers</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Roles.html">Roles</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Playbook-Lamp-HAProxy.html">Playbook for LAMP HAProxy</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-Deploy-Nginx-to-Docker.html">Installing Nginx on a Docker container</a> 
+   <br><br>
+   <a href="../Ansible/Ansible-aws-creating-ec2-instance.html">AWS : Creating an ec2 instance & adding keys to authorized_keys</a>
+   <br><br>
+   <a href="../Ansible/Ansible-aws-AutoScaling.html">AWS : Auto Scaling via AMI</a>
+   <br><br>
+   <a href="../Ansible/Ansible-aws-creating-elb-and-register-ec2-instance.html">AWS : creating an ELB & registers an EC2 instance from the ELB</a>
+   <br><br>
+   <a href="../Ansible/Docker-WordPress-Microservices-with-Nginx-reverse-proxy-Varnish-Mysql-Deployed-via-Ansible.html">Deploying Wordpress micro-services with Docker containers on Vagrant box via Ansible</a> 
+   <br><br>
+   <a href="../Ansible/Ansible_SettingUp_Webservers_Apache.html">Setting up Apache web server</a> 
+   <br><br>
+
+
+
+ 
+
+<br /><br />
+
+<br /><br />
+<br><br>
+<h1>Powershell 4 Tutorial</h1>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Introduction.html" target="_blank">Powersehll : Introduction</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_help_system.html" target="_blank">Powersehll : Help System</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_running_commands.html" target="_blank">Powersehll : Running commands</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Providers.html" target="_blank">Powersehll : Providers</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Pipeline.html" target="_blank">Powersehll : Pipeline</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Objects.html" target="_blank">Powersehll : Objects</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Remote_Control.html" target="_blank">Powersehll : Remote Control</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Windows_Management_Instrumentation_WMI.html" target="_blank">Windows Management Instrumentation (WMI)</a>
+   <br><br>
+   <a href="../../Powershell/How_to_Enable_Multiple_RDP_Sessions_in_Windows_2012.html" target="_blank">How to Enable Multiple RDP Sessions in Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/How_to_install_Configure_FTP_Server_on_IIS_8_in_Windows_Server_2012.html" target="_blank">How to install and configure FTP server on IIS 8 in Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/How_to_Run_Exe_as_a_Service_in_Windows_Server_2012.html" target="_blank">How to Run Exe as a Service on Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/SQL_Inner_Left_Right_Outter_Join.html" target="_blank">SQL Inner, Left, Right, and Outer Joins</a>
+<br><br>
+
+<br /><br />
+<br><br>
+<h1>Git/GitHub Tutorial</h1>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Express.html" target="_blank">One page express tutorial for GIT and GitHub</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Installation.html" target="_blank">Installation</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_status_add_status_log.php" target="_blank">add/status/log</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_commit_diff.html" target="_blank">commit and diff</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_commit_amend.html" target="_blank">git commit --amend</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Deleting_Renaming_Files.html" target="_blank">Deleting and Renaming files</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Undoing_Checkout_Unstaging.html" target="_blank">Undoing Things : File Checkout & Unstaging</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Reverting_Commit.html" target="_blank">Reverting commit</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Soft_Reset.html" target="_blank">Soft Reset - (git reset --soft &lt;SHA key&gt;) </a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Mixed_Default_Reset.html" target="_blank">Mixed Reset - Default</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Hard_Reset.php" target="_blank">Hard Reset - (git reset --hard &lt;SHA key&gt;)</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Creating_Switching_Branches.html" target="_blank">Creating & switching Branches</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Fast-Forward_Merge.html" target="_blank">Fast-forward merge</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Rebase.html" target="_blank">Rebase & Three-way merge</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Merge_Conflicts_with_Simple_Example.html" target="_blank">Merge conflicts with a simple example</a>
+   <br><br>
+   <a href="../../cplusplus/Git/GitHub_Account_SSH_Key.html" target="_blank">GitHub Account and SSH</a>
+   <br><br>
+   <a href="../../cplusplus/Git/GitHub_Uploading.html" target="_blank">Uploading to GitHub</a>
+   <br><br>
+   <a href="../../cplusplus/Git/GitHub_GUI.html" target="_blank">GUI</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_Branching_Merging.html" target="_blank">Branching & Merging</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_Branching_Merging_Conflicts.html" target="_blank">Merging conflicts</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_Ubuntu.html" target="_blank">GIT on Ubuntu and OS X - Focused on Branching</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_Setting_Up_Remote_Repository.html" target="_blank">Setting up a remote repository / pushing local project and cloning the remote repo</a>
+   <br><br>
+   <a href="../../cplusplus/Git/GitHub_Fork_Clone_Origin_Upstream.html" target="_blank">Fork vs Clone, Origin vs Upstream</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_Terminologies.html" target="_blank">Git/GitHub Terminologies</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Source_Tree_1_Commit_Push.html" target="_blank">Git/GitHub via SourceTree I : Commit & Push</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Source_Tree_2_Branching_Merging.html" target="_blank">Git/GitHub via SourceTree II : Branching & Merging</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Source_Tree_3_Git_WorkFlow.html" target="_blank">Git/GitHub via SourceTree III : Git Work Flow</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_Source_Tree_4_Reset.html" target="_blank">Git/GitHub via SourceTree IV : Git Reset</a>
+   <br><br>
+   <a href="../../cplusplus/Git/Git_GitHub_quick_command_reference_wiki_cheat_sheet.html" target="_blank">Git wiki - quick command reference</a>
+   <br><br>
+<br /><br />
+
+<br><br><br>
+<h1>Subversion</h1>
+   <a href="../../cplusplus/Subversion/Subversion_Install_On_Ubuntu.html" target="_blank">Subversion Install On Ubuntu  14.04</a>
+   <br><br>
+   <a href="../../cplusplus/Subversion/Subversion_Creating_Accessing_Repo.html" target="_blank">Subversion creating and accessing I</a>
+   <br><br>
+   <a href="../../cplusplus/Subversion/Subversion_Creating_Accessing_Repo2.html" target="_blank">Subversion creating and accessing II</a>
+<br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 09:20:40 GMT -->
+</html>
+

@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32C.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:47 GMT -->
+<head>
+  <title>C++ Tutorial: Multi-Threaded Programming II - Thread for Win32 (C) - 2017</title>
+  <meta content="C++ Tutorial: Multi-Threaded Programming II - Thread for Win32 (C) - 2014" name="description" />
+  <meta content="C++ Tutorial, Multi-Threaded Programming II - Thread for Win32 (C), MultiThreading Programming, Thread for Win32, Creating Processes, Memory Sharing Between Processes" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial
+Multi-Threaded Programming II
+Native Thread for Win32 (C)
+(Creating Processes) - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mth2pc">Native Thread for Win32 (C) - Creating Processes</div>
+<br/>
+<p>To create a new process, we need to call <strong>CreateProcess()</strong>.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p><strong>Syntax:</strong></p>
+<pre>
+BOOL WINAPI CreateProcess(
+  __in_opt     LPCTSTR lpApplicationName,
+  __inout_opt  LPTSTR lpCommandLine,
+  __in_opt     LPSECURITY_ATTRIBUTES lpProcessAttributes,
+  __in_opt     LPSECURITY_ATTRIBUTES lpThreadAttributes,
+  __in         BOOL bInheritHandles,
+  __in         DWORD dwCreationFlags,
+  __in_opt     LPVOID lpEnvironment,
+  __in_opt     LPCTSTR lpCurrentDirectory,
+  __in         LPSTARTUPINFO lpStartupInfo,
+  __out        LPPROCESS_INFORMATION lpProcessInformation
+);
+</pre>
+<br/>
+<p><strong>Parameters:</strong><p>
+<ol>
+<li><strong>lpApplicationName </strong>  [in, optional]  <br/>
+The name of the module to be executed. <br/>
+This module can be a Windows-based application. <br/>
+It can be some other type of module (for example, MS-DOS or OS/2) if the appropriate subsystem is available on the local computer. <br/>
+
+The string can specify the full path and file name of the module to execute or it can specify a partial name. In the case of a partial name, the function uses the current drive and current directory to complete the specification. The function will not use the search path. This parameter must include the file name extension; no default extension is assumed.<br/>
+
+The <strong>lpApplicationName</strong> parameter can be NULL.<br/>
+ In that case, the module name must be the first white space delimited token in the <strong>lpCommandLine</strong> string. <br/>
+<li><strong>lpCommandLine</strong>   [in, out, optional] <br/>
+The command line to be executed. The maximum length of this string is 32,768 characters, including the Unicode terminating null character. If <strong>lpApplicationName</strong> is NULL, the module name portion of <strong>lpCommandLine</strong> is limited to MAX_PATH characters.<br/>
+
+The <strong>lpCommandLine</strong> parameter can be NULL. In that case, the function uses the string pointed to by <strong>lpApplicationName</strong>  as the command line.<br/>
+
+If both <strong>lpApplicationName</strong> and <strong>lpCommandLine</strong> are non-NULL, the null-terminated string pointed to by <strong>lpApplicationName</strong> specifies the module to execute, and the null-terminated string pointed to by <strong>lpCommandLine</strong> specifies the command line. The new process can use <strong>GetCommandLine</strong> to retrieve the entire command line. Console processes written in C can use the argc and argv arguments to parse the command line. Because <strong>argv[0]</strong> is the module name, C programmers generally repeat the module name as the first token in the command line.</li>
+<br/>
+<li><strong>lpProcessAttributes</strong>  [in, optional] <br/>
+A pointer to a <strong>SECURITY_ATTRIBUTES</strong> structure that determines whether the returned handle to the new process object can be inherited by child processes. If <strong>lpProcessAttributes</strong> is NULL, the handle cannot be inherited. <br/>
+</li>
+<br/>
+<li><strong>lpThreadAttributes</strong>  [in, optional] <br/>
+A pointer to a <strong>SECURITY_ATTRIBUTES</strong> structure that determines whether the returned handle to the new thread object can be inherited by child processes. If <strong>lpThreadAttributes</strong> is NULL, the handle cannot be inherited. <br/>
+
+The <strong>lpSecurityDescriptor</strong> member of the structure specifies a security descriptor for the main thread. If <strong>lpThreadAttributes</strong> is NULL o r<strong>lpSecurityDescriptor</strong> is NULL, the thread gets a default security descriptor. The ACLs in the default security descriptor for a thread come from the process token.</li>
+<br/>
+<li><strong>bInheritHandles</strong> [in] <br/>
+If this parameter TRUE, each inheritable handle in the calling process is inherited by the new process. If the parameter is FALSE, the handles are not inherited. Note that inherited handles have the same value and access rights as the original handles.</li>
+<br/>
+<li><strong>dwCreationFlags</strong> [in] <br/>
+The flags that control the priority class and the creation of the process. <br/>
+
+This parameter also controls the new process's priority class, which is used to determine the scheduling priorities of the process's threads. <br/>
+If none of the priority class flags is specified, the priority class defaults to <strong>NORMAL_PRIORITY_CLASS</strong> unless the priority class of the creating process is <strong>IDLE_PRIORITY_CLASSBELOW_NORMAL_PRIORITY_CLASS</strong>. In this case, the child process receives the default priority class of the calling process.</li>
+<br/>
+<li><strong>lpEnvironment</strong> [in, optional] <br/>
+
+A pointer to the environment block for the new process. If this parameter is NULL, the new process uses the environment of the calling process.<br/>
+
+An environment block consists of a null-terminated block of null-terminated strings. Each string is in the following form:
+<pre>
+name=value\0
+</pre>
+Because the equal sign is used as a separator, it must not be used in the name of an environment variable.<br/>
+
+An environment block can contain either Unicode or ANSI characters. <br/>
+If the environment block pointed to by <strong>lpEnvironment</strong> contains Unicode characters, be sure that <strong>dwCreationFlags</strong> includes <strong>CREATE_UNICODE_ENVIRONMENT</strong>. <br/>
+If this parameter is NULL and the environment block of the parent process contains Unicode characters, you must also ensure that <strong>dwCreationFlags</strong> includes <strong>CREATE_UNICODE_ENVIRONMENT</strong>.</li>
+<br/>
+<li><strong>lpCurrentDirectory</strong> [in, optional] <br/>
+The full path to the current directory for the process. The string can also specify a UNC path.<br/>
+
+If this parameter is NULL, the new process will have the same current drive and directory as the calling process. (This feature is provided primarily for shells that need to start an application and specify its initial drive and working directory.)</li>
+<br/>
+<li><strong>lpStartupInfo</strong> [in] <br/>
+A pointer to a <strong>STARTUPINFO</strong> or <strong>STARTUPINFOEX</strong> structure.<br/>
+
+To set extended attributes, use a <strong>STARTUPINFOEX</strong> structure and specify <strong>EXTENDED_STARTUPINFO_PRESENT</strong> in the <strong>dwCreationFlags</strong> parameter.
+Handles in <strong>STARTUPINFO</strong> must be closed with <strong>CloseHandle</strong> when they are no longer needed.</li>
+<br/>
+<li><strong>lpProcessInformation</strong> [out] <br/>
+A pointer to a <strong>PROCESS_INFORMATION</strong> structure that receives identification information about the new process. <br/>
+
+Handles in <strong>PROCESS_INFORMATION</strong> must be closed with <strong>CloseHandle</strong> when they are no longer needed. </li>
+</li></ol>
+
+<p>The following example shows the steps necessary to create a new process. If the application is started with a command-line parameter, the process will print this out and then create a child process without any parameters. If the process is started without any parameters, it prints out a message indicating this and exits.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+	STARTUPINFO startupInfo;
+	PROCESS_INFORMATION processInfo;
+
+	if(argc &gt; 1) {
+		printf("Argument %s\n", argv[1]);
+		printf("Starting child process\n");
+
+		memset(&amp;startupInfo;, 0, sizeof(startupInfo));
+		memset(&amp;processInfo;, 0, sizeof(processInfo));
+
+		startupInfo.cb = sizeof(startupInfo);
+
+		if(<font color="red">CreateProcess(argv[0], 0, 0, 0, 0, 0, 0, 0, 
+				&amp;startupInfo;, &amp;processInfo;)</font> == 0)
+		{
+			printf(" Error %d\n", GetLastError());
+		}
+		WaitForSingleObject(processInfo.<font color="red">hProcess</font>, INFINITE);
+	}
+	else {
+		printf("No argument\n");
+	}
+
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Suppose the executable of the above code is MyProc.exe. If we type "MyProc.exe myArgument" into command line, the output we get is:</p>
+<pre>
+Argument myArgument
+Starting child process
+No argument
+</pre>
+<p>The handle of the created process is returned in <strong>processInfo.hProcess</strong>. This handle is used to call <strong>WaitForSingleObject()</strong>. This call returns when the child process exits. The child process did not have any argument in the example, so the "No argument" was the output from the child process while the "Argument myArgument" was from the main process.</p>
+<p>The following example is passing arguments to a child process. We need to repeat the application name as the first command-line parameter, "MyProc.exe myArgument". The entire command line gets passed to the child process.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+	STARTUPINFO startupInfo;
+	PROCESS_INFORMATION processInfo;
+
+	if(argc == 1) {
+		char Args[256];
+		sprintf_s(Args, "dummyArgs %s", argv[0]);
+		memset(&amp;startupInfo;, 0, sizeof(startupInfo));
+		memset(&amp;processInfo;, 0, sizeof(processInfo));
+
+		startupInfo.cb = sizeof(startupInfo);
+
+		if(CreateProcess(argv[0], <font color="red">Args</font>, 
+			0, 0, 0, 0, 0, 0, &amp;startupInfo;, &amp;processInfo;) == 0)
+		{
+			printf(" Error %d\n", GetLastError());
+		}
+		WaitForSingleObject(processInfo.hProcess, INFINITE);
+	}
+	else {
+		printf("Argument %s\n", argv[1]);
+	}
+
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Argument myArgument
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="sharingmemory">Memory Sharing Between Processes</div>
+<p>Processes can share memory between them. Once one process has set up a region of memory with sharing attributes, another can open that region of memory and map it into its address space.</p>
+<p>The file mapping function <strong>CreateFileMapping()</strong> is used by the shared memory. The parameter <strong>INVALID_HANDLE_VALUE</strong> is for creating a handle to a region of shared memory. This can then be mapped into the process by calling <strong>MapViewOfFile()</strong>. Except the fact that the function <strong>OpenFileMapping()</strong> is used to obtain the handle, the steps of attaching to an existing region of shared memory are similar. </p>
+<p>An object can be shared between processes either by sharing the object's handle or by using a common name. The name can contain any character except a backslash and must start with either the local namespace identifier <strong>Local\</strong> or the global namespace identifier <strong>Global\</strong>. The local namespace is private to each user while the global namespace is shared by all users.</p>
+<p>The <strong>OpenFileMapping()</strong> call which opens an existing file mapping object takes three parameters:</p>
+<pre>
+HANDLE WINAPI OpenFileMapping(
+ __in DWORD dwDesiredAccess, 
+__in BOOL bInheritHandle, 
+__in LPCTSTR lpName ); 
+</pre>
+<ol>
+<li>The first parameter gives the security attributes for the mapping object, which usually will be <strong>FILE_MAP_ALL_ACCESS</strong> to allow both reading and writing to the share memory.</li>
+<li>The second parameter is a boolean that determines whether the handle can be inherited by child processes.</li>
+<li>The third parameter is the name of the mapping object.</li>
+</ol>
+<p>The <strong>CreateFileMapping()</strong> call creates the mapping object in the kernel, however, it does not actually map the object into user space. The call to <strong>MapViewOfFile()</strong> causes the shared object to be mapped into memory. The return value of this call is a pointer to the base address of the memory. This call takes file parameters:</p>
+<pre>
+LPVOID WINAPI MapViewOfFile(
+ __in HANDLE hFileMappingObject, 
+__in DWORD dwDesiredAccess, 
+__in DWORD dwFileOffsetHigh,
+ __in DWORD dwFileOffsetLow,
+ __in SIZE_T dwNumberOfBytesToMap ); 
+</pre>
+<p><strong>Parameters:</strong></p>
+<ol>
+<li><strong>hFileMappingObject</strong> [in] <br/>
+A handle to a file mapping object. The <strong>CreateFileMapping</strong> and <strong>OpenFileMapping</strong> functions return this handle.</li>
+<br/>
+<li><strong>dwDesiredAccess</strong> [in] <br/>
+The type of access to a file mapping object, which determines the protection of the pages. This parameter can be one of the following values.</li>
+<br/>
+<li><strong>dwFileOffsetHigh</strong>  [in] <br/>
+A high-order DWORD of the file offset where the view begins.</li>
+<br/>
+<li><strong>dwFileOffsetLow</strong>  [in] <br/>
+A low-order DWORD of the file offset where the view is to begin. The combination of the high and low offsets must specify an offset within the file mapping. They must also match the memory allocation granularity of the system. That is, the offset must be a multiple of the allocation granularity. To obtain the memory allocation granularity of the system, use the <strong> GetSystemInfo</strong>  function, which fills in the members of a <strong> SYSTEM_INFO</strong>  structure.</li>
+<br/>
+<li><strong>dwNumberOfBytesToMap</strong>  [in] <br/>
+The number of bytes of a file mapping to map to the view. All bytes must be within the maximum size specified by <strong> CreateFileMapping</strong> . If this parameter is 0 (zero), the mapping extends from the specified offset to the end of the file mapping.</li>
+</ol>
+<p>Once the process has finished with the shared memory, it needs to be unmapped by calling <strong>UnMapViewOfFile()</strong>, which takes the base address of the shared memory as a parameter:</p>
+<pre>
+BOOL WINAPI UnmapViewOfFile(
+ __in LPCVOID lpBaseAddress
+ ); 
+</pre>
+<p>Then, the handle can be closed by calling <strong>CloseHandle()</strong>.</p>
+<p>The following example demonstrates how a region of memory can be created and then shared between two processes. If the application is started without any parameters, it will create a child process. The parent process will also create a region of shared memory and store a string into the shared memory. The shared memory is given the name <strong>sharedmemory</strong>:</p>
+<pre>
+char ID[] = TEXT("Local\\sharedmemory");
+</pre>
+<p>It is created in the <strong>Local\</strong> namespace. So, it is visible to all the processes owned by the user.</p>
+<p>The child process attaches to the shared memory and can print out the value of the string stored there by the parent process. Once the child process has printed the string, it unmaps the memory and closes the file handle before exiting. Once the child process has exited, the parent process is free to unmap the memory, close the file handle, and then exit.</p>
+<br/>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+	STARTUPINFO startupInfo;
+	PROCESS_INFORMATION processInfo;
+	HANDLE fileHandle;
+	char ID[] = TEXT("Local\\sharedmemory");
+	char *memory;
+
+	if(argc == 1) {
+		<font color="blue">fileHandle = CreateFileMapping(INVALID_HANDLE_VALUE,
+					NULL, PAGE_READWRITE, 0, 1024, ID);
+		<font color="blue">memory</font> = (char*)MapViewOfFile(fileHandle, 
+					FILE_MAP_ALL_ACCESS, 0, 0, 0);</font>
+		sprintf_s(<font color="blue">memory</font>, 1024, "%s", "Data from first process");
+		printf("First process: %s\n", <font color="blue">memory</font>);
+
+		memset(&amp;startupInfo;, 0, sizeof(startupInfo));
+		memset(&amp;processInfo;, 0, sizeof(processInfo));
+		startupInfo.cb = sizeof(startupInfo);
+
+		char Args[256];
+		sprintf_s(Args, "dummyArgs %s", argv[0]);
+
+		CreateProcess(argv[0], Args, 
+			0, 0, 0, 0, 0, 0, &amp;startupInfo;, &amp;processInfo;);
+		WaitForSingleObject(processInfo.hProcess, INFINITE);
+
+		<font color="blue">UnmapViewOfFile(memory);
+		CloseHandle(fileHandle);</font>
+	}
+	else {
+		<font color="blue">fileHandle = OpenFileMapping(FILE_MAP_ALL_ACCESS, 0, ID);
+		memory = (char*)MapViewOfFile(fileHandle, 
+					FILE_MAP_ALL_ACCESS, 0, 0, 0);</font>
+
+		printf("Second process %s\n", <font color="blue">memory</font>);
+
+		<font color="blue">UnmapViewOfFile(memory);
+		CloseHandle(fileHandle);</font>
+	}
+
+	getchar();
+
+	return 0;
+}
+</pre>
+<p>The output we get:</p>
+<pre>
+First process: Data from first process
+Second process Data from first process
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="sharingmutex">Mutex Sharing Between Processes</div>
+<p>To share a mutex between processes, we need to create mutex with a name. Then, other process can use the 
+<strong>OpenMutex()</strong> or <strong>CreateMutex()</strong> to get a handle to the mutex. Here are the 
+complexities involved in this:</p>
+<ol>
+<li>Only one process can create the mutex, and the others just open the existing mutex.</li>
+<li>The name should be unique.</li>
+<li>The name of the mutex should be passed to the other processes.</li>
+</ol>
+<p>In the example below, the mutex is created by <strong>CteateMutex()</strong>. Here, we create two copies of the same processes 
+and enables them to share a mutex.</p>
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+	STARTUPINFO startupInfo;
+	PROCESS_INFORMATION processInfo;
+	HANDLE sharedmutex;
+
+	ZeroMemory(&amp;startupInfo;,sizeof(startupInfo));
+	ZeroMemory(&amp;processInfo;,sizeof(processInfo));
+	startupInfo.cb = sizeof(startupInfo);
+
+	<font color="red">sharedmutex = CreateMutex(0,0,"MyMutex");</font>
+
+	if(GetLastError() != ERROR_ALREADY_EXISTS)
+	{
+		if(CreateProcess(argv[0],0,0,0,0,0,0,0, &amp;startupInfo;, &amp;processInfo;) == 0) {
+			printf("ERROR %d : Mutex already exists\n", GetLastError());
+		}
+
+		WaitForInputIdle(processInfo.hProcess, INFINITE);
+	}
+
+	WaitForSingleObject(processInfo.hProcess, INFINITE);
+
+	for(int i = 0; i &lt;20; i++) {
+		printf("Process %d Count %d\n", GetCurrentProcessId(),i);
+	}
+
+	ReleaseMutex(sharedmutex);
+	CloseHandle(sharedmutex);
+
+	getchar();
+	return 0;
+}
+</pre>
+<p>Output is;</p>
+<pre>
+ERROR 2 : Mutex already exists
+Process 6200 Count 0
+Process 6200 Count 1
+Process 6200 Count 2
+Process 6200 Count 3
+Process 6200 Count 4
+Process 6200 Count 5
+Process 6200 Count 6
+Process 6200 Count 7
+Process 6200 Count 8
+Process 6200 Count 9
+Process 6200 Count 10
+Process 6200 Count 11
+Process 6200 Count 12
+Process 6200 Count 13
+Process 6200 Count 14
+Process 6200 Count 15
+Process 6200 Count 16
+Process 6200 Count 17
+Process 6200 Count 18
+Process 6200 Count 19
+</pre>
+<p>If the mutex already exists, then a handle to the existing mutex is returned, and the error condition 
+is set to <strong>ERROR_ALREADY_EXISTS</strong>. If this is not the error condition, then it is assumed by the code that this means that the mutex was created by the calling process, and the calling process needs to start a second copy. Note that the call to <strong>CreateMutex()</strong> takes the name of the mutex. The shared mutex is used to ensure that only one of the two processes counts up to 20 at a time. If there was no mutex, then both processes could be active simultaneously, and the console output would be a mix of the output from both processes. By using the mutex, the output is from just one of the processes at a time.</p>
+<br/>
+<br/>
+<p><b>Threading with QT5:</b></p>
+<ol>
+<li><a href="../Qt/Qt5_QThreads_Introduction.html">QThreads - Introduction</a></li>
+<li><a href="../Qt/Qt5_QThreads_Creating_Threads.html">QThreads - Creating Threads</a> </li>
+<li><a href="../Qt/Qt5_QThreads_Priority.html">QThreads - Priority</a> </li>
+<li><a href="../Qt/Qt5_QThreads_QMutex.html">QThreads - QMutex</a> </li>
+<li><a href="../Qt/Qt5_QThreads_GuiThread.html">QThreads - GuiThread</a> </li>
+<li><a href="../Qt/Qt5_QThreads_wait.html">QThreads - wait()</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_Multithreaded_Client_Server.html">QTcpServer - Client and Server using MultiThreading</a> </li>
+<li><a href="../Qt/Qt5_QTcpServer_QThreadPool_Multithreaded_Client_Server.html">QTcpServer - Client and Server using QThreadPool</a> </li>
+<li><a href="../Qt/Qt5_Asynchronous_QTcpServer_QThreadPool.html">Asynchronous QTcpServer - Client and Server using QThreadPool</a> </li>
+</ol>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_win32C.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:47 GMT -->
+</html>
+

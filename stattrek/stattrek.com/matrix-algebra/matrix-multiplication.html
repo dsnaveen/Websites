@@ -1,0 +1,1089 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/matrix-algebra/matrix-multiplication.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:11:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Matrix Multiplication
+</title>
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="Matrix multiplication. How to multiply a matrix by matrix and how to multiply a matrix by a scalar (i.e., a real number). Includes examples with solutions." /><meta name="keywords" content="matrix multiplication, multiplying matrices, how to multiply matrices, multiplication of matrices, multiply matrices, matrix products" /><link href="matrix-multiplication.html" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/matrix-algebra/matrix-multiplication.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1DD39F44" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="91G0jDSmAZXloH/gd0ZPo7J+XitvR3mRgpYFsDhWkQK0icpIjq55aS1CeSiu0tqfRPCyyKu8W/5Dq+IqRX1ma5Ruemu+VzU9UkZ3yPKRwLf54+fvtCiMRwpNgwTqyItPn3hiN7cWyRcfDY4TifUcz/8BfM5FVbXyRg6tRE0XsEkJwbd3H2JRWzjC4AKmEAamcfA9pNot1yb27u8CboRk8w==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1>Matrix Multiplication</h1>
+
+                    <p>In matrix algebra, there are two kinds of matrix multiplication: 
+                    multiplication of a matrix by a number and multiplication of a 
+                    matrix by another matrix.</p>
+            
+                    <h2>How to Multiply a Matrix by a Number</h2>
+                    <p>When you multiply a matrix by a number, you multiply every element in the matrix 
+                        by the same number.  This operation produces a new matrix, which is called
+                        a <strong>scalar multiple</strong>.</p>
+    
+                    <p>For example, if <i>x</i> is 5, and the matrix <strong>A</strong> is:</p> 
+       
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>A</strong> = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">100</td>
+                                    <td class="tdmatrixcell">200</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">300</td>
+                                    <td class="tdmatrixcell">400</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+    
+                    <p>Then,</p> 
+       
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><i>x</i><strong>A</strong> &nbsp; = &nbsp;&nbsp;5<strong>A</strong>&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">100</td>
+                                    <td class="tdmatrixcell">200</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">300</td>
+                                    <td class="tdmatrixcell">400</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell" style="padding-right: 20px;">5 * 100</td>
+                                    <td class="tdmatrixcell">5 * 200</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell" style="padding-right: 20px;">5 * 300</td>
+                                    <td class="tdmatrixcell">5 * 400</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">500</td>
+                                    <td class="tdmatrixcell">1000</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1500</td>
+                                    <td class="tdmatrixcell">2000</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp; = &nbsp;&nbsp;&nbsp;<strong>B</strong></td>
+                        </tr>
+                    </table>
+    
+                    <p>In the example above, every element of <strong>A</strong> is multiplied
+                        by 5 to produce the scalar multiple, <strong>B</strong>.</p>
+    
+                    <p>Note: Some texts refer to this operation as multiplying a matrix by a 
+                        scalar. (A scalar is a real number or a symbol representing a real number.)</p>
+    
+                    <h2>How to Multiply a Matrix by a Matrix</h2> 
+                    <p>The matrix product <strong>A</strong><strong>B</strong> is defined only
+                        when the number of columns in <strong>A</strong> is equal to the 
+                        number of rows in <strong>B</strong>.  Similarly, 
+                        the matrix product <strong>B</strong><strong>A</strong> is defined only
+                        when the number of columns in <strong>B</strong> is equal to the 
+                        number of rows in <strong>A</strong>.</p>
+    
+                    <p>Suppose that <strong>A</strong> is an <i>i</i>&nbsp;x&nbsp;<i>j</i> matrix, and 
+                        <strong>B</strong> is a <i>j</i>&nbsp;x&nbsp;<i>k</i> matrix.  Then, the matrix
+                        product <strong>A</strong><strong>B</strong> results in a matrix
+                        <strong>C</strong>, which has <i>i</i> rows and <i>k</i> columns; and
+                        each element in <strong>C</strong> can be computed according to the 
+                        following formula.</p>
+    
+                    <p style="text-align:center;">
+                        <i>C</i><sub>i</sub><sub>k</sub> = 
+                            &Sigma;<sub>j</sub> 
+                            <i>A</i><sub>i</sub><sub>j</sub><i>B</i><sub>j</sub><sub>k</sub>
+                    </p>
+    
+                    <p>where</p>
+                    <p style="padding-left:30px;">
+                        <i>C</i><sub>i</sub><sub>k</sub> = the element in row <i>i</i> and 
+                            column <i>k</i> from matrix <strong>C</strong><br />
+                        <i>A</i><sub>i</sub><sub>j</sub> = the element in row <i>i</i> and 
+                            column <i>j</i> from matrix <strong>A</strong><br />
+                        <i>B</i><sub>j</sub><sub>k</sub> = 
+                            the element in row <i>j</i> and column <i>k</i>
+                            from matrix <strong>B</strong><br />
+                        &Sigma;<sub>j</sub> = summation sign, which indicates that the
+                            a<sub>i</sub><sub>j</sub>b<sub>j</sub><sub>k</sub> terms should be 
+                            summed over <i>j</i>
+                    </p>
+    
+                    <p>Let's work through an example to show how the above formula works.  
+                        Suppose we want to compute
+                        <strong>A</strong><strong>B</strong>, given the matrices below.</p>
+       
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>A</strong> = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">4</td>
+                                    <td class="tdmatrixcell">5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:40px;">&nbsp;</td>
+                        <td><strong>B</strong> = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">6</td>
+                                    <td class="tdmatrixcell">7</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">8</td>
+                                    <td class="tdmatrixcell">9</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">10</td>
+                                    <td class="tdmatrixcell">11</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+        
+                    <p>Let <strong>A</strong><strong>B</strong> = <strong>C</strong>. 
+                        Because <strong>A</strong> has 2 rows, we know that <strong>C</strong> will
+                        have two rows; and because <strong>B</strong> has 2 columns, we know that
+                        <strong>C</strong> will have 2 columns.
+                        To compute the value of every element in the 2 x 2 matrix <strong>C</strong>,
+                        we use the formula 
+                        <i>C</i><sub>i</sub><sub>k</sub>&nbsp;=&nbsp;
+                        &Sigma;<sub>j</sub>&nbsp;<i>A</i><sub>i</sub><sub>j</sub><i>B</i><sub>j</sub><sub>k</sub>,
+                        as shown below.</p>
+        
+                    <ul>
+                        <li><i>C</i><sub>1</sub><sub>1</sub> = &Sigma; <i>A</i><sub>1</sub><sub>j</sub><i>B</i><sub>j</sub><sub>1</sub>
+                            = 0*6 + 1*8 +2*10 = 0 + 8 + 20 = 28</li>
+                        <li><i>C</i><sub>1</sub><sub>2</sub> = &Sigma; <i>A</i><sub>1</sub><sub>j</sub><i>B</i><sub>j</sub><sub>2</sub>
+                            = 0*7 + 1*9 +2*11 = 0 + 9 + 22 = 31</li>
+                        <li><i>C</i><sub>2</sub><sub>1</sub> = &Sigma; <i>A</i><sub>2</sub><sub>j</sub><i>B</i><sub>j</sub><sub>1</sub>
+                            = 3*6 + 4*8 +5*10 = = 18 + 32 + 50 = 100</li>
+                        <li><i>C</i><sub>2</sub><sub>2</sub> = &Sigma; <i>A</i><sub>2</sub><sub>j</sub><i>B</i><sub>j</sub><sub>2</sub>
+                            = 3*7 + 4*9 +5*11 = 21 + 36 +55 = 112</li>        
+                    </ul>
+    
+                    <p>Based on the above calculations, we can say</p>
+    
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>A</strong><strong>B</strong>&nbsp;&nbsp; = &nbsp;&nbsp;<strong>C</strong> = &nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">28</td>
+                                    <td class="tdmatrixcell">31</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">100</td>
+                                    <td class="tdmatrixcell">112</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+    
+                    <p>What we did to compute Matrix <strong>C</strong> was not 
+                        complicated.  All we did was to multiply row elements in 
+                        Matrix <strong>A</strong> by corresponding column elements in 
+                        Matrix <strong>B</strong>.</p>
+    
+                    <h2>Multiplication Order</h2>
+                    <p>As we have already mentioned, in some cases, matrix multiplication is 
+                        defined for <strong>A</strong><strong>B</strong>, but not for
+                        <strong>B</strong><strong>A</strong>; and vice versa. However, 
+                        even when matrix multiplication is possible in both directions, 
+                        results may be different.  That is,
+                        <strong>A</strong><strong>B</strong> is not always equal to 
+                        <strong>B</strong><strong>A</strong>.</p>
+    
+                    <p>Because order is important, matrix algebra jargon has evolved to 
+                        clearly indicate the order in which matrices are multiplied.</p>
+                    <ul>
+                        <li>To describe the matrix product <strong>A</strong><strong>B</strong>, 
+                        we can say <strong>A</strong> is <i>postmultiplied</i>
+                        by <strong>B</strong>; or we can say that <strong>B</strong> is
+                        <i>premultiplied</i> by <strong>A</strong>.<br /><br /></li>
+                        <li>Similarly, to describe the matrix product 
+                        <strong>B</strong><strong>A</strong>, 
+                        we can say <strong>B</strong> is <i>postmultiplied</i>
+                        by <strong>A</strong>; or we can say that <strong>A</strong> is
+                        <i>premultiplied</i> by <strong>B</strong>.</li>
+                    </ul>
+    
+                    <p>The bottom line: when you multiply two matrices, order matters.</p>
+    
+                    <h2>Identity Matrix</h2>
+                    <p>The <strong>identity matrix</strong> is an 
+                    <i>n</i> x <i>n</i>
+                    <a href="../statistics/dictionaryc774.html?Target=Diagonal_matrix">diagonal matrix</a>
+                    with 1's in the diagonal and zeros everywhere else. The identity matrix
+                    is denoted by <strong>I</strong> or <strong>I<sub>n</sub></strong>. 
+                    Two identity matrices appear below.</p>
+    
+                    <table style="margin-right:auto; margin-left:auto;"><tr>
+                        <td>
+                        <table style="margin-left:auto; margin-right:auto;">
+                            <tr>
+                            <td><strong>I<sub>2</sub></strong> = &nbsp;&nbsp;&nbsp;</td>
+                            <td style="padding-right:30px;">
+                                <table style="margin-right:auto; margin-left:auto;">
+                                    <tr>
+                                        <td class="tdleftbracket" rowspan="2"></td>
+                                        <td class="tdmatrixcell">1</td>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdrightbracket" rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdmatrixcell">1</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                        <td>
+                        <table style="margin-left:auto; margin-right:auto;">
+                            <tr>
+                            <td><strong>I<sub>3</sub></strong> = &nbsp;&nbsp;&nbsp;</td>
+                            <td style="padding-right:30px;">
+                                <table style="margin-right:auto; margin-left:auto;">
+                                    <tr>
+                                        <td class="tdleftbracket" rowspan="3"></td>
+                                        <td class="tdmatrixcell">1</td>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdrightbracket" rowspan="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdmatrixcell">1</td>
+                                        <td class="tdmatrixcell">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdmatrixcell">0</td>
+                                        <td class="tdmatrixcell">1</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr></table>
+    
+                    <p>The identity matrix has a unique talent. Any matrix that can be 
+                        premultiplied or postmultiplied by <strong>I</strong> remains the 
+                        same; that is:</p>
+        
+                    <p style="text-align:center;">
+                        <strong>A</strong><strong>I</strong> = <strong>I</strong><strong>A</strong> = 
+                        <strong>A</strong>
+                    </p>
+        
+                    <h2>Test Your Understanding</h2>
+    
+                    <p><strong>Problem 1</strong></p>
+                    <p>Consider the matrices shown below - <strong>A</strong>, <strong>B</strong>,
+                        and <strong>C</strong></p>
+        
+                    <table style="margin-right:auto; margin-left:auto;"><tr>
+                        <td>
+                        <table style="margin-left:auto; margin-right:auto;">
+                            <tr>
+                            <td><strong>A</strong> = &nbsp;&nbsp;&nbsp;</td>
+                            <td style="padding-right:30px;">
+                                <table style="margin-right:auto; margin-left:auto;">
+                                    <tr>
+                                        <td class="tdleftbracket" rowspan="2"></td>
+                                        <td class="tdmatrixcell">a</td>
+                                        <td class="tdmatrixcell">b</td>
+                                        <td class="tdrightbracket" rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">c</td>
+                                        <td class="tdmatrixcell">d</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                        <td>
+                        <table style="margin-left:auto; margin-right:auto;">
+                            <tr>
+                            <td><strong>B</strong> = &nbsp;&nbsp;&nbsp;</td>
+                            <td style="padding-right:30px;">
+                                <table style="margin-right:auto; margin-left:auto;">
+                                    <tr>
+                                        <td class="tdleftbracket" rowspan="2"></td>
+                                        <td class="tdmatrixcell">e</td>
+                                        <td class="tdmatrixcell">f</td>
+                                        <td class="tdrightbracket" rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">g</td>
+                                        <td class="tdmatrixcell">h</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                        <td>
+                        <table style="margin-left:auto; margin-right:auto;">
+                            <tr>
+                            <td><strong>C</strong> = &nbsp;&nbsp;&nbsp;</td>
+                            <td style="padding-right:30px;">
+                                <table style="margin-right:auto; margin-left:auto;">
+                                    <tr>
+                                        <td class="tdleftbracket" rowspan="2"></td>
+                                        <td class="tdmatrixcell">w</td>
+                                        <td class="tdmatrixcell">x</td>
+                                        <td class="tdrightbracket" rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdmatrixcell">y</td>
+                                        <td class="tdmatrixcell">z</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr></table>   
+        
+                    <p>Assume that <strong>A</strong><strong>B</strong> = <strong>C</strong>.
+                        Which of the following statements are true?</p>
+        
+                    <!--
+                    <p class="Probs">
+                        I.&nbsp;&nbsp;&nbsp;<strong>A</strong> + <strong>B</strong> = <strong>C</strong>
+                        <br />
+                        II.&nbsp;&nbsp;<strong>B</strong> + <strong>C</strong> = D
+                        <br />
+                        III.&nbsp;<strong>B</strong> - <strong>C</strong> = <strong>D</strong>
+                    </p>
+                    -->
+    
+                    <p class="Probs"> 
+                        (A) w = a*e + b*h
+                        <br />
+                        (B) x = a*f + b*h
+                        <br />
+                        (C) y = c*g + d*h
+                        <br />
+                        (D) All of the above
+                        <br />
+                        (E) None of the above
+                    </p>
+
+                    <p><strong>Solution</strong></p>
+                    <p>The correct answer is (B). To compute the value of any element in 
+                        matrix <strong>C</strong>, we use the formula 
+                        <i>C</i><sub>i</sub><sub>k</sub>&nbsp;=&nbsp;&Sigma;<sub>j</sub>&nbsp;<i>A</i><sub>i</sub><sub>j</sub><i>B</i><sub>j</sub><sub>k</sub>.</p>
+        
+                    <p>In matrix <strong>C</strong>, x is the element in row 1 and column 2,
+                        which is represented in the formula by <i>C</i><sub>1</sub><sub>2</sub>.
+                        Therefore, to find x, we use the formula to calculate 
+                        <i>C</i><sub>1</sub><sub>2</sub>, as shown below.</p>
+    
+                        <p style="text-align:center;">
+                        x = <i>C</i><sub>1</sub><sub>2</sub> 
+                        = &Sigma;<sub>j</sub>&nbsp;<i>A</i><sub>1</sub><sub>j</sub><i>B</i><sub>j</sub><sub>2</sub>
+                        = <i>A</i><sub>1</sub><sub>1</sub><i>B</i><sub>1</sub><sub>2</sub> 
+                        + <i>A</i><sub>1</sub><sub>2</sub><i>B</i><sub>2</sub><sub>2</sub>
+                        = a*f + b*h        
+                        </p>
+            
+                    <p>All of the other answers are incorrect.</p>
+        
+                    <!-- google_ad_section_end -->
+
+                    <br /><br />
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                     
+
+<link href="../css/theme1/matrix-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-matrix.js" type="text/javascript"></script>
+
+<nav>
+<div class="mat_Menu2Title">
+    <a class="mat_Menu2Title" title="About this matrix algebra tutorial" 
+        href="../tutorials/matrix-algebra-tutorial.html">
+        Matrix Algebra
+    </a>
+</div>
+
+<!-- Check mark symbol: &#10003; Solid right-facing triangle: &#9654;  -->
+<div id="mat_nav">
+    <br />
+    <span>Matrix basics</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix.html">
+        <span class="mat_TocArrow" id="sp1">&#9654;</span>
+        Matrix intro</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-type.html">
+        <span class="mat_TocArrow" id="sp2" style="color:#900; font-weight:bold;">&#9654;</span> 
+        Types of matrices</a></li>
+    </ul>
+    
+    <span>Matrix operations</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-addition.html">
+        <span class="mat_TocArrow" id="sp3">&#9654;</span>
+        Matrix addition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-multiplication.html">
+        <span class="mat_TocArrow" id="sp4">&#9654;</span>
+        Matrix multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="vector-multiplication.html">
+        <span class="mat_TocArrow" id="sp5">&#9654;</span>
+        Vector multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="elementary-operations.html">
+        <span class="mat_TocArrow" id="sp6">&#9654;</span>
+        Elementary operations</a></li>
+        </ul>
+    
+    <span>Echelon matrices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-form.html">
+        <span class="mat_TocArrow" id="sp7">&#9654;</span>
+        Echelon forms</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-transform.html">
+        <span class="mat_TocArrow" id="sp8">&#9654;</span>
+        Echelon transforms</a></li>
+        </ul>
+    
+    <span>Matrix properties</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="independent-vector.html">
+        <span class="mat_TocArrow" id="sp9">&#9654;</span>
+        Vector dependence</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-rank.html">
+        <span class="mat_TocArrow" id="sp10">&#9654;</span>
+        Matrix rank</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-determinant.html">
+        <span class="mat_TocArrow" id="sp11">&#9654;</span>
+        Matrix determinant</a></li>
+        </ul>
+    
+    <span>Matrix inverse</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp12">&#9654;</span>
+        Inverse definition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="find-matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp13">&#9654;</span>
+        How to find inverse: I</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="how-to-find-inverse.html">
+        <span class="mat_TocArrow" id="sp14">&#9654;</span>
+        How to find inverse: II</a></li>
+    </ul>
+    
+    <span>Matrix applications</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="system-of-equations.html">
+        <span class="mat_TocArrow" id="sp15">&#9654;</span>
+        Linear equations</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sum-of-elements.html">
+        <span class="mat_TocArrow" id="sp16">&#9654;</span>
+        Summation</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="vector-mean.html">
+        <span class="mat_TocArrow" id="sp17">&#9654;</span>
+        Mean scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="deviation-score.html">
+        <span class="mat_TocArrow" id="sp18">&#9654;</span>
+        Deviation scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sums-of-squares.html">
+        <span class="mat_TocArrow" id="sp19">&#9654;</span>
+        Sums of squares</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="covariance-matrix.html">
+        <span class="mat_TocArrow" id="sp20">&#9654;</span>
+        Variance-covariance</a></li>
+    </ul>
+    
+    <span>Appendices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-theorems.html">
+        <span class="mat_TocArrow" id="sp21">&#9654;</span>
+        Matrix theorems</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-notation.html">
+        <span class="mat_TocArrow" id="sp22">&#9654;</span>
+        Matrix notation</a></li>
+    </ul>
+</div>
+</nav>
+
+<script type="text/javascript">
+    mat_hideMatrixTocArrows();
+    mat_showMatrixTocArrow();
+</script> 
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00000JF55?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00000JF55'>Texas Instruments TI-89 Advanced Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00000JF55?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00000JF55'><img src='https://images-na.ssl-images-amazon.com/images/I/51Z936XXTVL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$190.00</span><br />Buy Used: <span style='color:#990000;'>$31.75</span><br />Buy New: <span style='color:#990000;'>$159.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00000JF55?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00000JF55'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1592576346?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1592576346'>The Complete Idiot's Guide to Statistics, 2nd Edition (Idiot's Guides)</a><br /><span class='verticalAdAuthor'>Ph.D., Robert A. Donnelly Jr.</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1592576346?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1592576346'><img src='https://images-na.ssl-images-amazon.com/images/I/51n7b3nIY0L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$19.95</span><br />Buy Used: <span style='color:#990000;'>$2.48</span><br />Buy New: <span style='color:#990000;'>$16.83</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0486652521?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0486652521'>Probability: An Introduction</a><br /><span class='verticalAdAuthor'>Samuel Goldberg, Mathematics</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0486652521?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0486652521'><img src='https://images-na.ssl-images-amazon.com/images/I/51PIixeZTEL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$18.95</span><br />Buy Used: <span style='color:#990000;'>$2.49</span><br />Buy New: <span style='color:#990000;'>$14.56</span></font></div></div><br /></aside><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000DJENZ?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000DJENZ'>Casio(R) FX-9750GPlus Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000DJENZ?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000DJENZ'><img src='https://images-na.ssl-images-amazon.com/images/I/51e9Gi79HWL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$87.99</span><br />Buy Used: <span style='color:#990000;'>$9.95</span><br />Buy New: <span style='color:#990000;'>$87.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000DJENZ?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000DJENZ'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/matrix-algebra/matrix-multiplication.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:11:24 GMT -->
+</html>

@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/MEAN-Stack/MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:48:54 GMT -->
+<head>
+  <title>MEAN Stack Tutorial : Node ToDo List App with Mongodb - 2017</title>
+  <meta content="MEAN Stack Tutorial : Node ToDo List App with Mongodb, Express.js, Angular.js, Node.js" name="description" />
+  <meta content="MEAN Stack Tutorial : Node ToDo List App with Mongodb, Express.js, Angular.js, Node.js" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">MEAN Stack : Node ToDo List App with Mongodb         <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="Images/MEAN-Icon.png" alt="MEAN-Icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Note">Note</div>
+<p>In this article, we'll make a ToDo list (<a href="https://github.com/epic-math/NodeJS-MEAN.git" target="_blank">https://github.com/epic-math/NodeJS-MEAN.git</a>. </p>
+<pre class="prettyprint">
+$ mkdir ToDo
+$ cd ToDo
+$ npm init
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pakage">package.json &amp; npm install</div>
+<p>Now we want to modify <b>package.json</b>:</p>
+<pre class="prettyprint">
+{
+  "name"         : "node-todo",
+  "version"      : "0.0.0",
+  "description"  : "Simple todo application.",
+  "main"         : "server.js",
+  "author"       : "Bogotobogo",
+  "dependencies" : {
+    "express"    : "~4.13.2",
+    "mongoose"   : "~3.6.2",
+    "morgan"     : "~1.6.1",
+    "body-parser": "~1.14.1",
+    "method-override": "~2.3.5"
+  }
+}
+</pre>
+<p>When we run <b>npm install</b>, <b>npm</b> consult this file and install dependencies such as <b>Express</b> and <b>Mongoose</b>:</p>
+<pre class="prettyprint">
+$ sudo npm install
+</pre>
+<p>The tilde (~) matches the most recent minor version (the middle number): ~1.2.3 will match all 1.2.x versions but will miss 1.3.0. <br/>
+The caret (^), on the other hand, is more relaxed. It will update to the most recent major version (the first number). ^1.2.3 will match any 1.x.x release including 1.3.0, but will hold off on 2.0.0.</p>
+<p>Because MongoDB is so easy to use, the basic Node.js driver can be the best solution for many applications. However, if we need validations, associations, and other high-level data modeling functions, then an <b>Object Document Mapper (ODM)</b> or <b>Object Relational Mapping (ORM)</b> may be helpful. This means that Mongoose translates data in the database to JavaScript objects for use in our application</p>
+<p>
+<b>Mongoose</b> is an ODM for Node.js. It has a thriving open source community and includes advanced schema-based features such as async validation, casting, object life-cycle management, pseudo-joins, and rich query builder support.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="node-configuration">node configuration</div>
+<p>In our <b>package.json</b> file, we told <b>Node</b> that our main file would be <b>server.js</b>. This is the main file for our Node app and where we will configure the entire application.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="mongodb-install">mongodb install &amp; run</div>
+<p>Install the MongoDB packages:</p>
+<pre class="prettyprint">
+$ sudo apt-get install -y mongodb-org
+</pre>
+<p>Check installed package list:</p>
+<pre class="prettyprint">
+$ dpkg --list |grep mongo
+ii  mongodb-org                              3.0.6                            amd64        MongoDB open source document-oriented database system (metapackage)
+ii  mongodb-org-mongos                       3.0.6                            amd64        MongoDB sharded cluster query router
+ii  mongodb-org-server                       3.0.6                            amd64        MongoDB database server
+ii  mongodb-org-shell                        3.0.6                            amd64        MongoDB shell client
+ii  mongodb-org-tools                        3.0.6                            amd64        MongoDB tools
+</pre>
+<p>
+<pre class="prettyprint">
+$ sudo service mongod start
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="server-js">server.js</div>
+<p>Here is the code for our Node server (actually, we rename <b>app.js</b> to <b>server.js</b>). In the subsequent sections, we'll see what the code is doing:</p>
+<pre class="prettyprint">
+// server.js
+
+    // set up ========================
+    var express  = require('express');
+    var app      = express();                        // create our app w/ express
+    var mongoose = require('mongoose');              // mongoose for mongodb
+    var morgan   = require('morgan');                // log requests to the console (express4)
+    var bodyParser = require('body-parser');         // pull information from HTML POST (express4)
+    var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+    var database = require('./config/database');
+    var port     = process.env.PORT || 8888;         // set the port
+
+
+    // configuration ===============================================================
+    mongoose.connect(database.url);     // connect to mongoDB database on modulus.io
+
+    app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+    app.use(morgan('dev'));                                         // log every request to the console
+    app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
+    app.use(bodyParser.json());                                     // parse application/json
+    app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+    app.use(methodOverride());
+
+    // routes ======================================================================
+    require('./app/routes.js')(app);
+
+    // listen (start app with node server.js) ======================================
+    app.listen(port);
+    console.log("App listening on port : " + port);
+</pre>
+<p><b>require()</b> method is used to load the module into our code.</p>
+<p>We just configured the app for Express:</p>
+<pre class="prettyprint">
+var express  = require('express');
+var app      = express();    
+var mongoose = require('mongoose');              // mongoose for mongodb
+var morgan   = require('morgan');                // log requests to the console (express4)
+var bodyParser = require('body-parser');         // pull information from HTML POST (express4)
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+</pre>
+<p><b>app.use()</b> method to bind a middleware function with a specific path.</p>
+<p>We'll use <b>mongoose</b> for <b>mongodb</b> and to console logging we use <b>morgan</b>. The <b>body-parser</b> will be used to pull posted info. The <b>method-override</b> let us use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.</p>
+<p>Our server will listen to port 8888:</p>
+<pre class="prettyprint">
+    app.listen(port);
+    console.log("App listening on port : " + port);
+</pre>
+<p>We will need a <b>schema</b> and a <b>model</b> in order to work with the data that will be persisted in our MongoDB database. Schemas define the structure of documents within a collection and models are used to create instances of data that will be stored in documents. We will be making a database of Todos to keep track. We started off by creating a Todo schema and model:</p>
+<pre class="prettyprint">
+var Todo = mongoose.model('Todo', {
+        text : String
+    });
+</pre>
+<p>Our model has just the text for the Todo. MongoDB will automatically generate an <b>_id</b> for each Todo that we create.</p>
+<p>Notice that the <b>Todo</b> model is capitalized. That's because when a model is compiled, the result is a constructor function that is used to create instances of the model. The instances created from the model constructor are documents which will be persisted by Mongo.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="config-database-js">config/database.js</div>
+<p><b>module.exports</b> allows us to pass data from one file to another. Note that just using <b>require('./config/database')</b> doesn't automagically give us access to those variables. <b>module.exports</b>  exposes those variables (or functions or anything else) to other files. </p>
+<pre class="prettyprint">
+// config/database.js
+
+module.exports = {
+    url : 'mongodb://localhost/'
+};
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="models-todo-js">app/models/todo.js</div>
+<pre class="prettyprint">
+// app/models/todo.js
+
+// load mongoose since we need it to define a model
+var mongoose = require('mongoose');
+
+module.exports = mongoose.model('Todo', {
+    text : String,
+    done : Boolean
+});
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="public-index-html">RESTful API Routes</div>
+<p>Angular accesses data it needs through the Node API. Node connects to the database and returns JSON information to Angular based on the RESTful routing.</p>
+<img alt="mongo-node-angular-diagram.png" src="Images/ToDoNodeJS/mongo-node-angular-diagram.png"/>
+<p>Picture source : <a href="https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular" target="_blank">Creating a Single Page Todo App with Node and Angular</a></p>
+<p>Based on the routes in <b>server.js</b>, we have a table showing how a frontend application should request data from the API:</p>
+<table cellpadding="10">
+<tr>
+<th>Method</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/todos</td>
+<td>Get all of the todos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/todos</td>
+<td>Create a single todo</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/todos/:todo_id</td>
+<td>Delete a single todo</td>
+</tr>
+</table>
+<br/>
+<p>We used the Mongoose actions to help us to interact with our database.</p>
+<p>Recall we created our model earlier with:</p>
+<pre class="prettyprint">
+var Todo = mongoose.model
+</pre>
+<p>Now, we can use <b>Todo</b> to <b>GET</b>, <b>POST</b>, and <b>DELETE</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="routes-js">routes.js</div>
+<p>Here we'll define our routes file, and we'll just load that in our <b>server.js</b> and pass in our app variable to the function. This way the routes file has access to app and express.</p>
+<pre class="prettyprint">
+// app/routes.js
+
+// load the todo model
+var Todo = require('./models/todo');
+
+// expose the routes to our app with module.exports
+module.exports = function(app) {
+
+    // api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/todos', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        Todo.find(function(err, todos) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(todos); // return all todos in JSON format
+        });
+    });
+
+    // create todo and send back all todos after creation
+    app.post('/api/todos', function(req, res) {
+
+        // create a todo, information comes from AJAX request from Angular
+        Todo.create({
+            text : req.body.text,
+            done : false
+        }, function(err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            Todo.find(function(err, todos) {
+                if (err)
+                    res.send(err)
+                res.json(todos);
+            });
+        });
+
+    });
+
+    // delete a todo
+    app.delete('/api/todos/:todo_id', function(req, res) {
+        Todo.remove({
+            _id : req.params.todo_id
+        }, function(err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            Todo.find(function(err, todos) {
+                if (err)
+                    res.send(err)
+                res.json(todos);
+            });
+        });
+    });
+};
+</pre>
+<p>Recall, in our previous section, we required the Express module, then we defined a module function that initializes the Express application. First, it creates a new instance of an Express application, and then it requires the routing file and calls it as a function passing it the application instance as an argument. </p>
+<p>In the following code snippet:</p>
+<pre class="prettyprint">
+module.exports = function(app) {
+</pre>
+<p>The routing module function accepts a single argument called <b>app</b>, so when we call this function, we'll need to pass it the instance of the Express application.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="public-index-html">public/index.html</div>
+<p><b>public/index.html</b> is the HTML needed to interact with Angular.</p>
+<pre class="prettyprint">
+&lt;!-- ASSIGN OUR ANGULAR MODULE --&gt;
+&lt;html ng-app="bogoTodo"&gt;
+&lt;head&gt;
+    &lt;!-- META --&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;&lt;!-- Optimize mobile viewport --&gt;
+
+    &lt;title&gt;Node/Angular Todo App&lt;/title&gt;
+
+    &lt;!-- SCROLLS --&gt;
+    &lt;link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"&gt;&lt;!-- load bootstrap --&gt;
+    &lt;style&gt;
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    &lt;/style&gt;
+
+    &lt;!-- SPELLS --&gt;
+    &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;&lt;!-- load jquery --&gt;
+    &lt;script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"&gt;&lt;/script&gt;&lt;!-- load angular --&gt;
+    &lt;script src="core.js"&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;!-- SET THE CONTROLLER AND GET ALL TODOS --&gt;
+&lt;body ng-controller="mainController"&gt;
+    &lt;div class="container"&gt;
+
+        &lt;!-- HEADER AND TODO COUNT --&gt;
+        &lt;div class="jumbotron text-center"&gt;
+            &lt;h1&gt;My Todo List &lt;span class="label label-info"&gt;{{ todos.length }}&lt;/span&gt;&lt;/h1&gt;
+        &lt;/div&gt;
+
+        &lt;!-- TODO LIST --&gt;
+        &lt;div id="todo-list" class="row"&gt;
+            &lt;div class="col-sm-4 col-sm-offset-4"&gt;
+
+                &lt;!-- LOOP OVER THE TODOS IN $scope.todos --&gt;
+                &lt;div class="checkbox" ng-repeat="todo in todos"&gt;
+                    &lt;label&gt;
+                        &lt;input type="checkbox" ng-click="deleteTodo(todo._id)"&gt; {{ todo.text }}
+                    &lt;/label&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- FORM TO CREATE TODOS --&gt;
+        &lt;div id="todo-form" class="row"&gt;
+            &lt;div class="col-sm-8 col-sm-offset-2 text-center"&gt;
+                &lt;form&gt;
+                    &lt;div class="form-group"&gt;
+
+                        &lt;!-- BIND THIS VALUE TO formData.text IN ANGULAR --&gt;
+                        &lt;input type="text" class="form-control input-lg text-center" placeholder="I want to detect/capture dark matter" ng-model="formData.text"&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- createToDo() WILL CREATE NEW TODOS --&gt;
+                    &lt;button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()"&gt;Add&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br/>
+<br/>
+<p>Let's run node server:</p>
+<pre class="prettyprint">
+$ npm start
+
+&gt; node-todo@0.0.0 start /home/k/TEST7/ToDo
+&gt; node server.js
+
+App listening on port 7777
+GET /core.js 404 30.424 ms - 20
+</pre>
+<br/>
+<br/>
+<img alt="NodeJS-Without-AngularJS.png" src="Images/ToDoNodeJS/NodeJS-Without-AngularJS.png"/>
+<br/>
+<p>As we can see from the output, we're missing <b>public/core.js</b> which is referred from <b>index.html</b>. It should look like this:</p>
+<pre class="prettyprint">
+&lt;script src="core.js"&gt;&lt;/script&gt;
+</pre>
+<p>Let's add the missing component - Angular!</p>
+<p>In next section, our Angular will be setup. We will create a <b>module</b>, <b>controller</b>, and define <b>functions</b> to handle todos.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="public-core-js">public/core.js - AngularJS</div>
+<p>Here is our AngularJS file, <b>public/core.js</b>:</p>
+<pre class="prettyprint">
+// public/core.js
+var bogoTodo = angular.module('bogoTodo', []);
+
+function mainController($scope, $http) {
+    $scope.formData = {};
+
+    // when landing on the page, get all todos and show them
+    $http.get('/api/todos')
+        .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
+    // when submitting the add form, send the text to the node API
+    $scope.createTodo = function() {
+        $http.post('/api/todos', $scope.formData)
+            .success(function(data) {
+                $scope.formData = {}; // clear the form so our user is ready to enter another
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+    // delete a todo after checking it
+    $scope.deleteTodo = function(id) {
+        $http.delete('/api/todos/' + id)
+            .success(function(data) {
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+}
+</pre>
+<p>We created our Angular module, controller (<b>mainController</b>), and our functions to get all todos, create a todo, and delete a todo.</p>
+<p>All these will be hitting the API we just created.</p>
+<p>On page load, we will <b>GET /api/todos</b> and bind the JSON we receive from the API to <b>$scope.todos</b>. We will then loop over these in our view to make our todos.</p>
+<br/>
+<img alt="NodeJS-With-AngularJS.png" src="Images/ToDoNodeJS/NodeJS-With-AngularJS.png"/>
+<br/>
+<br/>
+<img alt="NodeJSTree3.png" src="Images/ToDoNodeJS/NodeJSTree3.png"/>
+<br/>
+<br/>
+<br/>
+<p>We can interact with it at <b>localhost:8888/api/todos</b> to get all the todos:</p>
+<pre class="prettyprint">
+$ node server.js
+App listening on port 8888
+GET /api/todos 200 92.535 ms - 113
+</pre>
+<br/>
+<br/>
+<img alt="api-todo-json.png" src="Images/ToDoNodeJS/api-todo-json.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="daemon">node.js server as a daemon process</div>
+<p>We can daemonize a <b>node.js</b> server.</p>
+<pre class="prettyprint">
+$ sudo npm install -g forever
+
+$ which forever
+/usr/local/bin/forever
+</pre>
+<p>Let's start node:</p>
+<pre class="prettyprint">
+$ forever start server.js
+warn:    --minUptime not set. Defaulting to: 1000ms
+warn:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+info:    Forever processing file: server.js
+</pre>
+<p>Check the processes:</p>
+<pre class="prettyprint">
+$ ps -ef|grep  node|grep -v grep
+ubuntu    3557     1  0 22:50 ?        00:00:00 /usr/bin/nodejs /usr/local/lib/node_modules/forever/bin/monitor server.js
+ubuntu    3559  3557  0 22:50 ?        00:00:00 /usr/bin/nodejs /home/ubuntu/ToDo/server.js
+</pre>
+<p>If we want to stop node, issue the following command:</p>
+<pre class="prettyprint">
+$ forever stop server.js
+</pre>
+<br/>
+<p>Source available at <a href="https://github.com/epic-math/NodeJS-MEAN" target="_blank">https://github.com/epic-math/NodeJS-MEAN</a>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="front-end">Reorganizing front-end</div>
+<p>So far, we primarily worked on node side back-end.</p>
+<p>The <b>core.js</b> has all the angular portion of code, and we want to move our javascript files and Angular modules into separate files under <b>public</b> folder from <b>core.js</b>. That's because we want our application to be modular so that our <b>controller</b> and all of our <b>$http requests</b> are in their own files.</p>
+<p>We may want to upgrade out angular to 1.4.5:</p>
+<pre class="prettyprint">
+&lt;script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"&gt;&lt;/script&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="services-todos-js">js/services/todos.js</div>
+<p>We want to create our service.</p>
+<p>The to-do service is meant to interact with our Node API. We want to have all the code to get, create, or delete a to-do inside our service. This ensures that we can test this code separate of our overall application.</p>
+<p>Let's get all that $http code out of <b>core.js</b>.</p>
+<pre class="prettyprint">
+// js/services/todos.js
+angular.module('todoService', [])
+
+    // super simple service
+    // each function returns a promise object 
+    .factory('Todos', function($http) {
+        return {
+            get : function() {
+                return $http.get('/api/todos');
+            },
+            create : function(todoData) {
+                return $http.post('/api/todos', todoData);
+            },
+            delete : function(id) {
+                return $http.delete('/api/todos/' + id);
+            }
+        }
+    });
+</pre>
+<p>We defined our service using <b>.factory</b> with three different functions. <b>get</b>, <b>create</b> and <b>delete</b> will all return <b>promise</b> objects that we can use in our controller.</p>
+<p>
+Note that in Angular, there are many different ways to declare a service (<b>.service</b>, <b>.factory</b> and <b>.provider</b>).</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="maincontroller-js">js/controllers/main.js</div>
+<p>Now we want to create our Angular module for our controller by moving most of the code from <b>core.js</b>.</p>
+<pre class="prettyprint">
+// js/controllers/main.js
+    
+angular.module('todoController', [])
+
+    .controller('mainController', function($scope, $http) {
+        $scope.formData = {};
+
+        // when landing on the page, get all todos and show them
+        $http.get('/api/todos')
+                .success(function(data) {
+                        $scope.todos = data;
+                })
+                .error(function(data) {
+                        console.log('Error: ' + data);
+                });
+
+        // when submitting the add form, send the text to the node API
+        $scope.createTodo = function() {
+                $http.post('/api/todos', $scope.formData)
+                        .success(function(data) {
+                                $scope.formData = {}; // clear the form so our user is ready to enter another
+                                $scope.todos = data;
+                        })
+                        .error(function(data) {
+                                console.log('Error: ' + data);
+                        });
+        };
+
+        // delete a todo after checking it
+        $scope.deleteTodo = function(id) {
+                $http.delete('/api/todos/' + id)
+                        .success(function(data) {
+                                $scope.todos = data;
+                        })
+                        .error(function(data) {
+                                console.log('Error: ' + data);
+                        });
+        };
+
+    });
+</pre>
+<p>Though we have our controller and service in their own modules, they won't be able to work together until we inject them into our main application module.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="core-js">js/core.js</div>
+<p>To get everything working together, we just have to load our controller and services, and then inject our controller and service into the main module.</p>
+<p>
+Make sure to move our original <b>core.js</b> file from the root directory into the <b>js</b> folder. This ensures that all our javascript code will be located in the same location.</p>
+<p>
+Here is our code for our new <b>core.js</b>.</p>
+<pre class="prettyprint">
+// js/core.js
+
+angular.module('bogoTodo', ['todoController', 'todoService']);
+</pre>
+<p>We have our main module <b>bogoTodo</b> and then we <b>inject</b> our <b>controller</b> and <b>service</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="core-js">Putting them all together - using service in controller</div>
+<p>We have linked everything but we are not using our new service yet.</p>
+<p>Let's inject that into our controller and use it!</p>
+<pre class="prettyprint">
+// js/controllers/main.js
+angular.module('todoController', [])
+
+    // inject the Todo service factory into our controller
+    .controller('mainController', function($scope, $http, Todos) {
+        $scope.formData = {};
+
+        // GET =====================================================================
+        // when landing on the page, get all todos and show them
+        // use the service to get all the todos
+        Todos.get()
+            .success(function(data) {
+                $scope.todos = data;
+            });
+
+        // CREATE ==================================================================
+        // when submitting the add form, send the text to the node API
+        $scope.createTodo = function() {
+
+            // validate the formData to make sure that something is there
+            // if form is empty, nothing will happen
+            // people can't just hold enter to keep adding the same to-do anymore
+            if (!$.isEmptyObject($scope.formData)) {
+
+                // call the create function from our service (returns a promise object)
+                Todos.create($scope.formData)
+
+                    // if successful creation, call our get function to get all the new todos
+                    .success(function(data) {
+                        $scope.formData = {}; // clear the form so our user is ready to enter another
+                        $scope.todos = data; // assign our new list of todos
+                    });
+            }
+        };
+
+        // DELETE ==================================================================
+        // delete a todo after checking it
+        $scope.deleteTodo = function(id) {
+            Todos.delete(id)
+                // if successful creation, call our get function to get all the new todos
+                .success(function(data) {
+                    $scope.todos = data; // assign our new list of todos
+                });
+        };
+    });
+</pre>
+<p>We moved the old <b>$http</b> code outside of our controller and into our service. The service will return a <b>promise</b> object so we can use the data using <b>.success</b> promise.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="loading-index">loading new files - index.html</div>
+<p>We need to load up the new files in <b>index.html</b>:</p>
+<pre class="prettyprint">
+    ...
+    &lt;!-- SPELLS --&gt;
+    &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;&lt;!-- load jquery --&gt;
+    &lt;script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"&gt;&lt;/script&gt;&lt;!-- load angular --&gt;
+    &lt;script src="js/core.js"&gt;&lt;/script&gt;
+    &lt;script src="js/controllers/main.js"&gt;&lt;/script&gt; &lt;!-- load up our controller --&gt;
+    &lt;script src="js/services/todos.js"&gt;&lt;/script&gt; &lt;!-- load our todo service --&gt;
+    &lt;script src="js/core.js"&gt;&lt;/script&gt; &lt;!-- load our main application --&gt;
+    ...
+</pre>
+<br/>
+<br/>
+<br/>
+<img alt="tree-angular.png" src="Images/ToDoNodeJS/tree-angular.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Summary">Angular Summary</div>
+<ol>
+<li>In <b>index.html</b>, we defined an AngularJS application (<b>bogoTodo</b>) using <b>ng-app</b> directive:
+<pre class="prettyprint">
+&lt;html ng-app="bogoTodo"&gt;
+</pre>
+</li>
+<li>Also, we defined a controller (<b>mainController</b>) using <b>ng-controller</b> directive:
+<pre class="prettyprint">
+&lt;body ng-controller="mainController"&gt;
+</pre>
+The <b>mainController</b> function is a JavaScript function, and 
+AngularJS will invoke the controller with a <b>$scope</b> and <b>$http</b> object as we can see in <b>js/controllers/main.js</b>
+<pre class="prettyprint">
+angular.module('todoController', [])
+    .controller('mainController', function($scope, $http) {
+</pre>
+<b>$scope</b> is the application object (the owner of application variables and functions) and 
+<b>$http</b> is an XMLHttpRequest object for requesting external data.<br/>
+If success, the controller creates a property (todos) in the scope, with JSON data from the server:
+<pre class="prettyprint">
+        $http.get('/api/todos')
+                .success(function(data) {
+                        $scope.todos = data;
+                })
+</pre>
+</li>
+<li>The syntax for angular.module() is:<br/>
+<pre class="prettyprint">
+angular.module(name, [requires], [configFn]);
+</pre>
+  where:
+     <ol>
+<li><b>name</b>: The name of the module to create or retrieve.</li>
+<li><b>requires</b>: If specified then new module is being created. If unspecified then the module is being retrieved for further configuration.</li>
+<li><b>configFn</b>: Optional configuration function for the module.</li>
+</ol>
+The <b>angular.module</b> is a global place for creating, registering and retrieving Angular modules. <br/>
+All modules (angular core or 3rd party) that should be available to an application must be registered using this mechanism. <br/>
+Passing one argument retrieves an existing <b>angular.Module</b>, whereas passing more than one argument creates a new <b>angular.Module</b> <br/>
+It returns a new module with the <b>angular.Module</b> api. <br/>
+See <a href="https://docs.angularjs.org/api/ng/function/angular.module" target="_blank">angular.module</a>
+<pre class="prettyprint">
+var app = angular.module("myApp", []);
+</pre>
+Note that the [] parameter in the module definition can be used to define dependent modules. This is where <b>dependency injection</b> comes in because our module might actuallyh rely on other modules to get data.
+  </li>
+<li>In <b>public/js/core.js</b>, we inject another controller (<b>todoController</b>) and a service (<b>todoService</b>) into our main application module.
+<pre class="prettyprint">
+angular.module('bogoTodo', ['todoController', 'todoService']);
+</pre>
+</li>
+<li>
+The <b>factory</b> constructs a new <b>service</b> using a function with zero or more arguments (these are dependencies on other services).
+<pre class="prettyprint">
+// js/services/todos.js
+angular.module('todoService', [])
+
+    // each function returns a promise object 
+    .factory('Todos', function($http) {
+        return {
+            get : function() {
+                return $http.get('/api/todos');
+            },
+</pre>
+ The return value of this function is the service instance created by the factory.
+  </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Refs">Refs</div>
+<p>Here is the list of references:</p>
+<ol>
+<li><a href="https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular" target="_blank">Creating a Single Page Todo App with Node and Angular</a></li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1>Node.JS</h1>
+  <li><a href="../AngularJS/NodeJS.html">Node.js</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS.html">MEAN Stack : MongoDB, Express.js, AngularJS, Node.js</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Jade-Template-engine.html">MEAN Stack Tutorial : Express.js with Jade template</a></li>
+  <li><a href="Building-REST-API-with-Node-Mongodb.html">Building REST API with Node and MongoDB</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Nginx-Reverse-Proxy-PM2.html">Nginx reverse proxy to a node application server managed by PM2</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Jade-Template-engine-Jade-Sample-Bootstrap-Page-with-Mixins.html">Jade Bootstrap sample page with Mixins</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-PollsApp-1.html">Real-time polls application I - Express, Jade template, and AngularJS modules/directives</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-PollsApp-2.html">Real-time polls application II - AngularJS partial HTML templates & style.css</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App.html">Node ToDo List App with Mongodb</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App-B.html">Node ToDo List App with Mongodb - II (more Angular)</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App.html">Authentication with Passport</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App2.html">Authentication with Passport 2</a></li>
+  <li><a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App-Facebook-Twitter-Auth-Login.html">Authentication with Passport 3 (Facebook / Twitter Login)</a></li>
+  <li><a href="React-Starter-Kit.html">React Starter Kit</a></li>
+  <li><a href="Meteor_React.html">Meteor app with React</a></li>
+  <li><a href="MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a></li>
+  <li><a href="MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a></li>
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Node.JS</h1>
+  <br><br>
+  <a href="../AngularJS/NodeJS.html">Node.js</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS.html">MEAN Stack : MongoDB, Express.js, AngularJS, Node.js</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Jade-Template-engine.html">MEAN Stack Tutorial : Express.js with Jade template</a>
+  <br><br>
+  <a href="Building-REST-API-with-Node-Mongodb.html">Building REST API with Node and MongoDB</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Nginx-Reverse-Proxy-PM2.html">Nginx reverse proxy to a node application server managed by PM2</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Jade-Template-engine-Jade-Sample-Bootstrap-Page-with-Mixins.html">Jade Bootstrap sample page with Mixins</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-PollsApp-1.html">Real-time polls application I - Express, Jade template, and AngularJS modules/directives</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-PollsApp-2.html">Real-time polls application II - AngularJS partial HTML templates & style.css</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App.html">Node ToDo List App with Mongodb</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App-B.html">Node ToDo List App with Mongodb - II (more Angular)</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App.html">Authentication with Passport</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App2.html">Authentication with Passport 2</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-Authentication-Passport-App-Facebook-Twitter-Auth-Login.html">Authentication with Passport 3 (Facebook / Twitter Login)</a>
+  <br><br>
+  <a href="React-Starter-Kit.html">React Starter Kit</a>
+  <br><br>
+  <a href="Meteor_React.html">Meteor app with React</a>
+  <br><br>
+  <a href="MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+  <br><br>
+  <a href="MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+  <br><br>
+
+
+
+
+
+
+
+
+
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>AngularJS</h1>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Introduction.html">Introduction</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_ng-directives.html">Directives I - ng-app, ng-model, and ng-bind </a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_More_Directives_HTML_DOM.html">Directives II - ng-show, ng-hide, and ng-disabled</a> 
+  <br><br>
+  <a href="../AngularJS/AngularJS_More_Directives_ng_click.html">Directives III - ng-click with toggle()</a> 
+  <br><br>
+  <a href="../AngularJS/AngularJS_Expressions.html">Expressions - numbers, strings, and arrays</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Binding.html">Binding - ng-app, ng-model, and ng-bind</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Controllers.html">Controllers - global controllers, controller method, and external controllers</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Controller_DataBinding_TodoList_App.html">Data Binding and Controllers (Todo App)</a>
+  <br><br>
+  <a href="MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App-B.html">Todo App with Node</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Scopes.html">$scope - A glue between javascript (controllers) and HTML (the view)</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Tables.html">Tables and css</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Dependency_Injection.html">Dependency Injection - http:fetch json & minification</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Filters.html">Filters - lower/uppercase, currenty, orderBy, and filter:query with http.get()</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_HttpRequest_json.html">$http - XMLHttpRequest and json file</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Module.html">Module - module file and controller file</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Forms.html">Forms</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Routing.html">Routes I - introduction</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Routing_B.html">Routes II - separate url template files</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Routing_C.html">Routes III - extracting and using parameters from routes</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Routing_D.html">Routes IV - navigation between views using links</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Routing_E.html">Routes V - details page</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_multiviews_ng-app_ngRoute_config_routeProvider-templateUrl_ng-view.html">AngularJS template using ng-view directive : multiple views</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_ui-route-vs-ngRoute-multiple-views-nested-views.html">Nested and multi-views using UI-router, ngRoute vs UI-router</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Factory_Services.html">Creating a new service using factory</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Query_into_a_Service.html">Querying into a service using find()</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Seed_for_Apps_angular-seed.html">angular-seed - the seed for AngularJS apps</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Token_JSON-Web-Token-JWT_Based_Auth_Backend_NodeJS.html">Token (JSON Web Token - JWT) based auth backend with NodeJS</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Token_JSON-Web-Token-JWT_Based_Auth_Frontend_AngularJS.html">Token (JSON Web Token - JWT) based auth frontend with AngularJS</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS_Twitter_Bootstrap.html">Twitter Bootstrap</a>
+  <br><br>
+  <a href="../AngularJS/AngularJS-How-To-Start-Sample-Projects.html">Online resources - List of samples using AngularJS (Already launched sites and projects) </a>
+  <br><br>
+  <a href="../AngularJS/Meteor-AngularJS-ToDo-App-with-MongoDB-1.html">Meteor Angular App with MongoDB (Part I)</a>
+  <br><br>
+  <a href="../AngularJS/Meteor-AngularJS-ToDo-App-with-MongoDB-2.php">Meteor Angular App with MongoDB (Part II - Angular talks with MongoDB)</a>
+  <br><br>
+  <a href="../AngularJS/Meteor-AngularJS-with-MongoDB-User-Registration-Social-Auth-Facebook-Twitter-GooglePlus.html">Meteor Angular App with MongoDB (Part III - Facebook / Twitter / Google logins)</a>
+  <br><br>
+  <a href="../Laravel5/Laravel5_Angular_Auth_using_JSON_Web_Token_JWT_On_Production.html">Laravel 5 / Angular Auth using JSON Web Token (JWT) - Prod </a> 
+  <br><br>
+  <a href="../Java/tutorials/ScalaPlay/ScalaPlayIntroduction.html">Scala/Java Play app with Angular</a> 
+  <br><br>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br /><br />
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="../DevOps/Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+<br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/MEAN-Stack/MEAN-Stack-MongoDB-ExpressJS-AngularJS-NodeJS-ToDoList-App.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:49:05 GMT -->
+</html>
+

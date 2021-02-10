@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/python/Django/Python_Django_tutorial_Deploy_Ubuntu_Nginx_uWSGI.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:38:25 GMT -->
+<head>
+  <title>Deploy Django production app (pytune.com) using Nginx and uWSGI - 2017</title>
+  <meta content="Django: pytune.com, local with Nginx and uWSGI" name="description" />
+  <meta content="Python Django Tutorial: Django, RSS Feed App, pytune, local, Nginx and uWSGI" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Deploy Django production app (pytune.com) using Nginx and uWSGI        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                <img src="../images/Django/django.png" alt="django.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle_2nd" id="note">Note</div>
+<p>We'll deploy Django app (pytune.com) to AWS (we need at least t2-small (2GB of memory) instance using <b>Nginx</b> and <b>uWSGI</b> on Ubuntu 16.04.</p>
+<p>Initially, it's been deployed on Ubuntu 14.04, in this article, we'll work on Ubuntu 16.04. However, I have some issues regarding <b>systemd</b> with <b>uwsgi</b> protocol. So, this time, we'll use <b>http</b> protocol via uwsgi, which may not be a right way of using 'uwsgi'.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="clone">Clone the repo</div>
+<p>Let's start by updating the list:</p>
+<pre>
+$ sudo apt-get update
+</pre>
+<br>
+<p>First, we need to create a folder where we can place our code:</p>
+<pre>
+$ sudo mkdir -p /var/www/django/
+
+$ cd /var/www/django
+</pre>
+<br>
+<p>Let's clone our repo:</p>
+<ol>
+<li> <a href="https://github.com/Einsteinish/PyTune.git" target="_blank">PyTune - Django 1.5</a></li>
+<li> <a href="https://github.com/Einsteinish/PyTune2.git" target="_blank">PyTune 2 - Django 1.8.12</a></li>
+</ol>
+<pre>
+$ sudo apt-get install git
+$ sudo git clone https://github.com/Einsteinish/PyTune.git
+$ cd PyTune
+$ ls
+api         docker              flask              local_settings.py.template  
+node        README.md           templates          apps        
+docker-compose.yml  __init__.py logs               pytune-app.ini   
+requirements.txt  urls.py       wsgi.py            assets.yml  
+documents   LICENSE.md          manage.py          pytune-app.sock  
+settings.py utils               config             fabfile.py          
+local_settings.py  media        r                  sitecustomize.py  
+vendor
+</pre>
+<br>
+<p>We'll install the necessary package in later section of this tutorial.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="nginx">Nginx as a reverse proxy</div>
+<p>Install Nginx:</p>
+<pre>
+$ sudo apt-get install nginx
+</pre>
+<br>
+<p>Let's create a new file <b>/etc/nginx/sites-available/pytune.com.conf</b>:</p>
+<pre>
+server {
+    listen 80;
+    server_name pytune.com www.pytune.com;
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/var/www/django/PyTune/pytune-app.sock;
+    }
+}
+</pre>
+<br>
+<p>Enable the server configuration we just made by linking it to the sites-enabled directory:</p>
+<pre>
+$ sudo ln -s /etc/nginx/sites-available/pytune.com.conf /etc/nginx/sites-enabled
+</pre>
+<br>
+<p>Check the configuration file for any syntax errors:</p>
+<pre>
+$ sudo service nginx configtest
+ * Testing nginx configuration
+</pre>
+<br>
+<p>If it reports back that no problems were detected, restart the server to implement new changes:</p>
+<pre>
+$ sudo service nginx restart
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="uWSGI-install">uWSGI install</div>
+<p>First, we need to install uWSGI into our project directory:</p>
+<pre>
+(venv) $ sudo pip install uwsgi
+</pre>
+<br>
+<p>We can quickly test our application server by passing it the information by typing:</p>
+<pre>
+(venv) k@laptop:~/MySites/PyTune2$ <font color="blue">uwsgi --http :8080 --home /home/k/MySites/PyTune2/venv --chdir /home/k/MySites/PyTune2 -w wsgi</font>
+*** Starting uWSGI 2.0.14 (64bit)
+...
+current working directory: /home/k/MySites/PyTune2
+detected binary path: /home/k/MySites/PyTune2/venv/bin/uwsgi
+...
+<font color="green">chdir() to /home/k/MySites/PyTune2</font>
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 13817
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+<font color="green">uWSGI http bound on :8080 fd 4
+spawned uWSGI http 1 (pid: 28243)</font>
+uwsgi socket 0 bound to <font color="green">TCP address</font> 127.0.0.1:34770 (port auto-assigned) fd 3
+Python version: 2.7.12 (default, Jul  1 2016, 15:12:24)  [GCC 5.4.0 20160609]
+<font color="green">Set PythonHome to /home/k/MySites/PyTune2/venv</font>
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1524dc0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+[Nov 15 21:52:17]  ---> Couldn't find spam.py.
+WSGI app 0 (mountpoint='') ready in 8 seconds on interpreter 0x1524dc0 pid: 28242 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 28242, cores: 1)
+</pre>
+<p>Here, we've told uWSGI to use our virtual environment located in our <b>~/MySites/PyTune2</b> directory, to use the <b>wsgi.py</b> file. For our demonstration, we told uWSGI to serve HTTP on port 8080. However, later, we'll use a socket which uses uWSGI's uwsgi protocol instead of HTTP.</p>
+<p>With the command, now we can type in our browser, <b>domain:8080</b>, then we will see our site.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="uWSGI-config">uWSGI config</div>
+<p>While running uWSGI from the command line is useful for testing, For an actual deployment, we will run uWSGI with given a configuration file.</p>
+<p>Let's make uWSGI config file (<b>pytune-app.ini</b>) which creates isolated environments, each running their own versions of packages.</p>
+<p>It should begin with the <b>[uwsgi]</b> section header. All of our information will go after this header. We'll use variables to make our configuration file more reusable. So, after the header, set a variable called <b>uid</b> which holds <b>sudo username</b>.</p>
+<pre>
+[uwsgi]
+uid = k
+module = wsgi:application
+
+master = true
+processes = 5
+
+socket = pytune-app.sock
+chown-socket = %(uid):www-data
+chmod-socket = 664
+vacuum = true
+home = /home/k/MySites/PyTune2/venv
+
+die-on-term = true
+</pre>
+<p>We also set the virtual environment for our project.</p>
+<p>By setting the <b>module</b>, we can indicate exactly how to interface with our project (by importing the "application" callable from the <b>wsgi.py</b> file within our project directory). </p>
+<p>Next we need to specify how <b>uWSGI</b> should listen for connections (<b>socket</b). Though in our test of uWSGI, we used HTTP and a network port, we are going to be using Nginx as a reverse proxy using the uwsgi protocol. So, 
+instead of using a network port, since all of the components are operating on a single server, we can use a Unix <b>socket</b> which is more secure and offers better performance. This socket will not use HTTP, but instead will implement <b>uWSGI's uwsgi protocol</b>, which is a fast binary protocol for designed for communicating with other servers. </p>
+<p>
+We also modified the ownership and permissions of the socket because we will be giving the web server <b>write</b> access.</p>
+<p>We'll set the vacuum option so that the <b>socket file</b> will be automatically cleaned up when the service is stopped.</p>
+
+<br>
+<p>We can use the ini configuration file by the following command:</p>
+<pre>
+$ sudo uwsgi --ini pytune-app.ini --uid k --gid www-data
+...
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2989)
+spawned uWSGI worker 1 (pid: 2990, cores: 1)
+spawned uWSGI worker 2 (pid: 2991, cores: 1)
+spawned uWSGI worker 3 (pid: 2992, cores: 1)
+spawned uWSGI worker 4 (pid: 2993, cores: 1)
+spawned uWSGI worker 5 (pid: 2994, cores: 1)
+</pre>
+<br>
+<p>For more information about the ini file, please visit <a href="https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/uwsgi/" target="_blank">How to use Django with uWSGI</a>.</p>
+<p>While the uWSGI workers are there, let's see what's new in our project directory:</p>
+<pre>
+$ ls -la /var/www/django/pytune
+...
+-rw-r--r--  1 root root    142 May 27 03:35 pytune-app.ini
+srw-rw-r--  1 root root      0 May 27 03:49 <font color="blue">pytune-app.sock</font>
+...
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="uWSGI-upstart">uWSGI - upstart </div>
+<p>For Ubuntu > 15, we need to use systemd instead of upstart. So, skip this section.</p>
+<p>As shown above, we can run it interactively. However, we want to launch the uWSGI instance at boot so that our application is always available (<b>/etc/init/pytune-app.conf</b>):</p>
+<pre>
+description "uWSGI instance to serve pytune4-app"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid root
+setgid www-data
+
+script
+    cd /var/www/django/PyTune
+    . venv/bin/activate
+    uwsgi --ini pytune-app.ini
+end script
+</pre>
+<br>
+<p>Now that our Upstart script is complete, we can start the service:</p>
+<pre>
+(venv)$ sudo start pytune-app
+$ ps -ef|grep pytune-app
+root   13238 13234  8 16:07 ?    00:00:01 uwsgi --ini pytune-app.ini
+root   13239 13238  0 16:07 ?    00:00:00 uwsgi --ini pytune-app.ini
+root   13240 13238  0 16:07 ?    00:00:00 uwsgi --ini pytune-app.ini
+root   13241 13238  0 16:07 ?    00:00:00 uwsgi --ini pytune-app.ini
+root   13242 13238  0 16:07 ?    00:00:00 uwsgi --ini pytune-app.ini
+root   13243 13238  0 16:07 ?    00:00:00 uwsgi --ini pytune-app.ini
+</pre>
+<br>
+<p>The app will start automatically on boot.</p>
+<p>We can stop the service at any time by typing:</p>
+<pre>
+(venv)$ sudo stop pytune-app
+</pre>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="uWSGI-systemd">uWSGI - systemd for Ubuntu 16.04 </div>
+<p>Ubuntu switched to <b>systemd</b> as its service framework starting from 15.04. The recommended practice is to change <b>upstart</b> jobs to <b>systemd</b> jobs while we can switch back to <b>upstart</b> if we want to.</p>
+<p>Ref: <a href="https://wiki.ubuntu.com/SystemdForUpstartUsers" target="_blank">https://wiki.ubuntu.com/SystemdForUpstartUsers</a></p>
+<p>Our systemd unit file (<b>/etc/systemd/system/pytune-uwsgi.service</b>) looks like this:</p>
+<pre>
+[Unit]
+Description=uWSGI instance to serve pytune-app
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/home/k/MySites/PyTune2
+ExecStartPre=/bin/bash -c '. venv/bin/activate'
+ExecStart=/home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+<br>
+<pre>
+$ sudo systemctl start pytune-uwsgi
+k@laptop:/etc/systemd/system$ ps -ef|grep sgi
+root   11039     1 35 16:00 ?   00:00:06 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+root   11047 11039  0 16:00 ?   00:00:00 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+root   11048 11039  0 16:00 ?   00:00:00 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+root   11049 11039  0 16:00 ?   00:00:00 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+root   11050 11039  0 16:00 ?   00:00:00 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+root   11051 11039  0 16:00 ?   00:00:00 /home/k/.local/bin/uwsgi --ini /home/k/MySites/PyTune2/pytune-app.ini
+</pre>
+<br>
+<p>We can enable <b>systemd unit</b> file to automatically start uWSGI at boot.</p>
+<pre>
+$ sudo systemctl enable pytune-uwsgi
+Created symlink from /etc/systemd/system/multi-user.target.wants/pytune-uwsgi.service to /etc/systemd/system/pytune-uwsgi.service.
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="java">Install Java</div>
+<p>Install Java for <b>elasticsearch</b>:</p>
+<pre>
+$ sudo apt-add-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+
+$ javac -version
+javac 1.8.0_91
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="elasticsearch">Install Elasticsearch</div>
+<p>Official guide : <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html" target="_blank">Install Elasticsearch</a>.</p>
+<p>Download:</p>
+<pre>
+$ wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.deb
+</pre>
+<br>
+<p>Then install it with the dpkg command like this:
+<pre>
+$ sudo dpkg -i elasticsearch-1.7.2.deb
+</pre>
+<br>
+<p>
+This will install Elasticsearch in /usr/share/elasticsearch/:</p>
+<pre>
+$ ls /usr/share/elasticsearch/
+bin  lib  NOTICE.txt  plugins  README.textile
+</pre>
+<br>
+<p>Its configuration files placed in /etc/elasticsearch:</p>
+<pre>
+$ ls /etc/elasticsearch
+elasticsearch.yml  logging.yml
+</pre>
+<br>
+<p>The init script of elasticsearch is added in /etc/init.d/elasticsearch:</p>
+<pre>
+$ ls /etc/init.d/elasticsearch
+/etc/init.d/elasticsearch
+</pre>
+<br>
+<p>To make sure Elasticsearch starts and stops automatically, we should add its init script to the default runlevels with the command:</p>
+<pre>
+$ sudo update-rc.d elasticsearch defaults
+ Adding system startup for /etc/init.d/elasticsearch ...
+   /etc/rc0.d/K20elasticsearch -&gt; ../init.d/elasticsearch
+   ...
+   /etc/rc5.d/S20elasticsearch -&gt; ../init.d/elasticsearch
+</pre>
+<br>
+<p>We wont't touch anything and use the default settings.</p>
+<p>Now, we can start Elasticsearch for the first time with the command:</p>
+<pre>
+$ sudo service elasticsearch start
+</pre>
+<br>
+<p>Testing:</p>
+<pre>
+$ curl -X GET 'http://localhost:9200'
+</pre>
+<br>
+<p>We should get the following response something like this:</p>
+<pre>
+$ curl -X GET 'http://127.0.0.1:9200'
+{
+  "status" : 200,
+  "name" : "Unuscione",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "1.7.2",
+    "build_hash" : "e43676b1385b8125d647f593f7202acbd816e8ec",
+    "build_timestamp" : "2015-09-14T09:49:53Z",
+    "build_snapshot" : false,
+    "lucene_version" : "4.10.4"
+  },
+  "tagline" : "You Know, for Search"
+}
+</pre>
+<br>
+<p>Or we can check the health of the cluster:</p>
+<pre>
+$ curl -XGET http://localhost:9200/_cluster/health?pretty
+{
+  "cluster_name" : "elasticsearch",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 0,
+  "active_shards" : 0,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="mysql">Install MySQL</div>
+<pre>
+$ sudo apt-get install mysql-server
+</pre>
+<br>
+<p>MySQL will bind to localhost (127.0.0.1) by default.</p>
+<p>Check if it's running:</p>
+<pre>
+$ ps -ef|grep mysqld
+mysql    18570     1  0 18:32 ?   00:00:00 /usr/sbin/mysqld
+
+$ service mysql status
+mysql start/running, process 18570
+</pre>
+<br>
+<p>If it is not running, we can start it with:</p>
+<pre>
+$ sudo service mysql start
+</pre>
+<br>
+<p>Run the <b>mysql_secure_installation</b> script to address several security concerns in a default MySQL installation:</p>
+<pre>
+$ sudo mysql_secure_installation
+</pre>
+<br>
+<p>Answer 'y' to all questions.</p>
+<p>To log in to MySQL as the root user:</p>
+<pre>
+$ mysql -u root -p
+Enter password: 
+...
+mysql&gt;
+</pre>
+<br>
+<p>Here is how we create a user and database:</p>
+<pre>
+(venv)$ mysql -u root -p
+mysql&gt; CREATE DATABASE pytunedb;
+mysql&gt; CREATE USER 'pytune'@'localhost' IDENTIFIED BY 'password';
+mysql&gt; GRANT ALL PRIVILEGES ON * . * TO 'pytune'@'localhost';
+mysql&gt; Flush Privileges;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="phpmyadmin">Install phpmyadmin - Optional</div>
+<p>Install php:</p>
+<pre>
+$ sudo apt-get install php5-fpm php5-mysql php5-cli
+</pre>
+<br>
+<p>For security reason, in <b>/etc/php5/fpm/php.ini</b>, we need to set:</p>
+<pre>
+cgi.fix_pathinfo=0
+</pre>
+<br>
+<p>Restart our PHP processor by typing:</p>
+<pre>
+$ sudo service php5-fpm restart
+</pre>
+<br>
+<p>Modify the default config file for Nginx (<b>/etc/nginx/sites-available</b>) as below:</p>
+<pre>
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /usr/share/nginx/html;
+    index index.php index.html index.htm;
+
+    server_name server_domain_name_or_IP;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+</pre>
+<br>
+<p>Just for a typical test, let's create a php info file (<b>/usr/share/nginx/html/info.php</b>):</p>
+<pre>
+&lt;?php phpinfo(); ?&gt;
+</pre>
+<br>
+<p>Restart Nginx and and visit a browser with:</p>
+<pre>
+http://server_domain_name_or_IP/info.php
+</pre>
+<br/>
+<p>Now, we're ready to move on.</p>
+<p>Install phpmyadmin:</p>
+<pre>
+$ sudo apt-get install phpmyadmin
+</pre>
+<br>
+<p>Hit TAB to bypass for web server since Nginx is not listed. Then, select "Yes" dbconfig-common to configure a database for phpmyadmin to use. Provide the passwords for MySQL/admin.</p>
+<p>For the Nginx web server to find and serve the phpMyAdmin files correctly, we just need to create a symbolic link from the installation files to our Nginx document root directory by typing this:</p>
+<pre>
+$ sudo ln -s /usr/share/phpmyadmin /usr/share/nginx/html
+</pre>
+<br>
+<p>The last thing we need to do is enabling the mcrypt PHP module, which phpMyAdmin relies on. This was installed with phpMyAdmin so we just need to turn it on and restart our PHP processor:</p>
+<pre>
+$ sudo php5enmod mcrypt
+$ sudo service php5-fpm restart
+</pre>
+<br>
+<p>We want to access it from our local machine via ssh <a href="../../Linux/linux_Secure_Shell_SSH_IV_ssh_Tunnel_Local_Port_Forwarding.html" target="_blank">local port forwarding</a>:</p>
+<pre>
+$ ssh -i ~/.ssh/bogo.pem -L 9001:localhost:80 -l ubuntu 52.9.222.239
+</pre>
+<img alt="phpmyadmin-9001-port-forwarding.png" src="../images/Django/pytune-deploy-AWS/phpmyadmin-9001-port-forwarding.png" width="50%"/>
+<p>So, we can use local port 9001 and access remote 80 on AWS via ssh.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="mongodb">Install Mongodb</div>
+<p>The guide for installing mongodb can be found <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank">Install MongoDB Community Edition on Ubuntu</a>.</p>
+<pre>
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+$ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+$ sudo apt-get update
+$ sudo apt-get install -y mongodb-org
+$ mongod -version
+db version v3.2.6
+</pre>
+<br>
+<p>To start it:</p>
+<pre>
+$ sudo service mongod start
+
+$ sudo service mongod status
+mongod start/running, process 20293
+</pre>
+<br>
+<p>Verify that the <b>mongod</b> process has started successfully by checking the contents of the log file at <b>/var/log/mongodb/mongod.log</b> for a line reading:</p>
+<pre>
+[initandlisten] waiting for connections on port &lt;port&gt;
+</pre>
+<br>
+<p>where &lt;port&gt; is the port configured in <b>/etc/mongod.conf</b>, <b>27017</b> by default.</p>
+<p>Note: we may want to setup one more thing.</p>
+<p>MongoDB setting in <b>/var/www/django/PyTune/settings.py</b>:</p>
+<pre>
+MONGO_DB = {
+    'host': 'localhost:27017',
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Redis">Redis install</div>
+<p>Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker.</p>
+<pre>
+$ sudo apt-get install redis-server
+</pre>
+<br>
+<p>By default, the <b>redis-server</b> is started after installation.</p>
+<p>We can check using the <b>service</b> command :</p>
+<pre>
+$ sudo service redis-server status 
+redis-server is running
+
+$ pgrep redis-server
+1815
+</pre>
+<br>
+<p>Redis configuration is located in the <b>/etc/redis/redis.conf</b> file. In our case, Redis listens only on <b>localhost</b>. However, if we have a dedicated redis server and we're connecting from other servers, such as an application server, we may want to change Redis configuration directive so that it will listen to all network interfaces instead of only on localhost.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="venv">Virtualenv</div>
+<p><b>Virtualenv</b> is to create isolated environments, each running their own versions of packages.  
+It is the tool in Python which helps in creating new virtual environments for our projects. Since it has its own install directories, we can be isolated from the system directories.</p>
+<p>Note: though I chose /var/..., we may want to work in a directory that we have a write permission.</p>
+<p>We need <b>pip</b>, so let's install it first:</p>
+<pre>
+$ sudo apt-get -y install python-pip
+</pre>
+<br>
+<p>To install virtualenv, we do:</p>
+<pre>
+$ cd /var/www/django/PyTune
+
+/var/www/django/PyTune$ sudo pip install virtualenv
+/var/www/django/PyTune$ sudo virtualenv venv
+</pre>
+<br>
+<p>To activate:</p>
+<pre>
+$ source venv/bin/activate
+</pre>
+<br>
+<p>We may want to upgrade the pip:</p>
+<pre>
+(venv)$ pip install --upgrade pip
+</pre>
+<br>
+<p>Otherwise, we may get the following error:</p>
+<pre>
+    raise TypeError("buf must be a byte string")
+TypeError: buf must be a byte string
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="packages">Install assorted packages</div>
+<p>While we're trying to install our packages via pip, we may get several errors as shown later in this section.</p>
+<p>Here is the list of libraries that needs to be install before installing our packages:</p>
+<pre>
+$ sudo pip install libpq-dev python-dev libmysqlclient-dev libxml2-dev libxslt-dev lib32z1-dev libjpeg-dev libncurses5-dev libffi-dev
+</pre>
+<br>
+<p>So, if we want to avoid hassle, we may want the libraries to be pre-installed.</p>
+<p>Now, let's install our assorted packages:</p>
+<pre>
+(venv)$ sudo pip install -r requirements.txt
+</pre>
+<br>
+<p>We may get an error for <b>scipy</b>. In that case:</p>
+<pre>
+$ sudo apt-get install libpq-dev python-dev
+(venv)$ pip install -r requirements.txt
+</pre>
+<br>
+<p>If there is an error : "mysql_config not found", do the following:</p>
+<pre>
+$ sudo apt-get install libmysqlclient-dev
+</pre>
+<br>
+<p>To fix the error : libxml/xmlversion.h: No such file or directory:</p>
+<pre>
+$ sudo apt-get install libxml2-dev libxslt-dev lib32z1-dev
+</pre>
+<br>
+<p>We may get "lxml installation error" during compilation. This is a memory issue. So, switch instance type to the one that has more memory.</p>
+<p>For the error during Pillow such as "ValueError: jpeg is required ...", we should do:</p>
+<pre>
+$ sudo apt-get install libjpeg-dev
+</pre>
+<br>
+<p>If we get "usr/bin/ld:  cannot find -lncurses" error, install the library, ncurses:</p>
+<pre>
+$ sudo apt-get install libncurses5-dev
+</pre>
+<br>
+<p>For cryptography:</p>
+<pre>
+$ sudo apt-get install libffi-dev
+</pre>
+<br>
+<p>We may also need to install the following packages as well:</p>
+<pre>
+(venv)$ pip install urllib3
+(venv)$ pip install pyopenssl
+(venv)$ pip install python-oauthlib
+(venv)$ pip install scipy
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="setting">Adjust settings and permissions</div>
+<p>We need two files for settings: <b>settings.py</b> and <b>local_settings.py</b>, especially, for the following items:</p>
+<pre>
+PYTUNE_URL            = 'pytune.com'
+SESSION_COOKIE_DOMAIN = '.pytune.com'
+</pre>
+<br>
+<p>and we need to match SITE_ID with the <b>django_site</b> table:</p>
+<pre>
+SITE_ID               = 1
+</pre>
+<img alt="djnago_site_table.png" src="../images/Django/pytune-deploy-AWS/djnago_site_table.png" width="50%"/>
+<p>Set permissions for <b>media</b> and <b>logs</b> directories:</p>
+<pre>
+$ sudo chown -R www-data:www-data media
+sudo chown -R www-data:www-data logs
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="djangodb">Django DB migration</div>
+<p>File permission change:</p>
+<pre>
+(venv)$ sudo chmod u+x manage.py
+</pre>
+<br>
+<pre>
+(venv)$ sudo ./manage.py syncdb 
+You just installed Django's auth system, which means you don't have any superusers defined.
+Would you like to create one now? (yes/no): No
+...
+</pre>
+<br>
+<pre>
+(venv)$ sudo ./manage.py migrate --fake
+(venv)$ sudo ./manage.py migrate
+(venv)$ sudo ./manage.py loaddata config/fixtures/bootstrap.json
+</pre>
+<br>
+<p>Here are the tables created:</p>
+<img alt="pytunedb-tables.png" src="../images/Django/pytune-deploy-AWS/pytunedb-tables.png" width="50%"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Route-53">Route 53 and registrar - pytune.com</div>
+<p>Make sure the instance have a dedicated Elastic IP. In this case, it's 52.9.222.239.</p>
+<p>Here is a newly created Hosted Zone with a domain name <b>pytune.com</b> in AWS Route 53: </p>
+<img alt="CreatedHostedZone-pytune-com.png" src="../images/Django/pytune-deploy-AWS/CreatedHostedZone-pytune-com.png" width="50%"/>
+<p>Since the registrar for pytune.com is GoDaddy, we need to tell GoDaddy what're the name servers as below:</p>
+<img alt="GodaddyNS.png" src="../images/Django/pytune-deploy-AWS/GodaddyNS.png" width="50%"/>
+<p>Also, a Zone File of GoDaddy should point to the AWS instance:</p>
+<img alt="GodaddyZoneFileRecord.png" src="../images/Django/pytune-deploy-AWS/GodaddyZoneFileRecord.png" width="50%"/>
+<br/>
+<p>Now, back to AWS Route 53 and create Record Set.</p>
+<p>A record for www.pytune.com:</p>
+<img alt="A-Record-for-www-pytune-com.png" src="../images/Django/pytune-deploy-AWS/A-Record-for-www-pytune-com.png" width="50%"/>
+<p>Then Alias to www.pytune.com:</p>
+<img alt="Alias-pytune.png" src="../images/Django/pytune-deploy-AWS/Alias-pytune.png" width="50%"/>
+<p>We also want to set CNAME:</p>
+<img alt="CNAME-pytune.png" src="../images/Django/pytune-deploy-AWS/CNAME-pytune.png" width="50%"/>
+<p>Here is the final result for Route 53 setup:</p>
+<img alt="All-set-Route53.png" src="../images/Django/pytune-deploy-AWS/All-set-Route53.png" width="50%"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Run">Running the app</div>
+<p>As discussed earlier, we can run the app using interactive uWSGI:</p>
+<pre>
+$ sudo uwsgi --ini pytune-app.ini --uid root --gid www-data  
+</pre>
+<br>
+<p>However, for production app, we want to run it as a daemon service:</p>
+<pre>
+(venv)$ sudo start pytune-app
+
+(venv)$ ps aux|grep pytune|grep -v grep
+root      7822  0.1  3.9  66072 20000 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+root      7823  0.0  3.1  66072 15708 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+root      7824  0.0  3.1  66072 15708 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+root      7825  0.0  3.1  66072 15708 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+root      7826  0.0  3.1  66072 15708 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+root      7827  0.0  3.1  66072 15704 ?        S    07:31   0:00 uwsgi --ini pytune-app.ini
+</pre>
+<br/>
+<img alt="pytune-com-home.png" src="../images/Django/pytune-deploy-AWS/pytune-com-home.png" width="70%"/>
+<br/>
+<br/>
+<img alt="pytune-page2.png" src="../images/Django/pytune-deploy-AWS/pytune-page2.png" width="70%"/>
+<br/>
+<br/>
+<img alt="pytune-page3.png" src="../images/Django/pytune-deploy-AWS/pytune-page3.png" width="70%"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Errors-Fixes">Errors and Fixes</div>
+<p>There are things that can go wrong.</p>
+<ol>
+<li><b>502 Bad Gateway</b>: Nginx on but uWSGI failed to run.<br/>
+When DEBUG turned off, Raven kicks in while the Sentry not being setup properly. So, we may get 
+SENTRY_DSN error. So, the lines in <b>settings.py</b> commented out:
+<pre>
+'''
+if not DEBUG:
+    INSTALLED_APPS += (
+        'raven.contrib.django',
+        'django_ses',
+
+    )
+    # RAVEN_CLIENT = raven.Client(dsn=SENTRY_DSN, release=raven.fetch_git_sha(os.path.dirname(__file__)))
+    #RAVEN_CLIENT = raven.Client(SENTRY_DSN)
+'''
+</pre>
+</li>
+<li><b>Permission error</b> : when we run uWSGI in interactive mode, we may get permission error for <b>/var/www/django/PyTune/pytune-app.sock</b>. So, we need to run it with <b>--uid root --gid www-data</b>:
+<pre>
+$ sudo uwsgi --ini pytune-app.ini --uid root --gid www-data  
+</pre>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="subdomain">Subdomain - dev.pytune.com</div>
+<p>Three things should be done to activate sub-domains:</p>
+<ol>
+<li>Route 53 CNAME *.pytune.com.</li>
+<li>uWSGI ini file setup.</li>
+<li>Nginx configuration.</li>
+</ol>
+<p>To set sub-domain at Route 53, we need to create a CNAME. Actually, we've already done it when we created a CNAME  with <b>*.pytune.com</b>:</p>
+<img alt="subdomain-CNAME.png" src="../images/Django/pytune-deploy-AWS/subdomain-CNAME.png" width="70%"/>
+<p><b>/etc/init/dev-pytune-app.conf</b>
+<pre>
+description "uWSGI instance to serve pytune-app"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid root
+setgid www-data
+
+script
+    cd /var/www/django/dev-PyTune
+    . venv/bin/activate
+    uwsgi --ini dev-pytune-app.ini
+end script
+</pre>
+<br>
+<p><b>/var/www/django/dev-PyTune/dev-pytune-app.ini</b>:</p>
+<pre>
+[uwsgi]
+module = wsgi:application
+
+master = true
+processes = 5
+
+socket = <font color-"blue">dev-pytune-app.sock</font>
+chmod-socket = 664
+vacuum = true
+
+die-on-term = true
+</pre>
+<br>
+<p>Lastly, Nginx setup. </p>
+<p><b>/etc/nginx/sites-available/dev-pytune.com.conf</b>:</p>
+<pre>
+server {
+    listen 80;
+    server_name dev.pytune.com;
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/var/www/django/dev-PyTune/dev-pytune-app.sock;
+    }
+}
+</pre>
+<br>
+<p>Make a link for the dev:</p>
+<pre>
+$ sudo ln -s /etc/nginx/sites-available/dev-pytune.com.conf /etc/nginx/sites-enabled/dev-pytune.com.conf
+
+$ ls -la ../sites-enabled/
+lrwxrwxrwx 1 root root   34 May 27 03:27 default -&gt; /etc/nginx/sites-available/default
+lrwxrwxrwx 1 root root   46 May 27 19:55 dev-pytune.com.conf -&gt; /etc/nginx/sites-available/dev-pytune.com.conf
+lrwxrwxrwx 1 root root   42 May 27 03:28 pytune.com.conf -&gt; /etc/nginx/sites-available/pytune.com.conf
+</pre>
+<br>
+<p>Now everything is ready:</p>
+<p>Restart Nginx:</p>
+<pre>
+$ sudo service nginx restart
+</pre>
+<br>
+<p>We can run the uWSGI ini file like this:</p>
+<pre>
+(venv)$ sudo start dev-pytune-app
+root      2906  5.2  1.9  66068 20004 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+root      2907  0.0  1.5  66068 15684 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+root      2908  0.0  1.5  66068 15684 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+root      2909  0.0  1.5  66068 15684 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+root      2910  0.0  1.5  66068 15684 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+root      2911  0.0  1.5  66068 15684 ?        S    20:05   0:00 uwsgi --ini dev-pytune-app.ini
+</pre>
+<br>
+<p>Note : put dev on another AWS instance.</p>
+<br/>
+<br/>
+<img alt="dev-pytune.png" src="../images/Django/pytune-deploy-AWS/dev-pytune.png" width="70%"/>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="note2">Note 2</div>
+<p>Actually, I moved the files to home directory from /var/www.</p>
+<p>Here are the core files.</p>
+<p><b>/home/ubuntu/MySites/PyTune2/pytune-app.ini</b>:</p>
+<pre>
+[uwsgi]
+module = wsgi:application
+
+master = true
+processes = 5
+
+socket = pytune-app.sock
+chmod-socket = 664
+vacuum = true
+
+die-on-term = true
+</pre>
+<br/>
+<p><b>/etc/init/pytune-app.conf</b>:</p>
+<pre>
+description "uWSGI instance to serve pytune4-app"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid root
+setgid www-data
+
+script
+    #cd /var/www/django/PyTune
+    cd /home/ubuntu/MySites/PyTune2
+    . venv/bin/activate
+    uwsgi --ini pytune-app.ini
+end script
+</pre>
+<br>
+<p><b>/etc/nginx/sites-available/pytune.com.conf</b>:</p>
+<pre>
+server {
+    listen 80;
+    server_name pytune.com www.pytune.com;
+
+    location / {
+        include         uwsgi_params;
+        #uwsgi_pass      unix:/var/www/django/PyTune/pytune-app.sock;
+        uwsgi_pass      unix:/home/ubuntu/MySites/PyTune2/pytune-app.sock;
+    }
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="note3">Note 3</div>
+<p>Just for records, here are the the project home directory structure:</p>
+<pre>
+ubuntu@ip-172-31-11-56:/vol1/MySites/PyTune2$ ls -la
+total 252
+drwxr-xr-x 16 ubuntu   ubuntu    4096 Nov 15 05:07 .
+drwxr-xr-x  7 ubuntu   ubuntu    4096 Nov 13 05:02 ..
+drwxrwxr-x  2 ubuntu   ubuntu    4096 Sep  4 18:52 api
+drwxrwxr-x 18 ubuntu   ubuntu    4096 Sep  5 03:34 apps
+-rw-rw-r--  1 ubuntu   ubuntu    5449 Sep  4 18:52 assets.yml
+drwxrwxr-x  4 ubuntu   ubuntu    4096 Sep  4 18:52 config
+drwxrwxr-x  2 ubuntu   ubuntu    4096 Sep  4 18:52 docker
+-rw-rw-r--  1 ubuntu   ubuntu     493 Sep  4 18:52 docker-compose.yml
+drwxrwxr-x  2 ubuntu   ubuntu    4096 Sep  4 18:52 documents
+-rw-rw-r--  1 ubuntu   ubuntu   61468 Sep  4 18:52 fabfile.py
+drwxrwxr-x  2 ubuntu   ubuntu    4096 Sep  4 18:52 flask
+-rw-rw-r--  1 ubuntu   ubuntu       0 Sep  4 18:52 __init__.py
+-rw-rw-r--  1 ubuntu   ubuntu    1111 Sep  4 18:52 LICENSE.md
+-rw-rw-r--  1 ubuntu   ubuntu    3354 Sep  4 18:52 local_settings.py
+-rw-r--r--  1 root     www-data  2850 Sep  5 03:34 local_settings.pyc
+-rw-rw-r--  1 ubuntu   ubuntu    3089 Sep  4 18:52 local_settings.py.template
+drwxrwxr-x  2 www-data www-data  4096 Sep  4 18:52 logs
+-rwxrwxr-x  1 ubuntu   ubuntu     243 Sep  4 18:52 manage.py
+drwxrwxr-x 10 www-data www-data  4096 Sep  4 18:52 media
+drwxrwxr-x  3 ubuntu   ubuntu    4096 Sep  4 18:52 node
+-rw-rw-r--  1 ubuntu   ubuntu     142 Sep  4 18:52 pytune-app.ini
+drwxrwxr-x  2 ubuntu   ubuntu    4096 Sep  4 18:52 r
+-rw-rw-r--  1 ubuntu   ubuntu   15105 Sep  4 18:52 README.md
+-rw-rw-r--  1 ubuntu   ubuntu    1002 Sep  4 18:52 requirements.txt
+-rw-rw-r--  1 ubuntu   ubuntu   20507 Sep  4 18:52 settings.py
+-rw-r--r--  1 root     www-data 16683 Sep  5 03:34 settings.pyc
+-rw-rw-r--  1 ubuntu   ubuntu     123 Sep  4 18:52 sitecustomize.py
+drwxrwxr-x 15 ubuntu   ubuntu    4096 Sep  4 18:52 templates
+-rw-rw-r--  1 ubuntu   ubuntu    4205 Sep  4 18:52 urls.py
+-rw-r--r--  1 root     www-data  3802 Sep  5 05:36 urls.pyc
+drwxrwxr-x  6 ubuntu   ubuntu    4096 Sep  5 05:36 utils
+drwxrwxr-x 19 ubuntu   ubuntu    4096 Sep  5 03:34 vendor
+drwxrwxr-x  7 ubuntu   ubuntu    4096 Sep  4 18:52 venv
+-rw-rw-r--  1 ubuntu   ubuntu     380 Sep  4 18:52 wsgi.py
+-rw-r--r--  1 root     www-data   549 Sep  4 20:27 wsgi.pyc
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Errors-Fixes">Errors & Fixes</div>
+<p>Got the following error when I try to run "uwsgi":</p>
+<pre>
+$ uwsgi --ini pytune-app.ini
+...
+current working directory: /home/k/MySites/PyTune2
+detected binary path: /home/k/.local/bin/uwsgi
+<font color="green">!!! no internal routing support, rebuild with pcre support !!!</font>
+</pre>
+<br>
+<p>Fix should be like this:</p>
+<pre>
+$ sudo pip uninstall uwsgi
+
+$ sudo apt-get install libpcre3 libpcre3-dev
+$ sudo pip install uwsgi
+Collecting uwsgi
+Installing collected packages: uwsgi
+Successfully installed uwsgi-2.0.14
+
+$ which uwsgi
+/usr/local/bin/uwsgi
+</pre>
+<br>
+<p>Another error on Ubuntu 16.04 with python 2.7.12:</p>
+<pre>
+$ uwsgi --http-socket :8888 --home /vol1/MySites/PyTune3/venv --chdir /vol1/MySites/PyTune3 -w wsgi
+...
+File "/usr/lib/python2.7/hashlib.py", line 138, in <module>
+    _hashlib.openssl_md_meth_names)
+AttributeError: 'module' object has no attribute 'openssl_md_meth_names'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+...
+</pre>
+<br>
+<p>To fix we need to delete the static hashlib:</p>
+<pre>
+$ sudo rm /usr/lib/python2.7/lib-dynload/_hashlib.x86_64-linux-gnu.so
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="uwsgi-http">uwsgi - http</div>
+<pre>
+$ <font color="blue">uwsgi --http :8787 --home /vol1/MySites/PyTune3/venv --chdir /vol1/MySites/PyTune3 -w wsgi</font>
+</pre>
+<br>
+<p>Nginx configuration file (<b>/etc/nginx/sites-available/pytune.com.conf</b>):</p>
+<pre>
+server {
+     listen 80;
+     server_name pytune.com www.pytune.com;
+
+     location / {
+        proxy_pass      http://127.0.0.1:8787;
+    }
+}
+</pre>
+<br>
+<p>Rather than using a command line, we may want to run the "uwsgi" via pm2:</p>
+<pre>
+$ sudo npm install -g pm2
+
+$ pm2 start wsgi-run.sh
+</pre>
+<br>
+<p>where the <b>wsgi-run.sh</b> looks like this:</p>
+<pre>
+#!/bin/bash
+uwsgi --http-socket :8787 --home /vol1/MySites/PyTune3/venv --chdir /vol1/MySites/PyTune3 -w wsgi
+</pre>
+<br>
+<img alt="pytune-com-on-aws.png" src="../images/Django/pytune-deploy-AWS/pytune-com-on-aws.png" width="90%"/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br><br>
+
+<!-- Django List -->
+<br><br>
+<h1>Django 1.8</h1>
+<br><br>
+    <a href="Python_Django_tutorial_introduction.html">Introduction - Install Django and Project Setup</a> 
+    <br><br>
+    <a href="Python_Django_creating_activating_models.html">Creating and Activating Models</a> 
+    <br><br>
+    <a href="Python_Django_hello_world.html">Hello World A - urls & views</a> 
+    <br><br>
+    <a href="Python_Django_hello_world_templates.html">Hello World B - templates</a> 
+    <br><br>
+    <a href="Python_Django_hello_world_url_dispatcher.html">Hello World C - url dispatcher</a> 
+    <br><br>
+    <a href="Python_Django_hello_world_Models_Database.html">Hello World D - Models and SQLite Database</a> 
+    <br><br>
+    <a href="Python_Django_MVC_Model_View_Controller_Framework.html">MVC - Hello World</a> 
+    <br><br>
+    <a href="Python_Django_hello_world_Shared_Host.html"> Hello World on a Shared Host A</a> 
+    <br><br>
+    <a href="Python_Django_hello_world_Shared_Host2.html"> Hello World on a Shared Host B</a> 
+    <br><br>
+    <a href="Python_Django_Admin_Site_Page_Setup.html">Hello World - Admin Site Setup</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_virtualenv_install_Django.html">virtualenv</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Creating_Test_Project.html">Creating test project on virtualenv</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_settings_py_Test_Project.html">Test project's settings.py</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Creating_Blog_App_package_setting_up_models.html">Creating Blog app and setting up models</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Creating_Blog_App_database_syncdb_models.html">Blog app - syncdb A</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Creating_Blog_App_database_syncdb_models_B.html">Blog app - syncdb B</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Blog_App_views_urls.html">Blog app - views and urls</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Blog_App_template_views_urls.html">Blog app - templates</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Blog_App_class_based_template_views_urls.html">Blog app - class based templates</a> 
+    <br><br>
+    <a href="Python_Django_Image_Files_Uploading_Example.html">Image upload sample code - local host</a> 
+    <br><br>
+    <a href="Python_Django_Authentication_Login_Logout_Shared_Host_FastCGI.html">Authentication on Shared Host using FastCGI</a> 
+    <br><br>
+    <a href="Python_Django_Authentication_Registration_A_Shared_Host_FastCGI.html">User Registration on Shared Host A</a> 
+    <br><br>
+    <a href="Python_Django_Authentication_Registration_B_Customized_Forms_Shared_Host_FastCGI.html">User Registration with a Customized Form on Shared Host B</a> 
+    <br><br>
+    <a href="Python_Django_Blog_Shared_Host_FastCGI.html">Blogs on Shared Host</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_serving_Django_App_with_uWSGI_and_Nginx.html">Serving Django  app with uWSGI and Nginx</a> 
+    <br><br>
+    <a href="Python_Django_Image_Files_Uploading_On_Shared_Host_Example.html">Image upload sample code - shared host</a> 
+    <br><br>
+    <a href="Python_Django_Managing_Deploying_CSS_Image_Javascript_Static_Files_Shared_Host.html">Managing (Deploying) Static files (CSS, Images, Javascript) on Shared Host</a> 
+    <br><br>
+    <a href="Python_Django_Forums_Shared_Host.html">Forum application on a Shared Host</a> 
+    <br><br>
+    <a href="Python-Django-OAuth2-Getting-Client-ID-Application-ID-Social-Sites-Facebook-Twitter-Google.html">Django Python Social Auth : Getting App ID (OAuth2) - Facebook, Twitter, and Google</a> 
+    <br><br>
+    <a href="DjangoPython-Django-python-social-auth-facebook-twitter-google-auth.html">Django: Python social auth, Facebook, Twitter, and Google Auth</a> 
+    <br><br>
+    <a href="DjangoPython-Django-python-social-auth-facebook-twitter-google-auth-with-static-files.html">Django: Python social auth, Facebook, Twitter, and Google Auth with Static files</a> 
+    <br><br>
+    ...
+    <br><br>
+    <b>Django 1.8 hosted on Linode VPS ==>  </b>
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode.html">1. Setup CentOS 7 hosted on VPS</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Multi-Domain-Hosting.html">1B. Setup CentOS 7 hosted on VPS (multi-domain hosting setup) - Name server and Zone File settings (from GoDaddy to Linode)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-SSH-Login-Firewall.html">2. ssh login and firewall</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Apache.html">3. Apache Install</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-MariaDB-Database-server-and-PHP-configuration.html">4. Install and Configure MariaDB Database server & PHP</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Django-Install-and-configuration.html">5. Install and Configure Django</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Model.html">6. Model</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Model2.html">7. Model 2 : populate tables, list_display, and search_fields</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Model3-shell.html">8. Model 3 (using shell)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Views.html">9. Views (templates and css)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Views2.html">10. Views 2 (home page and more templates)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-TinyMCE.html">11. TinyMCE</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-TinyMCE2.html">12. TinyMCE 2</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Image-Field.html">13. ImageField/FileField : Serving image/video files uploaded by a user</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-Registration-Forms.html">14. User Authentication 1 (register & forms)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-2-Login-Logout.html">15. User Authentication 2 (login / logout)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-3-Password-Reset.html">16. User Authentication 3 (password reset) - Sent from Email (gmail) setup etc.</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-4-User-Profile-Login-Required-Decorator.html">17. User Authentication 4 (User profile & @login_required decorator)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-5-Facebook-Login.html">18. User Authentication 5 (Facebook login)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-6-Google-Login.html">19. User Authentication 6 (Google login)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-7-Twitter-Login.html">20. User Authentication 7 (Twitter login)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-User-Authentication-8-Facebook-Google-Twitter-Login-with-Buttons.html">21. User Authentication 8 (Facebook/Google/Twitter login buttons)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Facebook-Open-Graph-API-Timeline-FanPage-Custom-Tab-1.html">22. Facebook open graph API timeline fan page custom tab 1</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Facebook-Open-Graph-API-Timeline-FanPage-Custom-Tab-2.html">23. Facebook Open Graph API Timeline Fan Page Custom Tab 2 (SSL certificate setup)</a> 
+    <br><br>
+    <a href="Python-Django-1.8-Server-Build-CentOS-7-hosted-on-Linode-Facebook-Open-Graph-API-Timeline-FanPage-Custom-Tab-3.html">24. Facebook open graph API timeline fan page custom tab 3 (Django side - urls.py, settings.py, and views.py)</a> 
+    <br><br>
+    ...
+    <br><br>
+    <b>A sample production site Django 1.8.7: sfvue.com / einsteinish.com  ==>  </b>
+    <br><br>
+    <a href="Python_Django_tutorial_sfvue_site_1_Introduction_virtualenv_dev_and_production_with_Apache.html">A sample production app (sfvue.com) with virtualenv and Apache</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_sfvue_site_2_Upgrading_to_Django1.8_virtualenv_dev_and_production_with_Apache.html" target="_blank">2. Upgrading to Django 1.8.7 sfvue.com site sample with virtualenv and Apache</a>
+    <br><br>
+    <a href="Python-Django-1.8-collection-of-errors-and-fixes.html" target="_blank">(*) Django 1.8.7 einsteinish.com site - errors and fixes</a>
+    <br><br>
+    <a href="Python_Django_tutorial_pytune_local_development_Pytune_Web_Server_Runserver_Apache_mod_wsgi.html" target="_blank">Django 1.8.12 pytune.com site - local with Apache mod_wsgi</a>   
+    <br><br>
+    <a href="Python_Django_tutorial_pytune_local_development_Pytune_Nginx_uWSGI.html" target="_blank">Django 1.8.12 pytune.com site - local with Nginx and uWSGI</a> 
+    <br><br>
+    <a href="Python_Django_tutorial_Deploy_Ubuntu_Nginx_uWSGI.html" target="_blank">Django 1.8.12 pytune.com site - deploy to AWS with Nginx and uWSGI</a> 
+    <br><br>
+    <a href="Python-Django-Haystack-Elasticsearch.html" target="_blank">Django Haystack with Elasticsearch and Postgres</a>
+    <br><br>
+    <a href="Python_Django_Compatibility_Cheat_Sheet.html" target="_blank">Django Compatibility Cheat Sheet</a>
+
+
+
+
+<br>
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br>
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="../pytut.html">Python Home</a> 
+   <br><br>
+   <a href="../python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="../python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="../python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="../python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="../python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="../python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="../python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="../python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="../python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="../python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="../python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="../python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="../python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="../python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="../python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="../python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="../python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="../python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="../python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="../python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="../python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="../python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="../python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="../python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="../python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="../python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="../python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="../python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="../python_argparse.html">argparse</a>
+   <br><br>
+   <a href="../python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="../python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="../python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="../python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="../python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="../python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="../python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="../python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="../python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="../python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="../python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="../python_closure.html">Closure</a>
+   <br><br>
+   <a href="../python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="../python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="../python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="../python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="../MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="../python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="../python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="../python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="../Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="../Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="../python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="../python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="../python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="../python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="../python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="../python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="../python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="../python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="../python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="../python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="../python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="../python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="../pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="../python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="../python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="../python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="../python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="../python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="../python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="../python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="../python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="../python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="../python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="../GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="../GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="../GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="../python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="../python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="../python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="../python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="../Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="../Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="../python_Selenium_WebDriver.html">Selenium WebDriver</a> 
+   <br><br>
+   <a href="../Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="../python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="../NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="../RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="../OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="../OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="../IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="../IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="../scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br>
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/python/Django/Python_Django_tutorial_Deploy_Ubuntu_Nginx_uWSGI.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:39:16 GMT -->
+</html>
+

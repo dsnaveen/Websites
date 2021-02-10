@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+  
+<!-- Mirrored from course.fast.ai/lessons/lesson4.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 05:37:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Practical Deep Learning For Coders&mdash;18 hours of lessons for free</title>
+  <meta name="description" content="fast.ai's practical deep learning MOOC for coders. Learn CNNs, RNNs, computer vision, NLP, recommendation systems, keras, theano, and much more! neural networks!
+">
+
+  <link rel="stylesheet" href="../css/foundation.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/fontello.css">
+  <link rel="stylesheet" href="../css/font-awesome.css">
+
+  <script src="../javascripts/libs.js" type="text/javascript"></script>
+  <script>
+    // terrificjs bootstrap
+    (function($) {
+        $(document).ready(function() {
+            var $page = $('body');
+            var config = {
+              dependencyPath: {
+                plugin: 'javascripts/'
+              }
+            }
+            var application = new Tc.Application($page, config);
+            application.registerModules();
+            application.start();
+        });
+    })(Tc.$);
+  </script>
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,300" media="screen" rel="stylesheet" type="text/css" />
+  <script src="../javascripts/masonry.pkgd.js" type="text/javascript"></script>
+  <script src="../javascripts/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+  <script src="../javascripts/slick.min.js" type="text/javascript"></script>
+
+  <link rel="canonical" href="lesson4.html">
+  <link rel="alternate" type="application/rss+xml" title="Practical Deep Learning For Coders&mdash;18 hours of lessons for free" href="../feed.xml" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-89522379-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+
+
+
+  <body>
+
+    <a href="#" id="top"></a>
+<div class='contain-to-grid shadowless sticky'>
+  <nav class='top-bar' data-options='sticky_on: large' data-topbar=''>
+    <ul class='title-area'>
+      <li class='name'>
+        <h1>
+          <a href="../index-2.html">
+            <img alt="" src="../images/logo.png" />
+          </a>
+        </h1>
+      </li>
+      <li class='toggle-topbar menu-icon'>
+        <a href='#'>Menu</a>
+      </li>
+    </ul>
+    <section class='top-bar-section'>
+      <ul class="right">
+        
+          
+
+          
+            <li class="">
+              <a href="../index-2.html">Home</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="../about.html">About</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="../start.html">Getting Started</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="has-dropdown ">
+              <a href="lessons.html">Lessons</a>
+              <ul class='dropdown'>
+                
+                  <li>
+                    <a href="lesson1.html">1&mdash;Image recognition</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson2.html">2&mdash;CNNs</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson3.html">3&mdash;Overfitting</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson4.html">4&mdash;Embeddings</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson5.html">5&mdash;NLP</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson6.html">6&mdash;RNNs</a>
+                  </li>
+                
+                  <li>
+                    <a href="lesson7.html">7&mdash;CNN Architectures</a>
+                  </li>
+                
+              </ul>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="../contact.html">Contact</a>
+            </li>
+          
+        
+          
+
+          
+            <li class="">
+              <a href="http://www.fast.ai/">Blog</a>
+            </li>
+          
+        
+      </ul>
+    </section>
+  </nav>
+</div>
+
+
+    <div id='main' role='main'>
+      <div class='full'>
+  <div class='row'>
+    <div class='large-6 columns'>
+      <ul class='info'>
+        <li>
+          <a href='lesson3.html' title='previous'>
+            <i class='icon-left-open'></i>
+          </a>
+          <a href='lessons.html' title='back to lessons'>
+            <i class='icon-layout'></i>
+          </a>
+          <a href='lesson5.html' title='next'>
+            <i class='icon-right-open'></i>
+          </a>
+        </li>
+      </ul>
+
+      
+      <div class='spacing'></div>
+      <ul class='info'><li>
+        <strong>Lesson:</strong>
+        
+          <a href="http://wiki.fast.ai/index.php/Lesson_4_Timeline">Timeline</a> / 
+        
+        <a href="http://wiki.fast.ai/index.php/Lesson_4">Wiki</a> / 
+        <a href="http://wiki.fast.ai/index.php/Lesson_4_Notes">Notes</a> / 
+        <a href="http://forums.fast.ai/t/lesson-4-discussion">Forum</a> /
+        <a href="https://youtu.be/V2h3IOBDvrA">Youtube</a> 
+      </li></ul>
+      <iframe width="498" height="280" src="https://www.youtube.com/embed/V2h3IOBDvrA"
+        frameborder="0" allowfullscreen></iframe>
+      <div class='spacing'></div>
+    </div>
+    <div class='large-6 columns'>
+      <div  style='margin:0px 0px 0px 20px'>
+        <h3>4&mdash;Collaborative filtering, embeddings, and more</h3>
+        <p><p>When we ran this class at the Data Institute, we asked what students were having the most trouble understanding, and one of the answers that kept coming up was “convolutions”. So, we start with a detailed look at the convolution operation, by implementing a couple of convolutional layers and filters in a spreadsheet. Next up, we give SGD (and modern accelerated variants) the same treatment. Once you’ve seen how easy accelerated SGD methods are, try reading the <a href="https://arxiv.org/pdf/1412.6980.pdf">original</a> <a href="http://www.magicbroom.info/Papers/DuchiHaSi10.pdf">papers</a>—notice how even the most complex deep learning papers tend to look simple once you’ve digested and implemented them?</p>
+
+<p>Then we look further into avoiding over-fitting, and learn a clever trick for datasets where you have a lot more unlabeled data than labeled data (that is, <em>semi-supervized learning</em> scenarios): “pseudo-labeling” and “knowledge distillation”.</p>
+
+<p>Finally, we move away from computer vision for the first time, to discussion recommendation systems, and in particular, collaborative filtering techniques. This is both a useful technique of itself, and will also be a great introduction to <em>embeddings</em>, which is going to be critical when we learn about natural language processing in the next lesson.</p>
+</p>
+      </div>
+    </div>
+  </div>
+  <div class='four spacing'></div>
+</div>
+
+    </div>
+
+    <div id='footer'>
+  <div class='three spacing'></div>
+  <div class='row'>
+    <div class='large-3 medium-3 columns'>
+      <h1>
+        <a href='../index-2.html'>
+          <img alt="" src="../images/logo-grey.png" />
+        </a>
+      </h1>
+      <p>©2016 fast.ai. All rights reserved.</p>
+      <div class='spacing'></div>
+      <div class='spacing'></div>
+    </div>
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <div class='links'>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../index-2.html">Home</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+          <li><a href="http://www.fast.ai/">Follow our blog</a></li>
+          <li><a href="../contact.html">Contact us</a></li>
+        </ul>
+      </div>
+      <div class='spacing'></div>
+    </div>
+    <!--
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <div class='links'>
+        <h4>Recent posts</h4>
+        <ul>
+          
+        </ul>
+      </div>
+      <div class='spacing'></div>
+    </div>
+    -->
+    <div class='large-3 medium-3 columns'>
+      <div class='spacing'></div>
+      <h4>Contact us</h4>
+      <ul>
+        <li>Email: info@fast.ai</li>
+      </ul>
+      <div class='spacing'></div>
+      <ul class='socials'>
+        <li>
+          <a href='https://twitter.com/fastdotai'>
+            <i class='fa fa-twitter'></i>
+          </a>
+        </li>
+      </ul>
+      <div class='spacing'></div>
+    </div>
+  </div>
+  <div class='two spacing'></div>
+</div>
+
+<script src="../javascripts/jquery.countTo.js" type="text/javascript"></script>
+<script src="../javascripts/jquery.appear.js" type="text/javascript"></script>
+<script src="../javascripts/jquery.validate.js" type="text/javascript"></script>
+<script src="../javascripts/jquery.sequence-min.js" type="text/javascript"></script>
+<script src="../javascripts/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="../javascripts/app.js" type="text/javascript"></script>
+
+
+  </body>
+
+
+<!-- Mirrored from course.fast.ai/lessons/lesson4.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 05:37:50 GMT -->
+</html>

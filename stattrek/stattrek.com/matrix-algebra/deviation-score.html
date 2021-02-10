@@ -1,0 +1,1233 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/matrix-algebra/deviation-score.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Matrix Deviation Scores
+</title>
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="How to use matrix algebra to transform raw scores to deviation scores. Includes sample problem with solution to illustrate key points." /><meta name="keywords" content="deviation scores, deviation score matrix, matrix of deviation scores" /><link href="deviation-score.html" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/matrix-algebra/deviation-score.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="O+hTvO5ea6+eEAAQYDTotW1CTpTMhtOwGoHPztZSaESXxCqVyW5AF4Phc5jxgzJWOzvXeMKy1GBxywueUQmYXupvjO8pDI0ry8Tfe6WiVatKRMcE5ORseLjg6qA3kvdmcmPPzp6ym+RcRfAY8FM1lp1PMC12GiaYuo6/sF/EiHCNgGxu8Yun+azZvU1xpcFT5d/kJKjCBtkObYUfelBkebvhlHkwiZ8bhU3nD7BEPIH7W9HX3BZ6cLV29HDQj/8nCfrmmQo8FvSnW3SOpmbFJnuWoeuqBi2GQriOZUxn8ERrq0p/79iZDGwU4YAoTKsbSBGUJaoK/BldY13+4Qd0iiImubaiobvPKSRfRzslGefxRCWNTYedDNUPdVq5wyNk3yDE5KmRexQyGnmn9T9s6qYu7fSPszM8sAv7Che5yvUtMAt1i+YIDER/l0G3R697xJN/QzVu5+iCYxRVbSq07xL/1xtTruH3iJrM3eiTxENd9PE2Ji2MyIhyJDr5hH7wwFjaEQJinxG58cj6BGuwAcNmD+8MPjQ/0x1Nf1zJwMr85UwbbtSeU2WZKgWJPjE+I/bLXa4SXXM/gUVLxPJfQpz0NB9nI+RXFR38Y1JuB/0xQu1zJXUydUWLA0WWkQ5snY6tTGKh/B0MamqJU0RTqEJvEGiv5AtVFjfg0uzLHAMyvloUDxHOeuVjBv831ukPjjn2rL4TaF5SJ1Jz6cGfexEzKc3M8gcI7fsm8jq+eScpjq0j2oZ2UMb6ukb21TCK7zDQvlm83uGeiqYtcYfgdMhZOYlms76V1ywF8QLXDrNNnnLP4FNozOyCGCpoV8NJnA7/TErW1ftGcR75ljlca6Ez+ZEkdewjvDD5aQLf6qL5sAOJJfJ+9LR0ZchGNRQEbpkuQThXfDDreQ9SV7name3OP1YGvprsjDpDjAHIbbGZc2CIuutpCLC8xjpNnfIgayROGA77b62C2+9CIHNHBdDDWMQmFxbUmr8DU2slWuVKdHeONoaXijEDxpVvP67y0p/ZC6dcCit4+RRaS5GY2+ZU4XhJc1OQ9GOAzM9zJCRjizFmAm2aAEiUSSWX1dsN1HkiiB6oI9lPryYvIAK3dbpH5szcsIG/ZloPmTnDThbeicTzyfeDNF2y9BWc6V0AcStG65jjIL8vVjz1Bojmo+6LTiOrlI+VN9E0GxUC7pOeorA2nCdycGJjtCJcBOD72ITpmurHgeDrPKz66mmr2ajG0Kbl3l/cnllBJIn/f5qrDJbdA/nBSEF2v5vD+0ekebgcuqL3fCurQ7QfPAURqNEtjW8zFbXw913MQqn3a5J/jhtJ+gE/Bv13HLdC2FMC5ngIoVyGrcgWPJs+hmGb0tnjlrGPav0ghk4IvclQi6TM3Kl0tqC3mpjVsajKT95m5gdHitoQZ7/DMYWv9/gV2N8lImFS/QHhD9M8Ub1sSXxhLo5y4xr+PR9WUtHA4jt+HuDm0DbODtffmKkgcVqK4ZTgA0UirVDAUkTO8Z/BQRvau1tln03xxCi+GHkYGcRG2P1SSPfBecZ4sNX9JDQ5R/a/Xc3WT3wsZcISWMObz8ykjBYpyn/f2d97XfiVuNrVmpYv3Rd5e5VKAbIomBo4FTA/SRFfFaYtyY7cklOtlKfdJLAJc/lPCf14CkgENcnYY8jZ1DOmYKjroGtNyl1Op5hKkz13uYWQw/w+NlKsKUT1ex3t4pejEDpuRIOrPrN3ib/3Ahw9/ZKjchEwchv2M76SDOzFCT/HOqaV7HrLINtG6pvMkOS2c7Lh4cD4Io5U/cs4QI0WUIVmAPCyTQJDNst20U3bCAOCS7V3p+oLyAPhkpm388mmZyzcw11IDY4Qon9S2m5cqUTRBjHeiYqanPc9G9VC+WTpLYWHy7mi9t1Axcxvj9TBptJPm+ngw+H6EMUaXwnkr94jbJUNcTjvTdsFKYBuiwucEp/9FpZe2LDoezFA3dz2bjuCAGDlhJm8YNZB8GFzdkmr7OT93XwVsj1goj3qLckQGXiGZbuYoSgOrMdrccWAkOU7bPYp/L0qg3Irc+cd/w7odYauM4OazNiel+qvlfWGThIPjEhPdMTVjMwIWA8bN1WekT2aSxTDTNTdGHwKFu6CrePNjZ0OJavrswreW3wlXh6mOO8a/tzOSv71hMAG2LRrFiml87DFO0XsY0mR12OCwpCg99Q2xcVz1AS5CbG0XVZz52ANNhkjmUKhd3MBr+dnZXqfjeEyiqdSYgZcE/lkaiFszOc9hUweaIHtyiL1yyubdxoZYBbNdF/vXf6RC4wMAJ2jsAwbXyMq3m/omDmo5sUlCwjdA/lQkp7P+pkDSOs6rMK6M8qZBomOUNpA7VpczJJrc4S4E9e9+tKuC3JDXfOqLjeCLwMDlEO+CYtEJJlC6KmwX4LsDs6sJQ268uphpkjd0mYWxqTR+YF2sdyHC+2s4OMWEv5PBtOz+IzdKicS9A2BQgzztpyMt6WUqxB+GF+d3ex/Uo/jM7PIXBY447s6oXt7MA/3H2g2ME1z8sTwLZVmlL5D5I87YYafBhnIly1Uy7byRLPl5bfASMJjWifnVovp4juw/HFcv72FsXePrlpD6DxmhLpE1f/A2LUdFcox3yMXhcRFcqklhkjh/gmRDtkV4ydGAT6Pq3vR7i7oSLnotg2jheROavESPkBbq4F9LkkrDjhGeAZAQyCTq2s2LqpE/CSVdWrq7LCB72QzqqadbVROkO48yvMyBRJsJBtG57w/aPqOsmCKnW21VTn80fNb5Ts0epUxdVHwV5d9ZS4YgHoAqA7vnmZ5uUPitWd0kXZd0dIX1dPXIX1NdCEF6HgK7AUTPJdbGDoNUB6RJZ4GofZcGDm3G9yuCfefqfuUZTeBp7xQiRetoZOO8G+y0OeGj1iNKfu5ydLW6k9o+LrBacoBEN333T8sUx5bbsZZJROnQmUvPMyyA2IuAFFWnhPzxd+abSfj01jLZw7G23m8fFH1Si3m6moLfv6m8Zv9DtNYXQzL14g3sc8eEjNn5k3QA5OWerncMKPmFTOtcXls128DUzpZ60vYDMPLPS2AxYnTEQSJ/Hk4VLpDatdwFLN7zaqtBleluZQ2J/GeOxI3h688WDLfyE+tND/RvA9tx7oXO1uzcUaR0HjpRPtCsgiJ+yRaMZ4RBQnXxI+VsL+fiYRNekFzesIjPU5eW8D0TMMezYZ5aE+q6f431Iq3MahVb4861f18rXCmMMd7xLktq6tiP3h3DARPCQBrpTj5m/UP8C0Ed6iY7Y/RsYSGofUH2bv6GWGpiPoGcJr1MaRETxZTDajKofWfGXXV7oUuPMi2F5eQYNLsLMHOgbN8fWOmLj3kEHkhdcjbhgjo6oA9t0kO1FBoscQkBrHxGS2oiAE6JO0Up38ci4o1kIVeOuyKLnE2dqvddg6xOYf+Rsm+laA8eIArhTcpAiDjkSESt4rzgOlOaEnKTt7rVRRm471gk8fgmdFbvpVqZXh4aV3Qa1F42F3m1Y4QaVGzkMXkVHkllTqDRpiu6MRN9EJ/SbzZA3Y1E+OdWuy/GNk5gKYLH+773o5VvecJmC2PdVrgvVHh+3+oB0p3j7XMkxxU0iZCdqbDyULsajhNR5xWS71esfA5t8sXa897EFzx51DJX0ydQuGuexNTIvt0ESg6VqQE3mw+OHF128CRvD9uxSeT9Qni4AbXs8CrvNlzxgdNZaPew1gE+8m5/awIwFR5RaJCdYF6MigNL5UPFQQgGMwrPav7QnX1WTtgvkC14omRcZT+J/o4geun490H57bHWW2TKnEtJRP5L3skO47PC2p/ockcOlmSl6GJJqVxuPSKVAtkmXTwqCUQIAhYaCfcNsWw6meAxlBcEUyFTMWgbSLfFVob2S1yKm40ti5oWrOyLEZh2f2jNJH51RcU7zx1Ett90fbyqi+Xm8/5x8OxEvSahumoUq5cQ1RZvyEfNfvHKhvw++9RWkyc0YKF4ZMbKWNmfdGmwpYabbSa80IXXoV4qusEqsF4NvuBZzMbL6qUTpcUwzC5Yt9DUE74IRsPsDWi5iyacz3MfHPPI9VC/2xnZMaLynXAZ8zpQdrwWk48CQS29ESRcyrkjOvquiM7ynI4XQh+Wrsxvh/h3T8744OX6a+A/53Xe5L2haJ0quSVeNUQ/6g3czcifhE+66FjhiWgYSAJpYUXbpBCp3ceOHYBaFUFQgnLUAkVbA5wgN+hFIzTsoRsm6e9eJ1X6OvHWAPbcdamivzI0lsRMn/qGo9WPUOv6JIGvaULsRp1/foRD0Cj1Ej92J6FsNcZU5xZOJff/X2JtSkYvjIbXBScZp3hg5WvBSCV2P3Djh0nLUn83hvuwozngb0ffViS+VuesBJGy+9Im9gUi8SE6S0e352OvOg+0stf72iSbiNgyi8+17pezpkdAZBUKio7r2Vw2iB0rAvwJHmJ5Sv3kc/hMMJYC7lkIShZUVgYPkALJUEaqeNKE8BZEMIo7Q/lyH127pbwJT2tEmpVImLrDF8vmxj9z7MsgXCM65gD0YXeTlrJSIY9v3uN4i7nhe1wU6M8BLArQJ81J8Q3fXWNaQ2rySdlUhoOz6/Qi73UuO/fbdifhr13gDMC/ZVcZRZPOdPv7yCB4XZD5Pxf4ny0y2AEK4eeR2I1rOU2845MuW0IsbrqM4q8gnEjHVcLJyRVDOQ2eBPixF3PmAc2EourGbW1w+OLxZvFkWohozb90V/lAl1NxLKWMwS8crEcUQRiuOsmJ3zA1dK04vhgwYX43jnAeCklr8HnW8VdLvT1C6bBWIE+zYBKes0LofZmlPEj+bu3tHWIccRwBV40flcoafUsrBdKf7S7td3m9Y9g1qVDsAxlYFxc3C3u0pEKNbXaX2jrGE27RooedjToLZ0un2ADk2HT/d7X8uV/zPA7m/6X5J4tJqOLrZxLl779jUlB+Yj7eiEAglWRb4X7BJBrEXL3sU4d74EjdjObbGN+a/u8WxVW/pNTtEAdPovToEJmvWfOHovzO0dVu2+Gg9Ryv3UZuqYQM1S+i3HoPJZzkw47ZJRBhRjejWR9SDAWR/9QO5GA+qXIC2JEqXr39RUN0nWJopNJ0oRljPvAjvHCwyTrICkmLxZumumBWaxczF7MXcg0HvyAMvRB9lrTg2Ot3zZ73RxaZiPn16ShhYphrFyFhLPd2lFi1+YmClYHzIqyfVsvQ4mRUg==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2F4C5B34" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="qn9VCmjrhja7ipztUcLdkM+L10Pe7xLEvcRQo7vvG7T74hC4XvahkgYLwAqhogFXKMtwKDjagzo/D0Uwhn3F6mxgvGGxsfNUWRDYRDXKLsuEzEcK37PxyqNDwPU9bB9P+w6VYVeAoerbDwytJDKAgHU4G5UVN9wiOcws4GPTHAZ7MU3X386p8293bnAa/QeblQ1fgpeeMQZRrKfEey5NMA==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1>How to Compute Deviation Scores</h1>
+                    <p>This lesson explains how to use matrix
+                        methods to transform raw scores to deviation scores.
+                        We show the transformation to deviation scores for  
+                        <a href="../statistics/dictionarycc3d.html?Target=Vectors">vectors</a> and for 
+                        <a href="../statistics/dictionary8025.html?Target=Matrix">matrices</a>.</p>
+    
+                    <h2>Deviation Scores: Vectors</h2>
+                    <p>A <strong>deviation score</strong> is the difference between a raw score 
+                        and the mean.</p>
+    
+                    <p style="text-align:center;">
+                        d<sub>i</sub> = x<sub>i</sub> - <span class="Over">x</span>
+                    </p>
+    
+                    <p>where</p> 
+    
+                    <p style="padding-left:20px;">
+                        d<sub>i</sub> is the deviation score for the <i>i</i>th observation in
+                            a set of observations<br />
+                        x<sub>i</sub> is the raw score for the <i>i</i>th observation in
+                            a set of observations<br />
+                        <span class="Over">x</span> is the mean of all the observations in
+                            a set of observations
+                    </p>
+    
+                    <p>Often, it is easier to work with deviation scores than with raw scores. 
+                        Use the following formula to transform a 
+                        <a href="../statistics/dictionarycc3d.html?Target=Vectors">vector</a> of 
+                        <i>n</i> raw scores into a vector of <i>n</i> deviation scores.</p>
+    
+                    <p style="text-align:center;">
+                        <strong>d</strong> = 
+                        <strong>x</strong> -
+                        <strong>1</strong>'<strong>x</strong><strong>1</strong>
+                        ( <strong>1</strong>'<strong>1</strong> )<sup>-1</sup> = 
+                        <strong>x</strong> -
+                        <strong>1</strong>'<strong>x</strong><strong>1</strong>
+                        ( 1/n ) 
+                    </p>
+    
+                    <p>where</p> 
+    
+                    <p style="padding-left:20px;">
+                        <strong>1</strong> is an <i>n</i> x <i>1</i> column  
+                            <a href="../statistics/dictionarycc3d.html?Target=Vectors">vector</a>
+                            of ones<br />
+                        <strong>d</strong> is an <i>n</i> x <i>1</i> column vector 
+                            of <i>deviation</i> scores: <i>d</i><sub>1</sub>, <i>d</i><sub>2</sub>, . . . ,
+                            <i>d</i><sub>n</sub><br />
+                        <strong>x</strong> is an <i>n</i> x <i>1</i> column vector 
+                            of <i>raw</i> scores: <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, . . . ,
+                            <i>x</i><sub>n</sub>
+                    </p>
+    
+                    <p>To show how this works, let's transform the raw scores in vector
+                        <strong>x</strong> to deviation scores in vector <strong>d</strong>.
+                        For this example, let <strong>x</strong>' = [ 1 2 3 ].</p>
+    
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>d</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>x</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1'</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>x</strong></td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">(</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1'</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;)<sup>-1</sup></td>
+                        </tr>
+                        <tr>
+                        <td><strong>d</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">3</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</td>
+                        <td>[ 1 1 1 ]</td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">3</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>(</td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>[ 1 1 1 ]</td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;)<sup><strong>-1</strong></sup>&nbsp;&nbsp;</td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-right:auto; margin-left:auto;">
+                        <tr>
+                        <td style="padding-top:20px;"><strong>d</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td style="padding-top:20px;">
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">3</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="padding-top:20px; text-align:center;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td style="padding-top:20px;">
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="padding-top:20px; text-align:center;">&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td style="padding-top:20px;">
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">-1</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                    </table>
+    
+                    <p>Note that the mean deviation score is zero.</p>
+        
+                    <h2>Deviation Scores: Matrices</h2>
+    
+                    <p>Let <strong>X</strong>
+                        be an <i>r</i> x <i>c</i>   
+                        <a href="../statistics/dictionary8025.html?Target=Matrix">matrix</a>
+                        holding <i>raw</i> scores; and let 
+                        <strong>x</strong> be the corresponding <i>r</i> x <i>c</i> matrix 
+                        holding <i>deviation</i> scores.</p>
+        
+                    <p>When transforming raw scores from <strong>X</strong> into deviation
+                        scores for <strong>x</strong>, we often want to compute deviation 
+                        scores separately <i>within</i> columns, consistent with the 
+                        equation below.</p>
+    
+                    <p style="text-align:center;">
+                        <i>x</i><sub>r</sub><sub>c</sub> = 
+                            <i>X</i><sub>r</sub><sub>c</sub> - <span class="Over"><i>X</i></span><sub>c</sub>
+                    </p>
+    
+                    <p>where</p> 
+    
+                    <p style="padding-left:20px;">
+                        <i>x</i><sub>r</sub><sub>c</sub> is the deviation score from row <i>r</i>
+                            and column <i>c</i> of matrix <strong>x</strong><br />
+                        <i>X</i><sub>r</sub><sub>c</sub> is the raw score from row <i>r</i>
+                            and column <i>c</i> of matrix <strong>X</strong><br />
+                        <span class="Over"><i>X</i></span><sub>c</sub>
+                            is the mean score, based on all <i>r</i> scores from 
+                            column <i>c</i> of matrix <strong>X</strong>
+                    </p>
+    
+                    <p>To transform the raw scores from matrix <strong>X</strong> into 
+                        deviation scores for matrix <strong>x</strong>, we use this matrix equation.</p>
+    
+                    <p style="text-align:center;">
+                        <strong>x</strong> = <strong>X</strong> -
+                        <strong>1</strong><strong>1</strong>'<strong>X</strong>
+                        ( <strong>1</strong>'<strong>1</strong> )<sup>-1</sup> = 
+                        <strong>X</strong> -
+                        <strong>1</strong><strong>1</strong>'<strong>X</strong>
+                        ( 1 / r )
+                    </p>
+    
+                    <p>where</p> 
+    
+                    <p style="padding-left:20px;">
+                        <strong>1</strong> is an <i>r</i> x <i>1</i> column  
+                            <a href="../statistics/dictionarycc3d.html?Target=Vectors">vector</a>
+                            of ones<br />
+                        <strong>x</strong> is an <i>r</i> x <i>c</i> matrix 
+                            of <i>deviation</i> scores: <i>x</i><sub>1</sub><sub>1</sub>, 
+                            <i>x</i><sub>1</sub><sub>2</sub>, . . . ,
+                            <i>x</i><sub>r</sub><sub>c</sub><br />
+                        <strong>X</strong> is an <i>r</i> x <i>c</i> matrix 
+                            of <i>raw</i> scores: <i>X</i><sub>1</sub><sub>1</sub>, 
+                            <i>X</i><sub>1</sub><sub>2</sub>, . . . ,
+                            <i>X</i><sub>r</sub><sub>c</sub>
+                    </p>
+    
+                    <p>Note: Deviation score matrices are often denoted by a lower-case, boldface
+                        letter, such as <strong>x</strong>.  This can cause confusion, since 
+                        vectors are also denoted by lower-case, boldface letters; but usually the
+                        meaning is clear from the context.</p>
+    
+                    <h2>Test Your Understanding</h2>
+    
+                    <p><strong>Problem 1</strong></p>
+                    <p>Consider matrix <strong>X</strong>.</p>
+    
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>X</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+    
+                    <p>Using matrix methods, create a 2 x 3 vector <strong>D</strong>, such that
+                        the elements of <strong>D</strong> are deviation scores based on elements from
+                        <strong>X</strong>.  That is,</p>
+        
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3 - <span class="Over"><i>X</i></span><sub>1</sub>&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="tdmatrixcell">5 - <span class="Over"><i>X</i></span><sub>2</sub>&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="tdmatrixcell">1 - <span class="Over"><i>X</i></span><sub>3</sub></td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9 - <span class="Over"><i>X</i></span><sub>1</sub>&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="tdmatrixcell">1 - <span class="Over"><i>X</i></span><sub>2</sub>&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="tdmatrixcell">4 - <span class="Over"><i>X</i></span><sub>3</sub></td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+                               
+                    <p>where <span class="Over"><i>X</i></span><sub>c</sub> is the mean of elements
+                        from column <i>c</i> of matrix <strong>X</strong>.</p>
+    
+                    <p><strong>Solution</strong></p>
+    
+                    <p>To solve this problem, we use the following equation: 
+                        <strong>D</strong> = <strong>X</strong> -
+                        <strong>1</strong><strong>1</strong>'<strong>X</strong>
+                        ( 1 / r ). 
+                        Each step in the computation is shown below.</p>
+    
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>X</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1</strong></td>
+                            <td></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>1'</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"><strong>X</strong></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;"></td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">( 1/r )</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>[ 1 1 ]</td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>( 1/r )</td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-left:auto; margin-right:auto; margin-top:15px;">
+                        <tr>
+                        <td>
+                            <strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                            <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>( 1/2 )</td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-left:auto; margin-right:auto; margin-top:15px;">
+                        <tr>
+                        <td>
+                            <strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">12</td>
+                                    <td class="tdmatrixcell">6</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">12</td>
+                                    <td class="tdmatrixcell">6</td>
+                                    <td class="tdmatrixcell">5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>( 1/2 )</td>
+                        </tr>
+                    </table>
+    
+                    <table style="margin-left:auto; margin-right:auto; margin-top:15px;">
+                        <tr>
+                        <td>
+                            <strong>D</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">9</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">4</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>-</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">6</td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">2.5</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">6</td>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">2.5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="text-align:center; vertical-align:bottom; padding-bottom:15px;">&nbsp;&nbsp;&nbsp;<strong>=</strong>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">-3</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">-1.5</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">3</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">1.5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+        
+                    <p>Thus, matrix <strong>D</strong> has the deviation scores, based on raw scores from 
+                        matrix <strong>X</strong>. Note that the mean and sum of each column in matrix
+                        <strong>D</strong> is zero.</p>   
+
+                    <!-- google_ad_section_end -->
+                    <br />
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                     
+
+<link href="../css/theme1/matrix-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-matrix.js" type="text/javascript"></script>
+
+<nav>
+<div class="mat_Menu2Title">
+    <a class="mat_Menu2Title" title="About this matrix algebra tutorial" 
+        href="../tutorials/matrix-algebra-tutorial.html">
+        Matrix Algebra
+    </a>
+</div>
+
+<!-- Check mark symbol: &#10003; Solid right-facing triangle: &#9654;  -->
+<div id="mat_nav">
+    <br />
+    <span>Matrix basics</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix.html">
+        <span class="mat_TocArrow" id="sp1">&#9654;</span>
+        Matrix intro</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-type.html">
+        <span class="mat_TocArrow" id="sp2" style="color:#900; font-weight:bold;">&#9654;</span> 
+        Types of matrices</a></li>
+    </ul>
+    
+    <span>Matrix operations</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-addition.html">
+        <span class="mat_TocArrow" id="sp3">&#9654;</span>
+        Matrix addition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-multiplication.html">
+        <span class="mat_TocArrow" id="sp4">&#9654;</span>
+        Matrix multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="vector-multiplication.html">
+        <span class="mat_TocArrow" id="sp5">&#9654;</span>
+        Vector multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="elementary-operations.html">
+        <span class="mat_TocArrow" id="sp6">&#9654;</span>
+        Elementary operations</a></li>
+        </ul>
+    
+    <span>Echelon matrices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-form.html">
+        <span class="mat_TocArrow" id="sp7">&#9654;</span>
+        Echelon forms</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-transform.html">
+        <span class="mat_TocArrow" id="sp8">&#9654;</span>
+        Echelon transforms</a></li>
+        </ul>
+    
+    <span>Matrix properties</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="independent-vector.html">
+        <span class="mat_TocArrow" id="sp9">&#9654;</span>
+        Vector dependence</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-rank.html">
+        <span class="mat_TocArrow" id="sp10">&#9654;</span>
+        Matrix rank</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-determinant.html">
+        <span class="mat_TocArrow" id="sp11">&#9654;</span>
+        Matrix determinant</a></li>
+        </ul>
+    
+    <span>Matrix inverse</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp12">&#9654;</span>
+        Inverse definition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="find-matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp13">&#9654;</span>
+        How to find inverse: I</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="how-to-find-inverse.html">
+        <span class="mat_TocArrow" id="sp14">&#9654;</span>
+        How to find inverse: II</a></li>
+    </ul>
+    
+    <span>Matrix applications</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="system-of-equations.html">
+        <span class="mat_TocArrow" id="sp15">&#9654;</span>
+        Linear equations</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sum-of-elements.html">
+        <span class="mat_TocArrow" id="sp16">&#9654;</span>
+        Summation</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="vector-mean.html">
+        <span class="mat_TocArrow" id="sp17">&#9654;</span>
+        Mean scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="deviation-score.html">
+        <span class="mat_TocArrow" id="sp18">&#9654;</span>
+        Deviation scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sums-of-squares.html">
+        <span class="mat_TocArrow" id="sp19">&#9654;</span>
+        Sums of squares</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="covariance-matrix.html">
+        <span class="mat_TocArrow" id="sp20">&#9654;</span>
+        Variance-covariance</a></li>
+    </ul>
+    
+    <span>Appendices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-theorems.html">
+        <span class="mat_TocArrow" id="sp21">&#9654;</span>
+        Matrix theorems</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-notation.html">
+        <span class="mat_TocArrow" id="sp22">&#9654;</span>
+        Matrix notation</a></li>
+    </ul>
+</div>
+</nav>
+
+<script type="text/javascript">
+    mat_hideMatrixTocArrows();
+    mat_showMatrixTocArrow();
+</script> 
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'>HP 50g Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'><img src='https://images-na.ssl-images-amazon.com/images/I/41mB7uHff8L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$80.00</span><br />Buy New: <span style='color:#990000;'>$198.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B000GTPRPS?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GTPRPS'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/188652940X?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=188652940X'>Introduction to Probability</a><br /><span class='verticalAdAuthor'>Dimitri P. Bertsekas, John N. Tsitsiklis</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/188652940X?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=188652940X'><img src='https://images-na.ssl-images-amazon.com/images/I/519BZAMACCL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$79.00</span><br />Buy Used: <span style='color:#990000;'>$38.09</span><br />Buy New: <span style='color:#990000;'>$135.00</span></font></div></div><br /></aside><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00004TVDN?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00004TVDN'>Casio CFX-9850GC Plus Graphing Calculator (White)</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00004TVDN?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00004TVDN'><img src='https://images-na.ssl-images-amazon.com/images/I/41FCHD2YZAL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$13.49</span><br /></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B00004TVDN?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00004TVDN'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/matrix-algebra/deviation-score.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:11 GMT -->
+</html>

@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_http_web_services.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:25:07 GMT -->
+<head>
+  <title>Python Tutorial: Python HTTP Web Services - 2017</title>
+  <meta content="Python Tutorial: Python HTTP Web Services, We can identify two major classes of Web services, REST-compliant Web services, in which the primary purpose of the service is to manipulate XML representations of Web resources using a uniform set of stateless operations; and arbitrary Web services, in which the service may expose an arbitrary set of operations." name="description" />
+  <meta content="Python Tutorial: Python HTTP Web Services, urllib, http request, http response, http caching, cache proxies" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Python HTTP Web Services - urllib, httplib2        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/python_logo.png" alt="python_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<div class="subtitle" id="web_services">Web Service</div>
+<p>Web service ia s software system designed to support interoperable machine-to-machine interaction over a network. It has an interface described in a machine-processable format, <b>Web Services Description Language (WSDL)</b>. Other systems interact with the Web service in a manner prescribed by its description using <a href="../WebTechnologies/OpenAPI_RESTful.html" target="_blank">SOAP</a> messages, typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards. - from <a href="http://en.wikipedia.org/wiki/Web_service" target="_blank">wiki</a>
+</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>We can identify two major classes of Web services, <a href="../WebTechnologies/OpenAPI_RESTful.html" target="_blank">REST</a>-compliant Web services, in which the primary purpose of the service is to manipulate XML representations of Web resources using a uniform set of "stateless" operations; and arbitrary Web services, in which the service may expose an arbitrary set of operations. </p>
+<p>Philosophically, we can describe HTTP web services in 12 words: <b>exchanging data with remote servers using nothing but the operations of http</b>. </p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="http_request">HTTP Requests</div>
+<p>
+It's really important to understand the
+details of the HTTP protocol in order to build and debug effective web services.
+
+The HTTP protocol is always organized around a client sending a request to the 
+server. We have our server and our client, and we have a request that's being sent.
+Now, one of the key parts of that request is the action that the client is asking the server to
+take on its behalf. Therefore, every request has a request method which is the action or the verb that
+the client is asking the server to take on its behalf. All requests are dictated as a request method that
+should be applied to a specific resource on the server.</p>
+<p>For example, when we go and access a webpage, using our browser, 
+what we're typically doing is sending a request that has the <b>get</b> request method, and the resource is usually a webpage such as 'index.html', which is usually the core webpage at a website. In this case, 
+the <b>get</b> is the request method, and the <b>resource</b> is the 'index.html'.</p>
+<p>The resource is typically specified as a path to a resource on the server. So, the resource will typically be a path. We'll see something like this, '/index.html' or 'foo/mypage' or some other resource that we would like to
+access.</p>
+<p>
+There's a variety of request methods in http protocol. One of the most important ones that we
+want to understand is <b>GET</b> which is a simple request to the server. It can be without data or possibly include a little bit of data and it's asking the server to get some resource that's there and return
+it to us.</p>
+<p>Another important one is <b>POST</b>. POST is typically used when we want to send a lot of data to the server. 
+So, for example, if we want to go and Post an image to the server so that it can then store and serve up at some later point in time. Post is probably something we will be using to do that. 
+We probably aren't going to be sending an image through get. We're going to be sending some small amount of data through Get.</p>
+<p>Post is used for more general purpose such as sending data to the server. </p>
+<br/>
+<img alt="HttpRequest.png" src="images/python_http_web_services/HttpRequest.png"/>
+<br/>
+<p>If we want to get data from the server, use <b>http GET</b>. </p>
+<p>So, when we typed in the following in the url:</p>
+<pre>
+http://www.bogotobogo.com/foo
+</pre>
+<br>
+<p>Internally, we're issuing the following request line requesting a page from a http server:</p>
+<pre>
+GET /foo http/1.1
+</pre>
+<br>
+<ol>
+<li><b>GET</b> - method</li>
+<li><b>/foo</b> - path</li>
+<li><b>http/1.1</b> - version</li>
+</ol>
+<p>Here is another example a little bit more complicated, and guess what would be the request line:</p>
+<pre>
+http://www.bogotobogo.com/foo/bogo.png?p=python#fragment
+</pre>
+<br>
+<p>The answer is:</p>
+<pre>
+GET /foo/bogo.png?p=python http/1.1
+</pre>
+<br>
+<p>The host <b>www.bogotobogo.com</b> will be used for <b>connection</b>, and the <b>fragment</b> stays at the <b>client side</b>.</p>
+<p>Actually, the http request line has more, called <b>header</b> which consists of <b>name: value</b> pair:</p>
+<pre>
+Host: www.bogotobogo.com
+User-Agent: Chrome
+</pre>
+<br>
+<p>Though we made a connection already, we need the <b>Host</b> because a web server may be hosting several domains.</p>
+<p>If we want to send new data to the server, use <b>http POST</b>. Some more advanced http web service APIs also allow creating, modifying, and deleting data, using <b>http PUT</b> and <b>http DELETE</b>. That's it. No registries, no envelopes, no wrappers, no tunneling. The <b>verbs</b> built into the http protocol (<b>GET</b>, <b>POST</b>, <b>PUT</b>, and <b>DELETE</b>) map directly to application-level operations for retrieving, creating, modifying, and deleting data.<br/>
+The main advantage of this approach is simplicity, and its simplicity has proven popular. Data - usually <b>xml</b> or <a href="python_serialization_pickle_json.html" target="_blank">json</a> - can be built and stored statically, or generated dynamically by a server-side script, and all major programming languages (including Python, of course!) include an http library for downloading it. Debugging is also easier; because each resource in an http web service has a unique address (in the form of a <b>url</b>), we can load it in our web browser and immediately see the raw data. - from <a href="http://getpython3.com/diveintopython3/http-web-services.html" target="_blank">http://getpython3.com/diveintopython3/http-web-services.html</a></p>
+<br/>
+<div class="subtitle_2nd" id="http_response">HTTP Responses</div>
+<p>To the folowing http request:</p>
+<pre>
+GET /foo http/1.1
+</pre>
+<p>The server's response should something like this;</p>
+<pre>
+http/1.1 200 OK
+</pre>
+<p>The line is called <b>status line</b>:</p>
+<ol>
+<li><b>200</b>: status code</li>
+<li><b>OK</b>: reason phrase</li>
+</ol>
+<p>Here are some of the status codes:</p>
+<table border="1" cellpadding="5">
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>1xx</td>
+<td>Information</td>
+<td>100 = server agrees to handle client's request</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>Success(OK)</td>
+<td>200 = request succeeded, 204 = no content present</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>Redirection</td>
+<td>301 = page moved, 304 = cached page still valid</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>Client error</td>
+<td>403 = forbidden page, 404 = page not found</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Server error</td>
+<td>500 = internal server error, 503 = try again later</td>
+</tr>
+</table>
+<br>
+<p>The header has more components, and we will see them later in this page.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="python_web_services">Python Web Service</div>
+<p>Python 3 comes with two different libraries for interacting with http web services:
+<ol>
+<li><a href="http://docs.python.org/3.1/library/http.client.html" target="_blank">http.client</a> is a low-level library that implements <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank">rfc 2616</a>, the http protocol.</li>
+<li><a href="http://docs.python.org/3.1/library/urllib.request.html" target="_blank">urllib.request</a> is an abstraction layer built on top of <a href="http://docs.python.org/3.1/library/http.client.html" target="_blank">http.client</a>. It provides a standard API for accessing both http and ftp servers, automatically follows http redirects, and handles some common forms of http authentication.</li>
+</ol>
+<p>So which one should we use? Neither of them. Instead, we should use <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a>, an <b>open source third-party library</b> that implements <b>http</b> more fully than <b>http.client</b> but provides a better abstraction than <b>urllib.request</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="OnHttp">On HTTP Clients</div>
+<p>There are five important features which all <b>http clients</b> should support.</p>
+<ol>
+<li><a href="#caching">Caching</a></li>
+<li><a href="#last_modified_checking">Last-modified checking</a></li>
+<li><a href="#ETag_checking">ETag checking</a></li>
+<li><a href="#Compression">Compression</a></li>
+<li><a href="#Redirect">Redirect</a></li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="caching">Features of http clients should support - 1. Caching</div>
+<p>Network access is incredibly expensive!</p>
+<p>The most important thing to realize that any type of web service is that network access is incredibly expensive. It takes an extraordinary long time to open a connection, send a request, and retrieve a response from a remote server. Even on the fastest broadband connection, a latency can still be higher than we anticipated. A router misbehaves, a packet is dropped, an intermediate proxy is under attack, and so on.</p>
+<p><b>http</b> is designed with <b>caching</b> in mind. There is an entire class of devices called <b>caching proxies</b> whose only job is to sit between us and the rest of the world and minimize network access. Our company or ISP almost certainly maintains caching proxies, even if we're not aware of them. They work because <b>caching is built into the http protocol</b>.</p>
+<br/>
+<br/>
+<p><b>Chrome</b></p>
+<p>After installing <a href="chrome-extension-http-headers.html" target="_blank">chrome-extension-http-headers</a></p>
+<img alt="chrome_header_arrow.png" src="images/python_http_web_services/chrome_header_arrow.png"/>
+<br/>
+<p>we can get header http header info:</p>
+<img alt="Chrome_http_header.png" src="images/python_http_web_services/Chrome_http_header.png"/>
+<br/>
+<br/>
+<p><b>Firefox</b></p>
+<p>Install <a href="https://addons.mozilla.org/en-US/firefox/addon/web-developer/" target="_blank">Firefox Web Developer Add-Ons</a></p>
+<img alt="Firefox_web_developer_information.png" src="images/python_http_web_services/Firefox_web_developer_information.png"/><br/>
+<p>Page Informatiton-&gt;Headers</p>
+<img alt="Mozilla_firefox_http_header.png" src="images/python_http_web_services/Mozilla_firefox_http_header.png"/>
+<br/><br/>
+<p>Caching speeds up repeated page views and saves a lot of traffic by preventing downloading of unchanged content every page view.
+We can use <b>Cache-Control: max-age=</b> to inform browser that the component won't be changed for defined period. This way we avoid unneeded further requests if browser already has the component in its cache and therefore primed-cache page views will be performed faster.</p>
+<br/>
+<br/>
+<p>After installing the <a href="https://chrome.google.com/webstore/detail/http-headers/hplfkkmefamockhligfdcfgfnbcdddbg/related?hl=en" target="_blank">HTTP Response Browser</a>, we can see the response to our request.</p>
+<br/>
+<img alt="http_response_arrow_chrome.png" src="images/python_http_web_services/http_response_arrow_chrome.png"/>
+<br/><br/>
+<p>The following example shows the response to the request of an image.<br/>
+ We visit http://www.bogotobogo.com/python/images/python_http_web_services/Browsers.png in our browser. That page includes an image. When our browser downloads that image, the server includes the following http headers:</p>
+<img alt="http_response_chrome.png" src="images/python_http_web_services/http_response_chrome.png"/>
+<br/>
+<p>Unfortunately, my site does not have <b>cache-control/Expires</b>. So, let's look at another site:</p>
+<br/>
+<img alt="iTunesGallery.png" src="images/python_http_web_services/iTunesGallery.png"/>
+<br/><br/>
+<p>The <b>Cache-Control</b> and <b>Expires</b> headers tell our browser (and any caching proxies between us and the server) that this image can be cached for up to 2 minutes (from Sun, 20 Jan 2013 22:16:26 GMT to Sun, 20 Jan 2013 22:18:26 GMT).   And if, within that period, we visit the page, our browser will load the page from its cache without generating any network activity whatsoever.</p>
+<p>But let's suppose, we're trying to download an image and we have about a month before it expires. And our browser purges the image from our local cache for some reason. But the http headers said that this data could be cached by public caching proxies. (Technically, the important thing is what the headers don't say; the Cache-Control header doesn't have the private keyword, so this data is cacheable by default.) Caching proxies are designed to have tons of storage space, probably far more than our local browser has allocated.</p>
+<p>If our ISP maintain a <b>caching proxy</b>, the proxy may still have the image cached. When we visit the site again, our browser will look in its local cache for the image, but it won't find it, so it will make a network request to try to download it from the remote server. But if the caching proxy still has a copy of the image, it will intercept that request and serve the image from its cache. That means that our request will never reach the remote server; in fact, it will never leave our ISP's network. That makes for a faster download (fewer network hops).</p>
+<p><b>http caching</b> only works when everybody does their part. On one side, servers need to send the correct headers in their response. On the other side, clients need to understand and respect those headers before they request the same data twice. The proxies in the middle are not a panacea; they can only be as smart as the servers and clients allow them to be.</p>
+<p>Python's <b>http libraries</b> do not support <b>caching</b>, but <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a> does.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="last_modified_checking">Features of http clients should support - 2. Last modified checking</div>
+<p>Some data never changes, while other data changes all the time. In between, there is a vast field of data that might have changed, but hasn't. gizmodo.com's feed is updated every few minutes, but site's feed may not change for days or weeks at a time. In the latter case, I don't want to tell clients to cache my feed for weeks at a time, because then when I do actually post something, people may not read it for weeks (because they're respecting my cache headers which said <b>don't bother checking this feed for weeks</b>). On the other hand, I don't want clients downloading my entire feed once an hour if it hasn't changed!</p>
+<p>
+<b>http</b> has a solution to this, too. When we request data for the first time, the server can send back a <b>Last-Modified header</b>. This is exactly what it sounds like: the date that the data was changed. </p>
+<p>When we request the same data a second (or third or fourth) time, we can send an <b>If-Modified-Since</b> header with our request, with the date we got back from the server last time. If the data has changed since then, then the server gives us the new data with a <b>200</b> status code. But if the data hasn't changed since then, the server sends back a special <b>http 304</b> status code, which means this data hasn't changed since the last time we asked for it. We can test this on the command line, using <b>cURL</b>:</p>
+<pre>
+$ <font color="blue">curl -I </font><font color="red">-H "If-Modified-Since: Sun, 20 Jan 2013 19:56:58 GMT"</font>
+ <font color="blue">http://www.bogotobogo.com/python/images/python_http_web_services/Browsers.png</font>
+HTTP/1.1 <font color="red">304</font> Not Modified
+Date: Sun, 20 Jan 2013 23:21:23 GMT
+Server: Apache
+ETag: "664002c-2f09-4d3bdbf48a672"
+Vary: Accept-Encoding
+</pre>
+<br>
+<p>This is an improvement because when the server sends a <b>304</b>, it doesn't re-send the data. All we get is the status code. Even after our cached copy has expired, <b>last-modified checking</b> ensures that we won't download the same data twice if it hasn't changed. (Actually, this <b>304</b> response also includes caching headers. Proxies will keep a copy of data even after it officially <b>expires</b>, in the hopes that the data hasn't really changed and the next request responds with a <b>304</b> status code and updated cache information.)</p>
+<p>Python's <b>http libraries</b> do not support <b>last-modified date checking</b>, but <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a> does.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ETag_checking">Features of http clients should support - 3. ETag checking</div>
+<p>An <b>ETag</b> or <b>entity tag</b>, is part of HTTP, the protocol for the World Wide Web. It is one of several mechanisms that HTTP provides for <b>web cache validation</b>, and which allows a client to make <b>conditional requests</b>. This allows caches to be more efficient, and saves bandwidth, as a web server does not need to send a full response if the content has not changed. - from <a href="http://en.wikipedia.org/wiki/HTTP_ETag" target="_blank">wiki</a> </p>
+<p><b>ETag</b>s are an alternate way to accomplish the same thing as the <b>last-modified checking</b>. With <b>ETag</b>s, the server sends a <b>hash code</b> in an ETag header along with the data we requested. </p>
+<pre>200 OK
+Date: Mon, 21 Jan 2013 00:07:51 GMT
+Content-Encoding: gzip
+Last-Modified: Sun, 20 Jan 2013 19:56:58 GMT
+Server: Apache
+ETag: <font color="red">"664002c-2f09-4d3bdbf48a672"</font>
+Vary: Accept-Encoding
+Content-Type: image/png
+Accept-Ranges: bytes
+Content-Length: 12054
+</pre>
+<br>
+<p>The second time we request the same data, we include the <b>ETag hash</b> in an <b>If-None-Match</b> header of our request. If the data hasn't changed, the server will send us back a <b>304</b> status code. As with the <b>last-modified date checking</b>, the server sends back only the <b>304</b> status code; it doesn't send us  the same data a second time. By including the <b>ETag hash</b> in our second request, we're telling the server that there's no need to re-send the same data if it still matches this hash, since we still have the data from the last time.</p>
+<pre>
+$ <font color="blue">curl -I </font><font color="red">-H "If-None-Match: \"664002c-2f09-4d3bdbf48a672\""</font>
+ <font color="blue">http://www.bogotobogo.com/python/images/python_http_web_services/Browsers.png</font>
+HTTP/1.1 304 Not Modified
+Date: Mon, 21 Jan 2013 00:14:50 GMT
+Server: Apache
+ETag: "664002c-2f09-4d3bdbf48a672"
+Vary: Accept-Encoding
+</pre>
+<br>
+<p>Note that <b>ETag</b>s are commonly enclosed in <b>quotation marks</b>, but the quotation marks are part of the value. That means we need to send the quotation marks back to the server in the <b>If-None-Match</b> header.</p>
+<p>Python's <b>http libraries</b> do not support <b>Etag</b>s, but <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a> does.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Compression">Features of http clients should support - 4. Compression</div>
+<p>When we talk about <b>http web services</b>, we're almost always talking about moving text-based data back and forth over the wire. It could be <b>xml</b>, <b>json</b>, or it could be just <b>plain text</b>. Regardless of the format, <b>text compresses well</b>. The example feed in the XML chapter is 25K bytes uncompressed, but would be 6K bytes after gzip compression. That's just 25% of the original size!</p>
+<p><b>http</b> supports several compression algorithms. The two most common types are <b>gzip</b> and <b>deflate</b>. When we request a resource over <b>http</b>, we can ask the server to send it in compressed format. We include an <b>Accept-encoding</b> header in our request that lists which compression algorithms we support. If the server supports any of the same algorithms, it will send us back compressed data (with a <b>Content-encoding</b> header that tells us which algorithm it used). Then it's up to us to decompress the data.</p>
+<br/>
+<img alt="compression.png" src="images/python_http_web_services/compression.png"/>
+<br/><br/>
+<p>Python's <b>http libraries</b> do not support <b>compression</b>s, but <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a> does.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Redirect">Features of http clients should support - 5. Redirect</div>
+<p>Web sites are keep changing. Even web services can reorganize and even the domain might move. Every time we request any kind of resource from an http server, the server includes a status code in its response:</p>
+<ol>
+<li>200: everything's normal</li>
+<li>404: page not found</li>
+<li>300: redirection</li>
+</ol>
+<p><b>http</b> has several different ways of signifying that a resource has moved. The two most common techiques are status codes <b>302</b> and <b>301</b>. </p>
+<ol>
+<li>302: a temporary redirect; it means <b>oops, that got moved over here temporarily</b>, and then gives the temporary address in a Location header.<br/>
+  If we get a <b>302</b> status code and a new address, the <b>http</b> specification says we should use the new address to get what we asked for, but the next time we want to access the same resource, we should retry the old address.
+  </li>
+<li>301: a permanent redirect; it means <b>oops, that got moved permanently</b>, and then gives the new address in a Location header. <br/>
+  if we get a <b>301</b> status code and a new address, we're supposed to use the new address from then on.</li>
+</ol>
+<p>The <b>urllib.request</b> module automatically <b>follow</b> redirects when it receives the appropriate status code from the http server, but it doesn't tell us that it did so. We'll end up getting data we asked for, but we'll never know that the underlying library helpfully followed a redirect for us. So we'll continue pounding away at the old address, and each time we'll get redirected to the new address, and each time the <b>urllib.request</b> module will helpfully follow the redirect. In other words, it treats permanent redirects the same as temporary redirects. That means two round trips instead of one, which is bad for the server and bad for us.</p>
+<p>
+<b>compression</b>s, but <a href="http://code.google.com/p/httplib2/" target="_blank">httplib2</a> handles permanent redirects for us. Not only will it tell us that a permanent redirect occurred, it will keep track of them locally and automatically rewrite <b>redirected urls</b> before requesting them.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="downloading_over_http">Downloading Over HTTP</div>
+<p>Suppose we want to <b>download a resource</b> over <b>http</b>, such as an <a href="http://en.wikipedia.org/wiki/Atom_(standard)" target="_blank">Atom feed</a>. Being a feed, we're not just going to download it once; we're going to download it over and over again. (Most feed readers will check for changes once an hour.) Let's do it the quick-and-dirty way first, and then see how we can improve it later.</p>
+<pre>
+>>> <font color="blue">import urllib.request</font>
+>>> <font color="blue">a_url = 'http://www.w3.org/2005/Atom'</font>
+>>> <font color="blue">data = urllib.request.urlopen(a_url).read()</font>
+>>> <font color="blue">type(data)</font>
+&lt;class 'bytes'&gt;
+>>> <font color="blue">print(data)</font>
+b'&lt;?xml version="1.0" encoding="utf-8"?&gt;\n
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;\n\n
+&lt;html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;\n
+&lt;head&gt;\n  
+&lt;meta name="generator" content=\n  
+...
+</pre>
+<br>
+<p>The <b>urllib.request</b> module has a <b>urlopen()</b> function that takes the address of the page we want, and returns a file-like object that we can just <b>read()</b> from to get the full contents of the page. </p>
+<p>The <b>urlopen().read()</b> method always returns a <b>bytes</b> object, not a <b>string</b>. Remember, <b>bytes are bytes</b>; <b>characters are an abstraction</b>. <b>http</b> servers don't deal in abstractions. If we request a resource, we get bytes. If we want it as a string, we'll need to determine the character encoding and explicitly convert it to a string.</p>
+<p>We can do whatever we want with this <b>urllib.request</b>, however, once we start thinking in terms of a web service that we want to access on a regular basis, then we will soon feel the pain. Let's find other options.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="downloading_over_http_options">Downloading Over HTTP - httplib2</div>
+<p>let's turn on the debugging features of Python's <b>http library</b> and see what's being sent over the network.</p>
+<pre>
+>>> <font color="blue">from http.client import HTTPConnection</font>
+>>> <font color="blue">HTTPConnection.debuglevel = 1</font>
+>>> <font color="blue">from urllib.request import urlopen</font>
+>>> <font color="blue">response = urlopen('http://www.w3.org/2005/Atom')</font>
+send: b'GET /2005/Atom HTTP/1.1\r\n
+Accept-Encoding: identity\r\n
+Host: www.w3.org\r\n
+Connection: close\r\n
+User-Agent: Python-urllib/3.2\r\n
+\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+header: Date header: Server header: Content-Location header: Vary header: 
+TCN header: Last-Modified header: ETag header: Accept-Ranges header: 
+Content-Length header: Cache-Control header: Expires header: P3P header: 
+Connection header: Content-Type 
+</pre>
+<br>
+<p>The <b>urllib.request</b> relies on another standard Python library, <b>http.client</b>. Normally we don't need to touch <b>http.client</b> directly since the <b>urllib.request</b> module imports it automatically. But we import it here so we can toggle the debugging flag on the <b>HTTPConnection class</b> that <b>urllib.request</b> uses to connect to the <b>http</b> server.</p>
+<p>Now that the debugging flag is set, information on the <b>http</b> request and response is printed out in real time. As we can see, when we request the Atom feed, the <b>urllib.request</b> module sends five lines to the server.</p>
+<ol>
+<li>The first line specifies the http verb we're using, and the path of the resource (minus the domain name).</li>
+<li>The second line specifies the domain name from which we're requesting this feed.</li>
+<li>The third line specifies the compression algorithms that the client supports. The <b>urllib.request</b> does not support compression by default.</li>
+<li>The fourth line specifies the name of the library that is making the request. By default, this is Python-<b>urllib</b> plus a <b>version number</b>. Both <b>urllib.request</b> and <b>httplib2</b> support changing the user agent, simply by adding a <b>User-Agent</b> header to the request which will override the default value.</li>
+</ol>
+<p>Now let's look at what the server sent back in its response. Continued from the previous example.</p>
+<pre>
+>>> <font color="blue">print(response.headers.as_string())</font>
+Date: Mon, 21 Jan 2013 04:37:06 GMT
+Server: Apache/2
+Content-Location: Atom.html
+Vary: negotiate,Accept-Encoding
+TCN: choice
+Last-Modified: Sat, 13 Oct 2007 02:19:32 GMT
+ETag: "90a-43c56773a3500;4bc4eec228980"
+Accept-Ranges: bytes
+Content-Length: 2314
+Cache-Control: max-age=21600
+Expires: Mon, 21 Jan 2013 10:37:06 GMT
+P3P: policyref="http://www.w3.org/2001/05/P3P/p3p.xml"
+Connection: close
+Content-Type: text/html; charset=utf-8
+>>> <font color="blue">data = response.read()</font>
+>>> <font color="blue">len(data)</font>
+2314
+</pre>
+<br>
+<p>The response returned from the <b>urllib.request.urlopen()</b> function contains all the <b>http</b> headers the server sent back. It also contains methods to download the actual data.</p>
+<p>The server tells us when it handled our request. This response includes a <b>Last-Modified</b> header and <b>ETag</b> header.</p>
+<p>The data is 2314 bytes long. Notice what isn't here: a <b>Content-encoding header</b>. Our request stated that we only accept uncompressed data (<b>Accept-encoding: identity</b>), and sure enough, this response contains uncompressed data.</p>
+<p>This response also includes <b>caching headers</b> that state that this feed can be cached for up to 6 hours (21600 seconds), and finally, download the actual data by calling <b>response.read()</b>. As we can tell from the <b>len()</b> function, this fetched a total of 2314 bytes.</p>
+<p>As we can see, this code is already inefficient: it asked for (and received) uncompressed data. I know for a fact that this server supports gzip compression, but http compression is opt-in. We didn't ask for it, so we didn't get it. That means we're fetching 2314 bytes when we could have fetched less. </p>
+<br/>
+<p>Let's see it gets worse! To see just how inefficient this code is, let's request the same feed a second time.</p>
+<pre>
+>>> <font color="blue">response2 = urlopen('http://www.w3.org/2005/Atom')</font>
+send: b'GET /2005/Atom HTTP/1.1\r\n
+Accept-Encoding: identity\r\n
+Host: www.w3.org\r\n
+Connection: close\r\n
+User-Agent: Python-urllib/3.2\r\n\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+header: Date header: Server header: Content-Location header: Vary header: 
+TCN header: Last-Modified header: ETag header: Accept-Ranges header: 
+Content-Length header: Cache-Control header: Expires header: P3P header: 
+Connection header: Content-Type 
+...
+</pre>
+<br>
+<p>Notice that it hasn't changed! It's exactly the same as the first request. No sign of <b>If-Modified-Since</b> headers. No sign of <b>If-None-Match</b> headers. No respect for the <b>caching</b> headers. Still no <b>compression</b>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="downloading_over_httplib2">httplib2</div>
+<pre>
+>>> <font color="blue">import httplib2</font>
+Traceback (most recent call last):
+  File "<pyshell#37>", line 1, in <module>
+    import httplib2
+ImportError: No module named httplib2
+</module></pyshell#37></pre>
+<br>
+<p>So, we need to install <a href="http://code.google.com/p/httplib2/" target="_blank">http://code.google.com/p/httplib2/</a>.</p>
+<p>Downloads:</p>
+<p>
+<a href="files/python_http_web_services/httplib2-0.7.7.tar.gz" target="_blank">httplib2-0.7.7.tar.gz</a><br/>
+<a href="files/python_http_web_services/httplib2-0.7.7.zip" target="_blank">httplib2-0.7.7.zip</a><br/></p>
+<p>To install:<br/>
+<pre>
+$ python setup.py install
+</pre>
+<br>
+<p>To use <b>httplib2</b>, create an instance of the <b>httplib2.Http</b> class.</p>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">h = httplib2.Http('.cache')</font>
+>>> <font color="blue">response, content = h.request('http://www.w3.org/2005/Atom')</font>
+>>> <font color="blue">response.status</font>
+200
+>>> <font color="blue">content[:52]</font>
+b'&lt;?xml version="1.0" encoding="utf-8"?&gt;\n&lt;!DOCTYPE htm'
+>>> <font color="blue">len(content)</font>
+2314
+</pre>
+<br>
+<p>The primary interface to <b>httplib2</b> is the <b>Http</b> object. We should always pass a directory name when we create an <b>Http</b> object. The directory does not need to exist; <b>httplib2</b> will create it if necessary.</p>
+<p>Once we have an <b>Http</b> object, retrieving data is as simple as calling the <b>request()</b> method with the address of the data we want. This will issue an <b>http GET</b> request for that <b>url</b>. </p>
+<p>The <b>request()</b> method returns two values:</p>
+<ol>
+<li> The first is an <b>httplib2.Response</b> object, which contains all the <b>http</b> headers the server returned. For example, a status code of <b>200</b> indicates that the request was successful.</li>
+<li>The <b>content</b> variable contains the actual data that was returned by the <b>http</b> server. The data is returned as a bytes object, not a string. If we want it as a string, we'll need to determine the character encoding and convert it ourselves.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="httplib2_caching">httplib2 - caching</div>
+<p>To use Caching, we should always create an <b>httplib2.Http</b> object with a directory name.</p>
+<pre>
+>>> <font color="blue">response2, content2 = h.request('http://www.w3.org/2005/Atom')</font>
+>>> <font color="blue">response2.status</font>
+200
+>>> <font color="blue">content2[:52]</font>
+b'&lt;?xml version="1.0" encoding="utf-8"?&gt;\n&lt;!DOCTYPE htm'
+>>> <font color="blue">len(content2)</font>
+2314
+</pre>
+<br>
+<p>Nothing unusual. Same results from the previous run!</p>
+<p>However, if we run it after relaunching Python shell, a surprise will be waiting for us.</p>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">httplib2.debuglevel = 1</font>
+>>> <font color="blue">h = httplib2.Http('.cache')</font>
+>>> <font color="blue">response, content = h.request('http://www.w3.org/2005/Atom')</font>
+>>> <font color="blue">len(content)</font>
+2314
+>>> <font color="blue">response.status</font>
+200
+>>> <font color="red">response.fromcache
+True</font>
+</pre>
+<br>
+<p>We turned on debugging. This was the <b>httplib2</b> equivalent of turning on debugging in <b>http.client</b>. <b>httplib2</b> will print all the data being sent to the server and some key information being sent back.</p>
+<p>We created an <b>httplib2.Http</b> object with the <b>same directory name</b> as before. 
+Then, requested the same <b>url</b> as before. More precisely, nothing got sent to the server, and nothing got returned from the server. There was absolutely no network activity whatsoever.</p>
+<p>However, we did  receive  some data - in fact, we received all of it. We also received an <b>http</b> status code indicating that the request was successful.</p>
+<p>Actually, this response was generated from <b>httplib2's local cache</b>. That directory name we passed in when we created the <b>httplib2.Http</b> object - that directory holds <b>httplib2</b>'s cache of all the operations it's ever performed.</p>
+<p>We previously requested the data at this <b>url</b>. That request was successful (status: <b>200</b>). That response included not only the feed data, but also a set of caching headers that told anyone who was listening that they could cache this resource for up to <b>6</b> hours (<b>Cache-Control: max-age=21600</b>, which is <b>6</b> hours measured in seconds). <b>httplib2</b> understand and respects those caching headers, and it stored the previous response in the <b>.cache</b> directory (which we passed in when we create the <b>Http</b> object). That cache hasn't expired yet, so the second time we request the data at this <b>url</b>, <b>httplib2</b> simply returns the cached result without ever hitting the network.</p>
+<p><b>httplib2</b> handles <b>http caching automatically and by default</b>.</p>
+<p>Now, suppose we have data cached, but we want to bypass the cache and re-request it from the remote server. Browsers sometimes do this if the user specifically requests it. For example, pressing <b>F5</b> refreshes the current page, but pressing <b>Ctrl+F5</b> bypasses the cache and re-requests the current page from the remote server. We might think <b>oh, I'll just delete the data from my local cache, then request it again</b>.  We could do that, but remember that there may be more parties involved than just us and the remote server. What about those intermediate <b>proxy servers</b>? They're completely beyond our control, and they may still have that data cached, and will happily return it to us because (as far as they are concerned) their cache is still valid.</p>
+<p>Instead of manipulating our <b>local cache</b> and hoping for the best, we should use the features of <b>http</b> to ensure that our request actually reaches the <b>remote server</b>.</p>
+<p>Instead of manipulating our local cache and hoping for the best, we should use the features of <b>http</b> to ensure that our request actually reaches the remote server.</p>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">response2, content2 = h.request('http://www.w3.org/2005/Atom',
+		headers={'cache-control':'no-cache'})</font>
+send: b'GET /2005/Atom HTTP/1.1\r\n
+Host: www.w3.org\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+accept-encoding: gzip, deflate\r\n
+cache-control: no-cache\r\n\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+header: Date header: 
+Server header: 
+...
+>>> <font color="blue">response2.status</font>
+200
+>>> <font color="blue">response2.fromcache</font>
+False
+>>> <font color="blue">print(dict(response2.items()))</font>
+{
+'status': '200', 
+'content-length': '2314', 
+'content-location': 'Atom.html', 
+'accept-ranges': 'bytes', 
+'expires': 'Mon, 21 Jan 2013 12:55:46 GMT', 
+'vary': 'negotiate,Accept-Encoding', 
+'server': 'Apache/2', 
+'tcn': 'choice', 
+'last-modified': 'Sat, 13 Oct 2007 02:19:32 GMT', 
+'connection': 'close', 
+'-content-encoding': 'gzip', 
+'etag': '"90a-43c56773a3500;4bc4eec228980"', 
+'cache-control': 'max-age=21600', 
+'date': 'Mon, 21 Jan 2013 06:55:46 GMT', 
+'p3p': 'policyref="http://www.w3.org/2001/05/P3P/p3p.xml"', 
+'content-type': 'text/html; charset=utf-8'
+}
+</pre>
+<br>
+<p><b>httplib2</b> allows us to add arbitrary <b>http</b> headers to any outgoing request. In order to bypass all caches (not just our local disk cache, but also any caching proxies between us and the remote server), add a <b>no-cache header</b> in the headers dictionary.</p>
+<p>Now we see <b>httplib2</b> initiating a network request. <b>httplib2</b> understands and respects caching headers in both directions - as part of the incoming response and as part of the outgoing request. It noticed that we added the <b>no-cache header</b>, so it bypassed its local cache altogether and then had no choice but to hit the network to request the data.</p>
+<p>This response was not generated from our local cache. We knew that, of course, because we saw the debugging information on the outgoing request. But it's nice to have that programmatically verified.</p>
+<p>The request succeeded; we downloaded the entire feed again from the remote server. Of course, the server also sent back a full complement of <b>http</b> headers along with the feed data. That includes caching headers, which <b>httplib2</b> uses to update its local cache, in the hopes of avoiding network access the next time we request this feed. Everything about <b>http caching</b> is designed to maximize cache hits and minimize network access. Even though we bypassed the cache this time, the remote server would really appreciate it if we would cache the result for next time.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="httplib2_Etag">httplib2 - Last-Modified and ETag</div>
+<p>The <b>Cache-Control</b> and <b>Expires</b> caching headers are called <b>freshness indicators</b>. They tell caches in no uncertain terms that we can completely avoid all network access until the cache expires. Given a freshness indicator, <b>httplib2</b> does not generate a single byte of network activity to serve up cached data unless we explicitly bypass the cache.</p>
+<p>But what about the case where the data might have changed, but hasn't? <b>http</b> defines <b>Last-Modified</b> and <b>Etag</b> headers for this purpose. These headers are called <b>validators</b>. If the local cache is no longer fresh, a client can send the <b>validators</b> with the next request to see if the data has actually changed. If the data hasn't changed, the server sends back a <b>304</b> status code and no data. So there's still a round-trip over the network, but we end up downloading fewer bytes.</p>
+<p>This time, instead of the feed, we're going to download the site's home page, which is <b>html</b>. Since this is the first time we've ever requested this page, <b>httplib2</b> has little to work with, and it sends out a minimum of headers with the request. The response contains a multitude of http headers but no caching information. However, it does include both an <b>ETag</b> and <b>Last-Modified</b> header:</p>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">httplib2.debuglevel = 1</font>
+>>> <font color="blue">h = httplib2.Http('.cache')</font>
+>>> <font color="blue">response, content = h.request('http://www.w3.org/')</font>
+send: b'GET / HTTP/1.1\r\n
+Host: www.w3.org\r\n
+accept-encoding: gzip, deflate\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+header: 
+...
+>>> <font color="blue">print(dict(response.items()))</font>
+{
+'status': '200', 
+'content-length': '32868', 
+'content-location': 'Home.html', 
+'accept-ranges': 'bytes', 
+'expires': 'Tue, 22 Jan 2013 05:06:02 GMT', 
+'vary': 'negotiate,accept', 
+'server': 'Apache/2', 
+'tcn': 'choice', 
+<font color="red">'last-modified': 'Mon, 21 Jan 2013 23:07:22 GMT', </font>
+'connection': 'close', 
+<font color="red">'etag': '"8013-4d3d486075e80;89-3f26bd17a2f00"', </font>
+'cache-control': 'max-age=600', 
+'date': 'Tue, 22 Jan 2013 05:07:40 GMT, 
+'p3p': 'policyref="http://www.w3.org/2001/05/P3P/p3p.xml"', 
+'content-type': 
+'text/html; charset=utf-8'
+}
+>>> <font color="blue">len(content)</font>
+32868
+</pre>
+<br>
+<p>Now, we're going to request the same page again, with the same <b>Http</b> object  and the same local <b>cache</b>.</p>
+<pre>
+>>> <font color="blue">response, content = h.request('http://www.w3.org/')</font>
+>>> <font color="blue">response.fromcache</font>
+True
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="httplib2_compression">httplib2 - Compression</div>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">httplib2.debuglevel = 1</font>
+>>> <font color="blue">h = httplib2.Http('.cache')</font>
+>>> <font color="blue">response, content = h.request('http://www.w3.org/')</font>
+send: b'GET / HTTP/1.1\r\n
+Host: www.w3.org\r\n
+<font color="red">accept-encoding: gzip, deflate\r\n</font>
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+header: 
+...
+>>> <font color="blue">print(dict(response.items()))</font>
+{
+'status': '200', 
+'content-length': '32868', 
+'content-location': 'Home.html', 
+'accept-ranges': 'bytes', 
+'expires': 'Tue, 22 Jan 2013 05:06:02 GMT', 
+'vary': 'negotiate,accept', 
+'server': 'Apache/2', 
+'tcn': 'choice', 
+'last-modified': 'Mon, 21 Jan 2013 23:07:22 GMT', 
+'connection': 'close', 
+'etag': '"8013-4d3d486075e80;89-3f26bd17a2f00"', 
+'cache-control': 'max-age=600', 
+'date': 'Tue, 22 Jan 2013 05:07:40 GMT, 
+'p3p': 'policyref="http://www.w3.org/2001/05/P3P/p3p.xml"', 
+'content-type': 
+'text/html; charset=utf-8'
+}
+</pre>
+<br>
+<p>Every time <b>httplib2</b> sends a request, it includes an <b>Accept-Encoding</b> header to tell the server that it can handle either <b>deflate</b> or <b>gzip</b> compression.
+ In this case, the server's response was not clear, but it usually gives us info on payloads. By the time the <b>request()</b> method returns, <b>httplib2</b> has already decompressed the body of the response and placed it in the content variable. </p>
+<p>Because we did not get the payloads info, we can check it using <b>response['-content-encoding']</b>:</p>
+</p>
+<pre>
+>>> <font color="blue">response['-content-encoding']</font>
+<font color="red">'gzip'</font>
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="httplib2_redirect">httplib2 - Redirect</div>
+<p>I do not have control over the site, http://www.w3.org/, I'll use my site and put a redirection there.</p>
+<p>"http://www.bogotobogo.com/python/python_http_web_services_redirect.php" 
+<pre>
+&lt;?php
+<font color="red">header('HTTP/1.1 301 Moved Permanently');</font>
+header('Location: http://www.bogotobogo.com/python/python_http_web_services.php');
+exit();
+?&gt;
+</pre>
+<br>
+will be redirected to </p>
+"http://www.bogotobogo.com/python/python_http_web_services.php" which is the page we're at now.</p>
+<p>Let's do the same thing as before:</p>
+<pre>
+>>> <font color="blue">import httplib2</font>
+>>> <font color="blue">httplib2.debuglevel = 1</font>
+>>> <font color="blue">h = httplib2.Http('.cache')</font>
+>>> <font color="blue">response, content = h.request('http://www.bogotobogo.com/python/python_http_web_services_redirect.php')</font>
+send: b'GET /python/python_http_web_services_redirect.php HTTP/1.1\r\n
+Host: www.bogotobogo.com\r\n
+accept-encoding: gzip, deflate\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+\r\n'
+reply: ''
+send: b'GET /python/python_http_web_services_redirect.php HTTP/1.1\r\n
+Host: www.bogotobogo.com\r\n
+accept-encoding: gzip, deflate\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+\r\n'
+<font color="red">reply: 'HTTP/1.1 301 Moved Permanently\r\n'</font>
+...
+send: b'GET /python/python_http_web_services.php HTTP/1.1\r\n
+Host: www.bogotobogo.com\r\n
+accept-encoding: gzip, deflate\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n
+\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+...
+</pre>
+<br>
+<p>And the response we got from the <b>final url</b>:</p>
+<pre>
+>>> <font color="blue">response</font>
+{
+<font color="red">'status': '200',  </font>
+'content-length': '53411', 
+<font color="red">'content-location': 'http://www.bogotobogo.com/python/python_http_web_services.php',  </font>
+'vary': 'Accept-Encoding', 
+'server': 'Apache', 
+'-content-encoding': 'gzip', 
+'date': 'Tue, 22 Jan 2013 06:00:17 GMT', 
+'content-type': 'text/html'
+}
+</pre>
+<br>
+<p>if we want more information about the <b>intermediate url</b>:</p>
+<pre>
+>>> <font color="blue">response.previous</font>
+{
+<font color="red">'status': '301',  </font>
+'content-length': '0', 
+'content-location': 'http://www.bogotobogo.com/python/python_http_web_services_redirect.php', 
+'vary': 'Accept-Encoding', 
+'server': 'Apache', '-content-encoding': 'gzip', 
+'location': 'http://www.bogotobogo.com/python/python_http_web_services.php', 
+'date': 'Tue, 22 Jan 2013 06:00:17 GMT', 
+<font color="red">'-x-permanent-redirect-url': 'http://www.bogotobogo.com/python/python_http_web_services.php', </font>
+'content-type': 'text/html'
+}
+</pre>
+<br>
+<p>If we request the same page again, there will be no second request for the final url.</p>
+<pre>
+>>> <font color="blue">response2, content2 = h.request('http://www.bogotobogo.com/python/python_http_web_services_redirect.php')</font>
+send: b'GET /python/python_http_web_services.php HTTP/1.1\r\n
+Host: www.bogotobogo.com\r\naccept-encoding: gzip, deflate\r\n
+user-agent: Python-httplib2/0.7.7 (gzip)\r\n\r\n'
+reply: 'HTTP/1.1 200 OK\r\n'
+... 
+</pre>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br /><br />
+
+
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="python_Selenium_WebDriver.html">Selenium WebDriver</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br><br><br>
+<h1>OpenCV 3 image and video processing with Python</h1>
+
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3.html" target="_blank">OpenCV 3 with Python</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">Image - OpenCV BGR : Matplotlib RGB</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">Basic image operations - pixel access</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">Signal Processing with NumPy I - FFT and DFT for sine, square waves, unitpulse, and random signal</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">Inverse Fourier Transform of an Image with low pass filter: cv2.idft() </a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">Image Histogram</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">Video Capture and Switching colorspaces - RGB / HSV</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">Adaptive Thresholding - Otsu's clustering-based image thresholding</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">Edge Detection - Sobel and Laplacian Kernels</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">Canny Edge Detection</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">Hough Transform - Circles</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">Watershed Algorithm : Marker-based Segmentation I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">Watershed Algorithm : Marker-based Segmentation II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">Image noise reduction : Non-local Means denoising algorithm</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">Image object detection : Face detection using Haar Cascade Classifiers</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">Video : Mean shift object tracking</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">Machine Learning : Clustering - K-Means clustering I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization_2.html" target="_blank">Machine Learning : Clustering - K-Means clustering II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm</a> 
+
+
+<br />
+<br />
+
+<br><br><br>
+<h1>Machine Learning with scikit-learn</h1>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_install.html" target="_blank">scikit-learn installation</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_features_extraction.html" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_quick_preview.html" target="_blank">scikit-learn : Machine Learning Quick Preview</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-Missing-Data-Categorical-Data.php" target="_blank">scikit-learn : Data Preprocessing I - Missing / Categorical data</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-II-Datasets-Partitioning-Feature-scaling-Feature-Selection-Regularization.html" target="_blank">scikit-learn : Data Preprocessing II - Partitioning a dataset / Feature scaling / Feature Selection / Regularization</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-III-Dimensionality-reduction-via-Sequential-feature-selection-Assessing-feature-importance-via-random-forests.html" target="_blank">scikit-learn : Data Preprocessing III - Dimensionality reduction vis Sequential feature selection / Assessing feature importance via random forests</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_1_Principal_component_analysis%20_PCA.html" target="_blank">Data Compression via Dimensionality Reduction I - Principal component analysis (PCA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_2_Linear_Discriminant_Analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction II - Linear Discriminant Analysis (LDA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_3-nonlinear-mappings-via-kernel-principal-component-analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction III - Nonlinear mappings via kernel principal component (KPCA) analysis</a>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_logistic_regression.html" target="_blank">scikit-learn : Logistic Regression, Overfitting & regularization</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">scikit-learn : Supervised Learning & Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">scikit-learn : Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)</a> 
+   <br><br>
+   <a href="scikit-learn/scikt_machine_learning_Decision_Tree_Learning_Informatioin_Gain_IG_Impurity_Entropy_Gini_Classification_Error.php" target="_blank">scikit-learn : Decision Tree Learning I - Entropy, Gini, and Information Gain</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Constructing_Decision_Tree_Learning_Information_Gain_IG_Impurity_Entropy_Gini_Classification_Error.html" target="_blank">scikit-learn : Decision Tree Learning II - Constructing the Decision Tree</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Random_Decision_Forests_Ensemble_Learning_Classification.html" target="_blank">scikit-learn : Random Decision Forests Classification</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM_2.html" target="_blank">scikit-learn : Support Vector Machines (SVM) II</a> 
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_1.html" target="_blank">Flask with Embedded Machine Learning I : Serializing with pickle and DB setup</a></li>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_2.html" target="_blank">Flask with Embedded Machine Learning II : Basic Flask App</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_3.html" target="_blank">Flask with Embedded Machine Learning III : Embedding Classifier</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_4.html" target="_blank">Flask with Embedded Machine Learning IV : Deploy</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_5.html" target="_blank">Flask with Embedded Machine Learning V : Updating the classifier</a>
+   <br><br>
+   <a href="scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.html" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> 
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Machine learning algorithms and concepts</h3>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="scikit-learn/Perceptron_Model_with_Iris_DataSet.html" target="_blank">Single Layer Neural Network - Perceptron model on the Iris dataset using Heaviside step activation function</a>
+   <br><br> 
+   <a href="scikit-learn/scikit-learn_batch-gradient-descent-versus-stochastic-gradient-descent.html" target="_blank">Batch gradient descent versus stochastic gradient descent</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron.html" target="_blank">Single Layer Neural Network - Adaptive Linear Neuron using linear (identity) activation function with batch gradient descent method</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron-with-Stochastic-Gradient-Descent.html" target="_blank">Single Layer Neural Network : Adaptive Linear Neuron using linear (identity) activation function with stochastic gradient descent (SGD)</a>
+   <br><br> 
+   <a href="scikit-learn/logistic_regression.html" target="_blank">Logistic Regression</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_VC_Dimension_Shatter.html" target="_blank">VC (Vapnik-Chervonenkis) Dimension and Shatter</a> 
+   <br><br> 
+   <a href="scikit-learn/scikit_machine_learning_Bias-variance-Tradeoff.html" target="_blank">Bias-variance tradeoff</a> 
+   <br><br> 
+   <a href="scikit-learn/Maximum-Likelyhood-Estimation-MLE.html" target="_blank">Maximum Likelihood Estimation (MLE)</a> 
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="../Algorithms/minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="../Algorithms/tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="../Algorithms/Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Artificial Neural Networks (ANN)</h3>
+
+   [Note] <a href="https://github.com/Einsteinish/Artificial-Neural-Networks-with-Jupyter.git" target="_blank">Sources are available at Github - Jupyter notebook files</a> 
+
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html" target="_blank">1. Introduction</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-2-Forward-Propagation.html" target="_blank">2. Forward Propagation</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-3-Gradient-Descent.html" target="_blank">3. Gradient Descent</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-4-Backpropagation.html" target="_blank">4. Backpropagation of Errors</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-5-Checking-Gradient.html" target="_blank">5. Checking gradient</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-6-Training-via-BFGS-Broyden-Fletcher-Goldfarb-Shanno-algorithm-a-variant-of-gradient-descent.html" target="_blank">6. Training via BFGS</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-7-Overfitting-Regularization.html" target="_blank">7. Overfitting & Regularization</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-8-Deep-Learning-1-Image-Recognition-Image-Uploading.html" target="_blank">8. Deep Learning I : Image Recognition (Image uploading)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-9-Deep-Learning-2-Image-Recognition-Image-Classification.html" target="_blank">9. Deep Learning II : Image Recognition (Image classification)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-10-Deep-Learning-3-Theano-TensorFlow-Keras.html" target="_blank">10 - Deep Learning III : Deep Learning III : Theano, TensorFlow, and Keras</a>
+<br />
+<br />
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_http_web_services.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:26:21 GMT -->
+</html>
+

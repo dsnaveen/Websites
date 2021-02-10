@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/php/php17_mysql_database.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:52:53 GMT -->
+<head>
+  <title>PHP5 & MySQL Tutorial: MySQL Database - 2017</title>
+  <meta content="PHP5 & MySQL Tutorial:  Working with MySQL Database" name="description" />
+  <meta content="PHP5 & MySQL Tutorial:  Working with MySQL Database, SQL, Creating Database, Creating Table, SQL Gate 2010" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">PHP & MySQL Tutorial
+Creating MySQL Database and Table
+       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/amp_logo.png" alt="amp logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mysqldatabase"> MySQL Database</div>
+<img alt="SQL_DROP_table.png" src="images/php17/SQL_DROP_table.png"/><br/>
+<a href="http://xkcd.com/327/" target="_blank">http://xkcd.com/327/</a>
+<br/><br/>
+<div class="subtitle_2nd" id="whatissql">What is SQL?</div>
+<p>SQL stands for <strong>Structured Query Language</strong>.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>It's the most standard language for accessing <strong>relational database management systems (RDBMs)</strong>. SQL is used to store data to and retrieve it from a database. It is used in database systems such as <strong>MySQL</strong>, <strong>Oracle</strong>, <strong>PostgreSQL</strong>, <strong>Sybase</strong>, and <strong>Microsoft SQL</strong>.</p>
+<br/>
+<p>An article on MySQL and it's future, Aug 18, 2012, from Tech Crunch <a href="http://techcrunch.com/2012/08/18/oracle-makes-more-moves-to-kill-open-source-mysql/" target="_blank">Oracle Makes More Moves To Kill Open Source MySQL</a><br/>
+Oracle is holding back test cases in the latest release of MySQL. It's a move that has all the markings of the company's continued efforts to further close up the open source software and alienate the MySQL developer community.<br/>
+
+The issue stems back to a recent discovery that the latest MySQL release has bug fixes but without a single one having any test cases associated with it.  That creates all sorts of problems for developers who have no assurance that the problem is actually fixed.<br/>
+....
+</p>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="mysqlvssql">MySQL vs. SQL?</div>
+<p>As mentioned in the previous section, MySQL is a relational database management system (or RDMS). This RDMS runs as its own server and provides multi-user access to multiple databases at once. The source code of MySQL is available under the terms set forth in the GNU General Public License as well as lots of proprietary agreements. Members of the MySQL community have created many different branches of the RDMS - the most popular of which are Drizzle and MariaDB. As well as being the prototype of several branches, most free software projects that must have a full featured database management system (or DMS) use MySQL.</p>
+<p>Structured Query Language (also known as SQL) is a database language. It was designed specifically to manage data in RDMSs and its conception was based upon relational algebra. The range of its capabilities includes data query and update, schema creation and modification, and data access control. It was one of the first languages using the RDMS model and is most certainly the most widely used language for these relational databases.</p>
+<p> The SQL language is subdivided into multiple language elements: <p>
+<ol>
+<li><strong>clauses</strong><br/>
+	They are occasionally optional constituent components of statements and queries.</li>
+<li><strong>expressions</strong><br/>
+	These produce either scalar values or tables that are comprised of columns and rows of dat.</li>
+<li><strong> predicates</strong><br/>
+	Is an expression that evaluates to TRUE, FALSE, or UNKNOWN. Predicates are used in the search condition of WHERE clauses and HAVING clauses, the join conditions of FROM clauses, and other constructs where a Boolean value is required.
+.</li>
+<li><strong>queries</strong><br/>
+	They retrieve data based on particular specifications.</li>
+<li><strong>statements</strong><br/>
+	They affect the schemas and data or can also control transactions, program flow, connections, sessions, or diagnostics.</li>
+</ol>
+<p>
+MySQL can be found in many web applications as the database component of a solution bundle (or LAMP) software stack. Its use can be seen widely in such popular web sites as Flickr, FaceBook, Wikipedia, Google, Nokia, and YouTube. Each one of these websites use MySQL for storage and the logging of user data. The code is comprised of the C and C++ languages and uses many different system platforms including Linux, Mac OS X, and Microsoft Windows. </p>
+<p>
+SQL is now a standard and its structure is made up of many different components. These include, but are not limited to, SQL Framework, SQL/Foundation, SQL/Bindings, SQL/CLI (Call Level Interface), and SQL/XML (or XML related Specifications).
+</p>
+<p>MySQL is a widely used <strong>dialect</strong> of SQL. But it is so popular, it may not fair if we call it that way.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="mysqlmonitor">MySQL Monitor</div>
+<p>Let's open MySQL monitor from the <strong>Start</strong> menu on Windows.</p>
+<br/>
+<img alt="MySQLStartMenu" src="images/php17/MySQLStartMenu.png"/>
+<br/>
+<br/>
+<p>After type in the password, MySQL prompt window should look like this.</p>
+<img alt="MySQLMonitor" src="images/php17/MySQLMonitor.png"/>
+<br/>
+<br/>
+<p>MySQL has two databases by default: an empty one called <strong>test</strong>, and one called <strong>mysql</strong> which is used by MySQL itself. The SQL command <strong>use <i>database-name</i></strong> selects a database to work with.</p>
+<p>Type <strong>use mysql;</strong> to select the mysql database, and then type <strong>show tables;</strong> to see a list of tables inside that database. Note that we need ";" to indicate the end of a command.</p>
+<img alt="use_mysql" src="images/php17/use_mysql.png"/>
+<br/>
+<p>The command <strong>explain <i>table_name</i></strong> can be used to see the format of a table. This shows all the field names in the table with details of the data they contain.</p>
+<p>So, to see the format of the <strong>user</strong> table, type <strong>explain user</strong>.</p>
+<img alt="explainUser" src="images/php17/explainUser.png"/>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="creatinganewdatabase">Creating/Dropping(Deleting) a Database</div>
+<p>Using SQL command, we can create MySQL databases and make modifications or query. <strong>create database <i>database_name</i>;</strong> is used to create a new database.</p>
+<p>Type <strong>create database bookshelf;</strong> to create a new database called <strong>bookshelf</strong>.</p>
+<p>It responds by confirming that the new database has been created with the message Query OK followed by the information about affected rows and time elapsed.</p>
+<p>The name of all databases on the MySQL server can be displayed with the <strong>show database;</strong> command to confirm that the new bookshelf database is on display. The MySQL installation creates three default databases. One is an empty database named <strong>test</strong> and another is named <strong>mysql</strong> that contains data which is used by the MySQL server itselt. The third one is called <strong>information schema</strong> which is an ANSI standard set of read-only views which provide information about all of the tables, views, columns, and procedures in a database:</p>
+<img alt="create_database" src="images/php17/create_database.png"/>
+<br/>
+<p>If a database already exists when we try to create the database, it will give us the error message:</p>
+<img alt="create_database_err" src="images/php17/create_database_err.png"/>
+<br/>
+<p>To delete/remove a database, we use <strong>drop</strong> command.
+So, use <strong>drop database bookshelf;</strong> to remove <strong>bookshelf</strong> from the database.</p>
+<img alt="drop_bookshelf" src="images/php17/drop_bookshelf.png"/>
+<br/>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="creatingdatabasetable">Creating a Database Table</div>
+<p>Before we create a database table we need to select the database to which it is to be added. The command for this is <strong>use <i>database_name</i>;</strong>. This requires one of the existing database names.</p>
+<p>We create a new table using <strong>create table <i>table_name</i>;</strong> with a comma-separated list of column names.</p>
+<img alt="create_table" src="images/php17/create_table.png"/>
+<br/>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="datatypes">Data Types</div>
+<p>Following table shows the range of data types that can be used when creating table columns.</p>
+<strong>Numeric Data Types:</strong><br/>
+<p>MySQL uses all the standard ANSI SQL numeric data types, so if you're coming to MySQL from a different database system, these definitions will look familiar to you. The following list shows the common numeric data types and their descriptions.</p>
+<ol>
+<li><strong>INT</strong><br/>
+	A normal-sized integer that can be signed or unsigned. If signed, the allowable range is from -2147483648 to 2147483647. If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.</li>
+<li><strong>TINYINT</strong><br/>
+	A very small integer that can be signed or unsigned. If signed, the allowable range is from -128 to 127. If unsigned, the allowable range is from 0 to 255. You can specify a width of up to 4 digits.</li>
+<li><strong>SMALLINT</strong><br/>
+	A small integer that can be signed or unsigned. If signed, the allowable range is from -32768 to 32767. If unsigned, the allowable range is from 0 to 65535. You can specify a width of up to 5 digits.</li>
+<li><strong>MEDIUMINT</strong><br/>
+	A medium-sized integer that can be signed or unsigned. If signed, the allowable range is from -8388608 to 8388607. If unsigned, the allowable range is from 0 to 16777215. You can specify a width of up to 9 digits.</li>
+<li><strong>BIGINT</strong><br/>
+	A large integer that can be signed or unsigned. If signed, the allowable range is from -9223372036854775808 to 9223372036854775807. If unsigned, the allowable range is from 0 to 18446744073709551615. You can specify a width of up to 11 digits.</li>
+<li><strong>FLOAT(M,D)</strong><br/>
+	A floating-point number that cannot be unsigned. You can define the display length (M) and the number of decimals (D). This is not required and will default to 10,2, where 2 is the number of decimals and 10 is the total number of digits (including decimals). Decimal precision can go to 24 places for a FLOAT.</li>
+<li><strong>DOUBLE(M,D)</strong><br/>
+	A double precision floating-point number that cannot be unsigned. You can define the display length (M) and the number of decimals (D). This is not required and will default to 16,4, where 4 is the number of decimals. Decimal precision can go to 53 places for a DOUBLE. REAL is a synonym for DOUBLE.</li>
+<li><strong>DECIMAL(M,D)</strong><br/>
+	An unpacked floating-point number that cannot be unsigned. In unpacked decimals, each decimal corresponds to one byte. Defining the display length (M) and the number of decimals (D) is required. NUMERIC is a synonym for DECIMAL.</li>
+</ol>
+<br/>
+<strong>Date and Time Types:</strong><br/>
+The MySQL date and time datatypes are:
+<ol>
+<li><strong>DATE</strong><br/>
+	A date in YYYY-MM-DD format, between 1000-01-01 and 9999-12-31. For example, December 30th, 1973 would be stored as 1973-12-30.</li>
+<li><strong>DATETIME</strong><br/>
+	A date and time combination in YYYY-MM-DD HH:MM:SS format, between 1000-01-01 00:00:00 and 9999-12-31 23:59:59. For example, 3:30 in the afternoon on December 30th, 1973 would be stored as 1973-12-30 15:30:00.</li>
+<li><strong>TIMESTAMP</strong><br/>
+	A timestamp between midnight, January 1, 1970 and sometime in 2037. This looks like the previous DATETIME format, only without the hyphens between numbers; 3:30 in the afternoon on December 30th, 1973 would be stored as 19731230153000 ( YYYYMMDDHHMMSS ).</li>
+<li><strong>TIME</strong><br/>
+	Stores the time in HH:MM:SS format.</li>
+<li><strong>YEAR(M)</strong><br/>
+	Stores a year in 2-digit or 4-digit format. If the length is specified as 2 (for example YEAR(2)), YEAR can be 1970 to 2069 (70 to 69). If the length is specified as 4, YEAR can be 1901 to 2155. The default length is 4.</li>
+</ol>
+<br/>
+<strong>String Types:</strong><br/>
+Although numeric and date types are fun, most data you'll store will be in string format. This list describes the common string datatypes in MySQL.
+<ol>
+<li><strong>CHAR(M)</strong><br/>
+	A fixed-length string between 1 and 255 characters in length (for example CHAR(5)), right-padded with spaces to the specified length when stored. Defining a length is not required, but the default is 1.</li>
+<li><strong>VARCHAR(M)</strong><br/>
+	A variable-length string between 1 and 255 characters in length; for example VARCHAR(25). You must define a length when creating a VARCHAR field.</li>
+<li><strong>BLOB or TEXT</strong><br/>
+	A field with a maximum length of 65535 characters. BLOBs are "Binary Large Objects" and are used to store large amounts of binary data, such as images or other types of files. Fields defined as TEXT also hold large amounts of data; the difference between the two is that sorts and comparisons on stored data are case sensitive on BLOBs and are not case sensitive in TEXT fields. You do not specify a length with BLOB or TEXT.</li>
+<li><strong>TINYBLOB or TINYTEXT</strong><br/>
+	A BLOB or TEXT column with a maximum length of 255 characters. You do not specify a length with TINYBLOB or TINYTEXT.</li>
+<li><strong>MEDIUMBLOB or MEDIUMTEXT</strong><br/>
+	A BLOB or TEXT column with a maximum length of 16777215 characters. You do not specify a length with MEDIUMBLOB or MEDIUMTEXT.</li>
+<li><strong>LONGBLOB or LONGTEXT</strong><br/>
+	A BLOB or TEXT column with a maximum length of 4294967295 characters. You do not specify a length with LONGBLOB or LONGTEXT.</li>
+<li><strong>ENUM</strong><br/>
+	An enumeration, which is a fancy term for list. When defining an ENUM, you are creating a list of items from which the value must be selected (or it can be NULL). For example, if you wanted your field to contain "A" or "B" or "C", you would define your ENUM as ENUM ('A', 'B', 'C') and only those values (or NULL) could ever populate that field.</li>
+</ol>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="fieldmodifier">Column Modifier</div>
+<p>The modifiers in the table below can be selected to control how a column should be used.</p>
+<br/>
+<table border="2" cellpadding="10" width="500">
+<tr>
+<th>Modifier</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>not null</td>
+<td>Each record should include data entry in this column</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>Records may not duplicate any entry in this column</td>
+</tr>
+<tr>
+<td>auto_increment</td>
+<td>A variable only for numeric columns to automatically generate a number that is one more than the previous value in that column</td>
+</tr>
+<tr>
+<td>primary key()</td>
+<td>Specifies as its argument the name of the column to be used as the primary key for that table, i.e., primary key(id).</td>
+</tr>
+</table>
+<p>These modifiers can be included when creating book table of the previous section to produce a table with better defined columns. The <strong>create table <i>table_name</i></strong> command displayed in the example below can automatically number the primary key id column. Each record should include data in the <strong>year</strong>, <strong>title</strong>, and <strong>author</strong> columns. No duplicate entries are permitted in the <strong>title</strong> column.</p>
+<img alt="create_table2" src="images/php17/create_table2.png"/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<div class="subtitle" id="SQLGate">SQL Gate</div>
+<p>We can use more convenient tool which is <a href="http://www.antwiz.com/">SQL Gate</a>. <br/>
+After installing it, run, and click connect.</p>
+<img alt="sqlgate_start" src="images/php17/sqlgate_start.png"/>
+<br/><br/>
+<p>Then, View-&gt;Object Explorer.</p>
+<img alt="View_Object_Explorer" src="images/php17/View_Object_Explorer.png"/>
+<br/><br/>
+<img alt="View_Object_ExplorerB" src="images/php17/View_Object_ExplorerB.png"/>
+<br/><br/>
+<p>If we select the "Talbes", we can see the same tables as we saw in the command prompt window above.</p>
+<img alt="sqlgate_tables" src="images/php17/sqlgate_tables.png"/>
+<br/><br/>
+<p>We can make the same <strong>book</strong> table as we made above:</p>
+<img alt="sqlgate_book_table" src="images/php17/sqlgate_book_table.png"/>
+<br/><br/>
+<p>If we hit "OK", it will show the table's schema.</p>
+<img alt="sqlgate_book_table_ok" src="images/php17/sqlgate_book_table_ok.png"/>
+<br/><br/>
+<p>Now, we have <strong>book</strong> table as shown in the picture below.</p>
+<img alt="sqlgate_book_table_made" src="images/php17/sqlgate_book_table_made.png"/>
+<br/>
+<br/><br/>
+<br/><br/>
+<img alt="SoRakSan4" src="images/php17/SoRakSan4.png"/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1> PHP5 & MYSQL</h1>
+   <br><br>
+   <a href="phptut.html">PHP Home</a> 
+   <br><br>
+   <a href="apache_php_mysql.html">Apache, PHP, and MySQL Installation - Method A</a> 
+   <br><br>
+   <a href="apache_php_mysql_2.html">Apache, PHP, and MySQL Installation - Method B</a> 
+   <br><br>
+   <a href="php1.html">Request a page</a> 
+   <br><br>
+   <a href="php2.html">Response to a request</a> 
+   <br><br>
+   <a href="php3_reservedwords.html">Reserved Words</a> 
+   <br><br>
+   <a href="php4_variables.html">Variables</a> 
+   <br><br>
+   <a href="php5_functions.html">Functions</a> 
+   <br><br>
+   <a href="php6_arrays.html">Arrays - creating an array</a> 
+   <br><br>
+   <a href="php7_arrays_array_unshift_push_pop_merge.html">Arrays II - adding, removing, and merging elements</a> 
+   <br><br>
+   <a href="php7_arrays_sort_asort_ksort_rsort_arsort_krsort.php">Arrays III - Sorting elements</a> 
+   <br><br>
+   <a href="php8_dynamic_contents.html">Creating Dynamic Content - Date and Time</a> 
+   <br><br>
+   <a href="php9_dynamic_contents.html">Creating Dynamic Content II - Form Values</a> 
+   <br><br>
+   <a href="php10_dynamic_contents.html">Creating Dynamic Content III - PHP_SELF</a> 
+   <br><br>
+   <a href="php11_file_handling.html">File Handling - Delete and Copy</a> 
+   <br><br>
+   <a href="php12_file_handling.html">File Handling II - Reading and Writing</a> 
+   <br><br>
+   <a href="php13_file_handling.html">File Handling III - Uploading Files</a> 
+   <br><br>
+   <a href="php13B_curl.html">cURL</a> 
+   <br><br>
+   <a href="php14_cookies_sessions.html">Cookies and Sessions I - Setting and Getting Cookies</a> 
+   <br><br>
+   <a href="php15_cookies_sessions.html">Cookies and Sessions II - Access Limit and Starting a Session</a> 
+   <br><br>
+   <a href="php16_cookie_vs_session.html">Cookies and Sessions III - Cookie vs Session</a> 
+   <br><br>
+   <a href="php17_mysql_database.html">Creating MySQL Database and Table</a> 
+   <br><br>
+   <a href="php18_mysql_database.html">Creating MySQL Database and Table II - Table and Query</a>
+   <br><br>
+   <a href="php18B_mysql_database.html">Creating MySQL Database and Table III - Retrieving and Sorting Data</a> 
+   <br><br>
+   <a href="php18C_mysql_database.html">Creating MySQL Database and Table IV - mysqldump etc.</a> 
+   <br><br>
+
+   <a href="apache_php_mysql_3-table-join-inner-outer.html">MySQL Tutorial: Table Joins (Inner, Left, Right, and Outer Joins)</a> 
+   <br><br>
+
+   <a href="php19_mysql_php.html">MySQL with PHP: Part I - User and Password</a>  
+   <br><br>
+   <a href="php20_mysql_php.html">MySQL with PHP: Part II - Creating and Deleting Database</a> 
+   <br><br>
+   <a href="php21_mysql_php.html">MySQL with PHP: Part III - Creating Database Table Dynamically</a> 
+   <br><br>
+    <a href="phpMyAdmin_Install_On_Windows.html">MySQL with PHP: Installing phpMyAdmin on Windows</a>   
+   <br><br>
+   <a href="php_json_decode_encode.html">json - encode and decode</a>  
+   <br><br>
+   <a href="tracker.html"> Ad Tracker</a> 
+   <br><br>
+   <a href="php_Apache_mod_rewrite.html">Apache mod_rewrite</a>  
+   <br><br>
+   <a href="phpbb_adsense.html">phpbb and Adsense</a>  
+   <br><br>
+   <a href="nginx_install_configure_run.html">Nginx</a>  
+   <br><br>
+   <a href="WordPress_Install_Ubuntu16_CentOS7.html">WordPress Install on Ubuntu 16.04 and CentOS 7</a>  
+   <br><br>
+
+   <a href="../php_building_forum_site_mysqli.html">Creating a Forum</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_ubuntu_laravel.phar.html">Laravel 4 Installation on a local machine running Ubuntu 13.1</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_on_Windows_laravel.phar.html">Laravel 4 Installation on Windows</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_on_shared_host.html">Laravel 4 Installation on a remote machine - shared host</a>  
+   <br><br>
+   <a href="The_Best_PHP_Web_Services_Frameworks_for_2014.html">The Best PHP Web Services Frameworks for 2016</a>  
+   <br><br>
+
+<br /><br />
+<br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div>
+<br /><br />
+<br><br>
+<h1>Laravel 5</h1>
+  <br><br>
+  <a href="../Laravel5/Laravel5_framework_install_ubuntu.html">Installing on Ubuntu</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_ToDo_List_Sample.html">ToDo list on partisan serve & Apache</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_with_Nginx_On_Ubuntu.html">ToDo list running on Nginx</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Homestead_Vagrant_box.html">Homestead Vagrant box</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Hackathon_Starter.html">Laravel 5 Hackerthon Starter</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Angular_Auth_using_JSON_Web_Token_JWT.html">Laravel 5 / Angular Auth using JSON Web Token (JWT) - Dev</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Angular_Auth_using_JSON_Web_Token_JWT_On_Production.html">Laravel 5 / Angular Auth using JSON Web Token (JWT) - Prod</a> 
+  <br><br>
+
+<br /><br />
+<br><br>
+<h1>Laravel 4</h1>
+   <br><br>
+   <a href="php_laravel4_framework_install_ubuntu_laravel.phar.html">Installing on Ubuntu - local</a> 
+   <br><br>
+   <a href="php_laravel4_framework_install_on_shared_host.html">Installing on a Shared host</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_install_on_Windows.html">Installing on Windows</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_phpMyAdmin_DB_users_Table.html">Creating users table</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_How_it_works_home_page_controller_blade.php">Home page with controller and blade</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Blade_Templating.php">Blade Templating</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Database_Connection_Sending_Email_SMTP.html">Database connection and sending emails</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_1.html">Creating user account I - GET</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_2.html">Creating user account II - POST</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_3.html">Creating user account III - Error checking & redirecting input</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_4.html">Creating user account IV - User::create()</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Activating_User_Account_1.html">Activating user account I - Mail::send()</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Activating_User_Account_2.html">Activating user account II - Update user's status</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_1.html">User account sign-in I - Route and link</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_2.html">User account sign-in II - Validation</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_3.html">User account sign-in III - Login Authentication</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Logout_Signout.html">Singing out</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_RememberMe.html">Remember the user</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Changing_Password_1.html">Changing Password I</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Changing_Password_2.html">Changing Password II</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Recovering_Forgotten_Password_1.html">Recovering forgotten password I</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Recovering_Forgotten_Password_2.html">Recovering forgotten password II</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Profile_Controller.html">User Profile</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Database_Migration_artisan.html">Database Migration using artisan</a> 
+   <br><br>
+
+<br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/php/php17_mysql_database.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:54:15 GMT -->
+</html>
+

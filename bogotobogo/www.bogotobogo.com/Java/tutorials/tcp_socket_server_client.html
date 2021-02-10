@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/tcp_socket_server_client.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 04:22:02 GMT -->
+<head>
+  <title>Java Tutorial: TCP Socket Server/Client - 2017</title>
+  <meta content="Java Tutorial: TCP Sockets Server/Client" name="description" />
+  <meta content="Java Tutorial , TCP Sockets Server/Client" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../python/pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">TCP Sockets Server/Client - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../../images/java/tutorials/java_images/Duke256.png" alt="Duke 512" width="128" height="128"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="tcpsocket">TCP Sockets Server/Client</div>
+<p>In this chapter, we are working with programs which run on different machines. Because a program on one machine cannot directly reference object in a program running on other machines, we need to from a communication network with help from the OS. We call it <strong>network channel</strong>.</p>
+<br/>
+<p>When two threads want to exchange message over the channel, each thread create an endpoint object that represents its end of the network channel. The OS manages the hardware and software that is used to transport messages across the channel (between the endpoints). What do we call those endpoint objects? They are <strong>sockets</strong>.</p>
+<ol>
+<li>The client thread's socket specifies a local I/O port for sending messages. The client's socket should specify the address of the destination machine as well as the port number that is expected to be bound to the server thread's socket.</li>
+<li>The server's socket also should specify a local I/O port to receive messages. Messages can be received from any client, as far as the client machine knows the server's address and the port number which are bound to the server's socket.</li>
+<li>The client issues a request to the server to make a connection between the two sockets. Once the server accepts the connection request, messages can be passed in both directions across the channel.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="javatcpsocket">Java TCP Sockets </div>
+<p>The <strong>java.net</strong> class library provides classes <strong>Socket</strong> and <strong>ServerSocket</strong> for message passing for TCP/IP. Here, we'll use a very simple client and server example to show the use of TCP socket in Java.</p>
+<ol>
+<li><strong>Class Socket </strong>
+<pre>
+// Client Side
+import java.io.*;
+import java.net.*;
+
+public class ClientSocket {
+  public void run() {
+	try {
+		int serverPort = 4020;
+		InetAddress host = InetAddress.getByName("localhost"); 
+		System.out.println("Connecting to server on port " + serverPort); 
+
+		Socket socket = new Socket(host,serverPort); 
+		//Socket socket = new Socket("127.0.0.1", serverPort);
+		System.out.println("Just connected to " + socket.getRemoteSocketAddress()); 
+		PrintWriter toServer = 
+			new PrintWriter(socket.getOutputStream(),true);
+		BufferedReader fromServer = 
+			new BufferedReader(
+					new InputStreamReader(socket.getInputStream()));
+		toServer.println("Hello from " + socket.getLocalSocketAddress()); 
+		String line = fromServer.readLine();
+		System.out.println("Client received: " + line + " from Server");
+		toServer.close();
+		fromServer.close();
+		socket.close();
+	}
+	catch(UnknownHostException ex) {
+		ex.printStackTrace();
+	}
+	catch(IOException e){
+		e.printStackTrace();
+	}
+  }
+	
+  public static void main(String[] args) {
+		ClientSocket client = new ClientSocket();
+		client.run();
+  }
+}
+</pre>
+	The client assumes that the server is listening for connection request on port <strong>serverPort</strong> via TCP.<br/>
+<pre>
+int serverPort = 4020;
+InetAddress host = InetAddress.getByName("localhost"); 
+Socket socket = new Socket(host,serverPort); 
+</pre>
+	The <strong>Socket</strong> constructor throws an <strong>IOException</strong> if it cannot make a connection.<br/>
+<pre>
+catch(IOException e){
+		e.printStackTrace();
+}
+</pre>
+	When the client's request is accepted, the client creates an input stream to receive data from its socket and an output stream to send data to the socket at the server's end of the channel. To the programmer, sending and receiving messages using sockets appears just like reading and writing data from files.
+<pre>
+PrintWriter toServer = 
+	new PrintWriter(socket.getOutputStream(),true);
+BufferedReader fromServer = 
+	new BufferedReader(
+			new InputStreamReader(socket.getInputStream()));
+toServer.println("Hello from " + socket.getLocalSocketAddress()); 
+String line = fromServer.readLine();
+System.out.println("Client received: " + line + " from Server");
+</pre></li>
+<br/><br/>
+<li><strong>Class Server Socket </strong><br/>
+<br/>
+	The server begins by creating a <strong>ServerSocket</strong>:
+<pre>
+int serverPort = 4020;
+ServerSocket serverSocket = new ServerSocket(serverPort);
+</pre>
+Here is the server side code:
+<pre>
+// Server Side
+import java.net.*;
+import java.io.*;
+
+public class ServerSideSocket { 
+  public void run() {
+	try {
+		int serverPort = 4020;
+		ServerSocket serverSocket = new ServerSocket(serverPort);
+		serverSocket.setSoTimeout(10000); 
+		while(true) {
+			System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "..."); 
+
+			Socket server = serverSocket.accept();
+			System.out.println("Just connected to " + server.getRemoteSocketAddress()); 
+
+			PrintWriter toClient = 
+				new PrintWriter(server.getOutputStream(),true);
+			BufferedReader fromClient =
+				new BufferedReader(
+						new InputStreamReader(server.getInputStream()));
+			String line = fromClient.readLine();
+			System.out.println("Server received: " + line); 
+			toClient.println("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!"); 
+		}
+	}
+	catch(UnknownHostException ex) {
+		ex.printStackTrace();
+	}
+	catch(IOException e){
+		e.printStackTrace();
+	}
+  }
+	
+  public static void main(String[] args) {
+		ServerSideSocket srv = new ServerSideSocket();
+		srv.run();
+  }
+}</pre>
+<p>Then the timeout expires, a <strong>java.net.SocketTimeoutException</strong> is raised and the <strong>Socket</strong> is still <strong>valid</strong>.
+<p>After creating <strong>ServerSocket</strong>, the server calls <strong>accept()</strong> method of the <strong>ServerSocket</strong> in order to <strong>listen</strong> for incoming connection requests from clients. 
+<pre>
+Socket server = serverSocket.accept();
+</pre>
+Method <strong>accept()</strong> wait until a client requests a connection; then it returns a <strong>Socket</strong> that connects the client to the server. The server then gets input and output streams from the <strong>Socket</strong> and uses them to communicate with the client.<br/>
+When the interaction ends, the client, server, or both, close the connection, and the server waits for a connection request from another client.<br/>
+</p></p></li></ol>
+<br/>
+<br/>
+<p>Here are the communications between server and client.</p>
+<br/>
+<img alt="serverA" src="../../images/java/tutorials/tcp_client_server/serverA.png"/>
+<br/>
+<br/>
+<img alt="clientA" src="../../images/java/tutorials/tcp_client_server/clientA.png"/>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="socketclassmethod">Methods of Socket Class</div>
+<p>The <strong>java.net.Socket</strong> class represents the socket that both the client and server use to communicate with each other. The client obtains a Socket object by instantiating one, whereas the server obtains a Socket object from the return value of the <strong>accept()</strong> method.</p>
+<p>The Socket class has five constructors that a client uses to connect to a server:</p>
+<ol>
+<li><strong>public Socket(String host, int port) throws UnknownHostException, IOException.</strong><br/>
+This method attempts to connect to the specified server at the specified port. If this constructor does not throw an exception, the connection is successful and the client is connected to the server. </li>
+<li><strong>public Socket(InetAddress host, int port) throws IOException.</strong><br/>
+This method is identical to the previous constructor, except that the host is denoted by an InetAddress object.</li>
+<li><strong>public Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException.</strong><br/>
+This method is identical to the previous constructor, except that the host is denoted by an InetAddress object instead of a String.</li>
+<li><strong>public Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException.</strong><br/>
+Connects to the specified host and port, creating a socket on the local host at the specified address and port.</li>
+<li><strong>public Socket()</strong><br/>
+Creates an unconnected socket. Use the <strong>connect()</strong> method to connect this socket to a server.</li>
+</ol>
+<p>When the Socket constructor returns, it does not simply instantiate a Socket object but it actually attempts to connect to the specified server and port.</p>
+<p>These methods can be invoked by both the client and server since both the client and server have a Socket object.</p>
+<ol>
+<li><strong>public void connect(SocketAddress host, int timeout) throws IOException</strong><br/>
+This method connects the socket to the specified host. This method is needed only when you instantiated the Socket using the no-argument constructor. </li>
+<li><strong>public int getPort()</strong><br/>
+Returns the port the socket is bound to on the remote machine. </li>
+<li><strong>public InetAddress getInetAddress()</strong><br/>
+This method returns the address of the other computer that this socket is connected to. </li>
+<li><strong>public int getLocalPort()</strong><br/>
+Returns the port the socket is bound to on the local machine. </li>
+<li><strong>public SocketAddress getRemoteSocketAddress()</strong><br/>
+Returns the address of the remote socket. </li>
+<li><strong>public InputStream getInputStream() throws IOException</strong><br/>
+Returns the input stream of the socket. The input stream is connected to the output stream of the remote socket. </li>
+<li><strong>public OutputStream getOutputStream() throws IOException</strong><br/>
+Returns the output stream of the socket. The output stream is connected to the input stream of the remote socket. </li>
+<li><strong>public void close() throws IOException</strong><br/>
+Closes the socket, which makes this Socket object no longer capable of connecting again to any server.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="socketclassmethod">Methods of ServerSocket Class</div>
+<p>The <strong>java.net.ServerSocket</strong> class is used by server applications to obtain a port and listen for client requests.</p>
+<p>
+The <strong>ServerSocket</strong> class has four constructors:</p>
+<ol>
+<li><strong>public ServerSocket(int port) throws IOException. </strong><br/>
+Attempts to create a server socket bound to the specified port. An exception occurs if the port is already bound by another application. </li>
+<li><strong>public ServerSocket(int port, int backlog) throws IOException.</strong><br/>
+Similar to the previous constructor, the backlog parameter specifies how many incoming clients to store in a wait queue. </li>
+<li><strong>public ServerSocket(int port, int backlog, InetAddress address) throws IOException.</strong><br/>
+Similar to the previous constructor, the InetAddress parameter specifies the local IP address to bind to. The InetAddress is used for servers that may have multiple IP addresses, allowing the server to specify which of its IP addresses to accept client requests on. </li>
+<li><strong>public ServerSocket() throws IOException.</strong><br/>
+Creates an unbound server socket. When using this constructor, use the <strong>bind()</strong> method when you are ready to bind the server socket. </li>
+</ol>
+<br/>
+<p>If the ServerSocket constructor does not throw an exception, it means that your application has successfully bound to the specified port and is ready for client requests.</p>
+<p>
+Here are some of the common methods of the ServerSocket class:</p>
+<ol>
+<li><strong>public int getLocalPort() </strong><br/>
+Returns the port that the server socket is listening on. This method is useful if you passed in 0 as the port number in a constructor and let the server find a port for you. </li>
+<li><strong>public Socket accept() throws IOException</strong><br/>
+Waits for an incoming client. This method blocks until either a client connects to the server on the specified port or the socket times out, assuming that the time-out value has been set using the <strong>setSoTimeout() method</strong>. Otherwise, this method blocks indefinitely.</li> <li><strong>public void setSoTimeout(int timeout)</strong><br/>
+Sets the time-out value for how long the server socket waits for a client during the accept(). </li>
+<li><strong>public void bind(SocketAddress host, int backlog)</strong><br/>
+Binds the socket to the specified server and port in the SocketAddress object. Use this method if you instantiated the ServerSocket using the no-argument constructor.</li>
+</ol>
+<p>When the ServerSocket invokes <strong>accept()</strong>, the method does not return until a client connects. After a client does connect, the ServerSocket creates a new Socket on an unspecified port and returns a reference to this new Socket. A TCP connection now exists between the client and server, and communication can begin.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="socketclassmethod">Methods of InetAddress Class</div>
+<p>This class represents an Internet Protocol (IP) address. Here are following useful methods which you would need while doing socket programming:</p>
+<ol>
+<li><strong>String getHostName() </strong><br/>
+Gets the host name for this IP address. </li>
+<li><strong>static InetAddress InetAddress getLocalHost()</strong><br/>
+Returns the local host. </li>
+<li><strong>String toString()</strong><br/>
+Converts this IP address to a String. </li>
+<li><strong>static InetAddress getByAddress(byte[] addr) </strong><br/>
+Returns an InetAddress object given the raw IP address . </li>
+<li><strong>static InetAddress getByAddress(String host, byte[] addr)</strong><br/>
+Create an InetAddress based on the provided host name and IP address. </li>
+<li><strong>static InetAddress getByName(String host)</strong><br/>
+Determines the IP address of a host, given the host's name. </li>
+<li><strong>String getHostAddress() </strong><br/>
+Returns the IP address string in textual presentation. 
+</li></ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="tcpsocketmessage">TCP Sockets Server/Client - Serialize Message Objects Passing Example</div>
+<p>The following example demonstrates message passing between a client and server program using TCP sockets. The <strong>Message</strong> objects are serialized and passed through the connection channel. </p>
+<p>The client sends a <strong>Message</strong> containing the integer <strong>n</strong>, the server replies with a message containing n*n. The client gets <strong>n</strong> from the argument.</p>
+<p>The client program, <strong>Client.java</strong> is:</p>
+<pre>
+import java.io.*;
+import java.net.*;
+
+public class Client {
+  public static void main(String[] args) {
+		int serverPort = 4020;
+		Socket socket = null;
+		ObjectOutputStream toServer = null;
+		ObjectInputStream fromServer = null;
+		try {
+			if(args.length != 1) {
+				System.out.println("Need 1 argument");
+				System.exit(1);
+			}
+			int number = Integer.parseInt(args[0]);
+			InetAddress serverHost = InetAddress.getByName("localhost"); 
+			System.out.println("Connecting to server on port " + serverPort); 
+			socket = new Socket(serverHost,serverPort); 
+			System.out.println("Just connected to " + socket.getRemoteSocketAddress()); 
+			toServer = new ObjectOutputStream(
+					new BufferedOutputStream(socket.getOutputStream()));
+			Message msgToSend = new Message(number);
+			toServer.writeObject(msgToSend);
+			toServer.flush();
+			
+			// This will block until the corresponding ObjectOutputStream 
+			// in the server has written an object and flushed the header
+			fromServer = new ObjectInputStream(
+					new BufferedInputStream(socket.getInputStream()));
+			Message msgFromReply = (Message)fromServer.readObject();
+			System.out.println(number + " * " + number + " = " + msgFromReply.number);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		finally {
+			if(socket != null) {
+				try {
+					socket.close();
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+</pre>
+<br/>
+<p>Server program, <strong>Server.java</strong>:</p>
+<pre>
+import java.io.*;
+import java.net.*;
+
+public class Server {
+   public static void main(String[] args) {
+		int serverPort = 4020;
+		ServerSocket serverSocket = null;
+		ObjectOutputStream toClient = null;
+		ObjectInputStream fromClient = null;
+		try {
+			serverSocket = new ServerSocket(serverPort);
+			while(true) {
+				Socket socket = serverSocket.accept();
+				System.out.println("Just connected to " + 
+					socket.getRemoteSocketAddress());
+				toClient = new ObjectOutputStream(
+					new BufferedOutputStream(socket.getOutputStream()));
+				fromClient = new ObjectInputStream(
+					new BufferedInputStream(socket.getInputStream()));
+				Message msgRequest = (Message) fromClient.readObject();
+				int number = msgRequest.number;
+				toClient.writeObject(new Message(number*number));
+				toClient.flush();
+			}
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+   }
+}
+</pre>
+<br/>
+<p>Message program, <strong>Message.java</strong>:</p>
+<pre>
+import java.io.*;
+
+public final class Message implements Serializable {
+	public int number;
+	Message(int number) {
+		this.number = number;
+	}
+}
+</pre>
+<br/>
+<p>If we run, we get:</p>
+<br/>
+<img alt="messagePassing" src="../../images/java/tutorials/tcp_client_server/messagePassing.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="argument">Using Command Line Arguments in Eclipse
+</div>
+<br/>
+<p>In the above example, the <strong>Client.java</strong> requires an argument, we need to configure its run. So, right mouse click on the code from the Package Workspace.</p>
+<img alt="clientRightMouse" src="../../images/java/tutorials/tcp_client_server/clientRightMouse.png"/>
+<br/><br/>
+<p>Then, we get the menus for the run.</p>
+<img alt="messagePassing" src="../../images/java/tutorials/tcp_client_server/runConfig.png"/>
+<br/><br/>
+<p>Select Arguments tab and then run.</p>
+<img alt="argumentSelection" src="../../images/java/tutorials/tcp_client_server/argumentSelection.png"/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Java Tutorials</h1>
+   <br><br>
+   <a href="on_java.html">Java Tutorial Home</a> 
+   <br><br>
+   <a href="javabasics.html">Basics - Compiling and Launching</a> 
+   <br><br>
+   <a href="innerclass.html">Inner Classes</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="enums.html">Enums</a> 
+   <br><br>
+   <a href="statics.html">Static & Finally</a> 
+   <br><br>
+   <a href="defaultandprotected.html">Default and Protected</a>
+   <br><br>
+   <a href="polymorphism.html">Polymorphism</a>
+   <br><br>
+   <a href="exceptionhandling.html">Exception Handling</a>
+   <br><br>
+   <a href="exceptionhandling2.html">Exception Handling II</a>
+   <br><br>
+   <a href="stringclass.html">String Class</a>
+   <br><br>
+   <a href="threads.html">Threads</a>
+   <br><br>
+   <a href="threads2.html">Threads II - State Transition</a>
+   <br><br>
+   <a href="threads3.html">Threads III - Synchronization</a>
+   <br><br>
+   <a href="objectclass.html">Object Class</a>
+   <br><br>
+   <a href="fileio.html">File I/O</a>
+   <br><br>
+   <a href="serialization.html">Serialization</a>
+   <br><br>
+   <a href="arraylist.html">ArrayList</a>
+   <br><br>
+   <a href="autoboxing.html">Autoboxing</a>
+   <br><br>
+   <a href="javagraphics.html">Java Graphics Interface I - Basics</a>
+   <br><br>
+   <a href="javagraphics2.html">Java Graphics Interface II - Labels, Text Fields, Layouts</a>
+   <br><br>
+   <a href="javagraphics3.html">Java Graphics Interface III - paintComponent</a>
+   <br><br>
+   <a href="tcp_socket_server_client.html">TCP Sockets Server/Client</a>
+   <br><br>
+   <a href="scala_functional_java_programming.html">Scala - Functional Java Programming</a>
+   <br><br>
+   <a href="Apache_CXF.html">Apache CXF install</a>
+   <br><br>
+   <a href="Tomcat7_Ubuntu_14_Install_On_Amazon_EC2.html">Tomcat 7 Ubuntu 14 Install on Amazon EC2 instance</a>
+   <br><br>
+   <a href="Maven/What-is-Apache-Maven.html">What is Apache Maven?</a>
+   <br><br>
+   <a href="Maven/Apache-Maven-Lifecycle.html">Maven life cycle</a>
+   <br><br>
+   <a href="Maven/Eclipse_Maven3_Plugin.html">Eclipse Maven 3 plugin on Ubuntu 14.04</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Setting_Up.html">Apache Maven 3 - Setting up and creating a project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_compile_build_install.html">Apache Maven 3 - Compile, build, and install a Maven project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Dependencies.html">Apache Maven 3 - Dependencies</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Web_Application_War.html">Apache Maven 3 - Web Application</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins.html">Apache Maven 3 - Plugins (compiler)</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins_Jetty.html">Apache Maven 3 - Plugins (Jetty)</a>
+   <br><br>
+   <a href="../../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <br><br>
+   <b><i>Spring Framework</i></b>
+   <br><br>
+   <a href="SpringFramework/HelloWorld_App_with_Spring4_Maven3.html">Hello World App with Spring 4 & Maven 3 - Part I</a>
+
+   <br><br>
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Spring Boot</h1>
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Maven.html">Spring Boot : Hello world with Mavan 3</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Gradle.html">Spring Boot : Hello world with Gradle 2</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Authetication-Securing-Web-Application.php">Spring Boot (Gradle 2) : Hello world with Authentication</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Maven3-Elicpse-Tomcat-War-file.html">Spring Boot : Deploying War file to Tomcat 8's webapps</a> 
+   <br><br>
+   <a href="Spring-Boot/How-to-Setup-Apache-as-Reverse-Proxy-for-Tomcat8-Server-using-mod-proxy.html">How to Setup Apache as Reverse Proxy for Tomcat Server using mod proxy</a> 
+   <br><br>
+   <a href="Spring-Boot/Maven-mvn-command-cheat-sheet.html">Maven : mvn command cheat sheet</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-REST-API-CORS-Maven-Tomcat-Deploy-War.html">Spring-Boot REST API with CORS App Maven war file deploy to Tomcat</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-I.html">Spring-Boot / Spring Security with AngularJS - Part I (Introduction) </a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-II.html">Spring-Boot / Spring Security with AngularJS - Part II (Dynamic resource load from Angular)</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-III-Form-Based%20Authentication.html">Spring-Boot / Spring Security with AngularJS : Part III (Form-based Authentication)</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>JUnit & Maven Tutorial</h1>
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_HelloWorld.html">JUnit 4 Introduction (Hello World)</a> 
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Eclipse_Plugin.html">JUnit 4 Test with Eclipse Luna (Hello World)</a>
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Test_with_Maven.html">JUnit 4 Test with Maven (Hello World)</a> 
+
+   <br><br>
+
+
+
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/tcp_socket_server_client.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 04:22:08 GMT -->
+</html>
+

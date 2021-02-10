@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android25ActivityLifeCycle.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:30:41 GMT -->
+<head>
+  <title>Android 4 - Activity Life Cycle - 2017</title>
+  <meta content="Android and Eclipse Tutorial - Activity" name="description" />
+  <meta content="Ice Cream Sandwich, Android, Eclipse, Tutorial, Activity, Life Cycle, Activity Stacks, Activity States" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Android 4
+25. Activity Life Cycle        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../Linux/images/emperor_penguins.png" alt="linux logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd">
+<p>This chapter</p></div>
+<ol>
+<li>
+<a href="android25ActivityLifeCycle.html#Activity">25.1 Activity</a>
+</li>
+<li>
+<a href="android25ActivityLifeCycle.html#LifeCycle">25.2 Life Cycle</a>
+</li>
+<ol>
+<li>
+<a href="android25ActivityLifeCycle.html#ActivityStacks">Activity Stacks</a>
+</li>
+<li>
+<a href="android25ActivityLifeCycle.html#ActivityStates">Activity States</a>
+</li>
+<li>
+<a href="android25ActivityLifeCycle.html#MonitoringStateChanges">Monitoring State Changes</a>
+</li>
+<li>
+<a href="android25ActivityLifeCycle.html#Activity Lifetimes">Activity Lifetimes</a>
+</li>
+</ol>
+</ol>
+<br/>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<br/>
+<br/>
+<div class="subtitle" id="Activity">25.1 Activity</div>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>This chapter doesn't have any new stuff. It's a general review of some of the topics we've already dealt with. But I do not think it's a bad idea to go back and look things in a little bit relaxed mode.</p>
+<p>So, in this chapter, we are going to review activity and life cycle via simple examples.</p>
+<p>As we know, Android apps do not have a <strong>main</strong> method. Instead, apps have four types of components such as <strong>activities, services, content providers, and broadcast receivers</strong>.</p>
+<p>An activity is a user interface concept. Users interacts with activities through views, in other words, GUI components. An activity usually represents a single screen in our application. A separate activity associate with each screen of an app. To create user interface screens we extend the <strong>Activity</strong> class, using <strong>Views</strong> to provide the UI and allow user interaction.</p>
+<pre>
+package com.bogotobogo.android.activities;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MyActivities extends Activity {
+	// Called at the start of the full lifetime.
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+        {
+		super.onCreate(savedInstanceState);
+	}
+}
+</pre>
+<p>Here, we created a new activity by extending <strong>Activity</strong>. Within this new class we must define the user interface and implement the functionality. <p>
+<p>We need to create a new activity for every screen we want to display. Usually this includes at least a primary interface screen that handles the main UI. This main UI is often supported by secondary activities.</p>
+<p>The base activity class in the code above presents an empty screen that encapsulates the window display handling. An empty activity is almost useless, so what we do is to create the user interface with <strong>Views</strong> and <strong>layouts</strong>.</p>
+<p><strong>Views</strong> are the user interface controls that display data and provide user interaction.</p>
+<pre>
+public class MyActivities extends Activity {
+	// Called at the start of the full lifetime.
+	@Override
+	public 
+	void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		TextView tv = new TextView(this);
+		setContentView(textView);
+	}
+}
+</pre>
+<p>To assign a user interface to an activity, we call <strong>setContentView()</strong> from the <srong>onCreate() method of our activity. Here, we used an instance of <strong>TextView</strong> as the activity's user interface. </srong></p>
+<br/>
+<p>In most of the cases, we want to use a more complicated user interface. We can create a layout in code using layout <strong>View Groups</strong>, or we can use the standard Android convention of passing a resource ID for a layout defined in an external resource:</p>
+<pre>
+public class MyActivities extends Activity {
+	// Called at the start of the full lifetime.
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+	}
+}
+</pre>
+<p>To use an activity in our application, we need to register it in the <strong>manifest</strong>. So, we add new &lt;activity&gt; tag within the &lt;application&gt; node of the manifest. </p>
+<p>The &lt;activity&gt; tag includes attributes for metadata such as the label, icon, permissions, and themes which are used by the activity. An activity without a corresponding &lt;activity&gt; can't be displayed.</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.bogotobogo.android.activities"
+      android:versionCode="1"
+      android:versionName="1.0"&gt;
+    &lt;application android:icon="@drawable/icon" android:label="@string/app_name"&gt;
+        &lt;activity android:name=".MyActivities"
+                  android:label="@string/app_name"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt; 
+</pre>
+<p>Inside the &lt;activity&gt; we can add &lt;intent-filter&gt; nodes what specify the <strong>intent</strong> our application will listen and react to. Each <strong>intent filter</strong> defines one or more actions and categories that our activity supports. For an activity to be available from the main application launcher, it must include an <strong>intent filter</strong> listening for the <strong>MAIN</strong> action and the <strong>LAUNCHER</strong> category.</p>
+<pre>
+	&lt;intent-filter&gt;
+		&lt;action android:name="android.intent.action.MAIN" /&gt;
+		&lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+	&lt;/intent-filter&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="LifeCycle">25.2 Life Cycle</div>
+<p>Writing an application with a good understanding of the <strong>activity life cycle</strong> is critical to ensure that our application provides a seamless user experience and properly manages its resources.</p>
+<p>Android application does not control its own process lifetimes. The Android run time manages the process of each application. While the run time handles the termination and management of an activity's process, the activity's state helps determine the priority of its parent application. The application priority, in turn, affects the likelihood that the run time will terminate it and the activities running within it. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ActivityStacks">Activity Stacks</div>
+<p>The state of each activity is determined by its position on the activity stack. When a new activity starts, the current foreground screen is moved to the top of the stack. If the user navigates back using the Back button or the foreground activity is closed, the next activity on the stack moves up and becomes active. </p>
+<p>An application's priority is influenced by its highest-priority activity. When the Android memory manager is deciding which application to terminate to free resources, it uses this stack to determine the priority of applications based on their activities. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ActivityStates">Activity States</div>
+<p>As activities are created and destroyed they move in and out of the stack. They transition through 4 states:</p>
+<ol>
+<li><strong>Active</strong> <br/>
+	When an activity is at the top of the stack it is the visible, focused, foreground activity that is receiving user input. Android will attempt to keep it alive at all cost, killing activities further down the stack as needed, to ensure that it has the resources it needs. When another activity becomes active, this one will be paused.</li>
+<li><strong>Paused</strong> <br/>
+	In some cases our activity will be visible but will not have focus. At this point it's paused. This state is reached if a transparent or not-full-screen activity is active in front of it. When paused, an activity is treated as if it were active. However, it doesn't receive user input events. In extreme cases, Android will kill a paused activity to recover resources for the active activity. When an activity becomes totally obscured, it is stopped. </li>
+<li><strong>Stopped</strong> <br/>
+	When an activity isn't visible, it stops. The activity will remain in memory, retaining all state information. However, it is now a candidate for termination when the system requires memory elsewhere. When an activity stopped, it's important to save data and the current UI state. Once an activity exited or closed, it becomes inactive. </li>
+<li><strong>Inactive</strong> <br/>
+	After an activity has been killed, and before it's been launched, it's inactive. Inactive activities have been removed from the activity stack and need to be restarted before they can be displayed and used.</li>
+</ol>
+<p>State transitions are nondeterministic and are handled entirely by the Android memory manager. Android will start by closing applications that contain inactive activities, followed by those that are stopped. In extreme cases it will remove those that are paused.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="MonitoringStateChanges">Monitoring State Changes</div>
+<p>To ensure that activities can react to state changes, Android provides several event handlers that are fired when an activity transitions through its full, visible, and active lifetime.</p>
+<p>The code below shows the stubs for the state change method handlers available in an activity.</p>
+<pre>
+package com.bogotobogo.android.activities;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class AndroidActivities extends Activity {
+	// Called at the start of the full lifetime.
+	  @Override
+	  public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    // Initialize activity.
+	  }
+	  
+	  // Called after onCreate has finished, use to restore UI state
+	  @Override
+	  public void onRestoreInstanceState(Bundle savedInstanceState) {
+	    super.onRestoreInstanceState(savedInstanceState);
+	    // Restore UI state from the savedInstanceState. 
+	    // This bundle has also been passed to onCreate.
+	  }
+
+	  // Called before subsequent visible lifetimes 
+	  // for an activity process.
+	  @Override
+	  public void onRestart(){
+	    super.onRestart();
+	    // Load changes knowing that the activity has already
+	    // been visible within this process.
+	  }
+
+	  // Called at the start of the visible lifetime.
+	  @Override
+	  public void onStart(){
+	    super.onStart();
+	    // Apply any required UI change now that the Activity is visible.
+	  }
+
+	  // Called at the start of the active lifetime.
+	  @Override
+	  public void onResume(){
+	    super.onResume();
+	    // Resume any paused UI updates, threads, or processes required
+	    // by the activity but suspended when it was inactive.
+	  }
+
+	  // Called to save UI state changes at the 
+	  // end of the active lifecycle.
+	  @Override
+	  public void onSaveInstanceState(Bundle savedInstanceState) {    
+	    // Save UI state changes to the savedInstanceState. 
+	    // This bundle will be passed to onCreate if the process is 
+	    // killed and restarted.
+	    super.onSaveInstanceState(savedInstanceState);
+	  }
+
+	  // Called at the end of the active lifetime.
+	  @Override
+	  public void onPause(){
+	    // Suspend UI updates, threads, or CPU intensive processes 
+	    // that don't need to be updated when the Activity isn't 
+	    // the active foreground activity.
+	    super.onPause();
+	  }
+
+	  // Called at the end of the visible lifetime.
+	  @Override
+	  public void onStop(){    
+	    // Suspend remaining UI updates, threads, or processing 
+	    // that aren't required when the Activity isn't visible. 
+	    // Persist all edits or state changes 
+	    // as after this call the process is likely to be killed.
+	    super.onStop();
+	  }
+
+	  // Called at the end of the full lifetime.
+	  @Override
+	  public void onDestroy(){
+	    // Clean up any resources including ending threads, 
+	    // closing database connections etc.
+	    super.onDestroy();
+	  }
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Activity Lifetimes">Activity Lifetimes</div>
+<p>Within an activity's full lifetime, between creation and destruction, it will go through one or more iterations of the active and visible lifetimes. Each transition will trigger the method handlers as shown in the previous code sample.</p>
+<br/>
+<br/>
+<div class="subtitle_3rd" id="Full Lifetime">Full Lifetime</div>
+<p>The full life time of our activity occurs between the first call to <strong>onCreate()</strong> and the final call to <strong>onDestroy()</strong>. It's possible, in some cases, for an activity's process terminates without the <strong>onDestroy()</strong> not being called.</p>
+<p>Use the <strong>onCreate()</strong> method to initialize activity. Inflate the user interface, allocate references to class variables, bind data to controls, and create services and threads. The <strong>onCreate()</strong> method is passed a <strong>Bundle</strong> to restore the user interface to its previous state, either within the <strong>onCreate()</strong> method or by overriding <strong>onRestoreInstanceState()</strong>.</p>
+<p>It's recommended that we avoid the creation of short-term objects. Rapid creation and destruction of objects force additional garbage collection.</p>
+<br/>
+<br/>
+<div class="subtitle_3rd" id="Visible Lifetime">Visible Lifetime</div>
+<p>An activity's visible lifetimes are bound between calls to <strong>onStart()</strong> and <strong>onStop()</strong>. Between these calls our activity will be visible to the user, although it may not have focus and may be partially obscured. Activities are likely to go through several visible lifetimes during their full lifetime, as they move between the foreground and background. While it's unusual, Android run time will kill an activity during its visible lifetime without a call to <strong>onStop()</strong>. </p>
+<p>The <strong>onStop()</strong> method should be used to pause or stop animations, threads, sensor listeners, GPS lookups, timers, services, or other processes that are used exclusively to update the user interface. There's little value in consuming resources to update the UI when it isn't visible. Use the <strong>onStart()</strong> method to resume or restart these processes when the UI is visible again. </p>
+<p>The <strong>onStart()</strong> method is called immediately prior to all but the first call to <strong>onStart()</strong>. Use it to implement special processing that we want done only when the activity restarts within its full lifetime.</p>
+<p>The <strong>onStart()/onStop()</strong> methods are also used to register and unregister Broadcast Receivers that are being used exclusively to update the user interface. </p>
+<br/>
+<br/>
+<div class="subtitle_3rd" id="Active Lifetime">Active Lifetime</div>
+<p>The active lifetime starts with a call to <strong>onResume()</strong> and ends with a call to <strong>onPause()</strong>.</p>
+<p>An active activity is in the foreground and its receiving user input events. Our activity is likely to go through several active lifetimes before it's destroyed, as the active lifetime will end when a new activity is displayed, the device goes to sleep, or the activity loses focus. Try to keep code in the <strong>onPause()</strong> and <strong>onResume()</strong> methods relatively fast and lightweight to ensure that our application remains responsive when moving in and out of the foreground. </p>
+<p>Immediately before <strong>onPause()</strong>, a call is made to <strong>onSaveInstanceState()</strong>. This method provides an opportunity to save the activity's UI state in a <strong>Bundle</strong> that will be passed to the <strong>onCreate()</strong> and <strong>onRestoreInstanceState()</strong> methods. Use <strong>onSaveInstanceState()</strong> to save the UI state to ensure that the activity can present the same UI when it next becomes active. We can safely assume that during the active lifetime <strong>onSaveInstanceState()</strong> and <strong>onPause()</strong> will be called before the process is terminated. </p>
+<p>Most activity implementations will override at least the <strong>onPause()</strong> method to commit unsaved changes, as it marks the point beyond which an activity may be killed without warning. Depending on our application, we may also choose to suspend threads, processes, Broadcast Receivers while our activity is not in the foreground.</p>
+<p>The <strong>onResume()</strong> method can be very lightweight. We will not need to reload the UI state here as this is handled by the <strong>onCreate()</strong> and <strong>onRestoreInstanceState()</strong> methods when required. Use <strong>onResume()</strong> to reregister any Broadcast Receivers or other processes we may have suspended in <strong>onPause()</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle_3rd" id="Activity Classes">Activity Classes</div>
+<p>Here is the list of the most useful activity classes.</p>
+<ol>
+<li><strong>MapActivity</strong> <br/>
+	Encapsulates the resource handling required to support a <strong>MapView</strong> widget within an activity. </li>
+<li><strong>ListActivity</strong> <br/>
+	Wrapper class for activities that feature a <strong>ListView</strong> bound to a data source as the primary UI metaphor, and exposing event handlers for list item selection. </li>
+<li><strong>ExpandableActivity</strong> <br/>
+	Similar to the <strong>ListActivity</strong> but supporting an <strong>ExpandableListView</strong> bound to a data source as the primary UI metaphor, and exposing event handlers for list item selection. </li>
+<li><strong>TabActivity</strong> <br/>
+	Enables us to embed multiple activities or View within a single screen using a tab widget to switch among them. </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br /><br />
+<h1>Android Tutorials</h1>
+   <br /><br />
+   <a href="android.html">1. Introduction</a></li>
+   <br /><br />
+   <a href="android2MyFirstApplication.html">2. My First Android Application</a></li>
+   <br /><br />
+   <a href="android3BackToHelloWorld.html">3. Back to Hello World Again</a></li>
+   <br /><br />
+   <a href="android4UserInterface.html">4. Basic User Interface</a></li>
+   <br /><br />
+   <a href="android5Layouts.html">5. Layouts</a></li>
+   <br /><br />
+   <a href="android6ListViewSpinnerGridViewGallery.html">6. ListView, Spinner, GridView, and Gallery</a></li>
+   <br /><br />
+   <a href="android7dvancedListView.html">7. Advanced ListView Widget</a></li>
+   <br /><br />
+   <a href="android8DatePickerTimePickerClocks.php">8. DatePicker, TimePicker, and Clocks</a></li>
+   <br /><br />
+   <a href="android9TabWidgetFlipper.html">9. TabWidget, Flipper, and SlidingDrawer</a></li>
+   <br /><br />
+   <a href="android10Menus.html">10. Menus</a></li>
+   <br /><br />
+   <a href="android11JUnitTest.html">11. Android JUnit Test</a></li>
+   <br /><br />
+   <a href="android12ActivityTesting.html">12. Activity Testing</a></li>
+   <br /><br />
+   <a href="android13Intent.html">13. Intent</a></li>
+   <br /><br />
+   <a href="android14OnNotepad.php">14. On Notepad Example</a></li>
+   <br /><br />
+   <a href="android15Rotation.html">15. Configuring Rotation</a></li>
+   <br /><br />
+   <a href="android16Preferences.html">16. Preferences</a></li>
+   <br /><br />
+   <a href="android17MapView.html">17. Map View</a></li>
+   <br /><br />
+   <a href="android18Manifest.html">18. Manifest</a></li>
+   <br /><br />
+   <a href="android19Animation.html">19. Animation - Frame By Frame, Layout, and View</a></li>
+   <br /><br />
+   <a href="android20NotificationService.html">20. Notification and Service</a></li>
+   <br /><br />
+   <a href="android21ContentProvider.html">21. Content Provider</a></li>
+   <br /><br />
+   <a href="android22Threads.html">22. Threads</a></li>
+   <br /><br />
+   <a href="android23HTTP.html">23. HTTP Internet Connection</a></li>
+   <br /><br />
+   <a href="android24Media.html">24. Media</a></li>
+   <br /><br />
+   <a href="android25ActivityLifeCycle.html">25. Activity Life Cycle</a></li>
+   <br /><br />
+   <a href="androidAppsMortgageCalculator.html">Apps - Mortagage Calculator</a></li>
+   <br /><br />
+          
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android25ActivityLifeCycle.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:30:41 GMT -->
+</html>
+

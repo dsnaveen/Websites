@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_multithreading1.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 05:38:43 GMT -->
+<head>
+  <title>C# 4.0 Tutorial: Multi Threading I - 2016</title>
+  <meta content="C# 4.0 Tutorial: Multi Threading I" name="description" />
+  <meta content="C# 4.0 Tutorial, Multi Threading I" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href=".netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Multi-Threading I 2017          <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/csharp_logo.png" alt="csharp_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="MultiThreading">Multi Threading I</div>
+<p>When we start a program, the system (OS) creates a new <strong>process</strong>. </p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>In other words, for each *.exe loaded into memory, the OS creates a separate and isolated process for use during its lifetime. The process is the set of resources that comprise a running program. Processes are fully isolated from each other while threads have just a limited degree of isolation. In particular, threads share memory with other threads running in the same application. A common use for multithreading is to maintain a responsive user interface while a time-consuming task run on a <strong>worker</strong> thread, the main thread is free to continue processing other events.</p>
+<p>The basic things to know about threads:</p>
+<ol>
+<li>Be default, a process contains only a single thread, which executes from the beginning of the program to the end.</li>
+<li>A thread can spawn other threads, so that at any time, a process might have multiple threads in various states, executing different parts of the program.</li>
+<li>If there are multiple threads in a process, they all share the process's resources.</li>
+<li>Threads are the units that are scheduled by the system for executing on the processor not processes.</li>
+</ol>
+<div class="subtitle_2nd" id="thread">Thread</div>
+<p>More exactly it is <strong>Thread of Execution</strong> which is the smallest unit of processing.</p>
+<ol>
+<li>It is scheduled by an OS.</li>
+<li>In general it is contained in a process.</li>
+So, multiple threads can exist within the same process.
+<li>It shares the resources with the process. 
+The memory, code (instructions), 
+and global variable (context - the values that its variables reference at any given moment
+).</li>
+<li>An analogy: Multiple Threads is multiple cooks from a recipe of a  cook book. It follows the instructions of the recipe.</li>
+<li>On a single processor, each thread has its turn by multiplexing based on time. On a multiple processor, each thread is running at the same time with each processor/core running a particular thread.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadvsprocesses">Threads vs. Processes</div>
+<p>Processes and threads are related to each other but are fundamentally different.<p>
+<p>A <strong>process</strong> can be thought of as an instance of a program in execution. Each process is an independent entity to which system resources such as CPU time, memory, etc. are allocated and each process is executed in a separate address space. If we want to access another process; resources, inter-process communications have to be used such as pipes, files, sockets etc.</p>
+<p>A <strong>thread</strong> uses the same stack space of a process. A process can have multiple threads. A key difference between processes and threads is that multiple threads <strong>share</strong> parts of their state. Typically, one allows multiple threads to read and write the same memory (no process can directly access the memory of another process). However, each thread still has its own registers and its own stack, but the other thread can read and write the stack memory.</p>
+<p>A thread is a particular execution path of a process. When one thread modifies a process resource, the change is immediately visible to sibling threads. </p>
+<ol>
+<li>Processes are independent while thread is within a process.</li>
+<li>Processes have separate address spaces while threads share their address spaces.</li>
+<li>Processes communicate each other through inter-process communication.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="AdvantageofMultiThreading">Advantage of Multi-Threading</div>
+<ol>
+<li>Faster on a multi-CPU system.</li>
+<li>Even in a single CPU system, application can remain responsive by using worker thread runs concurrently with the main thread.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadcost">The Cost of Multithreading</div>
+<p>Multithreading creates program overhead and additional complexity.</p>
+<ol>
+<li>There are time and resource costs in both creating and destroying threads.</li>
+<li>The time required for scheduling threads, loading them onto the process, and storing their states after each time slice is pure overhead.</li>
+<li>Since the threads in a process all share the same resources and heap, it adds additional programming complexity to ensure that they are not ruining each other's work. This might be the biggest cost we pay for doing multithreading.</li>
+<li>Debugging multithreaded programs can be quite difficult, since the timing on each run of the program can be different, reproducing the same results is touch. And the act of running the program in debugger blows the timing out of the water.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="systemthreading">The System.Threading</div>
+<p>The <strong>System.Threading</strong> provides a number of types that enable the direct construction of multithread applications. It also allows us to interact with a CLR thread and CLR maintained thread pool, <strong>Timer</strong> class and so on. Here is the list of <strong>Types of the Ssystem.Threading Namespace:</strong></p>
+<br/>
+<!-- TABLE -->
+<table border="2" cellpadding="7" cellspacing="2">
+<tbody>
+<tr>
+<td>Interlocked </td>
+<td>This type provides atomic operations for types that are shared by multiple thread.</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>This type provides the synchronization of threading object using locks and wait/signals. The C# <strong>lock</strong> keyword is using a <strong>Monitor</strong> type under the hood.</td>
+</tr>
+<tr>
+<td>Mutex</td>
+<td>This synchronization primitive can be used for synchronization between application domain boundaries.</td>
+</tr>
+<tr>
+<td>ParameterizedThreadStart</td>
+<td>This delegate allows a thread to call methods that take any number of arguments.</td>
+</tr>
+<tr>
+<td>Semaphore</td>
+<td>This type allows us to limit the number of threads that can access a resource, or a particular type of resource, concurrently.</td>
+</tr>
+<tr>
+<td>Thread</td>
+<td>This type represents a thread that executes within the CLR. Using this type, we're able to spawn additional threads in the originating AppDomain.</td>
+</tr>
+<tr>
+<td>ThreadPool</td>
+<td>This type allows us to interact with the CLR-maintained thread pool within a given process.</td>
+</tr>
+<tr>
+<td>ThreadPriority</td>
+<td>This enum represents a thread's priority level.</td>
+</tr>
+<tr>
+<td>ThreadStart</td>
+<td>This delegate is used to specify the method to call for a given thread. Unlike <strong>ParameterizedThreadStart</strong>, targets of <strong>ThreadStart</strong> must match a fixed prototype.</td>
+</tr>
+<tr>
+<td>ThreadState</td>
+<td>This enum specified the valid state a thread make take such as <strong>Running</strong>, <strong>Aborted</strong> etc.</td>
+</tr>
+<tr>
+<td>Timer</td>
+<td>This type provides a mechanism for executing a method at specified intervals.</td>
+</tr>
+<tr>
+<td>TimerCallbask</td>
+<td>This delegate type is used in conjunction with <strong>Timer</strong> types.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="systemthreadingthread">The System.Threading.Thread Class</div>
+<p>The most primitive of all types in <strong>System.Threading</strong> namespace is <strong>Thread</strong>. This type defines a number of methods that allow us to create new threads within the current AppDomain. It also allows us to suspend, stop, and destroy a particular thread.</p>
+<p>Here is the list of <strong>Key Static Member of the Thread Type:</strong></p>
+<!-- TABLE -->
+<table border="2" cellpadding="7" cellspacing="2">
+<tbody>
+<tr>
+<td>CurrentContext</td>
+<td>This read-only property returns the context in which the thread is currently running.</td>
+</tr>
+<tr>
+<td>CurrentThread</td>
+<td>This read-only property returns a reference to the currently running thread.</td>
+</tr>
+<tr>
+<td>GetDomain()/GetDomainID()</td>
+<td>These methods return a reference to the current AppDomain or the ID of this domain in which the current thread is running.</td>
+</tr>
+<tr>
+<td>Sleep()</td>
+<td>This method suspends the current thread for a specified time.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<br/>
+<p>Here is the list of <strong>Instance-Level Member of the Thread Type:</strong></p>
+<!-- TABLE -->
+<table border="2" cellpadding="7" cellspacing="2">
+<tbody>
+<tr>
+<td>IsAlive</td>
+<td>Returns a Boolean that indicates whether this thread has been started.</td>
+</tr>
+<tr>
+<td>IsBackGround</td>
+<td>Gets or sets a value indicating whether or not this thread is a <strong>background thread</strong>.</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>This allows us to establish a friendly text name of the thread.</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>Gets or sets the priority of a thread, which may be assigned a value from the <strong>ThreadPriority</strong> enumeration.</td>
+</tr>
+<tr>
+<td>ThreadState</td>
+<td>Gets the state of this thread, which may be assigned a value from the <strong>ThreadState</strong> enumeration.</td>
+</tr>
+<tr>
+<td>Abort()</td>
+<td>Instructs the CLR to terminate the thread as soon as possible.</td>
+</tr>
+<tr>
+<td>Interrupt()</td>
+<td>Interrupts (wakes) the current thread from a suitable wait period.</td>
+</tr>
+<tr>
+<td>Join()</td>
+<td>Blocks the calling thread until the specified thread (the one on which <strong>Join()</strong> is called) exits.</td>
+</tr>
+<tr>
+<td>Resume()</td>
+<td>Resumes a thread that has been previously suspended.</td>
+</tr>
+<tr>
+<td>Start()</td>
+<td>Instructs the CLR to execute the thread as soon as possible.</td>
+</tr>
+<tr>
+<td>Suspend()</td>
+<td>Suspends the thread. If the thread is already suspended, a call to <strong>Suspend()</strong> has no effect.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="firstthreadexample">My First Thread Code</div>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+{
+    class FirstThread
+    {
+        static void Main(string[] args)
+        {
+            Thread t1 = new Thread(threadJobA);
+            Thread t2 = new Thread(threadJobB);
+            t1.Start();
+            t2.Start();
+            threadJobMain();
+            //t1.Start();
+            //t2.Start();
+        }
+
+        static void threadJobA()
+        {
+            for (int i = 0; i &lt; 101; i++)
+            {
+                Console.Write("A{0} ", i);
+            }
+        }
+
+        static void threadJobB()
+        {
+            for (int i = 0; i &lt; 101; i++)
+            {
+                Console.Write("B{0} ", i);
+            }
+        }
+
+        static void threadJobMain()
+        {
+            for (int i = 0; i &lt; 101; i++)
+            {
+                Console.Write("M{0} ", i);
+            }
+        }
+    }
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+<font color="red">A0</font> <font color="green">B0</font> B1 B2 B3 B4 B5 B6 A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 A14 A15 A16 
+A17 A18 A19 A20 A21 A22 A23 A24 A25 A26 A27 A28 A29 A30 A31 A32 A33 A34 A35 A36 
+A37 A38 A39 A40 A41 A42 A43 A44 A45 A46 A47 A48 A49 A50 A51 A52 <font color="blue">M0</font> M1 B7 B8 B9 
+B10 B11 B12 B13 B14 B15 B16 B17 B18 B19 B20 B21 B22 B23 B24 B25 B26 M2 M3 M4 M5 
+M6 M7 M8 A53 A54 A55 A56 A57 A58 A59 A60 A61 A62 A63 A64 A65 A66 A67 A68 A69 A70
+ A71 A72 A73 A74 A75 A76 A77 A78 A79 A80 A81 A82 A83 A84 A85 A86 A87 A88 A89 A90
+ A91 A92 A93 A94 A95 A96 A97 B27 B28 M9 M10 M11 M12 M13 M14 M15 M16 B29 B30 B31 
+B32 M17 M18 M19 M20 M21 M22 M23 M24 M25 M26 M27 M28 M29 M30 M31 M32 M33 M34 M35 
+M36 M37 M38 M39 M40 M41 M42 M43 M44 M45 M46 M47 M48 M49 M50 M51 M52 M53 M54 M55 
+M56 M57 M58 M59 M60 M61 M62 M63 M64 M65 M66 M67 M68 M69 M70 M71 M72 M73 M74 M75 
+M76 M77 B33 B34 B35 B36 B37 B38 B39 B40 B41 B42 B43 B44 B45 B46 B47 B48 B49 B50 
+B51 B52 B53 B54 B55 B56 B57 B58 B59 B60 B61 B62 B63 B64 B65 B66 B67 B68 B69 B70 
+B71 B72 B73 B74 B75 B76 B77 B78 B79 B80 B81 B82 B83 B84 B85 B86 B87 B88 B89 B90 
+B91 B92 B93 B94 B95 B96 B97 B98 B99 <font color="green">B100</font> M78 M79 M80 M81 M82 M83 M84 A98 A99 
+<font color="red">A100</font> M85 M86 M87 M88 M89 M90 M91 M92 M93 M94 M95 M96 M97 M98 M99 <font color="blue">M100</font>
+</pre>
+<p>The main thread creates a new thread <strong>t1</strong> and <strong>t2</strong> on which each of the thread runs its method (a delegate passed to the Thread's constructor) that repeatedly print the character "A#" or "B#". Simultaneously, the main thread repeatedly prints the character "M#". We probably may not get the same output from the next run.</p>
+<p>Once started, a thread's <strong>IsAlive</strong> property returns <strong>true</strong>, until the point where the thread ends. A thread ends when the delegate passed to the Thread's constructor finishes executing. </p>
+<p>Once ended, a thread cannot restart. If we try to restart a thread, we may get the error: something like this:</p>
+<pre>
+Unhandled Exception: System.Threading.ThreadStateException: Thread is running or
+ terminated; it cannot restart.
+</pre>
+<p>We can test it if we run the code after taking off the comments:</p>
+<pre>
+	//t1.Start();
+	//t2.Start();
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadexamplelocal">Threads with Local Variable</div>
+<p>In the following example, we define a method with a local variable, then call the method simultaneously on the main thread and a newly created thread. The CLR assigns each thread its own memory stack so that local variables are kept separate. </p>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+{
+    class ThreadWithLocalCounter
+    {
+        static void Main(string[] args)
+        {
+            new Thread(threadJob).Start();
+
+            threadJob();
+        }
+
+        static void threadJob()
+        {
+            for (int count = 0; count &lt; 10; count++)
+            {
+                Console.Write("{0} ", count);
+            }
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+0 0 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9
+</pre>
+<p>A separate copy of the cycles variable is created on each thread's memory stack, and so the output produced is, (2*count) numbers not (1*count) numbers.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadexamplestatic">Threads with Static Variable</div>
+<p>In this example, the two thread will share <strong>count</strong> variable by declaring it as static.:</p>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+ 
+{
+    class ThreadWithStaticCounter
+    {
+        static int count;
+
+        static void Main(string[] args)
+        {
+            new Thread(threadJob).Start();
+
+            threadJob();
+        }
+
+        static void threadJob()
+        {
+            while(count &lt; 10)
+            {
+                Console.Write("{0} ", count);
+                count++;
+            }
+        }
+    }
+}
+</pre>
+<p>Now, the output only has (1*count) numbers not (2*count) numbers:</p>
+<pre>
+0 1 3 4 5 6 7 8 9 2
+</pre>
+<p>From the output, we see one of the thread had only one chance to produce "2".
+Probably, it didn't have a chance to write while kept the value at the time and finally had a chance to write after the other thread ended. So, we don't seem to be quite there yet.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadexampleinstance">Threads Sharing the Object Instance</div>
+<p>In this example, the two threads will share <strong>count</strong> variable: the threads have a common reference to the same object instance:</p>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+{
+    class ThreadInstanceTest
+    {
+        int count;
+
+        static void Main(string[] args)
+        {
+            ThreadInstanceTest ti = new ThreadInstanceTest();
+            new Thread(ti.threadJob).Start();
+        }
+
+        void threadJob()
+        {
+            while(count &lt; 10)
+            {
+                Console.Write("{0} ", count++);
+            }
+        }
+    }
+}
+</pre>
+<p>We get the output as we expected:</p>
+<pre>
+0 1 2 3 4 5 6 7 8 9
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parameterizedthread">ParameterizedThreadStart
+</div>
+<p>When a managed thread is created, the method that executes on the thread is represented by a <strong>ThreadStart</strong> delegate or a <strong>ParameterizedThreadStart</strong> delegate that is passed to the Thread constructor. The thread does not begin executing until the <strong>Thread.Start</strong> method is called. The <strong>ThreadStart</strong> or <strong>ParameterizedThreadStart</strong> delegate is invoked on the thread, and execution begins at the first line of the method represented by the delegate. In the case of the <strong>ParameterizedThreadStart</strong> delegate, the object that is passed to the <strong>Start(Object)</strong> method is passed to the delegate. </p>
+<p>The <strong>ParameterizedThreadStart</strong> delegate and the <strong>Thread.Start(Object)</strong> method overload make it easy to pass data to a thread procedure, but this technique is not type safe because any object can be passed to <strong>Thread.Start(Object)</strong>. A more robust way to pass data to a thread procedure is to put both the thread procedure and the data fields into a worker object. </p>
+<p>The following code example shows the syntax for creating and using a <strong>ParameterizedThreadStart delegate</strong> with a <strong>static method</strong> and an <strong>instance method</strong>.</p>
+<br/>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+{
+    public class ThreadTest
+    {
+        public static void Main()
+        {
+            Thread newThread = new Thread(ThreadTest.threadJob);
+
+            newThread.Start("Shared Thread");
+
+            ThreadTest t = new ThreadTest();
+            newThread = new Thread(t.moreThreadJob);
+
+            newThread.Start("Instance Thread");
+        }
+
+        public static void threadJob(object data)
+        {
+            Console.WriteLine("{0}", data);
+        }
+
+        public void moreThreadJob(object data)
+        {
+            Console.WriteLine("{0}", data);
+        }
+    }
+}
+</pre>
+<p>The output is:</p>
+<pre>
+Shared Thread
+Instance Thread
+</pre>
+<br/>
+<p>Let's look into the code:</p>
+<pre>
+Thread newThread = new Thread(ThreadTest.threadJob);
+</pre>
+<p>To start a thread using a shared thread procedure, we use the class name and method name <br/>
+when we create the <strong>ParameterizedThreadStart</strong> delegate.<br/>
+ C# infers the appropriate delegate creation syntax: <strong>
+new ParameterizedThreadStart(ThreadTest.threadJob)
+</strong></p>
+<br/>
+<pre>
+newThread.Start("Shared Thread");
+</pre>
+<p>We used the overload of the Start method that has a parameter of type Object. We can create an object that contains several pieces of data, or we can pass any reference type or value type. In the code above, we pass the string.</p>
+<br/>
+<pre>
+ThreadTest t = new ThreadTest();
+newThread = new Thread(t.moreThreadJob);
+</pre>
+<p>To start a thread using an instance method for the thread procedure, we used the instance variable and method name when we create the ParameterizedThreadStart delegate. <br/>
+C# infers the appropriate delegate creation syntax:<strong> new ParameterizedThreadStart(t.moreThreadJob)</strong></p>
+<br/>
+<pre>
+newThread.Start("Instance Thread");
+</pre>
+<p>We passed an object containing data for the thread.</p>
+<br/>
+<p>We could have used more compact code for the <strong>Main()</strong> as the following code:</p>
+<pre>
+public static void Main()
+{
+	new Thread(ThreadTest.threadJob).Start("Shared Thread");
+
+	ThreadTest tt = new ThreadTest();
+	new Thread(tt.moreThreadJob).Start("Instance Thread");
+}
+
+</pre>
+<br/>
+<p>Now that we can pass data to threads, we can revise the previous example which is printing <strong>count</strong> variable. In the following example, we'll print out the <strong>count</strong> variable up to 29 and we'll be able to tell which thread is printing the variable:</p>
+<pre>
+using System;
+using System.Threading;
+
+namespace MultiThreadI
+{
+    public class ThreadTest
+    {
+        static int count = 0;
+
+        public static void Main()
+        {
+            new Thread(ThreadTest.staticJob).Start("s:");
+
+            ThreadTest tt = new ThreadTest();
+            new Thread(tt.instanceJob).Start("i:");
+        }
+
+        public static void staticJob(object data)
+        {
+            while (count &lt; 30)
+            {
+                Console.Write("{0}{1} ", data, count++);
+            }
+        }
+
+        public void instanceJob(object data)
+        {
+            while (count &lt; 30)
+            {
+                Console.Write("{0}{1} ", data, count++);
+            }
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+<font color="red">s:0</font> i:1 i:3 i:4 s:2 s:6 s:7 s:8 s:9 s:10 s:11 s:12 
+s:13 s:14 s:15 s:16 s:17 s:18 s:19 s:20 s:21 s:22 s:23 s:24 
+s:25 s:26 i:5 i:28 <font color="red">i:29</font> s:27 
+</pre>
+<p>As we see from the example, it's not printing the <strong>count</strong> in the ordered manner (ascending order).<br/>
+ We'll resolve this issue in the following chapters.</p>
+<br/>
+<img alt="KaJiSan" src="images/multithreading1/KaJeeSan.png"/>
+<br/>
+<div id="rightpanel">
+<div align="center">
+</div></div>
+<br/><br/>
+<br/><br/>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>C# 4.0</h1>
+   <br><br>
+   <a href=".netframework.html">.NET Framework</a> 
+   <br><br>
+   <a href="csharp_introduction.html">Introduction - My First C# Code</a> 
+   <br><br>
+   <a href="csharp_system_members.html">System Members and Data</a> 
+   <br><br>
+   <a href="csharp_modifiers.html">Modifiers</a> 
+   <br><br>
+   <a href="csharp_array.html">Array</a> 
+   <br><br>
+   <a href="csharp_enum.html">Enumeration (Enums) </a> 
+   <br><br>
+   <a href="csharp_value_ref.html">Value and Reference Types</a> 
+   <br><br>
+   <a href="csharp_constructor.html">Constructor and this Keyword</a> 
+   <br><br>
+   <a href="csharp_static.html">static Keyword</a> 
+   <br><br>
+   <a href="csharp_encapsulation.html">Encapsulation Services</a> 
+   <br><br>
+   <a href="csharp_inheritance.php">Inheritance</a> 
+   <br><br>
+   <a href="csharp_inheritance2.html">Inheritance II</a> 
+   <br><br>
+   <a href="csharp_polymorphism.html">Polymorphism</a> 
+   <br><br>
+   <a href="csharp_interfaces.html">Interfaces</a> 
+   <br><br>
+   <a href="csharp_delegates.html">Delegates</a>    
+   <br><br>
+   <a href="csharp_system_object.html">System.Object</a> 
+   <br><br>
+   <a href="csharp_events.html">Events</a> 
+   <br><br>
+   <a href="csharp_multithreading1.html">Multi Threading I - Introduction and Simple Thread</a> 
+   <br><br>
+   <a href="csharp_multithreading2.html">Multi Threading II -  ThreadStart / Parameterized ThreadStart, <br>Foreground/Background Threads</a> 
+   <br><br>
+   <a href="csharp_multithreading3.html">Multi Threading III  - Concurrency, Synchronization</a> 
+   <br><br>
+   <a href="csharp_networking1.html">Networking I - 
+   <br><br>
+PORT, IPv4/IPv6, TCP/UDP, URI</a> 
+   <br><br>
+   <a href="csharp_networking2.html">Networking II - 
+   <br><br>
+WebRequest / WebResponse, WebClient</a> 
+   <br><br>
+   <a href="csharp_wpf_xaml_netframework.html">WPF (Windows Presentation Foundation) and XAML - Part I</a> 
+   <br><br>
+   <a href="../cplusplus/Git/Git_GitHub_Installation.html" target="_blank">GIT and GitHub on Windows</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">PowerShell 4 ... </a>
+   <br><br>
+  
+
+<br /><br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+  <!-- CDN MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_multithreading1.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 05:38:45 GMT -->
+</html>
+

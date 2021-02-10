@@ -1,0 +1,1571 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/matrix-algebra/how-to-find-inverse.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:11:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Find Inverse Matrix
+</title>
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="How to find the inverse of any square matrix, using elementary matrix operations. Includes sample problems that demonstrate the technique step-by-step." /><meta name="keywords" content="inverse of any matrix, inverse of any square matrix, how to find matrix inverse, how to find the inverse of any matrix, how to find the inverse of a matrix, finding the inverse of a matrix, inverse matrix calculator" /><link href="how-to-find-inverse.html" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/matrix-algebra/how-to-find-inverse.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1A204E95" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Dju2z6Q8T1u3+QjaushqgbSl5DtuHJgWieeSbmihdkDJbSR951dRtr9YyZNLYSnJ+srqYHunReVoWLzKGLb63UwvSiGdF90kzyDt4e7K26E9JIr+Wu13PfK91flnNx0jBU+9WrHF0m1tkUn7umvyIs4t0pDBJk2e0o4q2yNszU2H4sWr7dAYBthxlG+8060kf72x9NcUvUdws8SiwLIpng==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1>How to Find the Inverse for Any Square Matrix</h1>
+                    <p>In this lesson, we describe a method for finding the   
+                        <a href="../statistics/dictionaryf7d8.html?Target=Matrix_inverse">inverse</a> 
+                        of any square 
+                        <a href="../statistics/dictionary8025.html?Target=Matrix">matrix</a>; and 
+                        we demonstrate the method step-by-step with examples.</p>
+        
+                    <p><u>Prerequisites</u>: This material assumes familiarity with  
+                        <a href="elementary-operations.html">
+                        elementary matrix operations</a> and
+                        <a href="echelon-transform.html">
+                        echelon transformations</a>.</p>
+        
+                    <h2>How to Find the Inverse of an <i>n</i> x <i>n</i> Matrix</h2> 
+                    <p>Let <strong>A</strong> be an <i>n</i> x <i>n</i> matrix.  To find the
+                        inverse of matrix <strong>A</strong>, we follow these steps:</p>
+        
+                    <ol>
+                        <li><p>Using <a href="../statistics/dictionaryf65c.html?Target=Elementary_operators">
+                            elementary operators</a>,
+                            transform matrix <strong>A</strong> to its
+                            <a href="../statistics/dictionaryce02.html?Target=Reduced_row_echelon_form">
+                            reduced row echelon form</a>, <strong>A</strong><sub>rref</sub>.</p></li>
+                        <li><p>Inspect <strong>A</strong><sub>rref</sub> to determine if 
+                            matrix <strong>A</strong> has an inverse.</p>
+                            <ul>
+                                <li><p>If <strong>A</strong><sub>rref</sub> is equal to the 
+                                <a href="../statistics/dictionary71b7.html?Target=Identity_matrix">
+                                identity matrix</a>, then matrix <strong>A</strong> is  
+                                <a href="../statistics/dictionarye8a3.html?Target=Full_rank">full rank</a>;
+                                and matrix <strong>A</strong> has an inverse.</p></li>
+                                <li><p>If the last row of <strong>A</strong><sub>rref</sub> is 
+                                all zeros, then matrix <strong>A</strong> is not 
+                                <a href="../statistics/dictionarye8a3.html?Target=Full_rank">full rank</a>;
+                                and matrix <strong>A</strong> does not have an inverse.</p></li>
+                            </ul>  
+                        </li>
+                        <li><p>If <strong>A</strong> is full rank, then the inverse of matrix 
+                            <strong>A</strong> is equal to the product of the elementary operators
+                            that produced <strong>A</strong><sub>rref</sub> , as shown below.</p></li>
+                    </ol>
+    
+                    <p style="text-align:center;">
+                        <strong>A</strong><sup>-1</sup> =
+                        <strong>E</strong><sub>r</sub> <strong>E</strong><sub>r-1</sub> . . .
+                        <strong>E</strong><sub>2</sub> <strong>E</strong><sub>1</sub>
+                    </p>
+        
+                    <p style="margin-left:40px;">where</p>
+    
+                    <p style="margin-left:40px;">
+                        <strong>A</strong><sup>-1</sup> = inverse of matrix <strong>A</strong><br />
+                        <i>r</i> = Number of elementary row operations required to 
+                        transform <strong>A</strong> to  
+                        <strong>A</strong><sub>rref</sub><br />
+                        <strong>E</strong><sub>i</sub> = <i>i</i>th elementary row operator 
+                        used to transform <strong>A</strong> to <strong>A</strong><sub>rref</sub>
+                    </p>
+    
+                    <p>Note that the order in which elementary row operators are multiplied
+                        is important, because 
+                        <strong>E</strong><sub>i</sub> <strong>E</strong><sub>j</sub>
+                        is not necessarily equal to 
+                        <strong>E</strong><sub>j</sub> <strong>E</strong><sub>i</sub>.</p>
+    
+                    <a name="FindInverse"></a>
+                    <h2>An Example of Finding the Inverse</h2>
+                    <p>Let's use the above method to find the inverse of matrix
+                        <strong>A</strong>, shown below.</p>
+    
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>        
+                        <td><strong>A</strong>&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+    
+                    <p>The first step is to transform matrix <strong>A</strong> into its
+                        <a href="../statistics/dictionaryce02.html?Target=Reduced_row_echelon_form">
+                        reduced row echelon form</a>, <strong>A</strong><sub>rref</sub>, 
+                        using a series of 
+                        <a href="../statistics/dictionaryf65c.html?Target=Elementary_operators">
+                        elementary row operators</a> 
+                        <strong>E</strong><sub><i>i</i></sub>.  We show the transformation
+                        steps below.</p>
+    
+                    <table class="StdTabB" style="border-spacing: 5px;">
+                    <tr>
+                        <th class="StdTabB" style="padding:10px 20px;">Elementary row operation</th>
+                        <th class="StdTabB" style="padding:10px 20px;">Row&nbsp;operator,&nbsp;<strong>E</strong><sub>i</sub></th>
+                        <th class="StdTabB" style="padding:10px 20px;">Transformed&nbsp;matrix,&nbsp;<strong>A</strong><sub>i</sub></th>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            1. Multiply row 1 of <strong>A</strong> by -2 and add the 
+                            result to row 2 of <strong>A</strong></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>1</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>1</sub>&nbsp;=&nbsp;E</strong><sub>1</sub><strong>A</strong>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            2. Multiply row 1 of <strong>A</strong><sub>1</sub> by -2 and add the 
+                            result to row 3 of <strong>A</strong><sub>1</sub></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>2</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>2</sub>&nbsp;=&nbsp;E</strong><sub>2</sub><strong>A</strong><sub>1</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">-3</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            3. Multiply row 3 of <strong>A</strong><sub>2</sub> by -1 and add  
+                            row 2 of <strong>A</strong><sub>2</sub> to 
+                            row 3 of <strong>A</strong><sub>2</sub></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>3</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>3</sub>&nbsp;=&nbsp;E</strong><sub>3</sub><strong>A</strong><sub>2</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            4. Add row 2 of <strong>A</strong><sub>3</sub> to 
+                            row 1 of <strong>A</strong><sub>3</sub></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>4</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>4</sub>&nbsp;=&nbsp;E</strong><sub>4</sub><strong>A</strong><sub>3</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">-2</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            5. Multiply row 2 of <strong>A</strong><sub>4</sub> by -0.5</p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>5</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-0.5</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>5</sub>&nbsp;=&nbsp;E</strong><sub>5</sub><strong>A</strong><sub>4</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle;
+                        padding-left:20px; padding-right:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            6. Multiply row 3 of <strong>A</strong><sub>5</sub> by -1
+                                and add the result to row 2 of <strong>A</strong><sub>5</sub></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>6</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>A</strong><sub>rref</sub>&nbsp;=&nbsp;<strong>E</strong><sub>6</sub><strong>A</strong><sub>5</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </table>
+        
+                    <p><strong>Note:</strong> If the operations and/or notation shown above are unclear, please review  
+                    <a href="elementary-operations.html">
+                    elementary matrix operations</a> and
+                    <a href="echelon-transform.html">
+                    echelon transformations</a>.</p>
+        
+                    <p>The last matrix in Step 6 of the above table is 
+                    <strong>A</strong><sub>rref</sub>, the reduced row echelon form for 
+                    matrix <strong>A</strong>.  Since <strong>A</strong><sub>rref</sub> 
+                    is equal to the identity matrix, we know that <strong>A</strong> is 
+                    <a href="../statistics/dictionarye8a3.html?Target=Full_rank">full rank</a>.  
+                    And because <strong>A</strong> is full rank, we know that <strong>A</strong>
+                    has an inverse.</p>
+    
+                    <p>If <strong>A</strong> were less than full rank, 
+                    <strong>A</strong><sub>rref</sub> would have all zeros in the last row; and 
+                    <strong>A</strong> would not have an
+                    inverse.</p>
+        
+                    <p>We find the inverse of matrix <strong>A</strong>
+                    by computing the product of the elementary operators
+                    that produced <strong>A</strong><sub>rref</sub> , as shown below.</p>
+    
+                    <p style="text-align:center;">
+                        <strong>A</strong><sup>-1</sup> =
+                        <strong>E</strong><sub>6</sub> <strong>E</strong><sub>5</sub>
+                        <strong>E</strong><sub>4</sub> <strong>E</strong><sub>3</sub>
+                        <strong>E</strong><sub>2</sub> <strong>E</strong><sub>1</sub>
+                    </p>
+    
+                    <table style="margin-right:auto; margin-left:auto;">
+                    <tr>
+                        <td><strong>A</strong><sup>-1</sup>&nbsp;=&nbsp;</td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">-0.5</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>6</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>5</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>4</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>3</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>2</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>1</sub></td>
+                    </tr>
+                    </table>
+    
+    
+                    <table style="margin-right:auto; margin-left:auto;">
+                    <tr>
+                        <td><strong>A</strong><sup>-1</sup>&nbsp;=&nbsp;</td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto; margin-top:20px;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="3"></td>
+                                    <td class="tdmatrixcell">-1</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1.5</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">-1</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr></table>
+        
+                    <p>In this example, we used a 3 x 3 matrix to show how to find a matrix inverse.  
+                        The same process will work on a square matrix of any size.</p>
+    
+                    <h2>Test Your Understanding</h2>
+    
+                    <p><strong>Problem </strong></p>
+                    <p>Find the inverse of matrix <strong>A</strong>, shown below.</p>
+        
+                    <table style="margin-left:auto; margin-right:auto;">
+                        <tr>
+                        <td><strong>A</strong> = &nbsp;&nbsp;&nbsp;</td>
+                        <td style="padding-right:0px;">
+                            <table style="margin-right:auto; margin-left:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">2</td>
+                                    <td class="tdmatrixcell">2</td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                    </table>
+
+                    <p><strong>Solution</strong></p>
+                    <p>The first step is to transform matrix <strong>A</strong> into its
+                        <a href="../statistics/dictionaryce02.html?Target=Reduced_row_echelon_form">
+                        reduced row echelon form</a>, <strong>A</strong><sub>rref</sub>, 
+                        using 
+                        <a href="../statistics/dictionaryf65c.html?Target=Elementary_operators">
+                        elementary row operators</a> 
+                        <strong>E</strong><sub><i>i</i></sub> to perform 
+                        <a href="../statistics/dictionary6604.html?Target=Elementary_matrix_operations">
+                        elementary row operations</a>, as shown below.</p>
+    
+                    <table class="StdTabB" style="border-spacing: 5px;">
+                    <tr>
+                        <th class="StdTabB" style="padding:10px 20px;">Elementary row operation</th>
+                        <th class="StdTabB" style="padding:10px 20px;">Row&nbsp;operator,&nbsp;<strong>E</strong><sub>i</sub></th>
+                        <th class="StdTabB" style="padding:10px 20px;">Transformed&nbsp;matrix,&nbsp;<strong>A</strong><sub>i</sub></th>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle; padding-left:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            1. Multiply row 1 of <strong>A</strong> by -2 and add the 
+                            result to row 2 of <strong>A</strong></p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>1</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                            <tr>
+                                                <td class="tdleftbracket" rowspan="2"></td>
+                                                <td class="tdmatrixcell">1</td>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdrightbracket" rowspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdmatrixcell">-2</td>
+                                                <td class="tdmatrixcell">1</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong><strong>A</strong><sub>1</sub>&nbsp;=&nbsp;E</strong><sub>1</sub><strong>A</strong>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                            <tr>
+                                                <td class="tdleftbracket" rowspan="2"></td>
+                                                <td class="tdmatrixcell">1</td>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdrightbracket" rowspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdmatrixcell">2</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="StdTabB" style="vertical-align:middle;
+                        padding-left:20px; padding-right:20px;">
+                            <p style="text-align:left; text-indent:-15px;">
+                            2. Multiply row 2 of <strong>A</strong><sub>1</sub> by 0.5.</p>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>E</strong><sub>2</sub>&nbsp;=&nbsp;</td>
+                                    <td>
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                            <tr>
+                                                <td class="tdleftbracket" rowspan="2"></td>
+                                                <td class="tdmatrixcell">1</td>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdrightbracket" rowspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdmatrixcell">0.5</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td><strong>A</strong><sub>rref</sub>&nbsp;=&nbsp;<strong>E</strong><sub>2</sub><strong>A</strong><sub>1</sub>&nbsp;=&nbsp;</td>
+                                    <td class="StdTabB" style="text-align:center;">
+                                        <table style="margin-left:auto; margin-right:auto;">
+                                            <tr>
+                                                <td class="tdleftbracket" rowspan="2"></td>
+                                                <td class="tdmatrixcell">1</td>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdrightbracket" rowspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tdmatrixcell">0</td>
+                                                <td class="tdmatrixcell">1</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </table>
+    
+                    <p>The last transformed matrix in the above table is 
+                        <strong>A</strong><sub>rref</sub>,
+                        the reduced row echelon form for 
+                        matrix <strong>A</strong>.  Since the  
+                        reduced row echelon form is equal to the 
+                        <a href="../statistics/dictionary71b7.html?Target=Identity_matrix">identity matrix</a>, 
+                        we know that <strong>A</strong> is 
+                        <a href="../statistics/dictionarye8a3.html?Target=Full_rank">full rank</a>.  
+                        And because <strong>A</strong> is full rank, we know that <strong>A</strong>
+                        has an inverse.</p>
+    
+                    <p>We find the inverse by computing the product of the elementary operators
+                        that produced <strong>A</strong><sub>rref</sub> , as shown below.</p>
+    
+                    <table style="margin-right:auto; margin-left:auto;">
+                    <tr>
+                        <td>
+                            <strong>A</strong><sup>-1</sup>&nbsp;&nbsp;=&nbsp;&nbsp;
+                            <strong>E</strong><sub>2</sub> <strong>E</strong><sub>1</sub>&nbsp;&nbsp;=&nbsp;&nbsp;
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdmatrixcell">0.5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-2</td>
+                                    <td class="tdmatrixcell">1</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>&nbsp;&nbsp;=&nbsp;&nbsp;</td>
+                        <td class="StdTabB" style="text-align:center;">
+                            <table style="margin-left:auto; margin-right:auto;">
+                                <tr>
+                                    <td class="tdleftbracket" rowspan="2"></td>
+                                    <td class="tdmatrixcell">1</td>
+                                    <td class="tdmatrixcell">0</td>
+                                    <td class="tdrightbracket" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tdmatrixcell">-1</td>
+                                    <td class="tdmatrixcell">0.5</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>2</sub></td>
+                        <td style="text-align:center;"><strong>E</strong><sub>1</sub></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </table>
+    
+                    <p><strong>Note</strong>:  In a previous lesson, we described a 
+                        "shortcut" for 
+                        <a href="find-matrix-inverse.html">
+                        finding the inverse of a 2 x 2 matrix</a>.</p>
+        
+                    <!-- google_ad_section_end -->
+
+                    <br /><br />
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                     
+
+<link href="../css/theme1/matrix-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-matrix.js" type="text/javascript"></script>
+
+<nav>
+<div class="mat_Menu2Title">
+    <a class="mat_Menu2Title" title="About this matrix algebra tutorial" 
+        href="../tutorials/matrix-algebra-tutorial.html">
+        Matrix Algebra
+    </a>
+</div>
+
+<!-- Check mark symbol: &#10003; Solid right-facing triangle: &#9654;  -->
+<div id="mat_nav">
+    <br />
+    <span>Matrix basics</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix.html">
+        <span class="mat_TocArrow" id="sp1">&#9654;</span>
+        Matrix intro</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-type.html">
+        <span class="mat_TocArrow" id="sp2" style="color:#900; font-weight:bold;">&#9654;</span> 
+        Types of matrices</a></li>
+    </ul>
+    
+    <span>Matrix operations</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-addition.html">
+        <span class="mat_TocArrow" id="sp3">&#9654;</span>
+        Matrix addition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-multiplication.html">
+        <span class="mat_TocArrow" id="sp4">&#9654;</span>
+        Matrix multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="vector-multiplication.html">
+        <span class="mat_TocArrow" id="sp5">&#9654;</span>
+        Vector multiplication</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="elementary-operations.html">
+        <span class="mat_TocArrow" id="sp6">&#9654;</span>
+        Elementary operations</a></li>
+        </ul>
+    
+    <span>Echelon matrices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-form.html">
+        <span class="mat_TocArrow" id="sp7">&#9654;</span>
+        Echelon forms</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="echelon-transform.html">
+        <span class="mat_TocArrow" id="sp8">&#9654;</span>
+        Echelon transforms</a></li>
+        </ul>
+    
+    <span>Matrix properties</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;"><a href="independent-vector.html">
+        <span class="mat_TocArrow" id="sp9">&#9654;</span>
+        Vector dependence</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-rank.html">
+        <span class="mat_TocArrow" id="sp10">&#9654;</span>
+        Matrix rank</a></li>
+        <li style="list-style-type:none; margin-left:-3em;"><a href="matrix-determinant.html">
+        <span class="mat_TocArrow" id="sp11">&#9654;</span>
+        Matrix determinant</a></li>
+        </ul>
+    
+    <span>Matrix inverse</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp12">&#9654;</span>
+        Inverse definition</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="find-matrix-inverse.html">
+        <span class="mat_TocArrow" id="sp13">&#9654;</span>
+        How to find inverse: I</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="how-to-find-inverse.html">
+        <span class="mat_TocArrow" id="sp14">&#9654;</span>
+        How to find inverse: II</a></li>
+    </ul>
+    
+    <span>Matrix applications</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="system-of-equations.html">
+        <span class="mat_TocArrow" id="sp15">&#9654;</span>
+        Linear equations</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sum-of-elements.html">
+        <span class="mat_TocArrow" id="sp16">&#9654;</span>
+        Summation</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="vector-mean.html">
+        <span class="mat_TocArrow" id="sp17">&#9654;</span>
+        Mean scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="deviation-score.html">
+        <span class="mat_TocArrow" id="sp18">&#9654;</span>
+        Deviation scores</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="sums-of-squares.html">
+        <span class="mat_TocArrow" id="sp19">&#9654;</span>
+        Sums of squares</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="covariance-matrix.html">
+        <span class="mat_TocArrow" id="sp20">&#9654;</span>
+        Variance-covariance</a></li>
+    </ul>
+    
+    <span>Appendices</span>
+    <ul class="mat_menutree">
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-theorems.html">
+        <span class="mat_TocArrow" id="sp21">&#9654;</span>
+        Matrix theorems</a></li>
+        <li style="list-style-type:none; margin-left:-3em;">
+        <a href="matrix-notation.html">
+        <span class="mat_TocArrow" id="sp22">&#9654;</span>
+        Matrix notation</a></li>
+    </ul>
+</div>
+</nav>
+
+<script type="text/javascript">
+    mat_hideMatrixTocArrows();
+    mat_showMatrixTocArrow();
+</script> 
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B004NBZAW0?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B004NBZAW0'>Texas Instruments TI-Nspire CX Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B004NBZAW0?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B004NBZAW0'><img src='https://images-na.ssl-images-amazon.com/images/I/418fSpEetYL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$128.99</span><br />Buy Used: <span style='color:#990000;'>$79.95</span><br />Buy New: <span style='color:#990000;'>$128.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B004NBZAW0?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B004NBZAW0'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0471109495?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0471109495'>Survey Sampling</a><br /><span class='verticalAdAuthor'>Leslie Kish</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0471109495?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0471109495'><img src='https://images-na.ssl-images-amazon.com/images/I/31XUwQtraSL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$156.00</span><br />Buy Used: <span style='color:#990000;'>$29.22</span><br />Buy New: <span style='color:#990000;'>$146.76</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0596527586?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596527586'>Head First Statistics: A Brain-Friendly Guide</a><br /><span class='verticalAdAuthor'>Dawn Griffiths</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0596527586?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596527586'><img src='https://images-na.ssl-images-amazon.com/images/I/51eNCqA3rbL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$34.99</span><br />Buy Used: <span style='color:#990000;'>$5.91</span><br />Buy New: <span style='color:#990000;'>$19.61</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0393929728?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393929728'>Statistics, 4th Edition</a><br /><span class='verticalAdAuthor'>David Freedman, Robert Pisani, Roger Purves</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0393929728?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393929728'><img src='https://images-na.ssl-images-amazon.com/images/I/41RV+9s+i9L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$37.50</span><br />Buy New: <span style='color:#990000;'>$89.95</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1895997143?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1895997143'>Statistics & Probability with the TI-89</a><br /><span class='verticalAdAuthor'>Brendan Kelly</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/1895997143?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1895997143'><img src='https://images-na.ssl-images-amazon.com/images/I/51Aold9Uf7L._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$16.95</span><br />Buy Used: <span style='color:#990000;'>$4.10</span><br />Buy New: <span style='color:#990000;'>$14.55</span></font></div></div><br /></aside><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'>Texas Instrument 84 Plus Silver Edition graphing Calculator (Full Pink in color) (Packaging may vary)</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'><img src='https://images-na.ssl-images-amazon.com/images/I/51Z1mcIr4dL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$150.00</span><br />Buy Used: <span style='color:#990000;'>$60.52</span><br />Buy New: <span style='color:#990000;'>$236.96</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B001GHOPTI?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001GHOPTI'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/matrix-algebra/how-to-find-inverse.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:02 GMT -->
+</html>

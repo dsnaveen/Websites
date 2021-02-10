@@ -1,0 +1,936 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from www.bogotobogo.com/Win32API/Win32API_DLL.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:05:37 GMT -->
+<head>
+  <title>Win32 API Tutorial: DLL - 2017</title>
+  <meta
+ content="Win32 API Tutorial: DLL, MFC, A dynamic-link library (DLL) is an executable file that acts as a shared library of functions. Dynamic linking provides a way for a process to call a function that is not part of its executable code. The executable code for the function is located in a DLL, which contains one or more functions that are compiled, linked, and stored separately from the processes that use them."
+ name="description" />
+  <meta
+ content="Win32 API, C++ Tutorial: DLL, dll vs exe, __declspec(dllexport) vs __declspec(dllimport)"
+ name="keywords" />
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1" />
+    <link type="text/css" rel="stylesheet" href="../images/bogostyleWidePre.css" />
+  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+</head>
+<body>
+<div id="page" align="center">
+
+<div id="tops">
+	<div class="container_full">
+		<div class="bogo" id="bogo"><a href="../index-2.html"><b>bogo</b>to<b>bogo</b></a></div>
+
+		<div id="right_menu">
+			<div class="topmenu">
+				<!--<a href="http://www.bogotobogo.com/index.php">Home</a> -->
+				<a href="../about_us.html">About Us</a>
+				<a href="../products.html">Products</a>
+				<a href="../our_services.php">Our Services</a>
+				<a href="../contact_us.html" target="_blank">Contact Us</a>
+			</div>
+
+			<div id="menu_search_box">
+				<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+				  <div>
+				    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+				    <input type="hidden" name="ie" value="UTF-8" />
+				    <input type="text" name="q" size="55" id="menu_search" autocomplete="off"/>
+				    <input type="submit" name="sa" value="" id="menu_search_button" />
+				  </div>
+				</form>
+
+				<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+				</div>
+			</div>
+		</div>
+
+	<div id="main_menu">
+		<div class="container_full">
+			<a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt5</a>
+			<a href="../Android/android.html">Android</a>
+			<!--
+			<a href="/JQuery/JQuery_document_ready_click_function.php">jQuery</a>
+			-->
+			<a href="../Algorithms/algorithms.html">Algorithms</a>
+			<a href="../cplusplus/cpptut.html">C++</a>
+			<!--
+			<a href="/Linux/linux_tips1.php">Linux</a>
+			-->
+			<a href="../Java/tutorials/on_java.html">Java</a>
+			<a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">BigData</a>
+			 
+			<a href="../DesignPatterns/introduction.html">Design Patterns</a>
+			 
+			<a href="../python/pytut.html">Python/Django</a> 
+			<a href="../CSharp/.netframework.html">C#</a>
+			
+			<a href="../AngularJS/AngularJS_Introduction.html">Angular/NodeJS</a>
+			
+			 
+			<a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps</a>
+			 
+			<a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html">FFmpeg</a>
+			<a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a>
+			<a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html">OpenCV</a>
+			<a href="../VideoStreaming/videostreaming_etc.html">Streaming</a>
+                        <a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/></a> 
+		</div>
+	</div>
+
+</div>
+<div class="linklist">
+
+<h1>Win32 API</h1>
+
+<ul>
+   <li><a href="Win32API_Introduction.html">Win32 API - Introduction</a> </li>
+   <li><a href="Win32API_C_Run_Time_Libraries.html">Win32 API - C Run Time Libraries</a> </li>
+      <li><a href="Win32API_Calling_Convention__cdecl__fastcall__stdcall.html">Calling Conventions</a> </li>
+   <li><a href="Win32API_DLL.html">Win32 API - DLL</a> </li>
+   <li><a href="Win32API_MFC.html">Win32 API - MFC</a> </li>
+   <li><a href="WIN32API_Kernel_Objects_Handles_Synchronization.html">Kernel Objects, Handles, and Synchronization</a> </li>
+   
+</ul>
+
+
+<div class="skyscraper"><br>
+
+
+<div class="skyscraper">
+
+<!-- Paypal Donate button -->
+
+<p><i><b>Sponsor Open Source development activities and free contents for everyone</b>.</i></p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+<p><i>Thank you.</i></p>
+<p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+<!-- End of Paypal Donate button   -->
+
+
+<br>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#FFFFFF;color:#000000">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-4716428189734495:6307958965" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" name="q" size="25" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+<br>
+
+
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bogo_skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:160px;height:600px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="5321096966"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<br><br>
+
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#FFFFFF;color:#000000">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-4716428189734495:6307958965" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" name="q" size="25" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+</div></div>
+
+<br />
+<br />
+<!-- cplusplus_list_INNER.php -->
+<!-- cplusplus_list_INNER.php -->
+
+<h1>List of C++ Tutorials</h1>
+
+
+<ul>
+   <li><a href="../cplusplus/cpptut.html">C++ Home</a> </li>
+   <li><a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a></li>
+   <li><a href="../cplusplus/application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a></li>
+   <li><a href="../cplusplus/autoptr.html">auto_ptr</a></li>
+   <li><a href="../cplusplus/binarytree.html">Binary Tree Example Code</a></li>
+   <li><a href="../cplusplus/blackjackQT.html">Blackjack with Qt</a></li>
+   <li><a href="../cplusplus/boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a></li>
+   <li><a href="../cplusplus/Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a></li>
+   <li><a href="../cplusplus/class.html">Classes and Structs</a> </li>
+   <li><a href="../cplusplus/constructor.html">Constructor</a> </li>
+   <li><a href="../cplusplus/cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> </li>
+   <li><a href="../cplusplus/cpptesting.html">C++ API Testing</a></li>
+   <li><a href="../cplusplus/cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a></li>
+   
+   <li><a href="../cplusplus/CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a></li>
+   <li><a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a></li>
+   <li><a href="../cplusplus/dynamic_cast.html">Dynamic Cast Operator</a></li>
+   <li><a href="../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a></li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a></li>
+     <li><a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a></li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a></li>
+   <li><a href="../cplusplus/exceptions.html">Exceptions</a></li> 
+   <li><a href="../cplusplus/friendclass.html">Friend Functions and Friend Classes</a></li>
+   <li><a href="../cplusplus/fstream_input_output.html">fstream: input & output</a></li>
+   <li><a href="../cplusplus/function_overloading.html">Function Overloading</a></li>
+   <li><a href="../cplusplus/functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a></li>
+   <li><a href="../cplusplus/functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a></li>
+   <li><a href="../cplusplus/functors.html">Functors (Function Objects) - General</a></li>
+   <li><a href="../cplusplus/Git/Git_GitHub_Express.html">Git and GitHub Express...</a></li>
+   <li><a href="../cplusplus/google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a></li>
+   <li><a href="../cplusplus/multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a></li>
+   <li><a href="../cplusplus/libraries.html">Libraries - Static, Shared (Dynamic)</a></li>
+   <li><a href="../cplusplus/linked_list_basics.html">Linked List Basics</a></li>
+   <li><a href="../cplusplus/linkedlist.html">Linked List Examples</a></li>
+   <li><a href="../cplusplus/make.html">make & CMake</a></li>
+   <li><a href="../cplusplus/gnumake.html">make (gnu)</a></li>
+   <li><a href="../cplusplus/memoryallocation.html">Memory Allocation</a></li>
+   <li><a href="../cplusplus/multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a></li>
+   <li><a href="../cplusplus/multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a></li>
+   <li><a href="../cplusplus/multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a></li>
+   <li><a href="../cplusplus/multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a></li>
+   <li><a href="../cplusplus/multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a></li>
+   <li><a href="../cplusplus/multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a></li>
+      <li><a href="../cplusplus/multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a></li>
+   <li><a href="../cplusplus/multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a></li>
+   <li><a href="../cplusplus/multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a></li>
+   <li><a href="../cplusplus/multithreadedDebugging.html">Multithread Debugging</a></li>
+   <li><a href="../cplusplus/object_returning.html">Object Returning</a></li>
+   <li><a href="../cplusplus/slicing.html">Object Slicing and Virtual Table</a></li>
+   <li><a href="../cplusplus/opencv.html">OpenCV with C++</a> </li>
+   <li><a href="../cplusplus/operatoroverloading.html">Operator Overloading I</a> </li>
+   <li><a href="../cplusplus/operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> </li>
+   <li><a href="../cplusplus/valuevsreference.html">Pass by Value vs. Pass by Reference</a></li>
+   <li><a href="../cplusplus/pointers.html">Pointers</a></li>
+   <li><a href="../cplusplus/pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a></li>
+   <li><a href="../cplusplus/pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a></li>
+   <li><a href="../cplusplus/preprocessor_macro.html">Preprocessor - Macro</a></li>
+   <li><a href="../cplusplus/private_inheritance.html">Private Inheritance</a></li>
+   <li><a href="../python/python_cpp_sip.html">Python & C++ with SIP</a></li>
+   <li><a href="../cplusplus/RandomNumbers.html">(Pseudo)-random numbers in C++</a></li>
+   <li><a href="../cplusplus/references.html">References for Built-in Types</a></li>
+   <li><a href="../cplusplus/sockets_server_client.html">Socket - Server & Client</a></li>
+    <li><a href="../cplusplus/sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a></li>
+   <li><a href="../cplusplus/stackunwinding.html">Stack Unwinding</a></li>
+   <li><a href="../cplusplus/stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a></li>
+   <li><a href="../cplusplus/stl2_map.html">Standard Template Library (STL) II - Maps</a></li>
+   <li><a href="../cplusplus/stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a></li>
+   <li><a href="../cplusplus/stl2B_set.html">Standard Template Library (STL) II - Sets</a></li>
+   <li><a href="../cplusplus/stl3_iterators.html">Standard Template Library (STL) III - Iterators</a></li>
+   <li><a href="../cplusplus/stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a></li>
+   <li><a href="../cplusplus/stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a></li>
+   <li><a href="../cplusplus/statics.html">Static Variables and Static Class Members</a></li>
+   <li><a href="../cplusplus/string.html">String</a> </li>
+   <li><a href="../cplusplus/string2.html">String II - sstream etc.</a> </li>
+   <li><a href="../cplusplus/assembly.html">Taste of Assembly</a></li>
+   <li><a href="../cplusplus/templates.html">Templates</a></li>
+   <li><a href="../cplusplus/template_specialization_function_class.html">Template Specialization</a></li>
+   <li><a href="../cplusplus/template_specialization_traits.html">Template Specialization - Traits</a></li>
+   <li><a href="../cplusplus/template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a></li>
+   <li><a href="../cplusplus/this_pointer.html">The this Pointer</a></li>
+   <li><a href="../cplusplus/typecast.html">Type Cast Operators</a></li>
+   <li><a href="../cplusplus/upcasting_downcasting.html">Upcasting and Downcasting</a></li>
+   <li><a href="../cplusplus/virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a></li>
+   <li><a href="../cplusplus/virtualfunctions.html">Virtual Functions</a></li>
+   <br/><br />
+   <li><i>Programming Questions and Solutions &darr;</i></li>
+   <br/>
+
+       <li><a href="../cplusplus/quiz_strings_arrays.html">Strings and Arrays</a></li>
+       <li><a href="../cplusplus/quiz_linkedlist.html">Linked List</a></li>
+       <li><a href="../cplusplus/quiz_recursion.html">Recursion</a></li>
+       <li><a href="../cplusplus/quiz_bit_manipulation.html">Bit Manipulation</a> </li>
+       <li><a href="../cplusplus/smallprograms.html">Small Programs (string, memory functions etc.)</a></li>
+       <li><a href="../cplusplus/quiz_math_probability.html">Math & Probability</a></li>
+       <li><a href="../cplusplus/quiz_multithreading.html">Multithreading</a></li>
+       <li><a href="../cplusplus/google_interview_questions.html">140 Questions by Google</a> </li>
+       <br />
+       <br />
+   <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a></li>
+   <br />
+   <br />
+   <li><a href="Win32API_DLL.html">Win32 DLL ...</a></li>
+   <br />
+   <br />
+   <li><a href="../cplusplus/cppNews.html">Articles On C++</a> </li>
+   <br />
+   <br />
+   <li><a href="../cplusplus/C11/C11_initializer_list.html">What's new in C++11...</a> </li>
+   <br />
+   <li><a href="../cplusplus/C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> </li>
+   <br />
+   <li><a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> </li>
+</ul></div>
+<div id="contenttext">
+<div class="AdSenseSearch">
+
+<!--
+<form action="http://www.google.com" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+<br><br>-->
+
+<!-- Share this -->
+<span class='st__large' displayText=''></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_linkedin_large' displayText='LinkedIn'></span>
+
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+
+</div>
+
+
+
+<br />
+<div style="padding: 10px;"><span class="titletext">Win32 API: DLL - 2017   <g:plusone></g:plusone></span></div>
+
+<div id="bookmarkshare">
+<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<img src="images/ms_icon.png" alt="ms_icon.png"/>
+
+<div class="bodytext" style="padding: 12px;" align="justify"> 
+
+
+
+<br>
+
+
+
+<br><br>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+bogotobogo.com site search:
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+
+<br>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bogo-responsive-1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="4437853761"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+bogotobogo.com site search:
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<br><br><br />
+<div class="bodytext" style="padding: 12px;" align="justify">
+<div class="subtitle" id="In_this_page">In this page ...</div>
+<p>In this page, we will create a <strong>dll</strong> and then it will be referenced from a newly created Win32 console <strong>application</strong>.</p> 
+<p>I used Visual Studio Express 2012, and the files are <a href="files/DLL/DynamicLibrary.zip">here.</a></p> 
+
+
+<br />
+<br />
+<div class="subtitle" id="What_is_dll">What is DLL?</div>
+<p>A <strong>dynamic-link library (DLL)</strong> is an executable file that acts as a <strong>shared</strong> library of functions. Dynamic linking provides a way for a process to call a function that is not part of its executable code. The executable code for the function is located in a DLL, which contains one or more functions that are compiled, linked, and stored separately from the processes that use them. </p>
+<p>DLLs also facilitate the sharing of data and resources. Multiple applications can simultaneously access the contents of a single copy of a DLL in memory. Dynamic linking differs from static linking in that it allows an executable module (either a .dll or .exe file) to include only the information needed at run time to locate the executable code for a DLL function. </p>
+<p>In static linking, the linker gets all of the referenced functions from the static link library and places it with our code into our executable. Using dynamic linking instead of static linking offers several advantages. DLLs save memory, reduce swapping, save disk space, upgrade easier, provide after-market support, provide a mechanism to extend the MFC library classes, support multi language programs, and ease the creation of international versions. </p>
+
+
+<br>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MatchedContentAdSense -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="4510139367"
+     data-ad-format="autorelaxed"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br><br>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+bogotobogo.com site search:
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+<br />
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_LargeRectangle_336_280 */
+google_ad_slot = "2712696561";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+bogotobogo.com site search:
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+</div>
+
+<br />
+
+
+
+<div class="subtitle" id="dll_vs_exe">DLL vs EXE</div>
+<div class="subtitle_2nd" id="exe">EXE</div>
+<ul>
+  <li>An exe always runs in its own address space i.e., It is a separate process.</li>
+  <li>The purpose of an EXE is to launch a separate application of its own.</li>
+  <li>An EXE file contains the entry point or the part in the code where the operating system is supposed to begin the execution of the application.</li>
+</ul>
+</p>
+<br />
+<br />
+<div class="subtitle_2nd" id="dll">DLL</div>
+<ul>
+  <li>DLL is Microsoft's implementation of a shared library.
+The file format of DLL and exe is essentially the same. Windows recognizes the difference between DLL and EXE through PE Header in the file.</li>
+  <li>Its reusability is the most major advantage of DLL files. 
+A DLL file can be used in other applications as long as the coder knows the names and parameters of the functions and procedures in the DLL file. Because of this capability, DLL files are ideal for distributing device drivers. The DLL would facilitate the communication between the hardware and the application that wishes to use it. The application would not need to know the intricacies of accessing the hardware just as long as it is capable of calling the functions on the DLL.
+  </li>
+  <li>DLL files do not have this entry point and cannot be executed on their own. In other words, 
+   a dll always needs a host exe to run. i.e., it can never run in its own address space.
+The purpose of a DLL is to have a collection of methods/classes which can be re-used from some other application.</li>
+</ul>
+<br />
+<br />
+<br />
+<div class="subtitle" id="dll_import_vs_export">__declspec(dllexport) vs __declspec(dllimport)</div>
+<p>We can declare C++ classes with the dllimport or dllexport attribute. These forms imply that the entire class is imported or exported. Classes exported this way are called exportable classes.</p>
+<p>
+The following example defines an exportable class. All its member functions and static data are exported:</p>
+<pre>
+#define DllExport   __declspec( dllexport )
+
+class DllExport C {
+   int i;
+   virtual int func( void ) { return 1; }
+};
+</pre>
+
+<ul>
+  <li>__declspec(dllexport) tells the linker that we want this object to be made available for other app's to import. It is used when creating a dll that others can link to.<br />
+  When we declare a class dllexport, all its member functions and static data members are exported. We must provide the definitions of all such members in the same program. Otherwise, a linker error is generated. 
+  </li>
+
+  <li>__declspec(dllimport) imports the implementation from a dll so our application can make reference to it.
+<br />
+  When we declare a class dllimport, all its member functions and static data members are imported. Unlike the behavior of dllimport and dllexport on nonclass types, static data members cannot specify a definition in the same program in which a dllimport class is defined.
+</li>
+</ul>
+<br />
+
+<br />
+<br />
+<div class="subtitle" id="creating_and_using_dll">Creating and Using DLL</div>
+<div class="subtitle_2nd" id="creating_dll">Creating a DLL</div>
+<p>To create a dynamic link library (DLL) project:</p>
+<ol>
+  <li>On the menu bar, choose File, New, Project.</li>
+  <li>In the left pane of the New Project dialog box, expand Installed, Templates, Visual C++, and then select Win32.</li>
+  <li>In the center pane, select Win32 Console Application.</li>
+  <li>Specify a name for the project-for example, <strong>MathFuncsDll</strong>-in the Name box. Specify a name for the solution-for example, <strong>DynamicLibrary</strong>-in the Solution name box. Choose the OK button.</li>
+  <li>On the Overview page of the Win32 Application Wizard dialog box, choose the Next button.</li>
+  <li>On the Application Settings page, under Application type, select DLL.
+<br />
+<br />
+<img src="images/DLL/Win32ApplicationWizard_MathFuncsDll.png" alt="Win32ApplicationWizard_MathFuncsDll.png"/>
+<br />
+<br />
+  </li>
+  <li>Choose the Finish button to create the project.</li>
+</ol>
+<br />
+<br />
+
+
+<div class="subtitle_2nd" id="add_class_to_dll">Adding a class to the DLL</div>
+<p>To create a dynamic link library (DLL) project:</p>
+<ol>
+  <li>To create a header file for a new class, on the menu bar, choose Project, Add New Item. In the Add New Item dialog box, in the left pane, under Visual C++, select Code. In the center pane, select Header File (.h). Specify a name for the header file-for example, <strong>MathFuncsDll.h</strong>-and then choose the Add button. A blank header file is displayed.
+  </li>
+  <li>Add the following code to the beginning of the header file:
+  <pre>
+// MathFuncsDll.h
+
+#ifdef MATHFUNCSDLL_EXPORTS
+#define MATHFUNCSDLL_API __declspec(dllexport) 
+#else
+#define MATHFUNCSDLL_API __declspec(dllimport) 
+#endif
+  </pre>
+   <p>When the MATHFUNCSDLL_EXPORTS symbol is defined, the MATHFUNCSDLL_API symbol will set the __declspec(dllexport) modifier in the member function declarations in this code. This modifier enables the function to be exported by the DLL so that it can be used by other applications. </p>
+<p>When MATHFUNCSDLL_EXPORTS is undefined, MATHFUNCSDLL_API defines the __declspec(dllimport) modifier in the member function declarations. This modifier enables the compiler to optimize the importing of the function from the DLL for use in other applications. By default, MATHFUNCSDLL_EXPORTS is defined when our MathFuncsDll project is built. </p>
+  </li>
+  <li>Add a basic class named <strong>MyMathFuncs</strong> to perform common mathematical operations such as addition, subtraction, multiplication, and division. The code should resemble this:
+  <pre>
+namespace MathFuncs
+{
+    // This class is exported from the MathFuncsDll.dll
+    class MyMathFuncs
+    {
+    public: 
+        // Returns a + b
+        static MATHFUNCSDLL_API double Add(double a, double b); 
+
+        // Returns a - b
+        static MATHFUNCSDLL_API double Subtract(double a, double b); 
+
+        // Returns a * b
+        static MATHFUNCSDLL_API double Multiply(double a, double b); 
+
+        // Returns a / b
+        // Throws const std::invalid_argument& if b is 0
+        static MATHFUNCSDLL_API double Divide(double a, double b); 
+    };
+}
+  </pre>
+
+  <p>If we're building the DLL project on the command line, use the /D compiler option to define the MATHFUNCSDLL_EXPORTS symbol.</p>
+  </li>
+  <li>In the <strong>MathFuncsDll</strong> project in Solution Explorer, in the Source Files folder, open <strong>MathFuncsDll.cpp</strong>.
+  </li>
+  <li>Implement the functionality for <strong>MyMathFuncs</strong> in the source file. The code should resemble this:
+  <pre>
+// MathFuncsDll.cpp : Defines the exported functions for the DLL application. 
+//
+
+#include "stdafx.h"
+#include "MathFuncsDll.h"
+#include &lt;stdexcept&gt;
+
+using namespace std;
+
+namespace MathFuncs
+{
+    double MyMathFuncs::Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    double MyMathFuncs::Subtract(double a, double b)
+    {
+        return a - b;
+    }
+
+    double MyMathFuncs::Multiply(double a, double b)
+    {
+        return a * b;
+    }
+
+    double MyMathFuncs::Divide(double a, double b)
+    {
+        if (b == 0)
+        {
+            throw invalid_argument("b cannot be zero!");
+        }
+
+        return a / b;
+    }
+}
+  </pre>
+  </li>
+  <li><p>Compile the dynamic link library by choosing Build, Build Solution on the menu bar.</p>
+  <p>If we're using an Express edition that does not display a Build menu (2012 Express version has the Build menu), on the menu bar, choose Tools, Settings, Expert Settings to enable it, and then choose Build, Build Solution.</p>
+  <p>If we're building a project on the command line, use the /LD compiler option to specify that the output file is to be a DLL. For more information, check /MD, /MT, /LD (Use Run-Time Library) as well. Use the /EHsc compiler option to enable C++ exception handling. </p>
+  </li>
+  <li>Then, the build will generate our dll:
+<pre>
+1>------ Build started: Project: MathFuncsDll, Configuration: Debug Win32 ------
+1>  stdafx.cpp
+1>  dllmain.cpp
+1>  MathFuncsDll.cpp
+1>     Creating library c:\users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\<font color="blue">MathFuncsDll.lib</font> 
+and object c:\users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\<font color="blue">MathFuncsDll.exp</font>
+1>  MathFuncsDll.vcxproj -> c:\users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\<font color="blue">MathFuncsDll.dll</font>
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+</pre>
+  </li>
+</ol>
+<br />
+<br />
+<br />
+
+<div class="subtitle_2nd" id="creating_an_app">Creating an app that references the DLL</div>
+<p>Here we're going to create a C++ app that will reference and use the DLL that we just created.</p>
+<ol>
+  <li>On the menu bar, choose File, New, Project. </li>
+  <li>In the left pane, under Visual C++, select Win32. </li>
+  <li>In the center pane, select Win32 Console Application. </li>
+  <li>Specify a name for the project-for example, <strong>MyExecRefsDll</strong>-in the Name box. Next to Solution, select Add to Solution from the drop-down list. This adds the new project to the same solution that contains the DLL. Choose the OK button. </li>
+  <li>On the Overview page of the Win32 Application Wizard dialog box, choose the Next button. </li>
+  <li>On the Application Settings page, under Application type, select Console application. </li>
+  <li>On the Application Settings page, under Additional options, clear the Precompiled header check box. </li>
+  <li>Choose the Finish button to create the project. </li>
+</ol>
+<br />
+<br />
+<br />
+
+<div class="subtitle_2nd" id="using_functionality">Using the functionality from the class library in the app</div>
+<ol>
+  <li>After we create a console app, an empty program is created for us. The name for the source file is the same as the name that we chose earlier. In this example, it is named <strong>MyExecRefsDll.cpp</strong>.</li>
+  <li>To use the math routines that we created in the DLL, we must reference it. To do this, select the <strong>MyExecRefsDll</strong> project in Solution Explorer, and then on the menu bar, choose Project, References. In the Property Pages dialog box, expand the Common Properties node, select Framework and References, and then choose the Add New Reference button.
+ </li>
+  <li>The Add Reference dialog box lists the libraries that we can reference. The Project tab lists the projects in the current solution and any libraries that they contain. On the Projects tab, select the check box next to <strong>MathFuncsDll</strong>, and then choose the OK button.
+  </li>
+  <li>To reference the header files of the DLL, we must modify the included directories path. To do this, in the Property Pages dialog box, expand the Configuration Properties node, expand the C/C++ node, and then select General. Next to Additional Include Directories, specify the path of the location of the <strong>MathFuncsDll.h</strong> header file. We can use a relative path-for example, ..\<strong>MathFuncsDll</strong>\-then choose the OK button.
+<br />
+<br />
+<img src="images/DLL/MyExecRefsDll_Property_Pages.png" alt="MyExecRefsDll_Property_Pages.png"/>
+<br />
+<br />
+  </li>
+  <li>
+   We can now use the <strong>MyMathFuncs</strong> class in this application.<br />
+ Replace the contents of <strong>MyExecRefsDll.cpp</strong> with the following code:
+<pre>
+// MyExecRefsDll.cpp 
+// compile with: /EHsc /link MathFuncsDll.lib
+
+#include &lt;iostream&gt;
+
+#include "MathFuncsDll.h" 
+
+using namespace std;
+
+int main()
+{
+    double a = 7.4;
+    int b = 99;
+
+    cout << "a + b = " <<
+        MathFuncs::MyMathFuncs::Add(a, b) << endl;
+    cout << "a - b = " <<
+        MathFuncs::MyMathFuncs::Subtract(a, b) << endl;
+    cout << "a * b = " <<
+        MathFuncs::MyMathFuncs::Multiply(a, b) << endl;
+    cout << "a / b = " <<
+        MathFuncs::MyMathFuncs::Divide(a, b) << endl;
+
+    try
+    {
+        cout << "a / 0 = " <<
+            MathFuncs::MyMathFuncs::Divide(a, 0) << endl; 
+    }
+    catch (const invalid_argument &e) 
+    {
+        cout << "Caught exception: " << e.what() << endl; 
+    }
+
+    return 0;
+}
+</pre>
+  </li>
+  <li>Here are the Property Pages' command lines:
+    <ul>
+      <li>C/C++
+         <pre>
+/GS /analyze- /W3 /Zc:wchar_t /I"..\MathFuncsDll\" /ZI /Gm /Od /sdl /Fd"Debug\vc110.pdb" /fp:precise /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_UNICODE" /D "UNICODE" /errorReport:prompt /WX- /Zc:forScope /RTC1 /Gd /Oy- /MDd /Fa"Debug\" /EHsc /nologo /Fo"Debug\" /Fp"Debug\MyExecRefsDll.pch"
+         </pre>
+      </li>
+      <li>Linker
+         <pre>
+/OUT:"C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MyExecRefsDll.exe" /MANIFEST /NXCOMPAT /PDB:"C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MyExecRefsDll.pdb" /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" "C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MathFuncsDll.lib" /DEBUG /MACHINE:X86 /INCREMENTAL /PGD:"C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MyExecRefsDll.pgd" /SUBSYSTEM:CONSOLE /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:"Debug\MyExecRefsDll.exe.intermediate.manifest" /ERRORREPORT:PROMPT /NOLOGO /TLBID:1 
+         </pre>
+      </li>
+    </ul>
+  <li>Build the executable by choosing Build, Build Solution on the menu bar. To see the whole things, I chose to rebuild the solution:
+<pre>
+1>------ Rebuild All started: Project: MathFuncsDll, Configuration: Debug Win32 ------
+1>  stdafx.cpp
+1>  dllmain.cpp
+1>  MathFuncsDll.cpp
+1>     Creating library C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MathFuncsDll.lib and object C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MathFuncsDll.exp
+1>  MathFuncsDll.vcxproj -> C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\MathFuncsDll.dll
+2>------ Rebuild All started: Project: MyExecRefsDll, Configuration: Debug Win32 ------
+2>  stdafx.cpp
+2>  MyExecRefsDll.cpp
+2>  Generating Code...
+2>  MyExecRefsDll.vcxproj -> C:\Users\KHyuck\documents\visual studio 2012\Projects\DynamicLibrary\Debug\<font color="blue">MyExecRefsDll.exe</font>
+========== Rebuild All: 2 succeeded, 0 failed, 0 skipped ==========
+</pre>
+  </li>
+</ol>
+<br />
+<br />
+<br />
+
+
+<div class="subtitle" id="run_the_application">Running the application</div>
+<p>We need to make sure that <strong>MyExecRefsDll</strong> is selected as the default project. In Solution Explorer, select <strong>MyExecRefsDll</strong>, and then on the menu bar, choose Project, Set As StartUp Project.</p>
+<br />
+<br />
+<img src="images/DLL/DefaultProject.png" alt="DefaultProject.png"/>
+<br />
+<br />
+<p>
+To run the project, on the menu bar, choose Debug, Start Without Debugging. The output should resemble this:</p>
+<pre>
+a + b = 106.4
+a - b = -91.6
+a * b = 732.6
+a / b = 0.0747475
+Caught exception: b cannot be zero!
+</pre>
+<br />
+<p>For more on porting, please visit <br />
+<a href="../cplusplus/libraries.html#porting_windows" target="_blank">C++ Libraries : Porting - Windows</a></p>
+<br />
+
+<br /><br />
+
+
+
+<!-- search box and footer ad links -->
+<br><br><br><br>
+<!-- moved to ../footer.php -->
+
+
+
+</div>
+</div>
+
+
+<!-- search box and footer ad links -->
+
+<div class="AdLinksSmallFooter">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_links_small_horizontal_footer */
+google_ad_slot = "4490165367";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br><br>
+</div>
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'http://bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+
+<br />
+<br />
+<br />
+<br />
+
+
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bogoMatchedResponsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="7890847760"
+     data-ad-format="autorelaxed"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<br /><br /><br /><br />
+
+<div class="AdSenseSearchFooter">
+
+<br><br>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-bottom" style="background-color:#999999;color:#000000">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-4716428189734495:5827297765" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" name="q" size="55" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_999999.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+
+
+<br><br>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+
+<div id="footer">
+	<a href="../index-2.html">Home</a>
+	| <a href="../about_us.html">About Us</a>
+	| <a href="../products.html">Products</a>
+	| <a href="../our_services.php">Our Services</a>
+	| <a href="../about_us.html">Contact Us</a>
+	| Bogotobogo &copy; 2016 | 
+	<a href="#">Back to Top </a>
+</div>
+</div></div>
+
+
+
+<br />
+<br />
+<br />
+
+
+
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Win32API/Win32API_DLL.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:06:13 GMT -->
+</html>

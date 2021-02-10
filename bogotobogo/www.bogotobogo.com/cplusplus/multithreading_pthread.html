@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_pthread.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 17:25:04 GMT -->
+<head>
+  <title>C++ Tutorial: Multi-Threaded Programming - C++ Class Thread for Pthreads - 2017</title>
+  <meta content="C++ Tutorial: Multi-Threaded Programming III - 2014, Pthreads(), Runnable, join(), start(), sem_wait, semaphores, mutexes, C++ Threads for Pthread" name="description" />
+  <meta content="C++ Tutorial, Multi-Threaded Programming III, MultiThreading Programming, Pthreads(), Runnable, join(), start(), sem_wait, semaphores, mutexes, C++ Threads for Pthread" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">
+Multi-Threaded Programming III 
+- C/C++ Class Thread for Pthreads - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="mthread3">Multi-Threaded Programming III : Pthread</div>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="pthread">What are Pthreads?</div>
+<ol>
+<li><strong>POSIX Threads</strong>, or <strong>Pthreads</strong>, is a POSIX standard for threads. The standard, POSIX.1c, Threads extensions (IEEE Std 1003.1c-1995), defines an API for creating and manipulating threads.</li>
+<li>Implementations of the API are available on many Unix-like POSIX systems such as <strong>FreeBSD</strong>, <strong>NetBSD</strong>, <strong>GNU/Linux</strong>, <strong>Mac OS X</strong> and <strong>Solaris</strong>, but <strong>Microsoft Windows</strong> implementations also exist. For example, the pthreads-w32 is available and supports a subset of the Pthread API for the Windows 32-bit platform.</li>
+<li>The POSIX standard has continued to evolve and undergo revisions, including the Pthreads specification. The latest version is known as IEEE Std 1003.1, 2004 Edition. </li>
+<li>Pthreads are defined as a set of C language programming types and procedure calls, implemented with a <strong>pthread.h</strong> header file. In GNU/Linux, the pthread functions are not included in the standard C library. They are in <strong>libpthrea</strong>, therefore, we should add <strong>-lpthread</strong> to link our program.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pthread_api">The Pthread API</div>
+<p>Pthreads API can be grouped into four: </p>
+<ol>
+<li><strong>Thread management:</strong><br/> 
+	Routines that work directly on threads - creating, detaching, joining, etc. They also include functions to set/query thread attributes such as joinable, scheduling etc. </li>
+<br/>
+<li><strong>Mutexes:</strong><br/> 
+	 Routines that deal with synchronization, called a "mutex", which is an abbreviation for "mutual exclusion". Mutex functions provide for creating, destroying, locking and unlocking mutexes. These are supplemented by mutex attribute functions that set or modify attributes associated with mutexes. </li>
+<br/>
+<li><strong>Condition variables:</strong><br/> 
+	 Routines that address communications between threads that share a mutex. Based upon programmer specified conditions. This group includes functions to create, destroy, wait and signal based upon specified variable values. Functions to set/query condition variable attributes are also included. </li>
+<br/>
+<li><strong>Synchronization:</strong><br/> 
+	 Routines that manage read/write locks and barriers. 
+</li></ol>
+<br/>
+<div class="subtitle_2nd" id="creatingpthread">Creating Threads</div>
+<br/>
+<ol>
+<li>Our <strong>main()</strong> program is a single, default thread. All other threads must be explicitly created by the programmer. </li>
+<br/>
+<li><strong>pthread_create</strong> creates a new thread and makes it executable. This routine can be called any number of times from anywhere within our code. </li>
+<br/>
+<li><strong>pthread_create (pthread_t *thread, pthread_attr_t *attr, void *(*start_routine)(void *), void *arg) </strong> arguments: <br/><br/>
+<ol>
+<li><strong>thread:</strong> <br/>
+	An identifier for the new thread returned by the subroutine. This is a pointer to <strong>pthread_t</strong> structure. When a thread is created, an identifier is written to the memory location to which this variable points. This identifier enables us to refer to the thread. </li>
+<br/>
+<li><strong>attr:</strong> <br/>
+	An attribute object that may be used to set thread attributes. We can specify a thread attributes object, or NULL for the default values.  </li>
+<br/>
+<li><strong>start_routine:</strong> <br/>
+	The routine that the thread will execute once it is created. 
+        <pre>
+<font color="maroon">void *</font>(<font color="red">*start_routine</font>)(<font color="blue">void *</font>)
+        </pre>
+        We should pass the <font color="red">address of a function</font> taking a <font color="blue">pointer to void</font> as a parameter and the function will <font color="maroon">return a pointer to void</font>. So, we can pass any type of single argument and return a pointer to any type. <br/>
+While using <strong>fork()</strong> causes execution to continue in the same location with a different return code, using a new thread explicitly provides a pointer to a function where the new thread should start executing.
+        </li>
+<br/>
+<li><strong>arg:</strong> <br/>
+	A single argument that may be passed to <strong>start_routine</strong>. It must be passed as a <strong>void pointer</strong>. NULL may be used if no argument is to be passed.</li>
+<br/>
+</ol>
+</li>
+<li>The maximum number of threads that may be created by a process is implementation dependent. </li>
+<br/>
+<li>Once created, threads are peers, and may create other threads. There is no implied hierarchy or dependency between threads. </li><br/>
+<li>Here is a sample of creating a child thread:<br/>
+<pre>
+// thread0.c
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void *worker_thread(void *arg)
+{
+        printf("This is worker_thread()\n");
+        pthread_exit(NULL);
+}
+
+int main()
+{
+        <font color="red">pthread_t my_thread;</font>
+        int ret;
+
+        printf("In main: creating thread\n");
+        ret =  <font color="red">pthread_create</font>(&amp;my;_thread, NULL, <font color="red">&amp;worker;_thread</font>, NULL);
+        if(ret != 0) {
+                printf("Error: pthread_create() failed\n");
+                exit(EXIT_FAILURE);
+        }
+
+        pthread_exit(NULL);
+}
+</pre>
+<p>In the code, the main thread will create a second thread to execute <strong>worker_thread()</strong>, which will print out its message while main thread prints another. The call to create the thread has a NULL value for the attributes, which gives the thread default attributes. The call also passes the address of a <strong>my_thread</strong> variable for the <strong>worker_thread()</strong> to store a handle to the thread. The return value from the <strong>pthread_create()</strong> call will be zero if it's successful, otherwise, it returns an error.</p>
+<p>To run it:</p>
+<pre>
+$ gcc -o thread0 thread0.c -lpthread
+$ ./thread0
+In main: creating thread
+This is worker_thread()
+</pre>
+<p>We can create several child threads:</p>
+<pre>
+// thread01.c
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define N 5
+
+void *worker_thread(void *arg)
+{
+        printf("This is worker_thread #%ld\n", (long)arg);
+        pthread_exit(NULL);
+}
+
+int main()
+{
+        pthread_t my_thread[N];
+
+        long id;
+        for(id = 1; id &lt;= <font color="red">N</font>; id++) {
+                int ret =  pthread_create(&amp;my;_thread[<font color="red">id</font>], NULL, &amp;worker;_thread, (void*)<font color="red">id</font>);
+                if(ret != 0) {
+                        printf("Error: pthread_create() failed\n");
+                        exit(EXIT_FAILURE);
+                }
+        }
+
+        pthread_exit(NULL);
+}
+</pre>
+<p>Output is:</p>
+<pre>
+$ ./thread01
+This is worker_thread #5
+This is worker_thread #4
+This is worker_thread #3
+This is worker_thread #2
+This is worker_thread #1
+</pre>
+<p>Note that, in the code, we pass the parameter (thread id) to the child thread.</p>
+<p>If we do (void*)<font color="red">&amp;</font>id, it's a wrong way of passing data to the child thread. It passes the address of variable <strong>id</strong>, which is shared memory space and visible to all threads. As the loop iterates, the value of this memory location changes, possibly before the created threads can access it.</p>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="attributethread">Attributes of Threads</div>
+<br/>
+<ol>
+<li>By default, a thread is created with certain attributes. Some of these attributes can be changed by the programmer via the thread attribute object. </li>
+<li><strong>pthread_attr_init()</strong> and <strong>pthread_attr_destroy()</strong> are used to initialize/destroy the thread attribute object. </li>
+<li>Other routines are then used to query/set specific attributes in the thread attribute object.  </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="threadterm">Terminating Threads</div>
+<br/>
+<ol>
+<li>There are several ways in which a Pthread may be terminated: 
+	<ol>
+<li>The thread returns from its starting routine (the main routine for the initial thread).  </li>
+<li>The thread makes a call to the <strong>pthread_exit</strong> subroutine.  </li>
+<li>The thread is canceled by another thread via the <strong>pthread_cancel</strong> routine </li>
+<li>The entire process is terminated due to a call to either the exec or exit subroutines.  </li></ol>
+</li>
+`	<li><strong>pthread_exit</strong> is used to explicitly exit a thread. Typically, the <strong>pthread_exit()</strong> routine is called after a thread has completed its work and is no longer required to exist. 
+If <strong>main()</strong> finishes before the threads it has created, and exits with <strong>pthread_exit()</strong>, the other threads will continue to execute. Otherwise, they will be automatically terminated when <strong>main()</strong> finishes. <br/>
+So, if we comment out the line <strong>pthread_exit()</strong> in <strong>main()</strong> in the <strong>thread01.c</strong> of the previous example code, the threads created may not have a chance to execute their work before being terminated.</li>
+<li>The programmer may optionally specify a termination <strong>status</strong>, which is stored as a void pointer for any thread that may join the calling thread. </li>
+<li>Cleanup: the <strong>pthread_exit()</strong> routine does not close files; any files opened inside the thread will remain open after the thread is terminated. </li>
+</ol>before aquiring the lock just check for queue count :)
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="join">Join</div>
+<br/>
+<ol>
+<li><strong>int pthread_join (pthread_t th, void **thread_return)</strong><br/>
+        The first parameter is the thread for which to wait, the identified that <strong>pthread_create</strong> filled in for us. The second argument is a pointer to a pointer that itself points to the return value from the thread. This function returns zero for success and an error code on failure.
+        </li>
+<li>When a thread is created, one of its attributes defines whether the thread is joinable or detached. Only threads that are created as joinable can be joined. If a thread is created as detached, it can never be joined. </li>
+<li>The final draft of the POSIX standard specifies that threads should be created as joinable. </li>
+<li>To explicitly create a thread as joinable or detached, the <strong>attr</strong> argument in the <strong>pthread_create()</strong> routine is used. The typical 4 step process is: 
+	<ol>
+<li>Declare a pthread attribute variable of the <strong>pthread_attr_t</strong> data type. </li>
+<li>Initialize the attribute variable with <strong>pthread_attr_init()</strong>. </li>
+<li>Set the attribute detached status with <strong>pthread_attr_setdetachstate()</strong> </li>
+<li>When done, free library resources used by the attribute with <strong>pthread_attr_destroy()</strong>
+</li>
+</ol>
+</li>
+<li>Here is the summary for the join related functions:<br/>
+<ol>
+<li><strong>pthread_join (threadid,status)</strong></li>
+<li><strong>pthread_detach (threadid)</strong></li>
+<li><strong>pthread_attr_setdetachstate (attr,detachstate)</strong></li>
+<li><strong>pthread_attr_getdetachstate (attr,detachstate)</strong></li>
+</ol>
+</li>
+</ol>
+<br/>
+<img alt="thread_join" src="images/multithread3/thread_join.png"/>
+<p>Picture from <a href="https://computing.llnl.gov/tutorials/pthreads/" target="_blank">https://computing.llnl.gov/tutorials/pthreads/</a></p>
+<br/>
+<p>A thread can execute a thread join to wait until the other thread terminates. In our case, you - the main thread - should execute a thread join waiting for your colleague - a child thread - to terminate. In general, <font color="blue">thread join is for a parent (<strong>P</strong>) to join with one of its child threads (<strong>C</strong>)</font>. Thread join has the following activities, assuming that a parent thread <strong>P</strong> wants to join with one of its child threads <strong>C</strong>:</p>
+<ol>
+<li>When <strong>P</strong> executes a thread join in order to join with <strong>C</strong>, which is still running, <strong>P</strong> is suspended until <strong>C</strong> terminates. Once <strong>C</strong> terminates, <strong>P</strong> resumes. </li>
+<li>
+When <strong>P</strong> executes a thread join and <strong>C</strong> has already terminated, <strong>P</strong> continues as if no such thread join has ever executed (i.e., join has no effect). </li>
+</ol>
+<p>A parent thread may join with many child threads created by the parent. Or, a parent only join with some of its child threads, and ignore other child threads. In this case, those child threads that are ignored by the parent will be terminated when the parent terminates. </p>
+<ol>
+<li>The <strong>pthread_join()</strong> subroutine <strong>blocks the calling thread</strong> until the specified thread terminates.</li>
+<li>The programmer is able to obtain the target thread's termination return status if it was specified in the target thread's call to <strong>pthread_exit()</strong> as show here:
+   <pre>
+   void *worker_thread(void *arg)
+{
+        pthread_exit((void*)<font color="blue">911</font>);
+}
+
+int main()
+{
+        int i;
+        pthread_t thread;
+        pthread_create(&amp;thread;, NULL, worker_thread, NULL);
+        pthread_join(thread, (void **)&amp;<font color="blue">i</font>);
+        printf("%d\n",i);  // will print out 911
+
+}
+
+    </pre>
+</li>
+<li>A joining thread can match one <strong>pthread_join()</strong> call. It is a logical error to attempt multiple joins on the same thread.</li>
+</ol>
+<br/>
+<p>Here is a sample code using <strong>pthread_join()</strong>: <a href="../Algorithms/mergesort.html#mergesort_thread" target="_blank">Merge Sort using Multithread</a>.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="detaching">Detaching</div>
+<p>There are cases we have to resynchronize our threads using <strong>pthread_join()</strong> before allowing the program to exit. We need to do this if we want to allow one thread to return data to the thread that created it. However, sometimes we neither need the second thread to return information to the main thread nor want the main thread to wait for it.</p>
+<p>Suppose we create a second thread to spool a backup copy of a data file that is being edited while the main thread continues to service the user. When the backup has finished, the second thread can just terminate, and there is no need for it to join the main thread.</p>
+<p>We can create threads that have this behavior. They are called <strong>detached threads</strong>, and we can create them by modifying the thread attributes or by calling <strong>pthread_detach()</strong>.</p>
+<ol>
+<li>The <strong>pthread_detach()</strong> routine can be used to explicitly detach a thread even though it was created as joinable. </li>
+<li>There is no converse routine. </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="the_pthread_join_sample">pthread_join() sample code</div>
+<p>The example below is using <strong>pthread_join()</strong> to wait for it to finish. The newly created thread is sharing global variable with the original thread. It modifies the variable.</p>
+<pre>
+// thread1.c
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+
+void *thread_fnc(void * arg);
+
+char thread_msg[] ="Hello Thread!";  // <font color="blue">global</font>
+
+int main()
+{
+        int ret;
+        pthread_t my_thread;
+        void *ret_join;
+
+        ret =  <font color="red">pthread_create</font>(&amp;my;_thread, NULL, <font color="red">thread_fnc</font>, (void*) <font color="orange">thread_msg</font>);
+        if(ret != 0) {
+                perror("pthread_create failed\n");
+                exit(EXIT_FAILURE);
+        }
+        printf("Waiting for thread to finish...\n");
+        ret = <font color="red">pthread_join</font>(my_thread, &amp;<font color="orange">ret_join</font>);
+        if(ret != 0) {
+                perror("pthread_join failed");
+                exit(EXIT_FAILURE);
+        }
+        printf("Thread joined, it returned %s\n", (char *) ret_join);
+        printf("New thread message: %s\n",thread_msg);
+        exit(EXIT_SUCCESS);
+}
+
+void *thread_fnc(void *arg)
+{
+        printf("This is thread_fnc(), arg is %s\n", (char*) arg);
+        strcpy(thread_msg,"Bye!");
+        pthread_exit("'Exit from thread'");
+}
+</pre>
+<p>And the make file:</p>
+<pre>
+thread1: thread1.o
+        gcc -D_REENTRANT -o thread1 thread1.o  -lpthread
+thread1.o: thread1.c
+        gcc -c thread1.c
+clean:
+        rm -f *.o thread1
+</pre>
+<p>Output from the run:</p>
+<pre>
+$ ./thread1
+Waiting for thread to finish...
+This is thread_fnc(), arg is Hello Thread!
+Thread joined, it returned 'Exit from thread'
+New thread message: Bye!
+</pre>
+<p>We declare a prototype for the function that the thread calls when we create it:</p>
+<pre>
+void *thread_fnc(void * arg);
+</pre>
+<p>It takes a pointer to <strong>void</strong> as its argument and returns a pointer to <strong>void</strong>, which is required by <strong>pthread_create()</strong>.</p>
+<p>In <strong>main()</strong>, we call <strong>pthread_create()</strong> to start running our new thread:</p>
+<pre>
+ret =  <font color="blue">pthread_create</font>(&amp;my;_thread, NULL, <font color="blue">thread_fnc</font>, (void*) thread_msg);
+</pre>
+<p>We are passing the address of a <strong>pthread_t</strong> object that we can use to refer to the thread later. For the thread attribute, we pass <strong>NULL</strong> since we do not want to modify the default values.</p>
+<p>If the call succeeds, two threads will be running. The original thread (<strong>main</strong>) continues and execute the code after <strong>pthread_create()</strong>, and a new thread starts executing in the <strong>thread_fnc()</strong>.</p>
+<p>The original thread checks if the new thread has started, and then calls <strong>pthread_join()</strong>:</p>
+<pre>
+ret = <font color="blue">pthread_join</font>(my_thread, &amp;ret;_join);
+</pre>
+<p>We pass the identifier of the thread that we are waiting to join and a pointer to a result. This function will wait until the other thread terminates before it returns. Then, it prints the return value from the thread.</p>
+<p>The new thread starts executing at the start of <strong>thread_fnc()</strong>, which updates global variable, returning a string to the main thread.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="Synchronization_with_mutex">Synchronization with Mutex</div>
+<br/>
+<p>The <strong>mutual exclusion lock</strong> is the simplest and most primitive synchronization
+variable. It provides a single, absolute owner for the section of code (aka a
+<strong>critical section</strong>) that it brackets between the calls to <strong>pthread_mutex_lock()</strong>
+and <strong>pthread_mutex_unlock()</strong>. The first thread that locks the mutex gets
+ownership, and any subsequent attempts to lock it will fail, causing the calling
+thread to go to sleep. When the owner unlocks it, one of the sleepers will be
+awakened, made runnable, and given the chance to obtain ownership.</p>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_mutex">Synchronization Pthread Example - Mutexes 1</div>
+<p>A <strong>mutex lock</strong> is a mechanism that can be acquired by only one thread at a time. For other threads to get the same mutex, they must wait until it is released by the current owner of the mutex.</p>
+<p>The key advantage of multithreading code is that all threads see the same memory. So, data is already shared between threads. But the failure of coordinating the access to the data can lead to incorrect results due to the reason such as data reaces. The <strong>mutex lock</strong> is one of ways of synchronizing data sharing methods.
+</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+
+volatile int counter = 0;
+<font color="blue">pthread_mutex_t</font> myMutex;
+int argc, char *argv[]
+void *mutex_testing(void *param)
+{
+        int i;
+        for(i = 0; i &lt; 5; i++) {
+                <font color="red">pthread_mutex_lock</font>(&amp;myMutex;);
+                counter++;
+                printf("thread %d counter = %d\n", (int)param,  counter);
+                <font color="red">pthread_mutex_unlock</font>(&amp;myMutex;);
+        }
+}
+
+int main()
+{
+        int one = 1, two = 2, three = 3;
+        pthread_t thread1, thread2, thread3;
+        <font color="blue">pthread_mutex_init</font>(&amp;myMutex;,0);
+        pthread_create(&amp;thread1;, 0, mutex_testing, (void*)one);
+        pthread_create(&amp;thread2;, 0, mutex_testing, (void*)two);
+        pthread_create(&amp;thread3;, 0, mutex_testing, (void*)three);
+        pthread_join(thread1, 0);
+        pthread_join(thread2, 0);
+        pthread_join(thread3, 0);
+        <font color="blue">pthread_mutex_destroy</font>(&amp;myMutex;);
+        return 0;
+}
+</pre>
+<p>The code shows a mutex lock protecting the variable <strong>count</strong> against simulation access by multiple threads. Note that the <strong>count</strong> is declared as <strong>volatile</strong> to ensure that it is read from memory at each access and written back to memory after each access. There would be a data race between the threads if we're not using mutex lock.</p>
+<p>Output:</p>
+<pre>
+thread 3 counter = 1
+thread 3 counter = 2
+thread 3 counter = 3
+thread 3 counter = 4
+thread 3 counter = 5
+thread 2 counter = 6
+thread 2 counter = 7
+thread 2 counter = 8
+thread 2 counter = 9
+thread 2 counter = 10
+thread 1 counter = 11
+thread 1 counter = 12
+thread 1 counter = 13
+thread 1 counter = 14
+thread 1 counter = 15
+</pre>
+<p>If we do not use the lock and there are some more steps after incrementing <strong>counter</strong>. We may get the different results. In the code below, we used <strong>usleep(1)</strong>, 1 ms sleep to represents other steps.</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+<font color="blue">#include &lt;unistd.h&gt;</font>
+
+volatile int counter = 0;
+pthread_mutex_t myMutex;
+
+void *mutex_testing(void *param)
+{
+        int i;
+        for(i = 0; i &lt; 5; i++) {
+                <font color="red">//</font>pthread_mutex_lock(&amp;myMutex;);
+                counter++ ;
+                <font color="red">usleep(1);</font>
+                printf("thread %d counter = %d\n", (int)param,  counter);
+                <font color="red">//</font>pthread_mutex_unlock(&amp;myMutex;);
+        }
+}
+
+int main()
+{
+        int one = 1, two = 2, three = 3;
+        pthread_t thread1, thread2, thread3;
+        pthread_mutex_init(&amp;myMutex;,0);
+        pthread_create(&amp;thread1;, 0, mutex_testing, (void*)one);
+        pthread_create(&amp;thread2;, 0, mutex_testing, (void*)two);
+        pthread_create(&amp;thread3;, 0, mutex_testing, (void*)three);
+        pthread_join(thread1, 0);
+        pthread_join(thread2, 0);
+        pthread_join(thread3, 0);
+        pthread_mutex_destroy(&amp;myMutex;);
+        return 0;
+}
+
+</pre>
+<p>Output:</p>
+<pre>
+thread 3 counter = 3
+thread 2 counter = 4
+thread 1 counter = 5
+thread 3 counter = 5
+thread 2 counter = 5
+thread 3 counter = 8
+thread 2 counter = 9
+thread 1 counter = 10
+thread 3 counter = 11
+thread 2 counter = 12
+thread 1 counter = 13
+thread 3 counter = 14before aquiring the lock just check for queue count :)
+thread 2 counter = 14
+thread 1 counter = 14
+thread 1 counter = 15
+</pre>
+<p>As we can see, any thread can increment the <strong>counter</strong> variable at any time. Also we see from the values of the <strong>counter</strong>, it may have been incremented by other thread while trying to print the value.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="mutex_attributes">Mutex Attributes</div>
+<p>Though mutexes, by default, are private to a process, they can be shared between multiple processes. To create a mutex that can be shared between processes, we need to set up the attributes for <strong>pthread_mutex_init()</strong>:</p>
+<pre>
+#include &lt;pthread.h&gt;
+
+int main()
+{
+        pthread_mutex_t myMutex;
+        <font color="blue">pthread_mutexattr_t myMutexAttr;</font>
+        <font color="blue">pthread_mutexattr_init(&amp;myMutexAttr;);</font>
+        <font color="blue">pthread_mutexattr_setpshared(&amp;myMutexAttr;, PTHREAD_PROCESS_SHARED);</font>
+
+        pthread_mutex_init(&amp;myMutex;, <font color="blue">&amp;myMutexAttr;</font>);
+        //...
+
+        <font color="blue">pthread_mutexattr_destroy(&amp;myMutexAttr;);</font>
+        pthread_mutex_destroy(&amp;myMutex;);
+        return 0;
+}
+</pre>
+<p><strong>pthread_mutexattr_setpshared()</strong> with a pointer to the attribute structure and the value <strong>PTHREAD_PROCESS_SHARED</strong> sets the attributes to cause a shared mutex to be created.</p>
+<p>Mutexes are not shared between processes by default. Calling <strong>pthread_mutexattr_setpshared()</strong> with the value <strong>PTHREAD_PROCESS_PRIVATE</strong> restores the attribute to the default.</p>
+<p>These attributes are passed into the call to <strong>pthread_mutexattr_init()</strong> to set the attributes of the initialized mutex. Once the attributes have been used, they can be disposed of by a call to <strong>pthread_mutexattr_destroy()</strong>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="spin_locks">Spin Locks</div>
+<p><strong>Spin locks</strong> are essentially mutex locks.</p>
+<p>A spin lock <strong>polls</strong> its lock condition repeatedly until that condition becomes true. Spin locks are most often used on multiprocessor systems where the expected wait time for a lock is small. In these situations, it is often more efficient to poll than to block the thread, which involves a <a href="#ContextSwitch" target="_blank">Context switch</a> and the updating of thread data structures.</p>
+<p> The difference between a mutex lock and a spin lock is that a thread waiting to acquire a spin lock will keep trying to acquire the lock without sleeping and consuming processor resources until it finally acquires the lock. On the contrary, a <strong>mutex lock</strong> may sleep if it is unable to acquire the lock. But under normal mutex implementation, multex locks will immediately put a thread to sleep when it cannot get the mutex.</p>
+<p>The advantage of using spin locks is that they will acquire the lock as soon as it is released, while a mutex lock will need to be woken by the OS before it can get the lock. The disadvantage is that a spin lock will spin on a virtual CPU monopolizing that resource, but a mutex lock will sleep and free the CPU for another thread to use. So, in practice, mutex locks are often implemented to be a hybrid of a spin locks and more traditional mutex locks. This kind of mutx is called <strong>adaptive mutex lock</strong>.</p>
+<p>The call <strong>pthread_spin_init()</strong>. initializes a spin lock. A spin lock can be shared between processes or private to the process that created it. <br/>
+By passing the value PTHREAD_PROCESS_PRIVATE to the <strong>pthread_spin_init()</strong>, a spin lock is not shareable. <br/>
+To make it sharable, we need to pass the value PTHREAD_PROCESS_SHARED. The default is set to be private.</p>
+<p>The call to the <strong>pthread_spin_lock()</strong> will spin until the lock is acquired, and the call to the <strong>pthread_spin_unlock()</strong> will release the lock. The call <strong>pthread_spin_destroy()</strong> releases any resources used by the lock.</p>
+<pre>
+#include &lt;pthread.h&gt;
+
+pthread_spinlock_t slock;
+
+void splock()
+{
+    int i = 100;
+    while(i&gt;0) {
+        pthread_spin_lock(&amp;slock;);
+        i--;
+        pthread_spin_unlock(&amp;slock;);
+    }
+}
+
+int main()
+{
+    pthread_spin_init(&amp;slock;, PTHREAD_PROCESS_PRIVATE);
+    splock();
+    pthread_spin_destroy(&amp;slock;);
+    return 0;
+}
+</pre>
+<p>To use process resources more efficiently, we can use <strong>pthread_spin_trylock()</strong>. This call will attempt to acquire the lock, however, it will immediately return whether or not the lock is acquired rather than keep spinning:</p>
+<pre>
+void splock()
+{
+    int i = 0;
+    while(i == 0) {
+        pthread_spin_<font color="blue">try</font>lock(&amp;slock;);
+        i++;
+        pthread_spin_unlock(&amp;slock;);
+    }
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="barriers">Barriers</div>
+<p>As one of the synchronization methods, a barrier tells <strong>a group of threads or processes</strong> must stop at the barrier and cannot proceed until all other threads/processes reach this barrier.</p>
+<p>Here we'll address the classic barrier that its construct define the set of participating processes/threads statically. This is usually done either at program startup or when a barrier like the Pthreads barrier is instantiated.</p>
+<p>Unlike the static barriers, to support more dynamic programming paradigms like fork/join parallelism, the sets of participants have to be dynamic. Thus, the set of processes/threads participating in a barrier operation needs to be able to change over time. But in this section, we will discuss only the static barriers.</p>
+<p>We can create a barrier by calling <strong>pthread_barrier_init()</strong>. It initializes the barrier and it takes three parameters:</p>
+<ol>
+<li>A pointer to the barrier to be initialized.</li>
+<li>To determine whether the barrier is private or can be shared, it takes an optional attributes structure.</li>
+<li>We need feed the number of threads that need to reach the barrier before any threads are released.</li>
+</ol>
+<p>Each thread calls <strong>pthread_barrier_wait()</strong> when it reaches the barrier, and the call will return when the number of threads has reached the barrier. The code below shows how the bbefore aquiring the lock just check for queue count :)arrier force the threads to wait until all the threads have been created:</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_barrier_t b;
+
+void task(void* param)
+{
+    int id = (int)param;
+    printf("before the barrier %d\n", id);
+    pthread_barrier_wait(&amp;b;);
+    printf("after the barrier %d\n", id);
+}
+
+int main()
+{
+    int nThread = 5;
+    int i;
+
+    pthread_t thread[nThread];
+    pthread_barrier_init(&amp;b;, 0, nThread);
+    for(i = 0; i &lt; nThread; i++)
+        pthread_create(&amp;thread;[i], 0, task, (void*)i);
+    for(i = 0; i &lt; nThread; i++)
+        pthread_join(thread[i], 0);
+    pthread_barrier_destroy(&amp;b;);
+    return 0;
+}
+</pre>
+<p>Output below shows all the threads arrive and leave.</p>
+<pre>
+before the barrier 4
+before the barrier 3
+before the barrier 2
+before the barrier 1
+before the barrier 0
+after the barrier 0
+after the barrier 3
+after the barrier 4
+after the barrier 2
+after the barrier 1
+</pre>
+<p>If we did not set the barrier, the arrival and leave would have been mixed:</p>
+<pre>
+before the barrier 4
+after the barrier 4
+before the barrier 3
+after the barrier 3
+before the barrier 2
+after the barrier 2
+before the barrier 1
+after the barrier 1
+before the barrier 0
+after the barrier 0
+</pre>
+<p>The output confirms the mixed arrival and leave. I run the code with the comment at the line:</p>
+<pre>
+/* pthread_barrier_wait(&amp;b;); */
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_mutex">Synchronization Pthread Example - Mutexes 2</div>
+<p>The code below shows another example of synchronizing access with <strong>mutexes</strong>. To control access, we lock a mutex before entering the section of the code, and then unlock it when we have finished.</p>
+<pre>
+int pthread_mutex_init(pthread_mutex_t *m_mutex, const pthread_mutexattr_t *mutexattr);
+
+int pthread_mutex_lock(pthread_mutex_t *m_mutex);
+
+int pthread_mutex_unlock(pthread_mutex_t *m_mutex);
+
+int pthread_mutex_destroy(pthread_mutex_t *m_mutex);
+</pre>
+<p>All of the functions take a pointer to a previously declared object, in this case, <strong>pthread_mutex_t</strong>. The extra attribute parameter <strong>pthread_mutex_init</strong> allows us to provide attributes for the mutex, which controls its behavior.</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;semaphore.h&gt;
+
+void *thread_fnc(void * arg);
+
+pthread_mutex_t my_mutex;
+char my_string[100];  /* shared variable */
+int time_to_exit = 0;
+
+int main()
+{
+        int ret;
+        pthread_t my_thread;
+        void *ret_join;
+
+        ret = <font color="red">pthread_mutex_init</font>(&amp;my;_mutex, NULL);
+        if(ret != 0) {
+                perror("mutex init failed\n");
+                exit(EXIT_FAILURE);
+        }
+
+        ret =  <font color="blue">pthread_create</font>(&amp;my;_thread, NULL, thread_fnc, NULL);
+        if(ret != 0) {
+                perror("pthread_create failed\n");
+                exit(EXIT_FAILURE);
+        }
+        <font color="red">pthread_mutex_lock</font>(&amp;my;_mutex);
+        printf("Type in some characters. Enter 'quit' to finish\n");
+        while(!time_to_exit) {
+                fgets(my_string, 100, stdin);
+                <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+                while(1) {
+                        if(my_string[0] != '\0') {
+                                <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+                                sleep(1);
+                        }
+                        else
+                                break;
+                }
+        }
+        <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+
+        printf("Waiting for thread to finish...\n");
+        ret = <font color="blue">pthread_join</font>(my_thread, &amp;ret;_join);
+        if(ret != 0) {
+                perror("pthread_join failed");
+                exit(EXIT_FAILURE);
+        }
+        printf("Thread joined\n");
+        <font color="red">pthread_mutex_destroy</font>(&amp;my;_mutex);
+        exit(EXIT_SUCCESS);
+}
+
+void *thread_fnc(void *arg)
+{
+        sleep(1);
+        <font color="red">pthread_mutex_lock</font>(&amp;my;_mutex);
+        while(strncmp("quit", my_string, 4) != 0) {
+                printf("You typed in %d characters\n",strlen(my_string)-1);
+                my_string[0]='\0';
+                <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+                sleep(1);
+                <font color="red">pthread_mutex_lock</font>(&amp;my;_mutex);
+                if(my_string[0] != '\0') {
+                        <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+                        sleep(1);
+                        <font color="red">pthread_mutex_lock</font>(&amp;my;_mutex);
+                }
+        }
+        time_to_exit = 1;
+        my_string[0] = '\0';
+        <font color="red">pthread_mutex_unlock</font>(&amp;my;_mutex);
+        <font color="blue">pthread_exit</font>(NULL);
+}              
+</pre>
+<p>Let's look at the thread function. The new thread tries to lock the mutex. If it's already locked, the call will block until it is released. Once we have access, we check to see if we are being requested to exit. If we are requested to exit, then simply set <strong>time_to_exit</strong>, zap the first character of the <strong>my_string</strong>, and exit.</p>
+<p>If we do not want to exit, count the characters and then zap the first character to a null. We use the first character being null as a way of telling the reader program that we have finished the counting. We then unlock the mutex and wait for the main thread to run. We attempt to lock the mutex and, when we succeed, check if the main thread has given us any more work to do. If that's not the case, we unlock the mutex and wait more. If we have work to do, we count the characters and loop through again.</p>
+<p>Here is the output:</p>
+<pre>
+$ ./mutex
+Type in some characters. Enter 'quit' to finish
+12345
+You typed in 5 characters
+You typed in -1 charactersbefore aquiring the lock just check for queue count :)
+999
+You typed in 3 characters
+You typed in -1 characters
+You typed in -1 characters
+quit
+Waiting for thread to finish...
+Thread joined
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_mutex3">Synchronization Pthread Example - Mutexes 3</div>
+<p>The following code calculates the sum of integers from 1 to 100. Each of 5 threads takes care of 20 integers. Each set of integers is separated by the argument we're passing into <strong>threadWork()</strong> function.</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+
+typedef struct
+{
+        int *a;
+        int length;
+        int sum;
+} MyData;
+
+#define N 5
+#define L 20
+
+MyData mData;
+pthread_t myThread[N];
+pthread_mutex_t mutex;
+
+void *threadWork(void *arg)
+{
+        /* Define and use local variables for convenience */
+        long offset = (long)arg;
+        int sum = 0;
+        int start = offset * mData.length;
+        int end = start + mData.length;
+
+        /* each thread calculates its sum */
+        for (int i = start; i &lt; end ; i++)  sum += mData.a[i];
+
+        /* mutex lock/unlock */
+        <font color="red">pthread_mutex_lock</font>(&amp;mutex;);
+        <font color="blue">mData.sum</font> += sum;
+        <font color="red">pthread_mutex_unlock</font>(&amp;mutex;);
+
+        pthread_exit((void*) 0);
+}
+
+int main ()
+{
+        void *status;
+
+        /* fill the structure */
+        int *a = (int*) malloc (N*L*sizeof(int));
+        for (int i = 0; i &lt; N*L; i++) a[i] = i + 1;
+        mData.length = L;
+        mData.a = a;
+        mData.sum = 0;
+
+        pthread_mutex_init(&amp;mutex;, NULL);
+
+        /* Each thread has its own  set of data to work on. */
+        for(long i=0; i &lt; N; i++)
+                pthread_create(&amp;myThread;[i], NULL, threadWork, (void *)<font color="red">i</font>);
+
+        /* Wait on child threads */
+        for(int i=0; i &lt; N; i++) pthread_join(myThread[i], &amp;status;);
+
+        /* Results and cleanup */
+        printf ("Sum = %d \n", mData.sum);
+        free (a);
+
+        pthread_mutex_destroy(&amp;mutex;); pthread_exit(NULL);
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="mutex_condition">Mutex and Condition Variable</div>
+<p><strong>Condition variable</strong> enables threads to communicate with state changes. In other words, a condition variable allows one thread to inform other threads about the changes in the state of a shared resource and allows the other threads to wait for such notification. It allows a thread to sleep(wait) until another thread signals it that it must respond to since some condition has arisen. Without condition variables, the waiting have to do polling to check whether the condition become true.</p>
+<p>A condition variable is always used in conjunction with a mutex. While the mutex is there to ensure that only one thread at a time can access the resource, the condition variable is used to signal changes the state variable.</p>
+<p>The essence of the condition variable is <strong>"<font color="red">signal and wait</font>"</strong>. The signal operation is a notification of state changes in shared variable to the waiting threads. The wait operation is the way of blocking until such a notification is received.</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+pthread_mutex_t mutex;
+<font color="red">pthread_cond_t</font> cond;
+
+int buffer[100];
+
+int loops = 5;
+int length = 0;
+
+void *producer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="blue">pthread_mutex_lock</font>(&amp;mutex;);
+        buffer[length++] = i;
+        printf("producer length %d\n", length);
+        <font color="red">pthread_cond_signal</font>(&amp;cond;);
+        <font color="blue">pthread_mutex_unlock</font>(&amp;mutex;);
+    }
+}
+
+void *consumer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="blue">pthread_mutex_lock</font>(&amp;mutex;);
+        while(length == 0) {
+            printf(" consumer waiting...\n");
+            <font color="red">pthread_cond_wait</font>(<font color="orange">&amp;cond;, &amp;mutex;</font>);
+        }
+        int item = buffer[--length];
+        printf("Consumer %d\n", item);
+        <font color="blue">pthread_mutex_unlock</font>(&amp;mutex;);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+
+    pthread_mutex_init(&amp;mutex;, 0);
+    <font color="red">pthread_cond_init</font>(&amp;cond;, 0);
+
+    pthread_t pThread, cThread;
+    pthread_create(&amp;pThread;, 0, producer, 0);
+    pthread_create(&amp;cThread;, 0, consumer, 0);
+    pthread_join(pThread, NULL);
+    pthread_join(cThread, NULL);
+
+    pthread_mutex_destroy(&amp;mutex;);
+    <font color="red">pthread_cond_destroy</font>(&amp;cond;);
+    return 0;
+}
+</pre>
+<p>The <strong>pthread_cond_wait(&amp;cond;, &amp;mutex;)</strong> does the following:</p>
+<ol>
+<li>unlock the muext</li>
+<li>block the calling thread until another thread signals the condition variable <strong>cond</strong></li>
+<li>relock mutex
+</li></ol>
+<br/>
+<br/>
+<video autoplay controls height="352" width="352">
+<source src="../Qt/images/ProducerConsumerQSemaphore/QSemaphores_Producer_Consumer.mp4" type="video/mp4">
+<source src="../Qt/images/ProducerConsumerQSemaphore/QSemaphores_Producer_Consumer.ogv" type="video/ogg">
+Your browser does not support the video tag.
+</source></source></video>
+<p>Video recording - Producer and Consumer model using QSemaphore, for more info, please visit my Qt5 Tutorial:</p>
+<p><a href="../Qt/Qt5_QThreads_QSemaphore_Producer_Consumer_GuiThread.html" target="_blank">QSemaphores - Producer and Consumer</a>.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="Synchronization_with_semaphore">Synchronization with Semaphore</div>
+<p>A semaphore is useful for working with objects where
+what we care about is whether there are either <strong>zero</strong> objects or <strong>more than zero</strong>. Buffers and lists that fill and empty are good examples.</p>
+<table border="3" cellpadding="5">
+<tr>
+<th>POSIX</th>
+<th>Win32</th>
+</tr>
+<tr>
+<td>sem_wait(&amp;s;);</td>
+<td>WaitForSingleObject(s,...);</td>
+</tr>
+<tr>
+<td>sem_post(&amp;s;);</td>
+<td>ReleaseSemaphore(s,...);</td>
+</tr>
+</table>
+<p> Semaphores are also
+useful when we want a thread to wait for something. We can accomplish this by
+having the thread call <strong>sem_wait()</strong> on a semaphore with value zero, then have
+another thread increment the semaphore when we're ready for the thread to
+continue.</p>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_semaphore">Synchronization Pthread Example - Semaphores</div>
+<p>A <strong>semaphore</strong> is a <strong>counting</strong> and <strong>signaling</strong> mechanism. We use it to allow threads access to a specified number of items. If there is a single item, then a semaphore is virtually the same as a mutex.</p>
+<p>However, it is more commonly used in a situation where there are multiple items to be managed. Semaphores can also be used to signal between threads or processes. For example, to tell another thread that there is data present in a queue. There are two types of semaphores: named and unnamed semaphores.</p>
+<p>An <strong>unnamed</strong> semaphore is initialized with a call to <strong>semi_init()</strong>.</p>
+<p>There are 4 basic semaphore functions, but unlike most of the functions which start with <strong>pthread_</strong>, semaphore functions start with <strong>sem_</strong>.</p>
+<p>A semaphore is created with the <strong>sem_init</strong> function, and it is declared in <strong>semaphore.h</strong>:</p>
+<ol>
+<li>
+<pre>
+ int sem_init(sem_t *sem, int pshared, unsigned int val);
+ </pre>
+<p>It initializes a semaphore object pointed by <strong>sem</strong>, sets its sharing option, and gives it an initial integer value. The <strong>pshared</strong> parameter controls the type of semaphore. If the value of <strong>pshared</strong> is <strong>0</strong>, the semaphore is local to the current process, i.e. private to a single process. Otherwise, the semaphore may be shared between processes. The third parameter is the value with which to initialize the semaphore. A semaphore created by a call to <strong>sem_init()</strong> is destroyed with a call to <strong>sem_destoy()</strong>.</p>
+<pre>
+#include &lt;semaphore.h&gt;
+
+int main()
+{
+        sem_t mySemaphore;
+        <font color="blue">sem_init</font>(&amp;mySemaphore;, 0, 5);
+        //...
+        sem_destroy(&amp;mySemaphore;);
+        return 0;
+}
+ </pre>
+<p>In the code, we initialized a semaphore with a count of 5. The second parameter of the call to <strong>sem_init()</strong> is <strong>0</strong>, and this makes the semaphore private to the thread. Passing the value of one would enable the semaphore to be shared between multiple processes.</p>
+<p>The code below is using a <strong>named</strong> semaphore. A <strong>named</strong> semaphore is opened rather than initialized. The <strong>sem_open()</strong> returns a pointer to a semaphore.</p>
+<pre>
+#include &lt;semaphore.h&gt;
+#include &lt;fcntl.h&gt;
+
+int main()
+{
+        sem_t *mySemaphore;
+        mySemaphore = <font color="blue">sem_open</font>("./my_sem", O_CREAT, 0777, 5); 
+        //...
+        sem_close(mySemaphore);
+        sem_unlink("./my_sem");
+
+        return 0;
+}
+ </pre>
+</li>
+<li>
+<pre>
+int sem_post(sem_t *sem);
+</pre>
+<p>This function atomically increases the value of the semaphore by <strong>1</strong>.
+</p></li>
+<li>
+<pre>
+int sem_try_wait(sem_t *sem);
+</pre>
+<p>This function will return immediately either having decremented the semaphore or if the semaphore is already zero.</p>
+</li>
+<li>
+<pre>
+int sem_wait(sem_t *sem);
+</pre>
+<p>This function atomically decreases the value of the semaphore by <strong>1</strong>, but always waits until the semaphore has a nonzero count first. So, if we call <strong>sem_wait</strong> on a semaphore with a value of <strong>2</strong>, the thread will continue executing but the semaphore will be decreased to <strong>1</strong>. If we call it on a semaphore with a value of <strong>0</strong>, the function will wait until some other thread has incremented the value so that it is no longer <strong>0</strong>. If two thread are both waiting in <strong>sem_wait</strong> for the same semaphore to be nonzero and it is incremented once by a third process, only one of the two waiting process will get to decrement the semaphore and continue while the other will remain waiting.</p>
+<pre>
+#include &lt;semaphore.h&gt;
+
+int main()
+{
+        sem_t *mySemaphore;
+        int count = 0;
+        sem_init(mySemaphore, 0, 1);
+        <font color="blue">sem_wait</font>(mySemaphore);
+        count++;
+        sem_post(mySemaphore);
+        sem_destroy(mySemaphore);
+        return 0;
+}
+</pre>
+</li>
+<li>
+<pre>
+int sem_destroy(sem_t *sem);
+</pre>
+<p>This function tidies up the semaphore when we have finished with it. This function takes a pointer to a semaphore and tidies up any resources that it may have. If we attempt to destroy a semaphore for which some thread is waiting, we get an error.</p>
+</li>
+</ol>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_semaphore_order">Using semaphore to enforce a execution ordering of threads</div>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+void *f1()
+{
+        printf("thread 1\n");
+}
+
+void *f2()
+{
+        printf("thread 2\n");
+}
+
+int main()
+{
+        pthread_t myThread[2];
+        pthread_create(&amp;myThread;[0], 0, f1, 0);
+        pthread_create(&amp;myThread;[1], 0, f2, 0);
+        pthread_join(myThread[0], 0);
+        pthread_join(myThread[1], 0);
+        return 0;
+}
+</pre>
+<p>Output should look like this. In this output, the <strong>thread2</strong> gets to the <strong>printf()</strong> first.</p>
+<pre>
+thread 2
+thread 1
+</pre>
+<p>The behavior is essentially not deterministic. However, we can enforce the order of the execution by using semaphore as shown in the next example:</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;semaphore.h&gt;
+
+sem_t mySemaphore;
+
+void *f1(void *param)
+{
+        printf("thread %d\n", (long)param);
+
+        // signal semaphore
+        // increment the value of mySemaphore by 1
+        // if there are one or more threads waiting, wake
+        <font color="red">sem_post</font>(&amp;mySemaphore;);
+}
+
+void *f2(void *param)
+{
+        // wait until value of semaphore is greater than 0
+        // decrement the value of semaphore by 1
+        <font color="red">sem_wait</font>(&amp;mySemaphore;);
+
+        printf("thread %d\n", (long)param);
+}
+
+int main()
+{
+        pthread_t myThread[2];
+
+        // The 3rd value which is semaphore count set to 0
+        sem_init(&amp;mySemaphore;, 0, <font color="red">0</font>);
+
+        long one = 1, two = 2;
+
+        // f2 has sem_wait(), so it should wait
+        // until f1 increase the semaphore value to 1
+        // As a result, f1 will be executed first
+        pthread_create(&amp;myThread;[0], 0, f1, (void *)one);
+        pthread_create(&amp;myThread;[1], 0, f2, (void *)two);
+
+        pthread_join(myThread[0], 0);
+        pthread_join(myThread[1], 0);
+        sem_destroy(&amp;mySemaphore;);
+        return 0;
+}
+</pre>
+<p>The function <strong>f2()</strong> has <strong>sem_wait()</strong>, so it should wait
+until function <strong>f1()</strong> increase the semaphore value to 1 by calling <strong>sem_post(&amp;mySemaphore;)</strong>.</p>
+<p>So, the output should now look like this: </p>
+<pre>
+thread 1
+thread 2
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_condition">Semaphore as a Condition Variable</div>
+<p><strong>Condition variable</strong> enables threads to communicate with state changes. In other words, a condition variable allows one thread to inform other threads about the changes in the state of a shared resource and allows the other threads to wait for such notification. It allows a thread to sleep(wait) until another thread signals it that it must respond to since some condition has arisen. </p>
+<p>Though we can implement synchronization by controlling thread access to data, condition variables allow threads to synchronize based upon the <strong>actual value of data</strong>.</p>
+<p>A condition variable is always used in conjunction with a mutex. While the mutex provides mutual exclusion for accessing the shared variable, the condition variable is used to signal changes the state variable.</p>
+<p>In this section, we will see how to use a semaphore to achieve this effect. Actually, the example in the previous section showed how. But here, we will start from the very simple one. By using a semaphore, we can achieve the similar effect of <strong>join()</strong>. In the code, the <strong>main</strong> thread is waiting for the <strong>worker</strong> thread to finish its task.</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;semaphore.h&gt;
+
+sem_t s;
+
+void * task(void *param)
+{
+    printf("%s done its task \n", (char *)param);
+
+    // signaling worker's task (printing) is done
+    <font color="red">sem_post</font>(&amp;s;);
+
+    return NULL;
+}
+
+int main()
+{
+    // set current semaphore value 0 (the 3rd arg)
+    sem_init(&amp;s;, 0, <font color="red">0</font>);
+
+    printf("main thread started\n");
+
+    pthread_t worker;
+    pthread_create(&amp;worker;, 0, task, (void*)"worker thread");
+
+    // wait here for worker thread to finish
+    <font color="red">sem_wait</font>(&amp;s;);
+
+    printf("main thread ends here\n");
+
+    return 0;
+}
+</pre>
+<p>The output is:</p>
+<pre>
+main thread started
+worker thread done its task 
+main thread ends here
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_producer_consumer">Producer/Consumer Problem</div>
+<p>In this section, we will address the <strong>producer/consumer</strong> (aka <strong>Bounded Buffer</strong>) problem.</p>
+<p>Suppose one or more producer threads and one or more consumer
+threads. Producers produce data items and wish to place them in a buffer. Then, 
+consumers grab data items out of the buffer consume the data in some way. </p>
+<p>This arrangement occurs in many places within real systems. For example, in a
+<strong>multithread web server</strong>, a producer puts <strong>HTTP requests</strong> into a work <strong>queue</strong> (i.e.,
+the <strong>bounded buffer</strong>); a thread pool of consumers each take a request out of the
+work queue and process the request.</p>
+<p> Similarly, when you use a piped command in
+a UNIX shell, as follows:</p>
+<pre>
+$ cat notes.txt | wc -l
+</pre>
+<p>
+This example runs two processes concurrently; <strong>cat notes.txt</strong> writes the body of
+the file <strong>notes.txt</strong> to what it thinks is standard output; instead, however,
+the UNIX shell has redirected the output to what is called a UNIX pipe
+(created by the <strong>pipe()</strong> system call). The other end of this pipe is connected
+to the standard input of the process <strong>wc</strong>, which simply counts the number of
+lines in the input stream and prints out the result. Thus, the <strong>cat</strong> process
+is the producer, and the <strong>wc</strong> process is the consumer. Between them is a
+<strong>bounded buffer</strong>.</p>
+<p>
+Because the bounded buffer is a <strong>shared resource</strong>, we must of course require
+synchronized access to it to avoid any race condition. To understand
+this problem better, let us examine some actual code:</p>
+<p>In this example, we assume that the shared buffer <strong>buffer</strong> is just an array of
+integers,
+and that the <strong>fill</strong> and <strong>use</strong> integers are used as indices into the array,
+and are used to track where to both <strong>put</strong> data (fill) and <strong>get</strong> data (use).</p>
+<p>Suppose, we have just two threads, a <strong>producer</strong>
+and a <strong>consumer</strong>, and that the producer just writes some number of integers into
+the buffer which the consumer removes from the buffer and prints:</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+
+#define MAX 100
+
+int buffer[MAX];
+int fill = 0;
+int use  = 0;
+
+void put(int value) {
+    buffer[fill] = value;     
+    fill = (fill + 1) % MAX;  
+}
+
+int get() {
+    int tmp = buffer[use];    
+    use = (use + 1) % MAX;    
+    return tmp;
+}
+
+int loops = 0;
+
+void *producer(void *arg)
+{
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="red">put(i)</font>;
+    }
+}
+
+void *consumer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        int b = <font color="red">get()</font>;
+        printf("%d\n", b);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+
+    if(argc &lt; 2 ){
+        printf("Needs 2nd arg for loop count variable.\n");
+        return 1;
+    }
+
+    loops = atoi(argv[1]);
+
+    pthread_t pThread, cThread;
+    pthread_create(&amp;pThread;, 0, <font color="red">producer</font>, 0);
+    pthread_create(&amp;cThread;, 0, <font color="red">consumer</font>, 0);
+    pthread_join(pThread, NULL);
+    pthread_join(cThread, NULL);
+    return 0;
+}
+</pre>
+<p>In <strong>main()</strong>, we simply created the two threads and waits for them to finish.</p>
+<p>If we run the code with <strong>loops = 5</strong>, what we'd like to get is the producer
+ producing 0, 1, 2, 3, and 4, and the consumer printing them in that
+order. However, without synchronization, we may not get that. </p>
+<p>For example,
+imagine if the consumer thread runs first; it will call get() to get data that
+hasn't even been produced yet, and thus not function as desired. Things get
+worse when we add multiple producers or consumers, as there could be race
+conditions in the update of the use or fill indices.</p>
+<p>Actually, I got the following output:</p>
+<pre>
+$ ./test 5
+0
+0
+0
+0
+0
+</pre>
+<p>
+Clearly, something should be done to correct this kind of potential malfunction.</p>
+<p>As a first try, we introduces two semaphores, <strong>empty</strong>
+and <strong>full</strong>, which the threads will use to indicate when a buffer entry has
+been emptied or filled, respectively. </p>
+<p>In the code below, the producer first waits for a buffer to become empty in
+order to put data into it, and the consumer similarly waits for a buffer to
+become filled before using it. </p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+<font color="blue">#include &lt;semaphore.h&gt;</font>
+
+#define MAX 1
+
+int buffer[MAX];
+int fill = 0;
+int use  = 0;
+
+void put(int value) {
+    buffer[fill] = value;     
+    fill = (fill + 1) % MAX;  
+}
+
+int get() {
+    int b = buffer[use];    
+    use = (use + 1) % MAX;    
+    return b;
+}
+
+int loops = 0;
+
+<font color="red">sem_t empty;</font>
+<font color="red">sem_t full;</font>
+
+void *producer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="red">sem_wait(∅);</font>
+        put(i);
+        sem_post(&amp;full;);
+    }
+}
+
+void *consumer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="red">sem_wait(&amp;full;);</font>
+        int b = get();
+        sem_post(∅);
+        printf("%d\n", b);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if(argc &lt; 2 ){
+        printf("Needs 2nd arg for loop count variable.\n");
+        return 1;
+    }
+
+    loops = atoi(argv[1]);
+
+    <font color="red">sem_init(∅, 0, MAX);</font> // MAX buffers are empty to begin with...
+    <font color="red">sem_init(&amp;full;, 0, 0);</font>    // ... and 0 are full
+
+    pthread_t pThread, cThread;
+    pthread_create(&amp;pThread;, 0, <font color="blue">producer</font>, 0);
+    pthread_create(&amp;cThread;, 0, <font color="blue">consumer</font>, 0);
+    pthread_join(pThread, NULL);
+    pthread_join(cThread, NULL);
+    return 0;
+}
+</pre>
+<p>Suppose, there are two threads, a producer and a consumer. Assume the consumer gets to run
+first. Thus, the consumer will call 
+<strong>sem_wait(&amp;full;)</strong>, however, <strong>full</strong> semaphore was initialized to the value <strong>0</strong>, the call will
+block the consumer and wait for another thread to call <strong>sem_post()</strong> on the
+semaphore, as desired.</p>
+<p>Then, the producer runs. It will call 
+<strong>sem_wait(∅)</strong>. Unlike the consumer, the producer will continue through
+this line, because <strong>empty</strong> was initialized to the value MAX ( = 1).
+ Thus, <strong>empty</strong> will be decremented to <strong>0</strong> and the producer will put a data
+value into the first entry of buffer. The producer will then
+continue on and call <strong>sem_post(&amp;full;)</strong>, changing the value of the <strong>full</strong>
+semaphore from <strong>0</strong> to <strong>1</strong> and waking up the consumer (e.g., move it from blocked to ready status). </p>
+<p>In this case, one of two things could happen. If the producer continues to
+run, it will loop around and hit <strong>sem_wait(∅)</strong> again. This time, however, it would
+block, as the <strong>empty</strong> semaphore's value is 0. If the producer instead was
+interrupted and the consumer began to run, it would call <strong>sem_wait(&amp;full;)</strong>
+ and find that the buffer was indeed full and thus consume it.
+In either case, we achieve the desired behavior:</p>
+<pre>
+$ ./test 5
+0
+1
+2
+3
+4
+</pre>
+<br/>
+<p><font color="red">Beware of the race condition!</font></p>
+<p>
+Suppose, there are multiple producers and multiple consumers. We now have a
+problem: a <strong>race condition</strong>.</p>
+<p>Imagine two producers both calling into <strong>put()</strong> at the same
+time. Assume producer 1 gets to run first, and just starts to fill the first
+buffer entry (fill = 0 @ buffer[fill] = value;). Before the producer gets a chance to
+increment the fill counter to 1, it is interrupted. Producer 2 starts to run,
+and at the same line of code, it also puts its data into the 0th element of buffer, which
+means that the old data there is <strong>overwritten</strong>! </p>
+<p>As we can see, what we've forgotten here is <strong>mutual exclusion</strong>. The filling
+of a buffer and incrementing of the index into the buffer is a <strong>critical
+section</strong>, and thus must be guarded carefully. So let's use <strong>
+binary semaphore</strong> and <strong>add some locks</strong>.</p>
+<p>Here is the new code:</p>
+<pre>
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;semaphore.h&gt;
+
+#define MAX 1
+
+int buffer[MAX];
+int fill = 0;
+int use  = 0;
+
+void put(int value) {
+    buffer[fill] = value;
+    fill = (fill + 1) % MAX;
+}
+
+int get() {
+    int b = buffer[use];
+    use = (use + 1) % MAX;
+    return b;
+}
+
+int loops = 0;
+
+sem_t empty;
+sem_t full;
+<font color="red">sem_t mutex;</font> 
+
+void *producer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="red">sem_wait(&amp;mutex;);</font> 
+        sem_wait(∅);
+        put(i);
+        sem_post(&amp;full;);
+        <font color="red">sem_post(&amp;mutex;);</font> 
+    }
+}
+
+void *consumer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        <font color="red">sem_wait(&amp;mutex;);</font> 
+        sem_wait(&amp;full;);
+        int b = get();
+        sem_post(∅);
+        <font color="red">sem_post(&amp;mutex;);</font> 
+        printf("%d\n", b);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if(argc &lt; 2 ){
+        printf("Needs 2nd arg for loop count variable.\n");
+        return 1;
+    }
+
+    loops = atoi(argv[1]);
+
+    sem_init(∅, 0, MAX); // MAX buffers are empty to begin with...
+    sem_init(&amp;full;, 0, 0);    // ... and 0 are full
+    <font color="red">sem_init(&amp;mutex;, 0, 1); </font>   // mutex = 1 since it a lock
+
+    pthread_t pThread, cThread;
+    pthread_create(&amp;pThread;, 0, producer, 0);
+    pthread_create(&amp;cThread;, 0, consumer, 0);
+    pthread_join(pThread, NULL);
+    pthread_join(cThread, NULL);
+    return 0;
+}
+</pre>
+<br/>
+<p><font color="red"><strong>DEAD LOCK!</strong></font></p>
+<p>Now we've added some locks around the entire <strong>put()/get()</strong> parts of the code.
+ However, it still doesn't work. Why? <strong>Deadlock</strong>!</p>
+Why does deadlock occur? Take a moment to consider it; try to find a case
+where deadlock arises; what sequence of steps must happen for the program to
+deadlock? 
+<p>Suppose, two threads, one
+producer and one consumer. The consumer gets to run first. It acquires the
+<strong>mutex</strong>, and then calls <strong>sem_wait()</strong> on the <strong>full</strong> semaphore.
+Because there is no data yet, this call causes the consumer to block and thus
+yield the CPU; importantly, though, <strong>the consumer still holds the lock!</strong>. </p>
+<p>
+A producer then runs. It has data to produce and if it were able to run, it
+would be able to wake the consumer thread and all would be
+good. Unfortunately, the first thing it does is call <strong>sem_wait(&amp;mutex;)</strong> on the <strong>binary
+mutex</strong> semaphore. The lock is already held. Hence, <strong>the producer is
+now stuck waiting too</strong>.</p>
+<p>
+There is a simple cycle here. The consumer <strong>holds</strong> the mutex and is <strong>waiting</strong> 
+for the someone to <strong>signal full</strong>. The producer could <strong>signal full</strong> but is
+<strong>waiting</strong> for the <strong>mutex</strong>.</p>
+<p>Thus, <strong>the producer and consumer are each stuck
+waiting for each other</strong>: a <strong>classic deadlock</strong>!!.</p>
+<p><strong><font color="blue">SOLUTION!</font></strong> <br/>
+we simply must <strong><font color="red">reduce the scope of the lock</font></strong>. Here is
+the final working solution:</p>
+<pre>
+// binary_semaphore.c
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;semaphore.h&gt;
+
+#define MAX 1
+
+int buffer[MAX];
+int fill = 0;
+int use  = 0;
+
+void put(int value) {
+    buffer[fill] = value;
+    fill = (fill + 1) % MAX;
+}
+
+int get() {
+    int b = buffer[use];
+    use = (use + 1) % MAX;
+    return b;
+}
+
+int loops = 0;
+
+sem_t empty;
+sem_t full;
+sem_t mutex;
+
+void *producer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        sem_wait(∅);
+ 
+        // <font color="blue">scope of lock reduced</font>
+        <font color="red">sem_wait(&amp;mutex;);</font>
+        put(i);
+        <font color="red">sem_post(&amp;mutex;);</font>
+
+        sem_post(&amp;full;);
+    }
+}
+
+void *consumer(void *arg) {
+    int i;
+    for (i = 0; i &lt; loops; i++) {
+        sem_wait(&amp;full;);
+
+        // <font color="blue">scope of lock reduced</font>
+        <font color="red">sem_wait(&amp;mutex;);</font>
+        int b = get();
+        <font color="red">sem_post(&amp;mutex;);</font>
+
+        sem_post(∅);
+        printf("%d\n", b);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+
+    if(argc &lt; 2 ){
+        printf("Needs 2nd arg for loop count variable.\n");
+        return 1;
+    }
+
+    loops = atoi(argv[1]);
+
+    sem_init(∅, 0, MAX); // MAX buffers are empty to begin with...
+    sem_init(&amp;full;, 0, 0);    // ... and 0 are full
+    sem_init(&amp;mutex;, 0, 1);    // mutex = 1 since it a lock
+
+    pthread_t pThread, cThread;
+    pthread_create(&amp;pThread;, 0, producer, 0);
+    pthread_create(&amp;cThread;, 0, consumer, 0);
+    pthread_join(pThread, NULL);
+    pthread_join(cThread, NULL);
+    return 0;
+}
+</pre>
+<p>Here is the file: <a href="files/pthread/binary_semaphore.c">binary_semaphore.c</a>.</p>
+<p>Here is the <a href="files/pthread/Makefile">Makefile</a>.</p>
+<pre>
+binary_semaphore: binary_semaphore.o
+        gcc -D_REENTRANT -o binary_semaphore binary_semaphore.o -lrt  -lpthread
+binary_semaphore.o: binary_semaphore.c
+        gcc -c binary_semaphore.c
+clean:
+        rm -f *.o binary_semaphore
+
+</pre>
+<p>Output looks fine now!</p>
+<pre>
+$ ./binary_semaphore 5
+0
+1
+2
+3
+4
+</pre>
+<p>As we see, by simply <strong>moving the mutex acquire and release</strong> to be just around
+the <strong>critical section</strong>; the <strong>full</strong> and <strong>empty</strong> wait and signal code is left outside.</p>
+<p>The result is a simple and working <strong>bounded buffer</strong>, a commonly-used pattern in
+multithreaded programs.</p>
+<p>This section was written based on <a href="http://pages.cs.wisc.edu/~remzi/Classes/537/Fall2008/Notes/threads-semaphores.txt" target="_blank">Semaphores</a>.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Synchronization_semaphore_binary">More on Binary Semaphore</div>
+<br/>
+<p>In the example below, we will use a <strong>binary semaphore</strong> which takes 0 or 1. There is a more general type of semaphore, a <strong>counting semaphore</strong> which takes a wider range of values. Semaphores are used to protect a section of code so that only one thread can run it at the given time. To do this kind of task, a binary semaphore is needed. However, if we want to permit a limited number of threads to execute a piece of code, we may need a counting semaphore.</p>
+<pre>
+// sem.c
+
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;semaphore.h&gt;
+
+void *thread_fnc(void * arg);
+
+/* semaphores are declared global so they can be accessed
+   in main() and in thread routine */
+sem_t my_semaphore;
+char my_string[100];  /* shared variable */
+
+int main()
+{
+        int ret;
+        int value;
+        pthread_t my_thread;
+        void *ret_join;
+
+        /* initialize mutex to 1 - binary semaphore */
+        /* second param = 0 - semaphore is local */
+        ret = <font color="red">sem_init</font>(&amp;my;_semaphore, 0, 0);
+
+        <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;value;);
+        printf("The initial value of the semaphore is %d\n", value);
+
+        if(ret != 0) {
+                perror("semaphore init failed\n");
+                exit(EXIT_FAILURE);
+        }
+
+        ret =  <font color="blue">pthread_create</font>(&amp;my;_thread, NULL, thread_fnc, NULL);
+        if(ret != 0) {
+                perror("pthread_create failed\n");
+                exit(EXIT_FAILURE);
+        }
+
+        printf("Type in some characters. Enter 'quit' to finish\n");
+        while(strncmp("quit", my_string, 4) != 0) {
+                fgets(my_string, 100, stdin);
+                <font color="red">sem_post</font>(&amp;my;_semaphore);
+                <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;value;);
+                printf("The value of the semaphore after sem_post() is %d\n", value);
+        }
+        printf("Waiting for thread to finish...\n");
+        ret = <font color="blue">pthread_join</font>(my_thread, &amp;ret;_join);
+        if(ret != 0) {
+                perror("pthread_join failed");
+                exit(EXIT_FAILURE);
+        }
+        printf("Thread joined, it returned %s\n", (char *) ret_join);
+        <font color="red">sem_destroy</font>(&amp;my;_semaphore);
+        exit(EXIT_SUCCESS);
+}
+
+void *thread_fnc(void *arg)
+{
+        int val;
+
+        printf("This is thread_fnc(), waiting for nonzero count...\n");
+        <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;val;);
+        printf("The value of the semaphore in thread_fnc() is %d\n", val);
+        <font color="red">sem_wait</font>(&amp;my;_semaphore);
+        <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;val;);
+        printf("The value of the semaphore after sem_wait() in thread_fnc() is %d\n", val);
+        while(strncmp("quit", my_string, 4) != 0) {
+                printf("You typed in %d characters\n",strlen(my_string)-1);
+                <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;val;);
+                printf("The value of the semaphore before sem_wait() in thread_fnc() is %d\n", val);
+                <font color="red">sem_wait</font>(&amp;my;_semaphore);
+                <font color="blue">sem_getvalue</font>(&amp;my;_semaphore, &amp;val;);
+                printf("The value of the semaphore after sem_wait() in thread_fnc() is %d\n", val);
+        }
+        <font color="blue">pthread_exit</font>(NULL);
+}
+</pre>
+<p>Output is:</p>
+<pre>
+$ ./sem
+The initial value of the semaphore is 0
+Type in some characters. Enter 'quit' to finish
+This is thread_fnc(), waiting for nonzero count...
+The value of the semaphore in thread_fnc() is 0
+1234
+The value of the semaphore after sem_post() is 1
+The value of the semaphore after sem_wait() in thread_fnc() is 0
+You typed in 4 characters
+The value of the semaphore before sem_wait() in thread_fnc() is 0
+98
+The value of the semaphore after sem_post() is 1
+The value of the semaphore after sem_wait() in thread_fnc() is 0
+You typed in 2 characters
+The value of the semaphore before sem_wait() in thread_fnc() is 0
+quit
+The value of the semaphore after sem_post() is 1
+Waiting for thread to finish...
+The value of the semaphore after sem_wait() in thread_fnc() is 0
+Thread joined, it returned (null)
+</pre>
+<p>In <strong>main()</strong>, after creating a new thread, we read in text, and put it into <strong>my_string</strong> which is global, and the incremented the semaphore with <strong>sem_post()</strong>:</p>
+<pre>
+        while(strncmp("quit", my_string, 4) != 0) {
+                fgets(my_string, 100, stdin);
+                <font color="blue">sem_post</font>(&amp;my;_semaphore);
+        }
+</pre>
+<p>In the new thread, we wait for the semaphore and then count the characters from the input:</p>
+<pre>
+        <font color="blue">sem_wait</font>(&amp;my;_semaphore);
+        while(strncmp("quit", my_string, 4) != 0) {
+                printf("You typed in %d characters\n",strlen(my_string)-1);
+                <font color="blue">sem_wait</font>(&amp;my;_semaphore);
+        }
+</pre>
+<p>While the semaphore is set, we are waiting for keyboard input. When we have input, we release the semaphore allowing the second thread to count the characters before the first thread reads the keyboard input again.</p>
+<p>Note that both threads share the same <strong>my_string</strong> array. </p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="multiprocess">Multiprocess</div>
+<p>The main advantage of multiprocess programming is that a failure of one process does not cause all the processes to die. As a result, it might be possible to recover from such failures.</p>
+<p>The <a href="../Linux/linux_process_and_signals.html#fork" target="_blank">fork()</a> system call will spawn a new child process which is an identical process to the parent except that has a new system process ID. The process is copied in memory from the parent and a new process structure is assigned by the kernel. The return value of the function is which discriminates the two threads of execution. A <strong>zero</strong> is returned by the fork function in the child's process.</p>
+<pre>
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   int status;
+   pid_t pid = <font color="red">fork()</font>;
+
+   // Child process will sleep for 10 second
+   if(pid == 0)
+   {
+      <font color="red">execl</font>("/usr/bin/sleep", "/usr/bin/sleep", 10, NULL);
+   }
+   // Parent process will wait for child process to terminate
+   // Then, it will report the exit status of the child process
+   else
+   {
+      <font color="red">waitpid</font>(pid, &amp;status;, 0);
+      printf("status = %d\n", status);  // print out -&gt;  status = 65280
+   }
+}
+</pre>
+<p>The <strong>execl()</strong> is used to execute the <strong>sleep</strong> command.</p>
+<p>The <strong>waitpid()</strong> call is used to wait for state changes in a child of the calling process, and obtain information about the child whose state has changed. A state change is considered to be:</p>
+<ol>
+<li>the child terminated</li>
+<li>the child was stopped by a signal</li>
+<li>the child was resumed by a signal</li>
+</ol>
+<p> In the case of a terminated child, performing a wait allows the system to release the resources associated with the child.<br/>
+If a <strong>wait</strong> is not performed, then the terminated child remains in a <a href="../Linux/linux_process_and_signals.html#zombie" target="_blank">zombie</a> state.</p>
+<p>If a child has already changed state, then it returns immediately. Otherwise it block until either a child changes state or a signal handler interrupts the call.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="class4pthread">C++ Classes for Pthreads</div>
+<br/>
+<p>We'll make C++ classes <strong>Runnable</strong> and <strong>Thread</strong> for <strong>Pthreads</strong>. The interfaces are almost identical to the <strong>Win32</strong> version of the <a href="multithreaded2.html" target="_blank">previous chapter</a>. The only difference is the <strong>Thread</strong> class constructor has a parameter indicating whether or not the thread is to be created in a detached state. The default is set to <strong>undetached</strong></p>
+<p>In this code, we added <strong>communications</strong> between the threads. We selected shared memory to demonstrate the communications between the threads. Because threads in the same program can reference global variables or call methods on a shared object, threads in different processes can access the same kernel objects by calling kernel routines. </p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;pthread.h&gt;
+#include &lt;cassert&gt;
+#include &lt;error.h&gt;
+
+using namespace std;
+
+class <font color="red">Runnable</font> {
+public:
+	virtual void* run() = 0;
+	virtual ~Runnable() = 0;
+};
+
+// Pure virtual destructor: function body required
+Runnable::~Runnable(){};
+
+class <font color="red">Thread</font> {
+public:
+	Thread(auto_ptr&lt;Runnable&gt; run, bool isDetached = false);
+	Thread(bool isDetached = false);
+	virtual ~Thread();
+	void start();
+	void* join();
+private:
+	// thread ID
+	pthread_t PthreadThreadID;
+	// true if thread created in detached state
+	bool detached;
+	pthread_attr_t threadAttribute;
+	// runnable object will be deleted automatically
+	auto_ptr&lt;Runnable&gt; runnable;
+	Thread(const Thread&amp;);
+	const Thread&amp; operator=(const Thread&amp;);
+	// called when run() completes
+	void setCompleted();
+	// stores return value from run()
+	void* result;
+	virtual void* run() {}
+	static void* startThreadRunnable(void* pVoid);
+	static void* startThread(void* pVoid);
+	void printError(char * msg, int status, char* fileName, int lineNumber);
+};
+
+Thread::Thread(auto_ptr&lt;Runnable&gt; r, bool isDetached) : 
+		runnable(r), detached(isDetached) {
+	if(!runnable.get()){
+		cout &lt;&lt; "Thread::Thread(auto_ptr&lt;Runnable&gt; r, bool isDetached)"\
+		"failed at " &lt;&lt; " " &lt;&lt; __FILE__ &lt;&lt;":" &lt;&lt; __LINE__ &lt;&lt; "-" &lt;&lt;
+		" runnable is NULL" &lt;&lt; endl;
+		exit(-1);
+	}
+}
+
+Thread::Thread(bool isDetached) : runnable(NULL), detached(isDetached) {}
+
+void* Thread::startThreadRunnable(void* pVoid) {
+	// thread start function when a Runnable is involved
+	Thread* runnableThread = static_cast&lt;Thread*&gt;(pVoid);
+	assert(runnableThread);
+	runnableThread-&gt;result = runnableThread-&gt;runnable-&gt;run();
+	runnableThread-&gt;setCompleted();
+	return runnableThread-&gt;result;
+}
+
+void* Thread::startThread(void* pVoid) {
+	// thread start function when no Runnable is involved
+	Thread* aThread = static_cast&lt;Thread*&gt;(pVoid);
+	assert(aThread);
+	aThread-&gt;result = aThread-&gt;run();
+	aThread-&gt;setCompleted();
+	return aThread-&gt;result;
+}
+
+Thread::~Thread() {}
+
+void Thread::start() {
+	// initialize attribute object
+	int status = <font color="red">pthread_attr_init</font>(&amp;threadAttribute;);
+	if(status) {
+		printError("pthread_attr_init failed at", status,
+			__FILE__, __LINE__);
+		exit(status);
+	}
+
+	// set the scheduling scope attribute
+	status = <font color="red">pthread_attr_setscope</font>(&amp;threadAttribute;,
+					PTHREAD_SCOPE_SYSTEM);
+	if(status) {
+		printError("pthread_attr_setscope failed at", status,
+			__FILE__, __LINE__);
+		exit(status);
+	}
+
+	if(!detached) {
+		if(!runnable.get()) {
+			status = <font color="red">pthread_create</font>(&amp;PthreadThreadID;, &amp;threadAttribute;,
+				Thread::startThread, (void*)this);	
+			if(status) {
+				printError("pthread_create failed at", status,
+					__FILE__, __LINE__);
+				exit(status);
+			}
+		}
+		else {
+			status = <font color="red">pthread_create</font>(&amp;PthreadThreadID;, &amp;threadAttribute;,
+				Thread::startThreadRunnable, (void*)this);	
+			if(status) {
+				printError("pthread_create failed at", status,
+					__FILE__, __LINE__);
+				exit(status);
+			}
+		}
+	}
+	else {
+		// set the detachstate attribute to detached
+		status = <font color="red">pthread_attr_setdetachstate</font>(&amp;threadAttribute;,
+						PTHREAD_CREATE_DETACHED);	
+		if(status) {
+			printError("pthread_attr_setdetachstate failed at", status,
+			__FILE__, __LINE__);
+			exit(status);
+		}
+
+		if(!runnable.get()) {
+			status = <font color="red">pthread_create</font>(&amp;PthreadThreadID;, &amp;threadAttribute;,
+				Thread::startThread, (void*)this);	
+			if(status) {
+				printError("pthread_create failed at", status,
+					__FILE__, __LINE__);
+				exit(status);
+			}
+		}
+		else {
+			status = <font color="red">pthread_create</font>(&amp;PthreadThreadID;, &amp;threadAttribute;,
+				Thread::startThreadRunnable, (void*)this);	
+			if(status) {
+				printError("pthread_create failed at", status,
+					__FILE__, __LINE__);
+				exit(status);
+			}
+		}
+	}
+	status = <font color="red">pthread_attr_destroy</font>(&amp;threadAttribute;);
+	if(status) {
+		printError("pthread_attr_destroy failed at", status,
+			__FILE__, __LINE__);
+		exit(status);
+	}
+}
+
+
+void* Thread::join() {
+	// A thread calling T.join() waits until thread T completes.
+	int status = <font color="red">pthread_join</font>(PthreadThreadID, NULL);
+	// result was already saved by thread start function
+	if(status) {
+		printError("pthread_join failed at", status,
+			__FILE__, __LINE__);
+		exit(status);
+	}
+	return result;
+}
+
+void Thread::setCompleted() {
+// completion handled by pthread_join()
+}
+
+void Thread::printError(char * msg, int status, char* fileName, int lineNumber) {
+	cout &lt;&lt; msg &lt;&lt; " " &lt;&lt; fileName &lt;&lt; ":" &lt;&lt; lineNumber &lt;&lt;
+		"-" &lt;&lt; strerror(status) &lt;&lt; endl;
+}
+
+
+// shared variable
+int s = 0;
+
+class <font color="red">communicatingThread</font>: public Thread {
+public:
+	communicatingThread(int ID) : myID(ID) {}
+	virtual void* run();
+private:
+	int myID;
+};
+
+void* communicatingThread::run() {
+	cout &lt;&lt; "Thread " &lt;&lt; myID &lt;&lt; " is running!" &lt;&lt; endl;
+	// increment s by million times
+	for (int i = 0; i &lt; 1000000; i++) s+=1;
+	return 0;
+}
+
+int main() {
+
+	auto_ptr&lt;communicatingThread&gt; thread1(new communicatingThread(1));
+	auto_ptr&lt;communicatingThread&gt; thread2(new communicatingThread(2));
+	thread1-&gt;start();
+	thread2-&gt;start();
+	thread1-&gt;join();
+	thread2-&gt;join();
+
+	cout &lt;&lt; "s = " &lt;&lt; s &lt;&lt; endl; 
+	return 0;
+}
+</pre>
+<br/>
+<ol>
+<li>In <strong>main()</strong>, we created two <strong>communicatingTthread</strong>s.
+<pre>
+auto_ptr&lt;communicatingThread&gt; thread1(new communicatingThread(1));
+auto_ptr&lt;communicatingThread&gt; thread2(new communicatingThread(2));
+</pre>
+</li>
+<li>Each <strong>communicatingThread</strong> increments the global shared variable <strong>s</strong> one million times.
+<pre>
+for (int i = 0; i &lt; 1000000; i++) s+=1;
+</pre>
+</li>
+<li>The <strong>main</strong> thread uses <strong>join()</strong> to wait for the <strong>communicatingThread</strong> to complete.
+<pre>
+thread1-&gt;join();
+thread2-&gt;join();
+</pre>
+</li>
+</ol>
+<br/>
+<p>The results from the run should be 2,000,000, most of the runs.</p>
+<p><strong>Note</strong><br/>
+We may get a message saying "<strong>undefined reference to pthread_join</strong>", when  we compile/link with <strong>g++ code.cpp</strong>. <br/>
+Then, try <strong>g++ code.cpp -lpthread</strong>. </p>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="reader">Note - from a reader</div>
+<p>
+Yes I did find your web site for very helpful.</p>
+ 
+http://www.bogotobogo.com/cplusplus/multithreading_pthread.php
+ 
+Multi-Threaded Programming III - C/C++ Class Thread for Pthreads - 2015
+ 
+Exactly what I was looking for and you did it well!
+<p>
+I did wish you hadn't sneaked up quite as slowly as you did on the final solution for the consumer/producer problem.  Late at night and I lost concentration and didn't realize there was on more step to the final solution so I ended up having to debug the 2nd to the last version - wasted 5 minutes.</p>
+<p>
+*** The MAX should be 5 or greater for your example of using a parm of 5. [say: #define MAX 15]</p>
+<p>
+*** "Post full" and "post empty" need to be protected by the mutex.</p>
+<p>
+I added more validation of the parm so loops fits in buffer.
+ 
+I added a sleep/printf/fflush in "producer" just for fun of demonstrating what was happening.
+ 
+I suggest including for training purposes other minor functions - partial sample, see the completed program:
+</p>
+<pre>
+int emptyValue, fullValue, mutexValue;
+
+sem_getvalue(∅, &amp;emptyValue;);
+
+if(emptyValue == MAX) sem_destroy(∅);
+
+else std::cout &lt;&lt; "Error destroying empty. Value is " &lt;&lt; emptyValue &lt;&lt; std::endl;
+</pre>
+<p>
+Pasted below is the completed program I used.
+ 
+And again your example was well done and just what I needed to learn quickly about these functions.
+ 
+Thanks
+</p>
+<pre>
+// multiple producers &amp; consumers
+#include &lt;pthread.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;semaphore.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;iostream&gt;
+#include &lt;unistd.h&gt;
+
+#define MAX 15
+
+int buffer[MAX];
+int fill = 0;
+int use = 0;
+void put(int value) {
+  buffer[fill] = value;
+   fill = (fill + 1) % MAX;
+}
+
+int get() {
+  int b = buffer[use];
+  use = (use + 1) % MAX;
+
+  return b;
+}
+
+int loops = 0;
+sem_t empty;
+sem_t full;
+sem_t mutex;
+
+void *producer(void *arg) {
+  int i;
+
+  for (i = 0; i &lt; loops; i++) {
+    sem_wait(∅);
+    sem_wait(&amp;mutex;);
+    put(i);
+    sem_post(&amp;full;);
+
+    printf("put %d\n", i); fflush(NULL);
+
+    sem_post(&amp;mutex;);
+
+   sleep(1);
+  }
+
+  pthread_exit(NULL);
+}
+
+void *consumer(void *arg) {
+  int i;
+
+  for (i = 0; i &lt; loops; i++) {
+    sem_wait(&amp;full;);
+    sem_wait(&amp;mutex;);
+
+    int b = get();
+    sem_post(∅);
+
+    printf("get %d\n", b); fflush(NULL);
+
+    sem_post(&amp;mutex;);
+  }
+
+  pthread_exit(NULL);
+
+}
+
+int main(int argc, char *argv[])
+{
+  if(argc &lt; 2 ){
+    printf("Needs 2nd arg for loop count variable.\n");
+    return 1;
+  }
+
+  loops = atoi(argv[1]);
+  if(loops &gt; MAX){
+    printf("Max allowed arg is %d\n", MAX);
+    return 1;
+  }
+
+  sem_init(∅, 0, MAX); // MAX buffers are empty to begin with...
+  sem_init(&amp;full;, 0, 0); // ... and 0 are full
+  sem_init(&amp;mutex;, 0, 1); // mutex = 1 since it a lock
+  pthread_t pThread, cThread;
+  pthread_create(&amp;pThread;, 0, producer, 0);
+  pthread_create(&amp;cThread;, 0, consumer, 0);
+  pthread_join(pThread, NULL);
+  pthread_join(cThread, NULL);
+  int emptyValue, fullValue, mutexValue;
+  sem_getvalue(∅, &amp;emptyValue;);
+  sem_getvalue(&amp;full;, &amp;fullValue;);
+  sem_getvalue(&amp;mutex;, &amp;mutexValue;);
+  if(emptyValue == MAX) sem_destroy(∅);
+  else std::cout &lt;&lt; "Error destroying empty. Value is " &lt;&lt; emptyValue &lt;&lt; std::endl;
+  if(fullValue == 0) sem_destroy(&amp;full;);
+  else std::cout &lt;&lt; "Error destroying full. Value is " &lt;&lt; fullValue &lt;&lt; std::endl;
+  if(mutexValue == 1) sem_destroy(&amp;mutex;);
+  else std::cout &lt;&lt; "Error destroying mutex. Value is " &lt;&lt; mutexValue &lt;&lt; std::endl;
+  return 0;
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<p>Reference:</p>
+<p>
+<a href="https://computing.llnl.gov/tutorials/pthreads/" targe="_blank">POSIX Threads Programming</a>.</p>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/multithreading_pthread.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 17:25:25 GMT -->
+</html>
+

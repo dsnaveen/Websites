@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 07:04:30 GMT -->
+<head>
+  <title>Adaptive Live Streaming with IIS 8 - 2017</title>
+  <meta content="adaptive http live streaming, smooth streaming, IIS 8" name="description" />
+  <meta content="iis media services 4.1, silverlight, adaptive http live streaming, smooth streaming, IIS 8, Turn Windows features on or off, MP4Box" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Smooth Streaming on IIS 8 - 2017       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/codecs_logo.png" alt="codecs logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/><br/>
+<div class="subtitle" id="intro">Introduction</div>
+<p>To do  smooth streaming, we'll do the following:</p>
+<ol>
+<li>Setup a iis 8 web server on my Windows 8.1 notebook.</li>
+<li>Install IIS Media Services which make the server to understand Smooth Stream.</li>
+<li>Of course, on the client side, we need silverlight.</li>
+<li>Playback via remote test server as well as localhost server.</li>
+</ol>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="IIS8">IIS (Internet Information Services) 8</div>
+<br/>
+<p>In this secton, we'll learn how to do Smooth Streaming via IIS 8.</p>
+<img alt="iis_win8" src="images/iis8/iis_win8.png"/>
+<br/><br/>
+<p>IIS in Windows is an optional "Windows Feature". To install it, press the Windows + R key combination to bring up a run box, then type <b>appwiz.cpl</b> and press enter:</p>
+<img alt="appwiz_cpl" src="images/iis8/appwiz_cpl.png"/>
+<br/><br/>
+<p>This will open the Program and Features part of Control Panel, on the left hand side click on the "Turn Windows features on or off" link:</p>
+<img alt="TurnWindowsFeatureOnAndOff" src="images/iis8/TurnWindowsFeatureOnAndOff.png"/>
+<br/><br/><br/><br/>
+<p>By default it installs all the stuff needed to host a website:</p>
+<img alt="WindowsFeatureOptions" src="images/iis8/WindowsFeatureOptions.png"/>
+<br/><br/>
+<p>After clicking OK, when we fire up our browser and navigate to localhost, we get:</p>
+<img alt="iis8" src="images/iis8/iis8.png"/>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<br/><br/>
+<div class="subtitle" id="IISManager">IIS Manager</div><br/>
+<p>Control Panel-&gt;Administrative Tools-&gt;Internet Information Services (IIS) Manager</p>
+<img alt="iis8_manager" src="images/iis8/iis8_manager.png"/>
+<br/><br/><br/>
+<p>Here is the default site settings:</p>
+<img alt="BasicSettings" src="images/iis8/BasicSettings.png"/>
+<br/><br/><br/>
+<p>We can change it to point other directory:</p>
+<img alt="NewEditSite" src="images/iis8/NewEditSite.png"/>
+<br/><br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="IISMediaServices">IIS Media Services</div><br/>
+<p><a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=27955" target="_blank">IIS Media Services 4.1 64-bit download</a>
+<p><a href="http://www.iis.net/learn/media/iis-media-services/iis-media-services-readme#install" target="_blank">IIS Media Services 4.1 readme</a> is an integrated HTTP-based media delivery platform.</p>
+<p>
+<p>Integrates a media delivery platform with IIS to manage and administer delivery of rich media and other Web content.</p>
+<img alt="iis_media_services" src="images/iis8/iis_media_services.png"/>
+<br/><br/><br/>
+<img alt="iis_media_41_setup" src="images/iis8/iis_media_41_setup.png"/>
+<br/><br/><br/>
+<img alt="mediaServiceUpdates" src="images/iis8/mediaServiceUpdates.png"/>
+<br/><br/><br/>
+<img alt="HandlerMapping" src="images/iis8/HandlerMapping.png"/>
+<br/>
+<p>Here is the files after the iis media install:</p>
+<img alt="iis_media_filelist" src="images/iis8/iis_media_filelist.png"/>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="ss">Smooth Streaming</div>
+<p>IIS Smooth Streaming uses the MPEG-4 Part 14 (ISO/IEC 14496-12) file format as its disk (storage) and wire (transport) format.</p>
+<p>The Smooth Streaming specification defines each chunk/GOP as an MPEG-4 Movie Fragment and stores it within a contiguous MP4 file for easy random access. One MP4 file for each bit rate, and it is a single full-length file per encoded bit rate.</p>
+<p>When a client requests a specific source time segment from the IIS Web server, the server dynamically finds the appropriate Movie Fragment box within the <font color="red">contiguous</font> MP4 file and sends it over the wire as a standalone file, thus ensuring full cacheability downstream.</p>
+<p>There are actually two parts to the Smooth Streaming format: <p>
+<ol>
+<li>disk file format: a format which is recorded and stored</li>
+<li>wire format: chunks that are sent by IIS to the client</li>
+</ol>
+<blockquote>"Making it two parts are possible because MP4 specification allows MP4 to be internally organized as a series of fragments, which means that in Smooth Streaming the wire format is a direct subset of the file format.<br/>
+The basic unit of an MP4 file is called a <b>box</b>. MP4 ISO Base Media File Format specification is designed to allow MP4 boxes to be organized in a fragmented manner, where the file can be written <b>as we go</b> as a series of short metadata/data box pairs, rather than one long metadata/data pair. The Smooth Streaming file format heavily leverages this aspect of the MP4 file specification, to the point where at Microsoft we often interchangeably refer to Smooth Streaming files as <b>Fragmented MP4 files</b> or <b>(f)MP4</b>".</blockquote>
+<img alt="SmoothStreamingFileFormat" src="images/iis8/SmoothStreamingFileForamt.png"/>
+<p>Picture from <a href="Files/iis8/IIS_Smooth_Streaming_Technical_Overview.pdf" target="_blank">IIS_Smooth_Streaming_Technical_Overview.pdf
+</a></p>
+<p>The file starts with file-level metadata ('moov') that generically describes the file, but the bulk of the samples is actually contained in the fragment boxes that also carry more accurate fragment-level metadata ('moof') such as the information about sample locations and sample sizes and media data ('mdat') that contains the samples as described in the preceding moof box. Closing the file is an 'mfra' index box that allows easy and accurate seeking within the file."</p>
+<img alt="SmoothStreamWorkflow" src="images/iis8/SmoothStreamWorkflow.png"/></p>
+<p>Picture from <a href="Files/iis8/SMEast2010-Microsoft.pdf" target="_blank">Creating End-to-End Smooth Streaming Video Solutions with Silverlight and IIS Media Services
+</a></p>
+<br/>
+<p>We can check the file structure using the following command:</p>
+<pre>
+ $ MP4Box BigBuckBunny_230.ismv -diso
+</pre>
+<p>It will generate an xml file:  <a href="Files/iis8/BigBuckBunny_230_info.xml" target="_blank">BigBuckBunny_230_info.xml"</a>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--MP4Box dump trace--&gt;
+&lt;IsoMediaFile Name="BigBuckBunny_230.ismv"&gt;
+&lt;<font color="blue">FileTypeBox</font> MajorBrand="isml" MinorVersion="1"&gt;
+&lt;BoxInfo Size="24" Type="<font color="red">ftyp</font>"/&gt;
+&lt;BrandEntry AlternateBrand="piff"/&gt;
+&lt;BrandEntry AlternateBrand="iso2"/&gt;
+&lt;/<font color="blue">FileTypeBox</font>&gt;
+
+&lt;<font color="blue">MovieBox</font>&gt;
+&lt;BoxInfo Size="1292" Type="<font color="red">moov</font>"/&gt;
+&lt;MovieHeaderBox CreationTime="3358445268" ModificationTime="3358445268" TimeScale="10000000" Duration="5964741951" NextTrackID="3"&gt;
+&lt;BoxInfo Size="120" Type="<font color="red">mvhd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x0"/&gt;
+&lt;/MovieHeaderBox&gt;
+&lt;MovieExtendsBox&gt;
+&lt;BoxInfo Size="92" Type="<font color="red">mvex</font>"/&gt;
+&lt;MovieExtendsHeaderBox fragmentDuration="5964741951" &gt;
+&lt;BoxInfo Size="20" Type="<font color="red">mehd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x0"/&gt;
+&lt;/MovieExtendsHeaderBox&gt;
+&lt;TrackExtendsBox TrackID="1" SampleDescriptionIndex="1" SampleDuration="0" SampleSize="0"&gt;
+&lt;DefaultSampleFlags IsLeading="0" SampleDependsOn="0" SampleIsDependedOn="0" SampleHasRedundancy="0" SamplePadding="0" SampleSync="1" SampleDegradationPriority="0"/&gt;
+&lt;BoxInfo Size="32" Type="<font color="red">trex</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/TrackExtendsBox&gt;
+&lt;TrackExtendsBox TrackID="2" SampleDescriptionIndex="1" SampleDuration="0" SampleSize="0"&gt;
+&lt;DefaultSampleFlags IsLeading="0" SampleDependsOn="0" SampleIsDependedOn="0" SampleHasRedundancy="0" SamplePadding="0" SampleSync="1" SampleDegradationPriority="0"/&gt;
+&lt;BoxInfo Size="32" Type="<font color="red">trex"</font>/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/TrackExtendsBox&gt;
+&lt;/MovieExtendsBox&gt;
+&lt;TrackBox&gt;
+&lt;BoxInfo Size="535" Type="<font color="red">trak</font>"/&gt;
+&lt;TrackHeaderBox CreationTime="3358445268" ModificationTime="3358445268" TrackID="1" Duration="5964741951" Volume="1.00"&gt;
+&lt;BoxInfo Size="104" Type="<font color="red">tkhd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x7"/&gt;
+&lt;/TrackHeaderBox&gt;
+&lt;MediaBox&gt;
+&lt;BoxInfo Size="423" Type="<font color="red">mdia</font>"/&gt;
+&lt;MediaHeaderBox CreationTime="3358445268" ModificationTime="3358445268" TimeScale="10000000" Duration="5964741951" LanguageCode="und"&gt;
+&lt;BoxInfo Size="44" Type="<font color="red">mdhd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x0"/&gt;
+&lt;/MediaHeaderBox&gt;
+&lt;HandlerBox Type="<font color="red">soun</font>" Name="Audio" reserved1="0" reserved2="data:application/octet-string,%00%00%00%00%00%00%00%00%00%00%00%00"&gt;
+&lt;BoxInfo Size="38" Type="<font color="red">hdlr</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/HandlerBox&gt;
+&lt;MediaInformationBox&gt;
+&lt;BoxInfo Size="333" Type="<font color="red">minf</font>"/&gt;
+&lt;SoundMediaHeaderBox&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">smhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/SoundMediaHeaderBox&gt;
+&lt;DataInformationBox&gt;&lt;BoxInfo Size="36" Type="<font color="red">dinf</font>"/&gt;
+&lt;DataReferenceBox&gt;
+&lt;BoxInfo Size="28" Type="<font color="red">dref</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;URLDataEntryBox&gt;
+&lt;!--Data is contained in the movie file--&gt;
+&lt;BoxInfo Size="12" Type="<font color="red">url</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x1"/&gt;
+&lt;/URLDataEntryBox&gt;
+&lt;/DataReferenceBox&gt;
+&lt;/DataInformationBox&gt;
+&lt;SampleTableBox&gt;
+&lt;BoxInfo Size="273" Type="<font color="red">stbl</font>"/&gt;
+&lt;SampleDescriptionBox&gt;
+&lt;BoxInfo Size="181" Type="<font color="red">stsd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;MPEGAudioSampleDescriptionBox DataReferenceIndex="1" SampleRate="44100" Channels="2" BitsPerSample="16"&gt;
+&lt;BoxInfo Size="165" Type="<font color="red">mp4a</font>"/&gt;
+&lt;MPEG4ESDescriptorBox&gt;
+&lt;BoxInfo Size="129" Type="<font color="red">esds</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+ &lt;ES_Descriptor ES_ID="es0" &gt;
+  &lt;decConfigDescr&gt;
+   &lt;DecoderConfigDescriptor objectTypeIndication="64" streamType="5" bufferSizeDB="12288" maxBitrate="128000" avgBitrate="128000" &gt;
+    &lt;decSpecificInfo&gt;
+     &lt;DecoderSpecificInfo type="auto" src="data:application/octet-string,%12%10%08%C4%00%00%20%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%01%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" /&gt;
+    &lt;/decSpecificInfo&gt;
+   &lt;/DecoderConfigDescriptor&gt;
+  &lt;/decConfigDescr&gt;
+  &lt;slConfigDescr&gt;
+   &lt;SLConfigDescriptor &gt;
+    &lt;predefined value="2" /&gt;
+    &lt;custom &gt;
+    &lt;/custom&gt;
+   &lt;/SLConfigDescriptor&gt;
+  &lt;/slConfigDescr&gt;
+ &lt;/ES_Descriptor&gt;
+&lt;/MPEG4ESDescriptorBox&gt;
+&lt;/MPEGAudioSampleDescriptionBox&gt;
+&lt;/SampleDescriptionBox&gt;
+&lt;TimeToSampleBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stts</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in STTS entries --&gt;
+&lt;/TimeToSampleBox&gt;
+&lt;CompositionOffsetBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">ctts</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in CTTS entries --&gt;
+&lt;/CompositionOffsetBox&gt;
+&lt;SampleToChunkBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stsc</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in STSC entries (could be less than sample count) --&gt;
+&lt;/SampleToChunkBox&gt;
+&lt;SampleSizeBox SampleCount="0"&gt;
+&lt;BoxInfo Size="20" Type="<font color="red">stsz</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!--WARNING: No Sample Size indications--&gt;
+&lt;/SampleSizeBox&gt;
+&lt;ChunkOffsetBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stco</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!--Warning: No Chunk Offsets indications--&gt;
+&lt;/ChunkOffsetBox&gt;
+&lt;/SampleTableBox&gt;
+&lt;/MediaInformationBox&gt;
+&lt;/MediaBox&gt;
+&lt;/TrackBox&gt;
+&lt;TrackBox&gt;
+&lt;BoxInfo Size="537" Type="<font color="red">trak</font>"/&gt;
+&lt;TrackHeaderBox CreationTime="3358445268" ModificationTime="3358445268" TrackID="2" Duration="5964166666" Width="224.00" Height="128.00"&gt;
+&lt;Matrix m11="0x00010000" m12="0x00000000" m13="0x00000000" 								m21="0x00000000" m22="0x00010000" m23="0x00000000" 								m31="0x00000000" m32="0x00000000" m33="0x40000000"/&gt;&lt;BoxInfo Size="104" Type="<font color="red">tkhd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x7"/&gt;
+&lt;/TrackHeaderBox&gt;
+&lt;MediaBox&gt;
+&lt;BoxInfo Size="425" Type="<font color="red">mdia</font>"/&gt;
+&lt;MediaHeaderBox CreationTime="3358445268" ModificationTime="3358445268" TimeScale="10000000" Duration="5964166666" LanguageCode="und"&gt;
+&lt;BoxInfo Size="44" Type="<font color="red">mdhd</font>"/&gt;
+&lt;FullBoxInfo Version="1" Flags="0x0"/&gt;
+&lt;/MediaHeaderBox&gt;
+&lt;HandlerBox Type="<font color="red">vide</font>" Name="Video" reserved1="0" reserved2="data:application/octet-string,%00%00%00%00%00%00%00%00%00%00%00%00"&gt;
+&lt;BoxInfo Size="38" Type="<font color="red">hdlr</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/HandlerBox&gt;
+&lt;MediaInformationBox&gt;
+&lt;BoxInfo Size="335" Type="<font color="red">minf</font>"/&gt;
+&lt;VideoMediaHeaderBox&gt;
+&lt;BoxInfo Size="20" Type="<font color="red">vmhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x1"/&gt;
+&lt;/VideoMediaHeaderBox&gt;
+&lt;DataInformationBox&gt;&lt;BoxInfo Size="36" Type="<font color="red">dinf</font>"/&gt;
+&lt;DataReferenceBox&gt;
+&lt;BoxInfo Size="28" Type="<font color="red">dref</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;URLDataEntryBox&gt;
+&lt;!--Data is contained in the movie file--&gt;
+&lt;BoxInfo Size="12" Type="<font color="red">url</font> "/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x1"/&gt;
+&lt;/URLDataEntryBox&gt;
+&lt;/DataReferenceBox&gt;
+&lt;/DataInformationBox&gt;
+&lt;SampleTableBox&gt;
+&lt;BoxInfo Size="271" Type="<font color="red">stbl</font>"/&gt;
+&lt;SampleDescriptionBox&gt;
+&lt;BoxInfo Size="179" Type="<font color="red">stsd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;AVCSampleEntryBox DataReferenceIndex="1" Width="224" Height="128" XDPI="4718592" YDPI="4718592" BitDepth="24"&gt;
+&lt;BoxInfo Size="163" Type="<font color="red">avc1</font>"/&gt;
+&lt;AVCConfigurationBox&gt;
+&lt;AVCDecoderConfigurationRecord configurationVersion="1" AVCProfileIndication="100" profile_compatibility="64" AVCLevelIndication="13" nal_unit_size="4" chroma_format="0" luma_bit_depth="0" chroma_bit_depth="0"&gt;
+&lt;SequenceParameterSet size="53" content="data:application/octet-string,%67%64%00%0D%AC%2C%A5%0E%11%BF%F0%40%00%3F%05%20%C0%C0%C8%00%44%AA%18%0C%DF%E6%03%00%00%1C%12%00%03%82%73%F8%C7%18%00%00%E0%90%00%1C%13%9F%C6%38%76%84%89%45%80"/&gt;
+&lt;PictureParameterSet size="5" content="data:application/octet-string,%68%E9%09%35%25"/&gt;
+&lt;/AVCDecoderConfigurationRecord&gt;
+&lt;BoxInfo Size="77" Type="<font color="red">avcC</font>"/&gt;
+&lt;/AVCConfigurationBox&gt;
+&lt;/AVCSampleEntryBox&gt;
+&lt;/SampleDescriptionBox&gt;
+&lt;TimeToSampleBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stts</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in STTS entries --&gt;
+&lt;/TimeToSampleBox&gt;
+&lt;CompositionOffsetBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">ctts</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in CTTS entries --&gt;
+&lt;/CompositionOffsetBox&gt;
+&lt;SampleToChunkBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stsc</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!-- counted 0 samples in STSC entries (could be less than sample count) --&gt;
+&lt;/SampleToChunkBox&gt;
+&lt;SampleSizeBox SampleCount="0"&gt;
+&lt;BoxInfo Size="20" Type="<font color="red">stsz</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!--WARNING: No Sample Size indications--&gt;
+&lt;/SampleSizeBox&gt;
+&lt;ChunkOffsetBox EntryCount="0"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">stco</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;!--Warning: No Chunk Offsets indications--&gt;
+&lt;/ChunkOffsetBox&gt;
+&lt;/SampleTableBox&gt;
+&lt;/MediaInformationBox&gt;
+&lt;/MediaBox&gt;
+&lt;/TrackBox&gt;
+&lt;/<font color="blue">MovieBox</font>&gt;
+
+&lt;<font color="blue">MovieFragmentBox</font> TrackFragments="1"&gt;
+&lt;BoxInfo Size="867" Type="<font color="red">moof</font>"/&gt;
+&lt;MovieFragmentHeaderBox FragmentSequenceNumber="1"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">mfhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/MovieFragmentHeaderBox&gt;
+&lt;TrackFragmentBox&gt;
+&lt;BoxInfo Size="843" Type="<font color="red">traf</font>"/&gt;
+&lt;TrackFragmentHeaderBox TrackID="1" BaseDataOffset="file" SamplePadding="0" SampleSync="1" SampleDegradationPriority="2"&gt;
+&lt;BoxInfo Size="20" Type="<font color="red">tfhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x20"/&gt;
+&lt;/TrackFragmentHeaderBox&gt;
+&lt;SampleDependencyTypeBox SampleCount="87"&gt;
+&lt;BoxInfo Size="99" Type="<font color="red">sdtp</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;SampleDependencyEntry dependsOnOther="no" dependedOn="no" hasRedundancy="unknown"  /&gt;
+...
+&lt;SampleDependencyEntry dependsOnOther="no" dependedOn="no" hasRedundancy="unknown"  /&gt;
+&lt;/SampleDependencyTypeBox&gt;
+&lt;TrackRunBox SampleCount="87" DataOffset="875"&gt;
+&lt;BoxInfo Size="716" Type="<font color="red">trun</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x301"/&gt;
+&lt;TrackRunEntry Duration="232199" Size="441"/&gt;
+...
+&lt;TrackRunEntry Duration="232199" Size="456"/&gt;
+&lt;/TrackRunBox&gt;
+&lt;/TrackFragmentBox&gt;
+&lt;/<font color="blue">MovieFragmentBox</font>&gt;
+&lt;<font color="blue">MediaDataBox</font> dataSize="39758"&gt;
+&lt;BoxInfo Size="39766" Type="<font color="red">mdat</font>"/&gt;
+&lt;/<font color="blue">MediaDataBox</font>&gt;
+
+&lt;<font color="blue">MovieFragmentBox</font> TrackFragments="1"&gt;
+&lt;BoxInfo Size="858" Type="<font color="red">moof</font>"/&gt;
+&lt;MovieFragmentHeaderBox FragmentSequenceNumber="2"&gt;
+&lt;BoxInfo Size="16" Type="<font color="red">mfhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;/MovieFragmentHeaderBox&gt;
+&lt;TrackFragmentBox&gt;
+&lt;BoxInfo Size="834" Type="<font color="red">traf</font>"/&gt;
+&lt;TrackFragmentHeaderBox TrackID="1" BaseDataOffset="file" SamplePadding="0" SampleSync="1" SampleDegradationPriority="2"&gt;
+&lt;BoxInfo Size="20" Type="<font color="red">tfhd</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x20"/&gt;
+&lt;/TrackFragmentHeaderBox&gt;
+&lt;SampleDependencyTypeBox SampleCount="86"&gt;
+&lt;BoxInfo Size="98" Type="<font color="red">sdtp</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x0"/&gt;
+&lt;SampleDependencyEntry dependsOnOther="no" dependedOn="no" hasRedundancy="unknown"  /&gt;
+...
+&lt;/SampleDependencyTypeBox&gt;
+&lt;TrackRunBox SampleCount="86" DataOffset="866"&gt;
+&lt;BoxInfo Size="708" Type="<font color="red">trun</font>"/&gt;
+&lt;FullBoxInfo Version="0" Flags="0x301"/&gt;
+...
+&lt;/TrackRunBox&gt;
+&lt;/TrackFragmentBox&gt;
+&lt;/MovieFragmentBox&gt;
+&lt;MediaDataBox dataSize="15015"&gt;
+&lt;BoxInfo Size="15023" Type="<font color="red">mdat</font>"/&gt;
+&lt;/MediaDataBox&gt;
+&lt;UnknownBox&gt;
+&lt;BoxInfo Size="11434" Type="<font color="red">mfra</font>"/&gt;
+&lt;/UnknownBox&gt;
+&lt;/IsoMediaFile&gt;
+</pre>
+<br/>
+<p>When a player client requests a video time slice from the IIS Web server, the server seeks to the appropriate starting fragment in the MP4 file and then lifts the fragment out of the file and sends it over the wire to the client. This is why we refer to the fragments as the "wire format."</p>
+<p>The wire format looks like this: <b>one fragment = moof + mdat</b>:</p>
+<img alt="SmoothStreamingWireFormat" src="images/iis8/SmoothStreamingWireFormat.png"/>
+<br/>
+<p>To differentiate Smooth Streaming files from "vanilla" MP4 files, two file extensions are used: *.ismv (video+audio) and *.isma (audio only).:</p>
+<ol>
+<li>ism: Server manifest file <br/>
+ Describes the relationships between the media tracks, bit rates and files on disk</li>
+<li>ismc: Client manifest file <br/>
+ Descibes the available streams to the client: the codecs, bit rates encoded, video resolutions, markers, captions, etc. <br/>
+ It's the first file delivered to the client.</li>
+<li>ismv: Fragmented MPEG-4 video and audio, or only video file, 1 ismv file per encoded video bit rate</li>
+<li>isma*: contains only audio file <br/>
+ In videos with audio, the audio track can be muxed into an ixmv file instead pif a separate isms file</li>
+</ol>
+<p>Here is a sample <a href="Files/iis8/Bunny_H264_720p.zip" target="_blank">Bunny_H264_720p.zip
+</a>:</p>
+<br/>
+<img alt="BigBunny" src="images/iis8/BigBunny.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="silverlight">Silverlight</div>
+<p>Of course, we need silverlight!</p>
+<br/>
+<a href="http://www.microsoft.com/silverlight/" target="_blank">http://www.microsoft.com/silverlight/</a>.</p>
+<br/>
+<img alt="SilverLightFiles" src="images/iis8/SilverLightFiles.png"/>
+<p>A clients plays the stream by requesting segments in a profile from a Web server, downloading them via HTTP. As the segments are downloaded, the client plays back the segments in the order requested. Since the segments are sliced along GOP boundaries with no gaps between, video playback is seamless - even though it is actually just a collection of independent file downloads via a sequence of HTTP GET requests. In other words, the fragmented MPEG-4, where each "chunk" of video is transmitted as a moof fragment starting with a Closed GOP, via a single HTTP request.</p>
+<p>Adaptive delivery enables a client to adapt to fluctuating network conditions by selecting video segments from different profiles. <font color="blue">The client can easily compute the available network bandwidth by comparing the <b>download time</b> of a segment with its <b>size</b></font>. </p>
+<p>If the client has a list of available profile bitrates (or resolutions or codecs), it can determine if it must change to a lower bitrate/resolution profile or whether the available bandwidth allows it to download segments from a higher bitrate/resolution profile. This list of available profiles is called a manifest or playlist. The client's bandwidth calculation is repeated at every chunk download, and so the client can adapt to changing network bandwidth or other conditions every few seconds.</p>
+<p>Smooth streaming protocol uses 4 different messages:</p>
+<ol>
+<li>Manifest request (HTTP "GET" method)</li>
+<li>Manifest response (This response is a ismc manifest file describing the session)<br/>
+ The client also receives the number of chunks for audio and video tracks and the duration of each chunks so that it can request the chunk 
+ that fits.
+ </li>
+<li>Fragment request (HTTP "GET" method based on RESTFull url) <br/>
+ The url includes reference to bitrate as QualityLevels that maps to a media file. It also includes a reference to a fragment number.
+<pre>http://server/BigBuckBunny.ism/QualityLevels(477000)/Fragments(video=610275114)</pre>
+</li>
+<li>Fragment response <br/>
+ Sends the requests fragment to the client as HTTP response with status code 200.</li>
+</ol>
+<br/>
+<img alt="IIS_Smooth_Stream_Diagram.png" src="images/iis8/IIS_Smooth_Stream_Diagram.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="playback">Smooth Streaming Playback</div>
+<p>As discussed earlier, the videos are no longer split up into thousands of file chunks, but are instead "virtually" split into fragments (typically one fragment per video GOP) and stored within a single contiguous MP4 file. This implies two significant changes in server and client design:</p>
+<ol>
+<li><b>The server must translate URL requests into exact byte range offsets within the MP4 file.</b></li>
+<li>The client can request chunks in a more developer-friendly manner (for example, by timecode instead of by index number)</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="bunny_ism">ism</div>
+<p>Here is the <b>BigBuckBunny.ism</b> file:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;!--Created with Expression Encoder version 4.0.1628.0--&gt;
+&lt;smil xmlns="http://www.w3.org/2001/SMIL20/Language"&gt;
+  &lt;head&gt;
+    &lt;meta
+      name="clientManifestRelativePath"
+      content="BigBuckBunny.<font color="red">ismc</font>" /&gt;
+    &lt;metadata
+      id="meta-rdf"&gt;
+      &lt;rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:iisms="http://schemas.microsoft.com/iis/media/v4#" xmlns:wm="http://schemas.microsoft.com/windowsmedia/v11/attributes#" xmlns:ee="http://schemas.microsoft.com/expression/encoder/v4#" xmlns:eecustom="http://schemas.microsoft.com/expression/encoder/v4/custom#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
+        &lt;ee:MediaItem
+          rdf:about="guid:f48d286e-5f2e-44e2-91cf-be2044ab4553"&gt;
+          &lt;ee:ID&gt;f48d286e-5f2e-44e2-91cf-be2044ab4553&lt;/ee:ID&gt;
+          &lt;ee:HasAttachedImages&gt;False&lt;/ee:HasAttachedImages&gt;
+          &lt;ee:HasCaptions&gt;False&lt;/ee:HasCaptions&gt;
+          &lt;ee:HasAudio&gt;True&lt;/ee:HasAudio&gt;
+          &lt;ee:HasImage&gt;False&lt;/ee:HasImage&gt;
+          &lt;ee:HasVideo&gt;True&lt;/ee:HasVideo&gt;
+          &lt;ee:IsProtected&gt;False&lt;/ee:IsProtected&gt;
+          &lt;ee:IsVBR&gt;False&lt;/ee:IsVBR&gt;
+          &lt;ee:Streams&gt;9&lt;/ee:Streams&gt;
+          &lt;ee:Duration&gt;00:09:56.4583334&lt;/ee:Duration&gt;
+        &lt;/ee:MediaItem&gt;
+      &lt;/rdf:RDF&gt;
+    &lt;/metadata&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;switch&gt;
+      &lt;video
+        src="BigBuckBunny_2962.<font color="blue">ismv</font>"
+        systemBitrate="2962000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_2056.<font color="blue">ismv</font>"
+        systemBitrate="2056000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_1427.<font color="blue">ismv</font>"
+        systemBitrate="1427000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_991.<font color="blue">ismv</font>"
+        systemBitrate="991000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_688.<font color="blue">ismv</font>"
+        systemBitrate="688000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_477.<font color="blue">ismv</font>"
+        systemBitrate="477000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_331.<font color="blue">ismv</font>"
+        systemBitrate="331000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;video
+        src="BigBuckBunny_230.<font color="blue">ismv</font>"
+        systemBitrate="230000"&gt;
+        &lt;param
+          name="trackID"
+          value="2"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="video"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/video&gt;
+      &lt;audio
+        src="BigBuckBunny_2962.<font color="blue">ismv</font>"
+        systemBitrate="160000"&gt;
+        &lt;param
+          name="trackID"
+          value="1"
+          valuetype="data" /&gt;
+        &lt;param
+          name="trackName"
+          value="audio"
+          valuetype="data" /&gt;
+        &lt;param
+          name="timeScale"
+          value="10000000"
+          valuetype="data" /&gt;
+      &lt;/audio&gt;
+    &lt;/switch&gt;
+  &lt;/body&gt;
+&lt;/smil&gt;
+</pre>
+<p><b>BigBuckBunny.ism</b> file is a server manifest, which is structured in Synchronized Multimedia Integration Language (SMIL) format and contains a mapping of quality levels and bit rates to the .ismv and .isma files. This mapping in the server manifest is used by the server to access the right disk files to create the next fragment of content encoded at the right bit rate, before responding to a client side request.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ism_manifest">ism/manifest</div>
+<p>Let's see how the iis media service renders the <b>ism</b> file. </p>
+<p>When we set a url to a .ism file, it won't work. What we need to do is get the manifest. This is available by appending "/manifest" at the end of the url. This manifest is basically an Xml file containing the different feeds available. There are several different feeds involved. Each feed has its own bitrate. So when the player is playing, it can actually switch between feeds with different bitrates while playing. So the quality of the streamed video actually fluctuates while playing. - (see <a href="http://chris.59north.com/post/Playing-Smooth-Streaming-videos-in-Silverlight.aspx" target="_blank">Playing Smooth Streaming (.ism) videos in Silverlight</a>)</p>
+<pre>
+public void Play(string url)
+{
+    AdaptiveStreamingSource src = new AdaptiveStreamingSource(myMediaElement,new Uri(url + "/manifest"));
+    myMediaElement.SetSource(src);
+    myMediaElement.Play();
+}
+</pre>
+<p>As we see in code, we create a new AdaptiveStreamingSource passing in the MediaElement and the Uri to the .ism file. However, we need to add the <b>/manifest</b> at the end of the Uri. Then we use this source to set the source of the MediaElement. After that, the MediaElement will play just as normal. </p>
+<p>Here is the result when we type in <b>BigBuckBunny.ism/manifest</b>. Depending on the browser, we have slight differences in rendering but basically containing the same info.</p>
+<p><b>Chrome 31.0</b></p>
+<pre>
+&lt;!-- Created with Expression Encoder version 4.0.1628.0 --&gt;
+&lt;SmoothStreamingMedia MajorVersion="2" MinorVersion="1" Duration="5964583334"&gt;
+&lt;StreamIndex Type="video" Name="video" Chunks="299" QualityLevels="8" MaxWidth="1280" MaxHeight="720" DisplayWidth="1280" DisplayHeight="720" Url="QualityLevels({bitrate})/Fragments(video={start time})"&gt;
+&lt;QualityLevel Index="0" Bitrate="2962000" FourCC="H264" MaxWidth="1280" MaxHeight="720" CodecPrivateData="000000016764001FAC2CA5014016EFFC100010014808080A00112A860337F980C100005A648000B4C9FE31C6080002D3240005A64FF18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="1" Bitrate="2056000" FourCC="H264" MaxWidth="992" MaxHeight="560" CodecPrivateData="000000016764001FAC2CA503E047BFF040003FC5202020280044AA180CDFE603030003EBE8000FAFAFE31C6060007D7D0001F5F5FC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="2" Bitrate="1427000" FourCC="H264" MaxWidth="768" MaxHeight="432" CodecPrivateData="000000016764001EAC2CA50300DEFFC100010014808080A00112A860337F980C0C000AE300002B8C7F8C718180015C600005718FF18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="3" Bitrate="991000" FourCC="H264" MaxWidth="592" MaxHeight="332" CodecPrivateData="0000000167640015AC2CA50250AFEFFF03FD0400520C0C0C80044AA180CDFE6030200078F80003C7C7F8C71810003C7C0001E3E3FC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="4" Bitrate="688000" FourCC="H264" MaxWidth="448" MaxHeight="252" CodecPrivateData="0000000167640015AC2CA507021FBFFC100010014830303200112A860337F980C080014FF0000A7F8FE31C604000A7F800053FC7F18E1DA12251600000000168E9093525"/&gt;
+&lt;QualityLevel Index="5" Bitrate="477000" FourCC="H264" MaxWidth="368" MaxHeight="208" CodecPrivateData="000000016764000DAC2CA505C6EFFC10000FED4830303200112A860337F980C04003A3A0003A3A7F8C718080074740007474FF18E1DA1225160000000168E9093525"/&gt;
+&lt;QualityLevel Index="6" Bitrate="331000" FourCC="H264" MaxWidth="284" MaxHeight="160" CodecPrivateData="000000016764000DAC2CA504857BFFF040003FE520C0C0C80044AA180CDFE60301000A198000A19FFE31C6020014330001433FFC6387684894580000000168E9093525"/&gt;
+&lt;QualityLevel Index="7" Bitrate="230000" FourCC="H264" MaxWidth="224" MaxHeight="128" CodecPrivateData="000000016764000DAC2CA50E11BFF040003F0520C0C0C80044AA180CDFE60300001C1200038273F8C7180000E090001C139FC63876848945800000000168E9093525"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+...
+&lt;c d="20000000"/&gt;
+&lt;c d="4166667"/&gt;
+&lt;/StreamIndex&gt;
+&lt;StreamIndex Type="audio" Index="0" Name="audio" Chunks="299" QualityLevels="1" Url="QualityLevels({bitrate})/Fragments(audio={start time})"&gt;
+&lt;QualityLevel FourCC="AACL" Bitrate="160000" SamplingRate="44100" Channels="2" BitsPerSample="16" PacketSize="4" AudioTag="255" CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/&gt;
+&lt;c d="20201360"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+...
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="4643992"/&gt;
+&lt;/StreamIndex&gt;
+&lt;/SmoothStreamingMedia&gt;
+</pre>
+<br/>
+<br/>
+<p><b>Internet Explorer 11</b></p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-16"?&gt;
+&lt;!--Created with Expression Encoder version 4.0.1628.0--&gt;
+ &lt;SmoothStreamingMedia Duration="5964583334" MinorVersion="1" MajorVersion="2"&gt;
+ &lt;StreamIndex Url="QualityLevels({bitrate})/Fragments(video={start time})" Chunks="299" QualityLevels="8" Type="video" MaxHeight="720" MaxWidth="1280" DisplayHeight="720" DisplayWidth="1280" Name="video"&gt;
+&lt;QualityLevel CodecPrivateData="000000016764001FAC2CA5014016EFFC100010014808080A00112A860337F980C100005A648000B4C9FE31C6080002D3240005A64FF18E1DA12251600000000168E9093525" MaxHeight="720" MaxWidth="1280" FourCC="H264" Bitrate="2962000" Index="0"/&gt;
+&lt;QualityLevel CodecPrivateData="000000016764001FAC2CA503E047BFF040003FC5202020280044AA180CDFE603030003EBE8000FAFAFE31C6060007D7D0001F5F5FC6387684894580000000168E9093525" MaxHeight="560" MaxWidth="992" FourCC="H264" Bitrate="2056000" Index="1"/&gt;
+&lt;QualityLevel CodecPrivateData="000000016764001EAC2CA50300DEFFC100010014808080A00112A860337F980C0C000AE300002B8C7F8C718180015C600005718FF18E1DA12251600000000168E9093525" MaxHeight="432" MaxWidth="768" FourCC="H264" Bitrate="1427000" Index="2"/&gt;
+&lt;QualityLevel CodecPrivateData="0000000167640015AC2CA50250AFEFFF03FD0400520C0C0C80044AA180CDFE6030200078F80003C7C7F8C71810003C7C0001E3E3FC6387684894580000000168E9093525" MaxHeight="332" MaxWidth="592" FourCC="H264" Bitrate="991000" Index="3"/&gt;
+&lt;QualityLevel CodecPrivateData="0000000167640015AC2CA507021FBFFC100010014830303200112A860337F980C080014FF0000A7F8FE31C604000A7F800053FC7F18E1DA12251600000000168E9093525" MaxHeight="252" MaxWidth="448" FourCC="H264" Bitrate="688000" Index="4"/&gt;
+&lt;QualityLevel CodecPrivateData="000000016764000DAC2CA505C6EFFC10000FED4830303200112A860337F980C04003A3A0003A3A7F8C718080074740007474FF18E1DA1225160000000168E9093525" MaxHeight="208" MaxWidth="368" FourCC="H264" Bitrate="477000" Index="5"/&gt;
+&lt;QualityLevel CodecPrivateData="000000016764000DAC2CA504857BFFF040003FE520C0C0C80044AA180CDFE60301000A198000A19FFE31C6020014330001433FFC6387684894580000000168E9093525" MaxHeight="160" MaxWidth="284" FourCC="H264" Bitrate="331000" Index="6"/&gt;
+&lt;QualityLevel CodecPrivateData="000000016764000DAC2CA50E11BFF040003F0520C0C0C80044AA180CDFE60300001C1200038273F8C7180000E090001C139FC63876848945800000000168E9093525" MaxHeight="128" MaxWidth="224" FourCC="H264" Bitrate="230000" Index="7"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+...
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="20000000"/&gt;
+&lt;c d="4166667"/&gt;
+&lt;/StreamIndex&gt;
+ &lt;StreamIndex Url="QualityLevels({bitrate})/Fragments(audio={start time})" Chunks="299" QualityLevels="1" Type="audio" Index="0" Name="audio"&gt;
+&lt;QualityLevel CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" FourCC="AACL" Bitrate="160000" AudioTag="255" PacketSize="4" BitsPerSample="16" Channels="2" SamplingRate="44100"/&gt;
+&lt;c d="20201360"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+...
+&lt;c d="19969161"/&gt;
+&lt;c d="19969161"/&gt;
+&lt;c d="4643992"/&gt;
+&lt;/StreamIndex&gt;
+&lt;/SmoothStreamingMedia&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="bunny_ismc">ismc = ism/manifest</div>
+<p>The server manifest also contains a mapping to a client manifest file (identified by the extension .ismc), which in my example is <b>BigBuckBunny.ismc</b>.</p>
+<p>The first thing a player client requests from the Smooth Streaming server is the <b>*.ismc</b> client manifest, 
+<b>BigBuckBunny.ismc:</b></p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;!--Created with Expression Encoder version 4.0.1628.0--&gt;
+&lt;SmoothStreamingMedia
+  MajorVersion="2"
+  MinorVersion="1"
+  Duration="5964583334"&gt;
+  &lt;StreamIndex
+    Type="video"
+    Name="video"
+    Chunks="299"
+    QualityLevels="8"
+    MaxWidth="1280"
+    MaxHeight="720"
+    DisplayWidth="1280"
+    DisplayHeight="720"
+    Url="<font color="red"><b>QualityLevels({bitrate})/Fragments(video={start time})</b></font>"&gt;
+    &lt;QualityLevel
+      Index="0"
+      Bitrate="2962000"
+      FourCC="H264"
+      MaxWidth="1280"
+      MaxHeight="720"     CodecPrivateData="000000016764001FAC2CA5014016EFFC100010014808080A00112A860337F980C100005A648000B4C9FE31C6080002D3240005A64FF18E1DA12251600000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="1"
+      Bitrate="2056000"
+      FourCC="H264"
+      MaxWidth="992"
+      MaxHeight="560"     CodecPrivateData="000000016764001FAC2CA503E047BFF040003FC5202020280044AA180CDFE603030003EBE8000FAFAFE31C6060007D7D0001F5F5FC6387684894580000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="2"
+      Bitrate="1427000"
+      FourCC="H264"
+      MaxWidth="768"
+      MaxHeight="432"      CodecPrivateData="000000016764001EAC2CA50300DEFFC100010014808080A00112A860337F980C0C000AE300002B8C7F8C718180015C600005718FF18E1DA12251600000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="3"
+      Bitrate="991000"
+      FourCC="H264"
+      MaxWidth="592"
+      MaxHeight="332"      CodecPrivateData="0000000167640015AC2CA50250AFEFFF03FD0400520C0C0C80044AA180CDFE6030200078F80003C7C7F8C71810003C7C0001E3E3FC6387684894580000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="4"
+      Bitrate="688000"
+      FourCC="H264"
+      MaxWidth="448"
+      MaxHeight="252"      CodecPrivateData="0000000167640015AC2CA507021FBFFC100010014830303200112A860337F980C080014FF0000A7F8FE31C604000A7F800053FC7F18E1DA12251600000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="5"
+      Bitrate="477000"
+      FourCC="H264"
+      MaxWidth="368"
+      MaxHeight="208"      CodecPrivateData="000000016764000DAC2CA505C6EFFC10000FED4830303200112A860337F980C04003A3A0003A3A7F8C718080074740007474FF18E1DA1225160000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="6"
+      Bitrate="331000"
+      FourCC="H264"
+      MaxWidth="284"
+      MaxHeight="160"      CodecPrivateData="000000016764000DAC2CA504857BFFF040003FE520C0C0C80044AA180CDFE60301000A198000A19FFE31C6020014330001433FFC6387684894580000000168E9093525" /&gt;
+    &lt;QualityLevel
+      Index="7"
+      Bitrate="230000"
+      FourCC="H264"
+      MaxWidth="224"
+      MaxHeight="128"     CodecPrivateData="000000016764000DAC2CA50E11BFF040003F0520C0C0C80044AA180CDFE60300001C1200038273F8C7180000E090001C139FC63876848945800000000168E9093525" /&gt;
+    &lt;c
+      d="20000000" /&gt;
+    &lt;c
+      d="20000000" /&gt;
+    &lt;c
+      d="20000000" /&gt;
+...
+    &lt;c
+      d="20000000" /&gt;
+    &lt;c
+      d="20000000" /&gt;
+    &lt;c
+      d="4166667" /&gt;
+  &lt;/StreamIndex&gt;
+  &lt;StreamIndex
+    Type="audio"
+    Index="0"
+    Name="audio"
+    Chunks="299"
+    QualityLevels="1"
+    Url="QualityLevels({bitrate})/Fragments(audio={start time})"&gt;
+    &lt;QualityLevel
+      FourCC="AACL"
+      Bitrate="160000"
+      SamplingRate="44100"
+      Channels="2"
+      BitsPerSample="16"
+      PacketSize="4"
+      AudioTag="255"
+      CodecPrivateData="121008C400002000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" /&gt;
+    &lt;c
+      d="20201360" /&gt;
+    &lt;c
+      d="19969161" /&gt;
+    &lt;c
+      d="19969161" /&gt;
+...
+    &lt;c
+      d="19969161" /&gt;
+    &lt;c
+      d="19969161" /&gt;
+    &lt;c
+      d="4643992" /&gt;
+  &lt;/StreamIndex&gt;
+&lt;/SmoothStreamingMedia&gt;
+</pre>
+<br/>
+<p>The client manifest contains all the information that the client will need to access the various media and data streams, as well as metadata about those streams, such as quality levels, available bit rates, timing information, codec initialization data and so on. In other words, client have a description of available bitrates\quality for live streaming, url that is necessary call to download content, actual status of live streaming with the list of the video and audio chunks available and the time code that drive the streaming and the duration of every chunk. The client-side logic will use this metadata to sample and decode the fragments and request bit rate switches based on prevailing local conditions.</p>
+<p>At run time, the presentation begins with the client requesting the client manifest from the server. Once the client receives the manifest, it checks to see what bit rates are available and requests fragments of content starting at the lowest available bit rate. In response, the server prepares and sends the fragments by reading the data from the disk file encoded at that bit rate (using the mapping in the server manifest). The content is then displayed on the client.</p>
+<p>The client gradually requests higher bit rates as allowed by the resource-monitoring logic, and eventually reaches the highest allowable bit rate as determined by the prevailing resource conditions. This interchange continues until the client's monitoring logic senses a change in resource conditions resulting in a different lower desired bit rate. Subsequent client requests are for media encoded at the new bit rate, and the server again responds accordingly. This goes on until the presentation completes or is stopped.</p>
+<p>Each <b>StreamIndex</b> entry represents a stream and there can be multiple streams in the presentation.</p>
+<p>For a given video stream in the client manifest, the video track is broken into many fragments of 2-second duration, and each <b>c</b> element in the manifest represents metadata for the fragment, and the fragments in the track are contiguous.</p>
+<p>Each track in a client manifest is uniquely identified via a <b>QualityLevel</b>. A QualityLevel is identified by the associated bit rate. For example, a video stream in a client manifest may have several QualityLevels, each with a unique bit rate. Each represents a unique track of the same video content, encoded at the bit rate specified by the QualityLevel.</p>
+<p>With IIS Smooth Streaming, clients request fragments in the form of a RESTful URL:</p>
+<pre>
+http://server/BigBuckBunny.ism/QualityLevels(477000)/Fragments(video=610275114)
+</pre>
+<p>The values passed in the URL represent encoded bit rate (477000) and the fragment start offset (610275114) expressed in an agreed-upon time unit (usually 100 nanoseconds (ns)). These values are known from the client manifest.</p>
+<p>After receiving the client request, IIS Smooth Streaming looks up the quality level (bit rate) in the corresponding *.ism server manifest and maps it to a physical *.ismv or *.isma file on disk. It then reads the appropriate MP4 file, and based on its 'tfra' index box, figures out which fragment box ('moof' + 'mdat') corresponds to the requested start time offset. It then extracts the fragment box and sends it over the wire to the client as a standalone file.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="playback">Playback</div>
+<p>I tested the playback in two ways: testing via a remote server and playback via a localhost server.</p>
+<p>The difference is in the medial url in a given html for the silverlight plug-in:</p>
+<ol>
+<li>remote:<br/>
+<pre>&lt;param name="InitParams" value="selectedcaptionstream=textstream_eng,
+            mediaurl=<font color="red">http://streams.smooth.vertigo.com/elephantsdream/Elephants_Dream_1024-h264-st-aac.ism/manifest</font>" /&gt;
+</pre>
+</li>
+<li>localhost:<br/>
+<pre>
+&lt;param name="InitParams" value="selectedcaptionstream=textstream_eng,
+               mediaurl=<font color="red">http://localhost/bunny/BigBuckBunny.ism/manifest</font>" /&gt;
+</pre>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="playback_remote">Via Remote Server</div>
+<br/>
+<img alt="RemoteElephant" src="images/iis8/RemoteElephant.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="playback_local">Via localhost Server</div>
+<br/>
+<img alt="LocalBunny" src="images/iis8/LocalBunny.png"/>
+<br/>
+<br/>
+<img alt="VLC_MediaInfo.png" src="images/iis8/VLC_MediaInfo.png"/>
+<br/>
+<br/>
+<p>Here is the list of files used:</p>
+<img alt="bunny_file_list_remote_local" src="images/iis8/bunny_file_list_remote_local.png"/>
+<br/>
+<p>We can get <b>SmoothStreamingPlayer</b>: <a href="Files/iis8/smoothstreamingplayer-2.2010.1001.1.zip" target="_blank">here
+</a>.</p>
+<p>Zipped file: <a href="Files/iis8/bunny.zip" target="_blank">bunny.zip
+</a></p>
+<br/>
+<br/>
+<div class="subtitle" id="bitrate">Bit Rate Switching</div>
+<p>Switching bit rate is implemented entirely in client-side Silverlight application code-the server plays no part in the bit-rate switching process. The client-side code looks at chunk download times, buffer fullness, rendered frame rates, and other factors, and decides when to request higher or lower bit rates from the server. </p>
+<p>The following table shows a typical use case for the different output profiles :</p>
+<table border="1" cellpadding="5">
+<tr>
+<th>Width x Height</th>
+<th>Bitrate</th>
+</tr>
+<tr>
+<td>1280 x 720</td>
+<td>3 Mbits/s</td>
+</tr>
+<tr>
+<td> 960 x 540</td>
+<td>1.5 Mbits/s</td>
+</tr>
+<tr>
+<td> 864 x 486</td>
+<td>1.25 Mbits/s</td>
+</tr>
+<tr>
+<td> 640 x 360</td>
+<td>1.0 Mbits/s</td>
+</tr>
+<tr>
+<td> 640 x 360</td>
+<td>750 Kbits/s</td>
+</tr>
+<tr>
+<td> 416 x 240</td>
+<td>500 Kbits/s</td>
+</tr>
+<tr>
+<td> 320 x 180</td>
+<td>350 Kbits/s</td>
+</tr>
+<tr>
+<td> 320 x 180</td>
+<td>150 Kbits/s</td>
+</tr>
+</table>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="SSCalc">Smooth Streaming Multi-Bitrate Calculator</div>
+<p>To maintain consistent video quality across all bitrates, we can use the following calculator. It is a <a href="http://alexzambelli.com/WMV/MBRCalc.html" target="_blank">Silverlight-based online calculator</a>.</p>
+<br/>
+<img alt="smooth_streaming_multi_bitrate_calculator.png" src="images/iis8/smooth_streaming_multi_bitrate_calculator.png"/><br/><br/>
+<img alt="smooth_streaming_multi_bitrate_calculator_4_3.png" src="images/iis8/smooth_streaming_multi_bitrate_calculator_4_3.png"/><br/><br/><br/>
+<br/>
+<br/>
+<div class="subtitle" id="LiveSS">Live Smooth Streaming</div>
+<blockquote>Live Smooth Streaming uses the same technique of on-demand Smooth Streaming, except encoded in real-time for live events by hardware encoders. Although it is similar in player concept, it is quite different in implementation.- <a href="http://brandonpotter.wordpress.com/2010/01/31/demystifying-iis-smooth-streaming-live-smooth-streaming" target="_blank">Demystifying IIS Smooth Streaming / Live Smooth Streaming</a> </blockquote>
+<img alt="push_pull_iis_media_services.png" src="images/iis8/push_pull_iis_media_services.png"/><br/>
+<p>Picture from <a href="http://azlivestreaming.codeplex.com/documentation" target="_blank">Windows Azure Live Smooth Streaming
+</a></p>
+<p>Publishing Points:<br/>
+Solution contains two predefined publishing points:</p>
+<ol>
+<li>Push.isml - to receive video stream from encoder</li>
+<li>Pull.isml - to pull video stream from Upstream Server</li>
+</ol>
+<p>The picture shows how we can structure the servers and their roles: upstream(origin) server (aka ingest server) to which encoded contents pushed and downstream server which pulls the contents from the origin to distribute the contents. This picture does not directly related to setting up publishing point described article below, but it helps to understand the concept of push and pull contents.</p>
+<br/><br/>
+<br/><br/><br/>
+<div class="subtitle_2nd" id="publishingpoint">Setting publishing point via IIS Manager</div>
+<br/>
+<p>We need to create a directory where we want to publish our contents.</p>
+<img alt="AddSites.png" src="images/iis8/AddSites.png"/>
+<br/><br/><br/><br/>
+<img alt="AddingWebSite.png" src="images/iis8/AddingWebSite.png"/>
+<br/><br/>
+<img alt="AddSiteResult.png" src="images/iis8/AddSiteResult.png"/>
+<br/><br/><br/>
+<p>In IIS Manager, select the desired website and then double-click the Live Smooth Streaming Publishing Points icon.</p>
+<img alt="DoubleClickLSSPublishingPoint.png" src="images/iis8/DoubleClickLSSPublishingPoint.png"/>
+<br/><br/><br/>
+<p>Then, in the Actions pane, click Add.</p>
+<img alt="AddAction.png" src="images/iis8/AddAction.png"/>
+<br/><br/><br/>
+<p>In the Add Publishing Point dialog box, on the Basic Settings tab, enter the following information (we can name it whatever we want):</p>
+<img alt="AddPublishPoint.png" src="images/iis8/AddPublishPoint.png"/>
+<br/><br/>
+<ol>
+<li><b>File name</b>. Enter a name for the Live Smooth Streaming publishing point definition file. 
+  </li>
+<li><b>Estimated duration</b>. If known, enter the duration (in hours:minutes:seconds) of the live event so that the Silverlight-based client can scale its Seek bar to the length of the content. In our example, we use an event duration of 1 hour (01:00:00).
+ </li>
+<li><b>Live source type</b>. In our example, the Live Smooth Streaming server is an "localhost" that receives the content that's pushed to it from an encoder; therefore, we select the default Push option.
+ </li>
+</ol>
+<br/><br/><br/>
+<p>On the Advanced Settings tab, select the Start publishing point automatically upon first client request check box. This setting allows an encoder to connect to the publishing point when the broadcast starts. Connection errors might occur if we don't enable this setting.</p>
+<br/>
+<img alt="AdvancedSettingsPublishingPoint.png" src="images/iis8/AdvancedSettingsPublishingPoint.png"/>
+<br/><br/><br/>
+<p>In the Add Publishing Point dialog box, click OK. A new Live Smooth Streaming publishing point definition file named LiveSmoothStream.isml is added to the website root.</p>
+<img alt="PublishingPointStateIdle.png" src="images/iis8/PublishingPointStateIdle.png"/>
+<br/><br/><br/>
+<img alt="Isml_file.png" src="images/iis8/Isml_file.png"/>
+<br/><br/><br/>
+<p>Live Smooth Streaming publishing points on the Web Server with IIS Live Smooth Streaming installed are 
+used to deliver the fragmented MP4 output from encoders to Smooth Streaming-enabled clients. </p>
+<p>When a client makes a request for a Live Smooth Streaming presentation, the publishing point on the 
+Web server delivers an XML manifest that describes the available quality levels. </p>
+<p>The client then uses the 
+Smooth Streaming heuristics to determine the best stream from which to request a media fragment at 
+that instant. The Smooth Streaming heuristics continuously monitor the environment and at frequent 
+intervals (typically 2 seconds), request the next contiguous MP4 fragment in the live stream.</p>
+<p>On the Live Smooth Streaming Publishing Points page, select the publishing point, and then in the Actions pane, click Start Publishing Point.</p>
+<img alt="StartPublishingPoint.png" src="images/iis8/StartPublishingPoint.png"/>
+<br/><br/><br/>
+<p>The publishing point State value changes from Idle to <b>Starting</b>, which means it's waiting for external data (in this case, a live stream pushed to it from an encoder). In other words, the Starting state means that the publishing point is ready to receive live streams.</p>
+<img alt="PublishingPointStarted.png" src="images/iis8/PublishingPointStarted.png"/>
+<br/><br/><br/>
+<img alt="PublishingPointDetails.png" src="images/iis8/PublishingPointDetails.png"/>
+<br/><br/><br/>
+<p>Because we haven't configured an encoder to push live streams to the publishing point yet, the Publishing Point Summary panel shows that there are no incoming streams.</p>
+<p>When the 
+live source connects to the publishing point and begins pushing content to it, the Starting state 
+changes to <b>Started</b>, meaning that the publishing point is receiving the live streams.</p>
+<p>
+Note that the Summary panel for Live Smooth Streaming publishing points in IIS Media Services 4 displays summary information about the live Smooth Streams that are received from all live sources (such as encoders or other Live Smooth Streaming publishing points) by the selected publishing point. You can also view details about the tracks within all of the live streams, and stream origin and destination information, in the Publishing Point Details page.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="isml">isml file</div>
+<p>Here is the <b>LiveSmoothStream.isml</b> generated:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;smil xmlns="http://www.w3.org/2001/SMIL20/Language"&gt;
+  &lt;head&gt;
+    &lt;meta name="title" content="" /&gt;
+    &lt;meta name="module" content="liveSmoothStreaming" /&gt;
+    &lt;meta name="sourceType" content="Push" /&gt;
+    &lt;meta name="publishing" content="Fragments;Streams;Archives" /&gt;
+    &lt;meta name="estimatedTime" content="3600" /&gt;
+    &lt;meta name="lookaheadChunks" content="2" /&gt;
+    &lt;meta name="manifestWindowLength" content="0" /&gt;
+    &lt;meta name="startOnFirstRequest" content="True" /&gt;
+    &lt;meta name="archiveSegmentLength" content="0" /&gt;
+    &lt;meta name="formats" content="" /&gt;
+    &lt;meta name="filters" content="" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/smil&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pushingLiveSS">
+Pushing a Stream to the Live Smooth Streaming Publishing Point</div>
+<p>Please visit <a href="AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html#liveExpression" target="_blank">Live Broadcasting Smooth Streaming
+</a> to see how to create a Live Smooth Streaming broadcast in Microsoft Expression Encoder 4 and push it to the Live Smooth Streaming publishing point that we configured in the previous section.</p>
+<p>As soon as Expression Encoder push contents, the state will be changed to <b>Started</b> from <b>Starting</b>. So, leave it at <b>Starting</b> state for now.</p>
+<p>Let's move on to the Encoder.(<a href="AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html#liveExpression" target="_blank">Live Broadcasting Smooth Streaming
+</a>)</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="refs">References</div>
+<ol>
+<li><a href="http://www.iis.net/learn/media/smooth-streaming/microsoft-media-platform-content-map" target="_blank">Microsoft Media Platform Content Map</a>
+</li>
+<li><a href="Files/iis8/IIS_Smooth_Streaming_Technical_Overview.pdf" target="_blank">IIS_Smooth_Streaming_Technical_Overview.pdf</a>
+</li>
+<li><a href="Files/iis8/Smooth_Streaming_Deployment_Guide.pdf" target="_blank">Smooth_Streaming_Deployment_Guide.pdf</a>
+</li>
+<li><a href="Files/iis8/MS-SSTR.pdf" target="_blank">[MS-SSTR]:
+Smooth Streaming Protocol</a>
+</li>
+<li><a href="Files/iis8/SMEast2010-Microsoft.pdf" target="_blank">Creating End-to-End Smooth Streaming Video Solutions with Silverlight and IIS Media Services</a>
+</li>
+<li><a href="http://www.iis.net/learn/media" target="_blank">http://www.iis.net/learn/media</a>
+</li>
+<li><a href="http://blogs.iis.net/akucer/archive/2011/11/09/iis-media-services-4-1-released.aspx" target="_blank">IIS Media Services 4.1 released!</a>
+</li>
+<li><a href="http://www.hanselman.com/blog/InstallingAndSettingUpAndEncodingForIIS7SmoothStreamingAndSilverlight.aspx" target="_blank">Installing and Setting Up and Encoding for IIS 7 Smooth Streaming and Silverlight</a>
+</li>
+<li><a href="Files/iis8/RGB_Adaptive_HTTP_Streaming_Comparison_1211-01.pdf" target="_blank">Comparing Adaptive HTTP Streaming Technologies</a>
+</li>
+<li><a href="Files/iis8/adaptive-bitrate-technology.pdf" target="_blank">Adaptive Bitrate
+Technology - Cisco</a>
+</li>
+<li><a href="http://brandonpotter.wordpress.com/2010/01/31/demystifying-iis-smooth-streaming-live-smooth-streaming" target="_blank">Demystifying IIS Smooth Streaming / Live Smooth Streaming</a>
+</li>
+<li><a href="http://alexzambelli.com/blog/smooth-streaming-faq/" target="_blank">Smooth Streaming FAQ</a>
+</li>
+<li><a href="http://alexzambelli.com/blog/2012/04/10/extending-smooth-streaming-reach/" target="_blank">Extending Smooth Streaming Reach</a>
+</li>
+<li><a href="http://blogs.msdn.com/b/giuseppeguerrasio/archive/2010/10/27/iis-media-service-live-smooth-streaming-fault-tolerance-and-architecture.aspx" target="_blank">IIS Media Services: Live Smooth Streaming, Fault Tolerance and Architecture</a>
+</li>
+<li><a href="http://azlivestreaming.codeplex.com/documentation" target="_blank">Windows Azure Live Smooth Streaming
+</a></li>
+<li><a href="http://www.unified-streaming.com/support/documentation/content-encoding/encoders/" target="_blank">Encoders - unified-streaming
+</a></li>
+</ol>
+<br/><br/>
+<br/><br/>
+<p>Note: Output from Smooth Streaming is highly optimized to be hosted and delivered from a Microsoft IIS web server where it supports advanced features like fast forward, rewind, metadata/binary track etc. Smooth Streaming can also be hosted on any Apache web server with the correct configuration. There are a variety of third-party and open source binaries to speed up your Apache configuration for Smooth Streaming.- <a href="http://features.encoding.com/microsoft-smooth-streaming-mss/" target='_blank"'>Microsoft Smooth Streaming</a>.</p>
+<br/><br/>
+<p>For playing back, please visit <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">FFmpeg Smooth Streaming 
+</a> </p>
+<p>For Expression Encoder, please visit <a href="AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">Expression Encoder 
+</a> </p>
+<br/>
+</li>
+</ol>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>Video Streaming</h1>
+   <br><br>
+   <a href="AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH </a>    
+   <br><br>
+   <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">Digital Image Processing - JPEG Compression
+</a> 
+   <br><br>
+   <a href="ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">FFmpeg on Linux - Audio Video Transcoding Mux Demux
+</a> 
+   <br><br>
+   <a href="ffmpeg_on_Windows.html" target="_blank">FFmpeg on Windows
+</a> 
+   <br><br>
+   <a href="ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">FFmpeg Video Capture from Webcam 
+</a> 
+   <br><br>
+   <a href="ffmpeg_http_live_streaming_hls.html" target="_blank">FFmpeg Http Live Streaming - HLS
+</a> 
+   <br><br>
+   <a href="ffmpeg_options_list.html" target="_blank">FFmpeg Command Options </a> 
+   <br><br>
+   <a href="ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">FFmpeg Smooth Streaming 
+</a> 
+   <br><br>
+   <a href="rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">HTTP vs RTMP
+</a>
+   <br><br>
+   <a href="../WebTechnologies/mobile.html" target="_blank">Mobile - Streaming
+</a> 
+   <br><br>
+<a href="h265_hevc.html" target="_blank">MPEG-4 Successor H.265/HEVC
+</a> 
+   <br><br>
+<a href="mpeg_dash.html" target="_blank">MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)
+</a> 
+   <br><br>
+   <a href="p2pStreaming.html">P2P Streaming</a>
+   <br><br>
+   <a href="videostreaming_etc.html" target="_blank">Streaming - Mobile
+</a> 
+   <br><br>
+   <a href="Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">Screen Recording (mp4/ogg) and HTML5 Video</a> 
+   <br><br>
+   <a href="AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">Smooth Streaming on iis 8
+</a> 
+   <br><br>
+   <a href="Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">Smooth Streaming on Nginx/Apache
+</a> 
+   <br><br>
+  <a href="AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">Smooth Streaming - Expression Encoder
+</a> 
+   <br><br>
+   <a href="optimization_transrating.html" target="_blank">Streaming (Data Traffic) - Optimization
+</a> 
+   <br><br>
+   <a href="VideoStreamingSharingSites.html" target="_blank">Video Streaming Sites
+</a> 
+   <br><br>
+   <a href="VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">VLC - How to Capture Screen to a Video File using VLC</a>
+   <br><br>
+   <a href="VLC/How_to_Streaming_Live_Network_http.html" target="_blank">VLC - Live Streaming over http using VLC</a>
+   <br><br>
+   <a href="VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">VLC - Live Streaming over RTP using VLC</a>
+   <br><br>
+   <a href="VLC/File_Convert_Transcoding_VLC.html" target="_blank">VLC - Transcoding using VLC</a>
+   <br><br>
+   <a href="VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">VLC - Downloading a YouTube Video using VLC</a>
+   <br><br>
+   <a href="YouTube/Downloading_YouTube_Vimeo_Video_using_youtube-dl.html" target="_blank">Downloading YouTube, Vimeo etc Videos using youtube-dl</a>
+   <br><br>
+   <a href="YouTube/youtube-dl-embedding.html" target="_blank">Using youtube-dl embedded with Python</a>
+   <br><br>
+   <a href="YouTube/Dissecting-YouTube-URLs.html" target="_blank">Dissecting Youtube URL with Python</a>
+   <br><br>
+   
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 07:58:52 GMT -->
+</html>
+

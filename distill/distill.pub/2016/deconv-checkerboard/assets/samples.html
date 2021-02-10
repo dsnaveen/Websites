@@ -1,0 +1,240 @@
+<style>
+.pattern-examples {
+  width: 100%;
+}
+.pattern-examples > figure {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+}
+
+.pattern-examples > figure:after {
+  overflow: visible;
+  content: "";
+  background-image: url("assets/pointer.html");
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  right: -51px;
+}
+
+.pattern-examples .example {
+  width: 100%;
+  margin-right: 2.5%;
+}
+
+.pattern-examples .example:last-of-type {
+  margin-right: 0;
+}
+
+.pattern-examples .original {
+  position: relative;
+}
+
+.pattern-examples .original:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 150%;
+  position: absolute;
+  top: -20%;
+  z-index: 1;
+}
+
+.pattern-examples .example .reticle {
+  position: absolute;
+  pointer-events: none;
+}
+
+.pattern-examples .example .reticle:after {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: -50%;
+  top: -50%;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: block;
+  content: '';
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.pattern-examples img {
+  display: block;
+  width: 100%;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+.pattern-examples .closeup {
+  display: block;
+  width: 90%;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  position: relative;
+  left: 5%;
+  top: -5px;
+  border: 2px solid white;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pattern-examples figcaption {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+}
+
+.pattern-examples .closeup img {
+  position: absolute;
+  width: 800%;
+}
+
+.pattern-examples .closeup:after {
+  padding-top: 100%;
+  display: block;
+  content: '';
+}
+
+</style>
+
+<div class="pattern-examples">
+  <figure class="">
+    <div class="example">
+      <div class="original" data-focus="5,0.87,0.24">
+        <img src="assets/im_sample_dcgan.html">
+        <div class="reticle"></div>
+      </div>
+      <div class="closeup">
+        <img src="assets/im_sample_dcgan_contrast.html">
+      </div>
+      <figcaption>
+        <dt-cite key="radford2015unsupervised">Radford, et al., 2015</dt-cite>
+      </figcaption>
+    </div>
+    <div class="example">
+      <div class="original" data-focus="10,0.05,0.84">
+        <img src="assets/im_sample_salimans.html">
+        <div class="reticle"></div>
+      </div>
+      <div class="closeup">
+        <img src="assets/im_sample_salimans.html">
+      </div>
+      <figcaption>
+        <dt-cite key="salimans2016improved">Salimans et al., 2016</dt-cite>
+      </figcaption>
+    </div>
+    <div class="example">
+      <div class="original" data-focus="5,0.70,0.28">
+        <img src="assets/im_sample_donahue.html">
+        <div class="reticle"></div>
+      </div>
+      <div class="closeup">
+        <img src="assets/im_sample_donahue.html">
+      </div>
+      <figcaption>
+        <dt-cite key="donahue2016adversarial">Donahue, et al., 2016</dt-cite>
+      </figcaption>
+    </div>
+    <div class="example">
+      <div class="original" data-focus="5,0.87,0.53">
+        <img src="assets/im_sample_dumoulin.html">
+        <div class="reticle"></div>
+      </div>
+      <div class="closeup">
+        <img src="assets/im_sample_dumoulin.html">
+      </div>
+      <figcaption>
+        <dt-cite key="dumoulin2016adversarially">Dumoulin, et al., 2016</dt-cite>
+        <!--<b><i>Using our method.</i></b>-->
+      </figcaption>
+    </div>
+  </figure>
+</div>
+
+<script>(function() {
+
+var html = d3.select(".pattern-examples");
+var original = html.selectAll(".example .original");
+html
+    .on("mouseleave", () => {
+      console.log("out")
+      original.each(resetReticle);
+    });
+
+original
+    .datum(function() {
+      var focus = this.getAttribute("data-focus").split(",")
+      return {
+        zoom: focus[0],
+        x: focus[1],
+        y: focus[2]
+      };
+    })
+    .on("mouseleave", resetReticle)
+    .on("mousemove", updateReticle)
+    .each(resetReticle);
+
+function updateReticle(d) {
+
+  original.each(resetReticle);
+  var x = d3.event.offsetX / this.getBoundingClientRect().width;
+  var y = d3.event.offsetY / this.getBoundingClientRect().height;
+  setPosition(this, x, y, d.zoom, 100);
+}
+
+function resetReticle(d) {
+  setPosition(this, d.x, d.y, d.zoom, 300);
+}
+
+function setPosition(element, x, y, zoom, duration) {
+  var margin = 1 / zoom / 2;
+  x = Math.min(Math.max(margin, x), 1 - margin)
+  y = Math.min(Math.max(margin, y), 1 - margin)
+  var parent = d3.select(element.parentElement);
+  var reticle = parent.select(".reticle");
+  var closeup = parent.select(".closeup img");
+
+  console.log(x, y)
+
+  reticle
+      .style("width", 100 / zoom + "%")
+      .style("height", 100 / zoom + "%")
+      .transition()
+      .ease(d3.ease("cubic-out"))
+      .duration(duration)
+      .styleTween("left", function (d, i, a) {
+        var from = this.style.left,
+            to = x * 100 + "%";
+        return d3.interpolateString(from, to);
+      })
+      .styleTween("top", function (d, i, a) {
+        var from = this.style.top,
+            to = y * 100 + "%";
+        return d3.interpolateString(from, to);
+      })
+
+  closeup
+      .style("width", zoom * 100 + "%")
+      .style("height", zoom * 100 + "%")
+      .transition()
+      .ease(d3.ease("cubic-out"))
+      .duration(duration)
+      .styleTween("left", function (d, i, a) {
+        var from = this.style.left,
+            to = -x * 100 * zoom + 50 + "%";
+        return d3.interpolateString(from, to);
+      })
+      .styleTween("top", function (d, i, a) {
+        var from = this.style.top,
+            to = -y * 100 * zoom + 50 + "%";
+        return d3.interpolateString(from, to);
+      })
+}
+
+
+})();</script>

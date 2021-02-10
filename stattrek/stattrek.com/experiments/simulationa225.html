@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/experiments/simulation.aspx?tutorial=ap by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:18:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Simulation in Statistics
+</title>
+
+    <!-- Download jquery (version 1.11) from CDN. This can have performance
+         advantages, compared to reading jquery locally.
+    <Source: jquery.com/download/  -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+    <!-- Add fancyBox (version 2)
+         source: fancyapps.com/fancybox/#instructions -->
+    <link rel="stylesheet" href="../jq-fancybox2/source/jquery.fancybox8cbb.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="../jq-fancybox2/source/jquery.fancybox.pack8cbb.js?v=2.1.5"></script>
+    
+    <!-- Add mousewheel plugin (this is optional for fancybox version 2)
+         source: fancyapps.com/fancybox/#instructions  -->
+    <script type="text/javascript" src="../jq-fancybox/lib/jquery.mousewheel-3.0.6.pack.html"></script>
+     
+    <!-- Optionally add button helpers for fancybox version 2 
+         source: fancyapps.com/fancybox/#instructions -->
+    <link rel="stylesheet" href="../jq-fancybox2/source/helpers/jquery.fancybox-buttons3447.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="../jq-fancybox2/source/helpers/jquery.fancybox-buttons3447.js?v=1.0.5"></script>
+    
+    <!-- Optionally add thumbnail helpers for fancybox version 2
+         source: fancyapps.com/fancybox/#instructions -->
+    <link rel="stylesheet" href="../jq-fancybox2/source/helpers/jquery.fancybox-thumbsf2ad.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="../jq-fancybox2/source/helpers/jquery.fancybox-thumbsf2ad.js?v=1.0.7"></script>
+     
+    <!-- Optionally add media helper for fancybox version 2
+         source: fancyapps.com/fancybox/#instructions -->
+    <script type="text/javascript" src="../jq-fancybox2/source/helpers/jquery.fancybox-mediac924.js?v=1.0.6"></script>
+
+    <!-- Declare local jquery functions that are defined in video.js  -->
+    <script src="../jq/video.js" type="text/javascript"></script> 
+    
+    <!-- Override fancybox css to change style  -->
+    <style type="text/css">
+
+        /* Set color of title text */
+        .fancybox-title-float-wrap .child {
+            color: #f00;  /* red */
+            color: #fff;  /* white */
+        }
+        
+    </style>
+
+    <!-- Add script to control rollover. These functions are
+         defined in video.js  -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jqVideo_displayVideo_22();
+            jqVideo_buttonRollover();
+        });
+
+
+    </script>
+
+    
+
+    <!-- Add javascript and jquery
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>  -->
+
+    <!-- Screen needs at least 980 pixels of width 
+    Source: http://webdesignerwall.com/tutorials/viewport-meta-tag-for-non-responsive-design -->
+    <meta name="viewport" content="width=980" />
+    
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><meta name="description" content="This lesson explains what simulation is. Shows how to conduct valid statistical simulations. Illustrates key points with example. Includes video lesson." /><meta name="keywords" content="Simulation, simulations, statistical simulation, simulation in statistics, how to conduct simulations" /><link href="simulationa225.html?tutorial=ap" rel="alternate" media="only screen and (max-width: 640px)" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/experiments/simulation.aspx?tutorial=ap" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../51Degrees.core.js" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CB22244D" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="qC7VLJB0QrV0FwgWbgV/qMvzB/dS8XRaRGqUhz8Wbx3kYEth3cePUlkkYgXVGropEijUTEkVKgn1SRRirlvOvuXuPdCJhP628/wY87L32QxhW2i1lUm2kGxUlXzEPNk1n7UNKMvrdcfvUNKPCBxqjrjIRIoywtukY+dnIt7b6rrVFuxOA/QG1ZBecHWKFUn3UzUQUTYuhDkWiH80k9r2UA==" />
+</div>
+
+    <div style="position:relative;">
+
+            
+            <!-- 
+            <div id="divBanner" role="banner">
+                
+            </div> 
+            -->
+            
+
+<link href="../css/theme1/banner.css" rel="stylesheet" type="text/css" />
+
+<a name="TopPage"></a>
+<header>
+<div class="banner_wrapper" role="banner">
+
+    <div class="banner_branding">
+
+        <!-- Google search box 
+             Source: http://dotnetslackers.com/articles/aspnet/Implementing-Search-in-ASP-NET-with-Google-Custom-Search.aspx  -->
+        <div class="header_google">
+
+            <input name="ctl00$cpBanner$banner1$inpSearch" type="text" id="inpSearch" class="GoogleSearchText" onfocus="ClearBackgroundOnFocus();" />
+
+            <input type="submit" name="ctl00$cpBanner$banner1$btnSearch" value="Search" id="btnSearch" class="GoogleSearchButton" />
+        </div>        
+
+        <div class="banner_company">
+            <a href="../index.html" class="banner_stattrek">Stat Trek</a> 
+            <span class="banner_tagline">Teach yourself statistics</span>           
+            
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        window.onload = function () { ClearBackgroundOnLoad(); }
+
+        function ClearBackgroundOnFocus() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox gains focus
+            if (Txt1) { Txt1.className = "GoogleSearchText2"; }
+            if (Txt2) { Txt2.className = "GoogleSearchText2"; }
+        }
+        
+        function ClearBackgroundOnLoad() {
+
+            //Get textbox
+            var Txt1 = document.getElementById("inpSearch");
+            var Txt2 = document.getElementById("ctl00_cpHeader_banner1_inpSearch");
+
+            //Change class when textbox loads and there is text in the box
+            if (Txt1) {
+                if (Txt1.value.length > 0) { Txt1.className = "GoogleSearchText2"; }
+            }
+            if (Txt2) {
+                if (Txt2.value.length > 0) { Txt2.className = "GoogleSearchText2"; }
+            }
+        }
+
+    </script>
+</header>       
+                    
+
+        
+            
+
+<link href="../css/theme1/nav.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/nav.js" type="text/javascript"></script>
+
+<nav class="nav_wrapper">
+
+    <a class="hidden" href="#MainContent">Skip to main content</a>
+
+    <div class="nav_top">
+            
+        <ul class="nav_topmenu">
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(1);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(1);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../index.html">Home</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(2);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../tutorials/free-online-courses.html">Tutorials</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(3);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../ap-statistics/test-preparation.html">AP Statistics</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(4);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../online-calculator/binomial.html">Stat Tables</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(5);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/random-number-generator.html">Stat Tools</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(6);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../calculator/graphing-calculator.html">Calculators</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(7);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../books/book-reviews.html">Books</a></li>
+            <li class="nav_topmenuitem" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);"><a onfocus="nav_showSubNavigation(8);" onblur="nav_showSubNavigation(nav_ActiveTabNumber);" class="nav_top_inactive" href="../statistics/dictionary.html">Help</a></li>
+        </ul>
+
+    </div>
+
+    <div class="nav_bottom" id="divSubNav1">
+            
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../index.html">&nbsp</a></li>
+        </ul>
+        
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav2" onmouseover="nav_showSubNavigation(2);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a id="aTutorialOverview" href="../tutorials/free-online-courses.html">Overview</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/statistics-tutorial.html">Statistics and probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/matrix-algebra-tutorial.html">Matrix algebra</a></li>            
+            
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav3" onmouseover="nav_showSubNavigation(3);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/test-preparation.html">Test preparation</a></li>
+            <li class="nav_bottommenuitem"><a href="../tutorials/ap-statistics-tutorial.html">AP tutorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">Practice test</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/formulas.html">AP formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/faq.html">FAQ</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/study-guide.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculators</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav4" onmouseover="nav_showSubNavigation(4);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../online-calculator/binomial.html">Binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/chi-square.html">Chi-square</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/f-distribution.html" title="f Distribution">f Dist</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/hypergeometric.html">Hypergeometric</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/multinomial.html">Multinomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/negative-binomial.html">Negative binomial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/normal.html">Normal</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/poisson.html">Poisson</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/t-distribution.html" title="t Distribution">t Dist</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav5" onmouseover="nav_showSubNavigation(5);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/random-number-generator.html" title="Random number generator">Random numbers</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/probability-calculator.html" title="Probability calculator">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/bayes-rule-calculator.html" title="Bayes rule calculator">Bayes rule</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/combinations-permutations.html" title="Combination and permutation calculator">Combinations/permutations</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/factorial.html" title="Factorial calculator">Factorial</a></li>
+            <li class="nav_bottommenuitem"><a href="../online-calculator/event-counter.html">Event counter</a></li>
+            <li class="nav_bottommenuitem"><a href="../sample-planning-wizard/wizard.html" title="Sample Planning Wizard">Wizard</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav6" onmouseover="nav_showSubNavigation(6);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../calculator/graphing-calculator.html">Graphing</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/scientific-calculator.html">Scientific</a></li>
+            <li class="nav_bottommenuitem"><a href="../calculator/financial-calculator.html">Financial</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Calculator books</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/calculator-comparison.html">AP calculator review</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav7" onmouseover="nav_showSubNavigation(7);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../books/statistics.html">Statistics</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/ap-statistics.html">AP study guides</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/probability.html">Probability</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/survey-sampling.html">Survey sampling</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/excel.html">Excel</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/graphing-calculator.html">Graphing calculators</a></li>
+            <li class="nav_bottommenuitem"><a href="../books/book-reviews.html">Book reviews</a></li>
+        </ul>
+
+    </div>
+    
+    <div class="nav_bottom" id="divSubNav8" onmouseover="nav_showSubNavigation(8);" onmouseout="nav_showSubNavigation(nav_ActiveTabNumber);">
+
+        <ul class="nav_tutorials">
+            <li class="nav_bottommenuitem"><a href="../statistics/dictionary.html">Glossary</a></li>
+            <li class="nav_bottommenuitem"><a href="../ap-statistics/practice-test.html">AP practice exam</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/problems.html">Problems and solutions</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/formulas.html">Formulas</a></li>
+            <li class="nav_bottommenuitem"><a href="../statistics/notation.html">Notation</a></li>            
+            
+        </ul>
+
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    nav_initializeNavigation();
+</script>
+        
+
+        
+            <aside class="ad1Wrapper">
+                <div class="master1_AdSeparator">&nbsp;</div>
+                <div id="master1_BelowNavWrapper">
+                    <div id="master1_BelowNavContent">
+                    
+                        <div id="master1_BannerAd2">
+                            <div id="AddThisButtons" class="banner-right">
+
+    <!-- .............................................................................................
+         This section uses programming provided by AddThis.com to display "share" buttons, such as
+         Facebook, Pinterest, Twitter, Google, and LinkedIn. 
+         When possible, use this option in preference to the standard buttons
+    .............................................................................................. -->
+
+    <!-- Title -->
+    <p id="p2" class="master1_Message" style="text-align:center; font-size:14pt; color:#fff; margin-top:5px;">Share with Friends</p>
+
+    <!-- Add the following code, provided by the www,addthis.com/dashboard, to the body of the website. -->
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-544ab4182462c94f" async="async"></script>
+
+    <!-- Paste this code where you want the addthis widgets to show up -->
+    <div class="addthis_sharing_toolbox" style="margin-top:-5px; text-align:center;"></div>
+
+</div>
+
+                        </div>
+
+                        <div id="master1_BannerAd1">
+                            <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* ST728x90Leaderboard */
+            google_ad_slot = "8614936213";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+                        </div>
+                    </div>               
+                </div> 
+            </aside>            
+        
+
+        
+    
+    <!-- Standard three-column web page: Float positioning --> 
+    <div class="layout_wrapper"> 
+    
+        <div class="layout_main">
+
+            <div class="layout_left_2_columns">
+     
+                <div class="divLayout_Main" role="main">
+
+                    <!-- google_ad_section_start --> 
+
+                    <a name="MainContent"></a>
+                    <h1 id="h1Title">Simulation of Random Events</h1>              
+                        
+                    <div class="divVideoButtonWrapper">  
+                        <!-- View video -->
+                        <a id="aViewVideo" class="fancybox fancybox.iframe" 
+                           href="http://stattrek.com/videos/ap/lessons/random-variables/simulation/video.html"
+                           title="Simulation of random events: Video lesson">
+                                <img id="imgViewVideo" src="../images/videoButtonBlue.gif"
+                                alt="Simulations: Video lesson" />
+                        </a>
+                    </div>
+                    
+                    <p><strong>Simulation</strong> is a way to model random events, such that
+                        simulated outcomes closely match real-world outcomes.  By 
+                        observing simulated outcomes, researchers gain insight on 
+                        the real world.</p>		
+
+                    <h2>Why use simulation?</h2>
+                    <p>Some situations do not lend themselves to 
+                        precise mathematical treatment.  Others may be difficult,
+                        time-consuming, or expensive to analyze.  In these situations, 
+                        simulation may approximate real-world results; yet, require less
+                        time, effort, and/or money than other approaches.</p>
+
+                    <h2>How to Conduct a Simulation</h2>
+                    <p>A simulation is useful only if it closely mirrors real-world 
+                        outcomes.  The steps required to produce a useful simulation
+                        are presented below.</p>
+                    <ol>
+                        <li class="extraLineSpace">Describe the possible outcomes.</li>
+                        <li class="extraLineSpace">Link each outcome to one or more random numbers.</li>
+                        <li class="extraLineSpace">Choose a source of random numbers.</li>
+                        <li class="extraLineSpace">Choose a random number.</li>
+                        <li class="extraLineSpace">Based on the random number, note the "simulated" outcome.</li>
+                        <li class="extraLineSpace">Repeat steps 4 and 5 multiple times; preferably, until the 
+                            outcomes show a stable pattern.</li>
+                        <li>Analyze the simulated outcomes and report results.</li>
+                    </ol> 		   
+                    <p><strong>Note:</strong> When it comes to choosing a source of random numbers
+                        (Step 3 above), you have many options.  Flipping a coin and 
+                        rolling dice are low-tech but effective.  Tables of random numbers 
+                        (often found in the 
+                        appendices of statistics texts) are another option.  And good
+                        random number generators can be found on the internet.</p>
+                    <div class="CalcAd">
+	                    <h2 class="CalcAd">
+		                    Random Number Generator</h2>
+	                    <p>In practice, flipping a coin or rolling dice to obtain random 
+	                        numbers can be cumbersome, particularly 
+		                    with large sample sizes. As an alternative, use Stat Trek's Random Number 
+		                    Generator. With the Random Number Generator, you can select up to 1000 random 
+		                    numbers quickly and easily. This tool is provided at no cost - free!! To access 
+		                    the Random Number Generator, simply click on the button below. 
+		                    It can also be found under the Stat Tools 
+		                    tab, which appears in the header of every Stat Trek web page.
+	                    </p>
+	                    <table  class="CalcAd">
+		                    <tr>
+			                    <td class="CalcAd"><a class="CalcAd" href="../statistics/random-number-generator.html"> Random 
+					                    Number Generator</a>
+			                    </td>
+		                    </tr>
+	                    </table>
+                    </div>
+
+                    <!-- Review problem(s) -->
+                    <h2>Simulation Example</h2>
+                    <p>In this section, we work through an example to show how to 
+                        apply simulation methods to probability problems.</p>
+    
+                    <p><strong>Problem Description</strong></p>
+
+                    <p>On average, suppose a baseball player hits a home run once in every 10 
+                        times at bat, and suppose he gets exactly two "at bats" in every game.  
+                        Using simulation, estimate the likelihood that the
+                        player will hit 2 home runs in a single game.</p>
+    
+                    <p><strong>Solution</strong></p>
+                    <p>Earlier we described seven steps required to produce a useful
+                        simulation.  Let's apply those steps to this problem.</p>
+                    <ol>
+                        <li class="extraLineSpace">Describe the possible outcomes.  For this problem, there are
+                            two outcomes - the player hits a home run or he doesn't.</li>
+                        <li class="extraLineSpace">Link each outcome to one or more random numbers.  Since the
+                            player hits a home run in 10% of his at bats, 10% of the 
+                            random numbers should represent a home run.  For this problem, 
+                            let's say that the digit "2" represents a home run and
+                            any other digit represents a different outcome.</li>
+                        <li class="extraLineSpace">Choose a source of random numbers.  For this problem, 
+                            we used Stat Trek's 
+                            <a href="../statistics/random-number-generator.html">Random Number Generator</a>
+                            to produce a list of 500 two-digit numbers (see below).</li>
+                        <li class="extraLineSpace">Choose a random number.  The list below shows the random
+                            numbers that we generated.</li>
+                        <li class="extraLineSpace">Based on the random number, note the "simulated" outcome.
+                            In this example, each 2-digit number represents two "at-bats" in a single game.
+                            Since the digit "2" represents a home run, the number "22"
+                            represents two home runs in a single game.  Any other 2-digit number 
+                            represents a failure to hit consecutive home runs in the game.</li>
+                        <li class="extraLineSpace">Repeat steps 4 and 5 multiple times; preferably, until the 
+                            outcomes show a stable pattern.  In this example, the list 
+                            of random numbers consists of 500 2-digit pairs; i.e., 500
+                            repetitions of steps 4 and 5.</li>
+                        <li class="extraLineSpace">Analyze the simulated outcomes and report results.  In the 
+                            list, we found 6 occurrences of "22", which are highlighted in red in
+                            the table.  In this simulation, each occurrence of "22" 
+                            represents a game in which the player hit consecutive home runs.</li>
+                    </ol> 		   
+
+                    <table style=" width: 98%; BORDER-RIGHT: gray thin solid; BORDER-TOP: gray thin solid; 
+                        BORDER-LEFT: gray thin solid; BORDER-BOTTOM: gray thin solid; margin:5px auto;">
+	                    <tr bgColor="#3333ff">
+		                    <td style="padding:10px; color:#ffffff; text-align:center; font-weight:bold;">
+		                    Random Numbers</td>
+	                    </tr>
+	                    <tr>
+		                    <td align="left"><span id="lblRandomNumbers" style="padding:5px; display:inline-block;font-family:Courier, 'Courier New', monospace;font-size:9pt;width:100%;">42    99    02    65    04    14    30    09    70    88    89    85    95    40    53    67    25    50    48    79    86    92    76    24    53    39    08    73    78    17    72    81    08    01    68    94    43    43    95    12    36    90    28    88    34    69    18    69    91    79    14    82    26    94    15    26    19    41    74    02    17    20    38    84    74    30    34    96    09    46    61    41    02    93    94    90    00    71    84    98    30    82    80    11    92    97    81    29    85    44    40    05    83    <span style="color:#ff0000; font-weight-bold;">22</span>    04    86    13    33    00    99    74    75    27    43    68    <span style="color:#ff0000; font-weight-bold;">22</span>    59    20    66    00    24    01    96    84    19    14    57    26    47    58    51    73    06    08    49    52    70    15    79    35    65    28    40    77    93    73    33    24    25    <span style="color:#ff0000; font-weight-bold;">22</span>    32    03    89    03    62    13    85    16    23    28    12    61    16    75    45    37    15    54    36    18    45    64    31    31    06    80    32    75    99    27    91    25    98    05    55    32    27    16    51    45    89    31    78    90    82    05    11    39    80    83    01    20    10    67    97    33    72    09    98    78    39    56    57    54    63    35    21    35    93    18    17    48    55    60    44    92    21    07    77    42    46    86    41    49    76    96    36    62    38    11    64    07    04    58    23    56    29    37    87    37    59    47    83    77    21    63    10    95    87    10    42    71    12    88    06    52    42    99    02    65    04    14    30    09    70    88    89    85    95    40    53    67    25    50    48    79    86    92    76    24    53    39    08    73    78    17    72    81    08    01    68    94    43    43    95    12    36    90    28    88    34    69    18    69    91    79    14    82    26    94    15    26    19    41    74    02    17    20    38    84    74    30    34    96    09    46    61    41    02    93    94    90    00    71    84    98    30    82    80    11    92    97    81    29    85    44    40    05    83    <span style="color:#ff0000; font-weight-bold;">22</span>    04    86    13    33    00    99    74    75    27    43    68    <span style="color:#ff0000; font-weight-bold;">22</span>    59    20    66    00    24    01    96    84    19    14    57    26    47    58    51    73    06    08    49    52    70    15    79    35    65    28    40    77    93    73    33    24    25    <span style="color:#ff0000; font-weight-bold;">22</span>    32    03    89    03    62    13    85    16    23    28    12    61    16    75    45    37    15    54    36    18    45    64    31    31    06    80    32    75    99    27    91    25    98    05    55    32    27    16    51    45    89    31    78    90    82    05    11    39    80    83    01    20    10    67    97    33    72    09    98    78    39    56    57    54    63    35    21    35    93    18    17    48    55    60    44    92    21    07    77    42    46    86    41    49    76    96    36    62    38    11    64    07    04    58    23    56    29    37    87    37    59    47    83    77    </span></td>
+	                    </tr>
+                    </table>
+
+                    <p>The simulation predicts that this particular player will hit consecutive home
+                        runs 6 times in 500 games. Thus, the simulation suggests that 
+                        there is a 1.2% chance that he will hit two home runs in a single game.  
+                        The actual probability, based on the 
+                        <a href="../statistics/dictionary18f3.html?Target=Multiplication%20rule">
+                        multiplication rule</a>, states that there is a 1.0% chance that this player 
+                        will hit consecutive home runs in a game.  While the simulation is not exact, 
+                        it is very close.  And, if we had generated a list with more 
+                        random numbers, it likely would have been even closer.</p>
+    
+                    <br />
+                    <div id="divTest" align="center"></div>
+                    <br />
+
+                    <div align="center">
+                        <input type="submit" name="ctl00$cpMain$btnPrevious" value="&lt; Previous lesson" id="btnPrevious" style="width:150px;" />&nbsp;&nbsp;&nbsp;&nbsp;
+	                    <input type="submit" name="ctl00$cpMain$btnNext" value="Next lesson >" id="btnNext" style="width:150px;" />
+                    </div>
+                    <!-- google_ad_section_end -->
+                </div>
+        
+                <div id="layout_LeftSidebar" class="divLayout_LeftSide160" role="navigation">
+                    
+
+<link href="../css/theme1/stat-toc.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/utilities.js" type="text/javascript"></script>
+<script src="../js/toc-stat.js" type="text/javascript"></script> 
+
+<div id="divAP">
+<nav>
+<div class="st_Title">
+    <a class="st_Title" title="Introduction to AP Statistics Tutorial" href="../tutorials/ap-statistics-tutorial.html">
+    AP Statistics Tutorial
+    </a>
+</div>
+
+<div id="divAPMenuItems" class="st_contents">
+    <div class="st_heading">Exploring Data</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">The basics</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variablesb15b.html?Tutorial=AP">Variables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/populations-and-samplesb15b.html?Tutorial=AP">Population vs sample</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/central-tendencyb15b.html?Tutorial=AP">Central tendency</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/variabilityb15b.html?Tutorial=AP">Variability</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../descriptive-statistics/measures-of-positionb15b.html?Tutorial=AP">Position</a></p>
+        </div>
+     </div>
+        
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span>
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Charts and graphs</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/data-patternsb15b.html?Tutorial=AP">Patterns in data</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/dot-plotb15b.html?Tutorial=AP">Dotplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/histogramb15b.html?Tutorial=AP">Histograms</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/stemplotb15b.html?Tutorial=AP">Stemplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/boxplotb15b.html?Tutorial=AP">Boxplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/cumulative-plotb15b.html?Tutorial=AP">Cumulative plots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/scatterplotb15b.html?Tutorial=AP">Scatterplots</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/charts/compare-data-setsb15b.html?Tutorial=AP">Comparing data sets</a></p>
+         </div>   
+     </div>
+     
+     <div>
+        <div class="st_topmenu">
+            <span id="spTop2" class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Regression</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/measurement-scalesb15b.html?Tutorial=AP">Measurement scales</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/correlationb15b.html?Tutorial=AP">Linear correlation</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/linear-regressionb15b.html?Tutorial=AP">Linear regression</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/regression-exampleb15b.html?Tutorial=AP">Regression example</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/residual-analysisb15b.html?Tutorial=AP">Residual analysis</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/linear-transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/influential-pointsb15b.html?Tutorial=AP">Influential points</a></p>
+        </div>
+     </div> 
+      
+     <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Categorical data</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/one-way-tableb15b.html?Tutorial=AP">One-way tables</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/two-way-tableb15b.html?Tutorial=AP">Two-way tables</a></p>
+        </div>
+     </div>
+    
+    <div class="st_heading">Planning a Study</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Surveys</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span id="spSub21a" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../statistics/data-collection-methodsb15b.html?Tutorial=AP">Data collection</a></p>
+            <p class="st_submenu"><span id="spSub22" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/sampling-methodsb15b.html?Tutorial=AP">Sampling methods</a></p>
+            <p class="st_submenu"><span id="spSub23" class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../survey-research/survey-biasb15b.html?Tutorial=AP">Bias in surveys</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" href="#">Experiments</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="what-is-an-experimentb15b.html?Tutorial=AP">Intro to experiments</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="experimental-designb15b.html?Tutorial=AP">Experimental design</a></p>
+        </div>
+    </div>
+    
+    <div class="st_heading">Anticipating Patterns</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Probability</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/what-is-probabilityb15b.html?Tutorial=AP">Probability intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-rulesb15b.html?Tutorial=AP">Rules of probability</a></p>
+        </div>    
+    </div>
+        
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Random variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/random-variableb15b.html?Tutorial=AP">Introduction</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability/probability-distributionb15b.html?Tutorial=AP">Distributions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/mean-varianceb15b.html?Tutorial=AP">Mean and variance</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/combinationb15b.html?Tutorial=AP">Combinations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../random-variable/transformationb15b.html?Tutorial=AP">Transformations</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="simulationb15b.html?Tutorial=AP">Simulation of events</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Discrete variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/binomialb15b.html?Tutorial=AP">Binomial distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/negative-binomialb15b.html?Tutorial=AP">Negative binomial</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Continuous variables</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/normalb15b.html?Tutorial=AP">Normal distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/standard-normalb15b.html?Tutorial=AP">Standard normal</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/t-distributionb15b.html?Tutorial=AP">t Distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../probability-distributions/chi-squareb15b.html?Tutorial=AP">Chi-square</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Sampling distributions</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/sampling-distributionb15b.html?Tutorial=AP">Sampling distribution</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-proportionb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../sampling/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Statistical Inference</div>
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/estimation-in-statisticsb15b.html?Tutorial=AP">Estimation problems</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/standard-errorb15b.html?Tutorial=AP">Standard error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/margin-of-errorb15b.html?Tutorial=AP">Margin of error</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-intervalb15b.html?Tutorial=AP">Confidence intervals</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Estimation problems</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/confidence-interval-meanb15b.html?Tutorial=AP">Means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../estimation/mean-difference-pairsb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/slope-confidence-intervalb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis testing</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/hypothesis-testingb15b.html?Tutorial=AP">Hypothesis test intro</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/power-of-testb15b.html?Tutorial=AP">Power of test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/how-to-test-hypothesisb15b.html?Tutorial=AP">How to test</a></p>
+        </div>    
+    </div>
+    
+    <div>
+        <div class="st_topmenu">
+            <span class="st_toparrow">&#9656;</span> 
+            <a class="st_topmenu" onclick="st_toggleSubmenuVisibility(this); return false;" 
+            href="#">Hypothesis tests</a>
+        </div>
+        <div class="st_submenu">
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/proportionb15b.html?Tutorial=AP">Proportions</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-proportionsb15b.html?Tutorial=AP">Diff between props</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/meanb15b.html?Tutorial=AP">Mean</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/difference-in-meansb15b.html?Tutorial=AP">Diff between means</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../hypothesis-test/paired-meansb15b.html?Tutorial=AP">Diff between pairs</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/goodness-of-fitb15b.html?Tutorial=AP">Goodness of fit test</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/homogeneityb15b.html?Tutorial=AP">Homogeneity</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../chi-square-test/independenceb15b.html?Tutorial=AP">Independence</a></p>
+            <p class="st_submenu"><span class="st_subarrow">&#9662;</span> <a class="st_submenu" href="../regression/slope-testb15b.html?Tutorial=AP">Regression slope</a></p>
+        </div>    
+    </div>
+    
+    <div class="st_heading">Appendices</div>    
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../ap-statistics/practice-testb15b.html?Tutorial=AP">Practice Exam</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix"  
+        href="../statistics/notationb15b.html?Tutorial=AP">Notation</a>
+    </div>
+    <div class="st_topmenu">
+        <span class="st_topsquare">&#9726;</span> 
+        <a class="st_appendix" 
+        href="../ap-statistics/formulasb15b.html?Tutorial=AP">AP Statistics Formulas</a>
+    </div>    
+
+</div>  <!-- End of AP menu items,id ="divAPMenuItems" -->
+</nav>
+</div>  <!-- End AP Stat tutorial, id="divAP" -->
+
+
+  <!-- End Statistics tutorial, id="divStat" -->
+
+<script type="text/javascript">
+    st_init();
+</script>
+
+<br />
+<div id="divAPFootnote" style="BACKGROUND-COLOR: #eeeeee; border:solid 1px #3333ff; padding: 10px; width:140px;">
+    <table><tr>
+		<td style="vertical-align:top;">*&nbsp;&nbsp;</td>
+		<td style="font-size:9pt;">AP and Advanced Placement Program are registered 
+		trademarks of the College Board, which was not involved in the 
+		production of, and does not endorse this website.</td>
+		</tr></table>
+</div>    <!-- End AP disclaimer -->
+                    <br />
+                </div>
+            
+            </div>
+        
+            <div id="layout_RightSidebar" class="divLayout_RightSide160" role="complementary"><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /><aside><div class='verticalProductAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000YB7VC?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000YB7VC'>HP 39G+ Graphing Calculator</a><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000YB7VC?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000YB7VC'><img src='https://images-na.ssl-images-amazon.com/images/I/412W7EVVMYL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$49.99</span><br />Buy New: <span style='color:#990000;'>$99.99</span></font></div><br /><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/B0000YB7VC?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0000YB7VC'>Approved for AP Statistics and Calculus</a><br /></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0470392223?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0470392223'>Statistics</a><br /><span class='verticalAdAuthor'>Robert S. Witte, John S. Witte</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/0470392223?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0470392223'><img src='https://images-na.ssl-images-amazon.com/images/I/51NZ5k4u0IL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>Buy Used: <span style='color:#990000;'>$16.87</span><br />Buy New: <span style='color:#990000;'>$35.00</span></font></div></div><br /></aside><aside><div class='verticalAd'><a class='verticalAdTitle' target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/9812703713?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9812703713'>First Look at Rigorous Probability Theory</a><br /><span class='verticalAdAuthor'>Jeffrey S. Rosenthal</span><br /><div class='verticalAdImage'><a target='_blank' rel='nofollow' href='http://www.amazon.com/gp/product/9812703713?ie=UTF8&amp;tag=stattrek-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=9812703713'><img src='https://images-na.ssl-images-amazon.com/images/I/41JmqgguPOL._SL75_.jpg' border='none' /></a></div><div class='verticalAdPrice'>List Price: <span style='color:#990000; text-decoration: line-through;'>$33.00</span><br />Buy Used: <span style='color:#990000;'>$21.56</span><br />Buy New: <span style='color:#990000;'>$29.70</span></font></div></div><br /></aside><script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STSkyscraper160x600 */
+            google_ad_slot = "9919780922";
+            google_ad_width = 160;
+            google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script><br /><br /></div>
+
+        </div> 
+
+    </div> 
+
+    <div class="divClearFloats">&nbsp;</div>
+        
+
+
+        <!-- Google matched content.
+             Source: https://support.google.com/adsense/answer/6111393 
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!-- matched-content-728
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5637116312293301"
+             data-ad-slot="4518765140"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>  -->
+
+        <!-- Data Camp ad -->
+        <div style="width:733px; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+    
+        <!-- Banner ad: Banner below content (and above footer) -->    
+        
+            <div id="divAdAboveFooter" class="divAdAboveFooter">
+                <script type="text/javascript"><!--
+            google_ad_client = "pub-5637116312293301";
+            /* STLinks728x15 */
+            google_ad_slot = "2658468455";
+            google_ad_width = 728;
+            google_ad_height = 15;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>    
+        
+        
+         
+            <div id="divFooter" role="contentinfo">
+                 
+
+<link href="../css/theme1/footer.css" rel="stylesheet" type="text/css" />
+<link href="../css/theme1/misc.css" rel="stylesheet" type="text/css" />
+
+<!--  Footer navigation  -->
+
+<footer id="ftr">
+<div class="divFooterSiteInfo">
+    
+    <div class="divFooterLinks">
+
+        <ul class="ulFooterList" role="navigation">
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/about.html">About Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/contact.html">Contact Us</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/privacy.html">Privacy</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/terms.html">Terms of Use</a></li>   <!--
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/site-map.aspx">Site Map</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="/site/tell-a-friend.aspx">Tell a Friend</a></li>  -->
+            <li class="liFooterItem"><a class="aFooterLink" href="../statistics/resources.html">Resources</a></li>
+            <li class="liFooterItem"><a class="aFooterLink" href="../site/advertising.html">Advertising</a></li>
+        </ul>
+
+    </div> 
+</div>
+
+<!--  Copyright   -->
+<div id="divFooterCopyright">
+    
+    <p>The contents of this webpage are copyright &copy; 2017 StatTrek.com. 
+    All Rights Reserved.</p>
+    
+    <p id="pViewMobileVersion" class="ViewMobileVersion">
+        <a id="aViewMobileVersion" class="ViewMobileVersionLink" href="javascript:__doPostBack(&#39;ctl00$cpFooter$footer1$aViewMobileVersion&#39;,&#39;&#39;)">View Mobile Version</a>
+    </p>
+
+</div>
+
+</footer>
+
+
+
+     
+            </div>
+        
+
+        
+        
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+        
+
+        
+        
+
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/experiments/simulation.aspx?tutorial=ap by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:18:57 GMT -->
+</html>

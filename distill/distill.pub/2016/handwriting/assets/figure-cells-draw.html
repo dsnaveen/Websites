@@ -1,0 +1,168 @@
+<link rel="import" href="cells-tooltip.html">
+<link rel="import" href="cells-canvas.html">
+<link rel="import" href="cells-color-key.html">
+<link rel="import" href="cells-grid.html">
+<link rel="import" href="cells-overlay.html">
+<link rel="import" href="cells-picker.html">
+<link rel="import" href="cells-draw.html">
+<link rel="import" href="cells-target.html">
+
+<style>
+figure-cells-draw {
+  position: relative;
+  display: block;
+  margin-bottom: 60px;
+}
+figure-cells-draw .cells {
+  position: relative;
+}
+figure-cells-draw cells-color-key {
+  display: none;
+  position: absolute;
+  right: 0;
+}
+@media (min-width: 800px) {
+  figure-cells-draw cells-color-key {
+    display: block;
+  }
+}
+figure-cells-draw cells-overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+}
+figure-cells-draw cells-grid {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+@media (min-width: 1024px) {
+  figure-cells-draw cells-grid {
+    display: block;
+  }
+}
+</style>
+
+<dom-module id="figure-cells-draw">
+  <template>
+    <cells-draw></cells-draw>
+    <div class="cells">
+      <cells-canvas></cells-canvas>
+      <cells-overlay></cells-overlay>
+      <cells-grid></cells-grid>
+    </div>
+    <!--
+    <cells-detail></cells-detail>
+    -->
+  </template>
+</dom-module>
+
+
+
+<script>
+Polymer({
+  is: "figure-cells-draw",
+  properties: {
+    mode: String
+  },
+  clear: function() {
+    this.cellsDraw.reset();
+    var canvas = d3.select(this.cellsCanvas).select("canvas").node()
+    var ctx = canvas.getContext('2d')
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    this.updateByCell(d3.range(500).map(function(d) { return [] }))
+    this.update(0)
+  },
+  ready: function() {
+    var that = this;
+    var root = d3.select(that);
+    this.mode = this.getAttribute("mode");
+
+    d3.queue()
+      .defer(d3.json, 'assets/metadata.json')
+      .defer(d3.json, 'assets/validation/data/writesomething.json?q=2')
+    .await(function(error, meta, writesomething) {
+    //d3.json("assets/metadata.json", function(error, meta) {
+      var sortOrder = meta.sortOrder;
+      var flipCell = meta.flipCell
+
+      var steps = [];
+      var stepLimit = 370;
+      var nCells = 500;
+      var bycell = d3.range(nCells).map(function() { return [] })
+
+
+      function updateByCellSingle(step, si) {
+        for(var i = 0; i < nCells; i++) {
+          bycell[i][si] = steps[si][i] * flipCell[i];
+        }
+      }
+
+      function updateByCell(steps) {
+        for(var i = 0; i < steps.length; i++) {
+          for(var j = 0; j < nCells; j++) {
+            bycell[j][i] = steps[i][j] * flipCell[j]
+          }
+        }
+      }
+      that.updateByCell = updateByCell;
+
+      var cellsOverlay = root.select("cells-overlay").node()
+      var cellsCanvas = root.select("cells-canvas").node()
+      var cellsDraw = root.select("cells-draw").node()
+      var cellsGrid = root.select("cells-grid").node()
+      //var cellsDetail = root.select("cells-detail").node()
+      that.cellsDraw = cellsDraw;
+      that.cellsCanvas = cellsCanvas;
+
+      var defaults = that.getAttribute("defaults").split(",")
+      var defaultCell = defaults[0],
+          defaultStep = defaults[1];
+
+      //function getI(i) { return that.mode === "sorted" ? sortOrder[i] : i; }
+      function getI(i) { return sortOrder[i]}
+      cellsCanvas.getI = getI;
+      //cellsOverlay.getI = getI;
+      cellsGrid.getI = getI;
+      cellsDraw.getI = getI;
+
+      var cellIndex = defaultCell;
+      var stepIndex = defaultStep;
+
+      function update(si, ci) {
+        if(si >= 0)
+          stepIndex = si;
+        if(ci >= 0)
+          cellIndex = ci;
+        cellsOverlay.render(stepIndex, cellIndex)
+        cellsDraw.colorSegments(stepIndex, cellIndex, bycell)
+        cellsGrid.render(stepIndex, cellIndex, bycell);
+        //cellsDetail.render(stepIndex, cellIndex);
+      }
+      that.update = update;
+
+      cellsCanvas.select = update;
+      cellsDraw.select = update;
+      cellsGrid.select = update;
+
+      cellsDraw.update = function(newSteps, si) {
+        steps = newSteps;
+        updateByCellSingle(steps[si], si);
+        //var s = newSteps.length - 1
+        //console.log("new steps", s, steps)
+        var step = bycell.map(function(cell) { return cell[si]})
+        cellsCanvas.renderStep(step, si);
+        cellsCanvas.stepLimit = d3.max([steps.length, si+1]);
+        if(si === 0)
+          cellsCanvas.renderCells(bycell);
+        update(si, -1);
+      }
+
+      cellsDraw.renderPlaceholder(writesomething)
+
+      update();
+    })
+  }
+});
+</script>

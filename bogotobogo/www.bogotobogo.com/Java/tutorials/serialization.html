@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/serialization.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 03:56:01 GMT -->
+<head>
+  <title>Java Tutorial: Serialization - 2017</title>
+  <meta content="Java Tutorial: Serialization" name="description" />
+  <meta content="Java Tutorial , Serialize, Serialization, Deserialize, Deserialization, readObject, writeObject, Transient, ObjectInputStream, ObjectOutputStream" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../python/pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Serialization - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../../images/java/tutorials/java_images/Duke256.png" alt="Duke 512" width="128" height="128"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<div class="subtitle" id="serialization">Serialization</div>
+<p>Imagine you have a program which takes more than one session to complete. But we don't want to start the program from the first session next time but start it from where it stopped. So, we need to save the state of our objects. </p>
+<p>If Java didn't have <strong>Serialization</strong> we'd have to use one of the I/O classes to write the state of the instance variables of all the objects we want to save. The worst part would be we could end up setting variables with the wrong values during the reconstruction process.</p>
+<p>Serialization lets us save objects and instance variables of each object. Actually, we can save those variables selectively using a  keyword <strong>transient</strong>. </p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="inputoutputstream">ObjectInputStream and ObjectOutputStream</div>
+<p>Basic serialization id done by just two methods:
+<ol>
+<li><strong>ObjectOutputStream.writeObject()</strong> <br/>
+	Serialize objects and write them to a stream. </li>
+<li><strong>ObjectInputStream.writeObject()</strong> <br/>
+	Read the stream and deserialize objects. </li>
+</ol>
+<p>The java.io.ObjectOutputStream and java.io.ObjectInputStream classes are considered to be <strong>higher</strong>-level classes in the package. So, we can wrap them around <strong>lower</strong>-level classes such as java.io.FileOutputStream and java.io.FileInputStream. </p>
+<p>The following code is a bare-bones example which creates an object, serializes it, and deserializes it:</p>
+<pre>
+import java.io.*;
+
+class WarCraft <font color="blue">implements Serializable {}</font>			(1)
+
+public class SerializeWarCraft {
+	public static void main(String[] args) {
+		<font color="blue">WarCraft wc = new WarCraft();</font>			(2)
+		try {
+			FileOutputStream fos = 
+				new FileOutputStream("Testing Serial");
+			ObjectOutputStream oos = 
+				new ObjectOutputStream(fos);
+			<font color="blue">oos.writeObject(wc);</font>			(3)
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			FileInputStream fis = 
+				new FileInputStream("Testing Serial");
+			ObjectInputStream ois = 
+				new ObjectInputStream(fis);
+			<font color="blue">wc = (WarCraft) ois.readObject();</font>	(4)
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+}
+</pre>
+<p>Let's look at the code in detail.</p>
+<ol>
+<li>We declare that the WarCraft class implements the <strong>Serializable</strong> interface. Serializable is a <strong>marker</strong> interface; it has no methods to implement.</li>
+<li>We make a new WarCraft object which is serializable.</li>
+<li>We serialize the WarCraft object <strong>wc</strong> by invoking the <strong>writeObject()</strong> method. Before we do it, we had to the following:
+	<ol>
+<li>We had to put all of our I/O code in a try/catch block.</li>
+<li>We had to create a <strong>FileOutputStream</strong> to write the object to.</li>
+<li>We wrapped the <strong>FileOutputStream</strong> in an <strong>ObjectOutputStream</strong>, which is the class that has the serialization method that we need.</li>
+</ol>
+	The invocation of <strong>writeObject()</strong> performs two tasks:
+	<ol>
+<li>It serializes the object. </li>
+<li>Then, it writes the serialized object to a file.</li>
+</ol>
+
+</li>
+<li>We de-serialize the WarCraft object by invoking <strong>readObject()</strong> method. The <strong>readObject()</strong> method returns an <strong>Object</strong>, so we have to cast the deserialized object back to a WarCraft.</li>
+</ol>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle" id="objectgraph">Object Graph</div>
+<p><strong>Object Graph</strong> is a view of an object system at a particular point in time. Objects are linked to each other by one object either owning or containing another object or holding a reference to another object. This web of objects is called an object graph and it is the more abstract structure that can be used in discussing an application's state.</p>
+<p>So, what does it really mean by <strong>saving an object</strong>?<br/>
+If the instance variables are all primitive types, saving an object is a pretty much straightforward job. But there might be a case when the instance variables are themselves references to other <strong>objects</strong>. What should be saved?</p>
+<p> In java, it wouldn't make any sense to save the actual value of a reference variable. That's because the value of a Java reference is meaningful only within the context of a single instance of a JVM. So, if we tried to restore the object in another instance of the JVM, even running on the same computer on which the object was originally serialized, the reference would be useless.</p>
+<p>But what about the object that the reference refers to?<br/>
+Let's look at this class:</p>
+<pre>
+import java.io.*;
+
+class Sword {
+	private Grip theGrip;
+	private int swordSize;
+	public Sword(Grip grip, int size) {
+		theGrip = grip;
+		swordSize = size;
+	}
+	public Grip getGrip() { return theGrip; }
+}
+
+class Grip {
+		private int gripSize;
+		public Grip(int size) {gripSize = size;}
+		public int getGripSize() { return gripSize; }
+}
+
+public class NormalSword {
+	public static void main(String[] args) {
+		Grip g = new Grip(10);
+		Sword sw = new Sword(g,100);
+	}
+}
+</pre>
+<p>Now what happens if we save the Sword? If the goal is to save and then restore a Sword, and the restored Sword is an exact duplicate of the Sword that was saved, then the Sword needs a Grip that is an exact duplicate of the Sword's Grip at the time the Sword was saved. That means both the Sword and the Grip should be saved.</p>
+<p>And what if the Grip itself had references to other objects. This gets quite complicated. It would be formidable task for a programmer to restore object graphs.</p>
+<p>Fortunately, the Java serialization takes care of all the jobs for us. When we serialize an object, Java serialization takes care of saving that object's entire object graph. That means a deep copy of every object saved needs to be restored. If we serialize a Sword object, the Grid will be serialized <strong>automatically</strong>. And if the Grid class contained a reference to another object, that object would also be serialized, and so on. And the only object we have to worry about saving and restoring is the Sword, The other objects required to fully reconstruct that Sword are saved and restored automatically through serialization.</p>
+<p>Keep in mind, we should make a <strong>conscious choice</strong> to create objects that are <strong>serializable</strong> by implementing the <strong>Serializable</strong> interface. So, if we want to save Sword objects, for example, we'll have to modify the Sword class as follows:</p>
+<pre>
+import java.io.*;
+
+class Sword <font color="blue">implements Serializable</font> {
+	private Grip theGrip;
+	private int swordSize;
+	public Sword(Grip grip, int size) {
+		theGrip = grip;
+		swordSize = size;
+	}
+	public Grip getGrip() { return theGrip; }
+}
+
+class Grip {
+		private int gripSize;
+		public Grip(int size) {gripSize = size;}
+		public int getGripSize() { return gripSize; }
+}
+
+public class SerializeSword {
+	public static void main(String[] args) {
+		Grip g = new Grip(10);
+		Sword sw = new Sword(g,100);
+		try {
+			FileOutputStream fos = 
+				new FileOutputStream("test.ser");
+			ObjectOutputStream oos = 
+				new ObjectOutputStream (fos);
+			oos.writeObject(sw);
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+</pre>
+<p>We're trying to save the Sword, but when we run the code we get a runtime exception.</p>
+<pre>
+java.io.NotSerializableException: Grip
+</pre>
+<p>We forgot the Grip class should have implemented Serializable. So, after making the Grip, the code should look like this:</p>
+<pre>
+import java.io.*;
+
+class Sword implements Serializable {
+	private Grip theGrip;
+	private int swordSize;
+	public Sword(Grip grip, int size) {
+		theGrip = grip;
+		swordSize = size;
+	}
+	public Grip getGrip() { return theGrip; }
+}
+
+class Grip implements Serializable {
+		private int gripSize;
+		public Grip(int size) {gripSize = size;}
+		public int getGripSize() { return gripSize; }
+}
+
+public class SerializeSword {
+	public static void main(String[] args) {
+		Grip g = new Grip(10);
+		Sword sw = new Sword(g,100);
+		System.out.println("before: grip size is "
+					+ sw.getGrip().getGripSize());
+		try {
+			FileOutputStream fos = 
+				new FileOutputStream("test.ser");
+			ObjectOutputStream oos = 
+				new ObjectOutputStream (fos);
+			oos.writeObject(sw);
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("after: grip size is "
+				+ sw.getGrip().getGripSize());
+	}
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+before: grip size is 10
+after: grip size is 10
+</pre>
+<p>But what would happen if we didn't have access to the Grip class source code? <br/>
+In other words, what if we couldn't make the Grip class serializable? <br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="transient">Transient</div>
+<p>That's where the <strong>transient</strong> modifier comes in. If we mark (or tag) the Sword's Grip instance variable with <strong>transient</strong>, then the serialization will skip the Grip during serialization.</p>
+<p>In other words, <strong>transient</strong> says, "don't save this variable during serialization, just skip it."</p>
+<p>So, why would a variable not be serializable?<br/>
+It could be that the class designer simply forgot to make the class implement Serializable. Or it might be because the object relies on runtime-specific information that simply can't be saved. </p>
+<p>Although most things in the Java class libraries are serializable, we can't save things like network connections, threads, or file object. They're all dependent on and specific to a particular runtime experience. In other words, they're instantiated in a way that's unique to a particular run of the program, on a particular platform, in a particular JVM. Once the program shuts down, there's no way to bring those things back to life in any meaningful way; they have to be created from scratch each time.</p>
+<br/>
+<br/>
+<div class="subtitle" id="writeObjectreadObject">writeObject and readObject</div>
+<p>In the previous example, we have a Sword object we want to save. The Sword has a Grip, and the Grip has state that should also be saved as part of the Sword's state. But the Grip is not Serializable, so we must mark it <strong>transient</strong>. That means when the Sword is deserialized, it comes back with a null Grip. What can we do to make sure when the Sword is deserialized, it gets a new Grip that matches the one the Sword had when the Sword was saved?</p>
+<p>For whatever reason, we can't serialize a Grip object, but we want to serialize a Sword. To do this, we're going to implement <strong>writeObject()</strong> and <strong>readObject()</strong>. By implementing these two methods, we're saying to the compiler: "If anyone invokes <strong>writeObject()</strong> or <strong>readObject()</strong> concerning a Sword object, use this code as part of the read and write."</p>
+<pre>
+import java.io.*;
+
+class Sword implements Serializable {
+	<font color="blue">transient private Grip theGrip;</font>
+	private int swordSize;
+	public Sword(Grip grip, int size) {
+		theGrip = grip;
+		swordSize = size;
+	}
+	public Grip getGrip() { return theGrip; }
+	<font color="blue">private void writeObject(ObjectOutputStream os)</font> {
+		try {
+			<font color="blue">os.defaultWriteObject();</font>
+			os.writeInt(theGrip.getGripSize());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	<font color="blue">private void readObject(ObjectInputStream is)</font> {
+		try {
+			<font color="blue">is.defaultReadObject();</font>
+			theGrip = new Grip(is.readInt());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Grip {
+		private int gripSize;
+		public Grip(int size) {gripSize = size;}
+		public int getGripSize() { return gripSize; }
+}
+
+public class SerializeSword {
+	public static void main(String[] args) {
+		Grip g = new Grip(10);
+		Sword sw = new Sword(g,100);
+		System.out.println("saved: grip size is "
+					+ sw.getGrip().getGripSize());
+		try {
+			FileOutputStream fos = 
+				new FileOutputStream("test.ser");
+			ObjectOutputStream oos = 
+				new ObjectOutputStream (fos);
+			oos.writeObject(sw);
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("restored: grip size is "
+				+ sw.getGrip().getGripSize());
+	}
+}
+</pre>
+<p>Output is:</p>
+<pre>
+saved: grip size is 10
+restored: grip size is 10
+</pre>
+<p>Let's look at the code in detail:</p>
+<ol>
+<li><strong>writeObject()</strong> can throw exceptions. </li>
+<li>When we invoke <strong>defaultWriteObject()</strong> from within <strong>writeObject()</strong>, we're telling the JVM to do the normal serialization process for this object. When implementing <strong>writeObject()</strong>, we'll typically request the normal serialization process, and do some custom writing and reading too.</li>
+<li>In this case, we write an extra <strong>int</strong> to the stream that's creating the serialized Sword. </li>
+<li>When it's time to deserialize, <strong>defaultReadObject()</strong> handles the normal deserialization we'd get if we didn't implement a <strong>readObject()</strong> method.</li>
+<li>We build a new Grid object for the Sword using the grip size that we manually serialized. We had to invoke <strong>readInt()</strong> after we invoked <strong>defaultReadObject()</strong>.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle" id="summary">Summary</div>
+<br/>
+<div class="subtitle_2nd" id="writing">Writing a serialized object to a file</div>
+<ol>
+<li><strong>Make a FileOutputStream</strong>
+<pre>
+	FileOutputStream fs = new FileOutputStream("mine.ser");
+	</pre>
+	We make a <strong>FileOutputStream</strong> object. <br/>
+<strong>FileOutputStream</strong> knows how to connect to (and create) a file.</li>
+<br/>
+<li><strong>Make an ObjectOutputStream</strong>
+<pre>
+	ObjectOutputStream os = new ObjectOutputStream(fs);
+	</pre>
+<strong>ObjectOutputStream</strong> lets us write objects, but it can't directly connect to a file. It needs to be fed a "helper". This is actually called "chaining" one stream to another.</li>
+<br/>
+<li><strong>Write the object</strong>
+<pre>
+	os.writeObject(ref1);
+	os.writeObject(ref2;
+	os.writeObject(ref3);
+	</pre>
+	Serializes the object referenced by ref1, ref2, and ref3, and writes them to the file "mine.ser". </li>
+<br/>
+<li><strong>Close the ObjectOutputStream</strong>
+<pre>
+	os.close();
+	</pre>
+	Closing the stream at the top closes the ones underneath, so the FileOutputStream (and the file) will close automatically.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="reading">Reading a serialized object to a file</div>
+<ol>
+<li><strong>Make a FileInputStream</strong>
+<pre>
+	FileInputStream fs = new FileInputStream("mine.ser");
+	</pre>
+	We make a <strong>FileInputStream</strong> object. <br/>
+<strong>FileInputStream</strong> knows how to connect to an existing file.<br/>
+	If the file "mine.ser" doesn't exist, we'll get an exception.</li>
+<br/>
+<li><strong>Make an ObjectInputStream</strong>
+<pre>
+	ObjectInputStream os = new ObjectInputStream(fs);
+	</pre>
+<strong>ObjectInputStream</strong> lets us read objects, but it can't directly connect to a file. It needs to be chain to a connection stream, in this case a <strong>FileInputStream</strong>.</li>
+<br/>
+<li><strong>Read the objects</strong>
+<pre>
+	Object ref1 = os.readObject();
+	Object ref2 = os.readObject();
+	Object ref3 = os.readObject();
+	</pre>
+	Each time we say <strong>readObject()</strong>, we get the next object in the stream. So, we'll read them back in the same order in which they were written.</li>
+<li><strong>Cast the objects</strong>
+<pre>
+	MyClass v1 = (MyClass) ref1;
+	MyClass v2 = (MyClass) ref2;
+	MyClass v3 = (MyClass) ref3;
+	</pre>
+	The return value of <strong>readObject()</strong> is type <strong>Object</strong>, so we have to <strong>cast</strong> it back to the type we know it really is.</li>
+<br/>
+<li><strong>Close the ObjectOutputStream</strong>
+<pre>
+	os.close();
+	</pre>
+	Closing the stream at the top closes the ones underneath, so the FileInputStream (and the file) will close automatically.</li>
+</ol>
+<br/>
+<br/>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Java Tutorials</h1>
+   <br><br>
+   <a href="on_java.html">Java Tutorial Home</a> 
+   <br><br>
+   <a href="javabasics.html">Basics - Compiling and Launching</a> 
+   <br><br>
+   <a href="innerclass.html">Inner Classes</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="enums.html">Enums</a> 
+   <br><br>
+   <a href="statics.html">Static & Finally</a> 
+   <br><br>
+   <a href="defaultandprotected.html">Default and Protected</a>
+   <br><br>
+   <a href="polymorphism.html">Polymorphism</a>
+   <br><br>
+   <a href="exceptionhandling.html">Exception Handling</a>
+   <br><br>
+   <a href="exceptionhandling2.html">Exception Handling II</a>
+   <br><br>
+   <a href="stringclass.html">String Class</a>
+   <br><br>
+   <a href="threads.html">Threads</a>
+   <br><br>
+   <a href="threads2.html">Threads II - State Transition</a>
+   <br><br>
+   <a href="threads3.html">Threads III - Synchronization</a>
+   <br><br>
+   <a href="objectclass.html">Object Class</a>
+   <br><br>
+   <a href="fileio.html">File I/O</a>
+   <br><br>
+   <a href="serialization.html">Serialization</a>
+   <br><br>
+   <a href="arraylist.html">ArrayList</a>
+   <br><br>
+   <a href="autoboxing.html">Autoboxing</a>
+   <br><br>
+   <a href="javagraphics.html">Java Graphics Interface I - Basics</a>
+   <br><br>
+   <a href="javagraphics2.html">Java Graphics Interface II - Labels, Text Fields, Layouts</a>
+   <br><br>
+   <a href="javagraphics3.html">Java Graphics Interface III - paintComponent</a>
+   <br><br>
+   <a href="tcp_socket_server_client.html">TCP Sockets Server/Client</a>
+   <br><br>
+   <a href="scala_functional_java_programming.html">Scala - Functional Java Programming</a>
+   <br><br>
+   <a href="Apache_CXF.html">Apache CXF install</a>
+   <br><br>
+   <a href="Tomcat7_Ubuntu_14_Install_On_Amazon_EC2.html">Tomcat 7 Ubuntu 14 Install on Amazon EC2 instance</a>
+   <br><br>
+   <a href="Maven/What-is-Apache-Maven.html">What is Apache Maven?</a>
+   <br><br>
+   <a href="Maven/Apache-Maven-Lifecycle.html">Maven life cycle</a>
+   <br><br>
+   <a href="Maven/Eclipse_Maven3_Plugin.html">Eclipse Maven 3 plugin on Ubuntu 14.04</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Setting_Up.html">Apache Maven 3 - Setting up and creating a project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_compile_build_install.html">Apache Maven 3 - Compile, build, and install a Maven project</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Dependencies.html">Apache Maven 3 - Dependencies</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Web_Application_War.html">Apache Maven 3 - Web Application</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins.html">Apache Maven 3 - Plugins (compiler)</a>
+   <br><br>
+   <a href="Maven/Apache_Maven3_Plugins_Jetty.html">Apache Maven 3 - Plugins (Jetty)</a>
+   <br><br>
+   <a href="../../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <br><br>
+   <b><i>Spring Framework</i></b>
+   <br><br>
+   <a href="SpringFramework/HelloWorld_App_with_Spring4_Maven3.html">Hello World App with Spring 4 & Maven 3 - Part I</a>
+
+   <br><br>
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Spring Boot</h1>
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Maven.html">Spring Boot : Hello world with Mavan 3</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-HelloWorld-with-Gradle.html">Spring Boot : Hello world with Gradle 2</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Authetication-Securing-Web-Application.php">Spring Boot (Gradle 2) : Hello world with Authentication</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Maven3-Elicpse-Tomcat-War-file.html">Spring Boot : Deploying War file to Tomcat 8's webapps</a> 
+   <br><br>
+   <a href="Spring-Boot/How-to-Setup-Apache-as-Reverse-Proxy-for-Tomcat8-Server-using-mod-proxy.html">How to Setup Apache as Reverse Proxy for Tomcat Server using mod proxy</a> 
+   <br><br>
+   <a href="Spring-Boot/Maven-mvn-command-cheat-sheet.html">Maven : mvn command cheat sheet</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-REST-API-CORS-Maven-Tomcat-Deploy-War.html">Spring-Boot REST API with CORS App Maven war file deploy to Tomcat</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-I.html">Spring-Boot / Spring Security with AngularJS - Part I (Introduction) </a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-II.html">Spring-Boot / Spring Security with AngularJS - Part II (Dynamic resource load from Angular)</a> 
+   <br><br>
+   <a href="Spring-Boot/Spring-Boot-Security-AngularJS-III-Form-Based%20Authentication.html">Spring-Boot / Spring Security with AngularJS : Part III (Form-based Authentication)</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>JUnit & Maven Tutorial</h1>
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_HelloWorld.html">JUnit 4 Introduction (Hello World)</a> 
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Eclipse_Plugin.html">JUnit 4 Test with Eclipse Luna (Hello World)</a>
+
+   <br><br>
+   <a href="../../TestingFramworks/JUnit/JUnit_Test_with_Maven.html">JUnit 4 Test with Maven (Hello World)</a> 
+
+   <br><br>
+
+
+
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Java/tutorials/serialization.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 03:56:01 GMT -->
+</html>
+

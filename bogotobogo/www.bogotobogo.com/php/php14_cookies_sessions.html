@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/php/php14_cookies_sessions.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:51:47 GMT -->
+<head>
+  <title>PHP5 & MySQL Tutorial: Cookies and Sessions - 2017</title>
+  <meta content="PHP5 & MySQL Tutorial:  Cookies and Sessions I - Setting and Getting Cookies " name="description" />
+  <meta content="PHP5 & MySQL Tutorial:  Cookies and Sessions, Setting and Getting Cookies, HTTP" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">PHP & MySQL Tutorial
+ Cookies and Sessions I 
+- Setting and Getting Cookies
+       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/amp_logo.png" alt="amp logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="http">HTTP</div>
+<p>Before we dive into <strong>cookies</strong>, we need to look at <strong>HTTP</strong>.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p><strong>HTTP</strong> is entirely oriented around the sending of client requests and server responses. These take the form of HTTP <strong>messages</strong> sent between clients and servers. As with all protocols, HTTP uses a special format that dictates the structure of both client <strong>Request</strong> messages and server <strong>Response</strong> messages. Understanding how these messages work is a big part of comprehending HTTP as a whole.</p>
+<p>The <strong>telnet</strong> program works well as a client for our server, so we don't have to write a specialized client. Whenever we use a web browser, it makes a connection to a webserver somewhere. This connection transmits the web page over the connection using HTTP, which defines a certain way to request and send information. By default, webservers run on <strong>port 80</strong>, which is listed along with many other default ports in /etc/services.</p>
+<br/>
+<br/>
+<p><strong>/etc/services</strong>:</p>
+<pre>
+finger          79/tcp
+www             80/tcp          http            # WorldWideWeb HTTP
+www             80/udp                          # HyperText Transfer Protocol
+</pre>
+<p>HTTP exists in the application layer (the top layer) of the OSI model. At this layer, all of the networking details have already been taken care of by the lower layers, so HTTP uses plain text for its structure. Many other application layer protocols also use plain text, such as <strong>POP3</strong>, <strong>SMTP</strong>, <strong>IMAP</strong>, and <strong>FTP</strong>'s control channel. Since these are standard protocols, they are all well documented. So, once we know the syntax of these various protocols, we can manually talk to other programs that speak the same language. For example, </p>
+<pre>
+GET / HTTP/1.1
+</pre>
+<p>will request the root document from the webserver using HTTP version 1.1. The request is actually for the root directory of /, but most webservers will automatically search for a default HTML document in that directory of index.html. If the server finds the resource, it will respond using HTTP by sending several headers before sending the content. If the command <strong>HEAD</strong> is used instead of <strong>GET</strong>, it will only return the HTTP headers without the content. These headers are plain text and can usually provide information about the server. These headers can be retrieved manualy using <strong>telnet</strong> by connecting to port <strong>80</strong> of a known website, then typing / HTTP/1.1 and pressing <strong>ENTER</strong> twice. </p>
+<pre>
+$ <font color="red">telnet www.google.com 80</font>
+Trying 74.125.224.80...
+Connected to www.l.google.com.
+Escape character is '^]'.
+<font color="red">HEAD / HTTP/1.1</font>
+
+HTTP/1.1 200 OK
+Date: Sun, 20 Mar 2011 22:57:14 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Set-Cookie: PREF=ID=1a1465e93069ef27:FF=0:TM=1300661834:LM=1300661834:S=cfgZ-CLdx3csSotG; expires=Tue, 
+19-Mar-2013 22:57:14 GMT; path=/; domain=.google.com
+Set-Cookie: NID=45=GttD9aoP3MRS7GzAw56s7soAoBm728X9cqLXCa1FIMDN0axUpk-mYHkk5p65S6E2Ms8EbechxkXpgMZw2s941LPE0aHEOgdIIcpgv4fe11uQ5PBm1DI-UfMQstisfej3; 
+expires=Mon, 19-Sep-2011 22:57:14 GMT; path=/; domain=.google.com; HttpOnly
+Server: gws
+X-XSS-Protection: 1; mode=block
+Transfer-Encoding: chunked
+</pre>
+<p>In the output above, <strong>telnet</strong> is used to open a <strong>TCP/IP</strong> connection to the webserver at <strong>http://www.google.com</strong>. Then, the HTTP application layer is manually spoken to request the headers for the main index page.</p>
+<p>The output reveals that the webserver is <strong>gws (Google Web Server)</strong>.</p>
+<p>When we use <strong>GET</strong>, the output is:</p>
+<pre>
+$ <font color="red">telnet www.google.com 80</font>
+Trying 74.125.224.49...
+Connected to www.l.google.com.
+Escape character is '^]'.
+<font color="red">GET / HTTP/1.1
+Host: www.google.com
+COnnection: Close</font>
+
+HTTP/1.1 200 OK
+Date: Sun, 20 Mar 2011 23:14:01 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Set-Cookie: PREF=ID=427e2234df774edb:FF=0:TM=1300662841:LM=1300662841:S=XKgReguOX_3zRper; 
+expires=Tue, 19-Mar-2013 23:14:01 GMT; path=/; domain=.google.com
+Set-Cookie: NID=45=2-G4uKrBxdo9eN1QN4sNUEh7PmtmOW7NkJG-iZcIsGKW5xswi8a6LCZgV0mSeGTMXR0-UPnR79zdQ-d8dwBCX-9HVvD4UYKtZlOIZNuFwyAOITWd2sXllTxfr0DyS8w3; 
+expires=Mon, 19-Sep-2011 23:14:01 GMT; path=/; domain=.google.com; HttpOnly
+Server: gws
+X-XSS-Protection: 1; mode=block
+Connection: close
+
+&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;
+....
+&lt;/script&gt;Connection closed by foreign host.
+$ 
+</pre>
+<br/><br/>
+<div class="subtitle_2nd" id="HTTPRequest">HTTP Request Message</div>
+<p>The client initiates an HTTP session by opening a TCP connection to the HTTP server with which it wishes to communicate. It then sends HTTP <strong>Request messages</strong> to the server, each of which specifies a particular type of action that the user of the HTTP client would like the server to take. Request can be generated either by specific user action such as clicking a hyperlink in a web browser. HTTP Request messages uses a format that is based on the <strong>generic message format</strong>. This format is based on the RFC 822 and MIME electronic mail message standards, although HTTP does not follow those formats precisely. Each HTTP message begines with a start line, then contains a number of message headers, followed by an empty line and optionally a message body. The body of the message may contain a resource such as a file to be communicated between client and server, called an <strong>entity</strong>.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="HTTPResponse">HTTP Response Message</div>
+<p>Each Request message sent by an HTTP client to a server prompts the server to send back a <strong>Response message</strong>. Actually, in certain cases, the server may send two responses: a preliminary response, followed by the real one. Usually though, one request yields one response, which indicates the results of the server's processing of the request, and a response often also carries an entiry (file or resource) in the message body.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="HTTPMethod">HTTP Methods</div>
+<p>An HTTP Request message sent by a client to a server obviously requests that the server do something. All client/server protocols provide a way for the client to prompt the server to take action, generally by having the client give the server a series of commands. HTTP, in contrast, has <strong>methods</strong>, tather than commands. Each client Request message begins with the specification of the method that is the subject of the request.</p>
+<p>What is the difference between a method and a command? In practical terms, nothing; they are the same. So why does HTTP use the term <strong>method</strong> instead of the <strong>command</strong>? The answer can be found in the abstract of the standard defining HTTP/1.0, RFC 1945. It states, in part, that HTTP is "a generic, stateless, object-oriented protocol which can be used for many tasks..."</p>
+<p>Each method allows the client to specify a particular type of action to be taken by the server. Method names are always in uppercase letters. There are three methods that are commonly used in HTTP: <strong>GET</strong>, <strong>HEAD</strong>, and <strong>POST</strong>.</p>
+<ol>
+<li><p><strong>GET</strong></p>
+<p>The <strong>GET</strong> method request that server retrieve the resource specified by the URL on the HTTP request line and send it in a response back to the client. This is the most basic type of request and the one that accounts for the majority of HTTP traffic. When we enter a URL or click a link, we are usually prompting our web browser to send a <strong>GET</strong> request.</p>
+<p>The handling of a <strong>GET</strong> request depends on a number of factors. If the URL is correct and the server can find the resource, it will send back the appropriate response to the client. If the request cannot be processed properly, an error message may result.</p>
+<p>It's important to remember that the meaning of a <strong>GET</strong> request may change if certain headers, such as If-Modified-Since or If-Match, are used. These tell the server to send the resource only if certain conditions are met. A request of this sort is sometimes called a <strong>contitional GET</strong>. Similarly, the client may use the Range header to request that the server send it only part of a resource; this is usually used for large files. When this header is included, the request may be called a <strong>partial GET</strong>.</p>
+</li>
+<li><p><strong>HEAD</strong></p>
+<p>The <strong>HEAD</strong> method is identical to the <strong>GET</strong> method, but it tells the server not to send the actual body of the message. Thus, the response will contain all of the headers that would have accompanied a reply to the equivalent GET message, including entiry headers describing the entity that the server  would have sent had the method been <strong>GET</strong>. The client often uses this method to check the existence, status, or size of a file before deciding whether it wants the server to send the whole file.</p>
+<p><strong>HEAD</strong> requests are processed in the same way as <strong>GET</strong> request, except that only the headers are returned, not the actual resource.</p>
+</li>
+<li><p><strong>POST</strong></p>
+<p>The <strong>POST</strong> method allows the client to send an entity containing arbitrary data to the server for processing. It is commonly used to enable a client to submit information such as an interactive HTML form to a program on the server, which then takes action based on that input and sends a response. This capability, is now used for all sorts of online programs. THe URL in the request specifies the name of the program on the server that is to accept the data.</p>
+</li>
+<li><p><strong>Options</strong></p>
+<p>This method allows the client to request that the server send it information about available communication options. A URI of a resource may be specified to request information relevant to accessing that resource, or an asterisk (*) may be used to indicate that the query is about the server itself. The response includes headers that give the client more details about how the server may be accessed.</p>
+</li>
+<li><p><strong>PUT</strong></p>
+<p>This method requests that the server store the entity enclosed in the body of the request at the URL specified in the request line. In a <strong>PUT</strong>, the URI identifies the entity in the request; thus a <strong>PUT</strong> allows a file to be copied to a server, in the exact complement to how a <strong>GET</strong> requests that a file to be copied to the client. In contrast, with a <strong>POST</strong>, the URI identifies a program intended to <strong>process</strong> the entity in the request, so it's used for interactive programs.</p>
+</li>
+<li><p><strong>DELETE</strong></p>
+<p>This method requests that the specified resource be deleted.</p>
+</li>
+<li><p><strong>TRACE</strong></p>
+<p>This method allows a client to receive back a copy of the request that is sent to the server, for diagnostic purposes.</p>
+</li>
+</ol>
+<br/><br/>
+<div class="subtitle" id="cookiessessions"> Cookies and Sessions</div>
+<p>As our applications become more complicated, we'll need to keep track of our users. Cookies and sessions provide the opportunity to interact with users. Sessions allow for the persistence of data, and without sessions, the web server sees each page request without the context of other page request and cannot remember data between requests.</p>
+<p>HTTP is a <strong>stateless protocol</strong>, which means that the protocol has no built-in way of maintaining state between two <strong>transactions</strong>. So, when a user <strong>request</strong> one page, followed by another, <strong>HTTP</strong> does not offer a way for us to tell that both requests came from the same user.</p>
+<p>Session control's main purpose is to be able to track a user during a single session on a website. If we can do this, we can support logging in a user and showing content according to personal preferences. We can track the user's behavior.</p>
+<p>A <strong>cookie</strong> is a small piece of information that scripts can store on a client-side machine. When a browser connects to an <strong>URL</strong>, it first searches the cookies stored locally. If any of them are relevant to the URL being connected to, they will be transmitted back to the server.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="cookies">Cookies</div>
+<p>Cookies are text files saved by websites on a computer accessing the sites. Each cookie can contain around <strong>4,000</strong> characters and up to <strong>20</strong> cookies can be stored for each website. The client can store a maximum of <strong>300</strong> cookies. </p>
+<p>Since cookie files can be opened by any text editor, sensitive information should be encrypted. So, the user's password shouldn't be stored in a cookie. We should store a unique identification string which points to a database entry containing the password on the server.</p>
+<p>Cookies are created with <strong>setcookie()</strong> function. To create a cookie, before any other code, tags or whitespace, the <strong>setcookie()</strong> function should be called. Though the cookie is not visible until the next page is loaded, the creation can be verified by its return value from <strong>setcookie()</strong>.</p>
+<pre>
+&lt;?php
+	echo "Checking... &lt;br /&gt;";
+	echo "Cookie, are you there? &lt;br /&gt;";
+	if(<font color="red">setcookie</font>("myFirstCookie", "myCookieData"))
+		echo "Yes.";
+	else
+		echo "No.";
+?&gt;
+&lt;html&gt;
+&lt;head&gt; &lt;title&gt;Checking Cookie&lt;/title&gt; &lt;/head&gt;
+&lt;/html&gt;
+</pre>
+<br/>
+<img alt="cookie_are_you_there" src="images/php14/cookieA.png"/>
+<br/>
+<br/><br/>
+<div class="subtitle_2nd" id="cookiesQ">Question: How are cookies passed in the HTTP protocol? 
+</div>
+<p><strong>Answer:</strong> <br/>
+ The cookie is sent as an <strong>HTTP header</strong> by a <strong>web server</strong> to a <strong>web browser</strong> and then sent back unchanged by the browser each time it accesses that server.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="cookies">Setting Cookies</div>
+<p>The <strong>setcookie()</strong> function sets one cookie at a time and requires up to six arguments:</p>
+<pre>
+setcookie(name,value,expire,path,domain,secure)
+</pre>
+<table border="1" cellpadding="10" width="500">
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Required. Specifies the name of the cookie
+</td>
+</tr>
+<tr>
+<td><strong>value</strong></td>
+<td>Required. Specifies the value of the cookie
+</td>
+</tr>
+<tr>
+<td><strong>expire</strong></td>
+<td>Optional. Specifies when the cookie expires. <br/>
+time()+3600*24*30 will set the cookie to expire in 30 days. <br/>If this parameter is not set, the cookie will expire at the end of the session (when the browser closes).
+</td>
+</tr>
+<tr>
+<td><strong>path</strong></td>
+<td>Optional. Specifies the server path of the cookie . <br/>
+If set to "/", the cookie will be available within the entire domain. <br/>
+If set to "/test/", the cookie will only be available within the test directory and all sub-directories of test. <br/>The default value is the current directory that the cookie is being set in.
+</td>
+</tr>
+<tr>
+<td><strong>domain</strong></td>
+<td>Optional. Specifies the domain name of the cookie. <br/>
+To make the cookie available on all subdomains of example.com then you'd set it to ".example.com". <br/>Setting it to www.example.com will make the cookie only available in the www subdomain.
+</td>
+</tr>
+<tr>
+<td><strong>secure</strong></td>
+<td>Optional. Specifies whether or not the cookie should only be transmitted over a secure HTTPS connection. <br/>TRUE indicates that the cookie will only be set if a secure connection exists. Default is FALSE.
+</td>
+</tr>
+</table>
+<br/>
+<br/>
+<p>Once a cookie has been set, its value can be retrieved by referencing the cookie name in the <strong>$_COOKIE[]</strong> variable array. However, the values stored in a cookie cannot be retrieved until there is another HPPT request.</p>
+<p>The example below shows how to store two items of data entered into form fields called "user" and "country"/
+When the form is submitted, the page reloads. If values have been entered, the scripts stores these values in cookies called "firstname" and "where". The browser is then redirected to another page which retrieves the stored values from the cookies.</p>
+<pre>
+&lt;?php 
+	if(isset($_POST['submit_button'])) {
+		$user = $_POST['user'];
+		$country = $_POST['country'];
+
+		if( $user &amp;&amp; $country ) {
+			<font color="red">setcookie</font>("firstname", $user, time()+3600);
+			<font color="red">setcookie</font>("where", $country, time()+3600);
+			header( "Location:getcookie.php");
+			exit();
+		}
+	}
+?&gt;
+&lt;html&gt;
+&lt;head&gt; &lt;title&gt;Setting Cookie&lt;/title&gt; &lt;/head&gt;
+&lt;body&gt;
+&lt;form method="post" 
+	action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"  &gt;
+	Enter your first name:
+	&lt;input type="text" name="user"&gt; &lt;br /&gt;
+	Enter your country: &lt;br /&gt;
+	&lt;input type="radio" name="country" value="India"&gt;India &lt;br /&gt;
+	&lt;input type="radio" name="country" value="Thailand"&gt;Thailand &lt;br /&gt;
+	&lt;input type="radio" name="country" value="Korea"&gt;South Korea &lt;br /&gt;
+       	&lt;input type="radio" name="country" value="USA"&gt;USA &lt;br /&gt;
+	&lt;input type="radio" name="country" value="Netherlands"&gt;Netherlands &lt;br /&gt;
+	&lt;br /&gt; &lt;br /&gt;
+	&lt;input type="submit" name="submit_button" value="Submit"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br/>
+<img alt="setting_cookie" src="images/php14/setting_cookie.png"/>
+<br/>
+<br/>
+<p>The next page gets the user's country from the cookie names "where" and puts the pages text with the name of the country.</p>
+<pre>
+&lt;?php 
+	$userName = <font color="red">$_COOKIE['firstname']</font>;
+	$countryName = <font color="red">$_COOKIE['where']</font>;
+?&gt;
+&lt;html&gt;
+&lt;head&gt; &lt;title&gt;Get Cookie Data&lt;/title&gt; &lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;Hello &lt;?php echo $userName; ?&gt;, 
+	    from &lt;?php echo " ".$countryName; ?&gt;! &lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br/>
+<img alt="getcookie" src="images/php14/getcookie.png"/>
+<br/>
+<br/><br/>
+<img alt="HongDo2" src="images/php14/HongDo2.png"/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1> PHP5 & MYSQL</h1>
+   <br><br>
+   <a href="phptut.html">PHP Home</a> 
+   <br><br>
+   <a href="apache_php_mysql.html">Apache, PHP, and MySQL Installation - Method A</a> 
+   <br><br>
+   <a href="apache_php_mysql_2.html">Apache, PHP, and MySQL Installation - Method B</a> 
+   <br><br>
+   <a href="php1.html">Request a page</a> 
+   <br><br>
+   <a href="php2.html">Response to a request</a> 
+   <br><br>
+   <a href="php3_reservedwords.html">Reserved Words</a> 
+   <br><br>
+   <a href="php4_variables.html">Variables</a> 
+   <br><br>
+   <a href="php5_functions.html">Functions</a> 
+   <br><br>
+   <a href="php6_arrays.html">Arrays - creating an array</a> 
+   <br><br>
+   <a href="php7_arrays_array_unshift_push_pop_merge.html">Arrays II - adding, removing, and merging elements</a> 
+   <br><br>
+   <a href="php7_arrays_sort_asort_ksort_rsort_arsort_krsort.php">Arrays III - Sorting elements</a> 
+   <br><br>
+   <a href="php8_dynamic_contents.html">Creating Dynamic Content - Date and Time</a> 
+   <br><br>
+   <a href="php9_dynamic_contents.html">Creating Dynamic Content II - Form Values</a> 
+   <br><br>
+   <a href="php10_dynamic_contents.html">Creating Dynamic Content III - PHP_SELF</a> 
+   <br><br>
+   <a href="php11_file_handling.html">File Handling - Delete and Copy</a> 
+   <br><br>
+   <a href="php12_file_handling.html">File Handling II - Reading and Writing</a> 
+   <br><br>
+   <a href="php13_file_handling.html">File Handling III - Uploading Files</a> 
+   <br><br>
+   <a href="php13B_curl.html">cURL</a> 
+   <br><br>
+   <a href="php14_cookies_sessions.html">Cookies and Sessions I - Setting and Getting Cookies</a> 
+   <br><br>
+   <a href="php15_cookies_sessions.html">Cookies and Sessions II - Access Limit and Starting a Session</a> 
+   <br><br>
+   <a href="php16_cookie_vs_session.html">Cookies and Sessions III - Cookie vs Session</a> 
+   <br><br>
+   <a href="php17_mysql_database.html">Creating MySQL Database and Table</a> 
+   <br><br>
+   <a href="php18_mysql_database.html">Creating MySQL Database and Table II - Table and Query</a>
+   <br><br>
+   <a href="php18B_mysql_database.html">Creating MySQL Database and Table III - Retrieving and Sorting Data</a> 
+   <br><br>
+   <a href="php18C_mysql_database.html">Creating MySQL Database and Table IV - mysqldump etc.</a> 
+   <br><br>
+
+   <a href="apache_php_mysql_3-table-join-inner-outer.html">MySQL Tutorial: Table Joins (Inner, Left, Right, and Outer Joins)</a> 
+   <br><br>
+
+   <a href="php19_mysql_php.html">MySQL with PHP: Part I - User and Password</a>  
+   <br><br>
+   <a href="php20_mysql_php.html">MySQL with PHP: Part II - Creating and Deleting Database</a> 
+   <br><br>
+   <a href="php21_mysql_php.html">MySQL with PHP: Part III - Creating Database Table Dynamically</a> 
+   <br><br>
+    <a href="phpMyAdmin_Install_On_Windows.html">MySQL with PHP: Installing phpMyAdmin on Windows</a>   
+   <br><br>
+   <a href="php_json_decode_encode.html">json - encode and decode</a>  
+   <br><br>
+   <a href="tracker.html"> Ad Tracker</a> 
+   <br><br>
+   <a href="php_Apache_mod_rewrite.html">Apache mod_rewrite</a>  
+   <br><br>
+   <a href="phpbb_adsense.html">phpbb and Adsense</a>  
+   <br><br>
+   <a href="nginx_install_configure_run.html">Nginx</a>  
+   <br><br>
+   <a href="WordPress_Install_Ubuntu16_CentOS7.html">WordPress Install on Ubuntu 16.04 and CentOS 7</a>  
+   <br><br>
+
+   <a href="../php_building_forum_site_mysqli.html">Creating a Forum</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_ubuntu_laravel.phar.html">Laravel 4 Installation on a local machine running Ubuntu 13.1</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_on_Windows_laravel.phar.html">Laravel 4 Installation on Windows</a>  
+   <br><br>
+   <a href="php_laravel4_framework_install_on_shared_host.html">Laravel 4 Installation on a remote machine - shared host</a>  
+   <br><br>
+   <a href="The_Best_PHP_Web_Services_Frameworks_for_2014.html">The Best PHP Web Services Frameworks for 2016</a>  
+   <br><br>
+
+<br /><br />
+<br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div>
+<br /><br />
+<br><br>
+<h1>Laravel 5</h1>
+  <br><br>
+  <a href="../Laravel5/Laravel5_framework_install_ubuntu.html">Installing on Ubuntu</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_ToDo_List_Sample.html">ToDo list on partisan serve & Apache</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_with_Nginx_On_Ubuntu.html">ToDo list running on Nginx</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Homestead_Vagrant_box.html">Homestead Vagrant box</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Hackathon_Starter.html">Laravel 5 Hackerthon Starter</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Angular_Auth_using_JSON_Web_Token_JWT.html">Laravel 5 / Angular Auth using JSON Web Token (JWT) - Dev</a> 
+  <br><br>
+  <a href="../Laravel5/Laravel5_Angular_Auth_using_JSON_Web_Token_JWT_On_Production.html">Laravel 5 / Angular Auth using JSON Web Token (JWT) - Prod</a> 
+  <br><br>
+
+<br /><br />
+<br><br>
+<h1>Laravel 4</h1>
+   <br><br>
+   <a href="php_laravel4_framework_install_ubuntu_laravel.phar.html">Installing on Ubuntu - local</a> 
+   <br><br>
+   <a href="php_laravel4_framework_install_on_shared_host.html">Installing on a Shared host</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_install_on_Windows.html">Installing on Windows</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_phpMyAdmin_DB_users_Table.html">Creating users table</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_How_it_works_home_page_controller_blade.php">Home page with controller and blade</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Blade_Templating.php">Blade Templating</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Database_Connection_Sending_Email_SMTP.html">Database connection and sending emails</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_1.html">Creating user account I - GET</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_2.html">Creating user account II - POST</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_3.html">Creating user account III - Error checking & redirecting input</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Creating_User_Account_4.html">Creating user account IV - User::create()</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Activating_User_Account_1.html">Activating user account I - Mail::send()</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Activating_User_Account_2.html">Activating user account II - Update user's status</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_1.html">User account sign-in I - Route and link</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_2.html">User account sign-in II - Validation</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Signin_3.html">User account sign-in III - Login Authentication</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_Logout_Signout.html">Singing out</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Account_RememberMe.html">Remember the user</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Changing_Password_1.html">Changing Password I</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Changing_Password_2.html">Changing Password II</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Recovering_Forgotten_Password_1.html">Recovering forgotten password I</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Recovering_Forgotten_Password_2.html">Recovering forgotten password II</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_User_Profile_Controller.html">User Profile</a> 
+   <br><br>
+   <a href="Laravel4/php_laravel4_framework_Database_Migration_artisan.html">Database Migration using artisan</a> 
+   <br><br>
+
+<br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/php/php14_cookies_sessions.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 10:52:17 GMT -->
+</html>
+

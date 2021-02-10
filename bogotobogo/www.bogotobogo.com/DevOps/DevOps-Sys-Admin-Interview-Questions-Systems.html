@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/DevOps-Sys-Admin-Interview-Questions-Systems.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:26:29 GMT -->
+<head>
+  <title>DevOps / Sys admin Q & A #3 : Linux Systems - 2017</title>
+  <meta content="DevOps / Sys admin Q & A #3 : Linux Systems" name="description" />
+  <meta content="DevOps / Sys admin Interview Questions III : Q & A #3,Linux Systems, disk i/o, runlevel, iostat, iotop, sticky bit, SELinux" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">DevOps / Sys Admin Q & A #3 : Linux Systems       <g:plusone></g:plusone></h2>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="kernel">What are the tasks performed by kernel?</div>
+<ol>
+<li><b>Process scheduling</b> - linux is a preemptive multitasking operating system. Preemptive means that the rules
+governing which processes receive use of the CPU and for how long are determined by the kernel process scheduler.
+  </li>
+<li><b>Creation and termination of processes.</b></li>
+<li><b>Memory management</b> - linux employs virtual memory management which has two main advantages. Processes are isolated from one another and from the kernel, so that one process can't read or modify the memory of another process or the kernel.
+  </li>
+<li>The kernel provides a <b>file system</b>.
+  </li>
+<li>Access to <b>devices</b> such as mice, monitors, keyboards, disk and tape drives,
+and so on).
+  </li>
+<li>Provision of a <b>system call</b> application programming interface (API).</li>
+<li>Networking</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="runlevel">What is runlevel?</div>
+<p>Runlevel is a mode of operation in OS, and a runlevel represents the <font color="red">different system state</font> of a Linux system.</p> 
+<p>When the Linux system boots, the kernel is initialized, and then enters one (and only one) runlevel. When a service starts, it will try to start all the services that are associated with that runlevel.</p>
+<p>
+In general, when a computer enters runlevel <b>0</b>, the system shuts down all running processes, unmounts all file systems, and powers off.</p>
+<p>When it enters runlevel <b>6</b>, it <b>reboots</b>.</p>
+<p>The intermediate runlevels (1-5) differ in terms of which drives are mounted, and which network services are started. Default runlevels are typically 3, 4, or 5.</p>
+<p>Runlevel 1 is reserved for single-user mode-a state where only
+a single user can log in to the system.</p>
+<p>'Single user' mode runlevel 1 (or 'S') is sometimes called a 'rescue', or  a 'trouble-shooting' mode.</p>
+<p>Generally, few processes are started
+in single-user mode, so it is a very useful runlevel for diagnostics when a
+system won't fully boot. Even in the default GRUB menu we will notice a
+recovery mode option that boots us into runlevel 1.</p>
+<p>In other words, <b>runlevels</b> define what tasks can be accomplished in the current state (or runlevel) of a Linux system. Every Linux system supports three basic runlevels, plus one or more runlevels for normal operation.</p>
+<p>Lower run levels are useful for maintenance or emergency repairs, since they usually don't offer any network services at all.</p>
+<br/>
+<br/>
+<img alt="runlevel.png" src="images/DevOps/Interview/runlevel.png"/>
+<br/>
+<br/>
+<p>We can check current <b>runlevel</b> simply by issuing <b>runlevel</b> command :</p>
+<pre class="prettyprint">
+$ runlevel
+N 2
+</pre>
+<br>
+<p>It shows both the previous runlevel and the current one. If the first output character is 'N', the runlevel has not been changed since the system was booted. We can set the runlevel without reboot using <b>telinit</b>:</p>
+<pre class="prettyprint">
+$ sudo telinit 5
+ 
+$ runlevel
+2 5
+</pre>
+<br>
+<p>Under the folder <b>/etc/init.d/</b>, we find all the init scripts for different boot up services, like apache2, networking, etc.</p>
+<p>Depending on which runlevel the computer starts in, different services are started. For example, let's look int <b>/etc/init.d/nginx</b>, we can see the when the nginx server runs (runlevel 2 3 4 5):</p>
+<pre>
+### BEGIN INIT INFO
+# Provides:       nginx
+# Required-Start:    $local_fs $remote_fs $network $syslog $named
+# Required-Stop:     $local_fs $remote_fs $network $syslog $named
+# Default-Start:     <font color="blue">2 3 4 5</font>
+# Default-Stop:      <font color="blue">0 1 6</font>
+# Short-Description: starts the nginx web server
+# Description:       starts nginx using start-stop-daemon
+### END INIT INFO
+</pre>
+<br>
+<p>The run levels are defined by files in the file system. All the run level files are found in the /etc directory according to the following table:</p>
+<pre>
+/etc/rc0.d              Run level 0
+/etc/rc1.d              Run level 1
+/etc/rc2.d              Run level 2
+/etc/rc3.d              Run level 3
+/etc/rc4.d              Run level 4
+/etc/rc5.d              Run level 5
+/etc/rc6.d              Run level 6
+</pre>
+<br>
+<p>Let's look into some of the directories <b>rc2.d</b> and <b>rc6.d</b> in Ubuntu 14:</p>
+<p><b>rc2.d</b>:</p>
+<pre>
+$ ls /etc/rc2.d
+K08vmware-USBArbitrator  S20nagios-nrpe-server  S50saned
+K09apache2               S20puppetmaster        S50vmware-USBArbitrator
+K80nginx                 S20puppetqd            S55vmware-workstation-server
+README                   S20rabbitmq-server     S70dns-clean
+S19postgresql            S20redis_6379          S70pppd-dns
+S19vmware                S20redis-server        S92tomcat7
+S20apache-htcacheclean   S20rsync               S95elasticsearch
+S20fcgiwrap              S20speech-dispatcher   S95kibana
+S20jenkins               S20sysstat             S99chef-client
+S20jetty8                S20virtualbox          S99grub-common
+S20kerneloops            S23ntp                 S99monit
+S20memcached             S25vmamqpd             S99ondemand
+S20nagios                S50cassandra           S99rc.local
+</pre>
+<br>
+<p><b>rc6.d</b>:</p>
+<pre>
+K01monit                      K20jenkins             K20rsync
+K02chef-client                K20jetty8              K20speech-dispatcher
+K06vmamqpd                    K20kerneloops          K20virtualbox
+K06vmware-workstation-server  K20memcached           K21postgresql
+K08tomcat7                    K20nagios              K50cassandra
+K08vmware                     K20nagios-nrpe-server  README
+K09apache2                    K20nginx               S20sendsigs
+K10elasticsearch              K20puppetmaster        S30urandom
+K10kibana                     K20puppetqd            S31umountnfs.sh
+K10unattended-upgrades        K20rabbitmq-server     S40umountfs
+K20apache-htcacheclean        K20redis_6379          S60umountroot
+K20fcgiwrap                   K20redis-server        S90reboot
+</pre>
+<br>
+<p>Here the first character 'S' means (S)tart files, 'K' meands (K)ill files. In other words, they indicate Enabling (S) or disabling(k) run level services.</p>
+<p>Each of the script will be executed in alphabetical order.</p>
+<p>Note that at runlevel 6, most of the scripts start with 'K' while runlevel 2 executes couple of Kill scripts and lots of Starts.</p>
+<p>Let's look at some of the programs that are actually executed during a run level change:</p>
+<pre>
+S20rsync -> ../init.d/rsync
+</pre>
+<br>
+<p>Note that all of the scripts that run during system start-up actually reside in the <b>/etc/init.d/</b> directory.</p>
+<br>
+<p>Current level can be listed by typing the command 'who -r':</p>
+<pre>
+$ who -r
+         run-level 5  2016-03-24 13:55
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="init">What is init?</div>
+<p><b>init</b> is the first process that starts in a Linux system after the machine boots and the kernel loads into memory.</p>
+<p>
+It decides how a user process or a system service should load, in what order, and whether it should start automatically.</p>
+<p>
+Every process in Linux has a process ID (PID) and init has a PID of 1. It's the parent of all other processes that subsequently spawn as the system comes online.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="inittab">/etc/inittab file</div>
+<p><b>inittab</b> file describes how the INIT process should set up the system in a certain run-level.</p>
+<p>As an example, the default run state is 3 as shown below:</p>
+<pre class="prettyprint">
+id:3:initdefault:
+</pre>
+<br>
+<p>The <b>/etc/rc.d/rc</b> script will then use the specified run level to determine which set of run scripts to execute. Under normal conditions, then, rc will run with "3" as its argument and will run all the scripts in the <b>/etc/rc3.d</b> directory. It will run the kill scripts (those that start with an uppercase "K") first and then the start scripts (those that start with an uppercase "S") using lines like this:</p>
+<pre class="prettyprint">
+for i in /etc/rc$runlevel.d/K* ; do
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="inittab">How to auto start after a crash or reboot</div>
+<p>Our running Linux system has a number of background processes executing at any time. These processes (services or daemons) may be native to the operating system (sshd), or run as part of an application (httpd/apache2).</p>
+<p>We want our Linux services to run continuously without failing and 
+start automatically if the system reboots or crashes.</p>
+<p>
+A reboot can happen for many reasons: it can be a planned restart, the last step of a patch update, or the result of unexpected system behavior. A crash is what happens when the process stopping unexpectedly or becomes unresponsive to user or application requests.</p>
+<p>Most of out standard applications that we can install, such as Nginx or MySQL, will start after reboot by default, but NOT start after a crash by default. They will come with their own init scripts in <b>/etc/init.d</b> already.</p>
+<p>To make sure our service is set to automatically start, we need to 
+make sure the service has a functional Bash init script located at <b>/etc/init.d/service</b>.</p>
+<p>
+To enable the service, we may want to use the <b>update-rc.d</b> command (or for a CentOS system, <b>chkconfig</b>):</p>
+<pre class="prettyprint">
+$ sudo update-rc.d service enable
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="chkconfig">chkconfig</div>
+<p>On ubuntu, the <b>chkconfig</b> is no longer available for 12.10+ while for Redhat it is still available.</p>
+<p>So, <b>/usr/sbin/sysv-rc-conf</b> is an alternate option for Ubuntu.</p>
+<p>We use the 'chkconfig (or sysv-rc-conf)' command to find out runlevel of applications which are running:</p>
+<pre class="prettyprint">
+$ <font color="blue">sudo sysv-rc-conf --list</font>
+acpid       
+anacron     
+apache2      0:off	1:off	2:off	3:off	4:off	5:off	6:off
+apparmor     S:on
+apport      
+avahi-daemon
+binfmt-suppo
+bluetooth   
+brltty       S:on
+chef-client  0:off	1:off	2:on	3:on	4:on	5:on	6:off
+</pre>
+<br>
+<p>We can see, the <b>runlevel</b> of <b>apache2</b> is <b>2-5</b>. To check only the <b>runlevel</b> of <b>apache2</b>, we can use:</p>
+<pre class="prettyprint">
+$ sysv-rc-conf --list apache2
+apache2      0:off	1:off	2:off	3:off	4:off	5:off	6:off
+</pre>
+<br>
+<p>To configure apache2 to start on boot:</p>
+<pre class="prettyprint">
+$ sudo sysv-rc-conf apache2 on
+
+$ sysv-rc-conf --list apache2
+apache2      0:off	1:off	2:on	3:on	4:on	5:on	6:off
+</pre>
+<br>
+<p>The equivalent <b>chkconfig</b> command:</p>
+<pre class="prettyprint">
+$ sudo chkconfig apache2 enable
+
+$ chkconfig --list apache2
+</pre>
+<br>
+<p>If the command is not available, we can install it:</p>
+<pre>
+$ sudo apt-get install sysv-rc-conf
+</pre>
+<br>
+<p>To find the services with runlevel with 1:on:</p>
+<pre class="prettyprint">
+$ sysv-rc-conf --list |grep "1:on"
+dns-clean    1:on	2:on	3:on	4:on	5:on
+killprocs    1:on
+pppd-dns     1:on	2:on	3:on	4:on	5:on
+single       1:on
+</pre>
+<br>
+<p>We can set runlevel via UI by just issuing a command, <b>sysv-rc-conf</b>:</p>
+<img alt="Screenshot-runlevel.png" src="images/DevOps/Interview/Screenshot-runlevel.png" width="100%"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Timezone">How to change time zone?</div>
+<p>We want to switch current timezone (UTC) to Pacific Time. We can do it like this:</p>
+<pre class="prettyprint">
+$ date
+Fri Sep 18 03:03:28 UTC 2015
+
+$ sudo rm /etc/localtime
+$ sudo ln -s /usr/share/zoneinfo/US/Pacific /etc/localtime
+$ date
+Thu Sep 17 20:04:35 PDT 2015
+</pre>
+<br>
+<p><b>ln -sf</b> will overwrite the existing one:</p>
+<pre class="prettyprint">
+$ sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
+</pre>
+<br/>
+<p>Another way of setting timezones:</p>
+<pre>
+$ sudo timedatectl set-timezone UTC
+</pre>
+<br>
+<p>Or the 3rd way (interactive mode):</p>
+<pre>
+$ sudo dpkg-reconfigure tzdata
+</pre>
+<br>
+<p>To list all the timezones:</p>
+<pre>
+$ timedatectl list-timezones
+</pre>
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="IPTables">IPTables (Linux Firewall)</div>
+<p>Firewall decides fate of packets incoming and outgoing in system. IPTables is a rule based firewall and it is pre-installed on most of Linux operating system. By default, it runs without any rules. So, it allows all traffic by default. IPTables is a front-end tool to talk to the kernel and decides the packets to filter. </p>
+<p>To list tables, we can use <b>iptables -L</b>:</p>
+<pre class="prettyprint">
+$ sudo iptables -L -n -v
+Chain INPUT (policy ACCEPT 2532K packets, 360M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     udp  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     tcp  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0            tcp dpt:67
+    0     0 ACCEPT     udp  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0            udp dpt:67
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DOCKER     all  --  *      docker0  0.0.0.0/0            0.0.0.0/0           
+    0     0 ACCEPT     all  --  *      docker0  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED
+    0     0 ACCEPT     all  --  docker0 !docker0  0.0.0.0/0            0.0.0.0/0           
+...      
+
+Chain OUTPUT (policy ACCEPT 2429K packets, 227M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain DOCKER (1 references)
+ pkts bytes target     prot opt in     out     source               destination 
+</pre>
+<br>
+<p>Note that we used the following options "-L" (List ruleset), "-v" (Verbose) and "-n" (Displays in numeric format).</p>
+<p>We have three chains:</p>
+<ol>
+<li>INPUT : Default chain originating to system.</li>
+<li>OUTPUT : Default chain generating from system.</li>
+<li>FORWARD : Default chain packets are send through another interface.</li>
+</ol>
+<p>Another example: for a NodeJS application, we may want to redirect port 80 to 3000:</p>
+<pre class="prettyprint">
+$ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+</pre>
+<br>
+<p>Note we used <b>-t</b> before the <b>nat</b> table.</p>
+<p>We may want to see the fire wall:</p>
+<pre class="prettyprint">
+$ sudo iptables -nvL
+Chain INPUT (policy ACCEPT 391 packets, 30731 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 291 packets, 51291 bytes)
+ pkts bytes target     prot opt in     out     source               destination     
+</pre>
+<br>
+<p>We don't see any firewall settings. That's because the command <b>iptables -nvL</b> is displaying the contents of the <b>filter</b> table. The rule we added was in the <b>nat</b> table. So, we need to add <b>-t nat</b> to look at the <b>nat</b> table:</p>
+<pre class="prettyprint">
+$ sudo iptables -t nat -nvL
+Chain PREROUTING (policy ACCEPT 649 packets, 38562 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+   30  1760 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 redir ports 3000
+    6   360 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3000 redir ports 3000
+
+Chain INPUT (policy ACCEPT 676 packets, 40162 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 169 packets, 12849 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain POSTROUTING (policy ACCEPT 169 packets, 12849 bytes)
+ pkts bytes target     prot opt in     out     source               destination     
+</pre>
+<br>
+<p>In the table, I put unnecessary 2nd row which redirects port 3000 to port 3000. How we can delete it?</p>
+<p>Let's add the line number in the output:</p>
+<pre class="prettyprint">
+$ sudo iptables -t nat -L PREROUTING --line-numbers
+Chain PREROUTING (policy ACCEPT)
+num  target     prot opt source               destination         
+1    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 3000
+2    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:3000 redir ports 3000
+</pre>
+<br>
+<p>We use <b>D</b> to delete the 2nd:</p>
+<pre class="prettyprint">
+$ sudo iptables -t nat -D PREROUTING 2
+$ sudo iptables -t nat -L PREROUTING --line-numbers
+Chain PREROUTING (policy ACCEPT)
+num  target     prot opt source               destination         
+1    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 3000
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="memory">Check current memory usage</div>
+<p>If we need to see how much memory our system is using at the current moment issue the following command:</p>
+<pre class="prettyprint">
+$ free -m
+</pre>
+<br>
+<p>This command will generate output that looks like the following:</p>
+<pre class="prettyprint">
+             total       used       free     shared    buffers     cached
+Mem:          3545       3346        199         57         20        358
+-/+ buffers/cache:       2967        578
+Swap:         3681       1338       2343
+</pre>
+<br>
+<p>Out of a total 3545 megabytes of memory (RAM), the system is using 3346 megabytes, and has 199 megabytes free. However, the system also has 2967 megabytes of "stale" data buffered and stored in cache. The operating system will "drop" the caches when and if it needs the space, but retains the cache if there is no other need for the space. It is totally normal for a Linux system to leave old data in RAM until the space is needed, and we should not be alarmed if only a small amount of memory is actually "free."</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="vmstat">Monitor IO Usage with vmstat</div>
+<p>The <b>vmstat</b> tool provides information about memory, swap utilization, IO wait, and system activity. It is particularly useful for diagnosing I/O-related issues.</p>
+<pre class="prettyprint">
+vmstat 1 20
+</pre>
+<br>
+<p>This runs a <b>vmstat</b> every second(1), twenty times(20). This gives a pretty good sample of the current state of the system. The output generated should look like the following:</p>
+<pre class="prettyprint">
+$ vmstat 1 20
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0 1346096 220912  19284 303804   21   18    95    65   61  142 35  8 55  1  0
+ 1  0 1346096 220940  19284 303804    0    0     0     0  785 1612 15  3 82  0  0
+ 1  0 1346092 220908  19292 303808    0    0     0    56  876 1715 11  4 84  2  0
+ 2  0 1346092 220908  19292 303808    0    0     0     0  678 1355 10  3 88  0  0
+ 1  0 1346092 220940  19292 303808    0    0     0     0  761 1568 14  5 81  0  0
+ 0  0 1346088 220908  19292 303812    0    0     0   136  679 1529 10  3 88  0  0
+ 1  0 1346088 220908  19300 303800    0    0     0   160  672 1484 10  3 85  3  0
+ 1  0 1346084 220908  19300 303812    0    0     0     0  688 1467 14  4 83  0  0
+ 0  0 1346084 220736  19300 303812    0    0     0     0  741 1602 12  4 84  1  0
+ 0  0 1346084 220752  19300 303812    0    0     0     0  667 1363  9  2 89  0  0
+ 1  0 1346084 220720  19300 303812    0    0     0     8  775 1734 19  4 77  0  0
+ 0  0 1346080 220620  19300 303820    0    0    12     0  871 1859 16  4 80  1  0
+ 0  1 1346076 220372  19440 303956   84    0   300   124  935 1796  9  5 72 13  0
+ 1  0 1346064 220340  19440 303924   84    0    84     0  943 1806 17  5 76  3  0
+ 0  0 1346064 220372  19440 303924    0    0     0     0  743 1658 10  4 86  0  0
+ 0  0 1346060 220372  19440 303932    0    0     0     0  675 1558  9  4 88  0  0
+ 1  0 1346060 220248  19440 303928    0    0     0     0  788 1504 15  5 80  0  0
+ 0  0 1346060 220248  19440 303928    0    0     0     0  723 1568 10  2 89  0  0
+ 0  0 1346060 219968  19448 303920    0    0     4    24  751 1627 10  4 84  3  0
+ 1  0 1346060 219936  19448 303940    0    0     0     0  770 1664 16  4 80  0  0
+</pre>
+<br>
+<p>The <b>memory</b> and <b>swap</b> columns provide the same kind of information provided by the <b>free -m</b> command, though in a slightly more difficult to comprehend format. The most salient information produced by this command is the <font color="red"><b>wa</b></font> column, which is the final column in most implementations. This field displays <font color="blue"><b>the amount of time the CPU spends waiting for IO operations to complete</b></font>.</p>
+<p>If this number is consistently and considerably higher than 0, we might consider taking measures to address the IO usage.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Process-State-Codes">Process State Codes</div>
+<p>Here are the states of a process:</p>
+<table>
+ <tr>
+   <th style="text-align:center">State</th>
+   <th style="text-align:center">Description</th>
+ </tr>
+ <tr>
+   <td>D</td>
+   <td style="text-align:left">uninterruptible sleep (usually IO)</td>
+ </tr>
+ <tr>
+   <td>R</td>
+   <td style="text-align:left">running or runnable (on run queue)</td>
+ </tr>
+ <tr>
+   <td>S</td>
+   <td style="text-align:left">interruptible sleep (waiting for an event to complete)</td>
+ </tr>
+ <tr>
+   <td>T</td>
+   <td style="text-align:left">stopped, either by a job control signal or because it is being traced</td>
+ </tr>
+ <tr>
+   <td>Z</td>
+   <td style="text-align:left">defunct ("zombie") process, terminated but not reaped by its parent</td>
+ </tr>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="htop">htop - Monitor Processes, Memory, and CPU Usage</div>
+<p>If we want a more organized and real-time view of the current state of our system, we may want to use a tool called <b>htop</b>. Note that this is not installed by default on most systems. </p>
+<br/>
+<img alt="htop.png" src="images/DevOps/Interview/htop.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="htop">cron syntax</div>
+<pre class="prettyprint">
+* * * * *
+</pre>
+<br>
+<p>In order, the asterisks represent:</p>
+<pre class="prettyprint">
+1. Minute, 2. Hour 3. Day of month, 4. Month, 5. Day of week
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="swap">swappiness</div>
+<p>The <b>swappiness</b> parameter controls the tendency of the kernel to move processes out of physical memory and onto the swap disk. Because disks are much slower than RAM, this can lead to slower response times for system and applications if processes are too aggressively moved out of memory.</p>
+<p>swappiness can have a value of between 0 and 100:</p>
+<ol>
+<li>swappiness=0 : Version 3.5 and over: disables swapiness. Prior to 3.5: tells the kernel to avoid swapping processes out of physical memory for as long as possible.</li>
+<li>swappiness=1 : Version 3.5 and over: Minimum swappiness without disabling it entirely.</li>
+<li>swappiness=100 tells the kernel to aggressively swap processes out of physical memory and move them to swap cache.</li>
+</ol>
+<p>Ref: <a href="http://askubuntu.com/questions/103915/how-do-i-configure-swappiness" target="_blank">How do I configure swappiness?</a>
+<p>We can check its value:</p>
+<pre class="prettyprint">
+$ cat /proc/sys/vm/swappiness
+60
+</pre>
+<br>
+<p>We can set it:</p>
+<pre class="prettyprint">
+$ sudo sysctl vm.swappiness=10
+vm.swappiness = 10
+
+$ cat /proc/sys/vm/swappiness
+10
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="iostat">Linux disk utilization : iostat</div>
+<p>To monitor disk read/write rates of individual disks, we can use <b>iostat</b>. This tool allows us to monitor I/O statistics for each device or partition. Using <b>iostat</b> command, we can find out disk utilization and monitor system input/output device loading by observing the time the physical disks are active in relation to their average transfer rates.</p>
+<p>To use this tool, we need to run <b>sysstat</b> package.</p>
+<p>
+To install <b>sysstat</b> on Ubuntu or Debian:</p>
+<pre class="prettyprint">
+$ sudo apt-get install sysstat
+</pre>
+<br>
+<p>Syntax for disk utilization report looks like this:</p>
+<pre class="prettyprint">
+iostat -d -x interval count
+</pre>
+<p>where:</p>
+<ol>
+<li><b>-d</b> : Display the device utilization report (d == disk)</li>
+<li><b>-x</b> : Display extended statistics including disk utilization</li>
+<li><b>interval</b> : It is time period in seconds between two samples. iostat 2 will give data at each 2 seconds interval.</li>
+<li><b>count</b> : It is the number of times the data is needed. iostat 2 5 will give data at 2 seconds interval 5 times.</li>
+</ol>
+<pre class="prettyprint">
+$ iostat -d -x 5 3
+Linux 3.13.0-40-generic (laptop) 	10/14/2015 	_x86_64_	(2 CPU)
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+sda               1.75     4.78    6.15    2.13   104.99    45.86    36.45     0.27   32.58   22.74   61.06   3.03   2.51
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+sda               0.00     5.20    0.00    7.80     0.00    80.00    20.51     0.14   17.74    0.00   17.74  12.41   9.68
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+sda               4.20     4.40    0.80    2.80    20.00    47.20    37.33     0.11   31.11   76.00   18.29  31.11  11.20
+</pre>
+<br>
+<p>The following values from the iostat output are the major ones:
+<ol>
+<li><b>r/s</b> : The number of read requests per second. See if a hard disk reports consistently high reads</li>
+<li><b>w/s</b> : The number of write requests per second. See if a hard disk reports consistently high writes</li>
+<li><b>svctm</b> : The average service time (in milliseconds) for I/O requests that were issued to the device.</li>
+<li><b>%util</b> : Percentage of CPU time during which I/O requests were issued to the device (bandwidth utilization for the device). Device saturation occurs when this value is close to 100%.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="iotop">Linux disk utilization : iotop -o</div>
+<p>We need to install <b>iotop</b>:</p>
+<pre class="prettyprint">
+$ sudo apt-get install iotop
+</pre>
+<br>
+<p>Running <b>iotop</b> without any argument displays a list of <b>all</b> existing processes regardless of their disk I/O activities. If we want iotop to only show processes that are actually doing disk I/O, run the following instead:</p>
+<pre class="prettyprint">
+$ sudo iotop -o
+</pre>
+<img alt="iotop.png" src="images/DevOps/Interview/iotop.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="selinux">What is SELinux?</div>
+<p><b>Security-Enhanced Linux (SELinux)</b> is a mandatory access control (MAC) security mechanism implemented in the kernel. SELinux was first introduced in CentOS 4 (<a href="https://wiki.centos.org/HowTos/SELinux" target="_blank">SELinux</a>).</p>
+<p>SELinux is a Mandatory Access Control (MAC) system which is a kernel enhancement to confine programs to a limited set of resources (<a href="https://wiki.ubuntu.com/SELinux" target="_blank">SELinux</a>).</p>
+<p>Traditional access control methods such as <b>file permissions</b> or <b>access control lists (ACLs)</b> are used to control the file access of users. Users and programs alike are allowed to grant insecure file permissions to others or, conversely, to gain access to parts of the system that should not otherwise be necessary for normal operation. For example, keys in <b>~/.ssh/</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="sticky-bit">What is a sticky bit?</div>
+<p>The <b>restricted deletion flag</b> or <b>sticky bit</b> is a permission bit that is set on a directory that allows only the owner of the file within that directory or the root user to delete or rename the file. No other user has the needed privileges to delete the file created by some other user.</p>
+<p><a href="http://askubuntu.com/questions/432699/what-is-the-t-letter-in-the-output-of-ls-ld-tmp" target="_blank">What is the "t" letter in the output of "ls -ld /tmp"?</a>.</p>
+<pre>
+$ ls -ld /tmp
+drwxrwxrw<font color="red">t</font> 15 root root 24576 Oct 16 17:12 /tmp
+</pre>
+<br>
+<p>We can remove it:</p>
+<pre>
+$ sudo chmod -<font color="blue">t</font> /tmp
+
+$ ls -ld /tmp
+drwxrwxrw<font color="blue">t</font> 15 root root 24576 Oct 16 17:12 /tmp
+</pre>
+<br>
+<p>Add back in:</p>
+<pre>
+$ sudo chmod +<font color="blue">t</font> /tmp
+
+$ ls -ld /tmp
+drwxrwxrw<font color="red">t</font> 15 root root 24576 Oct 16 17:12 /tmp
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="suid-guid">SUID/GUID</div>
+<p>If SUID bit is set, when the file is executed by a user, the process will have the same rights as the owner of the file being executed.</p>
+<p>So, if the file is owned by root and the SUID bit is turned on, the program will run as root even if we execute it as a regular user. The same applies to the GUID bit as well:</p>
+<pre>
+$ ls -l /usr/bin/passwd
+-rw<font color="red">s</font>r-<font color="green">x</font>r-<font color="green">x</font> 1 <font color="blue">root root</font> 54256 Mar 29  2016 /usr/bin/passwd
+</pre>
+<br>
+<p>We usualy run the <b>passwd</b> command as a normal user without 'sudo'. That's fine because we have <font color="green">'x'</font> permissions for both 'group' and 'others'. However, we do not have a write permission which we need to modify our password. </p>
+<p>Note that the initial statement of this section:</p>
+<blockquote>
+So if the file is owned by root and the <font color="red">SUID bit is turned on</font>, the program will <font color="red">run as root</font>. Even if we execute it as a regular user. 
+</blockquote>
+<p>So, while executing the <b>passwd</b> as a normal user, we are allowed to modify our password thanks to the fact that SUID bit '<font color="red">s</font>' is turned on.</p>
+<br>
+<p>GUID is the same as SUID, but inherits group privileges of the file on execution, not user privileges. Similar way when you create a file within directory,it will inherit the group ownership of the directories.</p>
+<br>
+<p>Here are other examples:</p>
+<p><b>no suid/guid</b>:</p>
+<pre>
+$ ls -l a.sh
+-rwxr-xr-x 1 k k 0 Mar 26 14:10 a.sh
+</pre>
+<br>
+<p><b>suid & user's executable bit enabled (lowercase s) (chmod <font color="red">4</font>755)</b>:</p>
+<pre>
+$ chmod u+s a.sh
+$ ls -l a.sh
+-rw<font color="red">s</font>r-xr-x 1 k k 13 Mar 26 14:10 a.sh
+</pre>
+<br>
+<p><b>suid enabled & executable bit disabled (uppercase S)</b>:</p>
+<pre>
+$ chmod u-x a.sh
+$ ls -l a.sh
+-rw<font color="red">S</font>r-xr-x 1 k k 13 Mar 26 14:10 a.sh
+</pre>
+<br>
+<p><b>guid & group's executable bit enabled (lowercase s) (chmod <font color="red">2</font>755)</b>:</p>
+<pre>
+$ chmod g+s a.sh
+$ ls -l a.sh
+-rwxr-<font color="red">s</font>r-x 1 k k 13 Mar 26 14:10 a.sh
+</pre>
+<br>
+<p><b>guid enabled & executable bit disabled (uppercase S)</b>:</p>
+<pre>
+$ chmod g-x a.sh
+$ ls -l a.sh
+-rwxr-<font color="red">S</font>r-x 1 k k 13 Mar 26 14:10 a.sh
+</pre>
+<br>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lsof">lsof (LiSt Open Files)</div>
+<p>The most frequent use  of <b>lsof</b> command is when a disk cannot be unmounted as it says the files are being used. Using this command we can identify the files which are in use / opened by which process. </p>
+<p>In Linux, everything is a files (pipes, sockets, directories, and devices).</p>
+<pre class="prettyprint">
+$ lsof -i
+COMMAND     PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+chrome     4580    k   84u  IPv4 2743073      0t0  TCP laptop:34284-&gt;ne1onepush.vip.ne1.yahoo.com:https (ESTABLISHED)
+
+$ lsof -i -n
+COMMAND     PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+chrome     4580    k   84u  IPv4 2753410      0t0  TCP 192.168.1.1:34889-&gt;98.138.79.73:https (ESTABLISHED)
+</pre>
+<br>
+<p>where:</p>
+<ol>
+<li><b>-i</b> Lists IP sockets.</li>
+<li><b>-n</b> Do not resolve hostnames (no DNS).</li>
+</ol>
+<p>To find out all the running process of specific port, just use the following command with option <b>-i</b>:</p>
+<pre class="prettyprint">
+$ lsof -i :8087
+COMMAND  PID   USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+node    2208 ubuntu   10u  IPv4  11235      0t0  TCP ip-172-31-10-18.us-west-1.compute.internal:8087 (LISTEN)
+</pre>
+<br>
+<p>For more details, visit <a href="DevOps-Sys-Admin-Interview-Questions-lsof.html" target="_blank">lsof</a></p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="top">top command &amp; trouble shooting</div>
+<p>This section is a compiled work from the following sources:</p>
+<ol>
+<li><a href="http://man7.org/linux/man-pages/man1/top.1.html" target="_blank">Top</a></li>
+<li><a href="http://blog.scoutapp.com/articles/2015/02/24/understanding-linuxs-cpu-stats" target="_blank">Understanding Linux CPU stats</a></li>
+</ol>
+<br/>
+<p>The top program provides a dynamic real-time view of a running system. It can display system summary information, as well as a list of processes or threads currently being managed by the kernel.</p>
+<p>Descriptions for the top display:</p>
+<pre class="prettyprint">
+%Cpu(s): 10.7 us,  2.9 sy,  0.0 ni, 85.7 id,  0.5 wa,  0.0 hi,  0.2 si,  0.0 st
+</pre>
+<br>
+<p>This line shows CPU state percentages based on the interval since the last refresh.</p>
+<ol>
+<li><b>us, user</b> user cpu time (or) % CPU time spent in user space, time running un-niced user processes.<br/>
+ Shells, compilers, databases, web servers, and the programs associated with the desktop are all user space processes. If the processor isn't idle, <font color="green">it is quite normal that the majority of the CPU time should be spent running user space processes</font>.
+ </li>
+<br>
+<li><b>sy, system</b> system cpu time (or) % CPU time spent in kernel space.
+
+This is the amount of time that the CPU spent running the kernel. All the processes and system resources are handled by the Linux kernel. When a user space process needs something from the system, for example when it needs to allocate memory, perform some I/O, or it needs to create a child process, then the kernel is running. In fact the scheduler itself which determines which process runs next is part of the kernel. <font color="green">The amount of time spent in the kernel should be as low as possible</font>. In this case, just 2.9% of the time given to the different processes was spent in the kernel. This number can peak much higher, especially when there is a lot of I/O happening.
+  </li>
+<br>
+<li><b>ni, nice</b> time running niced user processes.<br/>
+Niceness is a way to tweak the priority level of a process so that it runs less frequently. <font color="green">A niceness of -20 is the highest priority and 19 is the lowest priority</font>. So, -20 is the most favorable scheduling and 19 is the least favorable scheduling. A higher-priority process will get a larger chunk of the CPU time than a lower-priority process. By default processes on Linux are started with a niceness of 0.<br/>
+A "niced" process is one with a positive nice value. So if the processor's nice value is high, that means it is working with some low priority processes. So this indicator is useful when we see high CPU utilization and we are afraid that this high load will have bad effect on our system:
+    <ol>
+<li>High CPU utilization with high nice value: Nothing to worry, not so important tasks doing there job, important processes will easily get CPU time if they need. This situation is not a real bottleneck.</li>
+<li>High CPU utilization with low nice value: Something to worry because the CPU is stressed with important processes so these or new processes will have to wait. This situation is a real bottleneck.</li>
+</ol>
+</li>
+<br>
+<li><b>id, idle</b> <font color="green">time spent in the kernel idle handler</font>.<br/>
+The id statistic tell us that the processor was idle just over 85.7% of the time during the last sampling period. The total of the user space percentage - us, the niced percentage - ni, and the idle percentage - id, should be close to 100%. Which it is in this case. If the CPU is spending a more time in the other states then something is probably wrong, and may need trouble shooting.
+ </li>
+<br>
+<li><b>wa, IO-wait</b> <font color="green">time waiting for I/O completion</font>.<br/>
+I/O operations are slow compared to the speed of a CPU. There are times when the processor has initiated a read or write operation and then it has to wait for the result, but has nothing else to do. In other words it is idle while waiting for an I/O operation to complete. The time the CPU spends in this state is shown by the 'wa' statistic.<br/>
+'wa' is the measure of time over a given period that a CPU spent idle because all runnable tasks were waiting for a IO operation to be fulfilled.
+ </li>
+<br>
+<li><b>hi</b> time spent servicing <font color="green">hardware interrupts</font>. <br/>
+This is the time spent processing hardware interrupts. Hardware interrupts are generated by hardware devices (network cards, keyboard controller, external timer, hardware senors, etc.) when they need to signal something to the CPU (data has arrived for example). 
+Since these can happen very frequently, and since they essentially block the current CPU while they are running, kernel hardware interrupt handlers are written to be as fast and simple as possible.<br/>
+On a system where no processes have been niced then the number will be 0.<br/>
+Hardware interrupts are physical interrupts sent to the CPU from various peripherals like disks and network interfaces. Software interrupts come from processes running on the system. A hardware interrupt will actually cause the CPU to stop what it is doing and go handle the interrupt. A software interrupt doesn't occur at the CPU level, but rather at the kernel level.
+ </li>
+<br>
+<li><b>si</b> time spent servicing <font color="green">software interrupts</font>. <br/>
+This represents the time spent in <a href="http://zeniv.linux.org.uk/pub/linux/people/willy/willy/lca/paper.pdf" target="_blank">softirqs</a>.
+ </li>
+<br>
+<li><b>st</b> time stolen from this <font color="green">vm</font> by the hypervisor. <br/>
+This represents "steal time", and it is only relevant in virtualized environments. It represents time when the real CPU was not available to the current virtual machine - it was "stolen" from that VM by the hypervisor (either to run another VM, or for its own needs).<br/>
+This number tells how long the virtual CPU has spent waiting for the hypervisor to service another virtual CPU running on a different virtual machine. Since in the real-world these virtual processors are sharing the same physical processor(s) then there will be times when the virtual machine wanted to run but the hypervisor scheduled another virtual machine instead.
+ </li>
+</ol>
+<br>
+<p>Here are some of the trouble shootings:</p>
+<ol>
+<li><b>High user mode CPU usage</b> - If a system suddenly jumps from having spare CPU cycles to running flat out high, then the first thing to check is the amount of time the CPU spends running user space processes. If this is high, then it probably means that a process has gone crazy and is eating up all the CPU time.<br/>
+ Using the top command we will be able to see which process is to blame and <b>restart the service</b> or <b>kill the process</b>.
+  </li>
+<br>
+<li><b>High kernel CPU usage</b> - Sometimes this is acceptable. For example, a program that does lots of console I/O can cause the kernel usage to spike. However if it remains higher for long periods of time, then it could be an indication that something isn't right. <br/>
+A possible cause of such spikes could be a problem with a <b>driver/kernel module</b>.
+  </li>
+<br>
+<li><b>High niced value CPU usage</b> - If the amount of time the CPU is spending running processes with a niced priority value jumps, then it means that someone has started some intensive CPU jobs on the system, but they have niced the task.<br/>
+
+If the niceness level is greater than zero, then the user has been courteous enough lower to the priority of the process and therefore avoid a CPU overload. There is probably little that needs to be done in this case, other than maybe find out who has started the process.<br/>
+But if the niceness level is less than 0, then we will need to investigate what is happening and who is responsible, as such a task could easily cripple the responsiveness of the system.<br/>
+</li>
+<br>
+<li><b>High waiting on I/O</b>
+This means that there are some intensive I/O tasks running on the system that don't use up much CPU time. If this number is high for anything other than short bursts, then it means that either the I/O performed by the task is very inefficient, or the data is being transferred to a very slow device, or there is a potential problem with a hard disk that is taking a long time to process reads &amp; writes.
+  </li>
+<br>
+<li><b>High interrupt processing</b>
+This could be an indication of a broken peripheral that is causing lots of hardware interrupts or of a process that is issuing lots of software interrupts.
+  </li>
+<br>
+<li><b>Large stolen time</b>
+Basically, this means that the host system running the hypervisor is too busy. If possible, check the other virtual machines running on the hypervisor, and/or migrate to our virtual machine to another host.
+  </li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="dmidecode">dmidecode - retrieve hardware information</div>
+<p><b>dmidecode</b> command reads the system DMI table to display hardware and BIOS information of a linux box:</p>
+<pre>
+$ sudo dmidecode
+# dmidecode 2.12
+# SMBIOS entry point at 0xdfabef98
+SMBIOS 2.7 present.
+...
+BIOS Information
+...
+System Information
+...
+Base Board Information
+..
+Memory Device
+...
+Processor Information
+..
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Who">Who is logged on and what they are doing - w </div>
+<p><b>w</b> displays information about the users currently on the machine, and their processes. The header shows, in this order, the current time, how long the system has been running, how many users are currently logged on, and the system load averages for the past 1, 5, and 15 minutes:</p>
+<pre>
+$ <font color="blue">w</font>
+ 20:08:43 up 4 days,  6:14,  1 user,  load average: 0.66, 1.00, 0.86
+USER   TTY   FROM   LOGIN@   IDLE   JCPU   PCPU WHAT
+k      tty7  :0     Fri13    4days  2:23m  2.13s /sbin/upstart --user
+</pre>
+<br>
+<p>The output shows the following entries for each user: login name, the tty name, the remote host, login time, idle time, JCPU, PCPU, and the command line of their current process.</p>
+
+<br/>
+<br/>
+<br/>
+<h1>DevOps</h1>
+
+   <li><a href="Continuous_Integration_Phases.html">Phases of Continuous Integration</a> </li>
+   <li><a href="../DesignPatterns/software_development_methodology.html">Software development methodology</a> </li>
+   <li><a href="DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> </li>
+   <li><a href="DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> </li>
+   <li><a href="DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> </li>
+   <li><a href="../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> </li>
+   <li><a href="../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> </li>
+   <li><a href="DevOps_MariaDB.html">MariaDB</a> </li>
+   <li><a href="DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> </li>
+   <li><a href="DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> </li>
+   <li><a href="DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> </li>
+   <li><a href="DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> </li>
+   <li><a href="DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> </li>
+   <li><a href="DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> </li>
+   <li><a href="DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> </li>
+   <li><a href="OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a></li>
+   <li><a href="DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a></li>
+   <li><a href="DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> </li>
+   <li><a href="DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> </li>
+   <li><a href="DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a></li>
+   <li><a href="DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a></li>
+   <li><a href="DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> </li>
+   <br><br><br>
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a></li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs & SSL Certificate</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> </li>
+   <li><a href="DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> </li>
+   <li><a href="DevOps_phpMyAdmin_Nginx_Subdomain.html">(19) - phpMyAdmin with Nginx virtual host as a subdomain</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> </li>
+   <li><a href="DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> </li>
+   <li><a href="DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> </li>
+   
+
+   
+
+<br/>
+<br/>
+<!-- linux_list_INNER.php -->
+<div class="bodytext" style="padding: 12px;" align="justify"> 
+<h1>Linux - system, cmds & shell programming</h1>
+
+<ol>
+   <li><a href="../Linux/linux_tips1.html">Linux Tips - links, vmstats, rsync</a> </li>
+   <li><a href="../Linux/linux_tips2.html">Linux Tips 2 - ctrl a, curl r, tail -f, umask </a> </li>
+   <li><a href="../Linux/linux_tips2_bash.html">Linux - bash I</a> </li>
+   <li><a href="../Linux/linux_bash_2.html">Linux - bash II</a> </li>
+   <li><a href="../Linux/linux_7z_uncompress.html">Linux - Uncompressing 7z file</a> </li>
+   <li><a href="../Linux/linux_sed_tutorial.html">Linux - sed I (substitution: sed 's///', sed -i)</a> </li>
+   <li><a href="../Linux/linux_sed_tutorial_2.html">Linux - sed II (file spacing, numbering, text conversion and substitution)</a> </li>
+   <li><a href="../Linux/linux_sed_tutorial_3.html">Linux - sed III (selective printing of certain lines, selective definition of certain lines)</a> </li>
+   <li><a href="../Linux/linux_File_Types.html">Linux - 7 File types : Regular, Directory, Block file, Character device file, Pipe file, Symbolic link file, and Socket file</a> </li>
+    <li><a href="../Linux/linux_shell_programming_tutorial.html">Linux shell programming - introduction</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial2_variables.html">Linux shell programming - variables (readonly, unset)</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial3_special_variables.html">Linux shell programming - special shell variables</a>
+    </li>   
+   <li><a href="../Linux/linux_shell_programming_tutorial4_arrays.html">Linux shell programming : arrays - three different ways of declaring arrays & looping with $*/$@</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial5_array_operations.html">Linux shell programming : operations on array</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial6_shell_substitution.html">Linux shell programming : variables & commands substitution</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial7_metacharacters_quotes.html">Linux shell programming : metacharacters & quotes</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial8_input_output_redirection.html">Linux shell programming : input/output redirection & here document</a>
+    </li>
+   <li><a href="../Linux/linux_shell_programming_tutorial9_loop_control.html">Linux shell programming : loop control - for, while, break, and break n</a>
+    </li>
+    <li><a href="../Linux/linux_for_loop.html">Linux shell programming : for-loop</a>
+    </li>
+    <li><a href="../Linux/linux-If-elif-else-statement.html">Linux shell programming : if/elif/else/fi</a></li>
+   <li><a href="../Linux/linux_user_account_useradd_usermod_userdel.html">Managing User Account - useradd, usermod, and userdel</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_Key_generation_public_private.php">Linux Secure Shell (SSH) I : key generation, private key and public key</a> </li>
+   <li><a href="../Linux/linux_Secure_Shell_SSH_II_ssh_agent_and_scp.html">Linux Secure Shell (SSH) II : ssh-agent & scp</a> </li>
+   <li><a href="../Linux/linux_Secure_Shell_SSH_III_ssh_Tunnel_SOCKS_Proxy_Dynamic_Port_Forwarding.html">Linux Secure Shell (SSH) III : SSH Tunnel as Proxy - Dynamic Port Forwarding (SOCKS Proxy)</a> </li>
+   <li><a href="../Linux/linux_Secure_Shell_SSH_IV_ssh_Tunnel_Local_Port_Forwarding.html">Linux Secure Shell (SSH) IV : Local port forwarding (outgoing ssh tunnel)</a> </li>
+   <li><a href="../Linux/linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.html">Linux Secure Shell (SSH) V : Reverse SSH Tunnel (remote port forwarding / incoming ssh tunnel) /)</a> </li>
+   <li><a href="../Linux/linux_process_and_signals.html">Linux Processes and Signals</a> </li>
+   <li><a href="../Linux/linux_drivers_1.html">Linux Drivers 1</a> </li>
+   <li><a href="../Linux/tcpdump.html">tcpdump</a> </li>
+   <li><a href="../Linux/debugging_gdb.html">Linux Debugging using gdb</a> </li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a></li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu/Fedora</a>
+    </li>
+   <li><a href="../Linux/linux_LXC_Linux_Container_Install_Run.html">LXC (Linux Container) Install and Run</a>
+    </li>
+   <li><a href="../Linux/hadoop_setting_up_on_ubuntu_single_node_cluster.html">Hadoop - 1. Setting up on Ubuntu for Single-Node Cluster</a>
+    </li>
+   <li><a href="../Linux/hadoop2_running_on_ubuntu_single_node_cluster.html">Hadoop - 2. Runing on Ubuntu for Single-Node Cluster</a>
+    </li>
+   <li><a href="../Linux/linux_ubuntu_owncloud7_install.html">ownCloud 7 install</a>
+    </li>
+  <li><a href="../Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox I</a> </li>
+  <li><a href="../Linux/Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox II</a> </li>
+  <li><a href="../Linux/Windows_8_on_Mac_OSX_using_VirtualBox_4_3.html">Windows 8 guest on Mac OSX host using VirtualBox I</a> </li>
+  <li><a href="../Linux/linux-Package-Management-System-Ubuntu-apt-get-vs-dpkg.html">Ubuntu Package Management System (apt-get vs dpkg)</a> </li>
+  <li><a href="../Linux/Linux-How-to-Make-a-Self-Signed-SSL-Certificate.html">How to Make a Self-Signed SSL Certificate</a> </li>
+  <li><a href="DevOps-Sys-Admin-Interview-Questions-Commands.html">DevOps / Sys Admin interview questions</a> </li>
+</ol>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+<br>
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br /><br />
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br /><br />
+<br><br>
+<h1>Elasticsearch search engine, Logstash, and Kibana</h1>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Elastic_Search_Tutorial.html">Elasticsearch, search engine</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_ElasticSearch_Logstash.html">Logstash with Elasticsearch</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, Elasticsearch, and Kibana 4</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a>
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a>
+
+<br /><br />
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="AWS/aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="AWS/aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="AWS/aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="AWS/aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="AWS/Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="AWS/aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="AWS/aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="AWS/aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="AWS/aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="AWS/aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="AWS/aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="AWS/aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="AWS/aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="AWS/aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="AWS/aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="AWS/aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="AWS/aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="AWS/aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="AWS/aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="AWS/aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="AWS/aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="AWS/aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="AWS/aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="AWS/aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="AWS/aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="AWS/aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="AWS/aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="AWS/aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="AWS/aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="AWS/aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="AWS/aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="AWS/aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="AWS/aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="AWS/aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="AWS/aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="AWS/aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="AWS/aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="AWS/aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="AWS/aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="AWS/aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="AWS/aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="AWS/aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="AWS/aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="AWS/aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="AWS/aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="AWS/aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="AWS/aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="AWS/aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="AWS/aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>Big Data & Hadoop Tutorials</h1>
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Hadoop 2.6 - Installing on Ubuntu 14.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_16_04_single_node_cluster.html">Hadoop 2.6.5 - Installing on Ubuntu 16.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Running_MapReduce_Job.html">Hadoop - Running MapReduce Job</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Ecosystem.html">Hadoop - Ecosystem</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Install.html">CDH5.3 Install on four EC2 instances (1 Name node and 3 Datanodes) using Cloudera Manager 5</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_APIs.html">CDH5 APIs</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x.html">QuickStart VMs for CDH 5.3</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_II.html">QuickStart VMs for CDH 5.3 II - Testing with wordcount</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Hive_Table_Query.html">QuickStart VMs for CDH 5.3 II - Hive DB query</a> 
+   <br><br>
+
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Scheduled start and stop CDH services</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka.html">Zookeeper & Kafka Install</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_single_broker_cluster.html">Zookeeper & Kafka - single node single broker</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Zookeeper_Kafka_single_node_Multiple_broker_cluster.html">Zookeeper & Kafka - Single node and multiple brokers</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_OLTP_vs_OLAP.html">OLTP vs OLAP</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Cloudera_Cluster_Tutorial_I.html">Apache Hadoop Tutorial I with CDH - Overview</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_II.html">Apache Hadoop Tutorial II with CDH - MapReduce Word Count</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_III.html">Apache Hadoop Tutorial III with CDH - MapReduce Word Count 2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Hive_Introduction.html">Apache Hadoop (CDH 5) Hive Introduction</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Hive_Upgrade_2.html">CDH5 - Hive Upgrade to 1.3 to from 1.2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Hive_Install_On_Ubuntu_16_04.html">Apache Hive 2.1.0 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Pseudo_Distributed.html">Apache HBase in Pseudo-Distributed mode</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Creating_a_Table_with_Hbase_Shell_and_Hue.html">Creating HBase table with HBase shell and HUE</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Hue_Install_On_Ubuntu_16_04.html">Apache Hadoop : Hue 3.11 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_Table_with_Java_API.html">Creating HBase table with Java API</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_HBase_BigTable_Map_Persistent_Sparse_Sorted_Distributed_Multidimensional.html">HBase - Map, Persistent, Sparse, Sorted, Distributed and Multidimensional</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Flume_Introduction.html">Flume with CDH5: a single-node Flume deployment (telnet example) </a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_Flume_CDH5_and_VirtualBox_NettyAvroRpcClient_syslog.html">Apache Hadoop (CDH 5) Flume with VirtualBox : syslog example via NettyAvroRpcClient</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_Hadoop_fs_commands_list.html">List of Apache Hadoop hdfs commands</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 1</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2_Part2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 2</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Java_Card_Project_with_Eclipse_MapReduce2_Using_UnoExample_Project_Local_Run.html">Apache Hadoop : Creating Card Java Project with Eclipse using Cloudera VM UnoExample for CDH5 - local run</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Creating_Wordcount_Maven_Project_Eclipse_MapReduce.html">Apache Hadoop : Creating Wordcount Maven Project with Eclipse</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Oozie_Workflow.html">Wordcount MapReduce with Oozie workflow with Hue browser - CDH 5.3 Hadoop cluster using VirtualBox and QuickStart VM </a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark.html">Spark 1.2 using VirtualBox and QuickStart VM - wordcount</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Programming_Model_RDD.html">Spark Programming Model : Resilient Distributed Dataset (RDD) with CDH</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 2.0.2 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_RDD_Programming.html">Apache Spark 2.0.2 tutorial with PySpark : RDD</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_Analyzing_Neuroimaging_Data_with_Thunder.html">Apache Spark 2.0.0 tutorial with PySpark : Analyzing Neuroimaging Data with Thunder</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming_Kafka_Cassandra.html">Apache Spark Streaming with Kafka and Cassandra</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark_using_CDH5.html">Apache Spark 1.2 with PySpark (Spark Python API) Wordcount using CDH5</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Install_on_ubuntu_16_04.html">Apache Drill with ZooKeeper install on Ubuntu 16.04 - Embedded & Distributed</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_File_System_JSON_Parquet.html">Apache Drill - Query File System, JSON, and Parquet</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_HBase.html">Apache Drill - HBase query</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_Hive.html">Apache Drill - Hive query</a> 
+   <br><br>
+   <a href="../Drill/Drill_Tutorial_Query_MongoDB.html">Apache Drill - MongoDB query</a> 
+   <br><br>
+
+
+<br /><br />
+<br><br>
+<h1>Redis In-Memory Database</h1>
+   <br><br>
+   <a href="Redis/Redis_vs_Memcached.html">Redis vs Memcached</a>
+   <br><br>
+   <a href="Redis/Redis_Install.html">Redis 3.0.1 Install</a> 
+   <br><br>
+   <a href="Redis/Redis_Setting_up_mulitple_server_instances_on_a_linux_host.html">Setting up mulitple server instances on a Linux host</a> 
+   <br><br>
+   <a href="../python/python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">ELK : Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+
+
+
+<br /><br />
+<br><br>
+<h1>Ansible 2</h1>
+   <br><br>
+   <a href="Ansible/Ansible_What_is_Ansible.html">What is Ansible?</a> 
+   <br><br>
+   <a href="Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="Ansible/Ansible-SSH-Connection-Setup-Run-Command.html">SSH connection & running commands</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Modules.html">Modules</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Playbooks.html">Playbooks</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Handlers.html">Handlers</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Roles.html">Roles</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Playbook-Lamp-HAProxy.html">Playbook for LAMP HAProxy</a> 
+   <br><br>
+   <a href="Ansible/Ansible-Deploy-Nginx-to-Docker.html">Installing Nginx on a Docker container</a> 
+   <br><br>
+   <a href="Ansible/Ansible-aws-creating-ec2-instance.html">AWS : Creating an ec2 instance & adding keys to authorized_keys</a>
+   <br><br>
+   <a href="Ansible/Ansible-aws-AutoScaling.html">AWS : Auto Scaling via AMI</a>
+   <br><br>
+   <a href="Ansible/Ansible-aws-creating-elb-and-register-ec2-instance.html">AWS : creating an ELB & registers an EC2 instance from the ELB</a>
+   <br><br>
+   <a href="Ansible/Docker-WordPress-Microservices-with-Nginx-reverse-proxy-Varnish-Mysql-Deployed-via-Ansible.html">Deploying Wordpress micro-services with Docker containers on Vagrant box via Ansible</a> 
+   <br><br>
+   <a href="Ansible/Ansible_SettingUp_Webservers_Apache.html">Setting up Apache web server</a> 
+   <br><br>
+
+
+
+ 
+
+<br /><br />
+
+<br /><br />
+<br><br>
+<h1>Powershell 4 Tutorial</h1>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">Powersehll : Introduction</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_help_system.html" target="_blank">Powersehll : Help System</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_running_commands.html" target="_blank">Powersehll : Running commands</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Providers.html" target="_blank">Powersehll : Providers</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Pipeline.html" target="_blank">Powersehll : Pipeline</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Objects.html" target="_blank">Powersehll : Objects</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Remote_Control.html" target="_blank">Powersehll : Remote Control</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Windows_Management_Instrumentation_WMI.html" target="_blank">Windows Management Instrumentation (WMI)</a>
+   <br><br>
+   <a href="../Powershell/How_to_Enable_Multiple_RDP_Sessions_in_Windows_2012.html" target="_blank">How to Enable Multiple RDP Sessions in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_install_Configure_FTP_Server_on_IIS_8_in_Windows_Server_2012.html" target="_blank">How to install and configure FTP server on IIS 8 in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_Run_Exe_as_a_Service_in_Windows_Server_2012.html" target="_blank">How to Run Exe as a Service on Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/SQL_Inner_Left_Right_Outter_Join.html" target="_blank">SQL Inner, Left, Right, and Outer Joins</a>
+<br><br>
+
+<br /><br />
+<br><br>
+<h1>Git/GitHub Tutorial</h1>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Express.html" target="_blank">One page express tutorial for GIT and GitHub</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Installation.html" target="_blank">Installation</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_status_add_status_log.html" target="_blank">add/status/log</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_commit_diff.html" target="_blank">commit and diff</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_commit_amend.html" target="_blank">git commit --amend</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Deleting_Renaming_Files.html" target="_blank">Deleting and Renaming files</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Undoing_Checkout_Unstaging.html" target="_blank">Undoing Things : File Checkout & Unstaging</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Reverting_Commit.html" target="_blank">Reverting commit</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Soft_Reset.html" target="_blank">Soft Reset - (git reset --soft &lt;SHA key&gt;) </a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Mixed_Default_Reset.html" target="_blank">Mixed Reset - Default</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Hard_Reset.html" target="_blank">Hard Reset - (git reset --hard &lt;SHA key&gt;)</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Creating_Switching_Branches.html" target="_blank">Creating & switching Branches</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Fast-Forward_Merge.html" target="_blank">Fast-forward merge</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Rebase.html" target="_blank">Rebase & Three-way merge</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Merge_Conflicts_with_Simple_Example.html" target="_blank">Merge conflicts with a simple example</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Account_SSH_Key.html" target="_blank">GitHub Account and SSH</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Uploading.html" target="_blank">Uploading to GitHub</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_GUI.html" target="_blank">GUI</a>
+   <br><br>
+   <a href="SCM/Git/Git_Branching_Merging.html" target="_blank">Branching & Merging</a>
+   <br><br>
+   <a href="SCM/Git/Git_Branching_Merging_Conflicts.html" target="_blank">Merging conflicts</a>
+   <br><br>
+   <a href="SCM/Git/Git_Ubuntu.html" target="_blank">GIT on Ubuntu and OS X - Focused on Branching</a>
+   <br><br>
+   <a href="SCM/Git/Git_Setting_Up_Remote_Repository.html" target="_blank">Setting up a remote repository / pushing local project and cloning the remote repo</a>
+   <br><br>
+   <a href="SCM/Git/GitHub_Fork_Clone_Origin_Upstream.html" target="_blank">Fork vs Clone, Origin vs Upstream</a>
+   <br><br>
+   <a href="SCM/Git/Git_Terminologies.html" target="_blank">Git/GitHub Terminologies</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_1_Commit_Push.html" target="_blank">Git/GitHub via SourceTree I : Commit & Push</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_2_Branching_Merging.html" target="_blank">Git/GitHub via SourceTree II : Branching & Merging</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_3_Git_WorkFlow.html" target="_blank">Git/GitHub via SourceTree III : Git Work Flow</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_Source_Tree_4_Reset.html" target="_blank">Git/GitHub via SourceTree IV : Git Reset</a>
+   <br><br>
+   <a href="SCM/Git/Git_GitHub_quick_command_reference_wiki_cheat_sheet.html" target="_blank">Git Cheat sheet - quick command reference</a>
+   <br><br>
+<br /><br />
+
+<br><br><br>
+<h1>Subversion</h1>
+   <a href="../cplusplus/Subversion/Subversion_Install_On_Ubuntu.html" target="_blank">Subversion Install On Ubuntu  14.04</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo.html" target="_blank">Subversion creating and accessing I</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo2.html" target="_blank">Subversion creating and accessing II</a>
+<br />
+</div>
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/DevOps/DevOps-Sys-Admin-Interview-Questions-Systems.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:26:43 GMT -->
+</html>
+

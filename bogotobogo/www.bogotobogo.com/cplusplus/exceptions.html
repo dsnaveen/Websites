@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/exceptions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:58:36 GMT -->
+<head>
+  <title>C++ Tutorial: Handling Exceptions - 2017</title>
+  <meta content="C++ Tutorial: Exception handling" name="description" />
+  <meta content="C++ Tutorial, Exception handling, Exceptions, Try, Catch, Throw, exit, abort, return" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial - Exceptions - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="error_handling">Handling Exceptions (Errors, interrupts etc.)</div>
+<p>Our programs sometimes have runtime problems that prevent from running normally.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>A program may have division by zero, or page fault, or may request more memory than is available, or it may try to open an unavailable file, or it may see values it cannot handle. If these things happen, the control will be transferred to the OS from the process running a program. We call it exception. The exception is handled by the exception handler. After performing the exceptions, it returns the control to the user process running the program (resume) or it may simply abort the program.</p>
+<p>Note that we can think of an exception as non-standard control flow such as interrupts or traps(such as break point) or faults. Here, the standard control flow means a normal control flow which includes jumps such as loops/if-else or calling a function. If a program wants to open a file, it is not a normal flow, because the user process should transfer the control to OS to read/write the file. After OS's done with the file, it returns the control to the user process and resume the program execution starting from where it left.</p>
+<p>In general, there are three ways of handling error conditions:</p>
+<ol>
+<li>Aborting the program.</li>
+<li>Return an error code.</li>
+<li>Throwing exceptions.</li>
+</ol>
+<p>We should avoid the first one at all cost although there are lots of examples of libraries that call <strong>abort()</strong> or <strong>exit()</strong>.</p>
+<p>But between (2) and (3), we do not have any agreement on which one is better.
+Let's start the comparison of the two with simple code:</p>
+<p>The error code approach involves returning a numeric code to indicate the success/failure of a function:</p>
+<pre>
+if(object1.func() == ERROR) ErrorHandle();
+if(object2.func() == ERROR) ErrorHandle();
+if(object3.func() == ERROR) ErrorHandle();
+</pre>
+<p>But we can signal an error by throwing an object, and then catch it later:</p>
+<pre>
+try
+{
+   object1.func();
+   object2.func();
+   object3.func();
+}
+catch (const std::exception &amp;e;)
+{
+   ErrorHandle();
+}
+</pre>
+<br/>
+<div class="subtitle_2nd" id="excpetionVSerror">Exception handling versus error return codes</div>
+<ol>
+<li>Error code approach
+<ol>
+<li>Gives us a simple and robust way of reporting errors for individual functions.</li>
+</ol>
+<li>Exception approach<br/>
+<ol>
+<li>Lets us separate error handling code from the normal flow of control, and makes our code more readable.</li>
+<li>We can catch one or more errors from several functions without having to check every single return code.</li>
+<li>Lets us handle an error up in the call stack instead of at the exact point of failure.</li>
+<li>It carries more information than a simple error code.</li>
+<li>Exceptions are the only way to report errors in a constructor.</li>
+<li>Handling an exception is expensive due to run-time stack unwinding.</li>
+<li>Uncaught exception can cause our program to abort, resulting in data loss.</li>
+<li>Writing exception safe code is tough, and it can lead to resource leaks if not done correctly.</li>
+<li>Using exceptions is an all-or-nothing approach. If any part of an application uses exception, then the entire application should be prepared to handle exceptions correctly.</li>
+</ol>
+</li></li></ol>
+<br/>
+<br/>
+<div class="subtitle" id="abort">abort() and exit()</div>
+<p>The <strong>abort()</strong> function's prototype is in <strong>cstdlib</strong> header file. If called, it sends a message something like "abnormal program termination" to the standard error stream and terminate the program. It may also return an implementation-dependent value that indicates failure to the operating system. Whether <strong>abort()</strong> flushes the buffers depends on the implementation. So, if you prefer, you can use <strong>exit</strong> which does flush file buffers. But <strong>exit</strong>  does not give any message as in the following examples.</p>
+<p>Note that calling <strong>abort()</strong> from <strong>myCalculator</strong> terminates the program directly without returning <strong>main()</strong>. 
+<pre>
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+
+double myCalculator(double a, double b) {
+	if(a == b) {
+		std::cout &lt;&lt; "abort()!" &lt;&lt; std::endl;
+		<font color="red">abort</font>();
+	}
+	return 1 / (a - b);
+}
+
+int main () {
+	double x,y,z;
+	x = 10;
+	y = 10;
+	z = myCalculator(x,y);
+	std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; " y = " &lt;&lt; y &lt;&lt; " z = " &lt;&lt; z &lt;&lt; std::endl;
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+abort()! 
+</pre>
+<p>and with an error message from my Visual Studio 2012: <br/>
+Debug Error! </p>
+<br/><br/>
+<img alt="Debug Error" src="images/exceptions/DebugError.png"/>
+<br/><br/>
+<p>
+This application has requested the Runtime to terminate it in an unusual way.</p>
+<p>If we switch the <strong>abort()</strong> to <strong>exit(1)</strong>, <br/>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+using namespace std;
+
+double myCalculator(double a, double b) {
+	if(a == b) {
+		cout &lt;&lt; "exit(1)!" &lt;&lt; endl;
+		<font color="red">exit(1);</font>
+	}
+	return 1 / (a - b);
+}
+
+int main () {
+	double x,y,z;
+	x = 10;
+	y = 10;
+	z = myCalculator(x,y);
+	cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; " y = " &lt;&lt; y &lt;&lt; " z = " &lt;&lt; z &lt;&lt; endl;
+	return 0;
+}
+
+</pre>
+the program is terminated silently with a print out.<br/>
+<pre>
+exit(1)!
+</pre>
+<p>If we run the above code without <strong>abort()</strong> or <strong>exit(1)</strong>, we get the following output.</p>
+<pre>
+x = 10 y = 10 z = 1.#INF
+</pre>
+<br/>
+<div class="subtitle_2nd" id="abort_exit_return">abort(), exit(), and return from main()</div>
+<pre>
+class A {};
+
+A global_Obj;
+
+int main()
+{
+  A local_Obj;
+
+  static A static_Obj;
+
+  // return(0);
+  // exit(0);
+  // abort(0);
+}
+</pre>
+<p>When called from <strong>main()</strong>, there are subtle differences:
+<ol>
+<li><strong>return</strong><br/>
+    Destructors will be called for local/static/global objects.
+  </li>
+<li><strong>exit</strong><br/>
+    No destructors will be called for local objects. But destructor for static/global objects will be called.
+  </li>
+<li><strong>abort</strong><br/>
+    No destructors will be called. 
+  </li>
+</ol>
+<p>This topic has been discussed in <a href="http://stackoverflow.com/questions/461449/return-statement-vs-exit-in-main" target="_blank">return statement vs exit() in main()</a>, and here is the <a href="https://groups.google.com/forum/?fromgroups#!msg/gnu.gcc.help/bjSRy0eAcpU/WtHPMADFSIMJ" target="_blank">test code</a>.</p>
+<br/>
+<div class="subtitle_2nd" id="exit">exit(): library call, _exit(): system call </div>
+<p>The <strong>exit()</strong> call 
+<pre>
+#include &lt;stdlib.h&gt;
+void exit(int status);
+</pre>
+is in fact a wrapper for the <strong>_exit()</strong> system call:
+<pre>
+#include &lt;unistd.h&gt;
+void _exit(int status);
+</pre>
+Programs generally don't call <strong>_exit()</strong> directly, but instead call the <strong>exit()</strong> library function,
+which performs various actions before calling <strong>_exit()</strong>.</p>
+<p>However, unlike <strong>_exit()</strong>, which is UNIX-specific, <strong>exit()</strong> is defined as part of the standard C
+library; that is, it is available with every C implementation.</p>
+<p>Actually, what the <strong>exit()</strong> does are following:</p>
+<ol>
+<li>The stdio stream buffers are flushed.</li>
+<li>The <strong>_exit()</strong> system call is invoked, using the value supplied in status.</li>
+</ol>
+<p>In general, a process may terminate in two general ways:</p>
+<ol>
+<li>Abnormal termination caused by the delivery of a signal whose default action is to terminate the process
+(with or without a core dump)</li>
+<li>A Normal termination using the <strong>_exit()</strong> system call.</li>
+</ol>
+<p>An explicit return of n from <strong>main()</strong> is generally equivalent to calling <strong>exit(n)</strong>, since the run-time function
+that invokes <strong>main()</strong> uses the return value from <strong>main()</strong> in a call to <strong>exit()</strong>.</p>
+<p>Performing a return without specifying a value, or falling off the end of the <strong>main()</strong> 
+function, also results in the caller of <strong>main()</strong> invoking <strong>exit()</strong>, and it is actually equivalent to calling <strong>exit(0)</strong> if we compile a program using <strong>gcc -std=c99</strong> on Linux.</p>
+<br/>
+<br/>
+<div class="subtitle" id="tryandcatch">try and catch</div>
+<p>C++ <strong>exception</strong> is a response to an exceptional circumstance that arises while a programming is running. Exceptions provide a way to transfer control from one part of a program to another. This lets us separate error handling code from the normal flow of control, and makes our code more readable.</p>
+<p>Exceptions provide a way to react to exceptional circumstances like the ones listed above by transferring control to special functions called handlers. Exception handling is a fundamental error reporting mechanism designed to handle the occurrence of exceptions, special conditions that change the normal execution flow of a program.</p>
+<p>To catch exceptions we must place a portion of code under exception inspection. This is done by enclosing that portion of code in a <strong>try block</strong>. When an exceptional circumstance arises within that block, an exception is thrown, and transfers the control to the exception handler. If no exception is thrown, the code continues normally and all handlers are ignored.</p>
+<p>Exception handling has three components:</p>
+<ol>
+<li>Throwing an exception </li>
+<li>Catching an exception with a handler </li>
+<li>Using a <strong>try</strong> block </li>
+</ol>
+<p>A throw statement is a <strong>jump</strong>. In other words, it tells a program to jump to a statement at another location. It's followed by a value such as a character string or an object that indicates the nature of the exception.</p>
+<p>Let's look at the following code:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main () {
+  <font color="red">try</font> {
+    <font color="red">throw</font> "Homemade exception";
+    <font color="blue">// Because the function throws an exception,
+    // the rest of the code in this block will not be executed</font>
+    ...
+    ...
+  }
+  <font color="blue">// Execution will resume here</font>
+  <font color="red">catch</font> (const char* e) {             
+	  cout &lt;&lt; "exception: " &lt;&lt; e &lt;&lt; endl;        
+  }
+  return 0;
+}
+</pre>
+<p>Its output is:</p>
+<pre>
+exception: Homemade exception
+</pre>
+<p>The <strong>try</strong> block has the code under exception handling. It just throws an exception:<br/>
+<pre>
+throw "Homemade exception";
+</pre> 
+A throw accepts one parameter which is passed as an argument to the exception handler.</p>
+<p>The <strong>catch</strong> keyword declares the <strong>exception handler</strong>. It follows immediately the closing brace of the <strong>try</strong> block. The format for <strong>catch</strong> is similar to a regular function that always has at least one parameter. The type of this parameter is very important, since the type of the argument passed by the throw expression is checked against it. The exception is caught only when they match.</p>
+<p>Multiple handlers (catch expressions) could be used, each one with a different parameter type. Only the handler that matches its type with the argument specified in the throw statement is executed.</p>
+<p>Ellipsis (...) can be used as the parameter of <strong>catch</strong>. The handler will catch any exception no matter what the type of the <strong>throw</strong> exception is. This can be used as a default handler that catches all exceptions not caught by other handlers if it is specified at last:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main () {
+  <font color="red">try</font> {
+    <font color="red">throw</font> "Homemade exception";
+  }
+  <font color="red">catch</font> (int e){
+	  cout &lt;&lt; "int exception: " &lt;&lt; e &lt;&lt; endl;
+  }
+  <font color="red">catch</font> (char e){
+	  cout &lt;&lt; "char exception: " &lt;&lt; e &lt;&lt; endl;
+  }
+  <font color="red">catch</font> (...) { 
+	  cout &lt;&lt; "default exception ";
+  }
+  return 0;
+}
+</pre>
+<p>In the example, the exception is caught at:
+<pre>
+catch (...) 
+</pre>
+The exception get caught is the exception thrown with any parameter that is neither an <strong>int</strong> nor a <strong>char</strong>.</p>
+<p>
+After an exception has been handled, the program execution resumes after the <strong>try-catch</strong> block, not after the <strong>throw</strong>. The <strong>catch block</strong> can be, and usually is, located in a different function/method than the point of throwing. In this way, C++ supports <strong>non-local</strong> error handling.</p>
+<p><strong>Unhandled exceptions</strong> on the other hand will result in a function termination and the <a href="stackunwinding.html">stack will be unwound</a> (stack allocated objects will have destructors called) as it looks for an exception handler. If none is found it will ultimately result in the termination of the program.</p>
+<p>How about <strong>nested</strong> try-catch blocks? <br/> 
+Yes, it is also possible to nest <strong>try-catch</strong> blocks within more external <strong>try</strong> blocks. In these cases, we have the possibility that an internal <strong>catch</strong> block forwards the exception to its outer level. This is done with the expression <strong>throw</strong> with no arguments. 
+</p>
+<p>Here is the example: </p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main () {
+  try {
+	try {
+		throw 911;
+	}
+	catch (int n) {
+	  cout &lt;&lt; "inner catch " &lt;&lt; endl;
+          throw;
+	}
+  }
+  catch (...) {
+    cout &lt;&lt; "catching any exception occurred" &lt;&lt; endl;
+  }
+  return 0;
+}
+</pre>
+<p>The output is:</p>
+<pre>
+inner catch
+catching any exception occurred
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="try_block_scope">Variables that can be accessed from try block </div>
+<p>Function <strong>parameters</strong> are accessible in the try handler, however, <strong>local</strong> variables are <strong>NOT</strong> accessible in the try handler.
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void foo(int x) 
+{
+	try
+	{
+		int y = 9;
+		throw 911;
+	}
+	catch(int e)
+	{
+		cout &lt;&lt; x &lt;&lt; endl;  // OK
+		cout &lt;&lt; y &lt;&lt; endl;  // Not OK - local not accessible
+	}
+}
+
+int main()
+{
+    foo(7);
+    return 0;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="destructor">Destructor should never throw an exception</div>
+<p>
+Destructors are often called during <a href="stackunwinding.html" target="_blank">stack unwinding</a>. When destructors are executing, the exception has been raised but not yet handled. It is not clear what should happen if a destructor itself throws a new exception during this stack unwinding process. Should the new exception supersede the earlier exception that has not been handled or the new exception thrown by the destructor ignored?
+In general, it's a bad idea for a destructor to do anything that might cause an exception.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="constructor">Constructors may throw an exception</div>
+<p>Unlike destructors, it is often the case that something done inside a constructor might throw an exception. If it does while constructing an object, we may end up having a partially constructed object. Even in that case, we are guaranteed that the constructed elements 
+will be properly destroyed.</p>
+<br/>
+<br/>
+<div class="subtitle" id="specification">Exception Specification</div>
+<p>We can limit the exception type it might directly or indirectly throw by appending a <strong>throw</strong> suffix to the function declaration:</p>
+<pre>
+float f(char param) throw (int);
+</pre>
+<p>
+This declares a function called <strong>f()</strong> which takes one argument of type <strong>char</strong> and returns an element of type <strong>float</strong>. The only exception that this function might throw is an exception of type <strong>int</strong>. If it throws an exception with a different type, either directly or indirectly, it cannot be caught by a regular <strong>int</strong>-type handler.</p>
+<p>If this <strong>throw</strong> specifier is left empty with no type, this means the function is not allowed to throw exceptions. Functions with no <strong>throw</strong> specifier (regular functions) are allowed to throw exceptions with any type:</p>
+<pre>
+int f(int param) throw<font color="red">()</font>; // <font color="red">no</font> exceptions allowed
+int f(int param);         // <font color="red">all</font> exceptions allowed 
+</pre>
+<p>However, we should be aware that the constraints from specification will be enforced by the compiler,  and that they can impact optimization, such as the ability to inline function. As a result, most C++ engineers steer clear of exception specifications.</p>
+<br/>
+<br/>
+<div class="subtitle" id="standard">Standard exceptions</div>
+<p>The C++ Standard library provides a base class specifically designed to declare objects to be thrown as exceptions. The exception object is created by copying the result of the thrown expression; the result must be of a <strong>type that can be copied</strong>. The exception is defined in the &lt;exception&gt; header file under the <strong>namespace std</strong>. This class has the usual default and copy constructors, operators and destructors, plus an additional virtual member function called <strong>what()</strong> that returns a null terminated byte string:</p>
+<pre>
+public exception {
+public:
+  virtual const char* what() const throw();
+}; 
+</pre>
+<p>The content of the string is implementation dependent. It most likely determines the level of help and detail of such information.</p>
+<pre>
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std ;
+
+int main()
+{
+  string s = "test me" ;
+
+  try
+  {
+    s[7] = '!';
+  }
+  catch( exception &amp;error; )
+  {
+    cerr &lt;&lt; "Exception: " &lt;&lt; error.what() &lt;&lt; endl ;
+  }
+  return 0 ;
+}
+</pre>
+<p>If we run it, we get "String subscript out of range" message.</p>
+<p>The  member function <strong>what()</strong> can be overwritten in derived classes to contain the description of the exception.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+
+class child_exception: public exception {
+  virtual const char* what() const throw(){
+    return "child exception occurred";
+  }
+}; 
+
+int main () {
+  try {
+    child_exception cex;
+    throw cex;
+  }
+  catch (exception<font color="red">&amp;</font> e) {
+    cout &lt;&lt; e.what() &lt;&lt; endl;
+  }
+  return 0;
+}
+</pre>
+<p>We have placed a handler that catches exception objects by reference (notice the ampersand &amp; after the type), therefore this catches also classes derived from exception, like our <strong>cex</strong> object of class <strong>child_exception</strong>.</p>
+<p>
+All exceptions thrown by components of the C++ Standard library throw exceptions derived from this <strong>std::exception</strong> class. These are:</p>
+<ol>
+<li>bad_alloc <br/>
+	This exception is thrown whenever the global operator <strong>new</strong> fails (except when the <strong>nothrow</strong> version of <strong>new</strong> is used). This is the most important exception because it might occur at any time in any nontrivial program. </li>
+<li>bad_cast <br/>
+	This exception is thrown by <strong>dynamic_cast</strong>  if a type conversion on a reference fails at runtime. </li>
+<li>bad_exception<br/>
+	This is used to handle unexpected exceptions. It does this by using the function <strong>unexpected()</strong>.  <strong>unexpected()</strong> is called if a function throws an exception that is not listed in an <strong>exception specification</strong>.
+	For example:
+<pre>
+	class E1;
+	class E2;
+	void f() throw(E1) {	//throws only exception of type E1
+		throw E1();	//throws exception of type E1
+		throw E2();	//calls <strong>unexpected()</strong>, which calls <strong>terminate()</strong>
+	}
+</pre>
+	The throw of an exception of type <strong>E2</strong> in <strong>f()</strong> violates the exception specification. In this case, the function <strong>unexpected()</strong> gets called, which usually calls <strong>terminate()</strong> to terminate the program. However, if class <strong>bad_exception</strong> is part of the exception specification, then <strong>unexpected()</strong> usually rethrows an exception of this type:<br/>
+<pre>
+	class E1;
+	class E2;
+	void f() throw(E1, std::bad_exception) {	
+				//throws exception of type E1 or 
+				//<strong>bad_exception</strong> for any other exception type
+		throw E1();	//throws exception of type E1
+		throw E2();	//calls <strong>unexpected(), which throws </strong>bad_exception()
+	}
+</pre>
+	So, if an exception specification includes the class <strong>bad_exception</strong>, then any exception not part of the specification may be replaced by <strong>bad_exception</strong> within the function <strong>unexpected()</strong>.
+</li>
+<li>bad_typeid <br/>
+	This exception is thrown by <strong>typeid</strong>. If the argument to <strong>typeid</strong> is zero or the null pointer, this exception is thrown.  </li>
+</ol>
+<p>For example, if we use the operator <strong>new</strong> and the memory cannot be allocated, an exception of type <strong>bad_alloc</strong> is thrown:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+
+int main () {
+  try {
+	long double * arr= new long double[150000000];
+  }
+  catch (bad_alloc&amp;){
+	cout &lt;&lt; "Error allocating memory." &lt;&lt; endl;
+  }
+  return 0;
+}
+</pre>
+<p>
+All dynamic memory allocations better be included within a try block that catches this type of exception to perform a clean action instead of an abnormal program termination. Abnormal termination happens when this type of exception is thrown and not caught. </p>
+<p>The <strong>bad_alloc</strong> is derived from the standard base class <strong>exception</strong>. Thus,  we can handle that same exception by catching references to the <strong>exception</strong> class:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+
+int main () {
+  try{
+	long double * arr= new long double[150000000];
+  }
+  catch (exception&amp; e){
+	cout &lt;&lt; "Standard exception: " &lt;&lt; e.what() &lt;&lt; endl;
+  }
+  return 0;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="exceptionsafe">Writing Exception-safe Code</div>
+<p>So, because it is hard to write exception safe code, we should only use an exception when we have to - when an error has occurred which we can not handle.</p>
+<p>Here is some guide lines from the book "Exceptional C++ Style" by H. Sutter.</p>
+<ol>
+<li>Exception safety is rarely about writing <strong>try</strong> and <strong>catch</strong>-and the more rarely is the better.</li>
+<li>Prefer handling exception cleanup automatically by using <strong>destructor</strong> instead of <strong>try/catch</strong>.</li>
+<li>Determine an overall error reporting and handling policy for your application or subsystem, and stick to it.</li>
+<li>Write <strong>throw</strong> in the places that detect an error and cannot deal with it themselves.</li>
+<li>Write <strong>try</strong> and <strong>catch</strong> in places that have sufficient knowledge to handle the error, to translate it, or to enforce boundaries defined in the error policy (e.g., to <strong>catch(...)</strong> on subsystem boundaries or other run-time firewalls).</li>
+</ol>
+<br/><br/>
+<div class="subtitle" id="quiz">Quiz</div>
+<br/>
+<div class="subtitle_2nd" id="quiz1">Quiz 1</div>
+<p>What's the output from the following code? </p>
+<pre>
+#include &lt;exception&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+public:
+    A(int n) : i(n) { cout &lt;&lt; i; }
+
+    ~A() { cout &lt;&lt; i; }
+
+private:
+    int i;
+};
+
+int f(int n)
+{
+    if (n == 1) {
+        <font color="red">throw</font> std::logic_error("0");
+        cout &lt;&lt; "7" &lt;&lt; endl;
+    }
+    A a(n);
+    return f(n - 1);
+}
+
+int main()
+{
+    <font color="red">try </font>{
+        int ret = f(3);
+        A a(ret);
+    }
+    <font color="red">catch</font> (const std::exception &amp;e;) {
+        cout &lt;&lt; e.what() &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</pre>
+<p>Note that destructor is called during stack unwinding. Also, we need to know that after an exception has been handled, the program execution resumes after the try-catch block, not after the throw</p>
+<p>Ans: 32230</p>
+<br/><br/>
+<img alt="DohSolBong" src="images/exceptions/DohSolBong.png"/>
+</p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/exceptions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:58:39 GMT -->
+</html>
+

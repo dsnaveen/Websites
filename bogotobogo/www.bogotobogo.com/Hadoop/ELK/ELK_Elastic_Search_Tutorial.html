@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Hadoop/ELK/ELK_Elastic_Search_Tutorial.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:16:51 GMT -->
+<head>
+  <title>ELK : Elasticsearch  - 2017</title>
+  <meta content="ELK : Elasticsearch" name="description" />
+  <meta content="ELK : Elasticsearch" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../../public/css/app.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+  <link rel="stylesheet" href="../../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index-2.html">Home</a></li>
+          <li><a href="../../about_us.html">About</a></li>
+          <li><a href="../BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../../python/pytut.html">Python</a></li>
+          <li><a href="../../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../../Android/android.html">Android</a></li>
+              
+              <li><a href="../../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../../AmazingPlaces/index.html" target="_blank">
+<img src="../../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">ELK - Elasticsearch         <g:plusone></g:plusone></h2>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<h1>Elastic Search, Logstash, Kibana</h1>
+   <li><a href="ELK_Elastic_Search_Tutorial.html">Elastic Search</a> </li>
+   <li><a href="ELK_ElasticSearch_Logstash.html">Logstash with Elastic Search</a> </li>
+   <li><a href="ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, ElasticSearch, and Kibana 4</a> </li>
+   <li><a href="ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a> </li>
+   <li><a href="ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a></li>
+   <li>
+   <a href="ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a></li>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="what_is_ElasticSearch">What's Elasticsearch?</div>
+<p>Elasticsearch is a <b>search server</b> based on <b>Lucene</b> (free open source information retrieval software library).</p>
+<p>It's 'elastic' in the sense that it's easy to scale horizontally-simply add more nodes to distribute the load. Today, many companies, including Wikipedia, eBay, GitHub, and Datadog, use it to store, search, and analyze large amounts of data on the fly.</p>
+<p>Elasticsearch represents data in the form of structured JSON documents, and makes full-text search accessible via RESTful API and web clients for languages like PHP, Python, and Ruby. </p>
+<p>In Elasticsearch, related data is often stored in the same <b>index</b>, which can be thought of as the equivalent of a logical wrapper of configuration.</p>
+<p>Each index contains a set of related <b>documents</b> in JSON format. Elasticsearch's secret sauce for full-text search is <a href="https://lucene.apache.org/core/3_0_3/fileformats.html#InvertedIndexing" target="_blank">Lucene's inverted index</a>.</p> 
+<p>When a document is indexed, Elasticsearch automatically creates an inverted index for each field; the inverted index maps terms to the documents that contain those terms.</p>
+<p>Elasticsearch is developed in Java and is released as open source. <a href="http://en.wikipedia.org/wiki/Elasticsearch" target="_blank">wiki</a></p>
+<ol>
+<li>Distributed and Scalable search engine.</li>
+<li>Based on Lucene.</li>
+<li>Hide Lucene complexity by exposing all services : HTTP/REST/JSON</li>
+<li>Horizontal scaling, replication, fail over, load balancing.</li>
+<li>Fast!</li>
+<li>It's a search engine NOT a search tool.</li>
+</ol>
+<br>
+<p>Note : Elasticsearch is a near real time search platform. What this means is there is a slight latency (normally one second) from the time we index a document until the time it becomes searchable.</p>
+<p>This is an important distinction from other platforms like SQL wherein data is immediately available after a transaction is completed.</p>
+<p>In Elasticsearch, a cluster is made up of one or more nodes, as shown below.</p>
+<p>An index is stored across one or more <b>primary shards</b>, and zero or more <b>replica shards</b>, and each shard is a complete instance of Lucene, like a mini search engine.</p>
+<br/>
+<img alt="Shards-Nodes-Clusters.jpg" src="images/ElasticSearch/Shards-Nodes-Clusters.jpg"/>
+<br/>
+<p>Other key concepts of Elasticsearch are <b>replicas</b> and <b>shards</b>, the mechanism Elasticsearch uses to distribute data around the cluster. The index is a logical namespace which maps to one or more primary shards and can have zero or more replica shards. A shard is a Lucene index and that an Elasticsearch index is a collection of shards. Our application talks to an <b>index</b>, and Elasticsearch routes our requests to the appropriate <b>shards</b>.</p>
+<p>The smallest index we can have is one with a single shard. This setup may be small, but it may serve our current needs and is cheap to run. Suppose that our cluster consists of one node, and in our cluster we have one index, which has only one shard: an index with one primary shard and zero replica shards.</p>
+<pre>
+PUT /my_index
+{
+  "settings": {
+    "number_of_shards":   <font color="green">1</font>, 
+    "number_of_replicas": 0
+  }
+}
+</pre>
+<br>
+<p>However, as time goes on, a single node just can't keep up with the traffic, and we decide to add a second node. What will  happens? Nothing.</p>
+<br/>
+<img alt="2Nodes-1Shards.png" src="images/ElasticSearch/2Nodes-1Shards.png"/>
+<br/>
+<p>Because we have only one shard, there is nothing to put on the second node. We can't increase the number of shards in the index, because the number of shards is an important element in the algorithm used to route documents to shards:</p>
+<pre>
+shard = hash(routing) % number_of_primary_shards
+</pre>
+<br>
+<p>We should have planned like this:</p>
+<br/>
+<img alt="2Shards2Nodes.png" src="images/ElasticSearch/2Shards2Nodes.png"/>
+<br/>
+<br>
+<p>
+Our only option now is to reindex our data into a new, bigger index that has more shards, but that will take time that we can ill afford. By planning ahead, we could have avoided this problem completely by <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/overallocation.html" target="_blank">Shard Overallocation</a>.</p>
+<br>
+<p>The main purpose of <b>replicas</b> is for failover: if the node holding a primary shard dies, a replica is promoted to the role of primary.</p>
+<p>
+At index time, a replica shard does the same amount of work as the primary shard. New documents are first indexed on the primary and then on any replicas. Increasing the number of replicas does not change the capacity of the index.</p>
+<p>
+However, replica shards can serve read requests. If, as is often the case, our index is search heavy, we can increase search performance by increasing the number of replicas, but only if we also add extra hardware.</p>
+<br>
+<br/>
+<img alt="3Nodes-2Primary-2Replicas.png" src="images/ElasticSearch/3Nodes-2Primary-2Replicas.png"/>
+<br/>
+<p>In the picture above, we have 3 nodes with 2 primary and 2 replicas. The fact that node 3 holds two replicas and no primaries is not important. Replicas and primaries do the same amount of work; they just play slightly different roles. There is no need to ensure that primaries are distributed evenly across all nodes.</p>
+<br>
+<br>
+<p>Each node is a single running instance of Elasticsearch, and its configuration file (<b>elasticsearch.yml</b>) designates which cluster it belongs to (<b>cluster.name</b>) and what type of node it can be.</p>
+<p>The diagram below shows that we constructed 1 <b>dedicated master node</b> and 5 <b>data nodes</b>.</p>
+<br/>
+<img alt="elasticsearch-diagram.png" src="images/ElasticSearch/elasticsearch-diagram.png"/>
+<br/>
+<p align="center">Credit : <a href="https://www.datadoghq.com/blog/monitor-elasticsearch-performance-metrics/" target="_blank">How to monitor Elasticsearch performance</a></p>
+<p>Note: By default, each index in Elasticsearch is allocated 5 primary shards and 1 replica which means that if we have at least two nodes in our cluster, our index will have 5 primary shards and another 5 replica shards (1 complete replica) for a total of 10 shards per index.</p>
+<p><font color="red">The number of primary shards cannot be changed once an index has been created</font>, so choose carefully, or we will likely need to <font color="green">reindex</font> later on. The number of replicas can be updated later on as needed. To protect against data loss, the master node ensures that each replica shard is not allocated to the same node as its primary shard.</p>
+
+<br>
+<br>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="types-of-nodes">Types of nodes</div>
+<p>Elasticsearch has three types of nodes:</p>
+
+<br/>
+<img alt="elk-cluster.png" src="images/ElasticSearch/elk-cluster.png"/>
+<br/>
+<p align="center">Credit : <a href="https://docs.microsoft.com/en-us/azure/architecture/elasticsearch/" target="_blank">Run Elasticsearch on Azure</a></p>
+<br>
+<ol>
+  <li><b>Master-eligible nodes</b>: By default, every node is master-eligible unless otherwise specified. Each cluster automatically elects a master node from all of the master-eligible nodes. In the event that the current master node experiences a failure (such as a power outage, hardware failure, or an out-of-memory error), master-eligible nodes elect a new master.<br>
+The master node is responsible for coordinating cluster tasks like distributing shards across nodes, and creating and deleting indices.<br>
+Any master-eligible node is also able to function as a data node. However, in larger clusters, users may launch dedicated master-eligible nodes that do not store any data (by adding <b>node.data: false</b> to the config file), in order to improve reliability.<br> 
+In high-usage environments, moving the master role away from data nodes helps ensure that there will always be enough resources allocated to tasks that only master-eligible nodes can handle.</li>
+<br>
+  <li><b>Data nodes</b>: By default, every node is a data node that stores data in the form of shards (more about that in the section below) and performs actions related to indexing, searching, and aggregating data.<br>
+In larger clusters, we may choose to create dedicated data nodes by adding <b>node.master: false</b> to the config file, ensuring that these nodes have enough resources to handle data-related requests without the additional workload of cluster-related administrative tasks.</li>
+<br>
+  <li><b>Client nodes</b>: If we set <b>node.master</b> and <b>node.data</b> to <b>false</b>, we will end up with a client node, which is designed to act as a load balancer that helps route indexing and search requests.<br> 
+Client nodes <font color="green">do not hold index data</font> but that handle incoming requests made by client applications to the appropriate data node.<br>
+Client nodes help shoulder some of the search workload so that data and master-eligible nodes can focus on their core tasks. Depending on our use case, client nodes may not be necessary because data nodes are able to handle request routing on their own. <br>
+However, adding client nodes to our cluster makes sense if our search/index workload is heavy enough to benefit from having dedicated client nodes to help route requests.</li>
+</ol>
+
+<br>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="index-update-process">Index update process</div>
+<p>In this section, we'll explore the process by which Elasticsearch updates an index.</p> 
+<p>When new information is added to an index, or existing information is updated or deleted, each shard in the index is updated via two processes: <b>refresh</b> and <b>flush</b>.</p>
+<p><b>Index refresh</b><br>
+Newly indexed documents are not immediately made available for search.</p> 
+<p>First, they are written to an in-memory buffer where they await the next index refresh, which occurs once per second by default. The refresh process creates a new in-memory segment from the contents of the in-memory buffer (making the newly indexed documents searchable), then empties the buffer:</p>
+<br>
+<img alt="elasticsearch-indexing-refresh-flush.png" src="images/ElasticSearch/elasticsearch-indexing-refresh-flush.png"/>
+<br/>
+<p>Shards of an index are composed of multiple <b>segments</b>. The core data structure from Lucene, a segment is essentially a change set for the index. These segments are created with every refresh and subsequently merged together over time in the background to ensure efficient use of resources.</p> 
+<p>Every time an index is searched, a primary or replica version of each shard must be searched by, in turn, searching every segment in that shard.</p>
+<p>
+A segment is immutable, so updating a document means:</p>
+<ol>
+  <li>writing the information to a new segment during the refresh process</li>
+  <li>marking the old information as deleted</li>
+</ol>
+<p>The old information is eventually deleted when the outdated segment is merged with another segment.</p>
+
+<br/>
+<p><b>Index flush</b><br>
+At the same time that newly indexed documents are added to the in-memory buffer, they are also appended to the shard's translog: a persistent, write-ahead transaction log of operations. Every 30 minutes, or whenever the translog reaches a maximum size (by default, 512MB), a flush is triggered. During a flush, any documents in the in-memory buffer are refreshed (stored on new segments), all in-memory segments are committed to disk, and the translog is cleared.</p>
+<br>
+<img alt="elasticsearch-diagram-indexing-shards-refresh-flush.png" src="images/ElasticSearch/elasticsearch-diagram-indexing-shards-refresh-flush.png"/>
+<br/>
+<p>
+The translog helps prevent data loss in the event that a node fails. It is designed to help a shard recover operations that may otherwise have been lost between flushes. The log is committed to disk every 5 seconds, or upon each successful index, delete, update, or bulk request (whichever occurs first).</p>
+<br>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="where_ElasticSearch">When do we want to use ES?</div>
+<p>Here are a few sample use-cases of Elasticsearch from <a href="https://www.elastic.co/guide/en/elasticsearch/reference/2.3/getting-started.html" target="_blank">Getting Started</a>.</p>
+<ol>
+  <li>You run an online web store where you allow your customers to search for products that you sell. In this case, you can use Elasticsearch to store your entire product catalog and inventory and provide search and autocomplete suggestions for them.</li>
+  <li>You want to collect log or transaction data and you want to analyze and mine this data to look for trends, statistics, summarizations, or anomalies. In this case, you can use Logstash (part of the Elasticsearch/Logstash/Kibana stack) to collect, aggregate, and parse your data, and then have Logstash feed this data into Elasticsearch. Once the data is in Elasticsearch, you can run searches and aggregations to mine any information that is of interest to you.</li>
+  <li>You run a price alerting platform which allows price-savvy customers to specify a rule like "I am interested in buying a specific electronic gadget and I want to be notified if the price of gadget falls below $X from any vendor within the next month". In this case you can scrape vendor prices, push them into Elasticsearch and use its reverse-search (Percolator) capability to match price movements against customer queries and eventually push the alerts out to the customer once matches are found.</li>
+  <li>You have analytics/business-intelligence needs and want to quickly investigate, analyze, visualize, and ask ad-hoc questions on a lot of data (think millions or billions of records). In this case, you can use Elasticsearch to store your data and then use Kibana (part of the Elasticsearch/Logstash/Kibana stack) to build custom dashboards that can visualize aspects of your data that are important to you. Additionally, you can use the Elasticsearch aggregations functionality to perform complex business intelligence queries against your data.</li>
+</ol>
+
+
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="video">Videos to watch</div>
+<p>This video explains well about the internal workings of ES, especially, Lucene:</p>
+<iframe allowfullscreen frameborder="0" height="315" src="https://www.youtube.com/embed/PpX7J-G2PEo" width="560"></iframe>
+<br/>
+<br/>
+<p>How to use ES?<br/>
+The following video gives us a quick tour using Fiddler:</p>
+<iframe allowfullscreen frameborder="0" height="315" src="https://www.youtube.com/embed/60UsHHsKyN4" width="560"></iframe>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="java">Java install</div>
+<p>We need to install the JVM since Elasticsearch is written in Java.</p>
+<p>Oracle or OpenJDK?</p>
+<p>For Oracle Java:</p>
+<pre class="prettyprint">
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+$ java -version
+java version "1.8.0_91"
+Java(TM) SE Runtime Environment (build 1.8.0_91-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
+
+$ readlink -f $(which javac)
+/usr/lib/jvm/java-8-oracle/bin/javac
+</pre>
+<br>
+<p>To set JAVA_HOME in .bashrc:</p>
+<pre class="prettyprint">
+JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+</pre>
+<br/>
+<p>OpenJDK:</p>
+<pre>
+$ sudo add-apt-repository ppa:openjdk-r/ppa
+$ sudo apt-get update
+$ sudo apt-get install openjdk-8-jdk
+</pre>
+<br>
+<p>Run the following command to set the default Java:</p>
+<pre>
+$ sudo update-alternatives --config java
+There are 2 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                            Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1069      auto mode
+  1            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1069      manual mode
+  2            /usr/lib/jvm/java-8-oracle/jre/bin/java          2         manual mode
+
+Press enter to keep the current choice[*], or type selection number: 
+</pre>
+<br>
+<p>If there is more than one Java versions installed on the system, type in a number to select a Java version. Set default Java Compiler by running the command:</p>
+<pre>
+$ sudo update-alternatives --config javac
+There are 2 choices for the alternative javac (providing /usr/bin/javac).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-8-openjdk-amd64/bin/javac   1069      auto mode
+  1            /usr/lib/jvm/java-8-openjdk-amd64/bin/javac   1069      manual mode
+  2            /usr/lib/jvm/java-8-oracle/bin/javac          2         manual mode
+
+Press enter to keep the current choice[*], or type selection number: 
+</pre>
+<br>
+<p>We'll use OpenJDK, so let's just press enter key:</p>
+<pre>
+$ java -version
+openjdk version "1.8.0_91"
+OpenJDK Runtime Environment (build 1.8.0_91-8u91-b14-0ubuntu4~14.04-b14)
+OpenJDK 64-Bit Server VM (build 25.91-b14, mixed mode)
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="download">Download / Install Elastic Search</div>
+<p>To download Elasticsearch on Debian system, visit <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/deb.html" target="_blank">Install Elasticsearch with Debian Package</a>.</p>
+<p>Download and install the package:</p>
+<pre>
+$ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.4/elasticsearch-2.4.4.deb
+$ sudo dpkg -i elasticsearch-2.4.4.deb
+</pre>
+<br>
+<p>Elasticsearch is installed in <b>/usr/share/elasticsearch/</b> with its configuration files placed in <b>/etc/elasticsearch/elasticsearch.yml</b> and its init script added in <b>/etc/init.d/elasticsearch</b>.</p>
+<p>
+Download and install the Public Signing Key:</p>
+<pre>
+$ wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+</pre>
+<br>
+
+<p>
+To configure Elasticsearch to start automatically when the system boots up, run the following command:</p>
+<pre>
+$ sudo systemctl enable elasticsearch.service
+</pre>
+<br>
+<p>Elasticsearch can be started and stopped as follows:</p>
+<pre>
+$ sudo systemctl start elasticsearch.service
+$ sudo systemctl stop elasticsearch.service
+</pre>
+<br>
+<p>To check the version, simply issue the following:</p>
+<pre>
+$ <font color="blue">curl -XGET 'localhost:9200'</font>
+{
+  "name" : "node-1",
+  "cluster_name" : "my-application",
+  "cluster_uuid" : "6XPhPhcNSxmloJbqYYIDmw",
+  "version" : {
+    "number" : "<font color="green">2.4.4</font>",
+    "build_hash" : "fcbb46dfd45562a9cf00c604b30849a6dec6b017",
+    "build_timestamp" : "2017-01-03T11:33:16Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.2"
+  },
+  "tagline" : "You Know, for Search"
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Configuring-Elastic">Configuring Elastic</div>
+<p>The Elasticsearch configuration files are in the <b>/etc/elasticsearch</b> directory:</p>
+<ol>
+<li><b>/etc/elasticsearch/elasticsearch.yml</b>: Configures the Elasticsearch server settings.</li>
+In this tutorial, we have only one node, we'll use the following configuration by just taking off the '#':
+<pre>
+cluster.name: cluster.name: my-application
+node.name: node-1
+</pre>
+<li><b>logging.yml</b>: Provides configuration for logging (/var/log/elasticsearch) by default.
+</li>
+</ol>
+<br>
+<p>The Debian package places config files, logs, and the data directory in the appropriate locations for a Debian-based system:</p>
+<table cellpadding="4px" border="1"><colgroup><col class="col_1" /><col class="col_2" /><col class="col_3" /><col class="col_4" /></colgroup><thead><tr><th align="left" valign="top"> Type </th><th align="left" valign="top"> Description </th><th align="left" valign="top"> Default Location </th><th align="left" valign="top"> Setting</th></tr></thead><tbody><tr><td align="left" valign="top"><p><span class="strong"><strong>home</strong></span></p></td><td align="left" valign="top"><p>Elasticsearch home directory or <code class="literal">$ES_HOME</code></p></td><td align="left" valign="top"><p><code class="literal">/usr/share/elasticsearch</code></p></td><td align="left" valign="top"><p></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>bin</strong></span></p></td><td align="left" valign="top"><p>Binary scripts including <code class="literal">elasticsearch</code> to start a node
+    and <code class="literal">elasticsearch-plugin</code> to install plugins</p></td><td align="left" valign="top"><p><code class="literal">/usr/share/elasticsearch/bin</code></p></td><td align="left" valign="top"><p></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>conf</strong></span></p></td><td align="left" valign="top"><p>Configuration files including <code class="literal">elasticsearch.yml</code></p></td><td align="left" valign="top"><p><code class="literal">/etc/elasticsearch</code></p></td><td align="left" valign="top"><p><code class="literal">path.conf</code></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>conf</strong></span></p></td><td align="left" valign="top"><p>Environment variables including heap size, file descriptors.</p></td><td align="left" valign="top"><p><code class="literal">/etc/default/elasticsearch</code></p></td><td align="left" valign="top"><p></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>data</strong></span></p></td><td align="left" valign="top"><p>The location of the data files of each index / shard allocated
+    on the node. Can hold multiple locations.</p></td><td align="left" valign="top"><p><code class="literal">/var/lib/elasticsearch</code></p></td><td align="left" valign="top"><p><code class="literal">path.data</code></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>logs</strong></span></p></td><td align="left" valign="top"><p>Log files location.</p></td><td align="left" valign="top"><p><code class="literal">/var/log/elasticsearch</code></p></td><td align="left" valign="top"><p><code class="literal">path.logs</code></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>plugins</strong></span></p></td><td align="left" valign="top"><p>Plugin files location. Each plugin will be contained in a subdirectory.</p></td><td align="left" valign="top"><p><code class="literal">/usr/share/elasticsearch/plugins</code></p></td><td align="left" valign="top"><p><code class="literal"></code></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>repo</strong></span></p></td><td align="left" valign="top"><p>Shared file system repository locations. Can hold multiple locations. A file system repository can be placed in to any subdirectory of any directory specified here.</p></td><td align="left" valign="top"><p>Not configured</p></td><td align="left" valign="top"><p><code class="literal">path.repo</code></p></td></tr><tr><td align="left" valign="top"><p><span class="strong"><strong>script</strong></span></p></td><td align="left" valign="top"><p>Location of script files.</p></td><td align="left" valign="top"><p><code class="literal">/etc/elasticsearch/scripts</code></p></td><td align="left" valign="top"><p><code class="literal">path.scripts</code></p></td></tr></tbody></table>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="test">Testing Elastic Search</div>
+<p>Elasticsearch is running on port 9200:</p>
+<img alt="elasticserach-localhost-9200.png" src="images/ElasticSearch/elasticserach-localhost-9200.png"/>
+<br/>
+<p>We can also test it with <b>curl</b> using a simple GET request like this:</p>
+<pre>
+$ <font color="blue">curl -XGET 'localhost:9200/?pretty'</font>
+{
+  "name" : "node-1",
+  "cluster_name" : "my-application",
+  "cluster_uuid" : "6XPhPhcNSxmloJbqYYIDmw",
+  "version" : {
+    "number" : "2.4.4",
+    "build_hash" : "fcbb46dfd45562a9cf00c604b30849a6dec6b017",
+    "build_timestamp" : "2017-01-03T11:33:16Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.2"
+  },
+  "tagline" : "You Know, for Search"
+}
+</pre>
+<p>Elasticsearch is working properly!</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="health">Checking the cluster health</div>
+<p>To check the cluster health, we will be using the <b>_cat</b> API:</p>
+<pre>
+$ <font color="blue">curl 'localhost:9200/_cat/health?v'</font>
+epoch      timestamp cluster        status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent 
+1487031180 16:13:00  <font color="maroon">my-application yellow</font>          1         1      5   5    0    0        5             0                  -                 50.0% 
+</pre>
+<br>
+<p>We can see that our cluster named "my-application" is up with a 'yellow' status.</p>
+<p>Cluster status is reported as <font color="red">red</font> if one or more primary shards (and its replicas) is missing, and <font color="yellow">yellow</font> if one or more replica shards is missing. Normally, this happens when a node drops off the cluster for whatever reason (hardware failure, long garbage collection time, etc.). Once the node recovers, its shards will remain in an initializing state before they transition back to active status.</p>
+<p>
+The number of initializing shards typically peaks when a node rejoins the cluster, and then drops back down as the shards transition into an active state.</p>
+<p>During this initialization period, our cluster state may transition from <font color="green">green</font> to <font color="yellow">yellow</font> or <font color="red">red</font> until the shards on the recovering node regain active status. In many cases, a brief status change to <font color="yellow">yellow</font> or <font color="red">red</font> may not require any action on our part.</p>
+<p>However, if we notice that our cluster status is lingering in <font color="red">red</font> or <font color="yellow">yellow</font> state for an extended period of time, verify that the cluster is recognizing the correct number of Elasticsearch nodes.</p>
+<p>We can also get a list of nodes in our cluster as follows:</p>
+<pre>
+$ <font color="blue">curl 'localhost:9200/_cat/nodes?v'</font>
+host      ip        heap.percent ram.percent load node.role master name   
+127.0.0.1 127.0.0.1            4          95 0.60 d         *      node-1 
+</pre>
+<p>Here, we can see our one node named "node-1", which is the single node that is currently in our cluster.</p>
+<br>
+<p>Now let's take a peek at our indices:</p>
+<pre>
+$ <font color="blue">curl 'localhost:9200/_cat/indices?v'</font>
+health status index           pri rep docs.count docs.deleted store.size pri.store.size 
+yellow open   'localhost:9200   5   1          0            0       795b           795b 
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="REST_API">Using the REST API </div>
+<p>Once we have an instance of ElasticSearch up and running, 
+we can talk to it using it's <b>JSON based REST API</b> residing at localhost port <b>9200</b>.</p>
+<p>We can use any HTTP client to talk to it.</p>
+<p>In ElasticSearch's own documentation all examples use <b>curl</b>, however, when playing with the API, 
+we may find a UI client such as <b>Fiddler</b>, <b>Sense</b>, <b>Postman</b> or <b>RESTClient</b>. </p>
+<p><b>Postman</b>:</p>
+<img alt="Postman-localhost-9200.png" src="images/ElasticSearch/Postman-localhost-9200.png"/>
+<br/>
+<br/>
+<br/>
+<p><b>Sense</b> Chrome plugin.</p>
+<p>It is a handy console for interacting with the REST API of Elasticsearch. As we can see below, Sense is composed of two main panes. The left pane, named the editor, is where we type the requests we will submit to Elasticsearch. The responses from Elasticsearch are shown on the right hand panel. The address of our Elasticsearch server should be entered in the text box on the top of screen (and defaults to localhost:9200).</p>
+<p>Sense understands commands in a cURL-like syntax. For example the following Sense command:</p>
+<img alt="Sense-GET.png" src="images/ElasticSearch/Sense-GET.png"/>
+<br>
+<p>It is a simple GET request to Elasticsearc's _search API. Here is the equivalent command in cURL:</p>
+<pre>
+$ <font color="blue">curl -XGET "http://localhost:9200/_search" -d'</font>
+{
+  "query": {
+    "match_all": {}
+  }
+}'
+</pre>
+<p>In fact, we can paste the above command into Sense and it will automatically be converted into the Sense syntax.</p>
+<br>
+<p>Note: since browsers do not support HTTP GET with a request body, we can simply execute the query using POST instead of GET:</p>
+<img alt="Sense-Post.png" src="images/ElasticSearch/Sense-Post.png"/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="query">Elasticsearch Indexing</div>
+<p>As shown in the previous section, Elasticsearch comes with a RESTful API that we'll be using to make our queries.</p>
+<p>We're running Elasticsearch locally on <b>localhost</b>, we'll be using is <b>http://localhost:9200/</b>.</p>
+<p>In Elasticsearch, the term <b>document</b> has a specific meaning. It refers to the top-level, or root object that is serialized into JSON and stored in Elasticsearch under a unique ID.</p>
+<p>A document doesn't consist only of its data.</p>
+<p>It also has metadata (information about the document). The three required metadata elements are as follows:</p>
+<ol>
+<li><b>_index</b>: where the document lives</li>
+<li><b>_type</b>: the class of object that the document represents</li>
+<li><b>_id</b>: the unique identifier for the document</li>
+</ol>
+<p>So, the query has the following components:</p>
+<ol>
+<li><b>Index</b><br/>
+An index is the equivalent of <b>database</b> in relational database. The index is the top-most level that can be found at 
+<pre class="prettyprint">
+http://mydomain.com:9200/&lt;index&gt;
+</pre>
+</li>
+<li><b>Types</b><br/>
+Types are objects that are contained within indexes. They are like <b>tables</b>. Being a child of the index, they can be found at 
+<pre class="prettyprint">http://mydomain.com:9200/&lt;index&gt;/&lt;type&gt;
+</pre>
+</li>
+<li><b>ID</b><br/>
+In order to index a first JSON object, we make a PUT request to the REST API to a URL made up of the index name, type name and ID: </li>
+</ol>
+
+<pre class="prettyprint">
+http://localhost:9200/&lt;index&gt;/&lt;type&gt;/[&lt;id&gt;]
+</pre>
+
+
+<p>
+<b>Index</b> and <b>type</b> are required while the <b>id</b> part is optional. If we don't specify an <b>id</b>, ElasticSearch will generate one for us. However, if we don't specify an id we should use <b>POST</b> instead of <b>PUT</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<p>Note that the following sections are based on the guide from <a href="https://www.elastic.co/guide/en/elasticsearch/reference/2.3/getting-started.html" target="_blank">Getting Started</a>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="CrIndexing">Creating an Index</div>
+<p>Now let's create an index named "customer" and then list all the indexes again:</p>
+<pre>
+$ <font color="blue">curl -XPUT 'localhost:9200/customer?pretty'</font>
+{
+  "acknowledged" : true
+}
+
+$ <font color="blue">curl 'localhost:9200/_cat/indices?v'</font>
+health status index           pri rep docs.count docs.deleted store.size pri.store.size 
+yellow open   customer          5   1          0            0       650b           650b 
+</pre>
+<br>
+<p>The first command creates the index named "customer" using the PUT verb. We simply append pretty to the end of the call to tell it to pretty-print the JSON response (if any).</p>
+<p>The results of the second command tells us that we now have 1 index named 'customer' and it has 5 primary shards and 1 replica (the defaults) and it contains 0 documents in it.</p>
+<p>Notice that the customer index has a yellow health tagged to it, which means that some replicas are not (yet) allocated. The reason this happens for this index is because Elasticsearch by default created one replica for this index. Since we only have one node running at the moment, that one replica cannot yet be allocated (for high availability) until a later point in time when another node joins the cluster. Once that replica gets allocated onto a second node, the health status for this index will turn to green.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="subtitle_2nd" id="Indexing-Querying">Indexing and Querying a Document</div>
+<p>Now we want to put something into our customer index. In order to index a document, we must tell Elasticsearch which 'type' in the index it should go to.</p>
+<p>
+Let's index a simple customer document into the customer index, "external" type, with an ID of 1 as follows:</p>
+
+<p>Our JSON document: { "name": "John Doe" }</p>
+<pre>
+$ curl -XPUT <font color="green">'localhost:9200/customer/external/1?pretty'</font> -d <font color="green">'
+{
+  "name": "John Doe"
+}'</font>
+</pre>
+<br>
+<p>The response looks like this:</p>
+<pre>
+{
+  "_index" : "customer",
+  "_type" : "external",
+  "_id" : "1",
+  "_version" : 1,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "created" : true
+}
+</pre>
+<br>
+<p>A new customer document was successfully created inside the 'customer' index and the 'external' type. The document also has an internal id of 1 which we specified at index time.</p>
+<p>
+It is important to note that Elasticsearch does not require us to explicitly create an index first before we can index documents into it. In the previous example, Elasticsearch will automatically create the customer index if it didn't already exist beforehand.</p>
+
+<br/>
+
+<p>Let's query document that we've just indexed:</p>
+<pre>
+$ <font color="blue">curl -XGET 'localhost:9200/customer/external/1?pretty'</font>
+{
+  "_index" : "customer",
+  "_type" : "external",
+  "_id" : "1",
+  "_version" : 1,
+  "<font color="maroon">found</font>" : true,
+  "<font color="maroon">_source</font>" : {
+    "name" : "John Doe"
+  }
+}
+</pre>
+<br>
+<p>Two fields are noticeable in the response:</p>
+<ol>
+  <li><b>found</b>, stating that we found a document with the requested ID 1 </li>
+  <li><b>_source</b>, which returns the full JSON document that we indexed</li>
+</ol>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="DeleteIndexing">Delete an Index</div>
+<p>Now let's delete the index that we just created:</p>
+<pre>
+$ <font colr="blue">curl -XDELETE 'localhost:9200/customer?pretty'</font>
+{
+  "acknowledged" : true
+}
+</pre>
+<br>
+<p>Then list all the indexes again:</p>
+<pre>
+$ <font colr="blue">curl 'localhost:9200/_cat/indices?v'</font>
+health status index pri rep docs.count docs.deleted store.size pri.store.size 
+</pre>
+<br>
+<p>The response tells us that the index was deleted successfully and we are now back to where we started with nothing in our cluster.</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="pattern">The REST API pattern</div>
+<p>We used couple of REST APIs to access Elasticsearch. The pattern looks like this:<p>
+<pre>
+curl -X&lt;REST Verb&gt; &lt;Node&gt;:&lt;Port&gt;/&lt;Index&gt;/&lt;Type&gt;/&lt;ID&gt;
+</pre>
+<br>
+<p>
+This REST access pattern is pervasive throughout all the API commands that if we can simply remember it, you will have a good head start at mastering Elasticsearch!</p>
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="ModifyingData">Modifying Data : Indexing/Replacing Documents</div>
+<p>In our previous section, we've indexed a single document like this:</p>
+<pre>
+$ curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
+{
+  "name": "<font color="green">John Doe</font>"
+}'
+</pre>
+<br>
+<p>With the following response:</p>
+<pre>
+{
+  "_index" : "customer",
+  "_type" : "external",
+  "_id" : "1",
+  "_version" : 1,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "created" : true
+}
+</pre>
+<br>
+<p>As we can see the response, we indexed the specified document into the customer index, external type, with the ID of 1.</p>
+<p>If we then execute the above command again with a different (or same) document, Elasticsearch will replace (i.e. reindex) a new document on top of the existing one with the ID of 1:</p>
+<pre>
+$ curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
+{
+  "name": "<font color="green">Jane Doe</font>"
+}'
+</pre>
+<br>
+<p>The above changes the name of the document with the ID of 1 from "John Doe" to "Jane Doe".</p>
+<p>However, if we use a different ID, a new document will be indexed and the existing document(s) already in the index remains untouched:</p>
+<pre>
+$ curl -XPUT 'localhost:9200/customer/external/<font color="red">2</font>?pretty' -d '
+{
+  "name": "Jane Doe"
+}'
+</pre>
+<br>
+<p>The above command indexes a new document with an ID of <font color="red">2</font>.</p>
+<p>When indexing, the ID part is optional. If not specified, Elasticsearch will generate a random ID and then use it to index the document. The actual ID Elasticsearch generates (or whatever we specified explicitly in the previous examples) is returned as part of the index API call.</p>
+<p>The following example shows how to index a document without an explicit ID:
+<pre>
+$ curl -X<font color="red">POST</font> 'localhost:9200/customer/external?pretty' -d '
+{
+  "name": "Jane Doe"
+}'
+</pre>
+<br>
+<p>Note that in the above case, we are using the POST verb instead of PUT since we didn't specify an ID, and indeed we have two documents now:</p>
+<pre>
+$ <font color="blue">curl 'localhost:9200/_cat/indices?v'</font>
+health status index    pri rep <font color="red">docs.count</font> docs.deleted store.size pri.store.size 
+yellow open   customer   5   1          <font color="red">2</font>            0      6.6kb          6.6kb 
+</pre>
+<br>
+<p>To query:</p>
+<pre>
+$ <font color="blue">curl -XGET 'localhost:9200/_search?pretty'</font>
+{
+  "took" : 48,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "2",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "Jane Doe"
+      }
+    }, {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+<p>Note that we can drop the '-XGET' from the query.</p>
+<br>
+<p>The same query in Sense UI:</p>
+<img alt="Sense-2-Docs.png" src="images/ElasticSearch/Sense-2-Docs.png"/>
+<br/>
+<p>The queries above are equivalent to the following:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty -d '
+{
+    "query" : {
+        "match_all" : {}
+    }
+}'</font>
+</pre>
+<br>
+<p>Response:</p>
+<pre>
+{
+  "took" : 101,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "2",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "Jane Doe"
+      }
+    }, {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+<br>
+<p>Note that to query all, we may use this as well:</p>
+<pre>
+$ curl -XPOST http://localhost:9200/customer/external/_search?pretty -d '{"query": {"match_all": {}}}'
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="UpdatingDocuments">Updating Documents</div>
+<p>In addition to being able to <b>index</b> and <b>replace</b> documents, we can also <b>update</b> documents.</p> 
+<p>However, note that Elasticsearch does not actually do in-place updates under the hood. Whenever we do an update, Elasticsearch deletes the old document and then indexes a new document with the update applied to it in one shot.</p>
+<p>
+The example below shows how to update our previous document (ID of 2) by changing the name field to "Jane Doo":</p>
+<pre>
+$ curl -XPOST 'localhost:9200/customer/external/<font color="green">2</font>/<font color="red">_update</font>?pretty' -d '
+{
+  "doc": { "name": "Jane <font color="maroon">Doo</font>" }
+}'
+</pre>
+<br>
+<p>Response:</p>
+<pre>
+{
+  "_index" : "customer",
+  "_type" : "external",
+  "_id" : "2",
+  "_version" : 2,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  }
+}
+</pre>
+<br>
+<p>Let's check what we've done:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty -d '
+{
+    "query" : {
+        "match_all" : {}
+    }
+}'</font>
+{
+  "took" : 88,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "2",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "<font color="green">Jane Doo</font>"
+      }
+    }, {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+<br>
+<p>Now we may want to switch it back to the correct name and at the same time add an 'age' field to it using the following command:</p>
+<pre>
+$ <font color="blue">curl -XPOST 'localhost:9200/customer/external/2/_update?pretty' -d '
+{
+  "doc": { "name": "Jane Doe", "age": 18 }
+}'</font>
+</pre>
+<br>
+<p>Let's check it:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty</font>
+</pre>
+<br>
+<p>The response:</p>
+<pre>
+{
+  "took" : 38,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "2",
+      "_score" : 1.0,
+      "_source" : {
+        <font color="green">"name" : "Jane Doe",
+        "age" : 18</font>
+      }
+    }, {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="DeletingDocuments">Deleting Documents</div>
+<p>Deleting a document is fairly straightforward. This example shows how to delete our previous customer with the ID of 2:</p>
+<pre>
+$ <font color="blue">curl -XDELETE 'localhost:9200/customer/external/2?pretty'</font>
+</pre>
+<br>
+<p>Check if it is really been deleted:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty</font>
+{
+  "took" : 16,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+<br>
+<p>Yes, we can see ID=2 has been deleted!</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="BatchProcessing">Batch Processing</div>
+<p>In addition to being able to index, update, and delete individual documents, Elasticsearch also provides the ability to perform any of the above operations in batches using the <b>_bulk</b> API.</p>
+<p>This functionality is important in that it provides a very efficient mechanism to do multiple operations as fast as possible with as little network round trips as possible.</p>
+<p>
+As a quick example, the following call indexes two documents (ID 2 - John Doe and ID 1 - Jane Doe) in one bulk operation: </p>
+<pre>
+$ <font color="blue">curl -XPOST 'localhost:9200/customer/external/_bulk?pretty' -d '
+{"index":{"_id":"2"}}
+{"name": "John Doe" }
+{"index":{"_id":"1"}}
+{"name": "Jane Doe" }
+'</font>
+</pre>
+<br>
+<p>Let's see we have the two:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty</font>
+{
+  "took" : 14,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 2,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "2",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "John Doe"
+      }
+    }, {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "Jane Doe"
+      }
+    } ]
+  }
+}
+</pre> 
+<br>
+<p>This example updates the first document (ID of 1) and then deletes the second document (ID of 2) in one bulk operation:</p>
+<pre>
+$ <font color="blue">curl -XPOST 'localhost:9200/customer/external/_bulk?pretty' -d '
+{"update":{"_id":"1"}}
+{"doc": { "name": "Jane Doe becomes John Doe" } }
+{"delete":{"_id":"2"}}
+'</font>
+</pre>
+<br>
+<p>Here is the result:</p>
+<pre>
+$ <font color="blue">curl localhost:9200/_search?pretty</font>
+{
+  "took" : 6,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "external",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "Jane Doe becomes John Doe"
+      }
+    } ]
+  }
+}
+</pre>
+<br>
+<p>The bulk API executes all the actions sequentially and in order. If a single action fails for whatever reason, it will continue to process the remainder of the actions after it. When the bulk API returns, it will provide a status for each action (in the same order it was sent in) so that we can check if a specific action failed or not.</p>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="performance-metrics">Performance metrics</div>
+<p>We should monitor query latency and take action if it surpasses a threshold. It's important to monitor relevant metrics about queries and fetches that can help us determine how our searches perform over time.</p> <p>For example, we may want to track spikes and long-term increases in query requests, so that we can be prepared to tweak our configuration to optimize for better performance and reliability.</p>
+<table>
+ <tr>
+  <th style="text-align:center;">Metric description</th>	<th style="text-align:center;">Name</th>
+ </tr>
+ <tr>
+   <td>Total number of queries</td>	<td>indices.search.query_total</td>
+ </tr>
+ <tr>
+   <td>Total time spent on queries</td>	<td>indices.search.query_current</td>
+ </tr>
+ <tr>
+   <td>Total number of fetches</td>	<td>indices.search.fetch_total</td>
+ </tr>
+ <tr>
+   <td>Total time spent on fetches</td>	<td>indices.search.fetch_time_in_millis</td>
+ </tr>
+ <tr>
+   <td>Number of fetches currently in progress</td>	<td>indices.search.fetch_current</td>
+ </tr>
+
+ <tr>
+   <td>Total number of documents indexed</td>	<td>indices.indexing.index_total</td>
+ </tr>
+ <tr>
+   <td>Total time spent indexing documents</td>	<td>indices.indexing.index_time_in_millis</td>
+ </tr>
+ <tr>
+   <td>Number of documents currently being indexed</td>	<td>indices.indexing.index_current</td>
+ </tr>
+ <tr>
+   <td>Total number of index refreshes</td>	<td>indices.refresh.total</td>
+ </tr>
+ <tr>
+   <td>Total time spent refreshing indices</td>	<td>indices.refresh.total_time_in_millis</td>
+ </tr>
+ <tr>
+   <td>Total number of index flushes to disk</td>	<td>indices.flush.total</td>
+ </tr>
+ <tr>
+   <td>Total time spent on flushing indices to disk</td>	<td>indices.flush.total_time_in_millis</td>
+ </tr>
+
+
+ <tr>
+   <td>Total count of young-generation garbage collections</td>	<td>jvm.gc.collectors.young.collection_count (jvm.gc.collectors.ParNew.collection_count prior to vers. 0.90.10)</td>
+ </tr>
+ <tr>
+   <td>Total time spent on young-generation garbage collections</td>	<td>jvm.gc.collectors.young.collection_time_in_millis (jvm.gc.collectors.ParNew.collection_time_in_millis prior to vers. 0.90.10)</td>
+ </tr>
+ <tr>
+   <td>Total count of old-generation garbage collections</td>	<td>jvm.gc.collectors.old.collection_count (jvm.gc.collectors.ConcurrentMarkSweep.collection_count prior to vers. 0.90.10)</td>
+ </tr>
+ <tr>
+   <td>Total time spent on old-generation garbage collections</td>	<td>jvm.gc.collectors.old.collection_time_in_millis (jvm.gc.collectors.ConcurrentMarkSweep.collection_time_in_millis prior to vers. 0.90.10)</td>
+ </tr>
+ <tr>
+   <td>Percent of JVM heap currently in use</td>	<td>jvm.mem.heap_used_percent</td>
+ </tr>
+ <tr>
+   <td>Amount of JVM heap committed</td>	<td>jvm.mem.heap_committed_in_bytes</td>
+ </tr>
+</table>
+<br/>
+<p>Elasticsearch relies on garbage collection processes to free up heap memory. Because garbage collection uses resources, we should keep an eye on its frequency and duration to see if we need to adjust the heap size. Setting the heap too large can result in long garbage collection times; these excessive pauses are dangerous because they can lead our cluster to mistakenly register our node as having dropped off the grid.</p>
+<br>
+<br>
+<p>Refs:</p>
+<ol>
+  <li><a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/getting-started.html" target="_blank">Getting Started</a></li>
+  <li><a href="https://www.datadoghq.com/blog/monitor-elasticsearch-performance-metrics/" target="_blank">How to monitor Elasticsearch performance</a></li>
+</ol>
+<br/>
+<br/>
+<h1>Elastic Search, Logstash, Kibana</h1>
+   <li><a href="ELK_Elastic_Search_Tutorial.html">Elastic Search</a> </li>
+   <li><a href="ELK_ElasticSearch_Logstash.html">Logstash with Elastic Search</a> </li>
+   <li><a href="ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, ElasticSearch, and Kibana 4</a> </li>
+   <li><a href="ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a> </li>
+   <li><a href="ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a></li>
+   <li>
+   <a href="ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a></li>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br><br>
+<h1>Elasticsearch search engine, Logstash, and Kibana</h1>
+   <br><br>
+   <a href="ELK_Elastic_Search_Tutorial.html">Elasticsearch, search engine</a> 
+   <br><br>
+   <a href="ELK_ElasticSearch_Logstash.html">Logstash with Elasticsearch</a> 
+   <br><br>
+   <a href="ELK_ElasticSearch_Logstash_Kibana4.html">Logstash, Elasticsearch, and Kibana 4</a> 
+   <br><br>
+   <a href="ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+   <br><br>
+   <a href="ELK_Architecture_Samples_ElasticSearch_Logstash_Kibana.html">Samples of ELK architecture</a>
+   <br><br>
+   <a href="ELK_Elastic_Search_Tutorial_Indexing_Performance.html">Elasticsearch indexing performance</a>
+<br>
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br>
+
+<br><br>
+<h1>Big Data & Hadoop Tutorials</h1>
+   <br><br>
+   <a href="../BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Hadoop 2.6 - Installing on Ubuntu 14.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Install_on_ubuntu_16_04_single_node_cluster.html">Hadoop 2.6.5 - Installing on Ubuntu 16.04 (Single-Node Cluster)</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Running_MapReduce_Job.html">Hadoop - Running MapReduce Job</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Ecosystem.html">Hadoop - Ecosystem</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_Install.html">CDH5.3 Install on four EC2 instances (1 Name node and 3 Datanodes) using Cloudera Manager 5</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_APIs.html">CDH5 APIs</a> 
+   <br><br>
+   <a href="../BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x.html">QuickStart VMs for CDH 5.3</a> 
+   <br><br>
+   <a href="../BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_II.html">QuickStart VMs for CDH 5.3 II - Testing with wordcount</a> 
+   <br><br>
+   <a href="../BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Hive_Table_Query.html">QuickStart VMs for CDH 5.3 II - Hive DB query</a> 
+   <br><br>
+
+   <a href="../BigData_hadoop_CDH5_stop_start_services.html">Scheduled start and stop CDH services</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Zookeeper_Kafka.html">Zookeeper & Kafka Install</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Zookeeper_Kafka_single_node_single_broker_cluster.html">Zookeeper & Kafka - single node single broker</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Zookeeper_Kafka_single_node_Multiple_broker_cluster.html">Zookeeper & Kafka - Single node and multiple brokers</a> 
+   <br><br>
+   <a href="../BigData_hadoop_OLTP_vs_OLAP.html">OLTP vs OLAP</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Cloudera_Cluster_Tutorial_I.html">Apache Hadoop Tutorial I with CDH - Overview</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_II.html">Apache Hadoop Tutorial II with CDH - MapReduce Word Count</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Tutorial_Cloudera_Cluster_Word_Count_MapReduce_III.html">Apache Hadoop Tutorial III with CDH - MapReduce Word Count 2</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_Hive_Introduction.html">Apache Hadoop (CDH 5) Hive Introduction</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_Hive_Upgrade_2.html">CDH5 - Hive Upgrade to 1.3 to from 1.2</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Hive_Install_On_Ubuntu_16_04.html">Apache Hive 2.1.0 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../BigData_hadoop_HBase_Pseudo_Distributed.html">Apache HBase in Pseudo-Distributed mode</a> 
+   <br><br>
+   <a href="../BigData_hadoop_HBase_Creating_a_Table_with_Hbase_Shell_and_Hue.html">Creating HBase table with HBase shell and HUE</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Hue_Install_On_Ubuntu_16_04.html">Apache Hadoop : Hue 3.11 install on Ubuntu 16.04</a> 
+   <br><br>
+   <a href="../BigData_hadoop_HBase_Table_with_Java_API.html">Creating HBase table with Java API</a> 
+   <br><br>
+   <a href="../BigData_hadoop_HBase_BigTable_Map_Persistent_Sparse_Sorted_Distributed_Multidimensional.html">HBase - Map, Persistent, Sparse, Sorted, Distributed and Multidimensional</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_Flume_Introduction.html">Flume with CDH5: a single-node Flume deployment (telnet example) </a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5_Flume_CDH5_and_VirtualBox_NettyAvroRpcClient_syslog.html">Apache Hadoop (CDH 5) Flume with VirtualBox : syslog example via NettyAvroRpcClient</a> 
+   <br><br>
+   <a href="../BigData_Hadoop_fs_commands_list.html">List of Apache Hadoop hdfs commands</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 1</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Creating_Java_Wordcount_Project_with_Eclipse_MapReduce2_Part2.html">Apache Hadoop : Creating Wordcount Java Project with Eclipse Part 2</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Creating_Java_Card_Project_with_Eclipse_MapReduce2_Using_UnoExample_Project_Local_Run.html">Apache Hadoop : Creating Card Java Project with Eclipse using Cloudera VM UnoExample for CDH5 - local run</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Creating_Wordcount_Maven_Project_Eclipse_MapReduce.html">Apache Hadoop : Creating Wordcount Maven Project with Eclipse</a> 
+   <br><br>
+   <a href="../BigData_hadoop_QuickStart%20VMs%20for%20CDH%205.3.x_Oozie_Workflow.html">Wordcount MapReduce with Oozie workflow with Hue browser - CDH 5.3 Hadoop cluster using VirtualBox and QuickStart VM </a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark.html">Spark 1.2 using VirtualBox and QuickStart VM - wordcount</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_Programming_Model_RDD.html">Spark Programming Model : Resilient Distributed Dataset (RDD) with CDH</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 2.0.2 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_PySpark_RDD_Programming.html">Apache Spark 2.0.2 tutorial with PySpark : RDD</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_PySpark_Analyzing_Neuroimaging_Data_with_Thunder.html">Apache Spark 2.0.0 tutorial with PySpark : Analyzing Neuroimaging Data with Thunder</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_Streaming_Kafka_Cassandra.html">Apache Spark Streaming with Kafka and Cassandra</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_PySpark_using_CDH5.html">Apache Spark 1.2 with PySpark (Spark Python API) Wordcount using CDH5</a> 
+   <br><br>
+   <a href="../BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Install_on_ubuntu_16_04.html">Apache Drill with ZooKeeper install on Ubuntu 16.04 - Embedded & Distributed</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_File_System_JSON_Parquet.html">Apache Drill - Query File System, JSON, and Parquet</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_HBase.html">Apache Drill - HBase query</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_Hive.html">Apache Drill - Hive query</a> 
+   <br><br>
+   <a href="../../Drill/Drill_Tutorial_Query_MongoDB.html">Apache Drill - MongoDB query</a> 
+   <br><br>
+
+
+<br><br>
+<br /><br />
+<br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="../../DevOps/Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="../../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="../../DevOps/OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+
+<br /><br />
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br /><br />
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="../../DevOps/Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="../../DevOps/Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br /><br />
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="../../DevOps/AWS/aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Redis In-Memory Database</h1>
+   <br><br>
+   <a href="../../DevOps/Redis/Redis_vs_Memcached.html">Redis vs Memcached</a>
+   <br><br>
+   <a href="../../DevOps/Redis/Redis_Install.html">Redis 3.0.1 Install</a> 
+   <br><br>
+   <a href="../../DevOps/Redis/Redis_Setting_up_mulitple_server_instances_on_a_linux_host.html">Setting up mulitple server instances on a Linux host</a> 
+   <br><br>
+   <a href="../../python/python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">ELK : Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+
+
+
+<br /><br />
+<br><br>
+<h1>Git/GitHub Tutorial</h1>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Express.html" target="_blank">One page express tutorial for GIT and GitHub</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Installation.html" target="_blank">Installation</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_status_add_status_log.html" target="_blank">add/status/log</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_commit_diff.html" target="_blank">commit and diff</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_commit_amend.html" target="_blank">git commit --amend</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Deleting_Renaming_Files.html" target="_blank">Deleting and Renaming files</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Undoing_Checkout_Unstaging.html" target="_blank">Undoing Things : File Checkout & Unstaging</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Reverting_Commit.html" target="_blank">Reverting commit</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Soft_Reset.html" target="_blank">Soft Reset - (git reset --soft &lt;SHA key&gt;) </a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Mixed_Default_Reset.html" target="_blank">Mixed Reset - Default</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Hard_Reset.html" target="_blank">Hard Reset - (git reset --hard &lt;SHA key&gt;)</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Creating_Switching_Branches.html" target="_blank">Creating & switching Branches</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Fast-Forward_Merge.html" target="_blank">Fast-forward merge</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Rebase.html" target="_blank">Rebase & Three-way merge</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Merge_Conflicts_with_Simple_Example.html" target="_blank">Merge conflicts with a simple example</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/GitHub_Account_SSH_Key.html" target="_blank">GitHub Account and SSH</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/GitHub_Uploading.html" target="_blank">Uploading to GitHub</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/GitHub_GUI.html" target="_blank">GUI</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_Branching_Merging.html" target="_blank">Branching & Merging</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_Branching_Merging_Conflicts.html" target="_blank">Merging conflicts</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_Ubuntu.html" target="_blank">GIT on Ubuntu and OS X - Focused on Branching</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_Setting_Up_Remote_Repository.html" target="_blank">Setting up a remote repository / pushing local project and cloning the remote repo</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/GitHub_Fork_Clone_Origin_Upstream.html" target="_blank">Fork vs Clone, Origin vs Upstream</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_Terminologies.html" target="_blank">Git/GitHub Terminologies</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Source_Tree_1_Commit_Push.html" target="_blank">Git/GitHub via SourceTree I : Commit & Push</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Source_Tree_2_Branching_Merging.html" target="_blank">Git/GitHub via SourceTree II : Branching & Merging</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Source_Tree_3_Git_WorkFlow.html" target="_blank">Git/GitHub via SourceTree III : Git Work Flow</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_Source_Tree_4_Reset.html" target="_blank">Git/GitHub via SourceTree IV : Git Reset</a>
+   <br><br>
+   <a href="../../DevOps/SCM/Git/Git_GitHub_quick_command_reference_wiki_cheat_sheet.html" target="_blank">Git Cheat sheet - quick command reference</a>
+   <br><br>
+<br /><br />
+
+<br><br><br>
+<h1>Subversion</h1>
+   <a href="../../cplusplus/Subversion/Subversion_Install_On_Ubuntu.html" target="_blank">Subversion Install On Ubuntu  14.04</a>
+   <br><br>
+   <a href="../../cplusplus/Subversion/Subversion_Creating_Accessing_Repo.html" target="_blank">Subversion creating and accessing I</a>
+   <br><br>
+   <a href="../../cplusplus/Subversion/Subversion_Creating_Accessing_Repo2.html" target="_blank">Subversion creating and accessing II</a>
+
+<br /><br />
+<br><br>
+<h1>Powershell 4 Tutorial</h1>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Introduction.html" target="_blank">Powersehll : Introduction</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_help_system.html" target="_blank">Powersehll : Help System</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_running_commands.html" target="_blank">Powersehll : Running commands</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Providers.html" target="_blank">Powersehll : Providers</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Pipeline.html" target="_blank">Powersehll : Pipeline</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Objects.html" target="_blank">Powersehll : Objects</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Remote_Control.html" target="_blank">Powersehll : Remote Control</a>
+   <br><br>
+   <a href="../../Powershell/Powershell4_Windows_Management_Instrumentation_WMI.html" target="_blank">Windows Management Instrumentation (WMI)</a>
+   <br><br>
+   <a href="../../Powershell/How_to_Enable_Multiple_RDP_Sessions_in_Windows_2012.html" target="_blank">How to Enable Multiple RDP Sessions in Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/How_to_install_Configure_FTP_Server_on_IIS_8_in_Windows_Server_2012.html" target="_blank">How to install and configure FTP server on IIS 8 in Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/How_to_Run_Exe_as_a_Service_in_Windows_Server_2012.html" target="_blank">How to Run Exe as a Service on Windows 2012 Server</a>
+   <br><br>
+   <a href="../../Powershell/SQL_Inner_Left_Right_Outter_Join.html" target="_blank">SQL Inner, Left, Right, and Outer Joins</a>
+<br><br>
+
+<br><br>
+<br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="../../DevOps/Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="../../Linux/linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="../../DevOps/OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+
+<br><br>
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="../../DevOps/Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br><br>
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="../../DevOps/Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="../../DevOps/Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br><br>
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br><br>
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="../../DevOps/Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="../../DevOps/Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="../../DevOps/Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="../../DevOps/Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br><br>
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="../../DevOps/Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+<br><br>
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="../../DevOps/AWS/aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="../../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="../../DevOps/AWS/aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+<br><br>
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Hadoop/ELK/ELK_Elastic_Search_Tutorial.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 07:17:21 GMT -->
+</html>
+

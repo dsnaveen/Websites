@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/m/online-calculator/chi-square.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	Chi Square Calculator
+</title>
+    <script src="../../js/mobile/maintainScrollPosition.js"></script>
+    <script src="../../js/calculator.js" type="text/javascript"></script>
+
+
+    <!-- Add javascript and jquery  -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+        //Override jQuery Mobile's defaults. These statements should appear before jQuery Mobile is loaded.
+        //Source: http://demos.jquerymobile.com/1.0.1/docs/api/globalconfig.html
+        $(document).bind("mobileinit", function () {
+            // Load urls as regular http requests.
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+        // Fallback to loading jQuery from a local path if the CDN is unavailable.
+        // Source: http://www.asp.net/ajax/cdn#Using_jQuery_from_the_CDN_21
+        (window.jQuery || document.write('<script src="../../scripts/jquery-1.10.2.min.js"><\/script>'));
+    </script>
+
+    <!-- Add javascript that goes on all mobile pages  -->
+    <script src="../../js/top.js"></script>
+
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Identify site as mobile  -->
+    <meta name="HandheldFriendly" content="True" />
+
+    <!-- Size content to the viewport  
+        Source: https://developers.google.com/web/fundamentals/layouts/rwd-fundamentals/set-the-viewport?hl=en -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../../App_Themes/mobile1/mobile1.css" type="text/css" rel="stylesheet" /><meta name="description" content="Free chi-square distribution calculator computes cumulative probability. Fast, easy, accurate. An online chi-square statistical table. Includes sample problems." /><meta name="keywords" content="chi-square calculator, chi square calculator, chi-square distribution calculator, chi squared calculator, chi-squared calculator" /><link href="../../online-calculator/chi-square.html" rel="canonical" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/m/online-calculator/chi-square.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="xnuKz0WCNQPs0B7K2Zv+vs9qZQM7BJWDROkHdso3bJZkeY+sqRhG0DqF6/0pL2ONlZQDc9SHHyDuKWZ6duOWbijtS9kjIGjXax+aqxr6/37fS8Mg9k2BXHxQsyBtZ7GOWLswpRD/bDFwqGBgBvpRl8LGKCmOcXZVww4urXWSeW70AGmDTM2p0SkndKSsGwz78iRJTRMWtfaCOfJsF77ZY28y3KzrC+pZOL7ij6J04D9wzotz1hgwhkrjo0fy6LvCG/XupqJzBKU/8RFSQecdqZQmvjjexM6rRKCXVvGTaRGerWrQFH0zr53ZEJQJN/VuIlC66W2XUHPaCxcCPKFJn/hOjX4jt3/ygjaWpcZ33epkGVgEE0cKtJMaxfzZH9Zme3l42lHuVsS/WWrHxqeivYyjV9jtUjpXDkncQQNDee89P0dgdFvXU9BgQ0x5TmUCEoHDtYB8Cm2H7yuGzHgz30tHpJkvtR1xTC/rgIIFiKuZTPGc/Vdw4tEMwZbVbeC+4dqsfOQKlU6MWrvWj35/4GBMadN4yWoiqQpJvLy+Ybx/fRbzkbxrsH82osT8LEMPdP8yjGuXxepsAyqDErFNlJ5WSyFWShb3AQfBk0cIvjXk7cveHMcDfSAEhf3Hq6Kr21WvD1+5fyjziTMnvWmIlHf1ieEbx8butLiXCg7/pTtG4X3dHRkw7yfTGiOykqnB6Tn3GjcNl+q6YgN8CP0021m/qene9I92gJPqhU3KXypoHhUrt/P1JUL6F46D2LNnXsi05+6XBA4jE+iNesqNbpi0aFJ5AQCCGidbFYSnPSkhyz18gxg+iYxMZRiu3CHZa2Fe3VtlbQi6clJemaIRINqFnsojveWvoN5AZ/17Xek8Qz/gdwJptLLmSFQw0FNyIxsEm8DHslRphWa6TbCPIyGV6Cgdr+yI3w9a0dNCMBntCHbnkUzneojFZp5B1AiQBx5vVQl5w0v2+4rwdKKV3CXxHG2CZSKt+cP6zPy0bXNdsgC5NGY/85ff6lcpzcgcpPdKUzTPPKcTKbAPkgpm3h4wy9vLvzzavnsyT/F1vGKo2Xo3/zvNvWHpSCfC5hzV7IW+ECuqg2dI9GiFEtky6x5bG/YCIuFWiIljtpQiG3acikQtNhbVvLoltadO54ym+RehvUob0HgBI9n5bVyKbAv2F0BijhBU+6RQzn+ZHz4k37WD9Bbj5EfzlJGCfjlp440aZW5nEdqOetzCaqoK0mtfmFF1bb2dpkGSiH6peI64uvV2zQy552Bzoe/cjA7vmodzBAM1pSLYSiclGIxvRmOd6oqBkgRln8KbiWzp1NPrOzk7cMH18rhYnbxc7U4xK6MCA/Gc8WLRyPXAPmtGeK0tYDcT961M52LLzkIpkuw7Tglvgmhn9N9/KUWQs+eChRz2lqTKJkytQQ0LI9yWwKbNbRjNPrKuViv1IIoLGGh/5rNpGsSGuNexGoWNg2VFyaiBKqQ/wkZxoHlp6WsUcocaAKyIYIlgBm07S5Y5/hs+shvzyhrdk178u6OM3E6Br9RGlaGzL6QqxG+8nLsE1tgdyongFS7pIuXoVZsNdOWtBS+b2gBvnA82Vz0bwZqboQKcUqxHukriCNKG2xHMIRtHJxT0qEgBmHCKdy+f21zNQTkjHR796Q+gaqs0SB5ykyz3hSAyJIxazbuB+mhahqVViiOBLdzw6QLQj1q5ma/uMs3mhSwbh0o3erhgYbr9MNKy1+c+IiG/MPcGd9UZ88z3L07hs3/tVqKWWrpo42or/0TSpmAk4jmDp8CR4Cs3JVVIWh2yD1BnTL1awicNOUTH13THA86Qv+6K46AcjLH+BJIhg5VFS1Q8mPPAlpf47ka4Sye6Lxpy681Ef5mkwIm+TsEh9OiqWbQFx3631nNJDMmOBKZBhwbtrGFfOHPysmAcdrcYqK76Lsszs/OyerZPjgAqA9TPTCMdVlwOJmUrs+Nv0IeGv1Ew8B2RSytaYOIUtQ4IAtPIBZpop89jSg==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../../WebResource6be8.js?d=pynGkmcFUV13He1Qd6_TZJyTLRPAEQbgqGqj7Lcr1CQU0ndi9eWwKk-Piephd5aw-zOe7OEDc1xtK7fZAWNzqg2&amp;t=636259109931503955" type="text/javascript"></script>
+
+<script src="../../51Degrees.core.js" type="text/javascript"></script>
+<script src="../../ScriptResource8a75.js?d=NJmAwtEo3Ipnlaxl6CMhvtlGrLlqttVXTiUf4-n3BlMgK9V4xZCTjxh5XbGZfMswPnAfRB5yYniQnwr19ZcBRSukkruqMvK0cL-VxyZ6fp7cc_9FJwQ0oJGzYCxvsTaSO2AJHUvbdaqKjmqymxNEpG_hD8Y3tLWVlArSV4onIOI1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<script src="../../ScriptResourcef907.js?d=dwY9oWetJoJoVpgL6Zq8OG0G_ge7331AaodcZXWQMSrdlNLxSC76CuDzyLwc-_79_nsmAwuizxHWQ0L_z_N0grzRUu4X73KRlpqKdVodrWK-KGlluKCSWxoAuQuSo8MlG35Iv6sAN1FekUAT_o47yuTAy6jKjmz5Ap5hM0AJh5A1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0522F7A9" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="hyN0tKkP8QeYprB+k6guu/qF/BmcJIJYL3WqgdT82t1GXVR4MRWd8pcWe5TIWOEkhio1cqTGV28Tl7d8jM2wv9plmd5P0nP6521lG/B88NvSC8SNWjXYSwFf1xXcV9rbwpIw04jDAMlMPmBPLOigo42CTEzgrtBuE5sdvk1ERWl6eVRvHCV08zmGC5tWUb8puNE0tZF29XMzHXHcrT560w==" />
+</div>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$cpMain$UpdatePanel1','UpdatePanel1','tctl00$cpFooter$footerM1$UpdatePanelFooter','UpdatePanelFooter'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <!-- NOTES:
+            1. jQuery mobile uses a div wrapper with a "data-role=page" attribute to identify the page. 
+            2. The data-url attribute allows asp.net to use response.redirect correctly in jQuery mobile.
+               Source: http://stackoverflow.com/questions/14138014/page-url-is-not-changing-on-redirecting -->
+        <div data-role="page" id="pageWrapper"  > 
+            
+                    
+
+            <!-- Enable Google page-level ads for mobile devices.
+                 Place this ad code in the <head> tag (or at the top of the <body>) of the pages where you want to show the ads -->
+            <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-5637116312293301",
+                enable_page_level_ads: true
+              });
+            </script>
+
+                   
+
+        
+            <header id="headerTop" class="ui-bar ui-bar-a" style="text-align:center;" data-role="none">
+        <a name="TopPage" data-role="none"></a>
+
+            <h1 id="h1Header"><a href="../default.html" rel="external" 
+                    style="text-decoration:none; font-size:1.5em; font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;">Stat Trek</a></h1>
+
+    </header>
+        
+
+        
+            
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<nav id="NavMain" data-role="navbar" >
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavDictionary" data-role="navbar" style="display:none;">
+    <ul role="navigation" >
+        <li style="width:25%;"><a rel="external" href="../index.html" class="ui-btn-active">Home</a></li>
+        <li style="width:25%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:25%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:25%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavTest" data-role="navbar" style="display:none;">
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<script>
+
+    $(document).ready(function () {
+        DefineNav();
+    });
+
+    function DefineNav() {
+        
+        //Get the current path to this page
+        var MyPath = window.location.href;
+
+        //Determine whether this page is dictionary.aspx. 
+        var Position1 = MyPath.search("ictionary.aspx");
+
+        //Determine whether this page is practice-test.aspx
+        var Position2 = MyPath.search("ractice-test.aspx");
+
+        //Display main navigation and hide others
+        if ((Position1 < 2) && (Position2 < 2)) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').show();
+            $('#NavTest').hide();
+            $('#NavDictionary').hide();
+            return;
+        }
+
+        //Display the correct navigation bar for dictionary.aspx
+        if (Position1 > 1) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').hide();
+            $('#NavTest').hide();
+            $('#NavDictionary').show();
+            return;
+        } 
+
+        //Display the correct navigation bar for practice-test.aspx
+        if (Position2 > 1) {
+            //Hide NavMain, and NavDictionary; and show NavTest
+            $('#NavMain').hide();
+            $('#NavDictionary').hide();
+            $('#NavTest').show();
+            return;
+        }
+    }
+
+</script>
+        
+
+        
+
+            <!-- First Google ad -->
+            <div id="divAd1" class="ad1">
+                <aside id="Ad1" class="adMasterPage1 marginTop15 marginBottomMinus20" data-role="none"></aside>
+            </div>
+
+        
+
+        
+
+    <!-- The data-role="content" attribute enables jQuery styling with the section. For example, it adds padding to the 
+         sides and top of the page. -->
+    <section role="main" data-role="content">
+
+        <!-- google_ad_section_start -->
+        <a rel="external" name="MainContent"></a>
+        <h1>Chi-Square Calculator</h1>
+    
+        <!-- Body of page -->
+        <p>The chi-square distribution calculator makes it easy to compute cumulative 
+	        probabilities, based on the chi-square statistic.</p>
+        <p>If anything is unclear, read the 
+	        <a rel="external" href="#faq">Frequently-Asked Questions</a>
+	        or the <a rel="external" href="#examples">Sample Problems</a>.
+        </p>
+        <p>To learn more about the chi-square, read Stat Trek's
+	        <a rel="external" href="../../probability-distributions/chi-square.html">tutorial on the chi-square distribution</a>.
+        </p> 
+
+        <!-- First Google ad -->
+        <div id="divAd1" class="ad1">
+            <aside id="Ad4" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- ST300x250T1 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="2012938347"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+        <br />
+
+        <div id="UpdatePanel1">
+	
+
+        <!-- ***************************************************  
+        <!-- **** Insert Calculator here    
+        <!-- ***************************************************  --> 
+        <a rel="external" name="Calculator"></a>
+        <table align="center" id="tblCalculator">
+	        <tr>
+		        <td valign="bottom">
+			        <table  class="Calc">
+				        <tr  class="Calc">
+					        <th class="Calc">
+						        <ul>
+							        <li class="Calc">
+							        Enter a value for degrees of freedom.
+							        <li class="Calc">
+							        Enter a value for one, and only one, of the remaining text boxes.
+							        <li class="Calc">
+								        Click the <strong>Calculate</strong> button to compute a value for the blank 
+								        text box.
+							        </li>
+						        </ul>
+					        </th>
+				        </tr>
+				        <tr>
+					        <td>
+						        <table cellpadding="5" align="center">
+							        <tr>
+								        <td class="Calc" align="right">Degrees of freedom
+								        </td>
+								        <td class="Calc"><input name="ctl00$cpMain$txtDF" type="text" id="txtDF" class="JQTextBox" data-role="none" style="width:95%;" /></td>
+							        </tr>
+							        <tr>
+								        <td class="Calc" align="right">Chi-square critical value (CV)</td>
+								        <td class="Calc">
+                                            <input name="ctl00$cpMain$txtValue" type="text" id="txtValue" onchange="UpdateProbabilityLabelsForChiSquareCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+
+								        </td>
+							        </tr>
+							        <tr>
+								        <td id="tdProb" class="Calc" align="right">Cumulative probability:<br />P(&Chi;<sup>2</sup> <u><</u> CV)
+								        </td>
+	
+								        <td class="Calc"><input name="ctl00$cpMain$txtProb" type="text" id="txtProb" class="JQTextBox" data-role="none" style="width:95%;" /></td>
+							        </tr>
+						        </table>
+					        </td>
+				        </tr>
+				        <tr><td>
+                            <!-- Error message -->
+                             
+                        </td></tr>
+			        </table>
+		        </td>
+	        </tr>
+        </table>
+        
+         <div onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnCalculate&#39;)">
+		
+
+            <div class="CenterButton" style="width:70%;" >
+                <input type="submit" name="ctl00$cpMain$btnCalculate" value="Calculate" id="btnCalculate" class="CenterButton" data-role="none" />
+            </div>
+
+         
+	</div>
+
+        
+</div>
+
+        <!-- Second Google ad -->
+        <div id="divAd2" class="ad1">
+            <aside id="Ad5" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- ST320x50 -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:320px;height:50px"
+               data-ad-client="ca-pub-5637116312293301"
+               data-ad-slot="2571341541"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script></aside>
+        </div>
+        <br />
+
+        <!-- Frequently-asked Questions -->
+        <a rel="external" name="faq"></a>
+        <div class="BlueBar">
+	        <h2 class="BlueBarHeading">Frequently-Asked Questions
+	        </h2>
+        </div>
+        <br />
+        <div align="center"><a rel="external" href="#Calculator">Chi-Square Distribution 
+		        Calculator</a> | <a rel="external" href="#examples">Sample Problems</a>
+        </div>
+        <p><strong>Instructions:</strong> To find the answer to a frequently-asked 
+	        question, simply click on the question. If you don't see the answer you need, 
+	        read Stat Trek's <a rel="external" href="../../probability-distributions/chi-square.html">tutorial on the chi-square 
+		        distribution</a> or visit the <a rel="external" href="../../statistics/dictionary.html">
+		        Statistics Glossary</a>.
+        </p>
+
+        <div data-role="collapsible">
+            <h3>What are degrees of freedom?</h3>
+            <p>Degrees of freedom can be described as the number of scores that 
+	        are free to vary. For example, suppose you tossed three dice. The total score 
+	        adds up to 12. If you rolled a 3 on the first die and a 5 on the second, then 
+	        you know that the third die must be a 4 (otherwise, the total would not add up 
+	        to 12). In this example, 2 die are free to vary while the third is not. 
+	        Therefore, there are 2 degrees of freedom.</p>
+            <p>In many situations, the degrees of freedom are equal to the 
+	        number of observations minus one. Thus, if the sample size were 20, there would 
+	        be 20 observations; the degrees of freedom would be 20 minus 1 or 19.</p>
+        </div>
+
+        <div data-role="collapsible">
+            <h3>What is a chi-square critical value?</h3>
+            <p>The chi-square critical value can be any number between 
+            zero and plus infinity.
+            The chi-square calculator computes the probability that a chi-square statistic
+            falls between 0 and the critical value.</p>
+            <p>Suppose you randomly select a sample of 10 
+            observations from a large population.  
+            In this example, the degrees of freedom (DF) would be 9, 
+            since DF = n - 1 = 10 - 1 = 9. 
+            Suppose you wanted to find the probability that a chi-square statistic falls between
+            0 and 13.  In the chi-square calculator, you would enter 9 for degrees of freedom
+            and 13 for the critical value.  Then, after you click the Calculate button, the 
+            calculator would show the cumulative probability to be 0.84.</p>
+        </div>
+    
+        <div data-role="collapsible">
+            <h3>What is a cumulative probability?</h3>
+            <p>A cumulative probability is a sum of probabilities. 
+            The chi-square calculator computes a cumulative probability. Specifically, 
+            it computes the probability that a 
+            chi-square statistic falls between 0 and some critical value (CV).</p>
+            <p>With respect to notation, 
+            the cumulative probability that a chi-square statistic
+            falls between 0 and CV is indicated by P(&Chi;<sup>2</sup> <u><</u> CV).</p>
+        </div>
+    
+        <div data-role="collapsible">
+            <h3>What is a chi-square statistic?</h3>
+            <p>A chi-square statistic is a 
+            <a rel="external" href="../../statistics/dictionary68a2.html?Target=Statistic">statistic</a> 
+            whose values are given by</p>
+            <p style="text-align:center;">
+	        &Chi;<sup>2</sup> = [ ( n - 1 ) 
+	        * s<sup>2</sup> ] / &sigma;<sup>2</sup><br /></p>
+            <p>where &sigma; is the standard deviation of 
+	        the population, s is the standard deviation of the sample, and n is the sample 
+	        size. The distribution of the chi-square statistic has n - 1 degrees of 
+	        freedom. (For more on the chi-square statistic, see the <a rel="external" href="../../probability-distributions/chi-square.html">
+		        tutorial on the chi-square distribution</a>.)</p>
+        </div>
+
+        <div data-role="collapsible">
+            <h3>What is a probability?</h3>
+            <p>A probability is a number expressing the chances that a specific 
+	        event will occur. This number can take on any value from 0 to 1. A probability 
+	        of 0 means that there is zero chance that the event will occur; a probability 
+	        of 1 means that the event is certain to occur. Numbers between 0 and 1 quantify 
+	        the uncertainty associated with the event. For example, the probability of a 
+	        coin flip resulting in Heads (rather than Tails) would be 0.50. Fifty percent 
+	        of the time, the coin flip would result in Heads; and fifty percent of the 
+	        time, it would result in Tails.</p>
+        </div>
+        <br />
+
+        <!-- Third Google ad -->
+        <div id="divAd3" class="ad1">
+            <aside id="Ad6" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- ST250x250 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:250px;height:250px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="6582738741"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+        <br />
+
+        <!-- Sample problems -->
+        <a rel="external" name="examples"></a>
+        <div class="BlueBar">
+	        <h2 class="BlueBarHeading">Sample Problems
+	        </h2>
+        </div>
+        <br />
+        <div align="center"><a rel="external" href="#Calculator">Chi-Square Distribution 
+		        Calculator</a> | <a rel="external" href="#faq">Frequently-Asked Questions</a>
+        </div> 
+
+        <ol>
+	        <li>
+		        <a rel="external" name="prob1"></a>The Acme Widget Company claims that their widgets last 5 
+		        years, with a standard deviation of 1 year. Assume that their claims are true.
+		        <br />
+		        <br />
+		        If you test a random sample of 9 Acme widgets, what is the probability that the 
+		        standard deviation in your sample will be less than 0.95 years?
+		        <br />
+		        <br />
+		        <b>Solution:</b><br />
+		        <br />
+		        We know the following:
+		        <br />
+		        <br />
+		        <ul>
+			        <li>The population standard deviation is equal to 1.</li>
+			        <li>The sample standard deviation is equal to 0.95.</li>
+			        <li>The sample size is equal to 9.</li>
+			        <li>The degrees of freedom is equal to 8 
+			        (because sample size minus one = 9 - 1 = 8).</li>
+		        </ul>
+		        <br />
+		        Given these data, we compute the chi-square statistic:
+		        <br />
+		        <br />
+		        <div align="center">
+			        &Chi;<sup>2</sup> = [ ( n - 1 ) 
+			        * s<sup>2</sup> ] / &sigma;<sup>2</sup>
+			        <br />
+			        &Chi;<sup>2</sup> = [ ( 9 - 1 ) 
+			        * (0.95)<sup>2</sup> ] / (1.0)<sup>2</sup> = 7.22
+		        </div>
+		        <br />
+		        where &sigma; is the standard deviation of the population, 
+		        s is the standard deviation of the sample, and n is the sample size.
+		        <br />
+		        <br />
+		        Now, using the <a rel="external" href="#Calculator">Chi-Square Distribution 
+			        Calculator</a>, we can determine the <a rel="external" href="../../statistics/dictionary3a45.html?Target=Cumulative_probability">
+			        cumulative probability</a> for the chi-square statistic. We enter the 
+		        degrees of freedom (8) and the chi-square statistic (7.22) into the calculator, 
+		        and hit the Calculate button. The calculator reports that the cumulative 
+		        probability is 0.49. Therefore, there is a 49% chance that the sample 
+		        standard deviation will be no more than 0.95.<br /><br /></li>
+	        <li>
+		        <a rel="external" name="prob1"></a>Find the chi-square critical value, if the cumulative 
+		        probability is 0.75 and the sample size is 25.
+		        <br />
+		        <br />
+		        <b>Solution:</b><br />
+		        <br />
+		        We know the following:
+		        <br />
+		        <br />
+		        <ul>
+			        <li>The cumulative probability is 0.75.</li>
+			        <li>The sample size is 25.</li>
+			        <li>The degrees of freedom is equal to 24 (because sample size 
+			        minus one = 25 - 1 = 24).</li>
+		        </ul>
+		        <br />
+		        Given these data, we compute the chi-square statistic, using the 
+		        <a rel="external" href="#Calculator">
+		        Chi-Square Distribution Calculator</a>. We enter the degrees of freedom 
+		        (24) and the cumulative probability (0.75) into the calculator, and hit the 
+		        Calculate button. The calculator reports that the chi-square critical value is 
+		        28.2.
+		        <br /><br />
+		        This means that if you select a random sample of 25 observations, there is 
+		        a 75% chance that the chi-square statistic from that sample will be less than
+		        or equal to 28.2.
+	        </li>
+        </ol>
+
+        <!-- google_ad_section_end -->
+
+    </section>
+
+
+
+        
+            <!-- Scroll to top button  -->
+             
+
+<style type="text/css">
+    .divScrollToTop {
+        padding: 1px 0px;
+        background-color: #ddd;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+        width: 18%;
+        z-index: 10;
+        position:fixed; bottom:5%; right:5%;
+        display:none;
+        z-index:5;
+    }
+
+    a.aScrollToTop:link, a.aScrollToTop:visited, a.aScrollToTop:active, a.aScrollToTop:hover {
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: normal;
+        font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+    }
+
+    a.aScrollToTop:visited {
+        color: #000;
+    }
+
+    a.aScrollToTop:hover {
+        text-decoration:none;
+        color: #000;
+    }
+</style>
+
+<!-- The binding of event handlers needs to happen before jQuery mobile loads, according to
+        Hadlock, p. 55 -->
+<script>
+    $(document).ready(function () {
+
+        //Initialize global variables
+        TimeShowButton = new Date() - 5000;
+        TimeScrollStops = new Date();
+
+    });
+
+    $(window).on("scrollstart", function () {
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        //If conditions are favorable, display button
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+    });
+
+    $(window).on("scrollstop", function () {
+
+        //Get the time when the scroll stops
+        var TimeScrollStops = new Date;
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+
+        //Fade button
+        $('#divScrollTop').fadeOut(500);
+
+        //Hide button if scrolling stops near the top of the page.
+        //NOTE: This prevents button from overlaying ads that appear near top of page (i.e., divAd1).
+        if (scrollVal <= 320) {
+            $('#divScrollTop').hide();
+        }
+
+        //Get vertical position for "top" box
+        //var offsets = $('#divScrollTop').offset();
+        //var offsets = document.getElementById('divScrollTop').getBoundingClientRect();
+        //var topBox = offsets.top;
+        //var botBox = offsets.bottom;
+
+        //Get vertical position for ad 2
+        //var offsets = $('#divAd2').offset();
+        //var offsets = document.getElementById('divAd2').getBoundingClientRect();
+        //var topAd = offsets.top;
+        //var botAd = offsets.bottom;
+
+        //Hide button if it stops over ad 2
+        //if ((topBox < topAd && topBox > botAd) || (botBox < topAd && botBox > botAd)) {
+        //    $('#divScrollTop').hide();
+        //}
+    });
+</script>
+
+<div class="divScrollToTop" id="divScrollTop" data-role="none">
+
+    <a rel="external" href="#TopPage" class="aScrollToTop" >Top</a>
+
+</div> 
+        
+
+        
+
+            <!-- Second Google ad -->
+            <div id="divAd2" class="ad1">
+                <aside id="Ad2" class="adMasterPage1 marginTopMinus10 marginBottom20"></aside>
+            </div>
+        
+
+          
+            
+
+<!-- The UpdatePanel control is necessary to display some desktop pages correctly after the User taps
+    the "View Desktop Version" button. It seems to allow a complete refresh of the desktop version page, 
+    which is needed for some pages (e.g., /ap-statistics/practice-test.aspx) to display correctly.
+    
+    On the other hand, it interferes with the correct display of the About/Contact/Privacy buttons on 
+    mobile versions of the page. This problem crops up after a postback to the mobile version of the page. 
+    For example, it occurs after tapping the "Begin" button on /ap-statistics/practice-test.aspx .   
+    
+    The solution is to place the UpdatePanel control around the "View Desktop" button, but not around the 
+    footer element -->
+
+<footer data-role="footer" >
+
+    <div data-role="navbar">
+
+        <ul role="navigation">
+            <li><a href="../site/about.html" rel="external">About</a></li>
+            <li><a href="../../site/contact.html" rel="external">Contact</a></li>
+            <li><a href="../../site/privacy.html" rel="external">Privacy</a></li>
+            <li><a href="../../site/advertising.html" rel="external">Ads</a></li>
+        </ul>
+
+    </div>
+
+</footer>
+
+
+<div id="UpdatePanelFooter">
+	
+    
+<p style="text-align:center;">Copyright &copy; 2017 StatTrek.com <br /> <a href="../site/terms.html" rel="external">Terms and Conditions</a></p>
+
+<div style="text-align:center; width:100%; margin-top:20px;">
+    <input type="submit" name="ctl00$cpFooter$footerM1$btnViewDesktop" value="View Desktop Version" id="btnViewDesktop" data-role="none" style="font-size:1em; font-weight:bold; border-radius: 5px; padding:10px 15px; text-shadow: none; 
+            border:1px solid #ddd; background-color:#eee; font-family: 'Segoe UI, Verdana, Arial Unicode MS', Arial, sans-serif;" />
+</div>             
+
+
+</div>        
+        
+
+        
+
+            <!-- last Google ad -->
+            <div id="divAd3" class="ad1">
+                <aside id="Ad3" class="adMasterPage1 marginTop25"></aside>
+            </div>
+
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+        
+        
+
+        
+        
+            <!--
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow37.js"></script>
+            <noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+            -->
+
+        
+        
+    </div>
+
+        
+            
+        
+
+        
+
+        <!-- Data Camp ad -->
+        <div style="width:100%; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/m/online-calculator/chi-square.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:40 GMT -->
+</html>

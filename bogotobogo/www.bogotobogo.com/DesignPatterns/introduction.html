@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/DesignPatterns/introduction.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 05:09:50 GMT -->
+<head>
+  <title>Design Patterns (C++): Introduction - 2017</title>
+  <meta content="Design Patterns: Introduction" name="description" />
+  <meta content="Design Patterns, Introduction, Software Design, Composition vs. Inheritance, Composition vs. Aggregation, Delegation, UML Diagrams, GetTickCount(), TIMER" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Design Patterns
+Introduction        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/introduction/Patterns.png" alt="Patterns.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<div class="subtitle" id="DesignPatterns">Design Patterns</div>
+<p>Design patterns are classified as three groups.</p>
+<ol>
+<li><strong>Creational Patterns</strong>
+<ol> <br/>
+<li><a href="abstractfactorymethod.html" target="_blank"><strong>Abstract Factory</strong></a> - Provide an interface for creating families of related or dependent objects without specifying their concrete classes.<br/>
+<strong>Factories</strong> and <strong>products</strong> are the key elements to Abstract Factory pattern. Also the word <strong>families</strong> used in the definition distinguishes Abstract Factory pattern from other creational patterns, which involve only one kind of object.</li> <br/>
+<br/>
+<li><strong>Builder</strong> - Separates object construction of a complex object from its representation so that the same construction process can create different representation.
+One example is the making different types of teas such as tea with sugar, tea with milk, and just a regular tea. The process of making those teas share common processes: boil water and put tea bags. Depending on the types, the added processes are such as put sugar, put milk, or nothing. <br/>
+<ol>
+<li>Builder: Builder is responsible for defining the construction process for individual parts. Builder has those individual processes to initialize and configure the product (teas).</li>
+<li>Director:  Director takes those individual processes from the builder and defines the sequence to build the product.</li>
+<li>Product: Product is the final object which is produced from the builder and director coordination.</li>
+</ol>
+</li> <br/>
+<li><a href="factorymethod.html" target="_blank"><strong>Factory Method</strong></a>- Define an interface for creating an object, but let subclasses decide which class to instantiate. <br/>
+Factory Method lets a class defer instantiation to subclasses.
+To name the method more descriptively, it can be named as <strong>Factory and Product Method.</strong><br/>
+If we want to create a Mac style scroll bar, we can write a code like this:
+
+<pre>ScrollBar *sb = new MacScrollBar;</pre>
+But if we're going to make it work across any platform, we should write a code something similar to this:
+<pre>ScrollBar *sb = guiFactory-&gt;CreateScrollBar();</pre>
+Because <strong>guiFactory</strong> is an instance of <strong>MacFactory</strong> class, the <strong>CreateScrollBar</strong> returns a new instance of Mac style scrollbar. The <strong>MacFactory</strong> itself is a subclass of <strong>GUIFactory</strong> which is an abstract class where general interface for widgets.<br/>
+So, the <strong>product</strong> objects here, are widgets. <br/>
+The instance variable <strong>guiFactory</strong> is initialized as:
+<pre>GUIFactory *guiFactory = new MacFactory; </pre>
+</li>
+<li><a href="prototype.html" target="_blank">Prototype</a> - Specify the kind of objects to create using a prototypical instance, and create new object by copying this prototype.</li> <br/>
+<br/>
+<li><a href="singleton.html" target="_blank"><strong>Singleton</strong></a> - Ensure a class only has one instance, and provide a global point of access to it.</li>
+</ol></li>
+<br/>
+<li><strong>Structural Patterns</strong>
+<ol> <br/>
+<li><a href="adapter.html" target="_blank"><strong>Adapter</strong></a> - Convert the interface of a class into another interface clients expects. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces. </li><br/>
+<br/>
+<li><a href="bridge.html" target="_blank">Bridge</a> - Separates an object's abstraction from its implementation.</li> <br/>
+<br/>
+<li><a href="composite.html" target="_blank"><strong>Composite</strong></a> - Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual object and compositions of object uniformly.</li> <br/>
+<br/>
+<li><a href="decorator.html" target="_blank"><strong>Decorator</strong></a> - Add responsibilities to objects dynamically. Decorators provide a flexible alternative to subclassing for extending functionality. <br/>
+Example: TextView <br/>
+A TextView object that displays text in a window. When we need a scrollbar we just use a ScrollDecorator or when we need a border around the text area, we just use a BorderDecorator to add border.<br/>
+We simply compose the decorators with the TextView to produce the desired result. </li> <br/>
+<br/>
+<li><a href="facade.html" target="_blank">Facade</a> - A single class that represents an entire subsystem.</li><br/>
+<br/>
+<li><strong>Flyweight</strong> - A fine-grained instance used for efficient sharing. </li><br/>
+<br/>
+<li><a href="proxy.html" target="_blank"><strong>Proxy</strong></a> - An object representing another object.</li>
+</ol></li>
+<br/>
+<li><strong>Behavioral  Patterns</strong>
+<ol> <br/>
+<li><strong>Mediator</strong> - Defines simplified communication between classes.</li> <br/>
+<br/>
+<li><strong>Memento</strong> - Capture and restore an object's internal state. </li> <br/>
+<br/>
+<li><strong>Interpreter</strong> - A way to include language elements in a program.</li> <br/>
+<br/>
+<li><strong>Iterator</strong> - Sequentially access the elements of a collection. </li> <br/>
+<br/>
+<li><a href="chain_of_responsibility.html" target="_blank">Chain of Responsibility</a> - A way of passing a request between a chain of objects.</li> <br/>
+<br/>
+<li><a href="command.html" target="_blank"><strong>Command</strong></a> - Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations. </li> <br/>
+<br/>
+<li><strong>State</strong> - Alter an object's behavior when its state changes. </li> <br/>
+<br/>
+<li><a href="strategy.html" target="_blank"><strong>Strategy</strong></a> - Define a family of algorithm, encapsulate each one, and make them interchangeable. Strategy lets algorithm vary independently from clients that use it.<br/>
+Example: Duck class with encapsulated behaviors such as Flybehavior and Quackbehavior.
+</li> <br/>
+<br/>
+<li><a href="observer.html" target="_blank"><strong>Observer</strong></a> -  Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+	<ol>
+<li>Subject: knows its observers.</li>
+<li>Observer: defines an updating interface for object that should be notified of changes in a subject.</li>
+</ol></li> <br/>
+<li><a href="template.html" target="_blank"><strong>Template Method</strong></a> - Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.</li> <br/>
+<br/>
+<li><strong>Visitor</strong> - Defines a new operation to a class without change.</li> <br/>
+</ol></li>
+</ol>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="CompositionvsAggregation">Composition vs. Aggregation</div>
+<p><strong>Aggregation</strong> and <strong>composition</strong> are both strong forms of <strong>association</strong>. They describe relationship between a whole and as its parts. So, instead of a <strong>has-a</strong> relationship as a simple association, we are dealing with a relationship says <strong>is part</strong> or reading the relationship in the other direction, <strong>is made up of</strong>.</p>
+<p>Examples of these kind of relationship:
+<ol>
+<ol><strong>Orchestra: Musician</strong><br/>
+	Orchestra is made up of Musicians <br/>
+	or Musician is part of Orchestra
+	</ol>
+<ol><strong>Brochure: Product </strong><br/>
+	Brochure is made up of Products <br/>
+	or Product is part of Brochure 
+	</ol>
+<ol><strong>Building: Room</strong> <br/>
+	Building is made up of rooms <br/>
+	or Room is part of Building
+	</ol>
+</ol>
+<p><strong>Composition</strong> is even stronger relationship than <strong>aggregation</strong>. To test if we are dealing with <strong>composition</strong>, use no sharing rule for composition: part can belong to only one whole.</p>
+<p>For the #1 and #2, part (Musician/Product) can belong only one (Orchestra/Catalog) whole? Yes! But for #3, room can belong to more than one  building. No! <strong>No sharing rule</strong> applies to this case. So, the relationship #3 is better described by <strong>composition</strong> than by <strong>aggregation</strong>.</p>
+<p>Besides the no sharing rule, another the rule for <strong>composition</strong> is: <strong>if the whole is destroyed, is the part that makes it up also destroyed?</strong></p>
+<p>Only the case #3 follows the additional <strong>composition</strong> rule. If orchestra breaks it up, will musicians be destroyed? No!</p>
+<p>Code Example: A university <strong>owns</strong> various departments, and each department has a number of professors. If the university closes, the departments will no longer exist, but the professors in those departments will continue to exist. Therefore, a University can be seen as a <strong>composition</strong> of departments, whereas departments have an <strong>aggregation</strong> of professors. In addition, a Professor could work in more than one department, but a department could not be part of more than one university.</p>
+<ol>
+<li>University - Department : <strong>composition</strong>: ownership: destroyed with the whole: <strong>strong</strong> <i>has a</i> relationship <br/>
+The composite object takes ownership of the component. This means the composite is responsible for the creation and destruction of the component parts. An object may only be part of one composite. If the composite object is destroyed, all the component parts must be destroyed.<br/>
+ Composition enforces encapsulation as the component parts usually are members of the composite object:<br/>
+<pre>
+class University
+{
+  ...
+  private:
+ 
+    Department faculty[20];
+</pre>
+</li>
+<li>Department - Professors: <strong>aggregation</strong>: no ownership: may outlive: component may still have <strong>weak</strong> <i>has a</i> relationship <br/>
+In aggregation, the object may only contain a reference or pointer to the object. The object may not have lifetime responsibility for the reference or pointer:
+<pre>
+class Department
+{
+  ...
+  private:
+    // Aggregation
+    Professor* members[5];
+  ...
+};
+</pre>
+</li>
+</ol>
+<br/><br/>
+<p>Complete code example:</p>
+<pre>
+class Professor;
+ 
+class Department
+{
+  ...
+  private:
+    // Aggregation
+    Professor* members[5];
+  ...
+};
+ 
+class University
+{
+  ...
+  private:
+ 
+    Department faculty[20];
+  ...
+ 
+  create dept()
+  {
+   ....
+     // Composition
+     faculty[0]= Department(....);
+     faculty[1]= Department(....);
+   ....   
+  }
+};
+</pre>
+<p>Source of the code and diagrams: <a href="http://en.wikipedia.org/wiki/Object_composition">wiki</a></p>
+<br/>
+<img alt="Aggregation-Composition_A" src="images/introduction/Aggregation-Composition_A.png"/>
+<br/>
+<p>In UML, <strong>composition</strong> is depicted as a filled diamond and a solid line. It always implies a multiplicity of 1 or 0..1, as no more than one object at a time can have lifetime responsibility for another object.
+The more general form, <strong>aggregation</strong>, is depicted as an unfilled diamond and a solid line. The image above shows both composition and aggregation. 
+
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="uml">UML</div>
+<p>The UML puts some notations to our software model. Usually, a single class is represented with a box that is divided into three parts:</p>
+<ol>
+<li>The upper section contains the class name.</li>
+<li>The middle section has lists attributes of the class.</li>
+<li>The lower section lists methods of the class.</li>
+</ol>
+<p>The members of the class in the middle and lower sections can be prefixed with a symbol to indicate the access level or visibility:
+<ol>
+<li><strong>+:</strong> a public member</li>
+<li><strong>-:</strong> a private member</li>
+<li><strong>#:</strong> a protected member</li>
+</ol>
+</p>
+<p>We can tell the relationships between classes by using various styles of connecting lines and arrowheads:
+<ol>
+<li><strong>Association:</strong> A simple dependency between two classes where neither owns the other, indicated as a solid line. Association can be directional, shown with an open arrowhead ("&gt;").</li>
+<li><strong>Aggregation:</strong> A <strong>has-a</strong>, or whole/part, relationship where neither class owns the other, indicated as a solid line with a hollow diamond.</li>
+<li><strong>Composition:</strong> A <strong>has-a</strong> relationship where the lifetime of the part is managed by the whole. This is shown as a solid line with a filled diamond.</li>
+<li><strong>Generalization:</strong> A subclass relationship between classes, represented as a hollow triangle arrowhead.</li>
+</ol>
+</p>
+<p>Each side of a relationship can also be annotated to define its multiplicity. This lets us specify whether the relationship is one to one, one to many, or many to many:
+<ol>
+<li>0..1 = zero or one instance</li>
+<li>1 = one instance</li>
+<li>0..* = zero or more instances</li>
+<li>1..* = one or more instances</li>
+</ol>
+</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="inheritanceVScomposition">Inheritance vs. Composition</div>
+<p>The two most common ways for reusing functionality in object-oriented systems are <strong>class inheritance</strong> and <strong>object composition</strong>.</p>
+<br/>
+<div class="subtitle_2nd" id="inheritance">Inheritance</div>
+<pre>
+Class Animal{};
+Class Cat : public Animal{};
+</pre>
+<p>In this simple example, class <strong>Cat</strong> is related to class <strong>Animal</strong> by <strong>inheritance</strong>, because <strong>Cat</strong> is derived from  <strong>Animal</strong>.</p>
+<br/>
+<div class="subtitle_2nd" id="composition">Composition</div>
+<p>In the example below, class <strong>Cat</strong> is related to class <strong>Animal</strong> by <strong>composition</strong>, because <strong>Cat</strong> has an instance variable that holds a pointer to a <strong>Animal</strong> object. Classes like in the example, <strong>Cat</strong>  is sometime called <strong>front-end class</strong> and <strong>Animal</strong> is called the <strong>back-end class</strong>. In a composition relationship, the front-end class holds a pointer in one of its instance variables to a back-end class. </p>
+<pre>
+class Animal 
+{};
+
+class Cat
+{
+private:
+	Animal *animal;
+};
+</pre>
+<p><strong>Class inheritance</strong> lets us define the implementation of one class in terms of another's. <strong>Object composition</strong> is an alternative to class inheritance. Here, new functionality is obtained by <strong>composing</strong> object. In this case, no internal details of objects are visible (black-box) contrary to the class inheritance where the internals of parent classes are often visible (white-box) to subclasses.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="disadvantages_inheritance">Disadvantages of Inheritance</div>
+<p>While <strong>class inheritance</strong> makes it easier to modify the implementation being used, the implementation of a subclass becomes so bound up with the implementation of its parent class. As a result, any change in the parent's implementation will force the subclass to change.</p>
+<p>Leet's look at the following example:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Animal 
+{
+public: 
+	int makeSound() {
+		cout &lt;&lt; "Animal is making sound" &lt;&lt; endl;
+		return 1;
+	}
+private:
+	int ntimes;
+};
+
+class Cat : public Animal
+{};
+
+int main() 
+{
+	Cat *cat = new Cat();
+	cat-&gt;makeSound();
+	return 0;
+}
+</pre>
+<p>Since <strong>Cat</strong> inherits (reuses) <strong>Animal</strong>, the output get is:</p>
+<pre>
+Animal is making sound
+</pre>
+<p>However, if we want to change the <strong>makeSound()</strong> method of parent class, like this:</p>
+<pre>
+Sound *makeSound(int n) {
+	cout &lt;&lt; "Animal is making sound" &lt;&lt; endl;
+	return new Sound;
+}
+</pre>
+<p>Our main() routine should be changed as well even though we're not using <strong>Animal</strong> but <strong>Cat</strong>.</p>
+<p>Here is the new code we had to come up with:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Sound{};
+
+class Animal 
+{
+public: 
+	Sound *makeSound() {
+		cout &lt;&lt; "Animal is making sound" &lt;&lt; endl;
+		return new Sound;
+	}
+};
+
+class Cat : public Animal
+{};
+
+int main() 
+{
+	Cat *cat = new Cat();
+	cat-&gt;makeSound();
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="compositioncase">How about the composition</div>
+<p><strong>Composition</strong> provides an alternative way for <strong>Cat</strong> to reuse <strong>Animal</strong>'s implementation of <strong>makeSound()</strong>. Instead of inheriting <strong>Animal</strong>, <strong>Cat</strong> can hold a pointer to a <strong>Animal</strong> instance and define its own <strong>makeSound()</strong> method that simply invokes <strong>makeSound()</strong> on the <strong>Animal</strong>. Here's the code: 
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Animal 
+{
+public: 
+	int makeSound() {
+		cout &lt;&lt; "Animal is making sound" &lt;&lt; endl;
+		return 1;
+	}
+};
+
+class Cat
+{
+private:
+	Animal *animal;
+public:
+	int makeSound() {
+		return animal-&gt;makeSound();
+	}
+};
+
+int main() 
+{
+	Cat *cat = new Cat();
+	cat-&gt;makeSound(3);
+	return 0;
+}
+</pre>
+<p>By using <strong>composition</strong>, the subclass becomes the <strong>front-end class</strong>, and the superclass becomes the <strong>back-end class</strong>. With <strong>inheritance</strong>, a subclass automatically inherits an implementation of any non-private superclass method that it doesn't override. With <strong>composition</strong>, however, the <strong>front-end class</strong> must explicitly invoke a corresponding method in the <strong>back-end class</strong> from its own implementation of the method. This explicit call is sometimes called <strong>forwarding</strong> or <strong>delegating</strong> the method invocation to the <strong>back-end object</strong>.</p>
+<p>The composition approach to code reuse provides stronger encapsulation than inheritance, because a change to a <strong>back-end class</strong> needn't break any code that relies only on the <strong>front-end class</strong>. In other words, inheritance exposes a subclass to details of its parent's implementation, it's often said that <strong>"inheritance breaks encapsulation"</strong>. </p>
+<p>By changing the return type of <strong>Animal's makeSound()</strong> method from the previous example doesn't force a change in <strong>Cat</strong>'s interface and therefore needn't break our <strong>main()</strong> code.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Sound{};
+
+class Animal 
+{
+public: 
+	Sound* makeSound() {
+		cout &lt;&lt; "Animal is making sound" &lt;&lt; endl;
+		return new Sound();
+	}
+};
+
+class Cat 
+{
+private:
+	Animal *animal;
+public:
+	Sound* makeSound() {
+		return animal-&gt;makeSound();
+	}
+};
+
+int main() 
+{
+	Cat *cat = new Cat();
+	cat-&gt;makeSound();
+	return 0;
+}
+</pre>
+<p>This example shows that the ripple effect caused by changing a <strong>back-end class</strong> stops (or at least can stop) at the <strong>front-end class</strong>. Although <strong>Animal's makeSound()</strong> method had to be updated to accommodate the change to <strong>Animal</strong>, our <strong>main()</strong>required no changes. </p>
+<p><strong>Object composition</strong> helps us keep each class encapsulated and focused on one task. Our classes and class hierarchies will remain small and will be less likely to grow and become unmanageable. </p>
+<p>However, a design based on <strong>object composition</strong> will have more objects (if fewer classes), and the system's behavior will depend on their (remote) interrelationships instead of being defined in one class.</p>
+<p><strong>Favor object composition over class inheritance.</strong></p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="Delegation">Delegation</div>
+<p><strong>Delegation</strong> makes <strong>composition</strong> as powerful for reuse as <strong>inheritance</strong>. With delegation, <strong>two</strong> objects are involved in handling a request. A <strong>receiving</strong> object delegates operations to its <strong>delegate</strong>, which is similar to the case when subclass defers requests to parent class.</p>
+<p>As shown in the following code, rather than making <strong>Window</strong> a subclass of <strong>Rectangle</strong>, the <strong>Window</strong> class is reusing the behavior of <strong>Rectangle</strong> by keeping a <strong>Rectangle</strong> instance variable <strong>rectangle</strong> and <strong>delegating</strong> <strong>Rectangle-specific</strong> behavior to it. So, though the <strong>Window</strong> is not a <strong>Rectangle</strong> but it <strong>has</strong> a <strong>Rectangle</strong>. If we had used inheritance, the <strong>Window</strong> would have had the behavior. But now <strong>Window</strong> must forward request to its <strong>Rectangle</strong> instance explicitly.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Rectangle
+{
+private:
+	double height, width;
+public:
+	Rectangle(double h, double w) {
+		height = h;
+		width = w;
+	}
+	double area() {
+		cout &lt;&lt; "Area of Rect. Window = ";
+		return height*width;
+	}
+};
+
+class Window 
+{
+public: 
+	Window(Rectangle *r) : rectangle(r){}
+	double area() {
+		return rectangle-&gt;area();
+	}
+private:
+	<font color="blue">Rectangle *rectangle;</font>
+};
+
+
+int main() 
+{
+	Window *wRect = new Window(new Rectangle(10,20));
+	cout &lt;&lt; wRect-&gt;area();
+
+	return 0;
+}
+</pre>
+<p>With an putput:</p>
+<pre>
+Area of Rect. Window = 200
+</pre>
+<p>The main advantage of delegation is that it makes it easy to compose behaviors at run-time. For example, the <strong>Window</strong> can become circular at run-time as shown in the following code.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std; 
+
+class Shape
+{
+public:
+	virtual double area() = 0;
+};
+
+class Rectangle : public Shape
+{
+private:
+		double height, width;
+public:
+	Rectangle(double h, double w) {
+		height = h;
+		width = w;
+	}
+	double area() {
+		return height*width;
+	}
+};
+
+class Circle : public Shape
+{
+private:
+		double radius;
+public:
+	Circle(double r) {
+		radius = r;
+	}
+	double area() {
+		return 3.14*radius*radius;
+	}
+};
+
+class Window 
+{
+public: 
+	Window (Shape *s):shape(s){}
+	double area() {
+		return shape-&gt;area();
+	}
+private:
+	<font color="blue">Shape *shape;</font>
+};
+
+
+int main() 
+{
+	Window *wRect = new Window(new Rectangle(10,20));
+	Window *wCirc = new Window(new Circle(20));
+	cout &lt;&lt; "rectangular Window:" &lt;&lt; wRect-&gt;area() &lt;&lt; endl;
+	cout &lt;&lt; "circular Window:" &lt;&lt; wCirc-&gt;area() &lt;&lt; endl;
+	return 0;
+}
+</pre>
+<p><strong>Delegation</strong> is a good choice only when it simplifies more than it complicates. In general, software which is dynamic and parameterized is harder to understand that more static software and there is also run-time inefficiency issue. So, it should be wisely used, for instance, by following standard design patterns like <a href="strategy.html" target="_blank">Strategy</a> pattern.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="looselyCoupled">Loosely Coupled Design</div>
+<p>Good design exhibits <strong>loose coupling</strong> and <strong>high cohesion</strong>.</p>
+<ol>
+<li><strong>Coupling</strong><br/>
+A measure of the strength of interconnectivity between components: the degree to which each component depends on other components. In other words, for a given two components (A and B), how much code in B should change if A changes.
+<ol>
+<li><strong>Size</strong><br/>
+Relates to the number of connections between components (classes, methods, arguments, etc.). For instance, a method with fewer parameters is more loosely coupled to components that call it.
+</li>
+<li><strong>Visibility</strong><br/>
+This refers to the prominence of the connection between components. As an example, changing a global variable in order to change the state of another component is a poor level of visibility.
+</li>
+<li><strong>Intimacy</strong><br/> This relates to the directness of the connection between components. If A is coupled to B and B is coupled to C, then A is indirectly coupled to C. For example, inheriting from a class is tighter than including class as a member variable (composition) because inheritance also provides access to all protected members of the class.
+</li>
+<li><strong>Flexibility</strong><br/>
+This refers to the ease of changing the connection between components. If a method's signature of a class A needs to change so that B can call it, how easy is it to change that method and all dependent code.
+</li>
+</ol>
+</li><br/>
+<li><strong>Cohesion</strong><br/>
+A measure of how strongly related the functions of a single component are.</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="name">A. Coupled only by name</div>
+<p>If class A only needs to know the name of the class B but not need to call any methods of class B, then the class A does not depend on the full declaration of B. In that case, we just use forward declaration for class B so that we can reduce the coupling between those two classes:</p>
+<pre>
+class B;  // forward declaration
+
+class A:
+{
+public:
+    A();
+    void setObj(B *objB);
+    B *getObj() const;
+private:
+    B *mObj;
+};
+</pre>
+<p>In the example above, if the associated <strong>.cpp</strong> file simply stores (*mObj) and returns the B pointer (B*), then it does not need <strong>#include "B.h"</strong>. So, in this case, the <strong>A</strong> class can be decoupled from the implementation of <strong>B</strong></p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="non_member">B. Using non-member function - reducing coupling</div>
+<p>We can reduce coupling between classes by using  non-member function instead of member functions.
+Let's look at the following sample.</p>
+<pre>
+class Student
+{
+public:
+   void printID() const;
+   int getID() const;
+   ...
+protected:
+   ...
+private:
+   int id;
+};
+</pre>
+<p>We can modify the class like this:</p>
+<pre>
+class Student
+{
+public:
+   int getID() const;
+   ...
+protected:
+   ...
+private:
+   int id;
+};
+
+void printID(const Student &amp;obj;);
+</pre>
+<p>With the latter class design, we can reduce coupling because the function <strong>printID()</strong> can only access the public methods of <strong>Student</strong>. But in the former form where <strong>printID()</strong> is a member function, it can also access all of the private and protected members, and other members of <strong>Student</strong>, as well as any protected members of base class if any.</p>
+<p>Using the non-member function, non-friend form means that the function is not coupled to the internals of the class. As a result, it is less likely to break when the internals of <strong>Student</strong> are changed.</p>
+<p>We see this approach a lot in the STL. For example, the STL algorithms such as <strong>std::for_each()</strong> and <strong>std::unique()</strong>, which are declared outside of each container class.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="redundancy">C. Redundancy</div>
+<p>The following code is for chatting session log. It accepts chat event,it takes an object that describes a user and the message from the user. This information is processed with the timestamp, and then added to a list.</p>
+<pre>
+#include "ChatCustomer.h"
+#include &lt;string&gt;
+#include &lt;vector&gt;
+class CustomerChatLog
+{
+public:
+   bool addMessage(const <font color="red">ChatCustomer</font> &amp;customer;, const std::string &amp;msg;);
+   int getCount() const;
+   std::string getMessage(int index);
+private:
+   struct ChatEvent
+   {
+      <font color="red">ChatCustomer mCustomer</font>;
+      std::string mMessage;
+      size_t mTimeStamp;
+   };
+   std::vector<chatevent> mChatEvent;
+};
+</chatevent></pre>
+<p>Then, we can use <strong>getCount()</strong> method to find how many chat text events have occurred. The <strong>getMessage()</strong> method returns an event like this:</p>
+<pre>
+   John Doe[13:04]: Hi
+</pre>
+<p>When we look at the design more carefully, the <strong>CustomerChatLog</strong> class is coupled with the <strong>ChatCustomer</strong> class. The <strong>ChatCustomer</strong> class may be a very heavy class that can cause many dependencies. So, we can try to modify the <strong>CustomerChatLog</strong> class design a little bit. Actually, the <strong>CustomerChatLog</strong> class does not use lots of members of <strong>ChatCustomer</strong> class, instead it uses when we call <strong>ChatCustomer::getName()</strong> method. So, one possible solution to this coupling problem is to pass just the <strong>name of the customer</strong> to <strong>CustomerChatLog</strong> class not the <strong>ChatCustomer</strong> object itself as in the following version:</p>
+<pre>
+//#include "ChatCustomer.h"
+#include &lt;string&gt;
+#include &lt;vector&gt;
+class CustomerChatLog
+{
+public:
+   bool addMessage(const <font color="red">std::string</font> &amp;customer;, const std::string &amp;msg;);
+   int getCount() const;
+   std::string getMessage(int index);
+private:
+   struct ChatEvent
+   {
+      <font color="red">std::string mCustomerName</font>;
+      std::string mMessage;
+      size_t mTimeStamp;
+   };
+   std::vector<chatevent> mChatEvent;
+};
+</chatevent></pre>
+<p>Though this approach induced redundancy in terms of the customer's name, but it breaks the dependencies between two classes.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="notification">D. Callbacks and observers</div>
+<p>We can reduce coupling related to the event notification.</p>
+<p> Let's think about Massively multiplayer online role-playing game (MMORPG). Each player is represented by Universally unique identifier (UUID). But players want to see the names of other players, not UUID strings. To store the corresponding UUID and name, the system, therefore, implements a player name archive, <strong>NameArchive</strong>.</p>
+<p>Suppose, the class that manages the game preparation, <strong>GamePrep</strong>, is trying to display the name of each player. Here are the operations of displaying the names:</p>
+<ol>
+<li>The <strong>GamePrep</strong> class calls <strong>NameArchive::requestName()</strong></li>
+<li>The <strong>NameArchive</strong> sends a request to the game server for the name of the player with this UUID.</li>
+<li>The <strong>NameArchive</strong> receives the name from the server.</li>
+<li>The <strong>NameArchive</strong> calls <strong>GamePrep::setPlayerName()</strong></li>
+</ol>
+<p>The <strong>GamePrep</strong>, however, depends on <strong>NameArchive</strong> to call the <strong>NameArchive::requestName()</strong> method, and <strong>NameArchive</strong> depends on <strong>GamePrep</strong> to call the <strong>GamePrep::setPlayerName()</strong> method. This is not a loosely coupled design, rather it's tight. Suppose, we need the name, in the game, not in the preparation settings. Then, probably we need <strong>Game::setPlayerName()</strong> method, which makes the design more tight.</p>
+<p>Here is the solution addressing the coupling issues. Let the <strong>GamePrep</strong> and <strong>Game</strong> classes register as subscribers so that they can get updates from the <strong>NameArchive</strong>. Then, the <strong>NameArchive</strong> will notify to the subscribers without having a direct dependency on <strong>GamePrep</strong> and <strong>Game</strong> classes.</p>
+<ol>
+<li><strong>Callbacks</strong><br/>
+<p>A callback is a <strong>pointer to a function</strong> within Module_A that is passed to Module_B so that Module_B can invoke the function in Module_A. But Module_B does not know anything about Module_A, and it has no include or does not have any dependency on Module_A. Therefore, callbacks are particularly useful to allow low-level code to execute high-level code that it cannot have any link dependency. That's why callbacks are a popular way of breaking cyclic dependencies in huge projects.</p>
+<p>Sometimes, it is useful to provide a <strong>closure</strong> with the callback functions. The <strong>closure</strong> is a piece of data that Module_A passes to Module_B, and it is sort of states.</p>
+<pre>
+#include &lt;string&gt;
+class Module_B
+{
+   public:
+      typedef void (*CallbackType)(const std::string &amp;name;, void *data);
+      void setCallback(CallbackType cb,void *data);
+   private:
+      CallbackType mCallback;
+      void *mClosure;
+};
+</pre>
+<p>Then the Module_B can invoke the callback function with something like this:</p>
+<pre>
+if(mCallback)
+{
+   (*mCallback) ("Hi", mClosure);
+}
+</pre>
+<p>Implementing a callback to a static C++ member function is done the same way as in C. This is because static member functions do not need an object to be invoked on and thus have the same signature as a C function with the same calling convention, calling arguments and return type.</p>
+<p>However, using callbacks in C++ has one implication. In other words, 
+it is non-trivial to use a method as a callback  because the <strong>this</strong> pointer of the object also needs to be passed. Actually, <strong>boost::bind</strong> in Boost library provides a solution to this issue. It implements <strong>functors (functions with state)</strong> that can be realized in C++ as a class with private member variables to hold the state and an overloaded <strong>operator()</strong> to execute the function.</p>.
+</li>
+<li><strong>Observers</strong><br/>
+<p>As mentioned above, implementing callbacks in C++ is not simple. But by using <a href="observer.html">Observer Pattern</a>, we can minimize coupling in our software design.</p>
+</li>
+<li><strong>Signal/Slot (Qt) and boost::signals</strong><br/>
+<p>Callbacks and observers are created to do specific task, and the mechanism to use them is usually defined within the objects that need to perform the actual callback.</p>
+<p>An alternative approach is to construct a centralized control to send events between unconnected parts of the system. So, the sender does not have to know about the receiver beforehand, which lets us reduce coupling between the sender and the receiver. Qt's <strong>signal/slot</strong> concept is a generic way to allow any event, such as a mouse press or a button click, to be sent to any interested method to act upon. Boost's  <strong>boost::signals</strong> and <strong>boost::signals2</strong> are also available.</p>
+</li>
+</ol>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="hiding_implementation_detail">Hiding Information Detail</div>
+<p>This section will show how we can <strong>hide implementation details</strong> using a <strong>timer</strong>. The following examples will evolve from a code for Windows, and then it will be extended to Linux system, and finally to a code that hides platform dependent implementation.</p>
+<br/>
+<div class="subtitle_2nd" id="hiding_implementation_detail_window">Timer for Windows</div>
+<p>First, we have a code for Windows as below:</p>
+<pre>
+// timer.h
+
+#include <font color="red">&lt;Windows.h&gt;</font>;
+
+class Timer
+{
+public:
+	explicit Timer(double);
+        ~Timer();
+
+private:
+	double elapsedTime() const;
+	<font color="red">DWORD</font> mStartTime;
+	double mDuration;
+};
+
+
+// timer.cpp
+
+#include &lt;iostream&gt;
+#include "timer.h"
+Timer::Timer(double d) : mDuration(d)	
+{
+	mStartTime = <font color="red">GetTickCount()</font>;
+}
+
+Timer::~Timer()
+{
+	while(elapsedTime() &lt; mDuration) ;
+	std::cout &lt;&lt; mDuration &lt;&lt; " sec elapsed" &lt;&lt; std::endl;
+}
+
+double Timer::elapsedTime() const
+{
+	return (<font color="red">GetTickCount()</font> - mStartTime)/1000 ;
+}
+
+
+// main.cpp
+
+#include "timer.h"
+int main()
+{
+	double wait = 5;
+	Timer *pTimer = new Timer(wait);
+        delete pTimer;
+	return 0;
+}
+</pre>
+<p>With an output:</p>
+<pre>
+5 sec elapsed
+</pre>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="hiding_implementation_detail_windows_Linux">Timer for Windows/Linux</div>
+<p>The code above can be extended to Linux systems as shown below:</p>
+<pre>
+// timer.h
+
+<font color="red">#ifdef WIN32</font>
+#include &lt;Windows.h&gt;
+<font color="red">#else</font>
+#include &lt;sys/time.h&gt;
+<font color="red">#endif</font>
+
+class Timer
+{
+public:
+        explicit Timer(double);
+        ~Timer();
+
+private:
+        double elapsedTime() const;
+<font color="red">#ifdef WIN32</font>
+        DWORD mStartTime;
+<font color="red">#else</font>
+        struct timeval mStartTime;
+<font color="red">#endif</font>
+        double mDuration;
+};
+
+
+// timer.cpp
+
+#include &lt;iostream&gt;
+#include "timer.h"
+Timer::Timer(double d) : mDuration(d)
+{
+<font color="red">#ifdef WIN32</font>
+        mStartTime = GetTickCount();
+<font color="red">#else</font>
+        gettimeofday(&amp;mStartTime;, NULL);
+<font color="red">#endif</font>
+}
+
+Timer::~Timer()
+{
+        while(elapsedTime() &lt; mDuration) ;
+        std::cout &lt;&lt; mDuration &lt;&lt; " sec elapsed" &lt;&lt; std::endl;
+}
+
+double Timer::elapsedTime()
+{
+<font color="red">#ifdef WIN32</font>
+        return (GetTickCount() - mStartTime)/1000 ;
+<font color="red">#else</font>
+        struct timeval endTime;
+        gettimeofday(&amp;endTime;,NULL);
+        return endTime.tv_sec+(endTime.tv_usec/1000000.0)-
+               (mStartTime.tv_sec+(mStartTime.tv_usec/1000000.0)) ;
+<font color="red">#endif</font>
+}
+</pre>
+<p>For linux, we used</p>
+<pre>
+int gettimeofday(timeval *tp, NULL)
+</pre>
+<p>The function <strong>gettimeofday()</strong> 
+gets the time of day. The parameter must be a pointer to a previously declared timeval variable 
+(or in C, a <strong>struct timeval</strong> variable). 
+This struct type is also defined in <strong><sys time.h></sys></strong>. A timeval has two components, both ints. One (called <strong>tv_sec</strong>) is exactly the value that would be returned by time, the time in seconds since 1/1/1970. The other (called <strong>tv_usec</strong>) is the number of microseconds into that second.</p>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="hiding_implementation_detail_nested_class">Nested Implementation Class</div>
+<pre>
+// timer.h
+
+class Timer
+{
+public:
+        explicit Timer(double);
+        ~Timer();
+
+private:
+        <font color="red">class Implementation;
+        Implementation *pImpl;</font>
+};
+</pre>
+<p>The above header file, <strong>timer.h</strong>, does not have any platform specifics, and we cannot see 
+any private members in the header file. In other words, private members are now completely hidden from our public interface. This allows us to keep our implementation details hidden, and our public header files are cleaner. So, as a result, they can be read more easily. </p>
+<p>However, when we must create an object of <strong>Timer::Implementation</strong> in the constructor, and destroy it in the destructor. Another thing than makes it more complicated is we have to access all the private members using <strong>pImpl</strong> pointer. But the cleaner API outweighs the overload.</p>
+<pre>
+// timer.cpp
+
+#include "timer.h"
+#include &lt;iostream&gt;
+#ifdef WIN32
+#include &lt;Windows.h&gt;
+#else
+#include &lt;sys/time.h&gt;
+#endif
+
+<font color="red">class Timer::Implementation</font>
+{
+public:
+        double elapsedTime()
+        {
+#ifdef WIN32
+                return (GetTickCount() - mStartTime)/1000 ;
+#else
+                struct timeval endTime;
+                gettimeofday(&amp;endTime;,NULL);
+                return endTime.tv_sec+(endTime.tv_usec/1000000.0)-
+                       (mStartTime.tv_sec+(mStartTime.tv_usec/1000000.0)) ;
+#endif
+        }
+#ifdef WIN32
+        DWORD mStartTime;
+#else
+        struct timeval mStartTime;
+#endif
+        double mDuration;
+};
+
+Timer::Timer(double d):pImpl(<font color="red">new Timer::Implementation()</font>)
+{
+        <font color="red">pImpl</font>-&gt;mDuration = d;
+#ifdef WIN32
+        <font color="red">pImpl</font>-&gt;mStartTime = GetTickCount();
+#else
+        gettimeofday(&amp;(<font color="red">pImpl</font>-&gt;mStartTime), NULL);
+#endif
+}
+
+Timer::~Timer()
+{
+        while(<font color="red">pImpl</font>-&gt;elapsedTime() &lt; <font color="red">pImpl</font>-&gt;mDuration) ;
+        std::cout &lt;&lt; <font color="red">pImpl</font>-&gt;mDuration &lt;&lt; " sec elapsed" &lt;&lt; std::endl;
+        delete pImpl;
+        pImpl = NULL;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="class_copyable_or_not">Class - copyable or not</div>
+<p>The class design of the previous section has some good things:</p>
+<ol>
+<li>Declaring it as a nested class prevents from polluting the code with platform specifics.</li>
+<li>Declaring it as private makes the public API clean.</li>
+</ol>
+<p>However, the design has some weakness at copying. Because compiler will create a copy constructor and assignment operator unless we explicitly define it, the objects can have pointers (<strong>pImpl</strong>)  pointing to the same object of type <strong>Implementation</strong>. The will cause crash when several objects may try to delete the same object in their destructor.</p>
+<p>If we do not want make our class to be copyable, we can modify the <strong>timer.h</strong> as below:</p>
+<pre>
+// timer.h
+
+class Timer
+{
+public:
+        explicit Timer(double);
+        ~Timer();
+	<font color="red">Timer(const Timer &amp;);</font> // copy constructor
+	<font color="red">Timer &amp;operator;=(const Timer &amp;);</font>  // assignment operator
+	class Implementation;
+private:
+        
+        Implementation *pImpl;
+};
+</pre>
+<p>By declaring the copy constructor and assignment operator, we can prevent our class from being copied.</p>
+<p>See <a href="../cplusplus/constructor.html#copy_constructor" target="_blank"> other ways of making a class non-copyable</a>.</p>
+<p>See <a href="../cplusplus/boost.html" target="_blank"> boost::scope_ptr</a>.</p>
+<br/><br/>
+<br/><br/>
+<br/>
+<div class="subtitle_2nd" id="softwareDev">Software Development</div>
+<ol>
+<li><a href="software_development_methodology.html">Software Development Methodology</a> </li>
+<li><a href="../cplusplus/Git/Git_GitHub_Installation.html" target="_blank">GIT and GitHub on Windows - 1. Installation</a>
+</li>
+<li>
+<a href="../cplusplus/Git/Git_GitHub_status_add_status_log.php" target="_blank">GIT and GitHub on Windows - 2. add/status/log</a>
+</li>
+<li>
+<a href="../cplusplus/Git/Git_GitHub_commit_diff.html" target="_blank">GIT and GitHub on Windows - 3. commit and diff</a>
+</li>
+<li>
+<a href="../cplusplus/Git/GitHub_Account_SSH_Key.html" target="_blank">GIT and GitHub on Windows - 4. GitHub Account and SSH</a>
+</li>
+<li>
+<a href="../cplusplus/Git/GitHub_Uploading.html" target="_blank">GIT and GitHub on Windows - 5. Uploading to GitHub</a>
+</li>
+<li><a href="../cplusplus/Git/GitHub_GUI.html" target="_blank">GIT and GitHub on Windows - 6. GUI</a></li>
+<li>GIT and GitHub on Windows - 7. Branching, Merging, Cloning, and Forking</li>
+</ol>
+
+<!-- REMOVED --></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br><br>
+<h1>List of Design Patterns</h1>
+   <br><br>
+   <a href="introduction.html">Introduction</a> 
+   <br><br>
+   <a href="abstractfactorymethod.html">Abstract Factory Pattern</a> 
+   <br><br>
+   <a href="adapter.html">Adapter Pattern</a> 
+   <br><br>
+   <a href="bridge.html">Bridge Pattern</a> 
+   <br><br>
+   <a href="chain_of_responsibility.html">Chain of Responsibility</a> 
+   <br><br>
+   <a href="command.html">Command Pattern</a> 
+   <br><br>
+   <a href="composite.html">Composite Pattern</a> 
+   <br><br>
+   <a href="decorator.html">Decorator Pattern</a> 
+   <br><br>
+   <a href="delegation.html">Delegation</a> 
+   <br><br>
+   <a href="Dependency_Injection_Design_Pattern_Inversion_Of_Control_IoC.html">Dependency Injection(DI) and Inversion of Control(IoC)</a> 
+   <br><br>
+   <a href="facade.html">Fa&ccedil;ade Pattern</a> 
+   <br><br>
+   <a href="factorymethod.html">Factory Method</a> 
+   <br><br>
+   <a href="mvc_model_view_controller_pattern.html">Model View Controller (MVC) Pattern</a> 
+   <br><br>
+   <a href="observer.html">Observer Pattern</a> 
+   <br><br>
+   <a href="prototype.html">Prototype Pattern</a> 
+   <br><br>
+   <a href="proxy.html">Proxy Pattern</a> 
+   <br><br>
+   <a href="singleton.html">Singleton Pattern</a> 
+   <br><br>
+   <a href="strategy.html">Strategy Pattern</a> 
+   <br><br>
+   <a href="template.html">Template Method Pattern</a> 
+<br>
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+<br>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="../cplusplus/cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="../cplusplus/application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="../cplusplus/autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="../cplusplus/binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="../cplusplus/blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="../cplusplus/boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="../cplusplus/Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="../cplusplus/class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="../cplusplus/constructor.html">Constructor</a> 
+   <br><br>
+   <a href="../cplusplus/cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="../cplusplus/cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="../cplusplus/cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="../cplusplus/CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="../cplusplus/dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="../cplusplus/eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="../cplusplus/exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="../cplusplus/friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="../cplusplus/fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="../cplusplus/function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="../cplusplus/functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="../cplusplus/functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="../cplusplus/functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="../cplusplus/Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="../cplusplus/google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="../cplusplus/multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="../cplusplus/libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="../cplusplus/linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="../cplusplus/linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="../cplusplus/make.html">make & CMake</a>
+   <br><br>
+   <a href="../cplusplus/gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="../cplusplus/memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="../cplusplus/multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="../cplusplus/multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="../cplusplus/multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="../cplusplus/multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="../cplusplus/object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="../cplusplus/slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="../cplusplus/opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="../cplusplus/operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="../cplusplus/operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="../cplusplus/valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="../cplusplus/pointers.html">Pointers</a>
+   <br><br>
+   <a href="../cplusplus/pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="../cplusplus/pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="../cplusplus/preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="../cplusplus/private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="../cplusplus/RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="../cplusplus/references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="../cplusplus/sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="../cplusplus/sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="../cplusplus/stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="../cplusplus/stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="../cplusplus/stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="../cplusplus/stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="../cplusplus/stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="../cplusplus/stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="../cplusplus/stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="../cplusplus/stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="../cplusplus/statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="../cplusplus/string.html">String</a> 
+   <br><br>
+   <a href="../cplusplus/string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="../cplusplus/assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="../cplusplus/templates.html">Templates</a>
+   <br><br>
+   <a href="../cplusplus/template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="../cplusplus/template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="../cplusplus/template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="../cplusplus/this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="../cplusplus/typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="../cplusplus/upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="../cplusplus/virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="../cplusplus/virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="../cplusplus/quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="../cplusplus/quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="../cplusplus/quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="../cplusplus/quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="../cplusplus/smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="../cplusplus/quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="../cplusplus/quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="../cplusplus/google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="../cplusplus/cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="../cplusplus/C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="../cplusplus/C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+<br />
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/DesignPatterns/introduction.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 05:09:55 GMT -->
+</html>
+

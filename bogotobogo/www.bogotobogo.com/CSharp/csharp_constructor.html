@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_constructor.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 05:37:58 GMT -->
+<head>
+  <title>C# 4.0 Tutorial: Constructor and this Keyword - 2016</title>
+  <meta content="C# 4.0 Tutorial: Constructor and this Keyword  " name="description" />
+  <meta content="C# 4.0 Tutorial, Constructor, Default Constructor, Custom Constructor, this Keyword, Constructor Chaining" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href=".netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Constructor and this Keyword 2017         <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/csharp_logo.png" alt="csharp_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="constructor">Constructor</div>
+<p>The <strong>class</strong> type is the most fundamental programming construct in the .NET platform.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>A class is a user-defined type that is composed of field data (<strong>member variables</strong> and members that operate on this data such as constructors, properties, method, events, and so forth. The set of field data represents the <strong>state</strong> of a class instance (<strong>object</strong>). By grouping data and related functionality in a class definition, we are able to model our software after entities in the real world.</p>
+<p>Let's create a new C# Console Application <strong>SimpleClasses</strong>. Then, insert a new class file, <strong>ToyCar.cs</strong> into our project using the Project -&gt; Add Class menu. Choose the Class icon from the resulting dialog box and click Add button.</p>
+<pre>
+class ToyCar
+{
+	public string name;
+	public int speed;
+}
+</pre>
+<br/>
+<br/>
+<p>The member variables are declared using <strong>public</strong> access modifier. Public members of a class are directly accessible once an <strong>object (instance of a given class)</strong> of this type has been created. After we have defined the set of member variables that represent the state of the type, the next thing is to establish the members that model its behavior. Our <strong>ToyCar</strong> class need two methods: <strong>SpeedUp()</strong> and <strong>PrintState()</strong>:</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string name;
+        public int speed;
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", name, speed);
+        }
+
+        public void SpeedUp(int inc)
+        {
+            speed += inc;
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar();
+            myToy.name = "Boong Boong";
+            myToy.speed = 5;
+
+            for (int i = 0; i &lt; 5; i++)
+            {
+                myToy.SpeedUp(10);
+                myToy.PrintState();
+            }
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Boong Boong's speed is 15 mph.
+Boong Boong's speed is 25 mph.
+Boong Boong's speed is 35 mph.
+Boong Boong's speed is 45 mph.
+Boong Boong's speed is 55 mph.
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="allocatingobject">Allocating Object</div>
+<p>Objects must be allocated into memory using the <strong>new</strong> keyword. If we don't use the <strong>new</strong> keyword and attempt to use our class variable in a subsequent code, we'll get a compiler error, something like <strong>Use of unassigned local variable</strong>: </p>
+<pre>
+static void Main(string[] args)
+{
+	ToyCar myToy;
+	myToy.name = "Boong Boong";
+}
+</pre>
+<p>To correctly create a class type variable, we should define and allocate a <strong>ToyCar</strong> object on a single line of code:</p>
+<pre>
+static void Main(string[] args)
+{
+	ToyCar myToy = new ToyCar();
+	myToy.name = "Boong Boong";
+}
+</pre>
+<p>If we want to define and allocate an object on separate lines of code, we may do as following:</p>
+<pre>
+static void Main(string[] args)
+{
+	ToyCar myToy;
+	myToy = new ToyCar();
+	myToy.name = "Boong Boong";
+}
+</pre>
+<p>In the example, the first code simply declares a <strong>reference</strong> to a yet-to-be-determined <strong>ToyCar</strong> object. It is not until we assign a reference to an object view the <strong>new</strong> keyword that this reference points to a valid class instance in memory.</p>
+<br/>
+<br/>
+<div class="subtitle" id="constructor">Class Constructor</div>
+<p>Now that objects have state, the object user will typically want to assign relevant values to the object's field data before they use it. The <strong>ToyCar</strong> type demands that the <strong>name</strong> and <strong>speed</strong> fields be assigned. For our example, we have only two public data. However, in case when a class have dozens of fields, it would be undesirable to author 20 initialization statements to set 20 data.</p>
+<p>But thanks to the <strong>class constructors</strong>, which allow the state of an object to be established at the time of creation. A constructor is a special method of a class that is called indirectly when creating an object using the <strong>new</strong> keyword. However, unlike a normal method, constructors never have a return value (not even <strong>void</strong> and are always named identically to the class they are constructing.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="defaultctor">Default Constructor</div>
+<p>Every class is provided with a <strong>default constructor</strong> that we may redefine. A default constructor never takes argument, by definition. Beyond allocating the new object into memory, the default constructor ensures that all field data is set to an appropriate default value. If we can not satisfied with these default assignments, we may redefine the default constructor to meet our needs.</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string name;
+        public int speed;
+
+        <font color="blue">public ToyCar()
+        {
+            name = "Boom Boom";
+            speed = 0;
+        }</font>
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", name, speed);
+        }
+
+        public void SpeedUp(int inc)
+        {
+            speed += inc;
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar();
+            myToy.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>With an output:</p>
+<pre>
+Boom Boom's speed is 0 mph.
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="customctor">Custom Constructor</div>
+<p>In general, classes define additional constructors besides the default. We provide the object user with a simple and consistent way to initialize the state of an object directly at the time of creation. In the following example, our <strong>ToyCar</strong> class support a total of three class constructors:</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string name;
+        public int speed;
+
+        public ToyCar()
+        {
+            name = "Boom Boom";
+            speed = 0;
+        }
+
+        public ToyCar(string n)
+        {
+            name = n;
+        }
+
+        public ToyCar(string n, int s)
+        {
+            name = n;
+            speed = s;
+        }
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", name, speed);
+        }
+
+        public void SpeedUp(int inc)
+        {
+            speed += inc;
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar();
+            myToy.PrintState();
+
+            ToyCar myToy2 = new ToyCar("Boong Boong 2");
+            myToy2.PrintState();
+
+            ToyCar myToy3 = new ToyCar("Boong Boong 3", 25);
+            myToy3.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output of the example is:</p>
+<pre>
+Boom Boom's speed is 0 mph.
+Boong Boong 2's speed is 0 mph.
+Boong Boong 3's speed is 25 mph.
+</pre>
+<p>What makes one constructor different from another is the number of and type of constructor arguments. So, the <strong>ToyCar</strong> has <strong>overloaded</strong> the constructor to provide a number of ways to create the object at the time of declaration.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="moredefaultctor">More On Default Constructor</div>
+<p>All classes are provided with a default constructor. However, as soon as we define a custom constructor, the default constructor is <strong>silently removed</strong> from the class and is no longer available. In other words, if we don't define a custom constructor, the C# compiler grants us a default in order to allow the object user to allocate an instance of our type with field data set to the correct default values. However, when we define a unique constructor, the compiler assumes we have taken all things into our own hands. We get compiler error as in the following example:</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string name;
+        public int speed;
+
+        <font color="blue">/*
+        public ToyCar()
+        {
+            name = "Boom Boom";
+            speed = 0;
+        }
+        */</font>
+
+        public ToyCar(string n)
+        {
+            name = n;
+        }
+
+        public ToyCar(string n, int s)
+        {
+            name = n;
+            speed = s;
+        }
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", name, speed);
+        }
+
+        public void SpeedUp(int inc)
+        {
+            speed += inc;
+        }
+
+        static void Main(string[] args)
+        {
+            <font color="blue">ToyCar myToy = new ToyCar();</font>
+            myToy.PrintState();
+
+            ToyCar myToy2 = new ToyCar("Boong Boong 2");
+            myToy2.PrintState();
+
+            ToyCar myToy3 = new ToyCar("Boong Boong 3", 25);
+            myToy3.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>We get the following compile time error:</p>
+<pre>
+Error: 'SimpleClasses.ToyCar' does not contain a constructor that takes 0 arguments
+</pre>
+<p>So, if we want to allow the object user to create an instance of our type with the default constructor, as well as our custom constructor, we must <strong>explicitly</strong> redefine the default.</p>
+<p>In a vast majority of cases, the implementation of the default constructor of a class is intentionally empty, as all we require is the ability to create an object with default values.</p>
+<br/>
+<br/>
+<div class="subtitle" id="thiskeyword">The this Keyword</div>
+<p>C# supports <strong>this</strong> keyword which provides access to the current class instance. One of uses of <strong>this</strong> keyword is to resolve scope ambiguity, which can arise when an incoming parameter is named identically to a data field of the type as shown in the following example:</p>
+<pre>
+class ToyCar
+{
+	public string name;
+	public int speed;
+       
+	public void SetName(string name)
+	{
+		name = name;
+	}
+	...
+}
+</pre>
+<p>The code will compile just fine, however, as shown in the following example, the value of the <strong>name</strong> filed is an empty string.</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string name;
+        public int speed;
+
+        public ToyCar() { }
+       
+        public void SetName(string name)
+        {
+            name = name;
+        }
+
+        public ToyCar(int s)
+        {
+            speed = s;
+        }
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", name, speed);
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar(100);
+            myToy.SetName("Boong Boong");
+            myToy.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output shows the <strong>name</strong> field is empty.</p>
+<pre>
+'s speed is 100 mph.
+</pre>
+<p>The problem is that the implementation of <strong>SetName()</strong> is assigning the incoming parameter <strong>back to itself</strong> given that the compiler assumes <strong>name</strong> is referring to the variable currently in the method scope rather than the <strong>name</strong> field at the class scope. To inform the compiler that we want to set the current object's <strong>name</strong> field to the incoming <strong>name</strong> parameter, simply use <strong>this</strong> to resolve the ambiguity:</p>
+<pre>
+public void SetName(string name)
+{
+	this.name = name;
+}
+</pre>
+<p>If there is no ambiguity, we are not required to use <strong>this</strong> keyword when a class wants to access its own data or members. For example, if we rename the <strong>string</strong> data member to <strong>nameToy</strong>, the use of <strong>this</strong> is optional as there is no longer a scope ambiguity:</p>
+<pre>
+    class ToyCar
+    {
+        public string nameToy;
+        public int speed;
+
+        public ToyCar() { }
+       
+        public void SetName(string name)
+        {
+		nameToy = name;
+		this.nameToy = name;
+        }
+	...
+    }
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="chainingctor">Constructor Chaining with this keyword</div>
+<p>Another way of using <strong>this</strong> keyword is to design a class using <strong>constructor chaining</strong>. This is helpful when we have a class that defines multiple constructors. Given the fact that constructors often validate the incoming arguments to enforce various rules, it can be common to find redundant validation logic within a class's constructor set.</p>
+<pre>
+class ToyCar
+{
+	public string nameToy;
+	public int speed;
+
+	public ToyCar() { }
+       
+	public void SetName(string name)
+	{
+		this.nameToy = name;
+	}
+
+	public ToyCar(int s)
+	{
+		if(s &lt; 10)
+			speed = 10;
+		speed = s;
+	}
+
+	public ToyCar(string n, int s)
+	{
+		if (s &lt; 10)
+			speed = 10;
+		speed = s;
+		nameToy = n;
+	}
+	...
+}
+</pre>
+<p>In the example code above, each constructor is ensuring that the speed level is never less than 10. While this is all well, we have redundant code in tow constructors and we are required to update code in multiple locations if our rules change.</p>
+<p>One way to improve the situation is to define a method in the <strong>ToyCar</strong> class that will validate the incoming argument(s). If we were to do so, each constructor could make a call to this method before making the field assignment(s). While this approach does allow us to isolate the code we need to update when rules change, we are not dealing with the following redundancy:</p>
+<pre>
+class ToyCar
+{
+	public string nameToy;
+	public int speed;
+
+	public ToyCar() { }
+       
+	public void SetName(string name)
+	{
+		this.nameToy = name;
+	}
+
+	public ToyCar(int s)
+	{
+		<font color="blue">SetSpeed(s);</font>
+	}
+
+	public ToyCar(string n, int s)
+	{
+		<font color="blue">SetSpeed(s);</font>;
+		nameToy = n;
+	}
+
+	public void SetSpeed(int s)
+	{
+		if (s &lt; 10)
+			speed = 10;
+		speed = s;
+	}
+	...
+}
+</pre>
+<p>Another approach is to designate the constructor that takes the <strong>greatest number of arguments</strong>as the <strong>master constructor</strong> and have its implementation perform the required validation logic. The remaining constructors can use <strong>this</strong> keyword to forward the incoming arguments to the master constructor and provide any additional parameters as necessary. In this way, we only need to worry about maintaining a single constructor for the entire class while the remaining constructors are empty.</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string nameToy;
+        public int speed;
+
+        public ToyCar() { }
+        public ToyCar(int s) : this("", s) {}
+        public ToyCar(string n) : this(n, 0) { }
+        public ToyCar(string n, int s)
+        {
+            if (s &lt; 10)
+                speed = 10;
+            speed = s;
+            nameToy = n;
+        }
+
+        public void SetName(string name)
+        {
+            this.nameToy = name;
+        }
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", nameToy, speed);
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar(100);
+            myToy.SetName("Boom Boom Boom");
+            myToy.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Boom Boom Boom's speed is 100 mph.
+</pre>
+<p>When chaining constructors, note how <strong>this</strong> keyword is <strong>dangling</strong> off the constructor's declaration with a colon outside the scope of the constructor itself. </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="flowctor">Constructor Flow</div>
+<p>Once a constructor passes arguments to the designated master constructor, the constructor invoked originally by the called will finish executing any remaining code statements:</p>
+<pre>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SimpleClasses
+{
+    class ToyCar
+    {
+        public string nameToy;
+        public int speed;
+
+        public ToyCar() 
+        {
+            Console.WriteLine("Default ctor");
+        }
+
+        public ToyCar(int s) : this("", s) 
+        {
+            Console.WriteLine("ctor taking an int");
+        }
+
+        public ToyCar(string n) : this(n, 0)
+        {
+            Console.WriteLine("ctor taking a string");
+        }
+
+        public ToyCar(string n, int s)
+        {
+            Console.WriteLine("Master ctor");
+            if (s &lt; 10)
+                speed = 10;
+            speed = s;
+            nameToy = n;
+        }
+
+        public void SetName(string name)
+        {
+            this.nameToy = name;
+        }
+
+        public void PrintState()
+        {
+            Console.WriteLine("{0}'s speed is {1} mph.", nameToy, speed);
+        }
+
+        static void Main(string[] args)
+        {
+            ToyCar myToy = new ToyCar(100);
+            myToy.SetName("Boom Boom Boom");
+            myToy.PrintState();
+
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Master ctor
+ctor taking an int
+Boom Boom Boom's speed is 100 mph.
+</pre>
+<p>Here is the summary of the constructor flow:</p>
+<ol>
+<li>We create our object by invoking the constructor requiring a single <strong>int</strong>.</li>
+<li>This constructor forwards the supplied data to the master constructor and provides any additional startup arguments not specified by the caller.</li>
+<li>The master constructor assigns the incoming data to the object's field data.</li>
+<li>Control is returned to the constructor originally called, and execute any remaining code statements.</li>
+</ol>
+<br/>
+<img alt="KahGeeSan" src="images/constructor/KahGeeSan.png"/>
+
+<!-- REMOVED -->
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>C# 4.0</h1>
+   <br><br>
+   <a href=".netframework.html">.NET Framework</a> 
+   <br><br>
+   <a href="csharp_introduction.html">Introduction - My First C# Code</a> 
+   <br><br>
+   <a href="csharp_system_members.html">System Members and Data</a> 
+   <br><br>
+   <a href="csharp_modifiers.html">Modifiers</a> 
+   <br><br>
+   <a href="csharp_array.html">Array</a> 
+   <br><br>
+   <a href="csharp_enum.html">Enumeration (Enums) </a> 
+   <br><br>
+   <a href="csharp_value_ref.html">Value and Reference Types</a> 
+   <br><br>
+   <a href="csharp_constructor.html">Constructor and this Keyword</a> 
+   <br><br>
+   <a href="csharp_static.html">static Keyword</a> 
+   <br><br>
+   <a href="csharp_encapsulation.html">Encapsulation Services</a> 
+   <br><br>
+   <a href="csharp_inheritance.php">Inheritance</a> 
+   <br><br>
+   <a href="csharp_inheritance2.html">Inheritance II</a> 
+   <br><br>
+   <a href="csharp_polymorphism.html">Polymorphism</a> 
+   <br><br>
+   <a href="csharp_interfaces.html">Interfaces</a> 
+   <br><br>
+   <a href="csharp_delegates.html">Delegates</a>    
+   <br><br>
+   <a href="csharp_system_object.html">System.Object</a> 
+   <br><br>
+   <a href="csharp_events.html">Events</a> 
+   <br><br>
+   <a href="csharp_multithreading1.html">Multi Threading I - Introduction and Simple Thread</a> 
+   <br><br>
+   <a href="csharp_multithreading2.html">Multi Threading II -  ThreadStart / Parameterized ThreadStart, <br>Foreground/Background Threads</a> 
+   <br><br>
+   <a href="csharp_multithreading3.html">Multi Threading III  - Concurrency, Synchronization</a> 
+   <br><br>
+   <a href="csharp_networking1.html">Networking I - 
+   <br><br>
+PORT, IPv4/IPv6, TCP/UDP, URI</a> 
+   <br><br>
+   <a href="csharp_networking2.html">Networking II - 
+   <br><br>
+WebRequest / WebResponse, WebClient</a> 
+   <br><br>
+   <a href="csharp_wpf_xaml_netframework.html">WPF (Windows Presentation Foundation) and XAML - Part I</a> 
+   <br><br>
+   <a href="../cplusplus/Git/Git_GitHub_Installation.html" target="_blank">GIT and GitHub on Windows</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">PowerShell 4 ... </a>
+   <br><br>
+  
+
+<br /><br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+  <!-- CDN MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_constructor.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Dec 2017 05:38:03 GMT -->
+</html>
+

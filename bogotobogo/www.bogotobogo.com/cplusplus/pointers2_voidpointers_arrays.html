@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/pointers2_voidpointers_arrays.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:01:34 GMT -->
+<head>
+  <title>C++ Tutorial: Pointers II - 2017</title>
+  <meta content="C++ Tutorial: Void Pointers" name="description" />
+  <meta content="C++ Tutorial, Void Pointers, Arrays, Pointers to Pointers" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial
+ - Pointers II - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="voidpointers">void Pointers</div>
+<p>The <strong>void*</strong> doesn't mean it points to nothing. Actually, it is pointing something but we just don't know the exact type of object it is pointing to.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>Let's take a look at the famous <strong>swap()</strong> function</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int *ap, int *bp)
+{
+	int temp;
+	temp = *ap;
+	*ap = *bp;
+	*bp = temp;
+}
+int main()
+{
+	int a = 7, b = 17;
+	cout &lt;&lt; "a = " &lt;&lt; a &lt;&lt; " b = " &lt;&lt; b &lt;&lt; endl;
+	swap(&amp;a;, &amp;b;);
+	cout &lt;&lt; "a = " &lt;&lt; a &lt;&lt; " b = " &lt;&lt; b &lt;&lt; endl;
+	return 0;
+}
+</pre>
+<p>With an output:</p>
+<pre>
+a = 7 b = 17
+a = 17 b = 7
+</pre>
+<p>The <strong>swap()</strong> function has been used to illustrate how the pointers are working. However, we want to discuss the <strong>type</strong> of variables we're swapping. Here, integers are being swapped. Can we tell where the <strong>type information</strong> is used in the code? Not clear? What the code is doing is <strong>exchanging bit patterns</strong> reside in the memory pointed by the pointers to <strong>integers</strong>. Algorithmically it's simply a bit pattern rotation. How the <strong>integer</strong> is used?
+When we copy the bit pattern, we do in 4-byte unit.</p>
+<p>So, the basic function of the code is copying bit pattern and it does not care much about the <strong>type</strong>. It's not that tough for us to make the code <strong>type independent</strong> if we use <strong>void*</strong>.</p>
+<br/>
+<br/>
+<p>The primary use for <strong>void*</strong> is for passing pointers to functions that are not allowed to make assumptions about the type of the object and for returning untyped objects from functions. To use such an object, we should use explicit type conversion.</p>
+<p>A <strong>void*</strong> pointer is a pointer that point to a value that has no type. 
+A void pointer seems to be of limited use. However, when combined with the ability to cast such a pointer to another type, they are quite useful.</p>
+<p>
+Since it has an undetermined length and undetermined dereference properties,
+void pointer can point to any data type, from an integer value or a float to a string of characters. That's why it is sometimes referred to as a <strong>generic</strong> pointer.</p>
+<p>
+However, on the other hand, void pointers have a great limitation such as the data pointed by them cannot be directly dereferenced since there is no type information to guide the compiler in interpreting the underlying bit pattern. So, we will always have to cast the address in the void pointer to some other pointer type that points to a concrete data type before dereferencing it.</p>
+<p>A void pointer is declared like a normal pointer, using the void keyword as the pointer's type:</p>
+<pre>
+void *pVoid;
+</pre>
+<p>Here is a simple example using the <strong>void*</strong> pointer.</p>
+<pre>
+#include &lt;iostream&gt;  
+using namespace std;  
+
+enum Type  {  
+   INT,  
+   FLOAT,  
+   STRING,  
+ };  
+
+void Display(void *pVoid, Type eType)  {    
+   switch (eType)  {  
+	case INT:  
+ 		cout &lt;&lt; *(int*)pVoid &lt;&lt; endl;  
+		break;  
+	case FLOAT:  
+		cout &lt;&lt; *(float*)pVoid &lt;&lt; endl;  
+		break;  
+	case STRING:  
+		cout &lt;&lt; (char*)pVoid &lt;&lt; endl;  
+		break;  
+   }  
+}    
+
+int main()  
+{  
+   int a = 10;  
+   float b = 987.654;  
+   char *c = 
+	"Art is a lie that makes us realize the truth.";  
+   Display(&amp;a;, INT);  
+   Display(&amp;b;, FLOAT);  
+   Display(c, STRING);  
+   return 0;  
+} 
+</pre>
+<p>Output is:</p>
+<pre>
+10
+987.654
+Art is a lie that makes us realize the truth.
+</pre>
+<p>In the code above, the function <strong>Display()</strong> is called with an argument of <strong>&amp;a</strong>, <strong>&amp;b</strong>, and <strong>c</strong> which are pointers. Then it gets them as <strong>void *pVoid</strong> which is a <strong>void*</strong> pointer type.</p>
+<p>Inside the <strong>Display()</strong> function, it prints out after casting them to appropriate types and dereferencing them.</p>
+<p>Here is an example that shows there is no automatic conversion of a <strong>void*</strong> pointer to a pointer to a particular type.</p>
+<pre>
+#include &lt;iostream&gt;  
+
+int main()  
+{  
+   int i;
+   int *pi = 0;
+   char *pc = 0;
+   void *pVoid;
+
+   pVoid = pi;
+   pVoid = pc;
+
+   const int *pci = &amp;i;	// pointer to const int
+   pVoid = pci;		// error
+   return 0;  
+} 
+</pre>
+<p>If we compile it, we get an error:</p>
+<pre>
+cannot convert from 'const int *' to 'void *'
+</pre>
+<p>What we need to do is assign the <strong>const int *</strong> to <strong>const void *</strong> not to <strong>void *</strong> or we take the constantness from the pointer to <strong>const_cast&lt;int *&gt;(pci)</strong>, as in the following code.</p>
+<pre>
+#include &lt;iostream&gt;  
+
+int main()  
+{  
+   int i;
+   int *pi = 0;
+   char *pc = 0;
+   void *pVoid;
+
+   pVoid = pi;
+   pVoid = pc;
+
+   const int *pci = &amp;i;			// pointer to const int
+   //pVoid = pci;			// error
+   <font color="blue">const void *pcVoid = pci;</font>		// using const void*
+   <font color="blue">pVoid = const_cast&lt;int *&gt;(pci);</font>	// cast away constantness
+   return 0;  
+} 
+</pre>
+<div class="subtitle_2nd" id="voidpointers2">void Pointers II</div>
+<p>Not satisfied with my description. Then, how about the following excerpts from a new book "Programming ...., 2008" by Bjarne Stroustrup.</p>
+<p>The type <strong>void*</strong> means "<strong>pointer to some memory that the compiler doesn't know the type of</strong>."<br/>
+We are using <strong>void*</strong> when we want to transmit an address between pieces of code that really don't know each other's type.</p>
+<p>Normally we use it in the following cases:</p>
+<ol>
+<li>A type of pointer that points to memory without knowing what kinds of objects reside in that memory.</li>
+<li>An operation to tell the compiler what kind of type to assume for memory pointed to by one of those pointers.</li>
+</ol>
+<p>There are no objects of type <strong>void</strong>, but we use <strong>void</strong> to mean <strong>no value returned</strong>:</p>
+<pre>
+void v;     // error because there are no object of type void
+void v();   // v() return nothing - v() does not return an object of type void
+</pre>
+<p>A pointer to any object type can be assigned to a <strong>void*</strong>:</p>
+<pre>
+void* ptr1 = new int;          //OK: int* converted to void*
+void* ptr2 = new double[100]   //OK: double* converted to void*
+</pre>
+<p>Because the compiler doesn't know what a <strong>void*</strong> points to, we should let the compiler know:</p>
+<pre>
+void function(void *pvoid)
+{
+	void* pvoid2 = pvoid;     // copying is OK (copying is what void*s are for)
+	double* pd = pvoid;       // error: cannot convert void* to double*
+	*pvoid = 7;               // error: cannot dereference a void*
+	int* pi = static_cast&lt;int*&gt;(pvoid)  // OK: explicit conversion
+}
+</pre>
+<br/>
+<br/>
+<img alt="NamHaiBada" src="images/pointers2/NamHaiBada.png"/>
+<br/><br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="voidpointers3">void Pointers III</div>
+<p>In this section, we will see another example of using <strong>void*</strong> related to <strong>generic</strong> programming. It's a kind of C-way of making a code generic which is equivalent of using templates in C++. Though there are lots of benefit of using templates, one of the downside of template is that the executable could become huge if we use the generic code for hundreds of different types such as int, float, student object, shape object etc. The C version of code we're going to make does not have that issue though it could become harder to code correctly. </p>
+<p>Here is a simple swap program for integer. Later, we'll make it generic using <strong>void*</strong>.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int *ap, int *bp) {
+	int temp = *ap;
+	*ap = *bp;
+	*bp = temp;
+}
+
+int main()
+{
+	int a = 10, b = 20;
+	cout &lt;&lt; a &lt;&lt; " , " &lt;&lt; b &lt;&lt; endl;
+	swap(&amp;a;, &amp;b;);
+	cout &lt;&lt; a &lt;&lt; " , " &lt;&lt; b &lt;&lt; endl;
+}
+</pre>
+<p>Output from the run:</p>
+<pre>
+10 , 20
+20 , 10
+</pre>
+<p>Now, we want the <strong>swap()</strong> to work for any types, int, char, char *, float, double, etc. So, we decided to use our <strong>void *</strong>. Let's look at the code below and find out what's wrong in the code.</p>
+<pre>
+void swap(<font color="blue">void *</font>vp1, <font color="blue">void *</font>vp2) {
+	<font color="blue">void temp = *vp1;</font>
+	*vp1 = *vp2;
+	*vp2 = temp;
+}
+</pre>
+<ol>
+<li>We can't declare a variable as a void type:
+<pre>
+void temp 
+</pre>
+</li>
+<li>We're not allowed dereference void pointer:
+<pre>
+void temp = <font color="blue">*vp1</font>;
+</pre>
+	Why not? <br/>
+	Because we don't know the type, we don't know how many bytes we should embrace from the memory. Should we get 1 byte, 2 bytes, or 4 bytes? We do not have the type information about the thing being addressed at all. <br/>
+	To address this problem for unknown type (or size), we need to get more information from the caller. In other words, the called should pass in the size info as an argument. 
+	</li>
+</ol>
+<p>Here is the final code for generic swap().</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap (void *vp1, void *vp2, const int size) {
+	char *buffer = (char *)malloc(sizeof(char)*size);
+	memcpy(buffer, vp1, size);
+	memcpy(vp1, vp2, size);
+	memcpy(vp2, buffer, size);
+	free(buffer);
+}
+
+int main()
+{
+	int a = 10, b = 20;
+	cout &lt;&lt; a &lt;&lt; " , " &lt;&lt; b &lt;&lt; endl;
+	swap(&amp;a;, &amp;b;, sizeof(int));
+	cout &lt;&lt; a &lt;&lt; " , " &lt;&lt; b &lt;&lt; endl;
+	cout &lt;&lt; endl;
+
+	char *puppy = strdup("Wow");
+	char *kitty = strdup("Mew");
+
+	cout &lt;&lt; puppy &lt;&lt; " , " &lt;&lt; kitty &lt;&lt; endl;
+	swap(&amp;puppy;, &amp;kitty;, sizeof(char **));
+	cout &lt;&lt; puppy &lt;&lt; " , " &lt;&lt; kitty &lt;&lt; endl;
+}
+</pre>
+<p>Output is: </p>
+<pre>
+10 , 20
+20 , 10
+
+Wow , Mew
+Mew , Wow
+</pre>
+<p>In <strong>char *buffer</strong>, actually we don't care whether it's character or not. All we want is to have enough bytes to store something with <strong>size</strong>-byte. In other words, we need storage.</p>
+<p>The function <strong>memcpy()</strong> is similar to <strong>strcpy()</strong> which copies bytes from one location to another location kept on copying until it found <strong>'\0'</strong> and copy the <strong>'\0'</strong> as well. The <strong>memcpy()</strong> is not dedicated to characters and is more generic. It does not pay attention to the <strong>'\0'</strong>. We have to explicitly tell it how many bytes to copy to memory location.</p>
+<br/>
+<p>We can find other usages of <strong>void *</strong> in memory functions:</p>
+<ol>
+<li><a href="smallprograms.html#memcpy">void * memcpy ( void * destination, const void * source, size_t sz)</a> </li>
+<li><a href="smallprograms.html#memmove">void *memmove(void *dest, const void *src, size_t sz)</a> </li>
+<li><a href="smallprograms.html#memset">void * memset ( void * destination, int source, size_t sz )</a></li>
+<li><a href="smallprograms.html#memcmp">int memcmp (const void *s1, const void *s2, size_t sz )</a></li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="pointersandarrays">Pointers and Arrays</div>
+<p><i>"The use of pointer arithmetic is mainly a matter of personal taste; some programmers consider pointer-based algorithms to be more elegant than their array-based counterparts; others simply find them harder to read. Certainly the fact that arrays are passed as pointers makes it natural to write subroutines in the pointer style."</i> - Programming Language Pragmatics, 3rd ed. 2009 (Michael L. Scott).</p>
+<p>For multi-dimensional array, go to <a href="pointers3_function_multidimensional_arrays.html#multi_dimensional_arrays" target="_blank">Multi-dimensional Arrays and Pointers</a>.</p>
+<p>Pointers have a close relationship with arrays. In fact, an array name is a <strong><font color="red">constant pointer</font> to the first element of the array</strong>. When a compiler sees <strong>int a[]</strong> as a parameter passed to a function, the compiler actually converts it to <strong>int * const a</strong>, which can be read as <strong>a</strong> is a <strong>constant pointer</strong> to an integer.</p>
+<p>Since elements of an array are stored in a contiguous block of memory, we can use the array name as a pointer to access to the elements.</p>
+<pre>
+int myArray[5];
+int *pi = myArray;
+</pre>
+<p>Since the array name itself is a pointer to the first element of an array, the last line is equivalent to assigning the address of the first element to the pointer:</p>
+<pre>
+int *pi = &amp;myArray;[0];
+</pre>
+<p>In any case, we created the array on the stack as we can see from the picture below (left):</p>
+<img alt="array_stack_heapA.png" src="images/pointers2/array_stack_heapA.png"/>
+<br/><br/>
+<p>Note that the pointer <strong>pi</strong> is also a variable created on the stack. We can create the array on the heap while the pointer itself is still on the stack (picture in the right side):</p>
+<pre>
+int *pArray = new int[5]
+</pre>
+<br/>
+<p>We can assign an array name to a pointer.</p>
+<pre>
+pi = myArray;
+</pre>
+<p>Then, <strong>pi</strong> and <strong>myArray</strong> are equivalent. The only difference is that we could change the value of pointer <strong>pi</strong> by another one, whereas <strong>myArray</strong> will always point to the first of the 5 elements of type <strong>int</strong> with which it was defined since the array name <strong>myArray</strong> is a constant pointer to the first element of the array . </p>
+<p>So, the following assignment is illegal.</p>
+<pre>
+myArray = pi;
+</pre>
+<p>Again, the reason is we cannot assign a value to a constant. Simple but easy to forget.</p>
+<p>Here is an example showing the relationship between pointers and arrays.</p>
+<pre>
+#include &lt;iostream&gt;  
+using namespace std;
+
+static const int SIZE = 3;
+
+void doubleScores(int * const array) {
+	for (int i = 0; i &lt; SIZE; i++) 
+		array[i] *= 2;
+}
+
+void showScores(const int* const array) {
+	for (int i = 0; i &lt; SIZE; i++) 
+		cout &lt;&lt; array [i] &lt;&lt; endl;
+}
+
+int main()  
+{  	
+	int scores[] = {68,72,75};
+
+	cout &lt;&lt; *scores &lt;&lt; endl;
+	cout &lt;&lt; *(scores+1) &lt;&lt; endl;
+	cout &lt;&lt; *(scores+2) &lt;&lt; endl;
+
+	doubleScores(scores);
+	showScores(scores);
+
+	return 0;
+}
+</pre>
+<p>The code creates an array of scores and then displays them using the array name as a constant pointer. Then, it passes the array name as a constant pointer to a function to double the scores. Next, the code passes the array name to a function as a constant pointer to a constant to show the scores doubled.</p>
+<br/>
+<div class="subtitle_2nd" id="arraynameaspointer">Array Name as a Constant Pointer</div>
+<p>As mentioned before, because an array name is a constant pointer to the first element of the array, we can dereference the name to get the first element.</p>
+<pre>
+cout &lt;&lt; *scores &lt;&lt; endl;
+</pre>
+<p>We can randomly access array elements using an array name as a pointer through using pointer arithmetic. What we do is to add the position number of the element we want to access to the pointer before we dereference it.</p>
+<pre>
+	cout &lt;&lt; *(scores+1) &lt;&lt; endl;
+	cout &lt;&lt; *(scores+2) &lt;&lt; endl;
+</pre>
+<p>In general, following two lines are equivalent.</p>
+<pre>
+array[i]
+*(array + i)
+</pre>
+<br/>
+<div class="subtitle_2nd" id="passingarray">Passing an Array to a Function</div>
+<p>Because an array name is a constant pointer, we can use it to pass an array to a function as shown below.</p>
+<pre>
+doubleScores(scores);
+</pre>
+<p>Our program passes to <strong>doubleScores()</strong> a constant pointer to the first element of the array. As we can see from the function header of <strong>doubleScores()</strong>, the array name is accepted as a constant pointer.</p>
+<pre>
+void doubleScores(int * const array) {
+</pre>
+<p>The function <strong>showScores</strong> also accepts <strong>scores</strong> as a pointer. However, as we can see from the function header, the function accepts it as a constant pointer to a constant.</p>
+<pre>
+void showScores(const int* const array) {
+</pre>
+<p>By passing the array in this way, we keep it safe from being modified inside the function. In fact, all we want to do here is just displaying the array elements.</p>
+<br/>
+<div class="subtitle_2nd" id="passingarraysize">Passing an Array to a Function and the Size</div>
+<p> An array is often passed to a function as a pointer to an element. Therefore, they lose their size, and the receiving function cannot directly tell how many elements are pointed to. This is the cause of many bugs, and the following won't work:</p>
+<pre>
+int getLength(int *myarray)
+{
+    return (sizeof(myarray) / sizeof(myarray[0]));
+}
+</pre>
+<p>We get <strong>1</strong> as a return value. Actually, the above line is the same as this:</p>
+<pre>
+    return (sizeof(myarray) / sizeof(myarray));
+</pre>
+<p>Therefore, we need to pass the size as well when we pass an array.</p>
+<p>Even if we include the size in the brackets,</p>
+<pre>
+int getLength(int myarray[10])
+</pre>
+<p>the compiler simply ignores it. As we learned, the base address of the caller's argument (the memory address of the first array element) is passed to the function. The function works for an argument of any size. Because the function cannot know the size of the caller's array, we either set the size as a constant, pass the size as an argument</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="arrayOfPointers">An Array of Pointers</div>
+<p>An array can contain pointers. </p>
+<pre>
+    char *suit[4] = {"Hearts", "Diamonds", "Clubs", Spades"};
+</pre>
+<p>The <strong>suit[4]</strong> indicates the array has 4 elements. <strong>char *</strong> means the each element of the <strong>suit</strong> array is a <strong>pointer to a character</strong>. The four elements in the array are "Hearts", "Diamonds", "Clubs", and Spades". Each of the element are stored as a character array with <strong>null</strong> at its end. Though it appears  that the 4 character arrays are in the <strong>suit</strong> array, actually, the array has only the pointers. Each pointer points to the first character of each character array. Note that even though the <strong>suit</strong> array has fixed size of 4, it can have arbitrary size of character arrays.</p>
+<p>The following code is an example of passing array of pointers to a function.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+using namespace std;
+
+struct Card 
+{
+	char *face;
+	char *suit;
+};
+
+void setDeck(Card *, char *[], char *[]);
+void shuffle_and_deal(Card *);
+
+int main()
+{		
+	Card deck[52];
+	char *face[] = {"Ace", "Deuce", "Three", "Four", "Five",
+		            "Six", "Seven", "Eight", "Nine", "Ten",
+					"Jack", "Queen", "King"};
+	char *suit[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
+
+	srand((unsigned)time(0));
+
+	setDeck(deck, face, suit);
+	shuffle_and_deal(deck);
+
+	return 0;
+}
+
+void setDeck(Card *aDeck, char *aFace[], char *aSuit[])
+{
+	for(int i = 0; i &lt; 52; i++) {
+		aDeck[i].face = aFace[i % 13];
+		aDeck[i].suit = aSuit[i % 4];
+	}
+}
+
+void shuffle_and_deal(Card *aDeck)
+{
+	// shuffle
+	for(int i = 0; i &lt; 52; i++) {
+		int ii = rand() % 52;
+		Card c = aDeck[i];
+		aDeck[i] = aDeck[ii];
+		aDeck[ii] = c;
+	}
+
+	// deal
+	for (int i = 0; i &lt; 52; i++)  {
+		cout &lt;&lt; i &lt;&lt; ": " &lt;&lt; aDeck[i].face &lt;&lt; " of " &lt;&lt; aDeck[i].suit &lt;&lt; endl;
+	}
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="pointertospointer">Pointers to Pointers</div>
+<p>The declaration of a pointer-to-pointer looks like </p>
+<pre>
+	int **ppi;
+</pre>
+<p>
+where the two asterisks indicate that two levels of pointers are involved. </p>
+<br/>
+<img alt="pointer to pointer" src="images/pointers2/ppi.png"/>
+<br/><br/>
+<p>Double pointer (<strong>**</strong>) parameters are common in linked list or
+other pointer manipulating code. In this case, the value of interest is itself a
+pointer, such as a linked list head pointer.</p>
+<p>Let's think about the <strong>**</strong> in terms of passing parameter between caller and called.<br/>
+Here the value of interest to be shared and changed between the caller and called is
+already a pointer, such as an <strong>int*</strong>. The reference parameter is still a pointer to the value of
+interest, even if the value of interest is itself a pointer. Suppose the value of interest is
+<strong>int*</strong>. This means there is an <strong>int*</strong> value which the caller and called want to share and
+change. Then the reference parameter should be an <strong>int**</strong>.</p>
+<br/>
+<p>Let's look at the following simple example:</p>
+<pre>
+#include &lt;iostream&gt;  
+using namespace std;
+
+int main()  
+{  	
+	int i = 10;
+	int *pi= &amp;i;
+	int **ppi = &amp;pi;
+
+	cout &lt;&lt; i &lt;&lt; "," &lt;&lt;  pi &lt;&lt; "," &lt;&lt; ppi &lt;&lt; endl;
+	cout &lt;&lt; i &lt;&lt; "," &lt;&lt;  *pi &lt;&lt; "," &lt;&lt; **ppi &lt;&lt; endl;
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+10,0017FF28,0017FF1C
+10,10,10
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="deleting_pointer_to_pointer">Deleting a Pointer to a Pointer (Array of objects)</div>
+<br/>
+<img alt="deleting a pointer to pointer Diagram" src="images/pointers2/pArrDiagram.png"/>
+<br/><br/>
+<pre>
+#include &lt;iostream&gt; 
+using namespace std;
+
+int main()  
+{  	
+	int **ppArr = new int *[5];
+	for( int indx = 0; indx &lt; 5; ++indx ) {
+		ppArr[indx] = new int(indx);
+	}
+
+	for( int indx = 0; indx &lt; 5; ++indx ) {
+		<font color="red">delete ppArr[indx];</font>
+	}
+	<font color="red">delete[] ppArr;</font>
+
+	return 0;
+}
+</pre>
+<br/>
+<img alt="deleting a pointer to pointer" src="images/pointers2/ppArr.png"/>
+<br/><br/>
+<p>First, we are creating space for our int in a dynamic array:</p>
+<pre>
+int **ppArr = new int *[5];
+</pre>
+<p>Then, we need to loop through and allocate an int for each spot in the array:</p>
+<pre>
+for( int indx = 0; indx &lt; 5; ++indx ) {
+	ppArr[indx] = new int(indx);
+}
+</pre>
+<p>Note the order that we deallocate the memory in the reverse order of allocation.</p>
+<br/>
+<p>Let's look the the code below, which is different from the code above in terms of memory allocation. The array we created here is dynamically allocated but the pointers point to local instances of integers, and they are stored on the stack not in the heap. So, when we delete this we only need to delete the array:</p>
+<pre>
+delete[] ppArr;
+</pre>
+<br/>
+<img alt="deleting a pointer to pointer Diagram2" src="images/pointers2/pArrDiagram2.png"/>
+<br/><br/>
+<pre>
+#include &lt;iostream&gt; 
+using namespace std;
+
+int main()  
+{  	
+	int **ppArr = new int *[5];
+	for( int indx = 0; indx &lt; 5; ++indx ) {
+		ppArr[indx] = &amp;indx;
+	}
+
+	<font color="blue">/* Not needed
+	for( int indx = 0; indx &lt; 5; ++indx ) {
+		delete ppArr[indx];
+	}
+	*/</font>
+	<font color="red">delete[] ppArr;</font>
+
+	return 0;
+}
+</pre>
+<br/>
+<p>It applies not only to built-in types but also to user defined types (classes):</p>
+<pre>
+#include &lt;iostream&gt;
+ 
+using namespace std;
+
+class MyClass
+{
+public:
+     MyClass(int i = 0) : id(i) {} 
+     ~MyClass() {}  
+	 int getID() { return id; }
+private:
+	 int id;
+};
+ 
+const unsigned ARRAY_SIZE = 5;
+
+int main()
+{
+	 // a pointer to MyClass
+	<font color="blue">MyClass *p;</font>  
+	p = new MyClass(0);
+
+	// array of ARRAY_SIZE pointers to MyClass object
+	<font color="blue">MyClass *pArray[ARRAY_SIZE];</font>
+	for (int i = 0; i &lt; ARRAY_SIZE; i++) {
+         pArray[i] = new MyClass(i);
+	}
+
+	// to allocate memory for an array of pointers dynamically (using the new operator) 
+	<font color="blue">MyClass **ppArray = new MyClass*[ARRAY_SIZE];</font>
+	for (int i = 0; i &lt; ARRAY_SIZE; i++) {
+		 ppArray[i] = new MyClass(i*10);
+	}
+
+	delete p;
+	<font color="red">delete[] pArray;</font>
+
+	for (int i = 0; i &lt; ARRAY_SIZE; i++) {
+		<font color="red">delete ppArray[i];</font>
+	}
+
+	<font color="red">delete [] ppArray;</font>
+	
+	return 0;
+}
+</pre>
+<br/>
+<img alt="deleting a pointer to pointer Visual Studio 2010" src="images/pointers2/pArrVStudio.png"/>
+<br/><br/>
+<p>See how the <strong>delete/delete[]</strong> is used in hashing. (<a href="../Algorithms/hashing.html" target="_blank">hash_table</a>)</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pointertospointerExample1">Pointers to Pointers - Example 1</div>
+<p>What are the usages of pointers to pointers? <br/>
+Let's look at the following example.</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void f(char *c) {
+	c = (char *)malloc(3);
+	c[0] = 'p';
+	c[1] = 't';
+	c[2] = 0;
+	printf("function: %s\n",c);
+}
+
+int main()
+{
+	char *str = 0;
+	f(str);
+	printf("main: %s",str);
+        free(str);
+}
+</pre>
+<p>The intention is to set <strong>str</strong> as a pointer to a string "pt". But the output we get is:</p>
+<pre>
+function: pt
+main: (null)
+</pre>
+<p>What we want to do is to make the pointer <strong>str</strong> to point to a new memory allocated within the function. In other words, we want to change <strong>str</strong> which is char *. To change the value of char *, we need to pass a pointer to it. <br/>Note that in C, everything is passed <strong>by value</strong>. A general rule  is, <strong>we cannot change the value of a parameter passed to a function</strong>. If we want to pass something that needs to be changed, we need to pass a pointer to it.<br/>
+So, in our case, we need to past a pointer to char *, i.e., char **.</p>
+<p>This is a new code with the fix:</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void f(<font color="red">char **c</font>) {
+	<font color="red">*c</font> = (char *)malloc(3);
+	<font color="red">(*c)</font>[0] = 'p';
+	<font color="red">(*c)</font>[1] = 't';
+	<font color="red">(*c)</font>[2] = 0;
+	printf("function: %s\n",<font color="red">*c</font>);
+}
+
+int main()
+{
+	char *str = 0;
+	f(<font color="red">&amp;str;</font>);
+	printf("main: %s",str);
+        free(str);
+}
+</pre>
+<p>This time, we get:</p>
+<pre>
+function: pt
+main: pt
+</pre>
+<p>In summary, in our function, to change a <strong>char * </strong> value, 
+we need pass a <strong><font color="red">pointer to </font></strong>a <strong>char *</strong>.</p>
+<p>If you do not want to change the pointer in the function, you can just pass the pointer with allocated memory.</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void f(char *c) {
+	c[0] = 'p';
+	c[1] = 't';
+	c[2] = 0;
+	printf("function: %s\n",c);
+}
+
+int main()
+{
+	char *str = <font color="red">(char *)malloc(3)</font>;
+	f(str);
+	printf("main: %s",str);
+	free(str);
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pointertospointerExample2">Pointers to Pointers - Example 2</div>
+Another example for the use of  pointers to pointers is returning pointers from functions, via pointer arguments rather than as the formal return value. 
+<pre>
+#include &lt;iostream&gt;  
+using namespace std;
+
+int allocString(int len, char **ppChar) {
+	char *p = new char[len + 1];
+	if(p == NULL)
+		return 0;
+	*ppChar = p;
+	return 1;
+}
+
+int main()  
+{  	
+	char *string = "Pablo Picasso!";
+	char *copyString;
+	if(allocString(strlen(string), &amp;copyString))
+		strcpy(copyString, string);
+	else	
+		fprintf(stderr, "out of memory\n");
+
+	cout &lt;&lt; "string = " &lt;&lt; string &lt;&lt; endl;
+	cout &lt;&lt; "copyString = " &lt;&lt; copyString &lt;&lt; endl;
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+string = Pablo Picasso!
+copyString = Pablo Picasso!
+</pre>
+<p>Now, the function <strong>allocString()</strong> wants to <strong>return a pointer</strong> via its argument. The corresponding parameter will then have to be a pointer to a pointer, <strong>char **ppChar</strong>. The  function which tries to allocate memory for a string of length n, and which returns zero (``false'') if it fails and 1 (nonzero, or ``true'') if it succeeds, returning the actual pointer to the allocated memory via a pointer: </p>
+<p>The example above is not a good way of memory allocation at all. But it shows how the pointer to a pointer is being used. Another better and more practical example that uses pointer to a pointer is deleting a node from the linked list which we'll discuss in later chapter of this tutorial such as <a href="linkedlist.html">linked list</a>.</p>
+<p>Let's look at another example. We declare an array of cstrings:</p>
+<img alt="arrayOfCStrings" src="images/pointers2/arrayOfCStrings.png"/>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void arrayTest(char **p) {
+	cout &lt;&lt; " *p = " &lt;&lt; *p &lt;&lt; endl;
+	cout &lt;&lt; " *(p+1) = " &lt;&lt; *(p+1) &lt;&lt; endl;
+}
+
+int main()
+{
+	char *notes[] = {"C#", "Eb", "A", "Bb", "F#"};
+	char **pNotes[5];
+	for (int i = 0; i &lt; 5; i++) {
+		pNotes[i] = &amp;notes[i];
+		cout &lt;&lt; "pNotes[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; pNotes[i] &lt;&lt; endl; 
+		cout &lt;&lt; "*pNotes[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; *pNotes[i] &lt;&lt; endl;
+	}
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "notes[1] =" &lt;&lt; notes[1] &lt;&lt; endl;
+	cout &lt;&lt; "notes[1] + 1 =" &lt;&lt; notes[1] + 1 &lt;&lt; endl;
+	cout &lt;&lt; "*(notes + 1) = " &lt;&lt; *(notes + 1)&lt;&lt; endl;
+	cout &lt;&lt; "*(notes + 2) = " &lt;&lt; *(notes + 2)&lt;&lt; endl;
+
+	arrayTest(notes);
+	return 0;
+
+}
+</pre>
+<p>Output is:</p>
+<pre>
+pNotes[0] = 0017FF18
+*pNotes[0] = C#
+pNotes[1] = 0017FF1C
+*pNotes[1] = Eb
+pNotes[2] = 0017FF20
+*pNotes[2] = A
+pNotes[3] = 0017FF24
+*pNotes[3] = Bb
+pNotes[4] = 0017FF28
+*pNotes[4] = F#
+
+notes[1] =Eb
+notes[1] + 1 =b
+*(notes + 1) = Eb
+*(notes + 2) = A
+ *p = C#
+ *(p+1) = Eb
+</pre>
+<p>Note that <strong>notes</strong> represent the same address as <strong>notes[0]</strong>. However, when we add <strong>1</strong>, compiler does point arithmetic differently. In other words, the <strong>1</strong> in <strong>notes+1</strong> hops to another <strong>cstring</strong> while the <strong>1</strong> in <strong>notes[]+1</strong> hops to another <strong>character</strong>.</p>
+<p>So, in cases when we want to pass an array of character strings (<strong>char **notes</strong>) for string comparison with the key string, what we need is hopping array by array as we're doing in <strong>arrayTest()</strong> by passing an <strong>array of pointers</strong> to the cstring. In other words, we need just one hop (one string at a time) not two hops(one character at a time).</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lsearch">Char **: Linear Search Example</div>
+<br/>
+<img alt="arrayOfCStringsB" src="images/pointers2/arrayOfCStringsB.png"/>
+<br/>
+<p>In this section, we're going to do linear search to find a matching cstrings for a key. The search routine is made generic using <strong>void *</strong>:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int StrCmp(void *vp1, void *vp2)
+{
+	char *s1 = *(char **)vp1;
+	char *s2 = *(char **)vp2;
+	return strcmp(s1,s2);
+}
+
+void* lsearch(void *key, void *base, int n, int elemSize,
+			  int (*cmpfn)(void *, void *))
+{
+	for(int i = 0; i &lt; n; i++) {
+		void *elemAddr = (char *)base + i * elemSize;
+		if(cmpfn(key, elemAddr) == 0) return elemAddr;
+	}
+	return NULL;
+}
+
+int main()
+{
+	char *notes[] = {"C#", "Eb", "A", "Bb", "F#"};
+	char *keyNote = "F#";
+	char **found =
+		(char **)lsearch(&amp;keyNote;, notes, 5, sizeof(char *), StrCmp);
+	cout &lt;&lt; "*found = " &lt;&lt; *found;
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+*found = F#
+</pre>
+<p>In the above code, let's look at the arguments of the <strong>lsearch()</strong> function:</p>
+<pre>
+char **found =
+	(char **)lsearch(&amp;keyNote;, notes, 5, sizeof(char *), StrCmp);
+</pre>
+<p>We're passing in <strong>notes</strong> which is equivalent of <strong>&amp;notes[0]</strong> and we know it's really a <strong>char **</strong>.</p>
+<p>In the 4th argument, we're passing in <strong>sizeof(char *)</strong> rather than <strong>sizeof(char **)</strong>, because we're interested in the <strong>byte width</strong> of each cstring element in the array. Though the size of <strong>char **</strong> is the same as <strong>char *</strong>, we want it to be <strong>char *</strong> for readability purpose by showing the real data type resides in the array.</p>
+<p>The last argument, <strong>StrCmp()</strong> is the comparison function for string and it's different from <strong>strCmp()</strong> of C-library.</p>
+<p>For the first argument <strong>&amp;keyNote;</strong>, we could just pass in <strong>keyNote</strong> without <strong>&amp;</strong>. But it's more consistent if we match the type of the <strong>notes</strong> which is <strong>char **</strong>. So, we're passing in <strong>&amp;keyNote;</strong>.</p>
+<p>Let's look at the function <strong>StrCmp()</strong>.</p>
+<pre>
+int StrCmp(void *vp1, void *vp2)
+{
+	char *s1 = *(char **)vp1;
+	char *s2 = *(char **)vp2;
+	return strcpm(s1,s2);
+}
+</pre>
+<p>In <strong>StrCmp()</strong>, when we're doing <strong>*(char **)vp1;</strong>, the <strong>(char **)</strong> means <strong>vp1</strong> is two hops away from the character string and really it is.</p>
+<br/>
+<br/>
+<br/>
+<img alt="SeoRakMt" src="images/pointers2/SeoRakMt.png"/>
+<br/><br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/pointers2_voidpointers_arrays.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:02:05 GMT -->
+</html>
+

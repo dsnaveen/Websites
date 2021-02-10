@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android15Rotation.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:20:35 GMT -->
+<head>
+  <title>Android 4 - Configuring Rotation - 2017</title>
+  <meta content="Android and Eclipse Tutorial -  Configuring Rotation" name="description" />
+  <meta content="Android 4, Eclipse, Tutorial, Configuring Rotation, onSaveInstanceState, onRetainNonConfigurationInstance, onConfiguratuionChanged" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Android 4
+15. Configuring Rotation        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../Linux/images/emperor_penguins.png" alt="linux logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd">
+<p>This chapter</p></div>
+<ol>
+<li>
+<a href="android15Rotation.html#Rotation">15.0 Rotation</a>
+</li>
+<li>
+<a href="android15Rotation.html#UsingonSaveInstanceState">15.1 Using onSaveInstanceState()</a>
+</li>
+<li>
+<a href="android15Rotation.html#UsingonRetainNonConfigurationInstance">15.2 Using onRetainNonConfigurationInstance()</a>
+</li>
+<li>
+<a href="android15Rotation.html#Using onConfiguratuionChanged">15.3 Using onConfiguratuionChanged()</a>
+</li>
+</ol>
+<br/>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<br/>
+<div class="subtitle" id="Rotation">15.0 Rotation</div>
+<br/>
+ Use of this code assumes agreement with the Google Custom Search Terms of Service. 
+ The terms of service are available at http://www.google.com/cse/docs/tos.html 
+<form action="http://www.google.com/cse" id="searchbox_demo" name="cse">
+<input name="cref" type="hidden" value=""/>
+<input name="ie" type="hidden" value="utf-8"/>
+<input name="hl" type="hidden" value=""/>
+<input name="q" size="40" type="text"/>
+<input name="sa" type="submit" value="Search"/>
+</form>
+<script src="http://www.google.com/cse/tools/onthefly?form=searchbox_demo&amp;lang=" type="text/javascript"></script>
+<p>Android has a number of ways for us to handle screen rotation, so our application can properly handle orientation, portrait or landscape. But these just help us detect and manage the rotation process. So, we are still required to make sure we have layouts that look decent  in each orientation. </p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="UsingonSaveInstanceState">15.1 Using onSaveInstanceState() </div>
+<p>Android, by default, destroys and recreates our activity on a rotation, we may only need to hook into the same <strong>onSaveInstanceState()</strong> if our activity were destroyed. Implement that method in our activity and fill in the supplied <strong>Bundle</strong> with enough information to get us back to our current state. Then, in <strong>onCreate()</strong> pick the data out of the <strong>Bundle</strong> and use it to bring our activity back to the way it was. </p>
+<p>Let's look at the two layouts we're going to use. </p>
+<p>The first layout: <strong>res/layout/main.xml</strong> </p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android=
+	"http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"&gt;
+	&lt;Button android:id="@+id/pick"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:text="@string/pick"
+		android:enabled="true"/&gt;
+	&lt;Button android:id="@+id/view"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:text="@string/view"
+		android:enabled="false"/&gt;
+&lt;/LinearLayout&gt;
+</pre>
+<p>The second layout: <strong>res/layout-land/main.xml</strong> </p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android=
+	"http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"&gt;
+	&lt;Button android:id="@+id/pick"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:text="@string/pick"
+		android:enabled="true"/&gt;
+	&lt;Button android:id="@+id/view"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:text="@string/view"
+		android:enabled="false"/&gt;
+&lt;/LinearLayout&gt;
+</pre>
+<p><strong>strings.xml</strong>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+
+    &lt;string name="hello"&gt;Hello World, RotationA!&lt;/string&gt;
+    &lt;string name="app_name"&gt;RotationA&lt;/string&gt;
+    &lt;string name="view"&gt;View&lt;/string&gt;
+    &lt;string name="pick"&gt;Pick&lt;/string&gt;
+
+&lt;/resources&gt;
+</pre>
+<p>The two layouts are essentially the same except the lines for <strong>android:orientation</strong>. <br/>
+The layout contains a pair of buttons, each taking up half of the screen. In portrait mode, the buttons are stacked while in landscape more, they are side by side. </p>
+<p>Any rotation change, <strong>Ctrl+F12</strong> for emulator, will cause the layout to change.</p>
+<p>Our application lets us pick a contact, and then view the contact, via separate buttons. The View button is enabled only after a contact has been selected.</p>
+<pre>	 
+package com.bogotobogo.rotationA;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.view.View;
+import android.widget.Button;
+
+public class RotationA extends Activity {
+	static final int PICK_REQUEST=1337;
+	Button viewButton=null;
+	Uri contact=null;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
+		Button btn=(Button)findViewById(R.id.pick);
+		
+		btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent i=new Intent(Intent.ACTION_PICK,
+						Contacts.CONTENT_URI);
+
+				startActivityForResult(i, PICK_REQUEST);
+			}
+		});
+		
+		viewButton=(Button)findViewById(R.id.view);
+		
+		viewButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				startActivity(new Intent(Intent.ACTION_VIEW, contact));
+			}
+		});
+		
+		restoreMe(savedInstanceState);
+		
+		viewButton.setEnabled(contact!=null);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+						Intent data) {
+		if (requestCode==PICK_REQUEST) {
+			if (resultCode==RESULT_OK) {
+				contact=data.getData();
+				viewButton.setEnabled(true);
+			}
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		if (contact!=null) {
+			outState.putString("contact", contact.toString());
+		}
+	}
+	
+	private void restoreMe(Bundle state) {
+		contact=null;
+		
+		if (state!=null) {
+			String contactUri=state.getString("contact");
+			
+			if (contactUri!=null) {
+				contact=Uri.parse(contactUri);
+			}
+		}
+	}
+}
+</pre>
+<br/>
+<p>Initially, a Uri named contact is null. It is set as the result of spawning the <strong>ACTION_PICK</strong> subactivity. </p>
+<pre>
+		public void onClick(View view) {
+			Intent i=new Intent(Intent.ACTION_PICK,
+					Contacts.CONTENT_URI);
+
+			startActivityForResult(i, PICK_REQUEST);
+		}
+</pre>
+<p>Its string representation is saved in <strong>onSaveInstanceState()</strong> and restored in <strong>restoreMe()</strong> which is called from <strong>onCreate()</strong>. If the contact is not null, the View button is enabled and can be used to view the chosen contact.</p>
+<br/>
+<img alt="RotationAPortrait" src="../images/Android/Android15/RotationAPortrait.png"/> <br/>
+<br/>
+<img alt="RotationALandscape" src="../images/Android/Android15/RotationALandscape.png"/> <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="UsingonRetainNonConfigurationInstance">15.2 Using onRetainNonConfigurationInstance()</div>
+<p>The problem with <strong>onSaveInstanceState()</strong> is that we are limited to a <strong>Bundle</strong>. That's because this callback is also used in cases where our whole process might be terminated. So the data to be saved must be something that can be serialized and does not have any dependencies on our running process. </p>
+<p>One way to get past this is to use <strong>onRetainNonConfigurationInstance()</strong> instead of <strong>onSaveInstanceState()</strong> for light changes like a rotation. Our activity's <strong>onRetainNonConfigurationInstance()</strong> callback can return an Object, which we can retrieve later via <strong>getLastNonConfigurationInstance()</strong>.</p>
+<p>Here is our Java code: </p>
+<pre>
+package com.bogotobogo.rotationB;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.view.View;
+import android.widget.Button;
+
+public class RotationTwoDemo extends Activity {
+	static final int PICK_REQUEST=1337;
+	Button viewButton=null;
+	Uri contact=null;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
+		Button btn=(Button)findViewById(R.id.pick);
+		
+		btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent i=new Intent(Intent.ACTION_PICK,
+														Contacts.CONTENT_URI);
+
+				startActivityForResult(i, PICK_REQUEST);
+			}
+		});
+		
+		viewButton=(Button)findViewById(R.id.view);
+		
+		viewButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				startActivity(new Intent(Intent.ACTION_VIEW, contact));
+			}
+		});
+		
+		restoreMe();
+		
+		viewButton.setEnabled(contact!=null);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode							Intent data) {
+		if (requestCode==PICK_REQUEST) {
+			if (resultCode==RESULT_OK) {
+				contact=data.getData();
+				viewButton.setEnabled(true);
+			}
+		}
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return(contact);
+	}
+	
+	private void restoreMe() {
+		contact=null;
+		
+		if (getLastNonConfigurationInstance()!=null) {
+			contact=(Uri)getLastNonConfigurationInstance();
+		}
+	}
+}
+</pre>
+<br/>
+<p>We override <strong>onRetainNonConfigurationInstance()</strong>, returning the actual <strong>Uri</strong> for our contact, rather than a string. </p>
+<pre>	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return(contact);
+	}
+</pre>
+<p>In turn, <strong>restoreMe()</strong> calls <strong>getLastNonConfigurationInstance()</strong>. Then if we get a non-null response, 
+we hold onto it as our contact 
+<pre>
+	private void restoreMe() {
+		contact=null;
+		
+		if (getLastNonConfigurationInstance()!=null) {
+			contact=(Uri)getLastNonConfigurationInstance();
+		}
+	}
+</pre>
+and enable the View button in <strong>onActivityResult()</strong>.</p>
+<pre>
+	if (requestCode==PICK_REQUEST) {
+		if (resultCode==RESULT_OK) {
+			contact=data.getData();
+			viewButton.setEnabled(true);
+		}
+	}
+</pre>
+<p>The advantage here is that we are passing around the <strong>Uri</strong> instead of a string. That could be a big saving when our state is much more complicated including threads, sockets, and other things we cannot pack into a <strong>Bundle</strong>.</p>
+<p>But this approach may be too intrusive to our application. So, we may want to tell Android that we'll do our rotation, and we do not want any assistance from the framework as described in the next section.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="Using onConfiguratuionChanged">15.3 Using onConfiguratuionChanged() </div>
+<p>To handle rotations on our own, we need to do this: </p>
+<ol>
+<li>Put an <strong>android:configChanges</strong> entry in our <strong>AndroidManifest.xml</strong> file, listing the configuration changes we want to handle ourselves without allowing Android to handle for us.</li>
+<li>Implement <strong>onConfiguratuionChanged()</strong> in our Activity, which will be called when one of the configuration changes we listed in <strong>android:configureChanges</strong> occurs.</li>
+</ol>
+<p>Now we can bypass the activity destruction process at any configuration change, and we simply get a callback letting us know of the change. </p>
+<p>In this example, as in the previous two examples, we're using the same layouts. But our manifest and Java source code require some changes. We are no longer concerned with saving our state, but rather with updating our UI to deal with the layout.</p>
+<p>Manifest file:<p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bogotobogo.rotationc"
+    android:versionCode="1"
+    android:versionName="1.0" &gt;
+
+    &lt;uses-sdk 
+        android:minSdkVersion="8"
+        android:targetSdkVersion="14" /&gt;
+
+    &lt;application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" &gt;        
+        &lt;activity
+            android:name=".RotationC"
+            android:label="@string/app_name" 
+            android:configChanges="keyboardHidden|orientation"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+</pre>
+<p>Here, we state that we will handle <strong>keyboardHidden</strong> and <strong>orientation</strong> configuration changes ourselves.</p>
+<pre>
+android:configChanges="keyboardHidden|orientation"&gt;
+</pre>
+<p>This covers us for any cause of the rotation, whether it is a sliding keyboard or a physical rotation. Note that this is set on the activity, not the application. </p>
+<p>And the Java code:</p>
+<pre>
+package com.bogotobogo.rotationC;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.view.View;
+import android.widget.Button;
+
+public class RotationThreeDemo extends Activity {
+	static final int PICK_REQUEST=1337;
+	Button viewButton=null;
+	Uri contact=null;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		setupViews();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+					Intent data) {
+		if (requestCode==PICK_REQUEST) {
+			if (resultCode==RESULT_OK) {
+				contact=data.getData();
+				viewButton.setEnabled(true);
+			}
+		}
+	}
+
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		setupViews();
+	}
+	
+	private void setupViews() {
+		setContentView(R.layout.main);
+		
+		Button btn=(Button)findViewById(R.id.pick);
+		
+		btn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent i=new Intent(Intent.ACTION_PICK,
+								Contacts.CONTENT_URI);
+				startActivityForResult(i, PICK_REQUEST);
+			}
+		});
+		
+		viewButton=(Button)findViewById(R.id.view);
+		
+		viewButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				startActivity(new Intent(Intent.ACTION_VIEW, contact));
+			}
+		});	
+		viewButton.setEnabled(contact!=null);
+	}
+}
+</pre>
+<p>The <strong>onCreate()</strong> implementation delegates most of its logic to a <strong>setupViews()</strong> method
+<pre>
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		setupViews();
+	}
+</pre>
+which loads the layout and sets up the buttons. <br/> This logic was broken into its own method because it is also called from <strong>onConfigurationChanged()</strong>. </p>
+<pre>
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		setupViews();
+	}
+</pre>
+<p>The results are the same as the other cases (rotationA and rotationB):</p>
+<br/>
+<img alt="RotationC_Contacts" src="../images/Android/Android15/RotationC_Contacts.png"/> <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br /><br />
+<h1>Android Tutorials</h1>
+   <br /><br />
+   <a href="android.html">1. Introduction</a></li>
+   <br /><br />
+   <a href="android2MyFirstApplication.html">2. My First Android Application</a></li>
+   <br /><br />
+   <a href="android3BackToHelloWorld.html">3. Back to Hello World Again</a></li>
+   <br /><br />
+   <a href="android4UserInterface.html">4. Basic User Interface</a></li>
+   <br /><br />
+   <a href="android5Layouts.html">5. Layouts</a></li>
+   <br /><br />
+   <a href="android6ListViewSpinnerGridViewGallery.html">6. ListView, Spinner, GridView, and Gallery</a></li>
+   <br /><br />
+   <a href="android7dvancedListView.html">7. Advanced ListView Widget</a></li>
+   <br /><br />
+   <a href="android8DatePickerTimePickerClocks.php">8. DatePicker, TimePicker, and Clocks</a></li>
+   <br /><br />
+   <a href="android9TabWidgetFlipper.html">9. TabWidget, Flipper, and SlidingDrawer</a></li>
+   <br /><br />
+   <a href="android10Menus.html">10. Menus</a></li>
+   <br /><br />
+   <a href="android11JUnitTest.html">11. Android JUnit Test</a></li>
+   <br /><br />
+   <a href="android12ActivityTesting.html">12. Activity Testing</a></li>
+   <br /><br />
+   <a href="android13Intent.html">13. Intent</a></li>
+   <br /><br />
+   <a href="android14OnNotepad.php">14. On Notepad Example</a></li>
+   <br /><br />
+   <a href="android15Rotation.html">15. Configuring Rotation</a></li>
+   <br /><br />
+   <a href="android16Preferences.html">16. Preferences</a></li>
+   <br /><br />
+   <a href="android17MapView.html">17. Map View</a></li>
+   <br /><br />
+   <a href="android18Manifest.html">18. Manifest</a></li>
+   <br /><br />
+   <a href="android19Animation.html">19. Animation - Frame By Frame, Layout, and View</a></li>
+   <br /><br />
+   <a href="android20NotificationService.html">20. Notification and Service</a></li>
+   <br /><br />
+   <a href="android21ContentProvider.html">21. Content Provider</a></li>
+   <br /><br />
+   <a href="android22Threads.html">22. Threads</a></li>
+   <br /><br />
+   <a href="android23HTTP.html">23. HTTP Internet Connection</a></li>
+   <br /><br />
+   <a href="android24Media.html">24. Media</a></li>
+   <br /><br />
+   <a href="android25ActivityLifeCycle.html">25. Activity Life Cycle</a></li>
+   <br /><br />
+   <a href="androidAppsMortgageCalculator.html">Apps - Mortagage Calculator</a></li>
+   <br /><br />
+          
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android15Rotation.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:20:52 GMT -->
+</html>
+

@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/operatoroverloading.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:00:59 GMT -->
+<head>
+  <title>C++ Tutorial: Operator Overloading I - 2017</title>
+  <meta content="C++ Tutorial: Operator Overloading, functions, default arguments, function overloading" name="description" />
+  <meta content="C++ Tutorial, Operator Overloading, ++, --, increment, decrement, index [], function operator, ostream(<<), istream(>>)" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial
+ Operator Overloading i - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="functions">Functions</div>
+<br/>
+<div class="subtitle_2nd" id="default_args">Default Arguments</div>
+<p>A <strong>default argument</strong> is a value that will be used automatically if we omit the corresponding actual argument when we call a function.</p>
+<p>How do we set a default value? We must use the function prototype because the compiler looks at the prototype to check how many arguments a function uses.</p>
+<p>For example:
+<pre>
+int f(const char *s, int n = 2013)
+</pre>
+We want the function to return a new int, so its type is <strong>int</strong>. We want <strong>n</strong> to have a default value of <strong>2013</strong>, so we assign that value to <strong>n</strong>. If we leave <strong>n</strong> alone, it has the value <strong>2013</strong>, but if we pass an argument, the new value overwrites the <strong>2013</strong>
+</p>
+<p>When we use a function with an argument list, we must add defaults from right to left. In other words, we can't provide a default value for a particular argument unless we also provide defaults for all the arguments to its right:
+</p>
+<pre>
+float f1(int l, int m = 2, int n = 3);   // OK
+float f2(int l, int m = 2, int n);       // Not OK
+</pre>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="function_overloading">Function Overloading</div>
+<p><strong>Function overloading</strong> lets us use multiple functions sharing the same name. We usually utilize the function overloading to design a family of functions that do the same thing while using different argument lists.
+</p>
+<p>The key to function overloading is a function's argument list (<strong>function signature</strong>). If two functions use the same number and types of arguments in the same order, they have the same signature. C++ allows  us to define two multiple functions by the same name, provided that the functions have different signatures. The signature can differ:</p>
+<ol>
+<li>in the number of arguments</li>
+<li>or in the type of arguments</li>
+<li>or both</li>
+</ol>
+<p>For example, we defines several versions of <strong>f()</strong> with the following prototypes:</p>
+<pre>
+void f(const char *s, int n);  // (a)
+void f(double d, int n);       // (b)
+void f(long l, int n);         // (c)
+void f(int m, int n);          // (d)
+void f(const char *s);         // (e)
+</pre>
+<p>Some signatures which appears to be different but actually both have the same signature:</p>
+<pre>
+double square(double d);
+double square(double &amp;d;);
+</pre>
+<p>But we need to look with compiler's perspective. To call them, we use:</p>
+<pre> 
+square(z);
+</pre>
+<p>and the <strong>z</strong> argument matches both <strong>double d</strong> and the <strong>double &amp;d;</strong>, thus the compiler has no way of knowing which function to use. So, to avoid such ambiguity, when it checks function signatures, the compiler considers a reference to a type and the type itself to be the same signature.</p>
+<p>Note that in the function-matching process, the compiler discriminate between <strong>const</strong> and <strong>non-const</strong> variables:</p>
+<pre>
+int f(char *s);        // overloaded
+int f(const char *s);  // overloaded
+</pre>
+<p>Also note that the signature, not the return type, enables function overloading. For instance, the following two have the same signature, and can't not be overloaded.</p>
+<pre>
+float f(int m, int *n)   // Not overloaded
+double f(int m, int *n)  // Not overloaded
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="OperatorOverloading">Operator Overloading</div>
+<p>Here is a very simple code that shows the essence of operator overloadings: '+', '++ (post)', and '++ (pre)'.
+If you do not understand what's going on in the code, please do not worry, at the end of this chapter, you will know how it works.</p>
+<pre>
+class A
+{
+public:
+	A(){}
+	explicit A(int n):data(n) {}
+	int data;
+	A&amp; operator+(A&amp;);
+	A operator++(int);
+	A&amp; operator++();
+};
+
+// + overloading
+A&amp; A::operator+(A&amp; obj)
+{
+	A tmp = *this;
+	tmp.data = this-&gt;data + obj.data;
+	return tmp;
+}
+
+// post increment (x++) overloading
+// returns original value, and then increment the value
+// copy needed
+// return a locally created object. 
+// Note that it's not returning a reference since it's a temporary obj.
+A A::operator++(int)
+{
+	A tmp = *this;
+	this-&gt;data = (this-&gt;data)++;
+	return tmp;
+}
+
+// pre increment (++x) overloading
+// returns incremented tvalue
+// no copy necessary
+A&amp; A::operator++()
+{
+	this-&gt;data = (this-&gt;data)++;
+	return *this;
+}
+
+int main()
+{
+	A obj1(10);
+	A obj2(20);
+	A obj3 = obj1 + obj2;  // obj3.data = 10 + 20 = 30
+	A obj4 = obj1++;       // obj4.data = 10, obj1.data = 11 
+	A obj5 = ++obj2;       // obj5.data = 21, obj2.data = 21
+
+	return 0;
+}
+</pre>
+<p>Operator overloading extends the overloading concept to operators so that we can assign new meanings to C++ operators. It lets us extend operator overloading to user-defined types. That is by allowing us to use the "+" to add two objects. The compiler determines which definition of addition to use depending on the number and type of operands. Overloaded operators can often make code look more natural. In other words, operator overloading can be very useful to make our class look and behave more like built-in types.</p>
+<p>To overload an operator, we use a special function, <strong>operator function</strong>. For example, when we overload "+":</p>
+<pre>
+operator+(argument_list)
+</pre>
+<p>Suppose, for example, that we have a <strong>MyComplex</strong> class for which we define an <strong>operator+()</strong> member function to overload the <strong>+</strong> operator so that it adds one complex number to another complex number. Then, if <strong>c1, c2, c3</strong> are all objects of <strong>MyComplex</strong> class, we can write this:</p>
+<pre>
+c3 = c1 + c2;
+</pre>
+<p>The compiler, recognizing the operands as belonging to the <strong>MyComplex</strong> class, replaces the operator with the corresponding operator function:</p>
+<pre>
+c3 = c1.operator+(c2);
+</pre>
+<p>The function then use the <strong>c1</strong> object which invokes the method, and the <strong>c2</strong> object is passed as an argument to calculate the sum, and returns it. Note that we use assignment operator <strong>=</strong> which is also need to be overload.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="OperatorCannotBeOverloaded">Operators that cannot be overloaded</div>
+<p>The following operators cannot be overloaded:<br/>
+<ol>
+<li><strong>.</strong> member selection</li>
+<li><strong>.*</strong> member selection with pointer-to-member</li>
+<li><strong>?:</strong> conditional</li>
+<li><strong>::</strong> scope resolution</li>
+<li><strong>#</strong> stringizing operator</li>
+<li><strong>##</strong> merging operator</li>
+<li><strong>sizeof</strong> object size information</li>
+<li><strong>typeid</strong> object type information</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingAssignment">Overloading '='</div>
+<p>In this section we'll learn how to overload the assignment (=) operator between two objects of the Complex class. </p>
+<p>Let's look at the following code:</p>
+<pre>
+class MyComplex
+{
+private:
+	double real, imag;
+public:
+	MyComplex(){
+		real = 0; 
+		imag = 0;
+	}
+
+	MyComplex(double r, double i) {
+		real = r;
+		imag = i;
+	}
+
+	double getReal() const {
+		return real;
+	}
+
+	double getImag() const {
+		return imag;
+	}
+
+	<font color="red">MyComplex &amp; operator=(const MyComplex &amp;);</font>
+};
+<font color="red">
+MyComplex &amp; MyComplex::operator=(const MyComplex&amp; c) {
+	real = c.real;
+	imag = c.imag;
+	return *this;
+}
+</font>
+</pre>
+<pre>
+#include &lt;iostream&gt;
+
+int main()
+{
+	using namespace std;
+
+	MyComplex c1(5,10);
+	MyComplex c2(50,100);
+	cout &lt;&lt; "c1= " &lt;&lt; c1.getReal() &lt;&lt; "+" &lt;&lt; c1.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	c2 = c1;
+	cout &lt;&lt; "assign c1 to c2:" &lt;&lt; endl; 
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+}
+</pre>
+<p>We get the output as expected:</p>
+<pre>
+c1= 5+10i
+c2= 50+100i
+assign c1 to c2:
+c2= 5+10i
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingAddition">Overloading '+'</div>
+<p>In this section we'll learn how to overload the addition (+) operator between two objects of the Complex class. </p>
+<p>Let's look at the following code which has '+' additional overloading function:</p>
+<pre>
+class MyComplex
+{
+private:
+	double real, imag;
+public:
+	MyComplex(){
+		real = 0; 
+		imag = 0;
+	}
+
+	MyComplex(double r, double i) {
+		real = r;
+		imag = i;
+	}
+
+	double getReal() const {
+		return real;
+	}
+
+	double getImag() const {
+		return imag;
+	}
+
+	MyComplex &amp; operator=(const MyComplex &amp;);
+	<font color="red">MyComplex &amp; operator+(const MyComplex&amp; );</font>
+
+};
+
+MyComplex &amp; MyComplex::operator=(const MyComplex&amp; c) {
+	real = c.real;
+	imag = c.imag;
+	return *this;
+}
+<font color="red">
+MyComplex &amp; MyComplex::operator+(const MyComplex&amp; c) {
+	real += c.real;
+	imag += c.imag;
+	return *this;
+}</font>
+
+#include &lt;iostream&gt;
+
+int main()
+{
+	using namespace std;
+
+	MyComplex c1(5,10);
+	MyComplex c2(50,100);
+	cout &lt;&lt; "c1= " &lt;&lt; c1.getReal() &lt;&lt; "+" &lt;&lt; c1.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	c2 = c1;
+	cout &lt;&lt; "assign c1 to c2:" &lt;&lt; endl; 
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; endl;
+
+	MyComplex c3(10,100);
+	MyComplex c4(20,200);
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	MyComplex c5 = c3 + c4;
+	cout &lt;&lt; "adding c3 and c4" &lt;&lt; endl;
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c5= " &lt;&lt; c5.getReal() &lt;&lt; "+" &lt;&lt; c5.getImag() &lt;&lt; "i" &lt;&lt; endl;
+}
+</pre>
+<p>Note that when we're using '+' for the object of MyComplex type,<br/>
+<pre>
+c5 = c3 + c4;
+</pre>
+actually, we are calling a function something like this.<br/>
+<pre>
+c5 = c3.operator+(c4)
+</pre>
+<p>Output of the code above is:</p>
+<pre>
+c1= 5+10i
+c2= 50+100i
+assign c1 to c2:
+c2= 5+10i
+
+c3= 10+100i
+c4= 20+200i
+adding c3 and c4
+<font color="red">c3= 30+300i</font>
+c4= 20+200i
+c5= 30+300i
+</pre>
+<p>We got the right result at least for <strong>c5</strong>. But the value of <strong>c3</strong> has been changed. </p>
+<p>What happened?</p>
+<p>Let look at the code overloading '+'.</p>
+<pre>
+MyComplex &amp; MyComplex::operator+(const MyComplex&amp; c) {
+	real += c.real;
+	imag += c.imag;
+	return *this;
+}
+</pre>
+<p>As it turned out, the operation inside the function returning the reference to <strong>c3</strong> object which has been changed. </p>
+<p>So, let's rewrite the overloading function.</p>
+<pre>
+const MyComplex operator+(const MyComplex &amp; );
+
+const MyComplex MyComplex::operator+(const MyComplex&amp; c) {
+	MyComplex temp;
+	temp.real = this-&gt;real + c.real;
+	temp.imag = this-&gt;imag + c.imag;
+	return temp;
+}
+</pre>
+<p>Note that this doesn't return <strong>Complex &amp;</strong>, but instead returns a <strong>const Complex</strong> class variable. As you can see, the implementation is a little bit different from the previous example. Here, we're not returning <strong>*this</strong>. Instead, we're creating a temporary variable and assigning the results of the addition to <strong>temp</strong>. This explains why the function returns const Complex and not Complex &amp;. In other words, the function creates a new <strong>MyComplex</strong> object <strong>temp</strong> that represents the sum of the other two <strong>MyComplex</strong> objects. Returning the object creates a copy of the object that the calling function can use. If the return type were <strong>MyComplex &amp;</strong>, however, the reference would be the <strong>temp</strong> object. But the <strong>temp</strong> object is a <a href="memoryallocation.html#local_variables_memory" target="_blank">local variable</a> and is destroyed when the function terminates, so the reference would be a reference to a nonexisting object. Using a <strong>MyComplex</strong> return type, however, means the program constructs a <strong>copy</strong> of <strong>MyComplex</strong> object before destroying it, and the calling function gets the copy.</p>
+<p>Why we're returning <strong>const</strong>? Look <a href="object_returning.html#aconstobject" target="_blank">Object Returning</a>.</p>
+<p>Then, we'll get the right answer.</p>
+<pre>
+c1= 5+10i
+c2= 50+100i
+assign c1 to c2:
+c2= 5+10i
+
+c3= 10+100i
+c4= 20+200i
+adding c3 and c4
+c3= 10+100i
+c4= 20+200i
+c5= 30+300i
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingFriend">Overloading '+' using Friend Function</div>
+<p>We get the same result if we use a friend function which is global and not a member of our <strong>MyComplex</strong> class.</p>
+<p>Since this function will need to access the <strong>private</strong> members of <strong>MyComplex</strong>, we'll need to declare it as a <strong>friend</strong> function. </p>
+<pre>
+friend const MyComplex operator+(const MyComplex&amp;, const MyComplex&amp;);
+</pre>
+<p>The prototype has two implications:</p>
+<ol>
+<li>Although the <strong>operator+()</strong> function is not a member function, it has the same access rights as a member function.</li>
+<li>Although the <strong>operator+()</strong> function is declared in the class declaration, it is not a member function. So it isn't invoked by using the membership operator.</li>
+</ol>
+<p>Our revised code is:</p>
+<pre>
+class MyComplex
+{
+private:
+	double real, imag;
+public:
+	MyComplex(){
+		real = 0; 
+		imag = 0;
+	}
+
+	MyComplex(double r, double i) {
+		real = r;
+		imag = i;
+	}
+
+	double getReal() const {
+		return real;
+	}
+
+	double getImag() const {
+		return imag;
+	}
+
+	MyComplex &amp; operator=(const MyComplex &amp;);
+	<font color="red">
+	friend const 
+		MyComplex operator+(const MyComplex&amp;, const MyComplex&amp;); </font>
+};
+
+MyComplex &amp; MyComplex::operator=(const MyComplex&amp; c) {
+	real = c.real;
+	imag = c.imag;
+	return *this;
+}
+
+/* This is not a member function of MyComplex class */
+<font color="red">const MyComplex operator+(const MyComplex&amp; c1, const MyComplex&amp; c2) {
+	MyComplex temp;
+	temp.real = c1.real + c2.real;
+	temp.imag = c1.imag + c2.imag;
+	return temp;
+}
+</font>
+#include &lt;iostream&gt;
+
+int main()
+{
+	using namespace std;
+
+	MyComplex c1(5,10);
+	MyComplex c2(50,100);
+	cout &lt;&lt; "c1= " &lt;&lt; c1.getReal() &lt;&lt; "+" &lt;&lt; c1.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	c2 = c1;
+	cout &lt;&lt; "assign c1 to c2:" &lt;&lt; endl; 
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; endl;
+
+	MyComplex c3(10,100);
+	MyComplex c4(20,200);
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	MyComplex c5 = c3 + c4;
+	cout &lt;&lt; "adding c3 and c4" &lt;&lt; endl;
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c5= " &lt;&lt; c5.getReal() &lt;&lt; "+" &lt;&lt; c5.getImag() &lt;&lt; "i" &lt;&lt; endl;
+}
+</pre>
+<p>Note that, in the above example, we used one of the two forms for overloading <strong>operator+()</strong>.</p>
+<p>What we used was nonmember version:</p>
+<pre>
+MyComplex operator+(const MyComplex&amp; c1, const MyComplex&amp; c2);
+</pre>
+<p>But there is another form which is member version:</p>
+<pre>
+MyComplex operator+(const MyComplex&amp; c1);
+</pre>
+<p>For the member function version, one is passed implicitly via the <strong>this</strong> pointer and the second is passed explicitly as a function argument. For the friend version, which is nonmember version, both are passed as argument. </p>
+<p>Either of these two prototypes matches the express <strong>c1+c2</strong>, where <strong>c1</strong> and <strong>c2</strong> are type <strong>MyComplex</strong> objects. That is, the compiler can convert the statement</p>
+<pre>
+c3 = c1 + c2;
+</pre>
+<p>to either of the following:</p>
+<pre>
+c3 = opetator+(c1,c2);     // nonmember function
+c3 = c1.operator+(c2);     // member function
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingOutputOperator">Overloading the ostream(&lt;&lt;) Operator and the istream(&gt;&gt;) Operator</div>
+<p>Output streams use the <strong>&lt;&lt;</strong> operator for standard types. We can also overload the <strong>&lt;&lt;</strong>  operator for our own classes.</p>
+<p>Actually, the <strong>&lt;&lt;</strong> is left shift bit manipulation operator. But the <strong>ostream</strong> class overloads the operator, converting it into an output tool. The <strong>cout</strong> is an <strong>ostream</strong> object and that it is smart enough to recognize all the basic C++ types. That's because the <strong>ostream</strong> class declaration includes an overloaded <strong>operator&lt;&lt;()</strong> definition for each of the basic types.</p>
+<p>The istream operator can be overloaded almost the same way except the 2nd parameter does not have <b>const</b>.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class MyComplex
+{
+private:
+	double real, imag;
+public:
+	MyComplex(){
+		real = 0; 
+		imag = 0;
+	}
+
+	MyComplex(double r, double i) {
+		real = r;
+		imag = i;
+	}
+
+	double getReal() const {
+		return real;
+	}
+
+	double getImag() const {
+		return imag;
+	}
+
+	MyComplex &amp; operator=(const MyComplex &amp;);
+	const MyComplex operator+(const MyComplex &amp; );
+	MyComplex &amp; operator++(void);
+	MyComplex  operator++(int);
+
+	/*friend const 
+		MyComplex operator+(const MyComplex&amp;, const MyComplex&amp;); */
+
+	<font color="red">friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const MyComplex&amp; c);</font>
+
+        // note: no const for the second parameter
+        <font color="red">friend istream&amp; operator&gt;&gt;(istream&amp; is, MyComplex&amp; c);</font>
+};
+
+MyComplex &amp; MyComplex::operator=(const MyComplex&amp; c) {
+	real = c.real;
+	imag = c.imag;
+	return *this;
+}
+
+const MyComplex MyComplex::operator+(const MyComplex&amp; c) {
+	MyComplex temp;
+	temp.real = this-&gt;real + c.real;
+	temp.imag = this-&gt;imag + c.imag;
+	return temp;
+}
+
+//pre-increment
+MyComplex &amp; MyComplex::operator++() {
+	real++;
+	imag++;
+	return *this;
+}
+
+//post-increment
+MyComplex MyComplex::operator++(int) {
+	    MyComplex temp = *this;
+	    real++;
+	    imag++;
+	    return temp;
+}
+
+/* This is not a member function of MyComplex class */
+/*
+const MyComplex operator+(const MyComplex&amp; c1, const MyComplex&amp; c2) {
+	    MyComplex temp;
+	    temp.real = c1.real + c2.real;
+	    temp.imag = c1.imag + c2.imag;
+	    return temp;
+}*/
+
+
+<font color="red">ostream&amp; operator&lt;&lt;(ostream &amp;os;, const MyComplex&amp; c) {
+	os &lt;&lt; c.real &lt;&lt; '+' &lt;&lt; c.imag &lt;&lt; 'i' &lt;&lt; endl;
+	return os;
+}</font>
+
+<font color="red">
+istream&amp; operator&gt;&gt;(istream &amp;is;, MyComplex&amp; c) {
+	is &gt;&gt; c.real &gt;&gt; c.imag;
+	return is;
+}</font>
+
+int main()
+{
+	MyComplex c1(5,10);
+	cout &lt;&lt; "c1 = " &lt;&lt; c1.getReal() &lt;&lt; "+" &lt;&lt; c1.getImag() &lt;&lt; "i" &lt;&lt; endl;
+
+	cout &lt;&lt; "Using overloaded ostream(&lt;&lt;) " &lt;&lt; endl;
+	cout &lt;&lt; "c1 = " &lt;&lt; c1 &lt;&lt; endl;
+
+	MyComplex c2;
+	cout &lt;&lt; "Enter two numbers: " &lt;&lt; endl;
+	cin &gt;&gt; c2;
+	cout &lt;&lt; "Using overloaded istream(&gt;&gt;) " &lt;&lt; endl; 
+	cout &lt;&lt; "Input complex is = " &lt;&lt; c2;
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+c1 = 5+10i
+Using overloaded ostream(&lt;&lt;)
+c1 = 5+10i
+
+Enter two numbers:
+111 222
+Using overloaded istream(&gt;&gt;)
+Input complex is = 111+222i
+</pre>
+<p>Note that we just used:</p>
+<pre>
+cout &lt;&lt; "c1 = " &lt;&lt; c1 &lt;&lt; endl;
+</pre>
+<p>Note that when we do<p>
+<pre>
+cout &lt;&lt; c1;
+</pre>
+<p>it becomes the following function call:</p>
+<pre>
+<font color="red">operator&lt;&lt;(cout, c1);</font>
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Overloading_Serialization">Class Serialization - Overloading (&lt;&lt;) and (&gt;&gt;) Operators</div>
+<p>When we want to serialize (save() and then load()) a class, we need to overload two operators &lt;&lt; and &gt;&gt; because the operators do know what to do with a class. Here is an example using Qt5:</p>
+<pre>
+#include &lt;QCoreApplication&gt;
+#include &lt;QFile&gt;
+#include &lt;QString&gt;
+#include &lt;QDataStream&gt;
+#include &lt;QDebug&gt;
+
+class Student
+{
+public:
+    int ID;
+    QString Name;
+
+    // ostream, &lt;&lt; overloading
+    <font color="blue">friend QDataStream &amp;Student;::operator&lt;&lt;(QDataStream &amp;out;, const Student &amp;s;)</font>
+    {
+        out &lt;&lt; s.ID &lt;&lt; s.Name;
+        return out;
+    }
+
+    // istream, &gt;&gt; overloading
+    <font color="blue">friend QDataStream &amp;Student;::operator&gt;&gt;(QDataStream &amp;in;, Student &amp;s;)</font>
+    {
+        s = Student();
+        in &gt;&gt; s.ID &gt;&gt; s.Name;
+        return in;
+    }
+};
+
+void Save()
+{
+    Student s1;
+    s1.ID = 1;
+    s1.Name = "Ravel";
+
+    Student s2;
+    s2.ID = 2;
+    s2.Name = "Schonberg";
+
+    QString filename = "C:/Qt/Test/st.txt";
+    QFile file(filename);
+
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() &lt;&lt; "Could not open " &lt;&lt; filename;
+        return;
+    }
+
+    QDataStream out(&amp;file;);
+    out.setVersion(QDataStream::Qt_5_1);
+
+    out &lt;&lt; s1 &lt;&lt; s2;
+
+    file.flush();
+    file.close();
+}
+
+void Load()
+{
+    Student s1;
+    Student s2;
+    s2.ID;
+    s2.Name;
+
+    QString filename = "C:/Qt/Test/st.txt";
+    QFile file(filename);
+
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        qDebug() &lt;&lt; "Could not open " &lt;&lt; filename;
+        return;
+    }
+
+    QDataStream in(&amp;file;);
+    in.setVersion(QDataStream::Qt_5_1);
+
+    in &gt;&gt; s1 &gt;&gt; s2;
+
+    file.close();
+
+    qDebug() &lt;&lt; s1.Name &lt;&lt; "'s ID is " &lt;&lt; s1.ID;
+    qDebug() &lt;&lt; s2.Name &lt;&lt; "'s ID is " &lt;&lt; s2.ID;
+}
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+    
+    Save();
+    Load();
+
+    return a.exec();
+}
+</pre>
+<p>Output:</p>
+<pre>
+"Ravel" 's ID is  1
+"Schonberg" 's ID is  2
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingIncrementOperator">Increment/Decrement '++/--' Operator Overloading</div>
+<p>In this section, we'll learn how to overload increment and decrement operators (++ and --). We'll put a focus on the increment operators since the decrement operators are working in the same way. There are two types of increment operators actually: <strong> pre-increment(++i)</strong> and <strong>post-increment(i++)</strong>. </p>
+<p>Note the following:
+<ol>
+<li><strong>v++</strong><br/>
+   (post) increment; this is a postfix expression, and the value of <strong>v++</strong> is the value of <strong>v</strong> before the increment.</li>
+<li><strong>++v</strong><br/>
+   (pre) increment; this is a unary expression, and the value of <strong>++v</strong> is the value of <strong>v</strong> after the increment.</li>
+</ol>
+</p>
+<p>Here is the modified code with the overloaded increment functions.</p>
+<pre>
+class MyComplex
+{
+private:
+	double real, imag;
+public:
+	MyComplex(){
+		real = 0; 
+		imag = 0;
+	}
+
+	MyComplex(double r, double i) {
+		real = r;
+		imag = i;
+	}
+
+	double getReal() const {
+		return real;
+	}
+
+	double getImag() const {
+		return imag;
+	}
+
+	MyComplex &amp; operator=(const MyComplex &amp;);
+	const MyComplex operator+(const MyComplex &amp; );
+	<font color="red">MyComplex &amp; operator++(void);
+	MyComplex  operator++(int);</font>
+
+/*	friend const 
+		MyComplex operator+(const MyComplex&amp;, const MyComplex&amp;); */
+	
+};
+
+MyComplex &amp; MyComplex::operator=(const MyComplex&amp; c) {
+	real = c.real;
+	imag = c.imag;
+	return *this;
+}
+
+const MyComplex MyComplex::operator+(const MyComplex&amp; c) {
+	MyComplex temp;
+	temp.real = this-&gt;real + c.real;
+	temp.imag = this-&gt;imag + c.imag;
+	return temp;
+}
+
+//pre-increment
+<font color="red">MyComplex &amp; MyComplex::operator++() {
+	real++;
+	imag++;
+	return *this;
+}</font>
+
+//post-increment
+<font color="red">MyComplex MyComplex::operator++(int) {
+	    MyComplex temp = *this;
+	    real++;
+	    imag++;
+	    return temp;
+}</font>
+
+/* This is not a member function of MyComplex class */
+/*
+const MyComplex operator+(const MyComplex&amp; c1, const MyComplex&amp; c2) {
+	    MyComplex temp;
+	    temp.real = c1.real + c2.real;
+	    temp.imag = c1.imag + c2.imag;
+	    return temp;
+}*/
+
+#include &lt;iostream&gt;
+
+int main()
+{
+	using namespace std;
+
+	MyComplex c1(5,10);
+	MyComplex c2(50,100);
+	cout &lt;&lt; "c1= " &lt;&lt; c1.getReal() &lt;&lt; "+" &lt;&lt; c1.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	c2 = c1;
+	cout &lt;&lt; "assign c1 to c2:" &lt;&lt; endl; 
+	cout &lt;&lt; "c2= " &lt;&lt; c2.getReal() &lt;&lt; "+" &lt;&lt; c2.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; endl;
+
+	MyComplex c3(10,100);
+	MyComplex c4(20,200);
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	MyComplex c5 = c3 + c4;
+	cout &lt;&lt; "adding c3 and c4" &lt;&lt; endl;
+	cout &lt;&lt; "c3= " &lt;&lt; c3.getReal() &lt;&lt; "+" &lt;&lt; c3.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c4= " &lt;&lt; c4.getReal() &lt;&lt; "+" &lt;&lt; c4.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; "c5= " &lt;&lt; c5.getReal() &lt;&lt; "+" &lt;&lt; c5.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	cout &lt;&lt; endl;
+	++c5;
+	cout &lt;&lt; "c5= " &lt;&lt; c5.getReal() &lt;&lt; "+" &lt;&lt; c5.getImag() &lt;&lt; "i" &lt;&lt; endl;
+	c5++;
+	cout &lt;&lt; "c5= " &lt;&lt; c5.getReal() &lt;&lt; "+" &lt;&lt; c5.getImag() &lt;&lt; "i" &lt;&lt; endl;
+}
+</pre>
+<br/>
+<p>The output is:</p>
+<pre>
+c1= 5+10i
+c2= 50+100i
+assign c1 to c2:
+c2= 5+10i
+
+c3= 10+100i
+c4= 20+200i
+adding c3 and c4
+c3= 10+100i
+c4= 20+200i
+c5= 30+300i
+
+c5= 31+301i
+c5= 32+302i
+</pre>
+<p>There is one problem with defining both the prefix and postfix opetators: They each take the same number and type of parameters. Normal overloading cannot distinguish between whether the operator we're defining is the prefix version or the postfix.</p>
+<p>To solve this problem, the <strong>postfix</strong> operator function take an extra parameter of the <strong>int</strong>. When we use the postfix operator, the compiler supplies <strong>0</strong> as the argument for this parameter. Although our postfix function could use this extra parameter, it usually should not. That parameter is not needed for the work normally performed by a postfix operator. Its sole purpose is to distinguish the definition of the postfix function from the prefix version.</p>
+<p>Note that the post increment(v++) is returning an old value, and requires local <strong>temp</strong> variable. This is why we prefer prefix in STL iterators. Also, note that post increment(v++) is returning an object because it's a locally created, and cannot return a reference unlike the pre increment(++v) case which returns reference. <a href="object_returning.html#anobject" target="unknown">Returning a Non-const Object.</a></p>
+<br/>
+<p>The increment(++) and decrement(--) operators are most often implemented for class, such as iterators, that provide pointerlike behavior on the elements of a sequence. In the example below, we define a class that points to an array and provides access to the elements in the array.</p>
+<pre>
+#include &lt;iostream&gt;
+
+class SmartPtr
+{
+public:
+	SmartPtr(int *b, int *e):beg(b), end(e), curr(b) {}
+	SmartPtr operator++(int);
+	SmartPtr&amp; operator++();
+	int* getCurrent() {
+		return curr;
+	}
+private:
+	int *beg;
+	int *end;
+	int *curr;
+};
+
+<font color="red">
+SmartPtr&amp; SmartPtr::operator++()
+{
+	if(curr == end)
+		throw "increment past the end";
+	++curr;
+	return *this;
+}
+
+SmartPtr SmartPtr::operator++(int)
+{
+	SmartPtr ret(*this);
+	++*this;
+	return ret;
+}
+</font>
+
+int main( ) 
+{ 
+	using namespace std;
+	int a[] = {1,2,3,4,5};
+	try {
+		SmartPtr *ptr = new SmartPtr(a,a+5);
+		cout &lt;&lt; *(ptr-&gt;getCurrent()) &lt;&lt; endl;
+		(*ptr)++;
+		cout &lt;&lt; *(ptr-&gt;getCurrent()) &lt;&lt; endl;
+	}
+	catch (const char* e) {
+		cout &lt;&lt; "exception: " &lt;&lt; e &lt;&lt; endl;
+	}
+	return 0; 
+}
+</pre>
+<br/>
+<p>Let's look at the postfix version. It is a bit more involved than the prefix operators. They should remember the current state of the object before incrementing the object. This operator defines a local SmartPtr, which is initialized as a copy of <strong>*this</strong>. In other words, the variable <strong>ret</strong> is a copy of the current state of this object.</p>
+Having kept a copy of the current state, the operator calls its own prefix operator to do the increment:</p>
+<pre>
+++*this;
+</pre>
+<p>calls the <strong>SmartPtr</strong> prefix increment operator on this object. That operator checks that the increment is safe and either increments <strong>curr</strong> or throws an exception. If no exception was thrown, the postfix function completes by returning the stored copy in <strong>ret</strong>. Therefore, after the return, <strong>the object itself has been advanced, buit the value returned reflects the original, unincremented value.</strong></p>
+<pre>
+SmartPtr&amp; SmartPtr::operator++()
+{
+	if(curr == end)
+		throw "increment past the end";
+	++curr;
+	return *this;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="OverloadingIncrementOperatorB">How about "++++"</div>
+<p>The implementation of "<strong>++</strong>" allows this: </p>
+<pre>
+aObj++++;
+</pre>
+while it's not allowed for the built in <strong>int</strong>:
+<pre>
+n++++;   // Error
+</pre>
+<p>We can see from the output of the following code:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+public:
+	explicit A(int d = 0): mValue(d) {}
+	A operator++(int);
+	friend ostream&amp; operator&lt;&lt;(ostream &amp;os;, const A&amp; a);
+private:
+	int mValue;
+};
+
+// this returns temporary stack variable, 
+// so its return type is just A not A&amp;
+<font color="red">A</font> A::operator++(int)
+{
+	A temp = *this;
+	mValue++;
+	return <font color="red">temp</font>;
+}
+
+ostream&amp; operator&lt;&lt;(ostream &amp;os;, const A&amp; a)
+{
+	os &lt;&lt; a.mValue &lt;&lt; endl;
+	return os;
+}
+
+int main()
+{
+	int n = 0;
+	A aObj;
+	cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; " aObj = " &lt;&lt; aObj;
+	cout &lt;&lt; "n++ = " &lt;&lt; n++ &lt;&lt; " aObj++ = " &lt;&lt; aObj++;
+	cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; " aObj = " &lt;&lt; aObj;
+	cout &lt;&lt; "n++ = " &lt;&lt; n++ &lt;&lt; " aObj++ = " &lt;&lt; aObj++;
+	cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; " aObj = " &lt;&lt; aObj;
+	cout &lt;&lt; " aObj++++ = " &lt;&lt; aObj++++;
+	// cout &lt;&lt; "n++++ = " &lt;&lt; n++++ &lt;&lt; " aObj++ = " &lt;&lt; aObj++;
+	cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; " aObj = " &lt;&lt; aObj;
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+n = 0 aObj = 0
+n++ = 0 aObj++ = 0
+n = 1 aObj = 1
+n++ = 1 aObj++ = 1
+n = 2 aObj = 2
+ aObj++++ = 2
+n = 2 aObj = 3
+</pre>
+<p>Whenever we overload an operator, we should conform the rule of the operator for the built-in types. But the implementation of the postfix increment does not respect existing behavior of the built-in types.</p>
+<p>What went wrong?<br/>
+When we do:
+<pre>
+n++++;    // applying postfix increment twice
+</pre>
+it's doing this:
+<pre>
+n.<font color="red">operator++(0)</font>.<font color="blue">operator(0)</font>;
+</pre>
+<p>The second invocation of <strong>operator++</strong> is being applied to the object returned from the first one. For the integer it's not allowed because its output would be confusing and against initial intention. The second invocation will end up incrementing the object returned, as a result, even though it's allowed, at the end, it will increment only once which is not the intention of ++++.</p>
+<p>So, we need to prohibit users from doing it by returning <strong>const</strong> object from operator++:</p>
+<pre>
+<font color="red">const</font> A A::operator++(int) {...}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingIndexOperator">Index Operator [] Overloading</div>
+<p>To access an element of an array/vector, we need to make [] working. 
+We're going to start from the simplest example as below:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class Vector
+{
+	int sz;
+	double *elem;
+public:
+	Vector(int s): sz(s), elem(new double[s]) {
+		  for (int i = 0; i &lt; s; i++) elem[i] = 0;
+	}
+	~Vector() { delete[] elem; }
+	int size() const { return sz; }
+	void <font color="red">set</font>(int n, double val) {
+		elem[n] = val;
+	}
+	double <font color="red">get</font>(int n) {
+		return elem[n];
+	}
+};
+
+
+int main()
+{
+	Vector v(10);
+	for (int i = 0; i &lt; v.size() ; i++) {
+		v.set(i, i*1.1);
+	}
+	for (int i = 0; i &lt; v.size() ; i++) {
+		cout &lt;&lt; v.get(i) &lt;&lt; " " &lt;&lt; endl;
+	}
+	return 0;
+}
+</pre>
+<p>Here, we use <strong>set()</strong> and <strong>get()</strong>, which are kind of working but ugly. Also, we can't not use index operator, []. So, let's modify it a little bit:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class Vector
+{
+	int sz;
+	double *elem;
+public:
+	Vector(int s): sz(s), elem(new double[s]) {
+		  for (int i = 0; i &lt; s; i++) elem[i] = 0;
+	}
+	~Vector() { delete[] elem; }
+	int size() const { return sz; }
+	<font color="red">double operator[](int n) { return elem[n]; }</font>
+};
+
+
+int main()
+{
+	Vector v(10);
+	double dval = <font color="red">v[3]</font>;   // OK
+	<font color="red">v[4]</font> = 100;           // error: '=' : left operand must be l-value
+	return 0;
+}
+</pre>
+<p>In the above example, <strong>v[i]</strong> is interpreted as <strong>v.operator[](i)</strong>. It returns the value of <strong>i-th</strong> element of <strong>v</strong>. However, the <strong>v[4]</strong> is just a <strong>value</strong>, not a <strong>variable</strong> as indicated by the error.</p>
+<p>If we modify the overloading [] part, it looks a little bit better:</p>
+<pre>
+	<font color="red">double *operator[](int n) { return &amp;elem;[n]; }</font>  // return a pointer
+        ....
+
+int main()
+{
+	Vector v(10);
+	double dval = *v[3];  // OK
+	*v[4] = 100;          // OK
+	cout &lt;&lt; "*v[4] = " &lt;&lt; *v[4] &lt;&lt; endl;  //OK
+	return 0;
+}
+</pre>
+<p>But still we need <strong>dereference (*)</strong> the <strong>v</strong> to get/set. So, here comes the final version that we can use []:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class Vector
+{
+	int sz;
+	double *elem;
+public:
+	Vector(int s): sz(s), elem(new double[s]) {
+		  for (int i = 0; i &lt; s; i++) elem[i] = 0;
+	}
+	~Vector() { delete[] elem; }
+	int size() const { return sz; }
+	<font color="red">double &amp;operator;[](int n) { return elem[n]; }</font>  // return reference
+};
+
+
+int main()
+{
+	Vector v(10);
+	double dval = v[3];  // OK
+	v[4] = 100;          // OK
+	cout &lt;&lt; "v[4] = " &lt;&lt; v[4] &lt;&lt; endl;  //OK
+	return 0;
+}
+</pre>
+<p>Finally, <strong>v[i]</strong> is interpreted as <strong>v.operator[](i)</strong>, and it returns a <strong>reference</strong> of the <strong>i-th</strong> element of <strong>v</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle" id="OverloadingFunctionOperator">Function Call Operator () Overloading</div>
+<p>The function call operator can be overloaded for objects of class type. The overloaded <strong>operator()</strong> should be declared as a member function. It is invoked by applying an argument list to an object of the class type.</p>
+<p>In the example below, we call the algorithm <strong>transform()</strong> to apply the operation defined by <strong>absValue</strong> to every element of the <strong>vec</strong>.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+class absValue
+{
+public:
+	int <font color="red">operator()</font>(int val) {
+		return val &lt; 0 ? -val : val;
+	}
+};
+
+int main()
+{
+	int a[] = {-3,-2,-1, 0, 1, 2, 3};
+	int size = sizeof(a)/sizeof(a[0]);
+	vector&lt;int&gt; vec(a, a+size);
+	
+	for(int i = 0; i &lt; size; i++) cout &lt;&lt; vec[i] &lt;&lt; " ";
+	
+	transform(vec.begin(), vec.end(),
+		  vec.begin(),
+		  <font color="red">absValue()</font>);
+
+	cout &lt;&lt; "\nafter transform()\n";
+	for(int i = 0; i &lt; size; i++) cout &lt;&lt; vec[i] &lt;&lt; " ";
+
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+-3 -2 -1 0 1 2 3
+after transform()
+3 2 1 0 1 2 3
+</pre>
+<p>For more detail on the transform, please visit <a href="stl5_function_objects.html#PredefinedFunctionObjects" target="_blank">Standard Template Library (STL) V - Function Objects: Predefined Functions Objects</a>.</p>
+<br/><br/>
+<div class="subtitle" id="Member_NonMember_Operator">Member operator vs non-member operator</div>
+<p>We can define operators either as members of our class or as non-member functions. Some member must be defined as class members, but others can be defined either way. As an example, let's look at the following code implementing *= operator:</p>
+<pre>
+class Complex
+{
+public:
+	Complex(double r, double i);
+	Complex *= (const Complex &amp;c;);
+	...
+};
+</pre>
+<p>But we can use non-member operator:</p>
+<pre>
+class Complex
+{
+public:
+	Complex(double r, double i);
+	...
+};
+
+Complex &amp;operator;*=(Complex &amp;lhs;, const Complex &amp;rhs;);
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Operator_user_defined_type">Operator overloading for a user defined object type</div>
+<p>In the example code below, we defined a new object type, <strong>Int</strong>. We put the collection object into the list and vector, then we sort the collection. For list element, we used <strong>list::sort()</strong> while we used <strong>std::sort()</strong> for vector class.</p>
+<p>To sort arbitrary object, we definetely need to overload <strong>&lt;(less than)</strong>. For the vector container, we need additional <strong>assignment operator=()</strong>.</p>
+<pre>
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;list&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class Int
+{
+public:
+    Int(int n = 0) : i(n) { }
+
+public:
+    bool <font color="red">operator&lt;</font>(const Int&amp; a) const {
+	cout &lt;&lt; "operator&lt;" &lt;&lt; endl;
+	return this-&gt;i &lt; a.i; 
+    }
+
+    Int&amp; <font color="red">operator=</font>(const Int &amp;a;)
+    {
+	cout &lt;&lt; "operator=" &lt;&lt; endl;
+        this-&gt;i = a.i;
+        return *this;
+    }
+
+private:
+    int i;
+};
+
+int main()
+{
+    list&lt;Int&gt; l;
+    l.push_back(Int(3));
+    l.push_back(Int(1));
+
+    // list::sort(), 
+    // it needs customized operator&lt;()
+    cout &lt;&lt; "list::sort()" &lt;&lt; endl;
+    <font color="red">l.sort</font>();  
+
+    vector&lt;Int&gt; v;
+    v.push_back(Int(2));
+    v.push_back(Int());
+
+    // std::sort();
+    // this needs operator=() as well as operator&lt;()
+    cout &lt;&lt; endl &lt;&lt; "std::sort()" &lt;&lt; endl;
+    <font color="red">std::sort</font>(v.begin(), v.end()); 
+
+    return 0;
+}
+</pre>
+<p>Output</p>
+<pre>
+list::sort()
+operator&lt;
+operator&lt;
+operator&lt;
+
+std::sort()
+operator&lt;
+operator&lt;
+operator=
+operator=
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="OperatorAsMemoberMethods">Operators that should be declared as member methods</div>
+<p>The following operators should be declared as member methods to ensure that they receive an lvalue as their first operand:</p>
+<ol>
+<li><strong>=</strong> assignment</li>
+<li><strong>[]</strong> subscript</li>
+<li><strong>-&gt;</strong> class member access</li>
+<li><strong>-&gt;*</strong> pointer to member selection</li>
+<li><strong>new/delete</strong> </li>
+<li><strong>()</strong> function call</li>
+<li><strong>(T)</strong> conversion (C-style cast)</li>
+</ol>
+<p>Operators other than listed above, can be overloaded either as members or as non-members. But in general non-member overloading is recommended. The reasons are as below:</p>
+<ol>
+<li><strong>Symmetry</strong><br/>
+When a binary operator is defined as a method of a class, it must have an object as the lhs operand. For example, * operator, we should be able to write like <strong>complex*10</strong> but not like <strong>10*complex</strong> because <strong>10.operator*(complex)</strong> does not make any sense. In other words, <strong>a*b</strong> should be the same as <strong>b*a</strong>. Otherwise it breaks the commutitiveness that users are expecting from <strong>*</strong> operator. So, in this case, we should use non-member operator overloading.
+</li>
+<li><strong>Weak coupling</strong><br/>
+Since a non-member method cannot access private member, it tend to make the class less coupled.
+</li>
+</ol>
+<br/>
+<div class="subtitle" id="pros_cons">Operator overloading - pros and cons</div>
+<p>This is from <a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Classes" target="_blank">Google C++ Style Guide</a>.</p>
+<p>Do not overload operators except in rare, special circumstances.</p>
+<ol>
+<li><strong> Pros</strong><br/>
+  Can make code appear more intuitive because a class will behave in the same way as built-in types (such as int). Overloaded operators are more playful names for functions that are less-colorfully named, such as <strong>Equals()</strong> or <strong>Add()</strong>. For some template functions to work correctly, we may need to define operators.
+ </li>
+<li><strong> Cons</strong><br/>
+  While operator overloading can make code more intuitive, it has several drawbacks:
+  <ol>
+<li>It can fool our intuition into thinking that expensive operations are cheap, built-in operations.</li>
+<li>It is much harder to find the call sites for overloaded operators. Searching for <strong>Equals()</strong> is much easier than searching for relevant invocations of <strong>==</strong>.</li>
+<li>Some operators work on pointers too, making it easy to introduce bugs. <strong>Foo + 4</strong> may do one thing, while <strong>&amp;Foo; + 4</strong> does something totally different. The compiler does not complain for either of these, making this very hard to debug.</li>
+</ol>
+Overloading also has surprising ramifications. For instance, if a class overloads unary operator<strong>&amp;</strong>, it cannot safely be forward-declared.
+ </li>
+<li><strong> Decision</strong><br/>
+In general, do not overload operators. The assignment operator (operator=), in particular, is insidious and should be avoided. We can define functions like <strong>Equals()</strong> and <strong>CopyFrom()</strong> if we need them. Likewise, avoid the dangerous <strong>unary operator&amp;</strong> at all costs, if there's any possibility the class might be forward-declared.<br/>
+
+However, there may be rare cases where we need to overload an operator to interoperate with templates or standard C++ classes (such as <strong>operator&lt;&lt;(ostream&amp;, const T&amp;)</strong> for logging). These are acceptable if fully justified, but we should try to avoid these whenever possible. In particular, do not overload <strong>operator==</strong> or <strong>operator&lt;</strong> just so that our class can be used as a key in an STL container; instead, we should create equality and comparison functor types when declaring the container.<br/>
+
+Some of the STL algorithms do require we to overload <strong>operator==</strong>, and we may do so in these cases, provided us document why.<br/>
+</li>
+</ol>
+<br/>
+<p>More to come...</p>
+<br/>
+<br/>
+<img alt="UngDo" src="images/operatoroverloading/UngDo.png"/>
+</p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/operatoroverloading.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:01:13 GMT -->
+</html>
+

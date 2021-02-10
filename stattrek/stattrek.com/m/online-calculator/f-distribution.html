@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from stattrek.com/m/online-calculator/f-distribution.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><link href="../../App_Themes/desktop1/desktop1.css" type="text/css" rel="stylesheet" /><title>
+	F Distribution Calculator
+</title>
+    <script src="../../js/utilities.js" type="text/javascript"></script>
+    <script src="../../js/calculator.js" type="text/javascript"></script>
+
+
+    <!-- Add javascript and jquery  -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+        //Override jQuery Mobile's defaults. These statements should appear before jQuery Mobile is loaded.
+        //Source: http://demos.jquerymobile.com/1.0.1/docs/api/globalconfig.html
+        $(document).bind("mobileinit", function () {
+            // Load urls as regular http requests.
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+        // Fallback to loading jQuery from a local path if the CDN is unavailable.
+        // Source: http://www.asp.net/ajax/cdn#Using_jQuery_from_the_CDN_21
+        (window.jQuery || document.write('<script src="../../scripts/jquery-1.10.2.min.js"><\/script>'));
+    </script>
+
+    <!-- Add javascript that goes on all mobile pages  -->
+    <script src="../../js/top.js"></script>
+
+    <!--  Use this code to enable favicon
+    Source: http://stackoverflow.com/questions/2208933/how-do-i-force-a-favicon-refresh
+            http://en.wikipedia.org/wiki/Favicon -->
+    <link rel="shortcut icon" href="http://www.stattrek.com/favicon.ico?v=2" />
+
+    <!--  Use this code to enable Google search -->
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+    <!-- Identify site as mobile  -->
+    <meta name="HandheldFriendly" content="True" />
+
+    <!-- Size content to the viewport  
+        Source: https://developers.google.com/web/fundamentals/layouts/rwd-fundamentals/set-the-viewport?hl=en -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Meta tag to verify Stat Trek site for Google Webmaster Tools.  
+    This tag must appear in the site's home page in the first "head" section 
+    of the page, before the first "body" section. -->
+	<meta name="verify-v1" content="+0J0xaq/yux0LKo8uD9ySvoxaHURfUH+VYWDlBx9xgg=" />
+	
+	<!-- Meta tag verifies Stat Trek site for Bing Webmaster Tools.  
+    This tag must appear in the head section of the default web page.  -->
+    <meta name="msvalidate.01" content="A581D5768CB65BE7E6F936E4B571699E" /><link href="../../App_Themes/mobile1/mobile1.css" type="text/css" rel="stylesheet" /><meta name="description" content="F distribution calculator finds cumulative probability and F statistics. Fast, easy, accurate. An online f distribution statistical table. Plus sample problems." /><meta name="keywords" content="F distribution calculator, cumulative F distribution calculator, f distribution table, F distribution table, F distribution statistical table" /><link href="../../online-calculator/f-distribution.html" rel="canonical" /></head>
+
+<body id="masterBody">
+
+    <form name="form1" method="post" action="http://stattrek.com/m/online-calculator/f-distribution.aspx" id="form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="../../WebResource6be8.js?d=pynGkmcFUV13He1Qd6_TZJyTLRPAEQbgqGqj7Lcr1CQU0ndi9eWwKk-Piephd5aw-zOe7OEDc1xtK7fZAWNzqg2&amp;t=636259109931503955" type="text/javascript"></script>
+
+<script src="../../51Degrees.core.js" type="text/javascript"></script>
+<script src="../../ScriptResource8a75.js?d=NJmAwtEo3Ipnlaxl6CMhvtlGrLlqttVXTiUf4-n3BlMgK9V4xZCTjxh5XbGZfMswPnAfRB5yYniQnwr19ZcBRSukkruqMvK0cL-VxyZ6fp7cc_9FJwQ0oJGzYCxvsTaSO2AJHUvbdaqKjmqymxNEpG_hD8Y3tLWVlArSV4onIOI1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<script src="../../ScriptResourcef907.js?d=dwY9oWetJoJoVpgL6Zq8OG0G_ge7331AaodcZXWQMSrdlNLxSC76CuDzyLwc-_79_nsmAwuizxHWQ0L_z_N0grzRUu4X73KRlpqKdVodrWK-KGlluKCSWxoAuQuSo8MlG35Iv6sAN1FekUAT_o47yuTAy6jKjmz5Ap5hM0AJh5A1&amp;t=ffffffffd416f7fc" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="86E477B9" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="J/9RtYYB8Cu2JXyQ9nP+wZjgF9dfTTDIdxgB2jDVa+yT7JtueHBm2gEMZ0C16Wh6q1C4gpLyQJJIypBkaqg3LPvcaF/j9zUxzb/GG8nnRDkFJ7+g6iBEy81/Qi3GwuERna1xgEJzIhgO77xK+0LhJT3Gk/g7myBFKgpDkkF/eSI4lUOGIMXoNjBA58N0UeWolcmjCpnqAZtULIcNS1SCwKTv+Q9A6+xnOtw0WfRTQf8=" />
+</div>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$cpMain$UpdatePanel1','UpdatePanel1','tctl00$cpFooter$footerM1$UpdatePanelFooter','UpdatePanelFooter'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <!-- NOTES:
+            1. jQuery mobile uses a div wrapper with a "data-role=page" attribute to identify the page. 
+            2. The data-url attribute allows asp.net to use response.redirect correctly in jQuery mobile.
+               Source: http://stackoverflow.com/questions/14138014/page-url-is-not-changing-on-redirecting -->
+        <div data-role="page" id="pageWrapper"  > 
+            
+                    
+
+            <!-- Enable Google page-level ads for mobile devices.
+                 Place this ad code in the <head> tag (or at the top of the <body>) of the pages where you want to show the ads -->
+            <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-5637116312293301",
+                enable_page_level_ads: true
+              });
+            </script>
+
+                   
+
+        
+            <header id="headerTop" class="ui-bar ui-bar-a" style="text-align:center;" data-role="none">
+        <a name="TopPage" data-role="none"></a>
+
+            <h1 id="h1Header"><a href="../default.html" rel="external" 
+                    style="text-decoration:none; font-size:1.5em; font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;">Stat Trek</a></h1>
+
+    </header>
+        
+
+        
+            
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<nav id="NavMain" data-role="navbar" >
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavDictionary" data-role="navbar" style="display:none;">
+    <ul role="navigation" >
+        <li style="width:25%;"><a rel="external" href="../index.html" class="ui-btn-active">Home</a></li>
+        <li style="width:25%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:25%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:25%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<nav id="NavTest" data-role="navbar" style="display:none;">
+    
+    <ul role="navigation" >
+        <li style="width:21%;"><a rel="external" href="../nav/main-menu.html" class="ui-btn-active">Menu</a></li>
+        <li style="width:33%;"><a rel="external" href="../../statistics/dictionary.html" class="ui-btn-active">Dictionary</a></li>
+        <li style="width:23%;"><a rel="external" href="../site/search.html" class="ui-btn-active">Search</a></li>
+        <li style="width:23%;"><a rel="external" href="#" data-inset="true" data-rel="back" class="ui-btn-active">Back</a></li>
+    </ul>
+</nav>
+
+<script>
+
+    $(document).ready(function () {
+        DefineNav();
+    });
+
+    function DefineNav() {
+        
+        //Get the current path to this page
+        var MyPath = window.location.href;
+
+        //Determine whether this page is dictionary.aspx. 
+        var Position1 = MyPath.search("ictionary.aspx");
+
+        //Determine whether this page is practice-test.aspx
+        var Position2 = MyPath.search("ractice-test.aspx");
+
+        //Display main navigation and hide others
+        if ((Position1 < 2) && (Position2 < 2)) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').show();
+            $('#NavTest').hide();
+            $('#NavDictionary').hide();
+            return;
+        }
+
+        //Display the correct navigation bar for dictionary.aspx
+        if (Position1 > 1) {
+            //Hide NavMain and NavTest; and show NavDictionary
+            $('#NavMain').hide();
+            $('#NavTest').hide();
+            $('#NavDictionary').show();
+            return;
+        } 
+
+        //Display the correct navigation bar for practice-test.aspx
+        if (Position2 > 1) {
+            //Hide NavMain, and NavDictionary; and show NavTest
+            $('#NavMain').hide();
+            $('#NavDictionary').hide();
+            $('#NavTest').show();
+            return;
+        }
+    }
+
+</script>
+        
+
+        
+
+            <!-- First Google ad -->
+            <div id="divAd1" class="ad1">
+                <aside id="Ad1" class="adMasterPage1 marginTop15 marginBottomMinus20" data-role="none"></aside>
+            </div>
+
+        
+
+        
+
+    <section role="main" data-role="content">
+        
+    <!-- google_ad_section_start --> 
+    <a name="MainContent"></a>
+    <h1>F Distribution Calculator</h1>
+    
+    <!-- Main text  -->		
+    <p>The F distribution calculator makes it easy to find the cumulative 
+	    probability associated with an <i>f</i> value.
+	    For help in using the calculator, read the 
+	    <a rel="external" href="#faq">Frequently-Asked Questions</a> 
+	    or review the 
+	    <a rel="external" href="#examples">Sample Problems</a>.</p>
+	
+    <p>To learn more about the F distribution, read Stat Trek's 
+        <a rel="external" href="../../probability-distributions/f-distribution.html">
+	    tutorial on the F distribution</a>.</p>
+
+        <!-- First Google ad -->
+        <div id="divAd1" class="ad1">
+            <aside id="Ad4" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 320x100T1 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="9675805941"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+        <br />
+
+        <div id="UpdatePanel1">
+	
+
+    </a><!-- **** Insert Calculator here  --> 
+    <a name="Calculator"></a>
+    <table align="center">
+	    <tr>
+		    <td valign="bottom">
+			    <table class="Calc">
+				    <tr class="Calc">
+					    <th class="Calc">
+						    <ul>
+							    <li class="Calc">
+							    Enter values for degrees of freedom.</li>
+							    <li class="Calc">
+							    Enter a value for one, and only one, of the remaining text 
+							    boxes.</li>
+							    <li class="Calc">
+								    Click the <strong>Calculate</strong> button to compute a value for the blank 
+								    text box.</li>
+						    </ul>
+					    </th>
+				    </tr>
+				    <tr>
+					    <td>
+						    <table cellpadding="5" align="center">
+							    <tr>
+								    <td class="Calc" align="right">Degrees of freedom (<i>v</i><sub>1</sub>)
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtDFN" type="text" id="txtDFN" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td class="Calc"align="right">Degrees of freedom (<i>v</i><sub>2</sub>)
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtDFD" type="text" id="txtDFD" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td id="tdXLEx" class="Calc" style="text-align:right;">Cumulative prob:<br />P(F <u><</u> f)</td>
+	
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtProb" type="text" id="txtProb" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+							    <tr>
+								    <td align="right">f &nbsp;value
+								    </td>
+								    <td class="Calc">
+								    <input name="ctl00$cpMain$txtValue" type="text" id="txtValue" onchange="UpdateProbabilityLabelsForFCalculator();" class="JQTextBox" data-role="none" style="width:95%;" />
+								    </td>
+							    </tr>
+						    </table>
+					    </td>
+				    </tr>
+				    <tr><td>
+				    <!-- Error message -->
+                      
+				    </td></tr>
+			    </table>
+		    </td>
+	    </tr>
+    </table>
+        
+         <div onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;btnCalculate&#39;)">
+		
+
+            <div class="CenterButton" style="width:70%;" >
+                <input type="submit" name="ctl00$cpMain$btnCalculate" value="Calculate" id="btnCalculate" class="CenterButton" data-role="none" />
+            </div>
+
+         
+	</div>
+
+        
+</div>
+
+        <!-- Second Google ad -->
+        <div id="divAd2" class="ad1">
+            <aside id="Ad5" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- ST300x250 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-5637116312293301"
+                 data-ad-slot="1790351155"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script></aside>
+        </div>
+        <br />
+
+    <!-- Frequently-asked Questions -->
+    <a name="faq"></a>
+    <div class="BlueBar">
+	    <h2 class="BlueBarHeading">Frequently-Asked Questions
+	    </h2>
+    </div>
+    <br />
+    <div style="text-align:center;"><a rel="external" href="#Calculator">F Distribution Calculator</a>
+	    | <a rel="external" href="#examples">Sample Problems</a>
+    </div>
+    <p><strong>Instructions:</strong> To find the answer to a frequently-asked 
+	    question, simply click on the question. If you don't see the answer you need, 
+	    read Stat Trek's <a rel="external" href="../../probability-distributions/f-distribution.html">tutorial on the F 
+		    distribution</a> or visit the <a rel="external" href="../../statistics/dictionary.html">Statistics Glossary</a>.</p>
+
+    <div data-role="collapsible">
+        <h3>What are degrees of freedom?</h3>
+        <p>Degrees of freedom can be described as the number of scores that 
+	        are free to vary. For example, suppose your friend tossed three dice, and the 
+	        total score added up to 12. If your friend told you that he rolled a 3 on the 
+	        first die and a 5 on the second, then you know that the third die must be a 4 
+	        (otherwise, the total would not add up to 12). In this example, 2 die are free 
+	        to vary while the third is not. Therefore, there are 2 degrees of freedom.</p>
+        <p>In many situations, the degrees of freedom are equal to the 
+	        number of observations minus one. Thus, if the sample size were 20, there would 
+	        be 20 observations; and the degrees of freedom would be 20 minus 1 or 19.</p>
+    </div>
+
+    <div data-role="collapsible">
+        <h3>What are degrees of freedom (<i>v</i><sub>1</sub>) and (<i>v</i><sub>2</sub>)?</h3>
+        <p>You can use the following equation to compute an <i>f</i> statistic:</p>
+        <p style="text-align:center;">
+	    <i>f</i> = [ <i>s</i><sub>1</sub><sup>2</sup>/&sigma;<sub>1</sub><sup>2</sup>
+	    ] / [ <i>s</i><sub>2</sub><sup>2</sup>/&sigma;<sub>2</sub><sup>2</sup>
+	    ]</p>
+        <p>where &sigma;<sub>1</sub> is the standard 
+	    deviation of population 1, <i>s</i><sub>1</sub> is the standard deviation of 
+	    the sample drawn from population 1, &sigma;<sub>2</sub> is 
+	    the standard deviation of population 2, and <i>s</i><sub>1</sub> is the 
+	    standard deviation of the sample drawn from population 2.</p>
+        <p>The degrees of freedom (<i>v</i><sub>1</sub>) refers to the 
+	    degrees of freedom associated with the sample standard deviation <i>s</i><sub>1</sub>
+	    in the numerator; and the degrees of freedom (<i>v</i><sub>2</sub>) refers to 
+	    the degrees of freedom associated with the sample standard deviation <i>s</i><sub>2</sub>
+	    in the denominator.</p>
+    </div>
+
+    <div data-role="collapsible">
+        <h3>What is a cumulative probability?</h3>
+        <p>A cumulative probability is a sum of probabilities. In connection 
+	    with the F distribution calculator, 
+	    cumulative probability refers to the probability 
+	    that an f statistic will be less than or equal to a specified value.</p>
+    </div>
+
+    <div data-role="collapsible">
+        <h3>What is an f value?</h3>
+        <p>An <i>f</i> value (also known as an <i>f</i> statistic) is a <a rel="external" href="../../statistics/dictionary0fa4.html?Target=Random_variable">
+		    random variable</a> that has an <a rel="external" href="../../statistics/dictionaryf5fc.html?Target=F_distribution">
+		    F distribution</a>.</p>
+        <p>Here are the steps required to compute an <strong><i>f</i> value</strong>:</p>
+        <ul>
+	        <li>
+		        Select a random sample of size <i>n</i><sub>1</sub> from a normal population, 
+		        having a standard deviation equal to &sigma;<sub>1</sub>.</li>
+	        <li>
+		        Select an independent random sample of size <i>n</i><sub>2</sub> from a normal 
+		        population, having a standard deviation equal to &sigma;<sub>2</sub>.</li>
+	        <li>
+		        The <i>f</i> value is the ratio of <i>s</i><sub>1</sub><sup>2</sup>/&sigma;<sub>1</sub><sup>2</sup>
+		        and <i>s</i><sub>2</sub><sup>2</sup>/&sigma;<sub>2</sub><sup>2</sup>. Thus,
+	        <i>f</i> = [ <i>s</i><sub>1</sub><sup>2</sup>/&sigma;<sub>1</sub><sup>2</sup>
+	        ] / [ <i>s</i><sub>2</sub><sup>2</sup>/&sigma;<sub>2</sub><sup>2</sup>]</li>
+        </ul>
+    </div>
+
+    <div data-role="collapsible">
+        <h3>What is a probability?</h3>
+        <p>A probability is a number expressing the chances that a specific 
+	    event will occur. This number can take on any value from 0 to 1. A probability 
+	    of 0 means that there is zero chance that the event will occur; a probability 
+	    of 1 means that the event is certain to occur. Numbers between 0 and 1 quantify 
+	    the uncertainty associated with the event.</p>
+        <p>For example, the probability of a 
+	    coin flip resulting in Heads (rather than Tails) would be 0.50. Fifty percent 
+	    of the time, the coin flip would result in Heads; and fifty percent of the 
+	    time, it would result in Tails.</p>
+    </div>
+
+        <br />
+        <!-- Third Google ad -->
+        <div id="divAd3" class="ad1">
+            <aside id="Ad6" class="adContentPage"><script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- ST320x50 -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:320px;height:50px"
+               data-ad-client="ca-pub-5637116312293301"
+               data-ad-slot="2571341541"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script></aside>
+        </div>
+        <br />
+
+    <!-- Sample problems -->
+    <a name="examples"></a>
+    <div class="BlueBar">
+	    <h2 class="BlueBarHeading">Sample Problems
+	    </h2>
+    </div>
+    <br />
+    <div align="center"><a rel="external" href="#Calculator">F Distribution Calculator</a>
+	    | <a rel="external" href="#faq">Frequently-Asked Questions</a>
+    </div>
+    <ol>
+	    <li>
+		    <a name="prob1"></a>Suppose we take independent random samples of size <i>n</i><sub>1</sub>
+		    = 11 and <i>n</i><sub>2</sub> = 16 from normal populations. If the cumulative 
+		    probability of the <i>f</i> statistic is equal to 0.75, what is the value of 
+		    the <i>f</i> statistic?
+		    <br />
+		    <br />
+		    <b>Solution:</b><br />
+		    <br />
+		    We know the following:
+		    <br />
+		    <br />
+		    <ul>
+			    <li>Since the sample size <i>n</i><sub>1</sub> = 11, the degrees of freedom <i>v</i><sub>1</sub>
+				    = <i>n</i><sub>1</sub> - 1 = 10.</li>
+			    <li>And since the sample size <i>n</i><sub>2</sub> = 16, the degrees of freedom <i>v</i><sub>2</sub>
+				    = <i>n</i><sub>2</sub> - 1 = 15.</li>
+			    <li>The cumulative probability is equal to 0.75.</li>
+		    </ul>
+		    <br />
+		    Now, we are ready to use the <a rel="external" href="#Calculator">F Distribution 
+			    Calculator</a>. We enter the degrees of freedom (<i>v</i><sub>1</sub> = 
+		    10), the degrees of freedom (<i>v</i><sub>2</sub> = 15), and the cumulative 
+		    probability (0.75) into the calculator ; and hit the Calculate button. The 
+		    calculator reports that the <i>f</i> value is 1.45.
+		    <br /><br /></li>
+	    <li>
+		    <a name="prob1"></a>Suppose we take independent random samples of size <i>n</i><sub>1</sub>
+		    = 25 and <i>n</i><sub>2</sub> = 13 from normal populations. If the <i>f</i> statistic 
+		    (aka, f value) is equal to 2.51, what is the cumulative probability of 
+		    the <i>f</i> statistic?
+		    <br />
+		    <br />
+		    <b>Solution:</b><br />
+		    <br />
+		    We know the following:
+		    <br />
+		    <br />
+		    <ul>
+			    <li>Since the sample size <i>n</i><sub>1</sub> = 25, the degrees of freedom <i>v</i><sub>1</sub>
+				    = <i>n</i><sub>1</sub> - 1 = 24.</li>
+			    <li>And since the sample size <i>n</i><sub>2</sub> = 13, the degrees of freedom <i>v</i><sub>2</sub>
+				    = <i>n</i><sub>2</sub> - 1 = 12.</li>
+			    <li>The <i>f</i> statistic is equal to 2.51.</li>
+		    </ul>
+		    <br />
+		    Now, we are ready to use the <a rel="external" href="#Calculator">F Distribution 
+			    Calculator</a>. We enter the degrees of freedom (<i>v</i><sub>1</sub> = 
+		    24), the degrees of freedom (<i>v</i><sub>2</sub> = 12), and the <i>f</i> value 
+		    (2.51) into the calculator; and hit the Calculate button. The calculator 
+		    reports that the cumulative probability is 0.95.
+	    </li>
+    </ol>
+
+    <!-- google_ad_section_end -->
+
+    </section>
+
+
+
+        
+            <!-- Scroll to top button  -->
+             
+
+<style type="text/css">
+    .divScrollToTop {
+        padding: 1px 0px;
+        background-color: #ddd;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+        width: 18%;
+        z-index: 10;
+        position:fixed; bottom:5%; right:5%;
+        display:none;
+        z-index:5;
+    }
+
+    a.aScrollToTop:link, a.aScrollToTop:visited, a.aScrollToTop:active, a.aScrollToTop:hover {
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: normal;
+        font-family: Segoe UI, Helvetica, Arial, 'Trebuchet MS', Sans-Serif;
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+    }
+
+    a.aScrollToTop:visited {
+        color: #000;
+    }
+
+    a.aScrollToTop:hover {
+        text-decoration:none;
+        color: #000;
+    }
+</style>
+
+<!-- The binding of event handlers needs to happen before jQuery mobile loads, according to
+        Hadlock, p. 55 -->
+<script>
+    $(document).ready(function () {
+
+        //Initialize global variables
+        TimeShowButton = new Date() - 5000;
+        TimeScrollStops = new Date();
+
+    });
+
+    $(window).on("scrollstart", function () {
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        //If conditions are favorable, display button
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+    });
+
+    $(window).on("scrollstop", function () {
+
+        //Get the time when the scroll stops
+        var TimeScrollStops = new Date;
+
+        //Get the vertical scroll position for the page 
+        var scrollVal = $(window).scrollTop();
+
+        if (((scrollVal > 320)) && ((TimeScrollStops - TimeShowButton) > 4100)) {
+            //Update the time when the new "Top" button is displayed
+            TimeShowButton = new Date();
+
+            //Show button
+            $('#divScrollTop').fadeIn(500);
+            $('#divScrollTop').delay(3000);
+        }
+
+        //Fade button
+        $('#divScrollTop').fadeOut(500);
+
+        //Hide button if scrolling stops near the top of the page.
+        //NOTE: This prevents button from overlaying ads that appear near top of page (i.e., divAd1).
+        if (scrollVal <= 320) {
+            $('#divScrollTop').hide();
+        }
+
+        //Get vertical position for "top" box
+        //var offsets = $('#divScrollTop').offset();
+        //var offsets = document.getElementById('divScrollTop').getBoundingClientRect();
+        //var topBox = offsets.top;
+        //var botBox = offsets.bottom;
+
+        //Get vertical position for ad 2
+        //var offsets = $('#divAd2').offset();
+        //var offsets = document.getElementById('divAd2').getBoundingClientRect();
+        //var topAd = offsets.top;
+        //var botAd = offsets.bottom;
+
+        //Hide button if it stops over ad 2
+        //if ((topBox < topAd && topBox > botAd) || (botBox < topAd && botBox > botAd)) {
+        //    $('#divScrollTop').hide();
+        //}
+    });
+</script>
+
+<div class="divScrollToTop" id="divScrollTop" data-role="none">
+
+    <a rel="external" href="#TopPage" class="aScrollToTop" >Top</a>
+
+</div> 
+        
+
+        
+
+            <!-- Second Google ad -->
+            <div id="divAd2" class="ad1">
+                <aside id="Ad2" class="adMasterPage1 marginTopMinus10 marginBottom20"></aside>
+            </div>
+        
+
+          
+            
+
+<!-- The UpdatePanel control is necessary to display some desktop pages correctly after the User taps
+    the "View Desktop Version" button. It seems to allow a complete refresh of the desktop version page, 
+    which is needed for some pages (e.g., /ap-statistics/practice-test.aspx) to display correctly.
+    
+    On the other hand, it interferes with the correct display of the About/Contact/Privacy buttons on 
+    mobile versions of the page. This problem crops up after a postback to the mobile version of the page. 
+    For example, it occurs after tapping the "Begin" button on /ap-statistics/practice-test.aspx .   
+    
+    The solution is to place the UpdatePanel control around the "View Desktop" button, but not around the 
+    footer element -->
+
+<footer data-role="footer" >
+
+    <div data-role="navbar">
+
+        <ul role="navigation">
+            <li><a href="../site/about.html" rel="external">About</a></li>
+            <li><a href="../../site/contact.html" rel="external">Contact</a></li>
+            <li><a href="../../site/privacy.html" rel="external">Privacy</a></li>
+            <li><a href="../../site/advertising.html" rel="external">Ads</a></li>
+        </ul>
+
+    </div>
+
+</footer>
+
+
+<div id="UpdatePanelFooter">
+	
+    
+<p style="text-align:center;">Copyright &copy; 2017 StatTrek.com <br /> <a href="../site/terms.html" rel="external">Terms and Conditions</a></p>
+
+<div style="text-align:center; width:100%; margin-top:20px;">
+    <input type="submit" name="ctl00$cpFooter$footerM1$btnViewDesktop" value="View Desktop Version" id="btnViewDesktop" data-role="none" style="font-size:1em; font-weight:bold; border-radius: 5px; padding:10px 15px; text-shadow: none; 
+            border:1px solid #ddd; background-color:#eee; font-family: 'Segoe UI, Verdana, Arial Unicode MS', Arial, sans-serif;" />
+</div>             
+
+
+</div>        
+        
+
+        
+
+            <!-- last Google ad -->
+            <div id="divAd3" class="ad1">
+                <aside id="Ad3" class="adMasterPage1 marginTop25"></aside>
+            </div>
+
+        
+
+        
+        
+            <!-- 
+            This is the Universal Analytics tracking code for Stat Trek. It’s different 
+                from the classic Google Analytics tracking code. To get all the benefits of 
+                Universal Analytics for this property, copy and paste this code into every 
+                webpage you want to track.  
+            Added to site on 5/14/2014
+            -->
+
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-718832-1', 'stattrek.com'); ga('require', 'displayfeatures');
+
+                //This line was added to implement Display Advertising features for Universal Analytics
+                //Source: support.google.com/analytics/answer/2444872?hl=en&utm_id=ad
+                ga('require', 'displayfeatures');
+
+                ga('send', 'pageview');
+
+            </script>    
+
+    
+            <!-- To enable Google plus 1 button, place this tag in your head 
+            or just before your close body tag -->
+            <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+        
+        
+
+        
+        
+            <!--
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow37.js"></script>
+            <noscript>Not seeing a <a href="http://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+            -->
+
+        
+        
+    </div>
+
+        
+            
+        
+
+        
+
+        <!-- Data Camp ad -->
+        <div style="width:100%; margin:10px auto; text-align:center;">
+        
+            <iframe src="https://tracking-ads.datacamp.com/" frameborder="0" width="728" height="90" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+
+        </div>
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+new FODIO('w', 'h');//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from stattrek.com/m/online-calculator/f-distribution.aspx by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 14 Apr 2017 06:12:51 GMT -->
+</html>

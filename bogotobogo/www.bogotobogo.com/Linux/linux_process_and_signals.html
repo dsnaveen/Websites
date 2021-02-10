@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Linux/linux_process_and_signals.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:43:00 GMT -->
+<head>
+  <title>Linux Processes and Signals- 2017</title>
+  <meta content="Linux Processes and Signals, Each process is allocated a unique number, process identifier (PID). It's an integer between 2 and 32,768. When a process is started, the numbers restart from 2, and the number 1 is typically reserved for the init process as show in the above example. The process #1 manages other processes." name="description" />
+  <meta content="Linux processes and signals, wait, pipes, ps ax, ps -l, exec, fork, wait, zombie processes" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Linux Processes and Signals
+       <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/emperor_penguins.png" alt="linux logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="Processes">Processes</div>
+<p>The <strong>signals</strong> and <strong>processes</strong> control almost every task of the system.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<p>We get the following response at <strong>ps -ef</strong>:
+<pre>
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         <font color="red">1</font>     0  0  2010 ?        00:01:48 <font color="red">init</font> 
+root     21033     1  0 Apr04 ?        00:00:39 crond
+root     24765     1  0 Apr08 ?        00:00:01 /usr/sbin/httpd
+</pre>
+<br/>
+<img alt="ProcessState.png" src="images/process/ProcessState.png"/>
+<br/>
+<p>Each process is allocated a unique number, <strong>process identifier (PID)</strong>. It's an integer between 2 and 32,768. When a process is started, the numbers restart from 2, and the number 1 is typically reserved for the <strong>init</strong> process as shown in the above example. The process #1 manages other processes.</p>
+<p>When we run a program, the code that will be executed is stored in a disk file. In general, a linux process can't write to the memory area. The area is for holding the program code so that the code can be loaded into memory as read-only (so, it can be safely shared).</p>
+<br/>
+<img alt="process" src="images/process/process.png"/>
+<br/>
+<p>The system libraries can also be shared. Therefore, there need be only one copy of <strong>printf()</strong> in memory, even if there are many programs calling it.</p>
+<p>When we run two programs, there are variables unique to each programs, unlike the shared libraries, these are in separate data space of each process, and usually can't be shared. In other words, a process has its own stack space, used for local variables. It also has its own environment variables which are maintained by each process. A process should also has its own program counter, a record of where it has gotten to in its execution (execution thread - more on <a href="../cplusplus/multithreaded3.php" target="_blank">linux pthread</a>).</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="process_table">Process Table </div>
+<p>The <b>process table</b> describes all the processes that are currently loaded. The <b>ps</b> command shows the processes. By default, it shows only processes that maintain a connection with a terminal, a console, a serial line, or a pseudo terminal. Other processes that can run without communication with a user on a terminal are system processes that Linux manages shared resources. To see all processes, we use <b>-e</b> option and <b>-f</b> to get full information (<b>ps -ef</b>).</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="system_process">System Processes</div>
+<p>Here is the <strong>STAT</strong> output from <strong>ps</strong>:</p>
+<pre>
+<font color="red">$ ps -ax</font>
+  PID TTY      <font color="red">STAT</font>   TIME COMMAND
+    1 ?        Ss     1:48 init [3]
+    2 ?        S&lt;     0:03 [migration/0]
+    3 ?        SN     0:00 [ksoftirqd/0]
+ ....
+ 2981 ?        S&lt;sl  10:14 auditd
+ 2983 ?        S&lt;sl   3:43 /sbin/audispd
+ ....
+ 3428 ?        SLs    0:00 ntpd -u ntp:ntp -p /var/run/ntpd.pid -g
+ 3464 ?        Ss     0:00 rpc.rquotad
+ 3508 ?        S&lt;     0:00 [nfsd4]
+ ....
+ 3812 tty1     Ss+    0:00 /sbin/mingetty tty1
+ 3813 tty2     Ss+    0:00 /sbin/mingetty tty2
+ 3814 tty3     Ss+    0:00 /sbin/mingetty tty3
+ 3815 tty4     Ss+    0:00 /sbin/mingetty tty4
+.....
+19874 pts/1    R+     0:00 ps -ax
+19875 pts/1    S+     0:00 more
+21033 ?        Ss     0:39 crond
+24765 ?        Ss     0:01 /usr/sbin/httpd
+</pre>
+<br/>
+<p>The meaning of the code is in the table below:</p>
+<table border="2" cellpadding="7" cellspacing="0">
+<tbody>
+<tr>
+<th>STAT Code</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>R</td>
+<td>Running or runnable (either executing or about to run).</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Uninterruptible sleep (waiting) - usually waiting for input or output to complete.</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Sleeping. Usually waiting for an event to occur, such as a signal or input to become available.</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Stopped. Usually stopped by shell job control or the process is under the control of a debugger.</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>Defunct or zombie process.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Low priority task, nice.</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Paging.</td>
+</tr>
+<tr>
+<td>s</td>
+<td>The process is a session leader.</td>
+</tr>
+<tr>
+<td>+</td>
+<td>The process is in the foreground process group.</td>
+</tr>
+<tr>
+<td>l</td>
+<td>The process is multithreaded.</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>High priority task.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>Let's look at the following process:</p>
+<pre>
+1 ?        Ss     1:48 init [3]
+</pre>
+<p>Each <b>child process</b> is started by <b>parent process</b>. When linux starts, it runs a single program, <b>init</b>, with process #1. This is OS process manager, and it's the prime ancestor of all processes. Then, other system processes are started by <strong>init</strong> or by other processes started by <strong>init</strong>. The login procedure is one of the example. The <strong>init</strong> starts the <strong>getty</strong> program once for each terminal that we can use to log in, and it is shown in the <strong>ps</strong> as below:</p>
+<pre>
+ 3812 tty1     Ss+    0:00 /sbin/mingetty tty1
+</pre>
+<p>The <strong>getty</strong> processes wait for activity at the terminal, prompt the user with the login prompt, and then pass control to the login program, which sets up the user environment, and starts a shell. When the user shell exits, <strong>init</strong> starts another <strong>getty</strong> process.</p>
+<p><font color="red">The ability to <strong>start new processes</strong> and to <strong>wait for them to finish</strong> is fundamental to the system.</font> We can do the same thing within our own programs with the system calls <strong>fork()</strong>, <strong>exec()</strong>, and <strong>wait()</strong>.</p>
+<p>A <strong>system call</strong> is a <strong>controlled entry point into the kernel</strong>, allowing a process to
+request that the kernel perform some action for the process. 
+<p>Actually, a system call changes the processor state from user mode to kernel mode, so
+that the CPU can access protected kernel memory. The kernel
+makes a range of services accessible to programs via the system call application
+programming interface (API). </p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="process_scheduling">Process Scheduling</div>
+<p>Let's look at the <strong>ps</strong> STAT output for <strong>ps ax</strong> itself:
+<pre>
+23603 pts/1    R+     0:00 ps ax
+</pre>
+<p>The STAT <strong>R</strong> indicates the process 23603 is in a run state. In other words, it tells its own state. The indicator shows that the program is ready to run, and is not necessarily running. The <strong>R+</strong> indicates that the process is in foreground not waiting for other processes to finish nor waiting for input or output to complete. That's why we may see two such processes listed in <strong>ps</strong> output.</p>
+<p>Linux kernel uses a <strong>process scheduler</strong> to decide which process will get the next <strong>time slice</strong> based on the <strong>process priority</strong>.</p>
+<p>Usually, several programs are competing for the same resources. A program that performs short burst of work and pause for input is considered better behaved than the one that hog the processor by continually calculating/querying the system. Well-behaved programs are termed <strong>nice</strong> programs, and in a sense this <strong>niceness</strong> can be measured.</p>
+<p>Tho OS determines the priority of a process based on a <strong>nice</strong> value and on the behavior of the program. Program that run for long periods without pausing generally get lower priorities. Programs that pause get rewarded. This helps keep a program that interacts with the user responsive; while it is waiting for some input from the user, the system increases its priority, so that when it's ready to resume, it has a high priority.</p>
+<p>A niceness of -20 is the highest priority and 19 or 20 is the lowest priority. The default niceness for processes is inherited from its parent process, usually 0. But we can set the nice value using <strong>nice</strong> and adjust it using <strong>renice</strong>. The <strong>nice</strong> command increases the nice value of a process by <strong>10</strong>, giving it a lower priority. Only the superuser (root) may set the niceness to a smaller (higher priority) value. On Linux it is possible to change <strong>/etc/security/limits.conf</strong> to allow other users or groups to set low nice values.</p>
+<p>We can view the nice values of active processes using <strong>-l</strong> or <strong>-f</strong> option as in <strong>ps -l</strong> .</p>
+<pre>
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S   601 12649 12648  0  75   0 -  1135 wait   pts/0    00:00:00 bash
+0 S   601 12681 12649  0  76   0 -  1122 wait   pts/0    00:00:00 myTest.sh
+0 S   601 12682 12681  0  76   0 -   929 -      pts/0    00:00:00 sleep
+0 R   601 12683 12649  0  76   0 -  1054 -      pts/0    00:00:00 ps
+</pre>
+<p>Here we can see that the <strong>myTest.sh</strong> program is running with a default nice value 0. If it had been started with the following command:</p>
+<pre>
+$ nice ./myTest.sh &amp;
+</pre>
+it would have been allocated a nice value of +10.
+<pre>
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S   601  9835  9834  0  75   0 -  1135 wait   pts/1    00:00:00 bash
+0 S   601 12744 12649  0  86  10 -  1122 wait   pts/0    00:00:00 myTest.sh
+0 S   601 12745 12744  0  86  10 -   929 -      pts/0    00:00:00 sleep
+0 R   601 12746 12649  0  76   0 -  1054 -      pts/0    00:00:00 ps
+</pre>
+<p>We have another way of doing it:</p>
+<pre>
+$ renice 10 12681
+12681: old priority 0, new priority 10
+</pre>
+<p>With higher nice value, the program will run less often. As we see below, the status column now also contains <strong>N</strong> to indicate that the nice value has changed from the default.</p>
+<pre>
+$ ps x
+12649 pts/0    Ss     0:00 -bash
+12744 pts/0    SN     0:00 /bin/bash ./myTest.sh
+12745 pts/0    SN     0:00 sleep 100
+12867 pts/0    R+     0:00 ps x
+</pre>
+<p>The <strong>PPID</strong> field of <strong>ps</strong> output indicates the parent process ID, the <strong>PID</strong> of either the process that caused this process to start or, if that process is no longer running, <strong>init (PID 1)</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="init_starting">init process / daemon processes</div>
+<p>When we boot the system, the kernel creates a special process called <strong>init</strong>, the <strong>parent
+of all processes</strong>, which is derived from the file <strong>/sbin/init</strong>. <p>
+<p>All processes
+on the system are created (using fork()) either by init or by one of its descendants.
+The init process always has the process ID 1 and runs with superuser privileges. The
+init process can't be killed, and it terminates only when
+the system is shut down. The main task of init is to create and monitor a range of
+processes required by a running system.</p>
+<br/>
+<p>A <strong>daemon</strong> (syslogd, httpd, etc.) is a special-purpose process that is created and handled by the system
+in the same way as other processes. However, it differs from other processes:</p>
+<ol>
+<li>It is long-lived. A daemon process is often started at system boot and remains
+in existence until the system is shut down.</li>
+<li>It runs in the background, and has no controlling terminal from which it can
+read input or to which it can write output.</li>
+</ol>
+<br/>
+<div class="subtitle_2nd" id="process_starting">Making a New Process</div>
+<p>We can make a program to run from inside another program, and create a new process by using the <strong>system</strong> library function. As an example, the code below is using <strong>system</strong> to run <strong>ps</strong>:</p>
+<pre>
+// mySysCall.c
+
+#include &lt;iostream&gt;
+
+int main()
+{
+  <font color="red">system</font>("ps ax");
+  std::cout &lt;&lt; "Done." &lt;&lt; std::endl;
+  exit(0);
+  return 0;
+}
+</pre>
+<p>If we run the program, we get:</p>
+<pre>
+$./mySysCall
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     1:48 init [3]
+....
+24447 pts/0    S+     0:00 ./mySysCall
+24448 pts/0    R+     0:00 ps ax
+Done.
+</pre>
+<p>Because the <strong>system</strong> function uses a shell to start the program, we could put it in by changing the call like this:</p>
+<pre>
+  system("ps ax &amp;");
+</pre>
+<p>When we run the new version, we get:</p>
+<pre>
+<font color="blue">Done.</font>
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     1:48 init [3]
+....
+24849 pts/1    Ss+    0:00 -bash
+25802 pts/1    R      0:00 ps ax
+</pre>
+<p>Here, the call to <strong>system</strong> returns as soon as the shell command finishes. Because it's a request to run a program in the background, the shell returns as soon as the <strong>ps</strong> program is started. This is the same situation when we use the command at a shell prompt:</p>
+<pre>
+$ps ax &amp;
+</pre>
+<p>The program, then, prints "Done.", and exits before the <strong>ps</strong> command has had a chance to finish all of its output. This is quite confusing, and we need control over the behavior of a process.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="exec">exec() system call</div>
+<p>An <strong>exec</strong> function <font color="red">replaces</font> the current process with a new process specified by the <strong>path</strong> or <strong>file</strong> argument. We can use <strong>exec</strong> to <strong>hand off</strong> execution of our program to another.</p>
+<p>The picture below is a diagram when we issue <strong>ls</strong> command on a linux shell. In this case, the shell is a parent process, and at the <strong>ls</strong>, the shell does <strong>fork()</strong> to create a child process. The newly created child process does <strong>exec()</strong> to run <strong>ls</strong> by replacing itself with the <strong>ls</strong>.</p>
+<br/>
+<img alt="exec_ls.png" src="images/process/exec_ls.png"/>
+<br/>
+<br/>
+The <strong>exec</strong> functions are more efficient than <strong>system</strong> because the original program will <strong>no longer be running</strong> after the new one is started.</p>
+<pre>
+/* Execute PATH with arguments ARGV and environment from `environ'.  */
+extern int <font color="red">execv</font> (__const char *__path, char *__const __argv[])
+     __THROW __nonnull ((1));
+
+/* Execute PATH with all arguments after PATH until a NULL pointer,
+   and the argument after that for environment.  */
+extern int <font color="red">execle</font> (__const char *__path, __const char *__arg, ...)
+     __THROW __nonnull ((1));
+
+/* Execute PATH with all arguments after PATH until
+   a NULL pointer and environment from `environ'.  */
+extern int <font color="red">execl</font> (__const char *__path, __const char *__arg, ...)
+     __THROW __nonnull ((1));
+
+/* Execute FILE, searching in the `PATH' environment variable if it contains
+   no slashes, with arguments ARGV and environment from `environ'.  */
+extern int <font color="red">execvp</font> (__const char *__file, char *__const __argv[])
+     __THROW __nonnull ((1));
+
+/* Execute FILE, searching in the `PATH' environment variable if
+   it contains no slashes, with all arguments after FILE until a
+   NULL pointer and environment from `environ'.  */
+extern int <font color="red">execlp</font> (__const char *__file, __const char *__arg, ...)
+     __THROW __nonnull ((1));
+</pre>
+<p>These functions are usually implemented using <strong>execve</strong>. The functions with a <strong>p</strong> suffix differ in that they will search the <strong>PATH</strong> environment variable to find the new executable. If the executable is not found, an absolute file name including directories should be passed to the function.</p>
+<p>The global variable <strong>environ</strong> is available to pass a value for the new program environment. As another way, an additional argument to the functions <strong>execle</strong> and <strong>execve</strong> is available for passing an array of strings to be used as the new program environment.</p>
+<p>Here is an example of using <strong>execlp()</strong></p>
+<pre>
+// my_ps.c
+
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+  printf("ps with execlp\n");
+  <font color="red">execlp</font>("ps", "ps", 0);
+  printf("Done.\n");
+  exit(0);
+}
+</pre>
+<p>When we run it, we get the usual <strong>ps</strong> output without <strong>"Done."</strong> message at all. Also, there is no reference to a process called <strong>my_ps</strong> in the output.</p>
+<pre>
+$<font color="red">./my_ps</font>
+ps with execlp
+  PID TTY          TIME CMD
+12377 pts/0    00:00:00 bash
+18304 pts/0    00:00:00 ps
+</pre>
+<p>The code prints the first message, "ps with execlp", and then calls <strong>execlp()</strong>, which searches the directories given by the <strong>PATH</strong> environmet variable for a program called <strong>ps</strong>. It then executes <strong>ps</strong> in place of <strong>my_ps</strong>, starting it as if we had issued the shell commnad:</p>
+<pre>
+$ ps
+</pre>
+<p>So, when <strong>ps</strong> finishes, we get a new shell prompt. We don't return to <strong>my_ps</strong>. Thus, the second message, "Done.", doesn't get printed. The PID of the new process is the same as the original, as are the parent PID and nice value.</p>
+<p>To use processes to perform more than one function at a time, we can either use <strong>threads</strong> or create an extirely separate <strong>process</strong> from within a program, as <strong>init</strong> does, rather than replace the current thread of execution, <strong>exec</strong>, as shown in the above example.</p>
+<p>One way of doing it is using <strong>fork()</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fork_execv">fork() with execv()</div>
+<p>In the following code, <strong>fork()</strong> on parent process creates child process, and then the child itself run <strong>execv()</strong> to replace the parent code with a new code specified in the <strong>path</strong>.</p>
+<pre>
+void main(char *path, char *argv[]) 
+{ 
+    pid_t pid = <font color="red">fork()</font>; 
+    if (pid == 0) 
+    { 
+        printf("Child\n"); 
+        <font color="red">execv</font>(<font color="blue">path</font>, argv); 
+    } 
+    else 
+    { 
+        printf("Parent %d\n", pid); 
+    } 
+    printf("Parent prints this line \n"); 
+} 
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fork">fork() system call</div>
+<p>We can create a new process by calling <strong>fork()</strong>. This system call duplicates the current process, creating a new entry in process table with many of the same attributes as the current process. 
+In other words, the newly created process will be the child of the calling process (parent). </p>
+<p>The key point to understanding <strong>fork()</strong> is to realize that after it has completed its
+work, two processes exist, and, in each process, execution continues from the point
+where <strong>fork()</strong> returns.<p>
+<p>The <strong>fork()</strong> <font color="red">called once</font> but <font color="red">returns twice!</font></p>
+<p>Linux will make an exact copy of the parent's address space and give it to the child. Therefore, the parent and child processes have separate address spaces. Therefore, the new process is almost identical to the original, and executing the same code. However, the child process has its own data space, environment, and file descriptor. So, combined with the <strong>exec()</strong> functions, <strong>fork()</strong> is what we need to create a new process.</p>
+<p>The <strong>fork()</strong> returns a process ID, <strong>PID</strong> so that we can distinguish the two processes via the
+value returned from <strong>fork()</strong>. For the parent, <strong>fork()</strong> returns the process ID of the
+newly created child. This is useful because the parent may create, and thus need to
+track, several children (by <strong>wait()</strong> call). For the child, <strong>fork()</strong> returns 0.
+If necessary, the child can obtain its own process ID using <strong>getpid()</strong>, and the process
+ID of its parent using <strong>getppid()</strong>. If <strong>fork()</strong> fails it returns <strong>-1</strong>, and this is due to a limit on the number of child processes (<strong>CHILD_MAX</strong>). In that case, <strong>errno</strong> will be set to <strong>EAGAIN</strong>. If there is not enough space for an entry in the process table, or not enough virtual memory, the <strong>errno</strong> will be set to <strong>ENOMEM</strong>.</p>
+<p>Which one runs first after the <strong>fork()</strong>? <br/>
+Parent process or child process?<br/>
+Well, it's undefined!</p>
+<br/>
+<img alt="fork_diagram.png" src="images/process/fork_diagram.png"/>
+<p>Picture from "The Linux Programming Interface"</p>
+<br/>
+<p>Here is the summary:</p>
+<p>System call <strong>fork()</strong> takes no arguments and returns a process ID. The purpose of <strong>fork()</strong> is to create a new process, which becomes the child process of the caller. After a new child process is created, both processes will execute the next instruction following the <strong>fork()</strong> system call. Therefore, <strong>we have to distinguish the parent from the child</strong>. <font color="red">This can be done by testing the <strong>returned value</strong> of <strong>fork()</strong>:</font></p>
+<ol>
+<li>If fork() returns a <strong>negative value</strong>, the creation of a child process was unsuccessful.</li>
+<li>The fork() returns a <strong>zero</strong> to the newly created child process.</li>
+<li>The fork() returns a <strong>positive value</strong>, the process ID of the child process, to the parent. The returned process ID is of type <strong>pid_t</strong> defined in <strong>sys/types.h</strong>. Normally, the process ID is an integer. Moreover, a process can use function <strong>getpid()</strong> to retrieve the process ID assigned to this process.</li>
+</ol>
+<br/>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define BUF_SIZE 150
+
+int main()
+{
+  int <font color="maroon">pid</font> = <font color="red">fork()</font>;
+  char buf[BUF_SIZE];
+  int print_count;
+
+  switch (<font color="maroon">pid</font>)
+  {
+    case <font color="red">-1</font>:
+      perror("<font color="red">fork failed</font>");
+      exit(1);
+    case <font color="red">0</font>:
+      /* When fork() returns 0, we are in the child process. */
+      print_count = 10;
+      sprintf(buf,"<font color="red">child process</font>: pid = %d", pid);
+      break;
+    default: /* <font color="red">+</font> */
+      /* When fork() returns a positive number, we are in the parent process
+       * (the fork return value is the PID of the newly created child process) */
+      print_count = 5;
+      sprintf(buf,"<font color="red">parent process</font>: pid = %d", pid);
+      break;
+  }
+  for(;print_count &gt; 0; print_count--) {
+      puts(buf);
+      sleep(1);
+  }
+  exit(0);
+}
+
+</pre>
+<p>Output is:</p>
+<pre>
+
+child process: pid = 0
+parent process: pid = 13510
+child process: pid = 0
+parent process: pid = 13510
+child process: pid = 0
+parent process: pid = 13510
+child process: pid = 0
+parent process: pid = 13510
+child process: pid = 0
+parent process: pid = 13510
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+
+</pre>
+<p>As we can see from the output, the call to <strong>fork()</strong> in the parent returns the PID of the new child process. The new process continues to execute just like the old, with the exception that in the child process the call to <strong>fork()</strong> returns <strong>0</strong>.</p>
+<p>When we start a child process with <strong>fork()</strong>, it runs independently. But sometimes, we want to find out when a child process has finished. If the parent finishes ahead of the child, as the case in the example above, we may get confused, and it may not what we want to happen. So, we need to arrange for the parent process to wait until the child finishes by calling <strong>wait()</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="wait">wait() system call</div>
+<p>The primary role of <strong>wait()</strong> is to synchronization with children.</p>
+<ol>
+<li>Suspends current process (the parent) until one of its children terminates.</li>
+<li>Return value is the <strong>pid</strong> of the child process that terminated, and on a successful return, the child process is reaped by the parent.</li>
+<li>If <strong>child_status != NULL</strong>, the value of the <strong>status</strong> will be set to indicate why the child process terminated.</li>
+<li>If parent process has multiple children, <strong>wait()</strong> will return when <strong>any</strong> of the children terminates.</li>
+<li>The <strong>waitpid()</strong> can be used to wait on a specific child process.</li>
+</ol>
+<p>A parent process needs to know when one of its child
+processes changes state, when the child terminates, or is stopped by a signal.The <strong>wait()</strong> is one of the two techniques used to monitor child processes: along with the <strong>SIGCHLD</strong> signal.</p>
+<p>The system call <strong>wait()</strong> blocks the calling process until one of <strong>its child processes exits</strong> or a <strong>signal is received</strong>. The <strong>wait()</strong> takes the address of an integer variable and returns the process ID of the completed process. </p>
+<pre>
+#include &lt;sys/wait.h&gt;
+pid_t wait(int *child_status);
+</pre>
+<p>Again, <font color="red">one of the main purposes of <strong>wait()</strong> is to wait for completion of child processes.</font><p>
+<p>The execution of <strong>wait()</strong> could have two possible situations.</p>
+<ol>
+<li>If there are at least one child processes running when the call to <strong>wait()</strong> is made, the caller will be blocked until one of its child processes exits. At that moment, the caller resumes its execution.</li>
+<li>If there is no child process running when the call to <strong>wait()</strong> is made, then this <strong>wait()</strong>  has no effect at all. That is, it is as if no <strong>wait()</strong> is there.</li>
+</ol>
+<p>The <strong>wait(&amp;status)</strong> system call has two purposes. </p>
+<ol>
+<li>If a child of this process
+has not yet terminated by calling <strong>exit()</strong>, then <strong>wait()</strong> suspends execution of the
+process until one of its children has terminated. </li>
+<li>The termination status
+of the child is returned in the status argument of <strong>wait()</strong>.</li>
+</ol>
+<br/>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define BUF_SIZE 150
+
+int main()
+{
+  int pid = fork();
+  char buf[BUF_SIZE];
+  int print_count;
+
+  switch (pid)
+  {
+    case -1:
+      perror("fork failed");
+      exit(1);
+    case 0:
+      print_count = 10;
+      sprintf(buf,"child process: pid = %d", pid);
+      break;
+    default:
+      print_count = 5;
+      sprintf(buf,"parent process: pid = %d", pid);
+      break;
+  }
+  if(!pid) {
+    int status;
+    int pid_child = <font color="red">wait</font>(&amp;status;);
+  }
+  for(;print_count &gt; 0; print_count--) puts(buf);
+  exit(0);
+}
+</pre>
+<p>The parent is now waiting for the child process to finish:</p>
+<pre>
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+child process: pid = 0
+parent process: pid = 22652
+parent process: pid = 22652
+parent process: pid = 22652
+parent process: pid = 22652
+parent process: pid = 22652
+</pre>
+<p>The parent process is now using the <strong>wait()</strong> system call to suspend its own execution by checking the return value from the call.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="exit">exit() library call / _exit() system call</div>
+<p>The <strong>exit(status)</strong> library function terminates a process, making all resources
+(memory, open file descriptors, etc.) used by the process available for
+subsequent reallocation by the kernel. The status argument is an integer that
+determines the termination status for the process. Using the <a href="linux_process_and_signals.html#wait" target="_blank">wait()</a> system call,
+the parent can retrieve this status.</p>
+<p>Note - "The <strong>exit()</strong> library function is layered on top of the <strong>_exit()</strong> system call. <br/>
+... after a <strong>fork()</strong>, generally only one of the parent and child terminate by calling <strong>exit()</strong> the other process should terminate using <strong>_exit()</strong>" - The Linux Programming Interface.</p>
+<br/><br/>
+<div class="subtitle_2nd" id="zombie">zombie processes</div>
+<p>The lifetimes of parent and child processes are usually not the same: either the
+parent outlives the child or vice versa.</p>
+<p>What happens to a child that terminates before its parent has had a chance to
+perform a <strong>wait()</strong>? The point here is that, although the child has finished its
+work, the parent should still be permitted to perform a <strong>wait()</strong> at some later
+time to determine how the child terminated. The kernel deals with this situation by turning the child into a zombie. This means that most of the resources 
+held by the child are released back to the system to be reused by other processes.</p>
+<p>In fact, when a process dies on Linux, it isn't removed from memory immediately - its <strong>process descriptor</strong> stays in memory (the process descriptor only takes a tiny amount of memory). The process's status becomes <strong>EXIT_ZOMBIE</strong> and the process's parent is notified that its child process has died with the <strong>SIGCHLD</strong> signal. The parent process is then supposed to execute the <strong>wait()</strong> system call to read the dead process's exit status and other information. This allows the parent process to get information from the dead process. After <strong>wait()</strong> is called, the zombie process is completely removed from memory.</p>
+<p>
+This normally happens very quickly, so you won't see zombie processes accumulating on your system. <font color="red">However, if a parent process isn't programmed properly and never calls <strong>wait()</strong>, its zombie children will stick around in memory until they're cleaned up.</font>
+-from <a href="http://www.howtogeek.com/119815/htg-explains-what-is-a-zombie-process-on-linux/" target="_blank">what-is-a-zombie-process-on-linux</a>.</p>
+<pre>
+// file - zombie.c
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define BUF_SIZE 150
+
+int main()
+{
+  int pid = fork();
+  char buf[BUF_SIZE];
+  int print_count;
+
+  switch (pid)
+  {
+    case -1:
+      perror("fork failed");
+      exit(1);
+    case 0:
+      print_count = 2;
+      sprintf(buf,"child process: pid = %d", pid);
+      break;
+    default:
+      print_count = 10;
+      sprintf(buf,"parent process: pid = %d", pid);
+      break;
+  }
+  for(;print_count &gt; 0; print_count--) {
+      puts(buf);
+      sleep(1);
+  }
+  exit(0);
+}
+</pre>
+<p>If we run the code above, the child process will finish its task ahead of parent process, and will exist as a zombie until the parent finishes as shown in the output below:</p>
+<p>The <strong>top</strong> command, and the <strong>ps</strong> command display zombie processes.</p>
+<pre>
+$ ./zombie
+$ ps -la
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S   601 25350 12377  0  75   0 -   381 -      pts/0    00:00:00 zombie
+<font color="red">1 Z   601 25351 25350  0  78   0 -     0 exit   pts/0    00:00:00 zomb &lt;defunct&gt;</font>
+0 R   601 25352 12377  0  77   0 -  1054 -      pts/0    00:00:00 ps
+</pre>
+<p>The description below is also from <a href="http://www.howtogeek.com/119815/htg-explains-what-is-a-zombie-process-on-linux/" target="_blank">what-is-a-zombie-process-on-linux</a>.</p>
+<p><strong>Zombie processes don't use up any system resources</strong>. (Actually, each one uses a very tiny amount of system memory to store its process descriptor.) However, each zombie process <strong>retains</strong> its <strong>process ID (PID)</strong>. Linux systems have a finite number of process IDs - 32767 by default on 32-bit systems. If zombies are accumulating at a very quick rate - for example, if improperly programmed server software is creating zombie processes under load - the entire pool of available PIDs will eventually become assigned to zombie processes, preventing other processes from launching.</p>
+<p>However, a few zombie processes hanging around are no problem - although they do indicate a bug with their parent process on your system.</p>
+<p>If the parent terminates abnormally, the child process gets the process with <strong>init</strong> as parent. The zombie will remain in the process table until collected by the <strong>init</strong> process. Though they will stay for short period of time, they consumes resources until <strong>init</strong> removes them.</p>
+<p>We can't kill zombie processes as we can kill normal processes with the <strong>SIGKILL</strong> signal - zombie processes are <font color="red">already dead</font>. Regarding zombies, UNIX systems imitate the movies - a zombie process can't be
+killed by a signal, not even the (silver bullet) SIGKILL. Actually, this was the intentional feature to ensure  that the parent
+can always eventually perform a <strong>wait()</strong>. Bear in mind that we don't need to get rid of zombie processes unless we have a large amount on our system - a few zombies are harmless. However, there are a few ways we can get rid of zombie processes.</p>
+<p>
+One way is by sending the <strong>SIGCHLD</strong> signal to the parent process. This signal tells the parent process to execute the <strong>wait()</strong> system call and clean up its zombie children. Send the signal with the kill command, replacing pid in the command below with the parent process's PID:</p>
+<pre>
+kill -s SIGCHLD pid
+</pre>
+<p>However, if the parent process isn't programmed properly and is ignoring SIGCHLD signals, this won't help. We'll have to kill or close the zombies' parent process. When the process that created the zombies ends, <strong>init</strong> inherits the zombie processes and becomes their new parent. (<strong>init</strong> is the first process started on Linux at boot and is assigned PID 1.) <strong>init</strong> periodically executes the <strong>wait()</strong> system call to clean up its zombie children, so init will make short work of the zombies. We can restart the parent process after closing it.</p>
+<p>
+If a parent process continues to create zombies, it should be fixed so that it properly calls <strong>wait()</strong> to reap its zombie children.</p>
+<p>A zombie process is not the same as an <strong>orphan process</strong>. An orphan process is a process that is <font color="red">still executing</font>, but whose parent has died. They do not become zombie processes; instead, they are adopted by <strong>init</strong> (process ID 1)<br/>
+In other words, 
+after a child's parent terminates, a call to <strong>getppid()</strong> will return the value 1. This
+can be used as a way of determining if a child's true parent is still alive (this
+assumes a child that was created by a process other than init).</p>
+<br/><br/>
+<br/><br/>
+<div class="subtitle" id="signals">Signals</div>
+<br/>
+<p><strong>Signal</strong> is a notification, a message sent by either operating system or some application to our program. Signals are a mechanism for one-way asynchronous notifications. A signal may be sent from the kernel to a process, from a process to another process, or from a process to itself. Signal typically alert a process to some event, such as a segmentation fault, or the user pressing Ctrl-C.</p>
+<p>Linux kernel implements about 30 signals. Each signal identified by a number, from 1 to 31. Signals don't carry any argument and their names are mostly self explanatory. For instance <strong>SIGKILL</strong> or signal number <strong>9</strong> tells the program that someone tries to kill it, and <strong>SIGHUP</strong> used to signal that a terminal hangup has occurred, and it has a value of <strong>1</strong> on the i386 architecture.</p>
+<p>With the exception of <strong>SIGKILL</strong> and <strong>SIGSTOP</strong> which always terminates the process or stops the process, respectively, processes may control what happens when they receive a signal. They can </p>
+<ol>
+<li>accept the default action, which may be to terminate the process, terminate and coredump the process, stop the process, or do nothing, depending on the signal.</li>
+<li> Or, processes can elect to explicitly ignore or handle signals.</li>
+<ol>
+<li><strong>Ignored signals</strong> are silently dropped.</li>
+<li><strong>Handled signals</strong> cause the execution of a user-supplied <strong>signal handler</strong> function. The program jumps to this function as soon as the signal is received, and the control of the program resumes at the previously interrupted instructions.</li>
+</ol>
+
+
+<br/>
+<br/>
+<table border="2" cellpadding="7" cellspacing="0">
+<tbody>
+<tr>
+<th>Signal</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>SIGHUP</td> <td>1</td> <td>Hangup (POSIX)</td>
+</tr>
+<tr>
+<td>SIGINT</td> <td>2</td> <td>Terminal interrupt (ANSI)</td>
+</tr>
+<tr>
+<td>SIGQUIT</td> <td>3</td> <td>Terminal quit (POSIX)</td>
+</tr>
+<tr>
+<td>SIGILL</td> <td>4</td> <td>Illegal instruction (ANSI)</td>
+</tr>
+<tr>
+<td>SIGTRAP</td> <td>5</td> <td>Trace trap (POSIX)</td>
+</tr>
+<tr>
+<td>SIGIOT</td> <td>6</td> <td>IOT Trap (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGBUS</td> <td>7</td> <td>BUS error (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGFPE</td> <td>8</td> <td>Floating point exception (ANSI) </td>
+</tr>
+<tr>
+<td>SIGKILL</td> <td>9</td> <td>Kill(can't be caught or ignored) (POSIX)</td>
+</tr>
+<tr>
+<td>SIGUSR1</td> <td>10</td> <td>User defined signal 1 (POSIX)</td>
+</tr>
+<tr>
+<td>SIGSEGV</td> <td>11</td> <td>Invalid memory segment access (ANSI)</td>
+</tr>
+<tr>
+<td>SIGUSR2</td> <td>12</td> <td>User defined signal 2 (POSIX)</td>
+</tr>
+<tr>
+<td>SIGPIPE</td> <td>13</td> <td>Write on a pipe with no reader, Broken pipe (POSIX)</td>
+</tr>
+<tr>
+<td>SIGALRM</td> <td>14</td> <td>Alarm clock (POSIX)</td>
+</tr>
+<tr>
+<td>SIGTERM</td> <td>15</td> <td>Termination (ANSI)</td>
+</tr>
+<tr>
+<td>SIGSTKFLT</td> <td>16</td> <td>Stack fault</td>
+</tr>
+<tr>
+<td>SIGCHLD</td> <td>17</td> <td>Child process has stopped or exited, changed (POSIX)</td>
+</tr>
+<tr>
+<td>SIGCONTv	<td>18	 <td>Continue executing, if stopped (POSIX)</td>
+</td></td></tr>
+<tr>
+<td>SIGSTOP</td> <td>19	<td>Stop executing(can't be caught or ignored) (POSIX)</td>
+</td></tr>
+<tr>
+<td>SIGTSTP</td> <td>20</td> <td>Terminal stop signal (POSIX)</td>
+</tr>
+<tr>
+<td>SIGTTIN</td> <td>21</td> <td>Background process trying to read, from TTY (POSIX)</td>
+</tr>
+<tr>
+<td>SIGTTOU</td> <td>22	<td>Background process trying to write, to TTY (POSIX)</td>
+</td></tr>
+<tr>
+<td>SIGURG</td> <td>23	<td>Urgent condition on socket (4.2 BSD)</td>
+</td></tr>
+<tr>
+<td>SIGXCPU</td> <td>24</td> <td>CPU limit exceeded (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGXFSZ</td> <td>25</td> <td>File size limit exceeded (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGVTALRM</td> <td>26</td> <td>Virtual alarm clock (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGPROF</td> <td>27</td> <td>Profiling alarm clock (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGWINCH</td> <td>28</td> <td>Window size change (4.3 BSD, Sun)</td>
+</tr>
+<tr>
+<td>SIGIO</td> <td>29</td> <td>I/O now possible (4.2 BSD)</td>
+</tr>
+<tr>
+<td>SIGPWR</td> <td>30</td> <td>Power failure restart (System V)</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>The term <strong>raise</strong> is used to indicate the generation of a signal, and the term <strong>catch</strong> is used to indicate the receipt of a signal.</p>
+<p>Signals are raised by error conditions, and they are generated by the shell and terminal handlers to cause interrupts and can also be sent from one process to another to pass information or to modify the behavior.</p>
+<p>Signals can be:</p>
+<ol>
+<li>Raised</li>
+<li>Caught</li>
+<li>Acted upon</li>
+<li>Ignored</li>
+</ol>
+<p>If a process receives signals such as <strong>SIGFPE</strong>, <strong>SIGKILL</strong>, etc., the process will be terminated immediately, and a <strong>core dump</strong> file is created. The <strong>core</strong> file is an image of the process, and we can use it to debug.</p>
+<p>See <a href="www.bogotobogo.com/Linux/debugging_gdb.html" target="_blank">coredump debugging</a></p>
+<p>Here is an example of the common situation when we use a signal: when we type the <strong>interrupt character (Ctrl+C)</strong>, the <strong>ISGINT</strong> signal will be sent to the <strong>foreground process</strong> (the program currently running). This will cause the program to terminate unless it has some arrangement for catching the signal.</p>
+<p>The command <strong>kill</strong> can be used to send a signal to a process other than the current foreground process. To send a <strong>hangup</strong> signal to a shell running on a different terminal, we can use the following command:</p>
+<pre>
+kill -HUP pid_number
+</pre>
+<p>There is another useful variant of <strong>kill</strong> is <strong>killall</strong>. This allows us to send a signal to all processes running a specified command. For example, to send a <strong>reread</strong> signal to the <strong>inetd</strong> program:</p>
+<pre>
+$ killall -HUP inetd
+</pre>
+<p>The command causes the <strong>inetd</strong> program to reread its configuration options.</p>
+<p>In the following example, the program will reacts to the Ctrl+C rather than terminating foreground task. But if we hit the Ctrl+C again, it will do what it usually does, terminating the program. </p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;signal.h&gt;
+
+void my_signal_interrupt(int sig)
+{
+  printf("I got signal %d\n", sig);
+  (void) signal(SIGINT, SIG_DFL);
+}
+
+int main()
+{
+  (void) <font color="red">signal</font>(SIGINT,my_signal_interrupt);
+
+  while(1) {
+      printf("Waiting for interruption...\n");
+      sleep(1);
+  }
+}
+</pre>
+<p>Output from the run when we typed Ctrl+C two times:</p>
+<pre>
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+I got signal 2
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+Waiting for interruption...
+</pre>
+<p>The <strong>my_signal_interrupt()</strong> is called when we give <strong>SIGINT</strong> signal by typing Ctrl+C. After the interrupt function <strong>my_signal_interrupt()</strong> has completed, the program moves on, but the signal action is restored to the default. So, when it gets a second <strong>SIGINT</strong> signal, the program takes the default action, which is terminating the program.</p>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!-- linux_list_INNER.php -->
+<div class="bodytext" style="padding: 12px;" align="justify"> 
+<h1>Linux - system, cmds & shell programming</h1>
+
+<ol>
+   <li><a href="linux_tips1.html">Linux Tips - links, vmstats, rsync</a> </li>
+   <li><a href="linux_tips2.html">Linux Tips 2 - ctrl a, curl r, tail -f, umask </a> </li>
+   <li><a href="linux_tips2_bash.html">Linux - bash I</a> </li>
+   <li><a href="linux_bash_2.html">Linux - bash II</a> </li>
+   <li><a href="linux_7z_uncompress.html">Linux - Uncompressing 7z file</a> </li>
+   <li><a href="linux_sed_tutorial.html">Linux - sed I (substitution: sed 's///', sed -i)</a> </li>
+   <li><a href="linux_sed_tutorial_2.html">Linux - sed II (file spacing, numbering, text conversion and substitution)</a> </li>
+   <li><a href="linux_sed_tutorial_3.html">Linux - sed III (selective printing of certain lines, selective definition of certain lines)</a> </li>
+   <li><a href="linux_File_Types.html">Linux - 7 File types : Regular, Directory, Block file, Character device file, Pipe file, Symbolic link file, and Socket file</a> </li>
+    <li><a href="linux_shell_programming_tutorial.html">Linux shell programming - introduction</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial2_variables.html">Linux shell programming - variables (readonly, unset)</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial3_special_variables.html">Linux shell programming - special shell variables</a>
+    </li>   
+   <li><a href="linux_shell_programming_tutorial4_arrays.html">Linux shell programming : arrays - three different ways of declaring arrays & looping with $*/$@</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial5_array_operations.html">Linux shell programming : operations on array</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial6_shell_substitution.html">Linux shell programming : variables & commands substitution</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial7_metacharacters_quotes.html">Linux shell programming : metacharacters & quotes</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial8_input_output_redirection.html">Linux shell programming : input/output redirection & here document</a>
+    </li>
+   <li><a href="linux_shell_programming_tutorial9_loop_control.html">Linux shell programming : loop control - for, while, break, and break n</a>
+    </li>
+    <li><a href="linux_for_loop.html">Linux shell programming : for-loop</a>
+    </li>
+    <li><a href="linux-If-elif-else-statement.html">Linux shell programming : if/elif/else/fi</a></li>
+   <li><a href="linux_user_account_useradd_usermod_userdel.html">Managing User Account - useradd, usermod, and userdel</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_Key_generation_public_private.html">Linux Secure Shell (SSH) I : key generation, private key and public key</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_II_ssh_agent_and_scp.html">Linux Secure Shell (SSH) II : ssh-agent & scp</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_III_ssh_Tunnel_SOCKS_Proxy_Dynamic_Port_Forwarding.html">Linux Secure Shell (SSH) III : SSH Tunnel as Proxy - Dynamic Port Forwarding (SOCKS Proxy)</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_IV_ssh_Tunnel_Local_Port_Forwarding.html">Linux Secure Shell (SSH) IV : Local port forwarding (outgoing ssh tunnel)</a> </li>
+   <li><a href="linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.html">Linux Secure Shell (SSH) V : Reverse SSH Tunnel (remote port forwarding / incoming ssh tunnel) /)</a> </li>
+   <li><a href="linux_process_and_signals.html">Linux Processes and Signals</a> </li>
+   <li><a href="linux_drivers_1.html">Linux Drivers 1</a> </li>
+   <li><a href="tcpdump.html">tcpdump</a> </li>
+   <li><a href="debugging_gdb.html">Linux Debugging using gdb</a> </li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a></li>
+   <li><a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu/Fedora</a>
+    </li>
+   <li><a href="linux_LXC_Linux_Container_Install_Run.html">LXC (Linux Container) Install and Run</a>
+    </li>
+   <li><a href="hadoop_setting_up_on_ubuntu_single_node_cluster.html">Hadoop - 1. Setting up on Ubuntu for Single-Node Cluster</a>
+    </li>
+   <li><a href="hadoop2_running_on_ubuntu_single_node_cluster.html">Hadoop - 2. Runing on Ubuntu for Single-Node Cluster</a>
+    </li>
+   <li><a href="linux_ubuntu_owncloud7_install.html">ownCloud 7 install</a>
+    </li>
+  <li><a href="Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox I</a> </li>
+  <li><a href="Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox II</a> </li>
+  <li><a href="Windows_8_on_Mac_OSX_using_VirtualBox_4_3.html">Windows 8 guest on Mac OSX host using VirtualBox I</a> </li>
+  <li><a href="linux-Package-Management-System-Ubuntu-apt-get-vs-dpkg.html">Ubuntu Package Management System (apt-get vs dpkg)</a> </li>
+  <li><a href="Linux-How-to-Make-a-Self-Signed-SSL-Certificate.html">How to Make a Self-Signed SSL Certificate</a> </li>
+  <li><a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands.html">DevOps / Sys Admin interview questions</a> </li>
+</ol>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+</ol></p></p></p></p></p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br><br>
+<h1>Linux - system, cmds & shell programming</h1>
+   <br><br>
+   <a href="linux_tips1.html">Linux Tips - links, vmstats, rsync</a> 
+   <br><br>
+   <a href="linux_tips2.html">Linux Tips 2 - ctrl a, curl r, tail -f, umask </a> 
+   <br><br>
+   <a href="linux_tips2_bash.html">Linux - bash I</a> 
+   <br><br>
+   <a href="linux_bash_2.html">Linux - bash II</a> 
+   <br><br>
+   <a href="linux_7z_uncompress.html">Linux - Uncompressing 7z file</a> 
+   <br><br>
+   <a href="linux_sed_tutorial.html">Linux - sed I (substitution: sed 's///', sed -i)</a> 
+   <br><br>
+   <a href="linux_sed_tutorial_2.html">Linux - sed II (file spacing, numbering, text conversion and substitution)</a> 
+   <br><br>
+   <a href="linux_sed_tutorial_3.html">Linux - sed III (selective printing of certain lines, selective definition of certain lines)</a> 
+   <br><br>
+   <a href="linux_File_Types.html">Linux - 7 File types : Regular, Directory, Block file, Character device file, Pipe file, Symbolic link file, and Socket file</a> 
+   <br><br>
+    <a href="linux_shell_programming_tutorial.html">Linux shell programming - introduction</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial2_variables.html">Linux shell programming - variables (readonly, unset)</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial3_special_variables.html">Linux shell programming - special shell variables</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial4_arrays.html">Linux shell programming : arrays - three different ways of declaring arrays & looping with $*/$@</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial5_array_operations.html">Linux shell programming : operations on array</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial6_shell_substitution.html">Linux shell programming : variables & commands substitution</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial7_metacharacters_quotes.html">Linux shell programming : metacharacters & quotes</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial8_input_output_redirection.html">Linux shell programming : input/output redirection & here document</a>
+   <br><br>
+   <a href="linux_shell_programming_tutorial9_loop_control.html">Linux shell programming : loop control - for, while, break, and break n</a>
+   <br><br>
+   <a href="linux_for_loop.html">Linux shell programming : for-loop</a>
+   <br><br>
+   <a href="linux-If-elif-else-statement.html">Linux shell programming : if/elif/else/fi</a>
+   <br><br>
+   <a href="linux_user_account_useradd_usermod_userdel.html">Managing User Account - useradd, usermod, and userdel</a> 
+   <br><br>
+   <a href="linux_Secure_Shell_SSH_Key_generation_public_private.html">Linux Secure Shell (SSH) I : key generation, private key and public key</a> 
+   <br><br>
+   <a href="linux_Secure_Shell_SSH_II_ssh_agent_and_scp.html">Linux Secure Shell (SSH) II : ssh-agent & scp</a> 
+   <br><br>
+   <a href="linux_Secure_Shell_SSH_III_ssh_Tunnel_SOCKS_Proxy_Dynamic_Port_Forwarding.html">Linux Secure Shell (SSH) III : SSH Tunnel as Proxy - Dynamic Port Forwarding (SOCKS Proxy)</a> 
+   <br><br>
+   <a href="linux_Secure_Shell_SSH_IV_ssh_Tunnel_Local_Port_Forwarding.html">Linux Secure Shell (SSH) IV : Local port forwarding (outgoing ssh tunnel)</a> 
+   <br><br>
+   <a href="linux_Secure_Shell_SSH_V_ssh_Reverse_SSH_Tunnel_Remote_Port_Forwarding.html">Linux Secure Shell (SSH) V : Reverse SSH Tunnel (remote port forwarding / incoming ssh tunnel) /)</a> 
+   <br><br>
+   <a href="linux_process_and_signals.html">Linux Processes and Signals</a> 
+   <br><br>
+   <a href="linux_drivers_1.html">Linux Drivers 1</a> 
+   <br><br>
+   <a href="tcpdump.html">tcpdump</a> 
+   <br><br>
+   <a href="debugging_gdb.html">Linux Debugging using gdb</a> 
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="../cplusplus/embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu/Fedora</a>
+   <br><br>
+   <a href="linux_LXC_Linux_Container_Install_Run.html">LXC (Linux Container) Install and Run</a>
+   <br><br>
+   <a href="hadoop_setting_up_on_ubuntu_single_node_cluster.html">Hadoop - 1. Setting up on Ubuntu for Single-Node Cluster</a>
+   <br><br>
+   <a href="hadoop2_running_on_ubuntu_single_node_cluster.html">Hadoop - 2. Runing on Ubuntu for Single-Node Cluster</a>
+   <br><br>
+   <a href="linux_ubuntu_owncloud7_install.html">ownCloud 7 install</a>
+   <br><br>
+   <a href="Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox I</a> 
+   <br><br>
+   <a href="Ubuntu_Desktop_on_Mac_OSX_using_VirtualBox_4_3_II.html">Ubuntu 14.04 guest on Mac OSX host using VirtualBox II</a> 
+   <br><br>
+   <a href="Windows_8_on_Mac_OSX_using_VirtualBox_4_3.html">Windows 8 guest on Mac OSX host using VirtualBox I</a> 
+   <br><br>
+   <a href="linux-Package-Management-System-Ubuntu-apt-get-vs-dpkg.html">Ubuntu Package Management System (apt-get vs dpkg)</a> 
+   <br><br>
+   <a href="Linux-How-to-Make-a-Self-Signed-SSL-Certificate.html">How to Make a Self-Signed SSL Certificate</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands.html">DevOps / Sys Admin interview questions</a> 
+   <br><br>
+
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+<br /><br />
+<br><br>
+<h1>DevOps</h1>
+   <br><br>
+   <a href="../DevOps/Continuous_Integration_Phases.html">Phases of Continuous Integration</a> 
+   <br><br>
+   <a href="../DesignPatterns/software_development_methodology.html">Software development methodology</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">Introduction to DevOps</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_CI_CD_Pipeline_Sample.html">Samples of Continuous Integration (CI) / Continuous Delivery (CD) - Use cases</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_Artifacts_Artifactory_Sonatype_Nexus_Maven_Artifact_Repository_Apache_Archiva.html">Artifact repository and repository management</a> 
+   <br><br>
+   <a href="linux_tips1.html">Linux - General, shell programming, processes & signals ...</a> 
+   <br><br>
+   <a href="../python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ...</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_MariaDB.html">MariaDB</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_NewRelic-APM-Application-Performance-Management-setup.html">New Relic APM with NodeJS : simple agent setup on AWS instance</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_CentOS_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios on CentOS 7 with Nagios Remote Plugin Executor (NRPE)</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_Nagios_Infrastructure_Monitoring_Nagios-Remote-Plugin-Executor-NRPE.html">Nagios - The industry standard in IT infrastructure monitoring on Ubuntu</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Zabbix3-Server-and-Agent-Install-Ubuntu14-Adding-Hosts-Items-Graphs.html">Zabbix 3 install on Ubuntu 14.04 & adding hosts / items / graphs</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Monitoring-with-Datadog-PagerDuty-HipChat.html">Datadog - Monitoring with PagerDuty/HipChat and APM</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_Mesos_Install.html">Install and Configure Mesos Cluster</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Cassandra-On-A-Single-Node-Cluster.html">Cassandra on a Single-Node Cluster</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Docker-Swarm-vs-Kubernetes-vs-Apache-Mesos.html">Container Orchestration : Docker Swarm vs Kubernetes vs Apache Mesos</a> 
+   <br><br>
+   <a href="../DevOps/OpenStack-Install-On-Ubuntu-16-Server.html">OpenStack install on Ubuntu 16.04 server - DevStack</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-ECS-ECR.html">AWS EC2 Container Service (ECS) & EC2 Container Registry (ECR) | Docker Registry</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-CircleCI-Heroku-Deploy.html">CI/CD with CircleCI - Heroku deploy</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Terraform.html">Introduction to Terraform with AWS elb & nginx</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Kubernetes-1-Running-Kubernetes-Locally-via-Minikube.html">Kubernetes I - Running Kubernetes Locally via Minikube</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Kubernetes-II-kops-on-AWS.html">Kubernetes II - kops on AWS</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Kubernetes-III-Kubernetes-on-Linux-with-kubeadm.html">Kubernetes III - kubeadm on AWS</a> 
+   <br><br>
+   <br><br>
+
+   <h3><b>DevOps / Sys Admin Q & A</b></h3>
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands.html">(1A) - Linux Commands</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Commands-2.html">(1B) - Linux Commands</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks.html">(2) - Networks</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Networks-2.html">(2B) - Networks</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Systems.html">(3) - Linux Systems</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Scripting.html">(4) - Scripting (Ruby/Shell)</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Configurations.html">(5) - Configuration Management</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">(6) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Peering.html">(6B) - AWS VPC Peering</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Web-HTTP.html">(7) - Web server</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Database.html">(8) - Database</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Monitoring-System-Application-Performance-Tuning-Tools.html">(9) - Linux System / Application Monitoring, Performance Tuning, Profiling Methods & Tools</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Trouble-Shooting-Slow-Application-Performance-BottleNecks-Leaks.html">(10) - Trouble Shooting: Load, Throughput, Response time and Leaks</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-Connection-SSL-Certificates.html">(11) - SSH key pairs,  SSL Certificate, and SSL Handshake</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-database-slow.html">(12) - Why is the database slow?</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Website-down.html">(13) - Is my web site down?</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Is-Server-down.html">(14) - Is my server down?</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Why-is-theServer-slow.html">(15) - Why is the server sluggish?</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Apache.html">(16A) - Serving multiple domains using Virtual Hosts - Apache</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Serving-Multiple-Domains-Using-Virtual-Hosts-Nginx.html">(16B) - Serving multiple domains using server block - Nginx</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Reverse-proxy-servers-and-load-balancing-Nginx.html">(16C) - Reverse proxy servers and load balancers - Nginx</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-Boot-Startup-Process.html">(17) - Linux startup process</a> 
+   <br><br>
+   <a href="../DevOps/DevOps_phpMyAdmin_Nginx_Subdomain.html">(18) - phpMyAdmin with Nginx virtual host as a subdomain</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-SSH-login-without-password.html">(19) - How to SSH login without password?</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Log-Rotation.html">(20) - Log Rotation</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Monitoring-Metrics.html">(21) - Monitoring Metrics</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-lsof.html">(22) - lsof</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-WireShark-Tutorial-Introduction.html">(23) - Wireshark introduction</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Linux-User-Account-Management.html">(24) - User account management</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-DNS.html">(25) - Domain Name System (DNS)</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-NGINX-SSL-TLS-Caching-Session.html">(26) - NGINX SSL/TLS, Caching, and Session</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-Day-To-Day-Tasks.html">(0) - Linux Sys Admin's Day to Day tasks</a> 
+   <br><br>
+   
+
+   
+
+
+<br /><br />
+<br><br>
+<h1>Jenkins</h1>
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Install.html">Install</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Configuration.html">Configuration - Manage Jenkins - security setup</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Adding_Job_and_Build.html">Adding job and build</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Scheduling_Job.html">Scheduling jobs</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Manage_Plugins.html">Managing_plugins</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Git_Github.html">Git/GitHub plugins, SSH keys configuration, and Fork/Clone</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Maven_Setup.html">JDK & Maven setup</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Configuration_Maven.html">Build configuration for GitHub Java application with Maven</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Project_Build_Action.html">Build Action for GitHub Java application with Maven - Console Output, Updating Maven</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Commit_Changes.html">Commit to changes to GitHub & new test results - Build Failure</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_GitHub_Java_Application_Fixing_Build_Failures.html">Commit to changes to GitHub & new test results - Successful Build</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Adding_Code_Coverage_and_Metrics.html">Adding code coverage and metrics</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_1_setting_up_instance.html">Jenkins on EC2 - creating an EC2 account, ssh to EC2, and install Apache server</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_2_Jenkins_Configuration.html">Jenkins on EC2 - setting up Jenkins account, plugins, and Configure System (JAVA_HOME, MAVEN_HOME, notification email)</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_3_Jenkins_Creating_Maven_Project.html">Jenkins on EC2 - Creating a Maven project</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_4_GitHubHook_Notification_to_Jenkins_Server.html">Jenkins on EC2 - Configuring GitHub Hook and Notification service to Jenkins server for any changes to the repository</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_5_Line_Coverage_JaCoCo.html">Jenkins on EC2 - Line Coverage with JaCoCo plugin</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_on_EC2_setting_up_master_slaves.html">Setting up Master and Slave nodes</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Build_Pipeline_Dependency_Graph_Plugin.html">Jenkins Build Pipeline & Dependency Graph Plugins</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Build_Flow_Plugin.html">Jenkins Build Flow Plugin</a> 
+   <br><br>
+   <a href="../DevOps/Jenkins/Jenkins_Slave_Nodes_AWS.html">Jenkins Setting up Slave nodes on AWS</a> 
+   <br><br>
+ 
+
+<br /><br />
+<br><br>
+<h1>Puppet</h1>
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_aws.html">Puppet with Amazon AWS I - Puppet accounts</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_aws_2_ssh_puppetmaster_puppet_install.html">Puppet with Amazon AWS II (ssh & puppetmaster/puppet install)</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_aws_3_running_puppet.html">Puppet with Amazon AWS III - Puppet running Hello World</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_basics_of_code_terminology.html">Puppet Code Basics - Terminology</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7.html">Puppet with Amazon AWS on CentOS 7 (I) - Master setup on EC2</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_aws_ssh_puppetmaster_install_CENTOS7_2_Passenger_puppet_apache_web_server.html">Puppet with Amazon AWS on CentOS 7 (II) - Configuring a Puppet Master Server with Passenger and Apache</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_install_on_ubuntu_14_04_trusty.html">Puppet master /agent ubuntu 14.04 install on EC2 nodes </a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_master_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet master post install tasks - master's names and certificates setup, </a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_agent_post_install_tasks_on_ubuntu_14_04_trusty.html">Puppet agent post install tasks - configure agent, hostnames, and sign request</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_basic_tasks_with_ec2_master_agent_nodes.html">EC2 Puppet master/agent basic tasks - main manifest with a file resource/module and immediate execution on an agent node</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_setting_up_master_and_agent_with_scripts_EC2.html">Setting up puppet master and agent with simple scripts on EC2 / remote install from desktop</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Single_Manifest.html">EC2 Puppet - Install lamp with a manifest ('puppet apply')</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_amazon_ec2_Install_LAMP_with_a_Module.html">EC2 Puppet - Install lamp with a module</a>  
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_variable_Scope.html">Puppet variable scope</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_packages_files_services.html">Puppet packages, services, and files</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_packages_files_services2_nginx.html">Puppet packages, services, and files II with nginx</a> 
+   <a href="../DevOps/Puppet/puppet_templates.html">Puppet templates</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_creating_managing_user_accounts_ssh_control_user_privileges.html">Puppet creating and managing user accounts with SSH access</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_locking_user_accounts_deploying_sudoers_file.html">Puppet Locking user accounts & deploying sudoers file</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_exec_resources.html">Puppet exec resource</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_classes_modules.html">Puppet classes and modules</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/Puppet_Forge_Modules.html">Puppet Forge modules</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_express_in_one_day.html">Puppet Express</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_express_in_one_day_2.html">Puppet Express 2</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet4_changes.html">Puppet 4 : Changes</a> 
+   <br><br>
+   <a href="../DevOps/Puppet/puppet_configprint.html">Puppet --configprint</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_puppet.html">Puppet with Docker</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Chef</h1>
+   <br><br>
+   <a href="../DevOps/Chef/Chef_What_is_Chef.html">What is Chef?</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Install_Chef_on_Ubuntu_14_04_Workstation_Omnibus_Installer.html">Chef install on Ubuntu 14.04 - Local Workstation via omnibus installer</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Setting_up_Hosted_Chef_server.html">Setting up Hosted Chef server</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Virtual_Machine_via_Vagrant_with_Chef_Client_Provision.html">VirtualBox via Vagrant with Chef client provision</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Creating_and_Using_Cookbooks_on_VirtualBox_Node.html">Creating and using cookbooks on a VirtualBox node</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Server_install_on_EC2_ubuntu_14_04.html">Chef server install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Setting_Up_Workstation_on_EC2_Ubuntu_14.04.html">Chef workstation setup on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Chef/Chef_Client_Node_Knife_Bootstraping_a_Node_on_EC2_ubuntu_14_04.html">Chef Client Node - Knife Bootstrapping a node on EC2 ubuntu 14.04</a> 
+   <br><br>
+
+ 
+
+<br /><br />
+<br><br>
+<h1>Docker</h1>
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_Amazon_Linux_AMI.html">Docker install on Amazon Linux AMI</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_EC2_Ubuntu.html">Docker install on EC2 Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_vs_Virtual_Machine.html">Docker container vs Virtual Machine</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Install_On_Ubuntu_14.html">Docker install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Hello_World_Application.html">Docker Hello World Application</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Nginx_WebServer.html">Nginx image - share/copy files, Dockerfile</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Working_with_images.html">Working with Docker images : brief introdution</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Commands_for_Images_Container.html">Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Run_Command.html">More on docker run command (docker run -it, docker run --rm, etc.)</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_Persistent_Storage_Data_Share.html">Docker Persistent Storage</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_File_Share_between_Host_and_Container.html">File sharing between host and container (docker run -d -p -v)</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.html">Linking containers and volume for datastore</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.html">Dockerfile - Build Docker images automatically I - FROM, MAINTAINER, and build context</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.html">Dockerfile - Build Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.html">Dockerfile - Build Docker images automatically III - RUN</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.html">Dockerfile - Build Docker images automatically IV - CMD</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_5_WORKDIR_ENV_ADD_ENTRYPOINT.html">Dockerfile - Build Docker images automatically V - WORKDIR, ENV, ADD, and ENTRYPOINT</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose.html">Docker Compose - A gentle introduction with WordPress</a> 
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker.html">MEAN Stack app on Docker containers : micro services</a>
+   <br><br>
+   <a href="../MEAN-Stack/MEAN-Stack-NodeJS-Angular-Docker-Compose.html">MEAN Stack app on Docker containers : micro services via docker-compose</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose-FlaskREST-Service-Container-and-Apache-Container.html">Docker Compose with two containers - Flask REST API service  container and an Apache server container</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Compose-Nginx-Reverse-Proxy-Multiple-Containers.html">Docker compose : Nginx reverse proxy with multiple containers</a>
+   <br><br>
+   <a href="../DevOps/Docker/Docker-Cheat-Sheet.html">Docker Cheat Sheet</a> 
+   <br><br>
+   <a href="../DevOps/Docker/Installing-LAMP-with-puppet-on-Docker.html">Installing LAMP via puppet on Docker</a> 
+
+   <br><br>
+   <a href="../DevOps/Docker/Docker_puppet.html">Docker install via Puppet</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible-Deploy-Nginx-to-Docker.html">Nginx Docker install via Ansible</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5.8_QuickStarts_Docker_Install.html">Apache Hadoop CDH 5.8 Install with QuickStarts Docker</a> 
+   <br><br>
+
+
+
+<br /><br />
+<br><br>
+<h1>Vagrant</h1>
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_VirtualBox.html">VirtualBox & Vagrant install on Ubuntu 14.04</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Creating_Virtual_Boxes_Using_Vagrant.html">Creating a VirtualBox using Vagrant</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_Provisioning_Synced_Folders.html">Provisioning</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_Networking_Port_Forwarding.html">Networking - Port Forwarding</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_Share.html">Vagrant Share</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_Rebuild_Teardown.html">Vagrant Rebuild & Teardown</a> 
+   <br><br>
+   <a href="../DevOps/Vagrant/Vagrant_Ansible.html">Vagrant & Ansible</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>AWS (Amazon Web Services)</h1>
+   <br><br>
+   <a href="../DevOps/AWS/aws_snapshot_ami_creation_image_clone_instance.html">AWS : Creating a snapshot (cloning an image)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_attaching_Amazon_EBS_volume_to_instance.html">AWS : Attaching Amazon EBS volume to an instance</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_adding_swap_space_to_attached_volume_via_mkswap_and_swapon.html">AWS : Adding swap space to an attached volume via mkswap and swapon</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_creating_an_instance_and_attaching_Amazon_EBS_volume_to_that_instance_bogo_Python_module.html">AWS : Creating an EC2 instance and attaching Amazon EBS volume to the instance using Python boto module with User data</a> 
+   <br><br>
+   <a href="../DevOps/AWS/Launching-Instance-to-a-New-Region-from-an-AMI.html">AWS : Creating an instance to a new region by copying an AMI</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_Simple_Storage_Service.html">AWS : S3 (Simple Storage Service) 1</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_Simple_Storage_Service2_Creating_and_Deleting.html">AWS : S3 (Simple Storage Service) 2 - Creating and Deleting a Bucket</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_Simple_Storage_Service3_Bucket_Versioning.html">AWS : S3 (Simple Storage Service) 3 - Bucket Versioning</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">AWS : S3 (Simple Storage Service) 4 - Uploading a large file</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-uploading-recursive-folder-file.html">AWS : S3 (Simple Storage Service) 5 - Uploading folders/files recursively</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-S3-bucket-policy-view-download.html">AWS : S3 (Simple Storage Service) 6 - Bucket Policy for File/Folder View/Download</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-s3-Configure-Cross-Region-Replication-Source-and-Destination-Buckets-Owned-by-the-Same-AWS-Account-How-to-Copy-or-Move-Objects-from-one-Region-to-another.html">AWS : S3 (Simple Storage Service) 7 - How to Copy or Move Objects from one region to another</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-S3-Simple-Storage-Service-Archiving-Amazon-S3-Data-to-Amazon-Glacier.html">AWS : S3 (Simple Storage Service) 8 - Archiving S3 Data to Glacier</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_Creating_CloudFront_Distribution_with_an_Amazon_S3_Origin.html">AWS : Creating a CloudFront distribution with an Amazon S3 origin</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-WAF-Web-Application-Firewall.html">AWS : WAF (Web Application Firewall) with preconfigured CloudFormation template and Web ACL for CloudFront distribution</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CloudWatch-logs-Lambda-S3.html">AWS : CloudWatch & Logs with Lambda Function / S3</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CLI-Command-Line-Interface.html">AWS : CLI (Command Line Interface)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-ECS-ALB-Autoscaling-CLI.html">AWS : CLI (ECS with ALB & autoscaling)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-ELB-ALB-Application-Load-Balancer-ECS.html">AWS Application Load Balancer (ALB) and ECS with Flask app</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Load-Balancing-with-HAProxy-High-Availability-Proxy.html">AWS : Load Balancing with HAProxy (High Availability Proxy)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_VirtualBox_On_EC2.html">AWS : VirtualBox on EC2</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_NTP.html">AWS : NTP setup on EC2</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-HTTPS-OpenSSL-Certificate.html">AWS & OpenSSL : Creating / Installing a Server SSL Certificate</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-OpenVPN-Access-Server-Install.html">AWS : OpenVPN Access Server 2 Install</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-1-netmast-subnet-default-gateway-CIDR.html">AWS : VPC (Virtual Private Cloud) 1 - netmask, subnets, default gateway, and CIDR</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-2-VPC-Wizard.html">AWS : VPC (Virtual Private Cloud) 2 - VPC Wizard</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-VPC-Virtual-Private-Cloud-3-VPC-Wizard-with-NAT.html">AWS : VPC (Virtual Private Cloud) 3 - VPC Wizard with NAT</a> 
+   <br><br>
+   <a href="../DevOps/DevOps-Sys-Admin-Interview-Questions-AWS-VPC-Setup.html">DevOps / Sys Admin Q & A (VI) - AWS VPC setup (public/private subnets with NAT)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-VPN-Protocols-OpenVPN-IPsec-L2TP-PPTP.html">AWS - OpenVPN Protocols : PPTP, L2TP/IPsec, and OpenVPN</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Autoscaling-Group-ASG.html">AWS : Autoscaling group (ASG)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-adding-a-ssh-user-account-on-linux-instance.html">AWS : Adding a SSH User Account on Linux Instance</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_Windows_Server_Remote_Desktop_Connections_Using_RDP.html">AWS : Windows Servers - Remote Desktop Connections using RDP</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">AWS : Scheduled stopping and starting an instance - python & cron</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Elastic-Beanstalk-with-NodeJS.html">AWS : Elastic Beanstalk with NodeJS</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_detecting_stopped_instance_sending_email_using_mandrill_smtp.html">AWS : Detecting stopped instance and sending an alert email using Mandrill smtp</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-IAM-Roles.html">AWS : Identity and Access Management (IAM) Roles for Amazon EC2</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-IAM-Policies.html">AWS : Identity and Access Management (IAM) Policies</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-creating-IAM-Roles-and-associating-them-with-EC2-Instances-in-CloudFormation.html">AWS : Creating IAM Roles and associating them with EC2 Instances in CloudFormation</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-IAM-Roles-SSO-Single-Sign-On-SAML-Security-Assertion-Markup-Language-ADFS-Active-Directory-Federation-Services.html">AWS Identity and Access Management (IAM) Roles, SSO(Single Sign On), SAML(Security Assertion Markup Language), IdP(identity provider), STS(Security Token Service), and ADFS(Active Directory Federation Services)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Route53-DNS.html">AWS : Amazon Route 53</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Route53-DNS-Domain-Name-Server-Setup.html">AWS : Amazon Route 53 - DNS (Domain Name Server) setup</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Route53-DNS-Subdomain.html">AWS : Amazon Route 53 - subdomain setup and virtual host on Nginx</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Route53-DNS-Private-Hosted-Zone.html">AWS Amazon Route 53 : Private Hosted Zone</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-SNS-Simple-Notification-Service-example-with-ELB.html">AWS : SNS (Simple Notification Service) example with ELB and CloudWatch</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Lambda-with-AWS-CloudTrail.html">AWS : Lambda with AWS CloudTrail</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-SQS-Simple-Queue-Service-with-NodeJS-AWS-SDK.html">AWS : SQS (Simple Queue Service) with NodeJS and AWS SDK</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_Redshift_data_warehouse.html">AWS : Redshift data warehouse</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CloudFormation-Templates.html">AWS : CloudFormation - templates, change sets, and CLI</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CloudFormation-Bootstrap-UserData.html">AWS : CloudFormation Bootstrap UserData/Metadata</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CloudFormation-Autoscaling-Group-ASG-Application-Load-Balancer-ALB-with-Update-Policy-Rolling-Updates.html">AWS : CloudFormation - Creating an ASG with rolling update</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-OpsWorks.html">AWS : OpsWorks</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-CodeDeploy-Deploy-an-Application-from-GitHub.html">AWS CodeDeploy : Deploy an Application from GitHub</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-EC2-Container-Service-ECS.html">AWS EC2 Container Service (ECS)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Hello-World-Lambda-Function.html">AWS Hello World Lambda Function</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Lambda-Nodejs-API-Gateway.html">AWS Node.js Lambda Function & API Gateway</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-Kinesis-Streams.html">Amazon Kinesis Streams</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Amazon-DynamoDB.html">Amazon DynamoDB</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-ML-Machine-Learning.html">Amazon ML (Machine Learning)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-SSM.html">Simple Systems Manager (SSM)</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_Connecting_to_a_DB_Instance_Running_the_SQL_Server_Database_Engine.html">AWS : RDS Connecting to a DB Instance Running the SQL Server Database Engine</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_RDS_Importing_and_Exporting_SQL_Server_Data.html">AWS : RDS Importing and Exporting SQL Server Data</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII.html">AWS : RDS PostgreSQL & pgAdmin III</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_RDS_PostgreSQL_pgAdminIII_Creating_Table.html">AWS : RDS PostgreSQL 2 - Creating/Deleting a Table</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-MySQL-Replication-Master-Slave.html">AWS : MySQL Replication : Master-slave</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-MySQL-Backup-mysqldump-Restore.html">AWS : MySQL backup & restore</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-RDS-Cross-Region-Read-Replicas-for-MySQL-Snapshot-for-PostgreSQLs.html">AWS RDS : Cross-Region Read Replicas for MySQL and Snapshots for PostgreSQL</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_EC2_PostGres_Backup_Restore.html">AWS : Restoring Postgres on EC2 instance from S3 backup</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws-Scaling-Up.html">AWS : Scaling-Up</a> 
+   <br><br>
+
+<br /><br />
+<br><br>
+<h1>Redis In-Memory Database</h1>
+   <br><br>
+   <a href="../DevOps/Redis/Redis_vs_Memcached.html">Redis vs Memcached</a>
+   <br><br>
+   <a href="../DevOps/Redis/Redis_Install.html">Redis 3.0.1 Install</a> 
+   <br><br>
+   <a href="../DevOps/Redis/Redis_Setting_up_mulitple_server_instances_on_a_linux_host.html">Setting up mulitple server instances on a Linux host</a> 
+   <br><br>
+   <a href="../python/python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="../Hadoop/ELK/ELK_Logstash_Shipper_Logstash_Indexer_with_Redis_Broker.html">ELK : Elasticsearch with Redis broker and Logstash Shipper and Indexer</a>
+
+
+
+<br /><br />
+<br><br>
+<h1>Git/GitHub Tutorial</h1>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Express.html" target="_blank">One page express tutorial for GIT and GitHub</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Installation.html" target="_blank">Installation</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_status_add_status_log.html" target="_blank">add/status/log</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_commit_diff.html" target="_blank">commit and diff</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_commit_amend.html" target="_blank">git commit --amend</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Deleting_Renaming_Files.html" target="_blank">Deleting and Renaming files</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Undoing_Checkout_Unstaging.html" target="_blank">Undoing Things : File Checkout & Unstaging</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Reverting_Commit.html" target="_blank">Reverting commit</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Soft_Reset.html" target="_blank">Soft Reset - (git reset --soft &lt;SHA key&gt;) </a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Mixed_Default_Reset.html" target="_blank">Mixed Reset - Default</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Hard_Reset.html" target="_blank">Hard Reset - (git reset --hard &lt;SHA key&gt;)</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Creating_Switching_Branches.html" target="_blank">Creating & switching Branches</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Fast-Forward_Merge.html" target="_blank">Fast-forward merge</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Rebase.html" target="_blank">Rebase & Three-way merge</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Merge_Conflicts_with_Simple_Example.html" target="_blank">Merge conflicts with a simple example</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/GitHub_Account_SSH_Key.html" target="_blank">GitHub Account and SSH</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/GitHub_Uploading.html" target="_blank">Uploading to GitHub</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/GitHub_GUI.html" target="_blank">GUI</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_Branching_Merging.html" target="_blank">Branching & Merging</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_Branching_Merging_Conflicts.html" target="_blank">Merging conflicts</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_Ubuntu.html" target="_blank">GIT on Ubuntu and OS X - Focused on Branching</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_Setting_Up_Remote_Repository.html" target="_blank">Setting up a remote repository / pushing local project and cloning the remote repo</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/GitHub_Fork_Clone_Origin_Upstream.html" target="_blank">Fork vs Clone, Origin vs Upstream</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_Terminologies.html" target="_blank">Git/GitHub Terminologies</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Source_Tree_1_Commit_Push.html" target="_blank">Git/GitHub via SourceTree I : Commit & Push</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Source_Tree_2_Branching_Merging.html" target="_blank">Git/GitHub via SourceTree II : Branching & Merging</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Source_Tree_3_Git_WorkFlow.html" target="_blank">Git/GitHub via SourceTree III : Git Work Flow</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_Source_Tree_4_Reset.html" target="_blank">Git/GitHub via SourceTree IV : Git Reset</a>
+   <br><br>
+   <a href="../DevOps/SCM/Git/Git_GitHub_quick_command_reference_wiki_cheat_sheet.html" target="_blank">Git Cheat sheet - quick command reference</a>
+   <br><br>
+<br /><br />
+
+<br><br><br>
+<h1>Subversion</h1>
+   <a href="../cplusplus/Subversion/Subversion_Install_On_Ubuntu.html" target="_blank">Subversion Install On Ubuntu  14.04</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo.html" target="_blank">Subversion creating and accessing I</a>
+   <br><br>
+   <a href="../cplusplus/Subversion/Subversion_Creating_Accessing_Repo2.html" target="_blank">Subversion creating and accessing II</a>
+
+<br /><br />
+<br><br>
+<h1>Powershell 4 Tutorial</h1>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">Powersehll : Introduction</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_help_system.html" target="_blank">Powersehll : Help System</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_running_commands.html" target="_blank">Powersehll : Running commands</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Providers.html" target="_blank">Powersehll : Providers</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Pipeline.html" target="_blank">Powersehll : Pipeline</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Objects.html" target="_blank">Powersehll : Objects</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Remote_Control.html" target="_blank">Powersehll : Remote Control</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Windows_Management_Instrumentation_WMI.html" target="_blank">Windows Management Instrumentation (WMI)</a>
+   <br><br>
+   <a href="../Powershell/How_to_Enable_Multiple_RDP_Sessions_in_Windows_2012.html" target="_blank">How to Enable Multiple RDP Sessions in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_install_Configure_FTP_Server_on_IIS_8_in_Windows_Server_2012.html" target="_blank">How to install and configure FTP server on IIS 8 in Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/How_to_Run_Exe_as_a_Service_in_Windows_Server_2012.html" target="_blank">How to Run Exe as a Service on Windows 2012 Server</a>
+   <br><br>
+   <a href="../Powershell/SQL_Inner_Left_Right_Outter_Join.html" target="_blank">SQL Inner, Left, Right, and Outer Joins</a>
+<br><br>
+
+<br /><br />
+
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Linux/linux_process_and_signals.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:43:20 GMT -->
+</html>
+

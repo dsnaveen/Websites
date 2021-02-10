@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/virtualfunctions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:03:51 GMT -->
+<head>
+  <title>C++ Tutorial: Virtual Functions - 2017</title>
+  <meta content="C++ Tutorial: Virtual Functions, Pure Virtual Functirons" name="description" />
+  <meta content="C++ Tutorial, Virtual Functions, Virtual Destructors,
+ Virtual Methods, Virtual Constructors, Pure Virtual Functions, Pure Virtual Destructor, Name Hiding, Overloading, Overriding" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Virtual Functions - 2014
+        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="inheritance">Inheritance</div>
+<br/>
+<br/>
+<img alt="class_inheritance_diagram" src="images/virtual/class_inheritance_diagram.png"/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<p>The code below shows only public members are accessible from outside of the class:</p>
+<pre>
+class A
+{
+public:
+	int xPublic;
+protected:
+	int xProtected;	
+private:
+	int xPrivate;
+};
+
+class B : public A
+{};
+
+int main(int argc, char** argv)
+{
+	A a;
+	a.xPublic = 0;
+	a.xProtected = 0; // error: inaccessible
+	a.xPrivate = 0;   // error: inaccessible
+
+	B b;
+	b.xPublic = 0;
+	b.xProtected = 0;  // error: inaccessible
+	b.xPrivate = 0;    // error: inaccessible
+
+ 	return 0;       
+}
+</pre>
+<br/>
+<br/>
+<p>The following code shows that the inherited member is accessible within the class. But still even 
+the inherited member accessing outside a class is not allowed (<strong>b.xProtected</strong>) because the same rule applies to the inherited member: protected member cannot be accessed from outside of a class (inherited member of a parent class remains as a protected member of a child class).</p>
+<pre>
+class A
+{
+public:
+	int xPublic;
+protected:
+	int xProtected;	
+private:
+	int xPrivate;
+};
+
+class B : public A
+{
+public:
+	void foo(A *a, B *b)
+	{
+		a-&gt;xProtected = 0.0;     // error: A::xProtected inaccessible
+		b-&gt;xProtected = 0.0;     // OK: inherited member
+		this-&gt;xProtected = 0.0;
+	}
+}
+
+int main(int argc, char** argv)
+{
+	A a;
+	B b;
+	b.xProtected = 0.0;	// error: inaccessible outside of a class - inherited xProtected 
+	b.foo(&amp;a;, &amp;b;);
+
+	return 0;
+}
+</pre>
+<p>(Note) Non-static protected members of a base class can not be accessed via a pointer or reference to the base class.</p>
+<br/>
+<br/>
+<p>The accessibility property of the introduced <strong>foo()</strong> method from the <strong>A</strong> type is private in the <strong>C</strong> type, hence it will not be publicly accessible. This is the case regardless of the fact that the <strong>A</strong> type is publicly derived and the foo method has public accessibility in <strong>A</strong> type. The alias created by the <strong>using</strong> declaration has the usual accessibility for a member declaration.</p>
+<pre>
+#include &lt;iostream&gt;
+
+class A
+{
+public:
+	void foo() const { std::cout &lt;&lt; "A"; }
+};
+
+class B
+{
+public:
+	void foo() const { std::cout &lt;&lt; "B"; }
+};
+
+class C : public A, public B
+{
+	using A::foo;
+};
+
+int main()
+{
+	B b;
+	b.foo();  // OK: B::foo()
+
+	C c;
+	c.foo();   // error: A::foo() or private member in class 'C'
+
+	return 0;
+}
+</pre>
+<div class="subtitle" id="VirtualFunctions">Virtual Functions</div>
+<br/>
+<p>When we talk about <strong>virtual function</strong> or <strong>virtual method</strong>,
+ it's always in the context of <strong>inheritance</strong> and <strong>polymorphism</strong>. 
+ It is a function or method whose behavior can be overridden within an inheriting class by a function with the same signature. 
+In other words, the purpose of virtual functions is to allow customization of derived class implementations.</p>
+<p>A virtual method is a method whose implementation is determined at runtime based on the actual type of the invoking object. 
+It needs to be declared with the <strong>virtual</strong> keyword, and the <strong>nonvirtual</strong> method is the default.</p>
+<p>In other words, defining in a base class a virtual function that has another version in a derived class signals to the compiler, 
+<strong>"We don't want static binding for this function. 
+What we do want is the selection of the function to be called at any given point in the program based on the kind of 
+<font color="red">object</font> for which is called."</strong></p>
+<p>The implication of this: "The virtual call is resolved at runtime 
+because the object <font color="red">cannot</font> know whether it belongs to the class the 
+member function is in, or some class derived from it." </p>
+<br/>
+<br/>
+<br/><br/><br/>
+<div class="subtitle" id="DynamicBinding">Virtual Member Functions and Dynamic Binding</div>
+<p>Let's look at our simple examples.</p>
+<br/>
+<div class="subtitle_2nd" id="virtualexample1">Virtual Method Example 1</div>
+<pre>
+#include &lt;iostream&gt;
+
+class A {
+public:
+	void f() { 
+		std::cout &lt;&lt; "A::f()" &lt;&lt; std::endl;
+	}
+};
+
+class B: public A {
+public:
+	void f() { 
+		std::cout &lt;&lt; "B::f()" &lt;&lt; std::endl;
+	}
+};
+
+class C: public B {
+public:
+	void f() { 
+		std::cout &lt;&lt; "C::f()" &lt;&lt; std::endl;
+	}
+};
+
+class D: public C {
+public:
+	// No f()
+};
+
+int main()
+{
+	A *a = new A(); 
+	B *b = new B(); 
+	C *c = new C();
+	D *d = new D();
+
+	a-&gt;f();			// A::f()
+	b-&gt;f();			// B::f()
+	c-&gt;f();			// C::f()	
+	d-&gt;f();			// C::f()
+
+	((B *)c)-&gt;f();		// B::f()
+	((A *)c)-&gt;f();		// A::f()
+	((A *)b)-&gt;f();		// A::f()
+
+	return 0;
+}
+</pre>
+<p>Because <strong>f()</strong> is declared as <strong>nonvirtual</strong>, the invoked method depends on the type used at <strong>compile time</strong>. So, the invoked method is the method of the pointer type:</p>
+<pre>
+((B *)c)-&gt;f(); 
+</pre>
+<p><strong>c</strong> is a type of <strong>B</strong>, so it invokes the method of Class B and so on. Also, note that in the call
+<pre>
+d-&gt;f();       // C::f()
+</pre>
+inherited <strong>C::f()</strong> is used because no <strong>f()</strong> was defined in the class <strong>D</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="virtualexample2">Virtual Method Example 2</div>
+<pre>
+#include &lt;iostream&gt; 
+using namespace std; 
+
+class Base 
+{ 
+public: 
+	char* name; 
+	<font color="red">// virtual </font>
+            void display() { 
+		cout &lt;&lt; name &lt;&lt; endl; 
+	} 
+}; 
+
+class Derived: public Base 
+{ 
+public: 
+	char* name; 
+	void display() { 
+		cout &lt;&lt; name &lt;&lt; ", " &lt;&lt; Base::name &lt;&lt; endl; 
+	} 
+}; 
+
+int main() 
+{ 
+	Derived d; 
+	d.name = "Derived Class"; 
+	d.Base::name = "Base Class"; 
+
+	Derived* dptr = &amp;d; 
+
+	// standard conversion from Derived* to Base* 
+	Base* bptr = dptr; 
+
+	// call Base::display() 
+        // output: "Base Class"
+	bptr-&gt;display(); 
+
+	return 0;
+} 
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="virtualexample3">Virtual Method Example 3</div>
+<p>If we redeclare <strong>f()</strong> as virtual in the base class A as the code below:</p>
+<pre>
+#include &lt;iostream&gt;
+
+class A {
+public:
+	virtual void f() { 
+		std::cout &lt;&lt; "A::f()" &lt;&lt; std::endl;
+	}
+};
+
+class B: public A {
+public:
+	void f() { 
+		std::cout &lt;&lt; "B::f()" &lt;&lt; std::endl;
+	}
+};
+
+class C: public B {
+public:
+	void f() { 
+		std::cout &lt;&lt; "C::f()" &lt;&lt; std::endl;
+	}
+};
+
+int main()
+{
+	A *a = new A(); 
+	B *b = new B(); 
+	C *c = new C();
+
+	a-&gt;f();			// A::f()
+	b-&gt;f();			// B::f()
+	c-&gt;f();			// C::f()
+
+	((B *)c)-&gt;f();		// C::f()
+	((A *)c)-&gt;f();		// C::f()
+	((A *)b)-&gt;f();		// B::f()
+
+	return 0;
+}</pre>
+<p>then, the method invoked when we run is the method of the actual <strong>object</strong></p>
+<pre>
+((B *)c)-&gt;f();
+</pre>
+<p>Here, because <strong>c</strong> is object type of Class C, it calls the <strong>f()</strong> in Class C,  <strong>C::f()</strong>.</p>
+<br/>
+<div class="subtitle_2nd" id="virtualexample4">Virtual Method Example 4</div>
+<pre>
+class Base {
+public:
+	void f();
+	virtual void vf();
+};
+
+class Derived : public Base {
+public:
+	void f();
+	void vf();
+};
+
+#include &lt;iostream&gt;
+using namespace std;
+
+void Base::f() {
+	cout &lt;&lt; "Base f()" &lt;&lt; endl;
+}
+
+void Base::vf() {
+	cout &lt;&lt; "Base vf()" &lt;&lt; endl;
+}
+
+void Derived::f() {
+	cout &lt;&lt; "Derived f()" &lt;&lt; endl;
+}
+
+void Derived::vf() {
+	cout &lt;&lt; "Derived vf()" &lt;&lt; endl;
+}
+
+int main()
+{
+	Base b1;
+	Derived d1;
+	b1.f();
+	b1.vf();
+	d1.f();
+	d1.vf();
+
+	Derived d2;  	// Derived object
+	Base* bp = &amp;d2; // Base pointer to Derived object
+	bp-&gt;f();	// Base f()
+	<i><font color="red">bp-&gt;vf();</font></i>	// which vf()?
+
+	return 0;
+}
+</pre>
+<p>The output of the run is:</p>
+<pre>
+Base f()
+Base vf()
+Derived f()
+Derived vf()
+Base f()
+<i><font color="red">Derived vf()</font></i>
+</pre>
+<p>The pointer (or reference) type is known at compile time while object type might be determined at runtime. Interpreting a function call in the source code as executing a particular block of function code is called <strong>binding</strong> the function name. </p>
+<p>Binding that takes place during compile time is <strong>static binding</strong> or <strong>early binding</strong>. With the virtual function, the binding task is more difficult. The decision of which function to use can't be made at compile time because the compiler doesn't know which object the user is going to choose to make.</p>
+<p>So, the compiler has to generate code that allows the <strong>correct</strong> virtual method to be selected as the code runs. This is <strong>dynamic binding</strong> or <strong>late binding</strong>.</p>
+<p>In other words, when a request (message) is sent to an object, the particular operation that's performed depends on <strong>both</strong> the request <strong>and</strong> receiving object. Different objects that support identical request may have different implementation of the operations that fulfill these requests. The run-time association of a <strong>request</strong> to an object and one of its <strong>operations</strong> is known as <strong>dynamic binding</strong>. This means that issuing a request doesn't commit us to a particular implementation until run-time. So, we can write programs that expect an object with a particular interface, knowing that any object that has the correct interface will accept the request.</p>
+<p>Let's look at the output we got. </p>
+<p>Other results are as we expected. But the last one is the one that we want to talk more.</p>
+<p>If <strong>vf()</strong> is not declared as <strong>virtual</strong> in the base class, <strong>bp-&gt;vf()</strong> goes by the pointer type (<strong>Base *</strong>) and invokes <strong>Base::vf()</strong>.</p>
+<p>The pointer type is known at compile time as we discussed above, so the compiler can bind <strong>vf()</strong> to <strong>Base::vf()</strong> at compile time. In other words, the compiler uses <strong>static binding</strong> for <strong>nonvirtual</strong> method.</p>
+<p>However, if <strong>vf()</strong> is declared as virtual in the base class, <strong>bp-&gt;vf()</strong> goes by the object type, here, <strong>Derived</strong> and invokes <strong>Derived::vf()</strong>.</p>
+<p>In this example, we can see that the object type is <strong>Derived</strong>, however, there are cases the object type can only be determined at runtime. So, the compiler generated code that binds <strong>vf()</strong> to <strong>Base::vf()</strong> or <strong>Derived::vf()</strong>, depending on the object type at runtime.</p>
+<p>In other words, the compiler uses <strong>dynamic binding</strong> for <strong>virtual</strong> methods.</p>
+<p>In our example, <strong>vf()</strong> is virtual and the object type is <strong>Derived</strong>. So, it calls <strong>vf()</strong> in the <strong>Derived</strong> class.</p>
+<p>Here is a summary for the virtual methods.</p>
+<ol>
+<li>A virtual method in a base class makes the function virtual in all classes derived from the base class.</li>
+<li>If a virtual method is invoked by using a <strong>reference</strong> to an object or by using a <strong>pointer</strong> to an object, the code uses the method defined for the object type rather than the method defined for the reference or pointer type. This is <strong>dynamic binding</strong> or <strong>late binding</strong>.<br/>
+This behavior is important since it's always valid for a base-class pointer or reference to refer to an object of a derived type.</li>
+<li>If we're defining a class that will be used as a base class, we should declare as virtual functions the class methods that may have to be redefined in derived classes.</li>
+<li>The run-time selection is the primary advantage of virtual method.</li>
+<li>The disadvantages are that it takes longer to invoke a virtual method and that extra memory is required to store the information needed for the lookup. Virtual function calls must be resolved at run time by performing a vtable lookup, whereas non-virtual function calls can be resolved at compile time. This can make virtual function calls slower than non-virtual calls. In reality, this overhead may be negligible, particularly if our function does non-trivial work or if it is not called frequently. The use of virtual functions increases the size of an object, typically by the size of a pointer to the vtable. This may be an issue if we wish to create a small object that requires a very large number of instances. In reality, this will likely be insignificant when compared to the amount of memory consumed by our various member variables.</li>
+<li>Adding, reordering, or removing a virtual function will break binary compatibility. This is because a virtual function call is typically represented as an integer offset into the vtable for the class. So, changing its order or causing the order of any other virtual functions to change means that existing code will need to be recompiled to ensue that it still calls the right functions.</li>
+<li>A class with no virtual functions tends to be more robust and requires less maintenance that one with virtual functions.</li>
+</ol>
+<br/>
+<div class="subtitle_2nd" id="virtual_example5">Virtual Method Example 5</div>
+<p>Let's guess the output from the following example. Note that the <strong>virtual</strong> key word is commented out.</p>
+<pre>
+#include &lt;iostream&gt;
+
+class Base 
+{
+public:
+	void f() {std::cout &lt;&lt; "Base::f()\n";}
+	<font color="red">//</font> virtual 
+		void vf(){std::cout &lt;&lt; "Base::vf()\n";};
+};
+
+class Derived: public Base
+{
+public:
+	void f() {std::cout &lt;&lt;"Derived::f()\n";}
+	void vf(){std::cout &lt;&lt;"Derived::vf()\n";};
+};
+
+int main()
+{
+	Base b;
+	Base *pb = &amp;b;
+	Derived d;
+	Derived *pd = &amp;d;
+	Base *pbd = &amp;d;
+	b.f();
+	d.f();
+	pb-&gt;f();
+	pd-&gt;f();
+	pbd-&gt;f();
+	pbd-&gt;vf();
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+Base::f()
+Derived::f()
+Base::f()
+Derived::f()
+Base::f()
+<font color="red">Base</font>::vf()
+</pre>
+<p>However, if we put the <strong>virtual</strong> back, the output is different.</p>
+<pre>
+...
+class Base 
+{
+public:
+	void f() {std::cout &lt;&lt; "Base::f()\n";}
+	<font color="red">virtual</font>
+		void vf(){std::cout &lt;&lt; "Base::vf()\n";};
+};
+...
+</pre>
+<p>Our new output is:</p>
+<pre>
+Base::f()
+Derived::f()
+Base::f()
+Derived::f()
+Base::f()
+<font color="red">Derived</font>::vf()
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="virtual_example6">Virtual Method Example 6</div>
+<p>The following sample may not be obvious regarding which method it is calling:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class A
+{
+public:
+    A(int n = 0) : m(n) {}
+
+public:
+    virtual int getVal() const { 
+	cout &lt;&lt; "A::getVal() = "; 
+        return m; 
+    }
+    virtual ~A() { }
+
+protected:
+    int m;
+};
+
+class B : public A
+{
+public:
+    B(int n = 0) : A(n) {}
+
+public:
+    int getVal() const { 
+	cout &lt;&lt; "B::getVal() = "; 
+	return m + 1; 
+    }
+};
+
+int main()
+{
+    const A a(1);
+    const B b(3);
+    const A *pA[2] = { &amp;a;, &amp;b; };
+    cout &lt;&lt; pA[0]-&gt;getVal() &lt;&lt; endl;
+    cout &lt;&lt; pA[1]-&gt;getVal() &lt;&lt; endl;
+
+    vector&lt;A&gt; vA;
+    vA.push_back(a);
+    vA.push_back(b);
+    vector&lt;A&gt;::const_iterator it = vA.begin();
+    cout &lt;&lt; it-&gt;getVal() &lt;&lt; endl;
+    cout &lt;&lt; (it + 1)-&gt;getVal() &lt;&lt; endl;
+    
+    return 0;
+}
+</pre>
+<p>Output should look like this:</p>
+<pre>
+A::getVal() = 1
+B::getVal() = 4
+A::getVal() = 1
+A::getVal() = 3
+</pre>
+<p>So, actually, the 3rd and 4th calls are the same as the following:</p>
+<pre>
+    cout &lt;&lt; vA[0].getVal() &lt;&lt; endl;
+    cout &lt;&lt; vA[1].getVal() &lt;&lt; endl;
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Virtual_parameter">parameter of an overriding function</div>
+<p>In the code below, the method <strong>B::foo</strong> is called but with the default argument of 99 from <strong>A::foo</strong>. A virtual function call uses the default arguments in the declaration of the virtual function determined by the static type of the pointer or reference denoting the object. <strong>An overriding function in a derived class does not acquire default arguments from the function it overrides</strong>. So, the a-&gt;foo() gets the parameter from A::foo(int x = 99) but not from B::foo(x = 77). </p>
+<pre>
+#include &lt;iostream&gt;
+
+struct A 
+{ 
+  virtual int foo(int x = 99) 
+  { 
+    return x; 
+  } 
+}; 
+
+struct B : public A 
+{ 
+  int foo(int x = 77) 
+  { 
+    return x; 
+  } 
+}; 
+
+int main(int argc, char** argv) 
+{ 
+  A* a = new B; 
+
+  std::cout &lt;&lt; a-&gt;foo() &lt;&lt; std::endl;  // output 99
+
+  return 0; 
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="VirtualDestructor">Virtual Destructor</div>
+<p>Virtual destructor should be defined for a class to ensure that the proper destructor is called if a class is derived from it. An object of the derived class is deallocated using object expression in which the static type refers to the base class.</p>
+<p>If a class to be used as a base class, the destructor should be <strong>virtual</strong>. 
+If a class does not contain virtual functions, that often tells it is not meant to be used as a base class.</p>
+<p>Calling a method with an object pointer always invokes:</p>
+<ol>
+<li>The most derived class function, if a method is virtual.</li>
+<li>The function implementation corresponding to the object pointer type (used to call the method), if a method is not virtual.	</li>
+</ol>
+<p>A virtual destructor works in the same way. A destructor gets called when an object goes out of scope or when we call delete on an object pointer (reference).</p>
+<p>When any derived class object goes out of scope, the destructor of that derived class gets called first. It then calls its parent class destructor so memory allocated to the object is properly released.</p>
+<p>But, if we call delete on a base pointer which points to a derived class object, the base class destructor get called first for non-virtual function.</p>
+<p>The rule of thumb - if we have a class with a <strong>virtual</strong> function, it needs a <strong>virtual</strong> destructor. Why?</p>
+<ol>
+<li>If a class has a <strong>virtual</strong> function, it is likely to be used as a base class.</li>
+<li>If it is a base class, its derived class is likely to be allocated using <strong>new</strong>.</li>
+<li>If a derived class object is allocated using <strong>new</strong> and manipulated through a pointer to its base, 
+it is likely to be <strong>deleted</strong> via a pointer to its base.</li>
+</ol>
+<p>Let's look at the example below.</p>
+<br/>
+<div class="subtitle_2nd" id="VDExample1">Example 1</div>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Base
+{
+public:
+	Base() {
+		cout &lt;&lt; "Base Constructor \n" ;
+	}
+	<font color="red">~Base() {
+		cout &lt;&lt; "Base Destructor \n" ;
+	}</font>
+};
+
+class Derived : public Base
+{
+public:
+	Derived(string s):str(s) {
+		cout &lt;&lt; "Derived Constructor \n" ;
+	}
+	~Derived() {
+		cout &lt;&lt; "Derived Destructor \n" ;
+	}
+private:
+	string str;
+};
+
+int main()
+{
+	Base *pB = new Derived("derived");
+	delete pB;
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+Base Constructor
+Derived Constructor
+(Derived Destructor)<font color="red">- Not called</font>
+Base Destructor
+</pre>
+<p>As we see from the output, deleting a base pointer only calls destructor for the base class not the destructor for the derived class.</p>
+<pre>
+	Base *pB = new Derived();
+	delete pB;
+</pre>
+<p>In the code, <strong>pB</strong> is a pointer to a base class with non-virtual destructor, and we are trying to <strong>delete a derived
+class object through a base class pointer</strong>. The results are undefined. What happens at runtime is that the derived parts of the
+object never destroyed. But the base class part typically would be destroyed. So, it has a weird object which is <strong>partially destroyed</strong>.</p> 
+<p>However, if we declare the vase class destructor as virtual, this makes all the derived class destructors virtual as well. </p>
+<p>Let's replace the above destructor:</p>
+<pre>
+	~Base() {
+		cout &lt;&lt; "Base Destructor \n" ;
+	}
+</pre>
+<p>with this:</p>
+<pre>
+	<font color="red">virtual ~Base() {
+		cout &lt;&lt; "Base Destructor \n" ;
+	}</font>
+</pre>
+<p>Then, the output becomes:</p>
+<pre>
+Base Constructor
+Derived Constructor
+<font color="red">Derived Destructor</font>
+Base Destructor
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="VDExample2">Example 2</div>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Base{
+protected:
+	int myInt;
+
+public:
+	Base(int n):myInt(n){
+		cout &lt;&lt; "Base Ctor\n";
+	}
+	virtual void print() const = 0;
+	<font color="red">virtual</font> ~Base(){
+		cout &lt;&lt; "Base Dtor" &lt;&lt; endl;
+	}
+};
+
+class Derived: public Base {
+public:	
+	Derived(int n = 0):Base(n)  {
+		str = new char[100];
+		myInt = n;				
+		cout &lt;&lt; "Derived Ctor myInt" &lt;&lt; endl;
+	}
+	void print()const{
+		cout &lt;&lt; "Derived print(): myInt = "&lt;&lt; myInt &lt;&lt; endl;
+	}
+
+	~Derived(){
+		cout &lt;&lt; "Derived Dtor" &lt;&lt; endl;
+		delete [] str;
+	}
+private:
+	char *str;
+};
+
+
+int main()
+{
+	Base *pB = new Derived(2010);
+ 	pB-&gt;print();
+	delete pB;
+	return 0;
+}
+</pre>
+<p>In the example above, the <strong>Derived</strong> class has a <strong>char *</strong> member <strong>str</strong> that points to memory allocated by <strong>new</strong>. </p>
+<pre>
+str = new char[100];
+</pre>
+<p>Then, when a <strong>Derived</strong> object expires or we call <strong>delete</strong> on the pointer to the <strong>Derived</strong> object, it's critical that the <strong>~Derived</strong> destructor be called to free that memory.</p>
+<pre>
+Derived::~Derived(){
+	delete [] str;
+}
+</pre>
+<p>The output from the run:</p>
+<pre>
+Base Ctor
+Derived Ctor myInt
+Derived print(): myInt = 2010
+Derived Dtor
+Base Dtor
+</pre>
+<br/>
+<br/>
+<p>Look at the line of code below</p>
+<pre>
+delete pB;
+</pre>
+<p>If the default static binding applies, the <strong>delete</strong> invokes the <strong>Base</strong> destructor, <strong>~Base()</strong>.</p>
+<p>This frees memory pointed to by the <strong>Base</strong> component of the <strong>Derived</strong> object but not memory pointed to by the new class members. </p>
+<p>However, if the destructors are <strong>virtual</strong>, the same code invokes the <strong>~Derived()</strong> destructor, which frees memory pointed to by the <strong>Derived</strong> component, and then calls the <strong>~Base()</strong> destructor to free memory pointed to by the <strong>Base</strong> component.</p>
+<p>So, using virtual destructors ensures that the <strong>correct sequence</strong> of destructors is called.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="VDExample3">Example 3</div>
+<p>Now, let's look at the following example, and figure out what's happening.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+struct a 
+{ 
+	~a( ) { cout &lt;&lt; "~a()" &lt;&lt; endl;} 
+};
+
+struct b : public a 
+{ 
+	~b( ) 
+	{ 
+		cout &lt;&lt; "~b() throw 1" &lt;&lt; endl;
+		throw 1; 
+	}; 
+};
+
+bool c( ) { 
+	a* d=new b; //base pointer pointing to derived object
+	try { 
+		delete d;  // deleteing derived class
+	} 
+	catch( int e ) { 
+		cout &lt;&lt; "catch e" &lt;&lt; endl;
+		return e; 
+	}
+	return false; 
+}
+
+int main()
+{
+	c();
+	return 0;
+}
+</pre>
+<p>The output from the run is simple, and we know why.</p>
+<pre>
+~a()
+</pre>
+<br/>
+<p>As a quick summary, here is probably the simplest example for virtual destructor of a base class.<br/>
+Q: Why is the keyword "virtual" added before the person destructor?</p>
+<pre>
+class Person
+{
+public:
+	Person();
+	virtual ~Person();
+};
+
+class Blogger: public Person 
+{
+public:
+	Blogger();
+	~Blogger();
+};
+</pre>
+<p>Answer: To ensure that the proper destructor is called if this class is derived from and an 
+object of the derived class is deallocated using object expression in which the static type refers to the base class.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="VirtualConstructor">Virtual Constructor</div>
+<p>Constructors can't be virtual! </p>
+<p>"Creating a derived object invokes a derived class constructor, not a base class constructor. The derived class constructor then uses a base class constructor, but the sequence is distinct from the inheritance mechanism. Therefore, a derived class doesn't inherit the base class constructors, so usually there's not much point to making them virtual, anyway." - from C++ Primer, 5th ed.</p>
+<p>When constructing an object, we must specify the name of a concrete class that is known at compile time. For instance,</p>
+<pre>
+MyClass *obj = new MyClass();
+</pre>
+<p>Here, <strong>MyClass</strong> is a specific type that must be known by the compiler. There is no binding at run time for constructors in C++.</p>
+<p>Again, we cannot declare a virtual constructor in C++. We must specify the exact type of the object to be constructed at compile time. The compiler therefore allocates the memory for that specific type and then calls the default constructor for any base classes unless we explicitly specify a non-default constructor in the initialization list. It then calls the constructor for the specific type itself. This is also why we cannot call virtual methods from the constructor and expect them to call the derived override because the derived class hasn't been initialized yet.</p>
+<p>Confused?</p>
+<p>Then, let's take a step back, and think about what the constructor is doing regarding virtual something.<br/>
+Also, we need to know the order of calling constructor to understand the virtual constructor: the constructors are called in order, starting from base class to the more derived class. It must also call member-object constructors along the way.</p>
+<p>The following lines are mostly from Bruce Eckel's "Thinking in C++."</p>
+<p>
+If we call a virtual function inside our constructor, only the local version of the function is used. In other words,  
+the virtual mechanism doesn't work within the constructor.</p>
+<p>What's the constructor's job? <br/>
+It is to bring the object into existence. Inside any constructor, the object may 
+only be partially formed - the only thing for sure is that the base class 
+objects have been initialized, but we do not have any info regarding class hierarchy. 
+A virtual function call, however, try to reach down the inheritance hierarchy.
+It may call a function in a derived class. If we could do this inside a constructor, 
+we'd be calling a function that might touch members that had not been initialized yet, which may cause some unexpected outcome.</p>
+<p>When a constructor is called, one of the first things it does is initialize its pointer in the vtable.
+<p>However, the constructor does not know whether or not the object is in the base class or other derived classes.  
+When the compiler creates a code for that constructor, it creates a  
+code for a constructor of that class, not for a base class or not for a class 
+derived from it. So the pointer in the vtable it uses must be for the vtable of that class. The pointer   
+remains initialized to that vtable for the rest of the object's 
+lifetime unless this isn't the last constructor call. If a more-derived 
+constructor is called afterwards, that constructor resets the pointer to 
+its vtable, and so forth, until the last constructor finishes. <font color="red">The state 
+of the pointer is determined by the constructor that is called last.</font>
+</p>
+<p>Every constructor is setting the pointer to its own vtable. If it uses the 
+virtual mechanism for function calls, it will produce only a call 
+through its own vtable, not the most-derived vtable.</p>
+<p>In summary, unlike destructor, constructor works downward in the class hierarchy: base class to more derived class. Each vtable is for that class only. There is no way to make the virtual mechanism working within the constructor. </p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Deleting_array_objects">Deleting an array of objects using a base class pointer is undefined</div>
+<p>Deleting NULL pointers has no effect. Deleting a pointer to a base class which points to a derived object is legal assuming the base destructor is virtual. However, deleting an array of derived objects using a base class pointer is undefined. So, it's unsafe!</p>
+<pre>
+struct Foo
+{
+	virtual ~Foo() {}
+};
+
+struct Bar : public Foo {};
+
+int main()
+{
+	Foo* f = new Bar;
+	delete f;
+	f = 0;
+	delete f;
+
+	Foo* fa = new Bar[10];
+	<font color="red">delete [] fa;</font>
+	fa = 0;
+	delete fa;
+
+	return 0;
+}
+</pre>
+<p>Why?<p>
+<p>There have been quite a few discussions on this issue. Here is one of the threads on the issue. <a href="http://stackoverflow.com/questions/7197677/base-pointer-to-array-of-derived-objects" target="_blank">Base pointer to array of derived objects</a>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="PureVirtual">Pure Virtual Functions</div>
+<p>The <strong>pure virtual functions</strong> are essential to creating abstract classes. They give us a way to declare functions that offer no implementations.</p>
+<p>As we recall from previous sections that the keyword <strong>virtual</strong> allows a function call to connect with appropriate implementation, even when a reference to a parent class is used to make the call. The compiler calls a virtual function indirectly through a function pointer stored in the object.</p>
+<p>
+<p>If we change the virtual function in the <strong>Base</strong> class:</p>
+<pre>
+virtual void vf();
+</pre>
+<p>to: </p>
+<pre>
+virtual void vf() = 0;
+</pre>
+<p>the <strong>vf()</strong> becomes a <strong>pure</strong> virtual function.</p>
+<p>Suddenly, the <strong>Base</strong> class becomes an <strong>abstract</strong> class. Its <strong>pure virtual function, vf()</strong> marks it as such.</p>
+<p>As a result, clients cannot create instances of the <strong>Base</strong> class, only of classes derived from it.</p>
+<p>Putting a pure virtual function in our class tells other programmers two things about the class:</p>
+<ol>
+<li>They cannot instantiate an object of this class - they should create a child class from it.</li>
+<li>They must override all pure virtual functions in the child class, or they will not be able to instantiate the child class.</li>
+</ol>
+<p>Here is a little summary for the purpose of virtual functions from <strong>Effective C++</strong> by Scott Meyers.</p>
+<ol>
+<li>The purpose of declaring a <strong>pure virtual function</strong> is to have derived classes inherit a function <strong>interface only</strong>.</li>
+<li>On the other hands, the purpose of declaring a <strong>simple virtual function</strong> is to have derived classes inherit a function <strong>interface as well as a default implementation</strong>.</li>
+<li>The purpose of declaring a <strong>non-virtual function</strong> is to have derived classes inherit a function <strong>interface as well as a mandatory implementation</strong>.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="PureVirtualDestructor">Pure Virtual Destructor</div>
+<br/>
+<ol>
+<li><strong>We must provide a function body for the pure virtual destructor.</strong><br/>
+<p>While pure virtual destructors are legal in Standard C++, there is
+an added constraint when using them: <br/>
+we must provide a <strong>function body</strong> for the pure virtual destructor. <br/>
+This seems counterintuitive; how can a virtual function be <strong>pure</strong> if it needs a function body?<br/>
+But if we keep in mind that constructors and destructors are
+special operations, it makes more sense, especially if we remember
+that all destructors in a class hierarchy are always called. 
+If we do not provide the definition for a pure virtual destructor, what function body would be called during destruction? <br/>
+Thus, it's absolutely necessary that the compiler and linker enforce the existence of a function body for a pure virtual destructor.
+<pre>
+//Interface.h 
+
+class Interface {
+public:
+	//pure virtual destructor declaration
+	virtual ~Interface() = 0; 
+};
+</pre>
+<p>
+Then, somewhere outside the class declaration, the pure virtual destructor has to be defined like this: </p>
+<pre>
+//Interface.cpp file
+
+//definition of a pure virtual destructor; should always be empty
+Interface::~Interface() {} 
+</pre>
+</p></li>
+<li><strong>What's the value of it? </strong><br/>
+If it's pure, but it has to have a function body, what's the value of it? <br/>
+The only difference you'll see between the pure and non-pure
+virtual destructor is that the pure virtual destructor does cause the
+base class to be abstract, so you cannot create an object of the base
+class. </li>
+<br/>
+<li><strong>Difference between a regular virtual destructor and a pure virtual destructor.</strong><br/>
+So what's the difference between a regular virtual destructor and a pure virtual destructor?<br/>
+The only distinction occurs when you have a class that only has a single pure virtual function: the destructor. In this case, the only effect of the purity of the destructor is to prevent the instantiation of the base class. <br/>
+If there were any other pure virtual functions, they would prevent the instantiation of the base class, but if there are no others, then the pure virtual destructor will do it. <br/>
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="costofvirtual">The Costs of Virtual Functions</div>
+<p>Using <strong>virtual functions</strong> has the following costs in memory and execution speed:</p>
+<ol>
+<li>Each object has its size increased by the amount needed to hold an address.</li>
+<li>For each class, the compiler creates a table of addresses of virtual functions.</li>
+<li>For each function call, there is an extra step of looking up the address on the table.</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="Virtual_base_classes">Virtual Base Classes</div>
+<p>Virtual base classes allow an object derived from multiple bases to share a common base to inherit just one object of that shared base class.</p>
+<pre>
+#include &lt;string&gt;
+using namespace std;
+
+class Worker
+{
+public:
+	string name;
+};
+
+class Student: public virtual Worker
+{
+public: 
+	int studentID;
+};
+
+class Assistant: virtual public Worker
+{
+public:
+	int employerID;
+};
+
+class StudentAssitant: public Student, public Assistant {};
+</pre>
+<p>Now a <strong>StudentAssitant</strong> object will contain a single copy of a <storng>Worker. Actually, the inherited <strong>Student</strong> and <strong>Assitant</strong> objects share a common <strong>Worker</strong> object instead of each carrying its own copy.</storng></p>
+<p>Here, the <strong>virtual</strong> key word does not have any obvious connection to the <strong>virtual</strong> in virtual functions.</p>
+<br/><br/>
+<p>How many times is "Base" printed by the program below?</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+struct Base
+{
+  Base() { cout &lt;&lt; "Base" &lt;&lt; endl; }
+};
+
+struct d1 : virtual public Base {d1(){cout &lt;&lt; "d1" &lt;&lt; endl;}};
+struct d2 : virtual public Base {d2(){cout &lt;&lt; "d2" &lt;&lt; endl;}};
+struct d3 : public Base {d3(){cout &lt;&lt; "d3" &lt;&lt; endl;}};
+struct d4 : public Base {d4(){cout &lt;&lt; "d4" &lt;&lt; endl;}};
+
+struct ddd : public d1, public d2, public d3, public d4 { };
+
+int main(int argc, char** argv) 
+{ 
+	ddd d;
+	return 0; 
+}
+</pre>
+<p><strong>3</strong> times. <br/>
+One time for the first virtual occurrences of <strong>Base</strong> in the hierarchy and once for each non-virtual occurrences of <strong>Base</strong>. <strong>d1</strong> and <strong>d2</strong> together have one. <strong>d3</strong> and <strong>d4</strong> each have one.</p>
+<p>Output:</p>
+<pre>
+Base
+d1
+d2
+Base
+d3
+Base
+d4
+</pre>
+<br/><br/>
+<p>The following code won't compile because the ambiguity of method <strong>print()</strong> inherited:</p>
+<pre>
+#include &lt;iostream&gt;
+
+struct Shape
+{
+  virtual void print()
+  {
+    std::cout &lt;&lt; "Shape" &lt;&lt; std::endl;
+  }
+  virtual ~Shape() {}
+};
+
+struct Box : public virtual Shape
+{
+  void print()
+  {
+    std::cout &lt;&lt; "Box" &lt;&lt; std::endl;
+  }
+};
+
+struct Sphere : public virtual Shape
+{
+  void print()
+  {
+    std::cout &lt;&lt; "Sphere" &lt;&lt; std::endl;
+  }
+};
+
+struct BoxSphere : public Box, public Sphere
+{};
+
+int main(int argc, char** argv)
+{
+  Shape* s = new BoxSphere;
+  s-&gt;print();
+  delete s;
+
+  return 0;
+}
+</pre>
+<p>In this case, we may specify which print() we're using such as <strong>Box::print()</strong> or <strong>Sphere::print()</strong>:</p>
+<pre>
+struct BoxSphere : public Box, public Sphere
+{
+public:
+	void print() { Sphere::print(); Box::print();}
+};
+</pre>
+<br/><br/><br/>
+<div class="subtitle" id="namehiding">Name Hiding</div>
+<p>Let's look at the following example:</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Base 
+{	
+public:
+	virtual void MethodA() {
+		cout &lt;&lt; "Base::void MethodA()" &lt;&lt; endl;
+	}
+	virtual void MethodA(int a) {
+		cout &lt;&lt; "Base::void MethodA(int a)" &lt;&lt; endl;
+	}
+};
+
+class Derived : public Base
+{
+public:
+	virtual void MethodA() {
+		cout &lt;&lt; "Derived::void MethodA()" &lt;&lt; endl;
+	}
+};
+
+int main() 
+{
+	Derived d;
+	d.MethodA();
+	d.MethodA(4);
+	return 0;
+}
+</pre>
+<p>We may get a compiler error something like this:</p>
+<pre>
+'Derived::MethodA' : function does not take 1 arguments
+</pre>
+<p>Even though we may not get the error, however, the code has the following implications:</p>
+<pre>
+Derived d;
+d.MethodA();	// OK
+d.MethodA(4);	// Not OK
+</pre>
+<p>The new definition defines a <strong>MethodA()</strong> that takes no arguments. Rather than resulting in two overloaded version of the function, this redefinition <strong>hides</strong> the base class version that takes an int argument. In other words, redefining inherited methods is not a variation of overloading. If we redefine a function in a derived class, it doesn't just override the base class declaration with the same function signature. It <strong>hides all</strong> base-class methods of the <strong>same name</strong>, regardless of the argument signature.</p>
+<p>So, if the base class declaration is overloaded, we need to redefine all the base-class versions in the derived class as in the modified code below:</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Base 
+{	
+public:
+	virtual void MethodA() {
+		cout &lt;&lt; "Base::void MethodA()" &lt;&lt; endl;
+	}
+	virtual void MethodA(int a) {
+		cout &lt;&lt; "Base::void MethodA(int a)" &lt;&lt; endl;
+	}
+};
+
+class Derived : public Base
+{
+public:
+	virtual void MethodA() {
+		cout &lt;&lt; "Derived::void MethodA()" &lt;&lt; endl;
+	}
+	<font color="red">virtual void MethodA(int a) {
+		cout &lt;&lt; "Derived::void MethodA(int a)" &lt;&lt; endl;
+	}</font>
+};
+
+int main() 
+{
+	Derived d;
+	d.MethodA();
+	d.MethodA(4);
+	return 0;
+}
+</pre>
+<p>Now, we have an output:</p>
+<pre>
+Derived::void MethodA()
+Derived::void MethodA(int a)
+</pre>
+<p>If we redefine just one version, the other one become hidden and cannot be used by objects of the derived class. </p>
+<br/>
+<br/><br/><br/>
+<div class="subtitle" id="namehiding_global">Name Hiding - global variable</div>
+<p>This is not related to virtual but it's worth mentioning. Let's look at the following code:</p>
+<pre>
+int x = 7;
+int main()
+{
+    cout &lt;&lt; x;
+    <font color="red">int x</font> = x;
+    return 0;
+}
+</pre>
+<p>When we print out <strong>x</strong>, it will give us a right value <strong>7</strong>, however, at the line <strong>int x = x</strong>, it won't be executed properly because we are trying to initialize <strong>x</strong> with unknown <strong>x</strong>.
+Actually, at the moment of defining <strong>x</strong>, it hides the <strong>global x</strong>, and we no longer sees it.</p>
+<p>So, this one wont't work either:</p>
+<pre>
+int x = 7;
+int main()
+{
+    cout &lt;&lt; x;
+    int x;       // declaration is fine until we actually try to use it
+    cout &lt;&lt; x;   // Not OK because x not initialized
+    return 0;
+}
+</pre>
+<p>The following code is fine. We just declare a new array <strong>x</strong> with the size of global variable <strong>x</strong>:</p>
+<pre>
+const int x = 7;
+int main()
+{
+    cout &lt;&lt; x;
+    int x[x];
+    int sz = sizeof(x)/sizeof(x[0]);
+    return 0;
+}
+</pre>
+<br/><br/><br/>
+<br/>
+<br/>
+</p></p></p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/virtualfunctions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:03:53 GMT -->
+</html>
+

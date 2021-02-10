@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/constructor.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:57:15 GMT -->
+<head>
+  <title>C++ Tutorial: Constructor - 2017</title>
+  <meta content="C++ Tutorial: Constructor" name="description" />
+  <meta content="C++ Tutorial, Constructor, Default Constructor, Deep copy vs shallow copy, Copy Constructor, move constructor, Destructor, Copy Assignment Operator, virtual destructor, overriding vs overloading, Order of calls" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial - Constructor - 2016   
+    <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="MemberFunctions">Implicit C++ Member Functions </div>
+<p>What implicit member functions are provided by C++?</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>To begin with, let's make the simplest class:</p>
+<pre>
+class Empty{};
+</pre>
+<p>Thanks to C++ compiler, actually it becomes something like this:</p>
+<pre>
+class Empty
+{
+public:
+	Empty(){}				      //default constructor
+	Empty(const Empty&amp;){}			      //copy constructor
+	~Empty(){}				      //destructor
+	Empty&amp; operator=(const Empty&amp;){return *this;} //copy assignment operator
+                                                    
+};
+</pre>
+<p>Isn't it convenient and amazing?</p>
+<p>The member functions are called only when it's necessary.<br/>
+Let's see when they are called.</p>
+<pre>
+	Empty eA;				//default constructor
+	~Empty();				//destructor
+	Empty eB(eA);			        //copy constructor (creating a new object)
+	eB = eA;			        //copy assignment operator (assign to an existing object)
+        Empty eC = eA;                          //copy constructor (creating a new object)
+</pre>
+<div class="subtitle_2nd" id="whatiscalled">Check what is called</div>
+<p>The following class has it's own constructor, copy constructor, copy assignment operator, and destructor. We can check what will be called in what circumstances:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+public:
+    A(int n = 0) : m(n) {cout &lt;&lt; "ctor\n";}
+    A(const A&amp; a) : m(a.m){cout &lt;&lt; "copy\n";}
+    A&amp; operator=(const A&amp; a) {
+	if(this != &amp;a;) m = a.m;
+	cout &lt;&lt; "assign =\n";
+	return *this;
+    }
+    ~A(){cout &lt;&lt; "dtor\n";}
+private:
+    int m;
+};
+
+void foo(const A &amp;a1;, const A &amp;a2; = A()){}
+
+int main()
+{
+    A a(415);         // ctor
+    A b = 7;          // ctor
+    A c(a);           // copy
+    A &amp;d; = c;          
+    A e = b;          // copy
+    b = d;            // assign = 
+    A *p = new A(c);  // copy
+    A *q = &amp;a;         
+    foo(911);         // ctor, ctor
+    delete p;         // dtor
+
+    return 0;
+}
+</pre>
+<p>Output at the line <strong>return 0</strong>:</p>
+<pre>
+ctor
+ctor
+copy
+copy
+assign = 
+copy
+ctor
+ctor
+dtor
+</pre>
+<p>One thing we need to discuss is the <strong>foo(911)</strong> call. The second parameter is obvious that  the call <strong>A()</strong> in <strong>const A &amp;a2; = A()</strong> will invoke constructor. The first parameter will also call constructor because the constructor converts the integer <strong>911</strong> to a temporary object of <strong>A</strong>, and use the value for initialization. This makes sense because a <strong>A</strong> object represents a single integer member <strong>m</strong>, thus we expect the class  provides way to convert an integer to a <strong>A</strong> object.
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="default_constructor">Default Constructor</div>
+<p>A constructor is used to initialize an object after it has been allocated by the <strong>new</strong>. We can define multiple constructors with different arguments. The default constructor is defined as the constructor that can be called with no arguments:</p>
+<pre>
+class MyClass
+{
+    int n;
+public:
+    MyClass();     // default constructor declared
+};
+</pre>
+<p>This could be a constructor with no argument or with arguments that all specify default values. Our C++ compiler will automatically generate a default constructor for us if we do not explicitly define one.</p>
+<p>The default constructor is important because it is automatically invoked in the following circumstances, and it is an error if the class does not have a default constructor.</p>
+<ol>
+<li>When an object value is declared with no argument list, e.g. <strong>MyClass X</strong>; or allocated dynamically with no argument list, e.g. <strong>new MyClass;</strong> the default constructor is used to initialize the object.</li>
+<li>When an array of objects is declared, e.g. <strong>MyClass X[5];</strong> or allocated dynamically, e.g. <strong>new MyClass [10];</strong> the default constructor is used to initialize all the elements.</li></ol></p>
+<br/>
+<img alt="default_constructor_heap.png" src="images/constructor/default_constructor_heap.png"/>
+<br/>
+<pre>
+#include &lt;iostream&gt;
+class MyClass 
+{
+public:
+     MyClass() { std::cout &lt;&lt; "default constructor" &lt;&lt; std::endl; }
+};
+
+int main(int argc, char** argv)
+{
+     MyClass* myObjArray = new MyClass[5];
+}
+</pre>
+<p>With the following output:</p>
+<pre>
+default constructor
+default constructor
+default constructor
+default constructor
+default constructor
+</pre>
+
+<li>When a derived class constructor does not explicitly call the base class constructor in its initializer list, the default constructor for the base class is called.</li>
+<li>When a class constructor does not explicitly call the constructor of one of its object-valued fields in its initializer list, the default constructor for the field's class is called. Visit <a href="class.html#default_constructor_fields" target="_blank">Default constructor of a field variable of a class</a>.</li>
+
+<p>In the standard library, certain containers "fill in" values using the default constructor when the value is not given explicitly, e.g. <strong>vector&lt;MyClass&gt;(5);</strong> initializes the vector with 5 elements, which are filled with the default-constructed value of our type.</p>
+<p>The compiler will implicitly define a default constructor if no constructors are explicitly defined for a class. This implicitly-declared default constructor is equivalent to a default constructor defined with a blank body:</p>
+<pre>
+class MyClass{};
+</pre>
+<p>If some constructors are defined, but they are all non-default, the compiler will NOT implicitly define a default constructor. Hence, a default constructor may not exist for a class. In the following example, because a constructor of type other than default is defined the compiler does not define a default constructor and hence we will get an error when we try to create <strong>objectB</strong>.</p>
+<pre>
+class MyClass 
+{
+private:
+    int n;
+public:
+    MyClass(int m);                // A Constructor     
+};
+
+MyClass :: MyClass(int m)
+{
+    n = m;
+}
+int main()
+{
+    MyClass objectA(5);           // Constructor Called           
+    MyClass objectB;              // Error: no appropriate default constructor available            
+    return 0;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle" id="Constructor_another">Constructor - another example</div>
+<p>Most of the class we write will have one or more constructors, a destructor and a copy assignment operator.</p>
+<p>The process of creating objects in C++ is not a trivial task. Whenever an instance of a class is created the constructor method is called. The constructor has the same name as the class and it doesn't return any type.</p>
+<p>Constructor is used to <strong>initialize</strong> an object after allocated by the <strong>new</strong>. We can write several constructors with different arguments. The default constructor is the constructor defined  with no argument or with arguments with defaults values. If we do not explicitly define a constructor, the compiler will automatically generate a default constructor for us.</p>
+<pre>
+#include &lt;iostream&gt;
+
+class MyString
+{
+public:
+
+	//constructor with no arguments
+	MyString():str_(NULL), size_(0) {}
+
+	//constructor with one argument
+	MyString(int sz):str_(NULL), size_(sz)
+	{
+		str_ = new char[sz];
+	}
+
+	//destructor
+	~MyString() 
+	{
+		delete [] str_;
+	};
+
+private:
+	char *str_;
+	int size_;
+};
+</pre>
+<p>Following example looks a little bit complicated but after we briefly study what the C++ compiler does for us, we'll be back to this example again.</p>
+<pre>
+//stringbuilder.h
+#include &lt;iostream&gt;
+
+class StringBuilder
+{
+private:
+	static int counter;
+	char *str;
+public:
+	<font color="red">StringBuilder();</font>
+	<font color="red">StringBuilder(const char *);</font>
+	~StringBuilder();
+	const char *getString();
+};
+
+//stringbuilder.cpp
+#include &lt;cstring&gt;
+#include "stringbuilder.h"
+
+int StringBuilder::counter = 0;
+
+StringBuilder::StringBuilder()
+{
+	const char *defaultStr = "Default String";
+	int len = std::strlen(defaultStr);
+	str = new char[len + 1];
+	std::strcpy(str,"Default String");
+	counter++;
+	std::cout &lt;&lt;"Default Constructor counter=" &lt;&lt; counter &lt;&lt; std::endl;
+}
+
+StringBuilder::StringBuilder(const char *s)
+{
+	int len = std::strlen(s);
+	str = new char[len + 1];
+	std::strcpy(str,s);
+	counter++;
+	std::cout &lt;&lt;"Constructor counter=" &lt;&lt; counter &lt;&lt; std::endl;
+}
+
+StringBuilder::~StringBuilder()
+{
+	counter--;
+	std::cout &lt;&lt;"Destructor counter=" &lt;&lt; counter &lt;&lt; std::endl;
+	delete [] str;
+}
+
+const char* StringBuilder::getString()
+{
+	return str;
+}
+
+//driver.cpp
+#include &lt;iostream&gt;
+#include "stringbuilder.h"
+
+int main()
+{
+	StringBuilder myStringA;  //default constructor
+	StringBuilder myStringB("StringB");  //constructor taking const char *
+	StringBuilder *myStringC = new StringBuilder("StringC");  
+	//StringBuilder myStringD = myStringC;  //copy constructor
+
+	std::cout &lt;&lt; "myStringA.str = " &lt;&lt; myStringA.getString() &lt;&lt; std::endl;
+	std::cout &lt;&lt; "myStringB.str = " &lt;&lt; myStringB.getString() &lt;&lt; std::endl;
+	std::cout &lt;&lt; "myStringC-&gt;str = " &lt;&lt; myStringC-&gt;getString() &lt;&lt; std::endl;
+	//std::cout &lt;&lt; "myStringD.str = " &lt;&lt; myStringD.getString() &lt;&lt; std::endl;
+
+	delete myStringC;
+	return 0;
+}
+</pre>
+<p>The output should look like this:</p>
+<pre>
+Default Constructor counter=1
+Constructor counter=2
+Constructor counter=3
+myStringA.str = Default String
+myStringB.str = StringB
+myStringC-&gt;str = StringC
+Destructor counter=2
+Destructor counter=1
+Destructor counter=0
+</pre>
+<p>Constructor and destructor are each called 3 times as we expected.</p>
+<p>Note that we have a pair of <strong>new[]</strong> and <strong>delete[]</strong> in the two constructors and in the destructor.</p>
+<pre>
+int len = std::strlen(defaultStr);
+str = new char[len + 1];
+....
+delete [] str;
+</pre>
+<p>We use <strong>new</strong> to allocate space to hold the string, and then we assign the address of the new 
+memory to the <strong>str</strong> member. Here, the <strong>strlen()</strong> returns the length of a string 
+not including the null. So we add one to the length.</p>
+<p>Also note that the string is not stored in the object. The string is stored separately and the object 
+just stores the address pointing where to locate the string.</p>
+<p>The <strong>delete[]</strong> is necessary. When <strong>StringBuilder</strong> object expires, 
+the <strong>str</strong> pointer expires. But the memory allocated with <strong>new[]</strong> 
+to which <strong>str</strong> pointed remains allocated unless we use <strong>delete[]</strong> to free it. 
+Deleting an object frees the memory for the object itself, 
+but it does not free memory pointed to by pointers that were object members. 
+Because of it, we should use the destructor. By placing the <strong>delete[]</strong> in the destructor, 
+we ensure the memory that a constructor allocates with <strong>new[]</strong> is freed when the object goes away.</p>
+<p>The compiler runs a constructor whenever an object of the type created:</p>
+<pre>
+StringBuilder myStringA;
+StringBuilder myStringB("StringB");  
+StringBuilder *myStringC = new StringBuilder("StringC");  
+</pre>
+<p>In the 2nd and 3rd cases, the constructor which takes a <strong>const char *</strong> 
+are run to initialize the variable <strong>str</strong>. In the 3rd case, a new <strong>StringBuilder</strong> 
+object is allocated dynamically. If everything goes well, all objects are initialized by running constructors. 
+The first case, it is using default constructor.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="constructor_limitation">Constructor - Limitations</div>
+<p>C++ constructors have the following limitations:</p>
+<ol>
+<li><strong>No return type</strong><br/>
+A constructor cannot return a result, which means that we cannot signal an error during object initialization. 
+The only way of doing it is to throw an exception from a constructor.
+</li>
+<li><strong>Naming</strong><br/>
+A constructor should have the same name as the class, which means we cannot have two constructors that both take a single argument.
+</li>
+<li><strong>Compile time bound</strong><br/>
+At the time when we create an object, we must specify the name of a concrete class which is known at compile time. There is no way of dynamic binding constructors at run time.
+</li>
+<li><strong>There is no virtual constructor</strong>, see <a href="virtualfunctions.html#VirtualConstructor" target="_blank">virtual constructor</a> for more detail.<br/>
+</li>
+</ol>
+<p>To circumvent the above limitations of constructor, we can use <a href="../DesignPatterns/factorymethod.html" target="blank">Design Patterns - Factory Method</a></p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="destructor">Destructor</div>
+<p>A class needs a destructor if it acquires resources such as memory that we get from the free store using <strong>new</strong>, files, locks, thread handles, and sockets.</p>
+<p>The destructor is called in response to a <strong>delete</strong> call in order to release any resources that the object is holding. There can be only one destructor for a class. If we do not specify a destructor, our C++ compiler will generate one automatically. The compiler will also generate code to automatically call the destructor for all of our member variables, in the reverse order they appear in the class declaration.</p>
+<p>One sign that a class needs a destructor is simply that the class has members that are pointers or references. If a class has a pointer or a reference member, it often needs a destructor and copy operations.
+A class that needs a destructor almost always a copy constructor and a copy assignment. The reason is simply that if an object has acquired a resource, the default meaning of copy which is shallow copy or memberwise copy is almost certainly wrong.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="copy_constructor">Copy Constructor</div>
+<p>A copy constructor is a special constructor that creates a new object from an existing object. In other words, a copy constructor is a constructor for a <strong>class/struct</strong> which is used to make a copy of an existing instance. </p>
+<p>The following cases invoke copy constructor;</p>
+<ol>
+<li>When an object is create from another object during initialization (Class a = b)</li>
+<li>When an object is created from another object as a parameter to a constructor (Class a(b))</li>
+<li>When an object is passed by value as an argument to a function (function(Class a))</li>
+<li>When an object is return from a function (Class a; ... return a;)</li>
+<li>When an exception is thrown using this object type (Class a; ... throw a;)</li>
+</ol>
+<p>The copy constructor should have one of the following forms:</p>
+<ol>
+<li>MyClass(const MyClass&amp;);</li>
+<li>MyClass(MyClass&amp; );</li>
+<li>MyClass(volatile MyClass&amp;);</li>
+<li>MyClass(volatile const MyClass&amp;);</li>
+</ol>
+<p>The following constructors, however, are not copy constructors even though they could do the same thing as a copy constructor.</p>
+<ol>
+<li>MyClass(MyClass*);</li>
+<li>MyClass(const MyClass*);</li>
+</ol>
+<p>The following is not a copy constructed and ill-formed:</p>
+<ol>
+<li>MyClass(MyClass)</li>
+</ol>
+<p>
+We may not want to write a copy constructor if bit-wise copy works for the class. 
+If we defined our own copy constructor, it probably because we needed a deep copy or some special resource management, in which case, we will need to release these resources at the end, which means we probably need to define a destructor and we may also want to think of overloading the assignment operator.</p>
+<p>If we do not define a copy constructor, the compiler will generate one for us that performs a <strong>shallow copy</strong> (copies only a pointer so that the two pointers refer to the same object) of the existing object's member variables. 
+In other words, the copy constructor that compiler provides does a member-wise copy of the source object. So, if copy constructor is not given for the following class:</p>
+<pre>
+class MyClass
+{
+      int i;
+      char c;
+      string s;
+ };
+</pre>
+<p>what the compiler does for us is:</p>
+<pre>
+MyClass::MyClass(const MyClass&amp; myClass):i(myClass.i), c(myClass.c), s(myClass.s){}
+</pre>
+<p>The copy constructor that our compiler provides is sufficient in many cases. 
+However, there are cases where the member-wise copy constructor is not good enough.
+For example, if our object allocates any resources, we most likely need a copy constructor so that we can perform a <strong>deep copy</strong> (copies what a pointer points to so that the two pointers now refer to distinct objects).</p>
+<pre>
+// shallow copy
+int *p = new int(99);
+int *q = p;    // copy the pointer p
+*p = 100;      // change the value of the int pointerd to by p
+
+// deep copy
+int *p = new int(99);
+int *q = new int(*p);  // allocate a new int before copying the value pointed to by p
+*p = 100;              // change the value of the int pointed to by p
+</pre>
+<p>When our object contains raw pointer, then we need
+to do a <strong>deep</strong> copy of the pointer. In other words, we do not want to 
+copy the pointer itself. Instead, we want to copy what the pointer
+points to. Why do we need to <strong>deep</strong> copy? That's because the instance owns the pointer, and the
+instance is responsible for calling delete on the pointer, probably via destructor. 
+If our object does <strong>delete</strong> on the pointer to an object which has been deleted, it may cause heap corruption.</p>
+<p><a href="pointers.html#shallow_copy_vs_deep_copy" target="_blank">Shallow copy vs Deep copy</a></p>
+<br/>
+<img alt="deep_vs_shallow_copy.png" src="images/constructor/deep_vs_shallow_copy.png"/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="copy_constructor_temporary">Temporary object - copy constructor or return a reference?</div>
+<p>Here is another example of effects of copy constructor that compiler provides:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Foo
+{
+	char *buf;
+public:
+	Foo(char const *b = "default") {
+		cout &lt;&lt; "Constructor Foo()\n";
+		buf = new char[std::strlen(b)+1];
+		std::strcpy(buf,b);
+	}
+
+	~Foo() { 
+		cout &lt;&lt; "Destructor ~Foo()\n";
+		delete[] buf;
+	}
+};
+
+Foo Func(<font color="red">Foo f</font>) {
+	<font color="red">return f</font>;
+}
+
+int main()
+{
+	Foo f;
+        cout &lt;&lt; "call Func()\n";
+	Func(f);
+	return 0;
+}
+</pre>
+<p>If we run the code, specifically when the <strong>Func()</strong> is called, the program may crash or have unexpected result.
+Why?<br/>
+Let's look at the output from the run:</p>
+<pre>
+Constructor Foo()
+call Func()
+Destructor ~Foo()
+Destructor ~Foo()
+</pre>
+<p>We call destructor, which does <strong>delete[]</strong>. The problem is that it is trying to delete a pointer we haven't allocated. When default copy constructor is called (First when <strong>Func(Foo f)</strong> is called and then when it returns f), it does not allocate anything. If we add the following lines of code in the class, we can see the copy constructor is called.</p>
+<pre>
+	Foo(const Foo &amp;, char const *b = "default") {
+		cout &lt;&lt; "Copy constructor\n";
+	}
+</pre>
+<p>The output:</p>
+<pre>
+Constructor Foo()
+call Func()
+Copy constructor
+Copy constructor
+Destructor ~Foo()
+....crash
+</pre>
+So, the undesirable behavior.
+<p>How to fix it?</p>
+<p>We have two choices:</p>
+<ol>
+<li>Add copy constructor that does memory allocation.<br/>
+    By adding following line for copy constructor: 
+    <pre>
+    Foo(const Foo &amp;, char const *b = "default") {
+		buf = new char[std::strlen(b)+1];
+		cout &lt;&lt; "Copy constructor\n";
+    }
+    </pre>
+<p>Then, we get new output with matching constructor/destructor called:</p>
+<pre>
+     Constructor Foo()
+     call Func()
+     Copy constructor
+     Copy constructor
+     Destructor ~Foo()
+     Destructor ~Foo()
+     Destructor ~Foo()
+    </pre>
+    This code is not desirable.<br/>
+</li>
+<li>Return reference to the object instead of object itself.
+    <pre>
+    Foo&amp; Func(Foo &amp;f;) {
+	return f;
+    }
+    </pre>
+    And just one call for construtor and destructor.
+    <pre>
+     Constructor Foo()
+     call Func()
+     Destructor ~Foo()
+    </pre>
+    This should be our choice.
+   </li>
+</ol>
+<br/>
+<p><strong>Summary</strong><br/>
+The copy constructor gets called in the following cases:</p>
+<ol>
+<li>An object is passed to a method by value or returned by value.</li>
+<li>An object is initialized using the syntax, <strong>MyClass a = b</strong>.</li>
+<li>An object is placed in a braced-enclosed initializer list.</li>
+<li>An object is thrown or caught in an exception.</li>
+</ol>
+<p>The are cases when we do not want to create copies of an object. We can prevent it by doing:</p>
+<ol>
+<li>Declare a copy constructor and assignment operator. We don't have to provide implementation, and this prevent the compiler from generating its own default versions (see <a href="../DesignPatterns/introduction.html#class_copyable_or_not" target="_blank">Class - copyable or not </a>)</li>
+<li>Make the copy constructor and assignment operator private.</li>
+<li>Use boost and inherit from <strong>boost::noncopyable</strong>.</li>
+<li>We can disable the default constructor and assignment operator with C++0x.</li>
+
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="move_constructor">Move Constructor</div>
+<p>Visit <a href="cplusplus11.html#move_semantics" target="_blank">move constructor of C++11</a></p>.
+<br/>
+<br/>
+<div class="subtitle_2nd" id="assignment_operator">Assignment Operator</div>
+<p>The assignment operator is used to assign the value of one object to another object, <strong>a=b</strong>. It differs from the copy constructor in that <strong>the object being assigned to already exists</strong>. <br/>
+Some guidelines for implementing the assignment operator are:</p>
+<ol>
+<li>Use a <strong>const reference</strong> for the right-hand operand.</li>
+<li>Return <strong>*this</strong> as a reference to allow operator chaining.</li>
+<li>Destroy any existing state before setting the new state.</li>
+<li>Check for self-assignment (<strong>a = a</strong>) by comparing <strong>this</strong> to <strong>&amp;rhs;</strong>.</li>
+</ol>
+<br/>
+<p>Here is a sample code:</p>
+<pre>
+#include &lt;string&gt;
+
+class Array
+{
+public:
+	Array(); // default constructor
+	explicit Array(int size); // non-default constructor
+	~Array(); // destructor
+	Array(const Array&amp; input_array); // copy constructor
+	Array&amp; operator=(const Array&amp; input_array); // assignment operator
+private:
+	int mSize;
+	std::string *mArray;
+};
+
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+// default constructor
+Array::Array():mSize(0), mArray(NULL) {}
+
+// non-default constructor
+Array::Array(int size):mSize(size), mArray(new std::string[size]) {}
+
+// destructor
+Array::~Array()
+{
+	delete[] mArray;
+}
+
+// copy constructor
+Array::Array(const Array&amp; input_array):
+        mSize(input_array.mSize), 
+        mArray(new std::string[input_array.mSize])
+{
+	std::copy(input_array.mArray, input_array.mArray + mSize, mArray);
+}
+
+// assignment operator
+Array&amp; Array::operator=(const Array&amp; input_array)
+{
+	if(this != &amp;input;_array) // self assignment ?
+	{
+	    delete[] mArray; // delete current array first
+	    mSize = input_array.mSize;
+	    mArray = new std::string[input_array.mSize];
+	    std::copy(input_array.mArray, input_array.mArray + mSize, mArray);
+	}
+	return *this;
+}
+</pre>
+<p>Here are the cases when the methods will be called:</p>
+<pre>
+Array a;              // default constructor
+Array a(10);          // non-default constructor
+Array b(a);           // copy constructor
+Array c = a;          // copy constructor because <strong>c</strong> does not exist yet.
+b = c;                // assignment operator
+</pre>
+<br/>
+<br/>
+<p>The following code demonstrates the <strong>A c = a</strong> is calling <strong>copy constructor</strong> not the <strong>assignment operator</strong> because <strong>c</strong> does not exist yet:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class A
+{
+	int x;
+public:
+	explicit A(int xx):x(xx){}
+	A(const A&amp; a) { x = a.x; x++;}
+	A&amp; operator=(const A&amp; a) { x = a.x; x--; return *this;}
+};
+
+int main()
+{
+	A a(4);
+	<font color="red">A c = a;</font>
+	return 0;
+}
+</pre>
+<p>So, the value of <strong>c.x</strong> is not <strong>3</strong> but <strong>5</strong> because it calls copy constructor. The copy constructor does <strong>x++</strong>.</p>
+<br/>
+<br/>
+<div class="subtitle" id="Constructor">Constructor Initialization</div>
+<p>Which constructor in the following code should we use? <br/>
+(1) or (2) <br/>
+</p>
+<pre>
+class A
+{
+public:
+	A() {std::memset(buf,0,sizeof(buf));}
+protected:
+	char buf[255];
+};
+
+class B
+{
+public:
+	B(const A&amp; arg): <font color="red">a(arg) {}</font>  // (1)
+	B(const A&amp; arg) <font color="red">{ a = arg;}</font> // (2)
+protected:
+	A a;
+};
+
+int main()
+{
+	A a;
+	B B(a);
+	return 0;
+}
+</pre>
+<br/>
+<p>A constructor is similar to a function. It has a name, a parameter list, and a function body. As we can see in the example below, the meaning of an initializer is up to the constructor:</p>
+<pre>
+string s("my string");   // initialize s to the character string "my string"
+vector&lt;int&gt; v(100);      // make v a vector of 100 integers
+</pre>
+<p>The standard <strong>string</strong>'s constructor uses a character string as an initial value, while the <strong>vector</strong>'s constructor uses an integer as the initial number of elements.</p>
+<p>However, unlike a function, a constructor may also have a constructor <strong>initializer list</strong>.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student
+{
+public:
+	enum {Freshman = 1, Sophomore, Junior, Senior};
+	Student(){}
+
+	Student(const string &amp;fn;, const string &amp;ln;, int i, int y = Freshman)
+		<font color="red">:first_name(fn), last_name(ln), id(i), year(y)</font>
+	{
+		cout &lt;&lt; "Name: " &lt;&lt; first_name &lt;&lt; " " &lt;&lt; last_name &lt;&lt; endl;
+		cout &lt;&lt; "id  : " &lt;&lt; id &lt;&lt; endl;
+		cout &lt;&lt; "year  : " &lt;&lt; year &lt;&lt; endl;
+	}
+
+private:
+	const string first_name;
+	const string last_name;
+	int id;
+	int year;
+};
+
+int main()
+{
+	Student s1("John","Doe", 12345, Student::Junior);
+	return 0;
+}
+</pre>
+<p>The constructor initializer starts with a colon. It is followed by a comma-separated list of data members each of which 
+is followed by an initializer inside parentheses:</p>
+<pre>
+Student(const string &amp;fn;, const string &amp;ln;, int i, int y = Freshman)
+	<font color="red">: first_name(fn), last_name(ln), id(i), year(y) </font>
+</pre>
+<p>The constructor initializes the <strong>first_name</strong> to the value of its <strong>fn</strong> parameter, 
+<strong>last_name</strong> to the value of its <strong>ln</strong>, and so on. As with any member function, 
+constructors can be defined inside or outside of the class. The constructor initializer is specified only 
+on the constructor definition, not its declaration. </p>
+<p>One of the primary reasons constructor initializers are hard to understand is that it is usually legal to omit 
+the initializer list and <strong>assign</strong> values to the data members inside the constructor body. So, we can re-write 
+the code as following:</p>
+<pre>
+Student(const string &amp;fn;, const string &amp;ln;, int i, int y = Freshman)  {
+	first_name = fn;
+	last_name = ln;
+	id = i;
+ 	year = y; 
+}
+</pre>
+<p>This constructor in the new code assigns the members of class Student. It does not explicitly initialize them. 
+Whether there is an explicit initializer or not, the <strong>first_name</strong> and <strong>last_name</strong> members are initialized 
+even before the constructor is executed. This constructor implicitly uses the default <strong>string</strong> constructor to 
+initialize the <strong>first_name</strong> and <strong>last_name</strong> members. When the body of the constructor is 
+executed, the  <strong>first_name</strong> and <strong>last_name</strong> members already have values. Those values are overwritten by 
+the assignment inside the constructor body.</p>
+<p>Execution of constructor is done in two phases:</p>
+<ol>
+<li>The initialization phase </li>
+<li>Body execution phase which consists of all the statements within the body of constructor. 
+Note that data members of class type are <strong>always</strong> initialized in the initialization phase, 
+regardless of whether the member is initialized explicitly in the constructor initializer list.
+Initialization happens <strong>before</strong> any the statement execution of the constructor body.</li>
+</ol>
+<p>The members that are not initialize by the explicit initializer of the constructor are initialized using the rules for 
+initializing variables. In other words, data members of class type are initialized by running the type's default constructor. 
+The initial value of members of built-in or compound type depend on the scope of the object: Members of local scope are uninitialized, 
+and members of global scope are initialized to 0.</p>
+<p>The end results of the two are the same. The difference is that the version that uses the constructor initializer 
+<strong>initializes</strong> values to the data members. The version that does not define a constructor initializer 
+<strong>assigns</strong> values to the data members in the body of the constructor.  How significant is this distinction? 
+It depends on the type of the data member.</p>
+<p>If an initializer is not provided for a class member, then the compiler implicitly uses the default constructor for the member's type. 
+However, if that class does not have a default constructor, then the attempt by the compiler to use it will fail. In such cases, 
+an initializer must be provided in order to initialize the data member.</p>
+<p>Some members <strong>must</strong> be initialized in the constructor initializer. For such members, assigning to them in the 
+constructor body doesn't work. In other words, members of a class type that do not have a default constructor and members that are <strong>
+const</strong> or <strong>reference</strong> types <strong>must</strong> be initialized in the constructor initializer.</p>
+<p>Let's run the following example:</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student
+{
+public:
+	Student(int id)
+	{
+		studentId = id;
+		ss = id;
+		rStudentId = studentId;
+	}
+
+private:
+	int studentId;
+	<font color="red">const int ss;
+	int &amp;rStudentId;</font>
+};
+
+int main()
+{
+	Student s1(12345);
+	return 0;
+}
+</pre>
+<p>Then, we'll get the errors like this:</p>
+<pre>
+'Student::ss' : must be initialized in constructor base/member initializer list
+'Student::rStudentId' : must be initialized in constructor base/member initializer list
+l-value specifies const object
+</pre>
+<p>By the time the constructor body begins executing, initialization is complete. So, the only time we can 
+initialize <strong>const</strong> or <strong>reference</strong> data members is to use the constructor initializer:</p>
+<pre>
+Student(int id) : studentId(id), ss(id), rStudentId(studentId) {}
+</pre>
+<p>For most of the cases, the difference between initialization and assignment is a matter of efficiency. In other words,
+a data member is initialized and assigned when it could have been initialized directly. The more important than the issue 
+of efficiency is that some members of a class must be initialized. </p>
+<p>Remember that we must use an initializer for any <strong>const</strong> or <strong>reference</strong> member. </p>
+<p>Output is </p>
+<pre>
+Parent default constructor.
+Daughter default constructor.
+Overloaded Parent constructor.
+Overloaded Son constructor.
+</pre>
+<p>The default constructor has no arguments. But a class may have overloaded constructors. If we want to call an overloaded constructor of the base class when a new object of a derived class is created, we can create a matching overloaded constructor in the derived class. It has the same number and type of arguments.</p>
+<p>As shown in the above example, the overloaded Son class constructor passes the integer argument to the overloaded base class constructor.</p>
+<br/>
+<br/>
+<div class="subtitle" id="overridingbasemethod">Overriding Base Method</div>
+<p>A method can be declared in a derived class to override a matching method in the base class if both have the same signature. This hides the base class method as it becomes inaccessible unless it is called explicitly, using the <strong>:: scope resolution</strong> operator.</p>
+<p>In a derived class, if we include a method definition that has the same name and exactly the same number and types of parameters as a method already defined in the base class, this new definition replaces the old definition of the method.</p>
+<p>
+A subclass inherits methods from a superclass. Sometimes, it is necessary for the subclass to modify the methods defined in the superclass. This is referred to as method overriding. The following example demonstrates method overriding.</p>
+<pre>
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+class Duck
+{
+	public :
+		void speak() { cout &lt;&lt; "Duck Quack" &lt;&lt; endl ; }
+		void speak( string msg ) { cout &lt;&lt; "....." &lt;&lt; msg &lt;&lt; endl ; }
+} ;
+
+class ToyDuck : public Duck
+{
+	public :
+		void speak( string msg ) { cout &lt;&lt; msg &lt;&lt; endl ; }
+} ;
+
+int main()
+{
+	Duck duck ;
+	ToyDuck toyduck ;
+
+	duck.speak() ;
+	duck.speak( "Another Duck Quack" ) ;
+
+	toyduck.speak( "Squeak" ) ;
+	toyduck.Duck::speak( "ToyDuck using Duck Quack" ) ;
+
+	return 0 ;
+}
+</pre>
+<p>Output is</p>
+<pre>
+Duck Quack
+.....Another Duck Quack
+Squeak
+.....ToyDuck using Duck Quack
+</pre>
+<p>However, overriding base class methods must be used carefully to avoid unintentionally hiding overloaded methods. A single overriding method in a derived class will hide all overloaded methods of that name in the base clase!<br/>
+The overriding method declared in the derived class hides both overrided methods in the base class. If we call <strong>toyduck.speak()</strong> </p>
+<pre>
+toyduck.speak();
+</pre>
+<p>the compiler will complain there is no matching method for that call.</p>
+<pre>
+ToyDuck::speak' : function does not take 0 arguments
+</pre>
+<br/>
+<p><strong>Note</strong> <br/>
+<strong>Overloading</strong>: two or more methods with the <strong>same name</strong> but <strong>different signatures</strong> in the same scope. These two methods may exist in the same class or anoter one in base class and another in derived class.</p>
+<br/>
+<br/>
+<div class="subtitle" id="ctordtor">How does C++ deal with constructors and destructors of a class and its child (derived) class?</div>
+<p><strong>Constructor</strong> </p>
+<ol>
+<li>The base class object is constructed first. This means the base class object should be constructed first before the program enters the body of the child class constructor. We use the <strong>member initializer list</strong> to accomplish this. But if we omit calling a base class constructor, the program uses the default base class constructor. <strong>A child class constructor always calls a base class constructor</strong>.</li>
+<li>The child class should pass base class information via base class constructor.</li>
+<li>The child class constructor should initialize its member.</li>
+<li>A child class doesn't inherit the base class constructor.</li>
+</ol>
+<p><strong>Destructor</strong> </p>
+<ol>
+<li>If we create automatic storage class object, its destructor is called automatically called when the program exits.</li>
+<li>If the object is created by using <strong>new</strong>, it resides in heap memory (free store), its destructor is called automatically when we use <strong>delete</strong> to free the memory.</li>
+<li>If we create a static storage class object, its destructor is called automatically when the program exits.</li>
+<li>If we create temporary objects, the destructors for the objects are called when we finished using them.</li>
+<li>When we delete a child object, the destructor for the child is called and then the destructor for the base is called.</li>
+<li>A base class destructor should be <strong>virtual</strong> unless the class isn't to be used as a base class. That way, when we delete a child class via base class pointer (or reference) to the object, the program uses the child class destructor followed by the base class destructor rather than using only the base class destructor. More on <a href="virtualfunctions.html" target="_blank">Virtual Functions</a>.</li>
+<li>A child class doesn't inherit the base class destructor.</li>
+<li>When a program deletes an object, it first calls the child class destructor and then the base class destructor.</li>
+</ol>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Checking
+{
+public:
+	Checking(int bal = 0, int i = 100) {
+		cout &lt;&lt; "Checking constructor" &lt;&lt; endl;
+		balance = bal;
+		id = i;
+	}
+
+	~Checking() {
+		cout &lt;&lt; "Checking destructor" &lt;&lt; endl;
+	}
+
+	int getBalance() {
+		return balance;
+	}
+
+	int getId() {
+		return id;
+	}
+private:
+	int balance;
+	int id;
+};
+
+class InterestChecking : public Checking
+{
+public:
+	InterestChecking(float r, int b, int i) : Checking(b, i) {
+		cout &lt;&lt; "InterestChecking constructor A" &lt;&lt; endl;
+		rate = r;
+	}
+
+	// copy constructor for the base class will be called
+	InterestChecking(float r, const Checking &amp;chk;) : Checking(chk) {
+		cout &lt;&lt; "InterestChecking constructor B" &lt;&lt; endl;
+		rate = r;
+	}
+
+	// An alternative version
+	/*
+	IntersetChecking(const Checking &amp;chk;, float r) : Checking(chk), rate(r) {
+	}
+	*/
+
+	~InterestChecking() {
+		cout &lt;&lt; "InterestChecking destructor" &lt;&lt; endl;
+	}
+
+	float getRate() {
+		return rate;
+	}
+private:
+	float rate;
+};
+
+int main()
+{
+	cout &lt;&lt; "Normal Checking..." &lt;&lt; endl;
+	Checking *c1 = new Checking(1000, 101);
+	delete c1;
+
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "Interest Checking..." &lt;&lt; endl;
+	InterestChecking *c2 = <font color="red">new</font> InterestChecking(5.9, 5000, 102);
+	<font color="red">delete</font> c2;
+
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "Interest Checking using Checking pointer..." &lt;&lt; endl;
+	<font color="red">Checking *c3;
+	c3 = new InterestChecking(8.9, 25000, 103);
+	delete c3;</font>
+
+	return 0;
+}
+</pre>
+<p>The output clearly shows that the base constructor is called first when we make a child object and the child destructor is called first when we delete a child object.</p>
+<pre>
+Normal Checking...
+Checking constructor
+Checking destructor
+
+Interest Checking...
+Checking constructor
+InterestChecking constructor A
+InterestChecking destructor
+Checking destructor
+
+Interest Checking using Checking pointer...
+Checking constructor
+InterestChecking constructor A
+<font color="red">Checking destructor</font>
+</pre>
+<p>The last output, however, does not call the child class destructor. It only calls the base class constructor. That's because we're using a pointer to the base class.</p>
+<p>If we had used <strong>virtual destructor</strong>,</p>
+<pre>
+virtual ~Checking() {
+	cout &lt;&lt; "Checking destructor" &lt;&lt; endl;
+}
+</pre>
+<p>the child class destructor would have been called:</p>
+<pre>
+Normal Checking...
+Checking constructor
+Checking destructor
+
+Interest Checking...
+Checking constructor
+InterestChecking constructor A
+InterestChecking destructor
+Checking destructor
+
+Interest Checking using Checking pointer...
+Checking constructor
+InterestChecking constructor A
+<font color="red">InterestChecking destructor</font>
+Checking destructor
+</pre>
+<p>More on <a href="virtualfunctions.html" target="_blank">Virtual Functions</a></p>
+<br/>
+<br/>
+<div class="subtitle" id="order_ctordtor">Order of Calls - Constructor, Destructor, Local, Global, Static, Which Order?</div>
+<p>Constructors and destructors are called implicitly by the compiler. The order of these function calls  depends on the order in which execution enters and leaves the scopes where the objects are created. In general, destructor calls are in the reverse order of the corresponding constructor calls. As we see from the following example, the storage classes of objects can alter the order of destructor calls.</p>
+<p>In this example shows the order in which constructors and destructors are called for objects of class <strong>ToBeOrNotToBe</strong> of various storage classes in several scopes.</p>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class ToBeOrNotToBe
+{
+public:
+	ToBeOrNotToBe(int i, string s) : id(i), msg(s) 
+	{
+		cout &lt;&lt; "obj: " &lt;&lt; id &lt;&lt; " ctor " &lt;&lt; msg &lt;&lt; endl; 
+	}
+	~ToBeOrNotToBe()
+	{
+		cout &lt;&lt; "obj: " &lt;&lt; id &lt;&lt; " dtor " &lt;&lt; msg &lt;&lt; endl; 
+	}
+private:
+	int id; 
+	string msg; 
+};
+
+void f(void)
+{
+	ToBeOrNotToBe fifth( 4, "local automatic in f()" );    
+	static ToBeOrNotToBe sixth( 5, "local static in f()" );
+	ToBeOrNotToBe seventh( 6, "local automatic in f()" );  
+} 
+
+ToBeOrNotToBe first( 1, "global" ); 
+
+int main()
+{
+	ToBeOrNotToBe second( 2, "local automatic in main()" );   
+	static ToBeOrNotToBe third( 3, "local static in main()" );
+	f(); 
+	ToBeOrNotToBe fourth( 7, "local automatic in main()" );
+	return 0;
+} 
+</pre>
+<p>The example defines object <strong>first</strong> in global scope. Its constructor is actually called before any statements in main execute and its destructor is called at program termination after the destructors for all other objects have run.</p>
+<p>Output from the run should look like this:</p>
+<pre>
+  obj: 1 ctor global
+  obj: 2 ctor local automatic in main()
+  obj: 3 ctor local static in main()
+  obj: 4 ctor local automatic in f()
+  obj: 5 ctor local static in f()
+  obj: 6 ctor local automatic in f()
+  obj: 6 dtor local automatic in f()
+  obj: 4 dtor local automatic in f()
+  obj: 7 ctor local automatic in main()
+  obj: 7 dtor local automatic in main()
+  obj: 2 dtor local automatic in main()
+  obj: 5 dtor local static in f()
+  obj: 3 dtor local static in main()
+  obj: 1 dtor global
+</pre>
+<p>We have three objects in <strong>main()</strong>. Two local automatic objects and a static local object. The constructor for each of these objects is called when execution reaches the point where that object is declared. The destructors for objects <strong>seventh</strong> and then <strong>second</strong> are called (i.e., the reverse of the order in which their constructors were called) when execution reaches the end of <strong>main()</strong>. Because object <strong>third</strong> is <strong>static</strong>, it exists until program termination. The destructor for object third<strong>third</strong> is called before the destructor for global object <strong>first</strong>, but after all other objects are destroyed.</p>
+<p>
+Function <strong>f()</strong> declares three objects, two local automatic objects, and another object <strong>fifth</strong> as a <strong>static</strong> local object. The destructors for objects <strong>sixth</strong> and then <strong>fourth</strong> are called (the reverse of the order in which their constructors were called) when <strong>f()</strong> terminates. Because <strong>fifth</strong> is static, it exists until program termination. The destructor for <strong>sixth</strong> of <strong>f()</strong> is called before the destructors for <strong>third</strong> (static in main()) and <strong>first</strong> (global).</p>
+<br/>
+<br/>
+<div class="subtitle" id="google_style_guide">Google C++ Style Guide - Classes</div>
+<p>The followings are from <a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Classes" target="_blank">C++ style guide</a>, and I modified a little if necessary.</p>
+<br/>
+<div class="subtitle_2nd" id="Doing_Work_in_Constructors">Doing Work in Constructors</div>
+<p>It is possible to perform initialization in the body of the constructor. However, avoid doing complex initialization in constructors (in particular, initialization that can fail or that requires virtual method calls).</p>
+<ol>
+<li><strong> Pros</strong><br/>
+  Convenience in typing. No need to worry about whether the class has been initialized or not.
+ </li>
+<li><strong> Cons</strong><br/>
+The problems with doing work in constructors are:
+  <ol>
+<li>There is no easy way for constructors to signal errors, short of using exceptions.
+    <pre>
+#include &gt;iostream&gt;
+
+using namespace std;
+
+class MyException
+{
+public:
+	MyException(string s): msg(s){}
+	string getMSG() { return msg; }
+private:
+	string msg;
+};
+
+class Foo
+{
+public:
+
+  Foo() {throw MyException("Error in constructor");}
+
+  int getData () { return data; }
+
+private:
+  int data;
+};
+
+int main ()
+{
+  try {
+	Foo foo;
+  }
+  catch (MyException &amp;e;) {
+	cout &lt;&lt; e.getMSG().c_str() ; 
+  }
+
+  return 0;
+}
+    </pre>
+</li>
+<li>If the work fails, we now have an object whose initialization code failed, so it may be an indeterminate state.</li>
+<li>If the work calls <strong>virtual</strong> functions, these calls will not get dispatched to the subclass implementations. Future modification to our class can quietly introduce this problem even if our class is not currently subclassed, causing much confusion.</li>
+<li>If someone creates a global variable of this type (which is against the rules, but still), the constructor code will be called before <strong>main()</strong>, possibly breaking some implicit assumptions in the constructor code. For instance, <a href="https://code.google.com/p/gflags/?redir=1" target="_blank">gflags</a> will not yet have been initialized.</li>
+<li><strong>Calling bootstrap function before main()</strong><br/>
+    Most of the cases, the first function called in <strong>main()</strong>, there are a few ways we can do  to make changes to this behavior.<br/>
+<strong>global</strong> object is the one that help us doing the task. That's because global object is guaranteed to be constructed before a program's <strong>main()</strong> function is called.<br/>
+    We can create a class with a <strong>default constructor</strong> that invokes our bootstrap function as in the code below. <br/>
+<pre>
+#include &lt;iostream&gt;
+
+
+void Bootstrap()
+{
+	std::cout &lt;&lt; "Bootstrap()"&lt;&lt; std::endl;
+}
+
+class A
+{
+public:
+	A() {Bootstrap();}
+};
+
+A a;
+
+int main(int argc, char** argv)
+{
+	return 0;
+}
+</pre>
+</li>
+</ol>
+</li>
+<li><strong> Decision</strong><br/>
+  Constructors should never call virtual functions or attempt to raise non-fatal failures. If our object requires non-trivial initialization, consider using a <strong>factory function</strong> or <strong>Init()</strong> method.
+ </li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Default_Constructors">Default Constructors</div>
+<p>We must define a default constructor if our class defines member variables and has no other constructors. Otherwise the compiler will do it for us, badly.</p>
+<p>The default constructor is called when we <strong>new a class object with no arguments</strong>. It is always called when calling <strong>new[] (for arrays)</strong>.</p>
+<ol>
+<li><strong> Pros</strong><br/>
+  Initializing structures by default, to hold "impossible" values, makes debugging much easier.
+ </li>
+<li><strong> Cons</strong><br/>
+Extra work for us, the code writers.
+ </li>
+<li><strong> Decision</strong><br/>
+  If our class defines member variables and has no other constructors we must define a default constructor (one that takes no arguments). It should preferably initialize the object in such a way that its internal state is consistent and valid.<br/>
+
+The reason for this is that if we have no other constructors and do not define a default constructor, the compiler will generate one for us. This compiler generated constructor may not initialize our object sensibly.<br/>
+
+If our class inherits from an existing class but we add no new member variables, we are not required to have a default constructor.
+ </li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Explicit_Constructors">Explicit Constructors</div>
+<p>Use the C++ keyword <a href="cplusplus_keywords.html#explicit" target="_blank">explicit</a>  for constructors with one argument.</p>
+<p>Normally, if a constructor takes <strong>one</strong> argument, it can be used as a <strong>conversion</strong>.</p>
+<ol>
+<li>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Foo
+{
+public:
+  // single parameter constructor, and this may do implicit conversion
+  Foo (int foo) : weight (foo) { cout &lt;&lt; "Foo constructor Foo()" &lt;&lt; endl;}
+
+  // default constructor
+  Foo(){}
+
+  int getWeight () { return weight; }
+
+private:
+  int weight;
+};
+
+
+void f(Foo foo)
+{
+  int i = foo.getWeight();
+}
+
+
+int main ()
+{
+  // function taking Foo
+  f(99);
+
+  // my cat has a single member, weight, 
+  // and the conversion makes sense 
+  Foo myCat;
+  myCat = 55;
+  cout &lt;&lt; "The weight of my cat is " &lt;&lt; myCat.getWeight() &lt;&lt; endl;
+
+  return 0;
+}
+</pre>
+ The output is:
+ <pre>
+Foo constructor Foo()
+Foo constructor Foo()
+The weight of my cat is 55
+ </pre>
+</li>
+<li><strong> Pros</strong><br/>
+  Avoids undesirable conversions.
+ </li>
+<li><strong> Cons</strong><br/>
+  None.
+ </li>
+<li><strong> Decision</strong><br/>
+  We require all single argument constructors to be explicit. Always put explicit in front of one-argument constructors in the class definition:<strong> explicit Foo(string name);</strong><br/>
+
+The exception is copy constructors, which, in the rare cases when we allow them, should probably not be explicit. Classes that are intended to be transparent wrappers around other classes are also exceptions. Such exceptions should be clearly marked with comments.
+ </li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Copy_Constructors">Copy Constructors</div>
+<p>Provide a copy constructor and assignment operator only when necessary.<br/>
+ Otherwise, disable them with <strong>DISALLOW_COPY_AND_ASSIGN</strong>.</p>
+<p>The copy constructor and assignment operator are used to create copies of objects. The copy constructor is implicitly invoked by the compiler in some situations, e.g. passing objects by value.</p>
+<ol>
+<li><strong> Pros</strong><br/>
+  Copy constructors make it easy to copy objects. STL containers require that all contents be copyable and assignable. Copy constructors can be more efficient than CopyFrom()-style workarounds because they combine construction with copying, the compiler can elude them in some contexts, and they make it easier to avoid heap allocation.
+ </li>
+<li><strong> Cons</strong><br/>
+  Implicit copying of objects in C++ is a rich source of bugs and of performance problems. It also reduces readability, as it becomes hard to track which objects are being passed around by value as opposed to by reference, and therefore where changes to an object are reflected.
+ </li>
+<li><strong> Decision</strong><br/>
+   Few classes need to be <strong>copyable</strong>. Most should have neither a copy constructor nor an assignment operator. In many situations, a pointer or reference will work just as well as a copied value, with better performance. For example, we can pass function parameters by reference or pointer instead of by value, and we can store pointers rather than objects in an STL container.<br/>
+
+If our class needs to be <strong>copyable</strong>, prefer providing a copy method, such as <strong>CopyFrom()</strong> or <strong>Clone()</strong>, rather than a <strong>copy constructor</strong>, because such methods cannot be invoked implicitly. If a copy method is insufficient in our situation (e.g. for performance reasons, or because our class needs to be stored by value in an STL container), provide both a copy constructor and assignment operator.<br/>
+
+If our class does not need a copy constructor or assignment operator, we must explicitly disable them. To do so, add dummy declarations for the copy constructor and assignment operator in the <strong>private</strong>: section of our class, but do not provide any corresponding definition (so that any attempt to use them results in a link error).<br/>
+
+For convenience, a <strong>DISALLOW_COPY_AND_ASSIGN</strong> macro can be used:<br/>
+<pre>
+// A macro to disallow the copy constructor and operator= functions
+// This should be used in the private: declarations for a class
+
+#define DISALLOW_COPY_AND_ASSIGN(TypeName) \
+  TypeName(const TypeName&amp;);               \
+  void operator=(const TypeName&amp;)
+
+class Foo {
+ public:
+  Foo(int f);
+  ~Foo();
+
+ private:
+  DISALLOW_COPY_AND_ASSIGN(Foo);
+};
+</pre>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Structs_vs_Classes">Structs vs. Classes</div>
+<p>Use a struct only for passive objects that carry data; everything else is a class.</p>
+<p>The struct and class keywords behave almost identically in C++. We add our own semantic meanings to each keyword, so we should use the appropriate keyword for the data-type we're defining.</p>
+<p>
+<strong>structs</strong> should be used for <strong>passive objects that carry data</strong>, and may have associated constants, but lack any functionality other than access/setting the data members. The accessing/setting of fields is done by directly accessing the fields rather than through method invocations. Methods should not provide behavior but should only be used to set up the data members, e.g., <strong>constructor</strong>, <strong>destructor</strong>, <strong>Initialize()</strong>, <strong>Reset()</strong>, <strong>Validate()</strong>.</p>
+<p>If more functionality is required, a class is more appropriate. If in doubt, make it a class.</p>
+<p>For consistency with <strong>STL</strong>, we can use struct instead of class for <strong>functors</strong> and <strong>traits</strong>.</p>
+<p>Note that member variables in structs and classes have different naming rules.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Inheritance">Inheritance</div>
+<p>Composition is often more appropriate than inheritance. When using inheritance, make it <strong>public</strong>.</p>
+<p>When a sub-class inherits from a base class, it includes the definitions of all the data and operations that the parent base class defines. In practice, inheritance is used in two major ways in C++: implementation inheritance, in which actual code is inherited by the child, and interface inheritance, in which only method names are inherited.</p>
+<ol>
+<li><strong> Pros</strong><br/>
+  Implementation inheritance reduces code size by re-using the base class code as it specializes an existing type. Because inheritance is a compile-time declaration, we and the compiler can understand the operation and detect errors. Interface inheritance can be used to programmatically enforce that a class expose a particular API. Again, the compiler can detect errors, in this case, when a class does not define a necessary method of the API.
+ </li>
+<li><strong> Cons</strong><br/>
+  For implementation inheritance, because the code implementing a sub-class is spread between the base and the sub-class, it can be more difficult to understand an implementation. The sub-class cannot override functions that are not virtual, so the sub-class cannot change implementation. The base class may also define some data members, so that specifies physical layout of the base class.
+ </li>
+<li><strong> Decision</strong><br/>
+All inheritance should be public. If we want to do private inheritance, we should be including an instance of the base class as a member instead.<br/>
+
+Do not overuse implementation inheritance. Composition is often more appropriate. Try to restrict use of inheritance to the "is-a" case: <strong>Bar</strong> subclasses Foo if it can reasonably be said that <strong>Bar</strong> "is a kind of" <strong>Foo</strong>.<br/>
+
+Make our destructor <strong>virtual</strong> if necessary. If our class has virtual methods, its destructor should be virtual.<br/>
+
+Limit the use of protected to those member functions that might need to be accessed from subclasses. Note that data members should be private.<br/>
+
+When redefining an inherited virtual function, explicitly declare it virtual in the declaration of the derived class. Rationale: If virtual is omitted, the reader has to check all ancestors of the class in question to determine if the function is virtual or not.<br/>
+</li>
+</ol>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/constructor.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 14:57:19 GMT -->
+</html>
+

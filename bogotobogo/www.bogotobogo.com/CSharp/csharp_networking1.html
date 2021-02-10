@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_networking1.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 05:29:18 GMT -->
+<head>
+  <title>C# 4.0 Tutorial: Networking I - 2016</title>
+  <meta content="C# 4.0 Tutorial: Networking I" name="description" />
+  <meta content="C# 4.0 Tutorial, Networking I, IPv4 vs. IPv6, URL vs. URI, URN, TCP, UDP, PORT, HTTP, IP" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href=".netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Networking I 2017          <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="images/csharp_logo.png" alt="csharp_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="NetworkingI">Networking I</div>
+<p>The .NET Frameworks provides classes in the <strong>System.net.*</strong> namespaces for communicating via standard network protocols.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>The following table is the summary of the key components:</p>
+<br/>
+ TABLE 
+<table border="2" cellpadding="7" cellspacing="2">
+<tbody>
+<tr>
+<td> <strong>WebClient</strong> </td>
+<td> For simple download/upload operations via HTTP/FTP.</td>
+</tr>
+<tr>
+<td> <strong>WebRequest/WebResponse</strong> </td>
+<td> For more control over client-side HTTP/FTP operations</td>
+</tr>
+<tr>
+<td> <strong>HttpListener</strong> </td>
+<td>For writing an HTTP server.</td>
+</tr>
+<tr>
+<td> <strong>SmtpClient</strong> </td>
+<td>For constructing and sending mail messages via SMTP.</td>
+</tr>
+<tr>
+<td> <strong>Dns</strong> </td>
+<td>For converting between domain names and addresses.</td>
+</tr>
+<tr>
+<td> <strong>TcpClient/UdpClient/TcpListener/Socket</strong> </td>
+<td>For direct access to the transport and network layers.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>The <strong>System.Net.Socket</strong> and <strong>System.IO</strong> also defines types needed for networking.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="NetworkingArchitecture">Network Architecture</div>
+<p>Probably, the best and fastest way of getting the picture of network is to answer the question: What happens when we type a URL into a browser?  </p>
+<ol>
+<li>Browser contacts the DNS server to fine the IP address of URL.</li>
+<li>DNS returns back IP address of the site.</li>
+<li>Browser opens TCP connection to the web server at PORT 80.</li>
+<li>Browser fetches the HTML code of the page requested.</li>
+<li>Browser renders the HTML.</li>
+<li>Browser terminates the connection when user selects close.</li>
+</ol>
+<p>What Step 1 and 2 are doing is <strong>Domain Name Resolution</strong>. The web address we type is nothing but an alias to an IP address which is readable form. Mapping of domain names and their associated IP address is managed by the <strong>Domain Name System (DNS)</strong>, which is a <a href="../WebTechnologies/distributedcomputing.html" target='_blank"'>distributed</a> but hierarchical entity.</p>
+<br/>
+<img alt="network_architecture" src="images/networking1/network_architecture.png"/>
+<p>Picture source: C# In a Nutshell</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ipv4vsipv6">Protocol - IPv4 vs. IPv6 </div>
+<p>IPv4 and IPv6 are the internet protocols applied at the network layer. IPv4 is the most widely used protocol until now and IPv6 is the next generation protocol for the internet.</p>
+<ol>
+<li>IPv4 the fourth version of Internet protocol which uses <strong>32</strong> bit addressing while IPv6 uses <strong>128</strong> bit addressing.</li>
+<li>IPv4 allows 4,294,967,296 unique addresses while IPv6 can hold 340-undecillion (34,000,000,.....), 36 0s after 34,...</li>
+<li>IPv4 has different class types: A, B, C, D, and E. Class A, B, C are the three classes of addresses used on IP networks in common practice. Class D addresses are reserved for multicast. Class E addresses are for research organizations.</li>
+<li>IPv6 addresses are classified into three groups:
+	<ol>
+<li><strong>Unicast addresses</strong><br>
+		A Unicast address acts as an identifier for a single interface. An IPv6 packet sent to a Unicast is delivered to the interface identified by that address.</br></li>
+<li><strong>Multicast addresses</strong><br>
+		A Multicast address acts as an identifier for a group of  interfaces that may belong to the different nodes. An IPv6 packet sent to a multicast address is delivered to the multiple interfaces.</br></li>
+<li><strong>Anycast addresses</strong><br>
+		Anycast addresses act as an identifiers for a set of interfaces that may belong to the different nodes. An IPv6 packet sent to an Anycast address is delivered to the interfaces identified by the address.</br></li>
+</ol>
+</li>
+<li>IPv4 address notation: 192.1.2.96, 239.255.255.255</li>
+<li>IPv6 addresses are denoted by eight groups of hexadecimal quartets separated by colons in between them: <br/>
+	[ EAA3:2010:00D3:0000:0000:0000:0000:4FF2]</li>
+<li>Because of the increase in the network population, there is a need of IPv6 protocol:
+		<ol>
+<li>Increased address space</li>
+<li>More efficient routing</li>
+<li>Reduced management requirement</li>
+<li>Improved methods to change ISP</li>
+<li>Better mobility support</li>
+<li>Multi-homing</li>
+<li>Security</li>
+<li>Scoped address: link-local, site-local and global-address space</li>
+</ol>
+</li>
+</ol>
+<p>Here is an example of the two protocols:</p>
+<pre>
+using System;
+using System.Net;
+
+namespace Networking
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IPAddress a1 = new IPAddress(new byte[] { 102, 1, 2, 96 });
+            IPAddress a2 = IPAddress.Parse("102.1.2.96");
+            IPAddress a3 = IPAddress.Parse("192.1.2.96");
+            Console.WriteLine(a1.Equals(a2));
+            Console.WriteLine(a2.AddressFamily);
+            Console.WriteLine(a3.AddressFamily);
+
+            IPAddress a4 = 
+                IPAddress.Parse("[EAA3:2010:00D3:0000:0000:0000:0000:4FF2]");
+            Console.WriteLine(a4.AddressFamily);
+        }
+    }
+}
+</pre>
+<p>And the output is:</p>
+<pre>
+True
+InterNetwork
+InterNetwork
+InterNetworkV6
+</pre>
+<p>The <strong>IPAddress</strong> class in the <strong>System.Net</strong> namespace represents an address in either protocol. It has a constructor accepting a byte array, and a static <strong>Parse()</strong> method accepting a correctly formatted string as we see in the example above.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="tcp_udp">Protocol - TCP vs. UDP </div>
+<p>The TCP and UDP protocols break out each IP address into 65,535 ports, allowing a computer on a single address to run multiple applications, each on its own port. Many applications have standard port assignments: HTTP (80), SMTP (25), and so on. <br/>
+</p>
+<p>For more info, on TCP port, <a href="../cplusplus/multithreaded.html#TCPport" target="_blank">here</a>. 
+<br/>
+For more info on TCP vs. UDP, <a href="../cplusplus/multithreaded.html#tcpvsudp" target="_blank">here</a>. <br/>
+The TCP and UDP ports from 49152 to 65535 are officially unassigned, so they are available for testing and small-scale deployments.
+</p>
+<p>An IP address and port combination is represented in the .NET Framework by the <strong>IPEndPoint</strong> class:</p>
+<pre>
+namespace Networking
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IPAddress a = new IPAddress(new byte[] { 102, 1, 2, 96 });
+            IPEndPoint ipep = new IPEndPoint(a, 5098);
+            Console.WriteLine(ipep.ToString());
+        }
+    }
+}
+</pre>
+<p>Output is:</p>
+<pre>
+102.1.2.96:5098
+</pre>
+<p>Firewalls block ports. In many companies, only a few ports are open: port 80 for unencrypted HTTP and port 443 for secure HTTP (HTTPS).</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="URI">URI</div>
+<p>
+A <strong>Uniform Resource Identifier (URI)</strong> is a string used to identify a name or a resource on the Internet. Such identification enables interaction with representations of the resource over a network (typically the World Wide Web, file, or email address) using specific protocols. Schemes specifying a concrete syntax and associated protocols define each URI.</p>
+<p>The following picture from the book "C# In a Nutshell" is self explanatory.</p>
+<img alt="/URI_properties" src="images/networking1/URI_properties.png"/>
+<br/>
+<br/>
+<p>The picture below is a diagram of URI scheme categories
+from <a href="http://en.wikipedia.org/wiki/Uniform_Resource_Identifier" target="_blank">wiki</a></p>.
+<img alt="/URL_URN" src="images/networking1/URL_URN.png"/>
+<p><strong>Schemes</strong> in the URL (locator) and URN (name) categories form subsets of URI, and also (generally) disjoint sets. Technically URL and URN function as resource IDs; however, one cannot exactly categorize many schemes as one or the other: we can treat all URIs as names, and some schemes embody aspects of both categories.
+</p>
+<p>The URI syntax consists of a URI scheme name (such as <strong>http, ftp, mailto</strong> or "<strong>file</strong>) followed by a colon character, and then by a scheme-specific part. The specifications that govern the schemes determine the syntax and semantics of the scheme-specific part, although the URI syntax does force all schemes to adhere to a certain generic syntax that, among other things, reserves certain characters for special purposes (without always identifying those purposes). The URI syntax also enforces restrictions on the scheme-specific part in order to (for example) provide for a degree of consistency when the part has a hierarchical structure. Percent encoding can add extra information to a URI.
+</p>
+<pre>
+using System;
+
+namespace Networking
+{
+    class Program
+    {
+        static void Main()
+        {
+            Uri uri1 = new Uri("http://bogotobogo.com/");
+            Uri uri2 = new Uri(uri1, "/CSharp/networking1.php");
+            Uri uri3 = new Uri("http://bogotobogo.com:80/Sitemap.xml/");
+            Uri uri4 = new Uri("http://bogotobogo.com/CSharp/networking1.php?good=true");
+
+            PrintURI(uri1);
+            PrintURI(uri2);
+            PrintURI(uri3);
+            PrintURI(uri4);
+        }
+
+        static void PrintURI(Uri uri)
+        {
+            Console.WriteLine("AbsolutePath = {0}", uri.AbsolutePath);
+            Console.WriteLine("AbsoluteUri = {0}", uri.AbsoluteUri);
+            Console.WriteLine("Authority = {0}", uri.Authority);
+            Console.WriteLine("DnsSafeHost = {0}", uri.DnsSafeHost);
+            Console.WriteLine("Host = {0}", uri.Host);
+            Console.WriteLine("HostNameType = {0}", uri.HostNameType);
+            Console.WriteLine("IsAbsoluteUri = {0}", uri.IsAbsoluteUri);
+            Console.WriteLine("IsDefaultPort = {0}", uri.IsDefaultPort);
+            Console.WriteLine("IsFile = {0}", uri.IsFile);
+            Console.WriteLine("IsLoopback = {0}", uri.IsLoopback);
+            Console.WriteLine("IsUnc = {0}", uri.IsUnc);
+            Console.WriteLine("LocalPath = {0}", uri.LocalPath);
+            Console.WriteLine("OriginalString = {0}", uri.OriginalString);
+            Console.WriteLine("PathAndQuery = {0}", uri.PathAndQuery);
+            Console.WriteLine("Port = {0}", uri.Port);
+            Console.WriteLine("Query = {0}", uri.Query);
+            Console.WriteLine("Scheme = {0}", uri.Scheme);
+            Console.WriteLine("Segments = {0}", string.Join(",", uri.Segments));
+            Console.WriteLine("UserEscaped = {0}", uri.UserEscaped);
+            Console.WriteLine();
+        }
+    }
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+AbsolutePath = /
+AbsoluteUri = http://bogotobogo.com/
+Authority = bogotobogo.com
+DnsSafeHost = bogotobogo.com
+Host = bogotobogo.com
+HostNameType = Dns
+IsAbsoluteUri = True
+IsDefaultPort = True
+IsFile = False
+IsLoopback = False
+IsUnc = False
+LocalPath = /
+OriginalString = http://bogotobogo.com/
+PathAndQuery = /
+Port = 80
+Query =
+Scheme = http
+Segments = /
+UserEscaped = False
+
+AbsolutePath = /CSharp/networking1.php
+AbsoluteUri = http://bogotobogo.com/CSharp/networking1.php
+Authority = bogotobogo.com
+DnsSafeHost = bogotobogo.com
+Host = bogotobogo.com
+HostNameType = Dns
+IsAbsoluteUri = True
+IsDefaultPort = True
+IsFile = False
+IsLoopback = False
+IsUnc = False
+LocalPath = /CSharp/networking1.php
+OriginalString = http://bogotobogo.com/CSharp/networking1.php
+PathAndQuery = /CSharp/networking1.php
+Port = 80
+Query =
+Scheme = http
+Segments = /,CSharp/,networking1.php
+UserEscaped = False
+
+AbsolutePath = /Sitemap.xml/
+AbsoluteUri = http://bogotobogo.com/Sitemap.xml/
+Authority = bogotobogo.com
+DnsSafeHost = bogotobogo.com
+Host = bogotobogo.com
+HostNameType = Dns
+IsAbsoluteUri = True
+IsDefaultPort = True
+IsFile = False
+IsLoopback = False
+IsUnc = False
+LocalPath = /Sitemap.xml/
+OriginalString = http://bogotobogo.com:80/Sitemap.xml/
+PathAndQuery = /Sitemap.xml/
+Port = 80
+Query =
+Scheme = http
+Segments = /,Sitemap.xml/
+UserEscaped = False
+
+AbsolutePath = /CSharp/networking1.php
+AbsoluteUri = http://bogotobogo.com/CSharp/networking1.php?good=true
+Authority = bogotobogo.com
+DnsSafeHost = bogotobogo.com
+Host = bogotobogo.com
+HostNameType = Dns
+IsAbsoluteUri = True
+IsDefaultPort = True
+IsFile = False
+IsLoopback = False
+IsUnc = False
+LocalPath = /CSharp/networking1.php
+OriginalString = http://bogotobogo.com/CSharp/networking1.php?good=true
+PathAndQuery = /CSharp/networking1.php?good=true
+Port = 80
+Query = ?good=true
+Scheme = http
+Segments = /,CSharp/,networking1.php
+UserEscaped = False
+</pre>
+<br/>
+<img alt="Autumn" src="images/networking1/Autumn.png"/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br /><br />
+
+<br><br>
+<h1>C# 4.0</h1>
+   <br><br>
+   <a href=".netframework.html">.NET Framework</a> 
+   <br><br>
+   <a href="csharp_introduction.html">Introduction - My First C# Code</a> 
+   <br><br>
+   <a href="csharp_system_members.html">System Members and Data</a> 
+   <br><br>
+   <a href="csharp_modifiers.html">Modifiers</a> 
+   <br><br>
+   <a href="csharp_array.html">Array</a> 
+   <br><br>
+   <a href="csharp_enum.html">Enumeration (Enums) </a> 
+   <br><br>
+   <a href="csharp_value_ref.html">Value and Reference Types</a> 
+   <br><br>
+   <a href="csharp_constructor.html">Constructor and this Keyword</a> 
+   <br><br>
+   <a href="csharp_static.html">static Keyword</a> 
+   <br><br>
+   <a href="csharp_encapsulation.html">Encapsulation Services</a> 
+   <br><br>
+   <a href="csharp_inheritance.php">Inheritance</a> 
+   <br><br>
+   <a href="csharp_inheritance2.html">Inheritance II</a> 
+   <br><br>
+   <a href="csharp_polymorphism.html">Polymorphism</a> 
+   <br><br>
+   <a href="csharp_interfaces.html">Interfaces</a> 
+   <br><br>
+   <a href="csharp_delegates.html">Delegates</a>    
+   <br><br>
+   <a href="csharp_system_object.html">System.Object</a> 
+   <br><br>
+   <a href="csharp_events.html">Events</a> 
+   <br><br>
+   <a href="csharp_multithreading1.html">Multi Threading I - Introduction and Simple Thread</a> 
+   <br><br>
+   <a href="csharp_multithreading2.html">Multi Threading II -  ThreadStart / Parameterized ThreadStart, <br>Foreground/Background Threads</a> 
+   <br><br>
+   <a href="csharp_multithreading3.html">Multi Threading III  - Concurrency, Synchronization</a> 
+   <br><br>
+   <a href="csharp_networking1.html">Networking I - 
+   <br><br>
+PORT, IPv4/IPv6, TCP/UDP, URI</a> 
+   <br><br>
+   <a href="csharp_networking2.html">Networking II - 
+   <br><br>
+WebRequest / WebResponse, WebClient</a> 
+   <br><br>
+   <a href="csharp_wpf_xaml_netframework.html">WPF (Windows Presentation Foundation) and XAML - Part I</a> 
+   <br><br>
+   <a href="../cplusplus/Git/Git_GitHub_Installation.html" target="_blank">GIT and GitHub on Windows</a>
+   <br><br>
+   <a href="../Powershell/Powershell4_Introduction.html" target="_blank">PowerShell 4 ... </a>
+   <br><br>
+  
+
+<br /><br />
+
+
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+  <!-- CDN MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/CSharp/csharp_networking1.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 05:39:55 GMT -->
+</html>
+

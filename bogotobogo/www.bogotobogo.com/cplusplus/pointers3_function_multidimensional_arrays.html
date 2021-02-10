@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/pointers3_function_multidimensional_arrays.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:02:05 GMT -->
+<head>
+  <title>C++ Tutorial: Pointers III - 2017</title>
+  <meta content="C++ Tutorial: Function Pointer, Multi-dimensional Arrays, Function Pointer, Returning a Pointer, Pointers to Functions, Function Pointer, an array of pointers to functions, Null Pointers, void pointers, bad pointers, multi-dimensional array, matrix multiplication, array of pointers" name="description" />
+  <meta content="C++ Tutorial, Multi-dimensional Arrays, Function Pointer, Returning a Pointer, Pointers to Functions, Function Pointer, an array of pointers to functions, Null Pointers, void pointers, bad pointers, multi-dimensional array, matrix multiplication, array of pointers" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial 
+- Pointers III - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="returningpointer">Returning a Pointer</div>
+<p>Not long time ago, before references came out, the only option programmers had for returning objects from functions was using pointers. References provide a cleaner syntax we may still need to return objects through pointers.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>The example below demonstrates returning pointers. Through the returned pointers, the code displays and modifies the values of a vector that holds the name of composers.</p>
+<pre>
+#include &lt;iostream&gt;  
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+string *getComposer(vector<string> *const pVec, int i) {
+	return &amp;((*pVec)[i]);
+}
+
+int main()  
+{  	
+	vector<string> composers;
+	composers.push_back("Rachmaninov");
+	composers.push_back("Debussy");
+	composers.push_back("Wagner");
+
+	cout &lt;&lt; *(getComposer(&amp;composers;,0)) &lt;&lt; endl;
+
+	string *pStr = getComposer(&amp;composers;,1);
+	cout &lt;&lt; *pStr &lt;&lt; endl;
+
+	string str = *(getComposer(&amp;composers;,2));
+	cout &lt;&lt; str &lt;&lt; endl;
+
+	*pStr = "Ravel";
+	cout &lt;&lt; composers[1] &lt;&lt; endl;
+
+	return 0;
+}
+</string></string></pre>
+<p>Output is:</p>
+<pre>
+Rachmaninov
+Debussy
+Wagner
+Ravel
+</pre>
+<p>Let's take a look at the function, <strong>getComposer()</strong>.</p>
+<pre>
+string *getComposer(vector<string> *const pVec, int i) {
+</string></pre>
+<p>The <strong>string*</strong> at the start indicates that the function <strong>getComposer()</strong> is returning a pointer to a <strong>string</strong> object which is obviously not the object itself. Now, let's look at the body of the function:</p>
+<pre>
+	return &amp;((*pVec)[i]);
+</pre>
+<p><strong>(*pVec)[i]</strong> represents the i-th element of the vector pointed to by <strong>pVec</strong>. So, <strong>&amp;((*pVec)[i])</strong> becomes the address of the i-th element of the vector pointed by <strong>pVec</strong>.</p>
+<p>How about the lines in the <strong>main()</strong>.</p>
+<pre>
+	cout &lt;&lt; *(getComposer(&amp;composers;,0)) &lt;&lt; endl;
+</pre>
+<p>The code calls <strong>getComposer()</strong>, which returns a pointer to <strong>composers[0]</strong>. Then, the line sends the <strong>string</strong> object pointed by the pointer to <strong>cout</strong>, and as a result, "Rachmaninov" is displayed.</p>
+<p>The next output:</p>
+<pre>
+	string *pStr = getComposer(&amp;composers;,1);
+	cout &lt;&lt; *pStr &lt;&lt; endl;
+</pre>
+<p>Here, we assign a returned pointer to another pointer, <strong>pStr</strong>. Then we send <strong>*pStr</strong> to <strong>cout</strong> to print out "Debussy".</p>
+<p>The third output:</p>
+<pre>
+	string str = *(getComposer(&amp;composers;,2));
+	cout &lt;&lt; str &lt;&lt; endl;
+</pre>
+<p>We assign the value pointed to by a returned pointer to a variable.
+The call to <strong>getComposer()</strong> returns a pointer to <strong>composer[2]</strong>. But it can't assign the pointer returned to <strong>str</strong> because <strong>str</strong> is a <strong>string</strong> object not a pointer. Instead, the compiler makes a copy of the <strong>string</strong> object to which the pointer points and assigns that object to <strong>str</strong>. An assignment like this one, where an object is copied, is more expensive that the assignment of one pointer to another.</p>
+<p>Now, the final out of the code:</p>
+<pre>
+	*pStr = "Ravel";
+	cout &lt;&lt; composers[1] &lt;&lt; endl;
+</pre>
+<p>We can modify the object to which a returned pointer points. Because <strong>pStr</strong> points to the element in position 1 of <strong>composer</strong>, this code alters <strong>composer[1]</strong>. As a result, <strong>composer[1]</strong> is now changed to "Ravel" from "Debussy".</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="returningdeallocatedpointer">Returning a deallocated pointer</div>
+<p>When a pointer is pointing to an valid data, dereferencing such a pointer is a runtime error. 
+Any pointer set to 0 is called a null pointer, and since there is no memory location 0, it is an 
+invalid pointer. We should check whether a pointer is null before dereferencing it. 
+Pointers are often set to 0 to indicate that they are not currently valid. 
+Dereferencing pointers to data that has been erased from memory also usually causes runtime 
+errors as shown below:</p>
+<pre>
+int *f()
+{
+   int a = 100;
+   return &amp;a;
+}
+</pre>
+<p><strong>a</strong> is deallocated when <strong>f()</strong> exits, so the pointer the function returns is invalid. 
+As with any other variable, the value of a pointer is undefined until it is initialized, so it 
+may be invalid.
+</p>
+<div class="subtitle" id="pointerstofunctions">Pointers to Functions / Function Pointers</div>
+<p>Pointers can point to functions even though its use is less common that for pointers that points to variable or objects.</p>
+<p>As a start, let's think about what the functions are.</p>
+<p>Functions, like data items, have addresses. A function's address is the memory address at which the stored machine language code for the function begins. Normally, it's neither important nor useful for us, but it can be useful to a program. For example, it's possible to write a function that takes the address of another function as an argument. That enables the first function to find the second function and run it.</p>
+<p>That approach is more awkward than simply having the first function call the second one directly, but it leaves open the possibility of passing different function addresses at different times. That means the first function can use different functions at different times.</p>
+<p>Functions are not objects, and there is no way to copy or assign them, or to pass them as arguments directly. In particular, there is no way for a program to create or modify a function. Only the compiler can do that. All that a program can ever do with a function is <strong>call it</strong> or <strong>take its address</strong>.</p>
+<p>Function pointers allow referencing functions with a particular signature. For example, to store the address of the standard function abs in the variable my_abs:</p>
+<pre>
+int (*my_abs)(int) = abs;
+</pre>
+<p>Nevertheless, we can call a function with another function as an argument. What really happens is that the compiler secretly translates such calls so as to use pointers to functions instead of using functions directly.</p>
+<p>In fact, C++ allows operations with pointers to functions. The typical use of this is for passing a function as an argument to another function, since these cannot be passed dereferenced. </p>
+<p>In other words, pointers to functions behave similarly to any other pointers. Once we have dereferenced such a pointer, however, all we can do with the resulting function is call it - or take the function's address yet again.</p>
+<br/>
+<div class="subtitle_2nd" id="declarepointertofunctions">Declaring a Pointer to a Function</div>
+<p>Declaration of pointers to functions resembles other declarations. For example, just as we write</p>
+<pre>
+int *p;
+</pre>
+<p>to say that <strong>*p</strong> has type <strong>int</strong> and implying that <strong>p</strong> is a pointer, we may write </p>
+<pre>
+int (*pf)(int);
+</pre>
+<p>to say that if we dereference <strong>pf</strong>, and call it with an <strong>int</strong> argument, the result has type <strong>int</strong>. By implication, <strong>pf</strong> is a pointer to a function that takes an <strong>int</strong> argument and returns an <strong>int</strong> result.</p>
+<p>A pointer to a function is similar to a pointer to data but it should always be enclosed in parenthesis when using the dereference operator (*) to avoid an compilation error. It then be followed by another parenthesis containing any arguments to be passed to the function when using the *.</p>
+<p>Because all that we can do with a function is to take its address or call it, any use of a function that is not a call is assumed to be taking its address, even without an explicit &amp;.</p>
+<p>Suppose we have a function with the following prototype:</p>
+<pre>
+int <font color="red">f</font>(int);	//prototype
+</pre>
+<p>Note that it look just like our declaration of pointer to a function:</p>
+<pre>
+int <font color="red">(*pf)</font>(int);
+</pre>
+<p>Because <strong>f</strong> is a function, so is  <strong>(*pf)</strong>. And if <strong>(*pf)</strong> is a function, then <strong>pf</strong> must be a pointer to a function.</p>
+<p>The declaration requires the parentheses around <strong>*pf</strong> to provide the proper operator precedence. Parentheses have a higher precedence than the * operator, so <strong>*pf(int)</strong> means <strong>pf()</strong> is a function that returns a pointer while <strong>(*pf)(int)</strong> means <strong>pf</strong> is a pointer to a function.</p>
+<pre>
+int (*pf)(int);	// pf points to a function that returns int
+int *pf(int);	// pf() is a function that returns a pointer to int
+</pre>
+<p>Once we declare <strong>pf</strong> properly, we can assign to it the address of a matching function:</p>
+<pre>
+int f(int);
+int (*pf)(int);
+pf = f;		// pf now points to the f() function
+</pre>
+<br/>
+<div class="subtitle_2nd" id="invokingfunction">Invoking a Function Using a Pointer</div>
+<p>As we discussed in the previous section, <strong>(*pf)</strong> serves as a name of a function. In other words, function pointers are invoked by name just like normal function calls.</p>
+<pre>
+int f(int);
+int (*pf)(int);
+pf = f;			// pf now points to the f() function
+int i = f(4);		// call f() using the function name
+int j = (*pf)(4);	// call f() using the pointer pf
+int k = pf(5)		// also call f() using the pointer pf
+</pre>
+<p>The code below shows very simple usage of function pointer:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int square(int n) {
+	return n*n;
+}
+
+int main()
+{
+	int (*pf)(int);
+	pf = square;
+	cout &lt;&lt; "square(7) = " &lt;&lt; pf(7) &lt;&lt; endl;
+        return 0;
+}
+</pre>
+<br/>
+<p>Here is another example using a pointer to a function.</p>
+<pre>
+#include &lt;iostream&gt;  
+using namespace std;
+
+int operation (int i, int j, int (*pf)(int,int)) {
+	int k;
+	k = (*pf)(i,j);
+	/* This works, too.
+  	k = pf(i,j) 
+	*/
+	return k;
+}
+
+int addition (int a, int b) { 
+	return a+b; 
+}
+
+int division (int a, int b) { 
+	return a/b; 
+}
+
+int main()  
+{  	
+	int m = operation (10, 5, addition);
+	int n = operation (10, 5, division);
+
+	cout &lt;&lt; "m = " &lt;&lt; m &lt;&lt; endl;
+	cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; endl;
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+m = 15
+n = 2
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fn_pointers">Array of pointers to functions - Function pointers</div>
+<p>Here is an example of an array of pointers to functions or function pointers:</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int pass(int n)
+{
+	return n;
+}
+
+int square(int n)
+{
+	return n*n;
+}
+
+int add(int n)
+{
+	return n+n;
+}
+
+
+
+int main()
+{
+	int num = 100;
+
+	cout &lt;&lt; "a function pointer:" &lt;&lt; endl;
+
+	int (*pf)(int);
+	pf = pass;
+
+	cout &lt;&lt; pf(num) &lt;&lt; endl;
+
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "an array of function pointers:" &lt;&lt; endl;
+
+	int (*apf[3])(int);
+	apf[0] = pass;
+	apf[1] = square;
+	apf[2] = add;	
+
+	cout &lt;&lt; apf[0](num) &lt;&lt; endl;
+	cout &lt;&lt; apf[1](num) &lt;&lt; endl;
+	cout &lt;&lt; apf[2](num) &lt;&lt; endl;
+
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+a function pointer:
+100
+
+an array of function pointers:
+100
+10000
+200
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fn_signature">Function signature and return type</div>
+<p>Do you see an error in the following code?</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int foo(int x, int y) { return x*y;}
+double foo(double x, double y) { return x*y;}
+
+int main()
+{
+    double (*ptr)(int, int);
+    ptr = foo;
+    cout &lt;&lt; ptr(5, 4) &lt;&lt; endl;
+    return 0;
+}
+</pre>
+<p>It appears it's an issue related to the function signature. The two <strong>foo()</strong>s clearly have different function signatures not because of the return types but because of parameter type. In the code, <strong>ptr</strong> is a pointer to a function that's returning double. However, when we try to assign <strong>foo()</strong> to the pointer, the return type should be a <strong>int</strong> not <strong>double</strong>. So, the 2nd line in main() is wrong or ill-formed.</p>
+<br/>
+<br/>
+<br/>
+<img alt="Taeyun_E.png" src="images/pointers3/Taeyun_E.png"/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="nullpointer">Null Pointer</div>
+<p>The constant <strong>NULL</strong> is a special pointer value indicating that the pointer <strong>points to
+nothing</strong>. It turns out to be convenient to have a well defined pointer value which
+represents the idea that a pointer does not have an object it is pointing to. It is a runtime error to
+dereference a NULL pointer. </p>
+<p>The C language uses the symbol NULL for this purpose. NULL is equal to the integer
+constant <strong>0</strong>, so NULL can play the role of a boolean <strong>false</strong>. Official C++ no longer uses the
+NULL symbolic constant. Instead it uses the integer constant <strong>0</strong> directly and calls it <strong>null pointer</strong>. C++ guarantees that the null pointer never points to valid data, so it is often used to indicate failure for operators or functions that otherwise return valid pointers.</p>
+<pre>
+int * p;
+p = 0; 
+
+if(p != 0)   // Is p valid?
+if(p)        // Is p valid?
+</pre>
+<p>Deleting the null pointer doesn't do anything, and it's harmless:</p>
+<pre>
+int *p = 0;
+delete p;    // OK: no action
+...
+delete p;    // OK: no action
+</pre>
+<p>Unlike deleting a null pointer twice, deleting a regular pointer twice is a bad mistake:</p>
+<pre>
+int *p = new int(20);
+delete p;            // OK: p points to an object created by new
+delete p;            // error: p points to memory owned by the memory manager
+</pre>
+<p>We have two issues regarding the second <strong>delete</strong>:</p>
+<ol>
+<li>We no longer own the object pointed to. So, the free-store manager may have changed its internal data structure in such a way that it can't correctly execute <strong>delete p</strong> again.</li>
+<li>The free-store manager may have recycled the memory pointed to by <strong>p</strong> so that <strong>p</strong> now points to another object; deleting that other object will cause error in our program.</li>
+</ol>
+<br/>
+<div class="subtitle_2nd" id="nullpointervsvoidpointer">Null Pointer vs. void Pointer</div>
+<ol>
+<li>null pointer <br/>
+<ol>
+<li>NULL is defined as <strong>(void *)0</strong>.</li>
+<li>A null pointer is a value that any pointer may take to represent that it is pointing to "nowhere". </li>
+<li> A null pointer refers to the value stored in the pointer itself .</li>
+</ol>
+</li>
+<li>void pointer <br/>
+<ol>
+<li>A void pointer is a special type of pointer that can point to somewhere without a specific type. </li>
+<li>A void pointer refers to the type of data it points to.</li>
+</ol>
+</li>
+</ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="nullpointervsreference">Null Pointer vs. Null Reference</div>
+<p>There is no such thing as a <strong>null reference</strong>. A reference must always refer to some object. As a result, if we have a variable whose purpose is to refer to another object, but it is possible that there might not be an object to refer to, we should make the variable a pointer, because then we can set it to <strong>null</strong>. On the other hand, if the variable must always refer to an object, i.e., if our design does not allow for the possibility that the variable is <strong>null</strong>, we should make the variable a reference.</p>
+<br/>
+<br/>
+<div class="subtitle" id="voidpointer">Void Pointer (void*)</div>
+<p>Before we look at the <strong>void*</strong>, let's briefly review the memory allocation with respect to the <strong>new</strong> operator:</p>
+<ol>
+<li>The <strong>new</strong> operator returns a pointer to the allocated memory.</li>
+<li>A pointer value is the address of the first byte of the memory.</li>
+<li>A pointer points to an object of a specified type.</li>
+<li>A pointer does <strong>not</strong> know how many elements it points to.</li>
+</ol>
+<p>The type <strong>void*</strong> means "<strong>pointer to some memory that the compiler doesn't know the type of</strong>."<br/>
+We are using <strong>void*</strong> when we want to transmit an address between pieces of code that really don't know each other's type.</p>
+<p>Normally we use it in the following cases:</p>
+<ol>
+<li>A type of pointer that points to memory without knowing what kinds of objects reside in that memory.</li>
+<li>An operation to tell the compiler what kind of type to assume for memory pointed to by one of those pointers.</li>
+</ol>
+<p>There are no objects of type <strong>void</strong>. but we use <strong>void</strong> to mean <strong>no value returned</strong>:</p>
+<pre>
+void v;     // error because there are no object of type void
+void v();   // v() return nothing - v() does not return an object of type void
+</pre>
+<p>A pointer to any object type can be assigned to a <strong>void*</strong>:</p>
+<pre>
+void* ptr1 = new int;          //OK: int* converted to void*
+void* ptr2 = new double[100]   //OK: double* converted to void*
+</pre>
+<p>Because the compiler doesn't know what a <strong>void*</strong> points to, we should let the compiler know:</p>
+<pre>
+void function(void *pvoid)
+{
+	void* pvoid2 = pvoid;     // copying is OK (copying is what void*s are for)
+	double* pd = pvoid;       // error: cannot convert void* to double*
+	*pvoid = 7;               // error: cannot dereference a void*
+	int* pi = static_cast&lt;int*&gt;(pvoid)  // OK: explicit conversion
+}
+</pre>
+<p>For more info on <strong>void*</strong>, goto <a href="pointers2_voidpointers_arrays.html#voidpointers">Pointers II- void Pointers</a>.
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="BadPointer">Bad Pointer</div>
+<p>When a pointer is first allocated, it does not have an object it is pointing to. 
+The pointer is said to be <strong>uninitialized</strong> 
+or simply <strong>bad</strong>.</p>
+<p> A dereference operation on a bad pointer is a serious runtime error. If
+we are lucky, the dereference operation will crash or halt immediately. 
+If we are unlucky, however, the bad pointer dereference will corrupt a random area of
+memory, slightly altering the operation of the program so that it goes wrong some
+indefinite time later. </p>
+<p>Each pointer must be assigned an object before it can support
+dereference operations. Before that, the pointer is bad and must not be used. </p>
+<p>A bad pointer is really just a pointer which contains a random address. In other words, it is just like an
+uninitialized int variable which starts out with a random int value. The pointer has not
+yet been assigned the specific address of a valid object. This is why dereference
+operations with bad pointers are so unpredictable. They operate on whatever random area
+of memory they happen to have the address of.</p>
+<p>Bad pointers are very common, and actually every pointer starts out with a bad value.
+Correct code overwrites the bad value with a correct reference to an object, and thereafter
+the pointer works fine. </p>
+<p>There is nothing automatic that gives a pointer a valid object.
+ Instead, it is very easy to omit this crucial step. We just
+have to code carefully. If our code is crashing, a <strong>bad pointer</strong> should be our first
+suspicion.</p>
+<p>Why is it so often the case that programmers will allocate a pointer, but forget to set it to
+refer to an object?<br/>
+ The rules for pointers don't seem that complex, yet every programmer
+makes this error repeatedly. Why? The problem is that we are trained by the tools we use.
+Simple variables don't require any extra setup. We can allocate a simple variable, such as
+int, and use it immediately. The built-in variable may be used once it is declared.</p>
+<p>However, pointers look like simple variables but they require the extra initialization
+before we use them. It's unfortunate, in a way, that pointers happen look like other variables, since
+it makes it easy to forget that the rules for their use are very different.</p>
+<p>
+Pointers in dynamic languages such as LISP and Java work a little differently. The
+run-time system sets each pointer to NULL when it is allocated and checks it each time it
+is dereferenced so that code can still exhibit pointer bugs, but they will halt politely on the
+offending line instead of crashing haphazardly like C. As a result, it is much easier to
+locate and fix pointer bugs in dynamic languages. The run-time checks are also a reason
+why such languages always run at least a little slower than a compiled language like C/C++.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="multi_dimensional_arrays">Multi-dimensional Arrays and Pointers</div>
+<p>For simple pointers and arrays, go to <a href="pointers2_voidpointers_arrays.html#pointersandarrays" target="_blank">Pointers and Arrays</a>.</p>
+<p>C does not have true multidimensional arrays. However, we can have arrays of arrays. In other words, a two-dimensional array is actually a one-dimensional array, each of whose element is an array. It should be written as:</p>
+<pre>
+array[i][j]   /* [row][[col] */
+</pre>
+<p>not</p>
+<pre>
+array[i,j]    /* error */
+</pre>
+<p>The elements are stored by rows, so the columns varies fastest as elements are accessed in storage order. For example,
+<strong>array[2][3]</strong> is stored like this:</p>
+<pre>
+array[0][0], array[0][1], array[0][2], array[1][0], array[1][1], array[1][2]
+</pre>
+<br/>
+<img alt="2_dimensional_array_B.png" src="images/pointers3/2_dimensional_array_B.png"/>
+<br/>
+<p>To access a value in a multidimensional array, the computer treats each subscript as accessing another
+subarray within the multidimensional array. For example, in the two-by-three grid, the expression
+array[0] actually refers to the subarray highlighted in the picture above. When we add a second subscript,
+such as array[0][2], the computer is able to access the correct element by looking up the second subscript within the subarray</p>
+<p>For the following 2-D array: </p>
+<pre>
+    int a[][6] = { {2,5,7,9,14,16},
+		   {3,6,8,10,15,21}, 
+		   {4,7,9,15,22,35}, 
+		   {7,8,9,22,40,58} };
+</pre>
+<p>We can get several info on that array:</p>
+<pre>
+# of elements size: sizeof(a)/sizeof(int) = 24
+# of columns: sizeof(*a)/sizeof(int) = 6
+# of columns: sizeof(a[0])/sizeof(int) = 6
+# of rows: sizeof(a)/sizeof(a[0])  = 4
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="heapbased-dimensional">Heap based two-dimensional array </div>
+<p>If we need to determine the dimensions of a multidimensional array at run time, we can use a heap_based array. Just as a single-dimensional dynamically allocated array is accessed through a pointer, a multidimensional dynamically allocated array is also accessed through a pointer.</p>
+<pre>
+int** allocateArray(int iDim, int jDim)
+{
+	int** pArray = new int*[iDim]; // Allocate first dimension
+	for (int i = 0; i &lt; iDim; i++) {
+		pArray[i] = new int[jDim];  // Allocate ith subarray
+	}
+	return pArray;
+}
+
+void releaseArray(int** pArray, int iDim)
+{
+	for (int i = 0; i &lt; iDim; i++) {
+		delete[] pArray[i];    // Delete ith subarray
+	}
+	delete[] pArray;           // Delete first dimension
+}
+
+int main(int argc, char** argv)
+{
+	int iSize = 5, jSize = 2;
+	
+	int **ptrArray = allocateArray(iSize,jSize);
+
+	releaseArray(ptrArray, iSize);
+}
+</pre>
+<p>We must start by allocating a single contiguous array for the first subscript dimension of a
+heap-based array. Each element of that array is actually a pointer to another array that stores the elements for the second subscript dimension. This layout for a five-by-two dynamically allocated array  is shown in the picture below.</p>
+<p>We can allocate the first dimension array just like a single-dimensional heap-based array. Because the compiler doesn't allocate memory for the subarrays for us, the individual subarrays
+must be explicitly allocated as shown in the code above.</p>
+<br/>
+<img alt="heap_based_2d_array.png" src="images/pointers3/heap_based_2d_array.png"/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="passing-dimensional">Passing two-dimensional array to a function</div>
+<p>When a two-dimensional array is passed as an argument, the base address of the caller's array is again sent to the function. However, we cannot leave off the sizes of both of the array dimensions. we can omit the size of the first dimension (the number of rows), but not the second (the number of columns).</p>
+<p>This is because what we're passing is a <strong>pointer to an array of rows</strong>. In other words, in the computer's memory, C++ stores two-dimensional arrays in row order. Thinking of memory as one long line of memory cells, the first row of the array is followed by the second row, which is followed by the third, and so on.</p>
+<br/>
+<img alt="2nd_index_needed.png" src="images/pointers3/2nd_index_needed.png"/>
+<br/>
+<p>To locate <strong>array[1][0]</strong> in the picture above, a function that receives <strong>array</strong>'s base address must be able to determine that there are three elements in each row. In other words, function needs to know that the array has three columns. Therefore, the declaration of a parameter must always state the number of columns:</p>
+<pre>
+void f(int array[][3])
+{
+...
+}
+</pre>
+<p>For example, if we pass an array <strong>a[5][2]</strong> to a function as in the picture below, we do this:</p>
+<p>caller</p>
+<pre>
+f(a);
+</pre>
+<p>The function declaration, then looks like this:</p>
+<pre>
+f(int a[5][2]){...}
+</pre>
+<p>or since we are passing a pointer to objects that are arrays of 2 integers, we can use the following:</p>
+<pre>
+f(int a[][2]){...}
+</pre>
+<p>Since <strong>a[]</strong> is equivalent to <strong>(*a)</strong>, we can also use:</p>
+<pre>
+f(int (*a)[2]){...}
+</pre>
+<p>By the same argument that applies in the single-dimension case, the function does not have to know how big the array <strong>a</strong> is. However, it does need to know what <strong>a</strong> is an array of. It is not enough to know that <strong>a</strong> is an array of <strong>some arrays</strong>. The function must know that <strong>a</strong> is an array of arrays of 2 integers.</p>
+<br/>
+<img alt="2_dimensional_array" src="images/pointers3/2_dimensional_array.png"/>
+<br/>
+<p>So, in multi-dimensional array, only the first dimension may be missing.</p>
+<br/>
+<div class="subtitle_2nd" id="array_subscription">Multi-dimensional array subscription</div>
+<p>Let's look at the array subscription of the following array:</p>
+<pre>
+int a[3][5][7];
+</pre>
+<p>It declares an array of integers, with <strong>3x5x7</strong> rank. Actually, <strong>a</strong> is an array of three things: each thing is an array of five arrays; each of the latter arrays is an array of seven integers. </p>
+<p>The following expressions are all legal:</p>
+<p>
+<ol>
+<li>a</li>
+<li>a[i] - an array of 5 arrays of 7 integers</li>
+<li>a[i][j] - an array of 7 integers</li>
+<li>a[i][j][k]</li>
+</ol>
+<p>The array subscripting operation is defined so that <strong>E1[E2]</strong> is identical to <strong>*(E1+E2)</strong>. So, despite its asymmetric appearance, subscripting is a commutative operation. Because of the conversion rules that apply to <strong>+</strong> and to arrays, if <strong>E1</strong> is an array and <strong>E2</strong> an integer, the <strong>E1[E2]</strong> refers to the <strong>E2-th</strong> member of <strong>E</strong>. (from K&amp;R;)</p>
+<p>So, <strong>a[i][j][k]</strong> is equivalent to <strong>*(a[i][j]+k)</strong>. The first subexpression <strong>a[i][j]</strong> is converted to type <strong>pointer to array of integers</strong>. The addition (<strong>k</strong>) involves multiplication by the size of an integer. It follows from the rules that arrays are stored by rows and that the first subscript in the declaration helps determine the amount of storage consumed by an array, buy plays no role in subscript calculation. (also from K&amp;R;).</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="matrix_multiplicationA">Multi-dimensional array - matrix multiplication A</div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 3;
+
+void matmul(int a[][N], int b[][N], int c[][N])
+{
+	for(int i = 0; i &lt; N; i++) {
+		for(int j = 0; j &lt; N; j++) {
+			for(int k = 0; k &lt; N; k++) {
+				c[i][j] = c[i][j] + a[i][k]*b[k][j];
+			}
+		}
+	}
+}
+
+int main()
+{
+	int a[][N] = {{1,2,3},
+	              {4,5,6},
+	              {7,8,9}};
+	int b[][N] = {{9,8,7},
+	              {6,5,4},
+	              {3,2,1}};
+	int c[N][N] = {0};
+
+	matmul(a, b, c);
+
+	/* C = {{30,24,18}, 
+	        {84,69,54}, 
+		{138,114,90}} */
+	 	
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="matrix_array">Multi-dimensional array - matrix multiplication B</div>
+<p>Though a multi-dimensional array is actually one-dimensional, we can treat it as a real multi-dimensional. The following example shows how we pass the array to a function:</p>
+<pre>
+void matrix_multiplication(const int <font color="red">a[][3]</font>, int row_a, 
+                           const int <font color="red">(*b)[4]</font>, int row_b, int c[2][4])
+{	
+	for(int i = 0; i &lt; row_a; i++)
+	  for(int j = 0; j &lt; 4; j++)
+		for(int k = 0; k &lt; row_b; k++)
+			c[i][j] += a[i][k]*b[k][j];
+}
+
+int main()
+{
+	int a[2][3]={{6,5,-2},{-1,-4,0}};
+	int b[][4]={{6,1,7,3},{2,4,-1,5},{8,9,10,11}};
+	int c[2][4] = {0};
+
+	int row_a = 2;
+	int row_b = 3;
+
+	matrix_multiplication(<font color="red">a</font>, row_a, <font color="red">b</font>, row_b, c);
+
+	/*
+        c = {
+            30   8  17   21	 
+           -14 -17  -3  -23
+            }
+	*/
+
+	return 0;
+}
+</pre>
+<p>Here, we have the resulting array from Visual Studio by typing in <strong>((int*)c),8</strong> into the watch tab window, where <strong>c</strong> is the <strong>pointer</strong> and <strong>8</strong> is number of elements. If we only want to see the last 4 elements, we do <strong>((int*)c+4),4</strong>.</p>
+<br/>
+<img alt="Visual_Studio_Array_View" src="images/pointers3/Visual_Studio_Array_View.png"/>
+<br/>
+<br/>
+<br/>
+<p>Just for reference, the following example is using vector instead of array:</p>
+<pre>
+#include &lt;vector&gt;
+using namespace std;
+
+void mat_mul(const vector&lt;vector&lt;int&gt; &gt;&amp;a;, int row_a, 
+	         const vector&lt;vector&lt;int&gt; &gt;&amp;b;, int row_b, 
+			 vector&lt;vector&lt;int&gt; &gt;&amp;c;)
+{
+	for(int i = 0; i &lt; row_a; i++)
+	  for(int j = 0; j &lt; 4; j++)
+		for(int k = 0; k &lt; row_b; k++)
+			c[i][j] += a[i][k]*b[k][j];
+}
+
+int main()
+{
+	vector&lt;vector&lt;int&gt; &gt; a(2, vector&lt;int&gt;(3));
+	vector&lt;vector&lt;int&gt; &gt; b(3, vector&lt;int&gt;(4));
+	vector&lt;vector&lt;int&gt; &gt; c(2, vector&lt;int&gt;(4));
+
+	a[0][0] = 6;  a[0][1] = 5;  a[0][2] = -2;
+	a[1][0] = -1; a[1][1] = -4; a[1][2] = 0;
+	b[0][0] = 6;  b[0][1] = 1;  b[0][2] = 7;  b[0][3] = 3;
+	b[1][0] = 2;  b[1][1] = 4;  b[1][2] = -1; b[1][3] = 5;
+	b[2][0] = 8;  b[2][1] = 9;  b[2][2] = 10; b[2][3] = 11;
+
+	int row_a = 2;
+	int row_b = 3;
+
+	mat_mul(a,row_a,b,row_b, c);
+
+	/*
+        c = {
+            30   8  17   21	 
+           -14 -17  -3  -23
+            }
+	*/
+
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pointers_etc">Pointers etc.</div>
+<ol>
+<li><strong>char **argv</strong><br/>
+<strong>argv</strong>: a pointer to pointer to char
+</li>
+<li><strong>int (*ptr)[10]</strong><br/>
+<strong>ptr</strong>: a pointer to an array of 10 integers
+</li>
+<li><strong>int *ptr[10]</strong><br/>
+<strong>ptr</strong>: an array of 10 pointers to integer
+</li>
+<li><strong>void *comp()</strong><br/>
+<strong>comp</strong>: a function returning pointer to void
+</li>
+<li><strong>void (*comp)()</strong><br/>
+<strong>comp</strong>: a pointer to function returning void
+</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="array of pointers">Array of Pointers</div>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+#define N 5
+using namespace std;
+
+int main()
+{
+	// array of integers
+        int *a = (int*)malloc(sizeof(int)*N);
+	for(int i = 0; i &lt; N; i++) a[i] = i;
+
+	// array of pointers to integer
+	int arr[] = {0,1,2,3,4};
+	int **ap = (int**)malloc(sizeof(int*)*N);
+	for(int i = 0; i &lt; N; i++) ap[i] = &amp;arr;[i];
+
+	// vector of pointers to integer
+	vector&lt;int *&gt; apv = vector&lt;int *&gt;(N);
+	for(int i = 0; i &lt; N; i++) apv[i] = &amp;arr;[i];
+	
+        return 0;
+}
+</pre>
+<br/>
+<br/>
+<br/>
+<img alt="JiriSan" src="images/pointers3/JiriSan.png"/>
+</p></p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/pointers3_function_multidimensional_arrays.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:02:25 GMT -->
+</html>
+

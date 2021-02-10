@@ -1,0 +1,2941 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_interview_questions_3.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 10:13:03 GMT -->
+<head>
+  <title>Python Tutorial: Interview Questions III - 2017</title>
+  <meta content="Python Tutorial: Interview Questions III" name="description" />
+  <meta content="Python Tutorial: Interview Questions III, quiz, copy an object -shallowcopy/deepcopy, he product of every integer except the integer at that index, Overlapped Rectangles, MaxStack, Finding duplicate integers from a list, Parenthesis matching, Reversing words, Palindrome / Permutations" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Interview Questions III - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/python_logo.png" alt="python_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="copy-obj">Copy an object</div>
+<p>How can we copy an object in Python?</p>
+<p>With <b>new_list = old_list</b>, we don't actually have two lists. The assignment just copies the reference to the list, not the actual list, so both <b>new_list</b> and <b>old_list</b> refer to the same list after the assignment as we can see the following example:</p>
+<pre>
+>>> a = range(5)
+>>> a
+[0, 1, 2, 3, 4]
+>>> b = a
+>>> b
+[0, 1, 2, 3, 4]
+>>> id(a) == id(b)
+<font color="blue">True</font>
+>>> a.pop()
+4
+>>> b
+[0, 1, 2, 3]
+>>> a.remove(3)
+>>> b
+[0, 1, 2]
+>>> del a[2]
+>>> b
+[0, 1]
+</pre>
+<br>
+<p>To copy the list, we can use <b>slice</b>:</p>
+<pre>
+>>> a = range(5)
+>>> b = a[::]
+>>> b
+[0, 1, 2, 3, 4]
+>>> id(a) == id(b)
+<font color="blue">False</font>
+>>> a.remove(4)
+>>> b
+[0, 1, 2, 3, 4]
+</pre>
+<br>
+<p>From the output, we see we actually copied the list.</p>
+<p>We may also use built-in <b>list()</b> function as well:</p>
+<pre>
+>>> a = range(5)
+>>> b = list(a)
+>>> id(a) == id(b)
+<font color="blue">False</font>
+>>> a.remove(4)
+>>> b
+[0, 1, 2, 3, 4]
+</pre>
+<br>
+<p>We can also use <b>copy.copy()</b> or <b>copy.deepcopy()</b>:</p>
+<pre class='prettyprint"'>
+import copy
+class A(object):
+   def __init__(self, s):
+      self.x = s
+
+a = A("Hello")
+
+a1 = copy.copy(a)
+a2 = copy.deepcopy(a)
+print a1.x
+print a2.x
+</pre>
+<br>
+<p>For dictionary object, we can use dict.<b>copy()</b>:</p>
+<pre class='prettyprint"'>
+>>> d = {'a':1, 'b':2, 'c':3}
+>>> d1 = d.copy()
+>>> print d1
+{'a': 1, 'c': 3, 'b': 2}
+</pre>
+<br>
+<p>For a sequence like list, we can do copy simply:</p>
+<pre class='prettyprint"'>
+>>> l = [1,2,3]
+>>> l1 = l[:]
+>>> print l1
+[1, 2, 3]
+</pre>
+<br/>
+<p>Here is a relatively complete sample code:</p>
+<pre>
+class Foo(object):
+  def __init__(self,value):
+    self.value = value
+  def __repr__(self):
+    return str(self.value)
+
+foo = Foo(1)
+
+a = ['foo', foo]
+b = a
+c = <font color="blue">a[:]</font>
+d = <font color="blue">list(a)</font>
+e = copy.copy(a)
+f = copy.deepcopy(a)
+
+# Now we copied the original object.
+# Let's modified the original,
+# and see how it affects the copied object.
+
+a.append('bar')
+foo.value = 999
+
+print('contents of objects')
+print('original : %r\n assign : %r\n slice : %r\n'
+      'list : %r\n  copy : %r\n deepcopy: %r\n'
+      % (a,b,c,d,e,f))
+print
+print('Is it the same object as a-object?')
+print('assign : %r\n slice : %r\n'
+      'list : %r\n  copy : %r\n deepcopy: %r\n'
+      % (id(b)==id(a), id(c)==id(a), id(d)==id(a),
+         id(e)==id(a), id(f)==id(a)))
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+contents of objects
+original : ['foo', 999, 'bar']
+ assign : ['foo', 999, 'bar']
+ slice : ['foo', 999]
+list : ['foo', 999]
+  copy : ['foo', 999]
+ deepcopy: ['foo', 1]
+
+Is it the same object as a-object?
+assign : True
+ slice : False
+list : False
+  copy : False
+ deepcopy: False
+</pre>
+<br>
+<p>Dictionary copy:</p>
+<pre>
+d = {1:10,2:20,3:30}
+d2 = d
+d3 = <font color="blue">dict(d)</font>
+d4 = <font color="blue">copy.deepcopy(d)</font>
+d[1] = 101
+print d,d2,d3,d4
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+{1: 101, 2: 20, 3: 30} {1: 101, 2: 20, 3: 30} {1: 10, 2: 20, 3: 30} {1: 10, 2: 20, 3: 30}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="filter">Filter() method</div>
+<p>What will be the output from the code below"</p>
+<pre class='prettyprint"'>
+a = [1,2,4,1,2,3]
+s = set(a)
+
+def check(n):
+   if n in s:
+      return True
+   else:
+      return False
+
+print filter(check, a)
+</pre>
+<br>
+<p><b>filter()</b> takes two args: (fn, sequence), and returns a list. The <b>filter()</b> will return all items from the list <b>a</b> which return <b>True</b> when passed to the function <b>check()</b> which  will check if the value is in the set, <b>s</b>. Since all the numbers in the set come from the values list, all of the original values in the list will return <b>True</b>. So, the output should look like this:</p>
+<pre class='prettyprint"'>
+[1, 2, 4, 1, 2, 3]
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Products">Products</div>
+<p>We have an array of integers, and for each index we want to find the product of every integer except the integer at that index.</p>
+<p>For example, given:</p>
+<pre class="prettyprint">
+[5, 7, 3, 4]
+</pre>
+<br>
+<p>our function would return:</p>
+<pre class="prettyprint">
+[84, 60, 140, 105]
+</pre>
+<br>
+<p>
+by calculating:</p>
+<pre class='prettyprint"'>
+[7*3*4, 5*3*4, 5*7*4, 5*7*3]
+</pre>
+<br>
+<p>Here is the code:</p>
+<pre class="prettyprint">
+a = [5,7,3,4]
+print a
+out = []
+for i,e1 in enumerate(a):
+   prod = 1
+   for j,e2 in enumerate(a):
+      if i != j:
+         print e2,
+         prod *= e2
+   print
+   out.append(prod)
+print out
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[5, 7, 3, 4]
+7 3 4
+5 3 4
+5 7 4
+5 7 3
+[84, 60, 140, 105]
+</pre>
+<br>
+<p>Another solutions, please check <a href="python_interview_questions_4.html#Products-every" target="_blank">Interview Questions 4</a></p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pickle">Pickle</div>
+<p>What's the output from the following code?</p>
+<pre class="prettyprint">
+import pickle
+
+class account:
+        def __init__(self, id, balance):
+                self.id = id
+                self.balance = balance
+        def deposit(self, amount):
+                self.balance += amount
+        def withdraw(self, amount):
+                self.balance -= amount
+
+my_account = account('00123', 1000)
+my_account.deposit(700)
+my_account.withdraw(400)
+
+fd = open( "archive", "w" )
+pickle.dump( my_account, fd)
+fd.close()
+
+my_account.deposit(500)
+print my_account.balance,
+
+fd = open( "archive", "r" )
+my_account = pickle.load( fd )
+fd.close()
+
+print my_account.balance
+</pre>
+<br>
+<p>Answer:</p>
+<pre class="prettyprint">
+1800 1300
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Overlapped-Rect">Overlapped Rectangles</div>
+<p>Find the overlapped rectangle.</p>
+<img alt="OverlappedRect.png" src="images/python_interview_questions3/OverlappedRect.png"/>
+<br/>
+<pre class="prettyprint">
+import json
+class rect(object):
+   def __init__(self,x=1,y=1,w=10,h=5):
+      self.geom = {'x':x, 'y':y, 'width': w, 'height': h}
+
+   def __repr__(self):
+      return (json.dumps(self.geom))
+
+def getKey(item):
+   return item[0]
+
+def intersection(r1,r2):
+   # rect 1
+   x11 = r1.geom['x']
+   x12 = x11 +  r1.geom['width']
+   y11 = r1.geom['y']
+   y12 = y11 + r1.geom['height']
+
+   # rect 2
+   x21 = r2.geom['x']
+   x22 = x21 +  r2.geom['width']
+   y21 = r2.geom['y']
+   y22 = y21 + r2.geom['height']
+
+   # construct list of tuples
+   x = [(x11,x12),(x21,x22)]
+   y = [(y11,y12),(y21,y22)]
+
+   # sort the list
+   x = sorted(x, key=getKey)
+   y = sorted(y, key=getKey)
+
+   # get intersection
+   xmin = x[0][0]
+   xmax = x[1][1]
+
+   if x[0][1] &gt; x[1][0]:
+      xmin = x[1][0]
+      xmax = x[0][1]
+   else:
+      xmin = None
+      xmax = None
+
+   if y[0][1] &gt; y[1][0]:
+      ymin = y[1][0]
+      ymax = y[0][1]
+   else:
+      ymin = None
+      ymax = None
+
+   return (xmin,xmax),(ymin,ymax)
+
+if __name__=='__main__':
+   # rect (x=1,y=1,w=10,h=5):
+
+   r1 = rect(2,2,2,2)
+   r2 = rect(1,1,2,2)
+   #r2 = rect(0,0,1,1)
+   #r2 = rect(3,3,2,2)
+   #r2 = rect(5,5,1,1)
+   print 'r1 = ', r1
+   print 'r2 = ', r2
+
+   x,y = intersection(r1,r2)
+   if x[0] == None or x[1] == None or y[0] == None or y[1] == None:
+      print 'No overlap'
+   else:
+      rOverlapped = rect(x[0],y[0],x[1]-x[0],y[1]-y[0])
+      print 'rOverlapped = ', rOverlapped
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+r1 =  {"y": 2, "x": 2, "height": 2, "width": 2}
+r2 =  {"y": 1, "x": 1, "height": 2, "width": 2}
+rOverlapped =  {"y": 2, "x": 2, "height": 1, "width": 1}
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="__dict__">__dict__</div>
+<p>Output from the code below?</p>
+<pre class="prettyprint">
+class Planet:
+   def __init__(self, sz):
+      pass
+      self.size = sz
+
+mars = Planet(2106)
+mars.__dict__['rank'] = 4
+
+print mars.size + len(mars.__dict__)
+</pre>
+<br>
+<p>We created a member variable named 'rank' by adding it directly the objects dictionary. The value of 'size' is initialized to 2106. There are 2 items in the dictionary, 'rank' and 'size', therefore the sum of the 'size' value 2106 and then size of the dictionary, 2 items, is <b>2108</b>.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Fibonacci">Fibonacci I - iterative, recursive, and via generator</div>
+<p>Write a code that prints out <b>n</b> Fibonacci numbers.</p>
+<pre class="prettyprint">
+# iterative
+def fibi(n):
+   a, b = 0, 1
+   for i in range(0,n):
+     a, b = b, a+b
+   return a
+
+# recursive
+def fibr(n):
+   if n == 0: return 0
+   if n == 1: return 1
+   return fibr(n-2)+fibr(n-1)
+
+for i in range(10):
+   print (fibi(i), fibr(i))
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+(0, 0)
+(1, 1)
+(1, 1)
+(2, 2)
+(3, 3)
+(5, 5)
+(8, 8)
+(13, 13)
+(21, 21)
+(34, 34)
+</pre>
+<br>
+<p>We can also use generator:</p>
+<pre>
+def fib_generator(n):
+   a, b = 0, 1
+   for i in range(n):
+      yield "({},{})".format(i,a)
+      a, b = b, a+b
+
+# loop through the generator
+for item in fib_generator(10):
+   print(item)
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+(0,0)
+(1,1)
+(2,1)
+(3,2)
+(4,3)
+(5,5)
+(6,8)
+(7,13)
+(8,21)
+(9,34)
+</pre>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Fibonacci-II">Fibonacci II - which method?</div>
+<p>In the previous section, we calculated the fibonacci sequence. Now, we want to check how may iteration (loops) are required for each method. Modify the the code, and get the number of iterations.</p>
+<pre>
+<font color="green">marks = []</font>
+
+def fiboi(n):
+    a,b = 0,1
+    for i in range(n):
+        a,b = b, a+b
+        marks.append('i')
+    return a
+
+def fibor(n):
+    if n == 0 or n == 1: 
+        count.append('r')
+        return n
+    marks.append('r')
+    return fibor(n-1)+fibor(n-2)
+
+def fiboy(n):
+    a,b = 0,1
+    for i in range(n):
+        marks.append('y')
+        yield a
+        a,b = b, a+b
+
+n = 10
+for i in range(n):
+    print fiboi(i),
+print 
+for i in range(n):
+    print fibor(i),
+print
+for i in fiboy(n):
+    print i,
+print
+print '(iterative:%d recursive:%d generator(yield):%d)' %(marks.count('i'), marks.count('r'), marks.count('y'))
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+(iterative:45 recursive:133 generator(yield):<font color="red">10</font>)
+</pre>
+<br>
+<p>Note that the using generator via <b>yield</b> requires the fewest iterations because it goes back where it left off in the function and does not have to start it over!</p>
+<br>
+<p>We can measure processing times as well:</p>
+<pre>
+<font color="green">import time</font>
+marks = []
+
+def fiboi(n):
+    a,b = 0,1
+    for i in range(n):
+        a,b = b, a+b
+        marks.append('i')
+    return a
+
+def fibor(n):
+    if n == 0 or n == 1: 
+        count.append('r')
+        return n
+    marks.append('r')
+    return fibor(n-1)+fibor(n-2)
+
+def fiboy(n):
+    a,b = 0,1
+    for i in range(n):
+        marks.append('y')
+        yield a
+        a,b = b, a+b
+
+n = 10
+tici = time.clock()
+for i in range(n):
+    print fiboi(i),
+toci = time.clock()
+print 
+ticr = time.clock()
+for i in range(n):
+    print fibor(i),
+tocr = time.clock()
+print
+ticy = time.clock()
+for i in fiboy(n):
+    print i,
+tocy = time.clock()
+print
+print 'iteration - (iterative:%d recursive:%d generator(yield):%d)' %(marks.count('i'), marks.count('r'), marks.count('y'))
+print 'processing time - (iterative:%f recursive:%f generator(yield):%f)' %(toci-tici, tocr-ticr, tocy-ticy)
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+0 1 1 2 3 5 8 13 21 34
+0 1 1 2 3 5 8 13 21 34
+0 1 1 2 3 5 8 13 21 34
+iteration - (iterative:45 recursive:133 generator(yield):10)
+processing time - (iterative:0.001479 recursive:0.001263 generator(yield):<font color="red">0.000656</font>)
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Stack">Stack</div>
+<p>Implemented a <b>Stack</b> class, and we should have a function <b>getMax()</b> that returns the largest element in the stack with constant time access. </p>
+<pre class="prettyprint">
+class Stack:
+    
+    def __init__(self):
+        self.items = []
+        self.currentMax = None
+        
+    def push(self,data):
+        self.items.append(data)
+        if self.currentMax:
+            if data > self.currentMax:
+                self.currentMax = data
+        else:
+            self.currentMax = data
+            
+    def pop(self):
+        if not self.items:
+            return self.items.pop()
+        return None
+    
+    def peek(self):
+        if not self.items:
+            return self.items[-1]
+        return None
+    
+    def getMax(self):
+        return self.currentMax
+    
+    def __repr__(self):
+        return str(self.items)
+    
+if __name__ == '__main__':
+    
+    s = Stack()
+    s.push(1)
+    s.push(10)
+    s.push(3)
+    print s
+    print s.getMax()
+    s.push(20)
+    s.push(15)
+    print s
+    print s.getMax()
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[1, 10, 3]
+10
+[1, 10, 3, 20, 15]
+20
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Duplicate1">Finding duplicate integers from a list - 1</div>
+<p>For a given list of integers, make list of duplicate integers.</p>
+<pre class="prettyprint">
+a = [10,30,50,70,70,30,40,30,10]
+</pre>
+<br>
+<p>We'll import <b>collections</b>, and it works like this:</p>
+<pre class="prettyprint">
+import collections
+
+a = [10,30,50,70,70,30,40,30,10]
+
+b = collections.Counter(a)
+print b
+
+for k,v in collections.Counter(a).items():
+   print (k,v),
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+Counter({30: 3, 10: 2, 70: 2, 40: 1, 50: 1})
+(40, 1) (10, 2) (70, 2) (50, 1) (30, 3)
+</pre>
+<br>
+<p>So, we can make a list of duplicate integers like this:</p>
+<pre class="prettyprint">
+import collections
+
+a = [10,30,50,70,70,30,40,30,10]
+print  [k for k,v in collections.Counter(a).items() if v &gt; 1]
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[10, 70, 30]
+</pre>
+<br>
+<p>Note: we can initialize a dictionary using <b>fromkeys()</b>, for example, to initialize all elements to 0:</p>
+<pre>
+d = {}.fromkeys(listname,0)
+</pre>
+<br>
+<p>So, in our case:</p>
+<pre>
+a = [10,30,50,70,70,30,40,30,10]
+dup = {}.fromkeys(set(a),0)
+for i in a:
+    dup[i] += 1
+for k,v in dup.items():
+    if v > 1:
+        print k,
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+10 30 70
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Duplicate2A">Finding duplicate integers from a list - 2A</div>
+<p>We can use dictionary with {integer:counter}. First, we initialize the counter with 0, and then increment while we browse through the list.</p>
+<pre class="prettyprint">
+a = [10,30,50,70,70,30,40,30,10]
+
+# initialize d = {key:counter}
+d = {}
+for k in a:
+   d[k] = 0
+
+# increase counter
+for k in a:
+   d[k] += 1
+
+print [k for k,v in d.items() if v &gt; 1]
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[10, 70, 30]
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Duplicate2B">Finding duplicate integers from a list - 2B</div>
+<p>We can initialize the dictionary of the previous section using <b>get(key,initial_value)</b>:</p>
+<pre>
+a = [10,30,50,70,70,30,40,30,10]
+d = {}
+for k in a:
+    d[k] = d.<font color="blue">get(k,0)</font> + 1
+print [k for k,v in d.items() if v > 1]
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+[10, 70, 30]
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Duplicate3">Finding duplicate integers from a list - 3. using a set and list.count() method</div>
+<p>In the methods #2, we used dictionary. But it's not necessary, we can use <b>count()</b> method of a list:</p>
+<pre>
+a = [10,30,50,70,70,30,40,30,10]
+
+# get unique numbers
+s = set(a)
+
+# make a list with duplicate elements
+print [k for k in s if a.<font color="blue">count(k)</font> > 1]
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+[10, 70, 30]
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="reversing-words-1">Reversing words 1</div>
+<p>Write a function <b>reverse_words()</b> that takes a string message and reverses the order of the words.</p>
+<p>"I like to think" ==> "think to like I"</p>
+<pre class="prettyprint">
+def reverse_words(message):
+   reverse = message[::-1]
+   words = reverse.split()
+   r_words = []
+   for w in words:
+      r_words.append(w[::-1])
+   return ' '.join(r_words)
+
+if __name__ == "__main__":
+   message = "I like to think the moon is there even if I am not looking at it - Einstein"
+   print "In = ", message
+   print "Out = ", reverse_words(message)
+</pre>
+<br>
+<p>As we can see from the function, we reverse all characters of the input string. Then, constructed a list of words using a space as a delimiter. Then, we created a list of words, and reverse the characters of each words. Finally, join all the elements of the list to construct a sentence and returned it from the function.</p>
+<p>Output:</p>
+<pre class="prettyprint">
+In =  I like to think the moon is there even if I am not looking at it - Einstein
+Out =  Einstein - it at looking not am I if even there is moon the think to like I
+</pre>
+<br>
+<p>We can use more compact version of the function like this with two lines:</p>
+<pre class="prettyprint">
+def reverse_words2(message):
+   return ' '.join([m[::-1] for m in message[::-1].split()])
+</pre>
+<br>
+<p>Another way of solving the problem though it's similar to the previous solution:</p>
+<pre class="prettyprint">
+def reverse_words(message):
+   words = message.split()
+   words_rev = words[::-1]
+   return ' '.join(words_rev)
+
+if __name__ == "__main__":
+   message = "I like to think the moon is there even if I am not looking at it - Einstein"
+   print "In = ", message
+   print "Out = ", reverse_words(message)
+</pre>
+<br>
+<p>More compact form:</p>
+<pre>
+def reverse_words(message):
+   return ' '.join(reversed(message.split()))
+
+
+if __name__ == "__main__":
+   message = "I like to think the moon is there even if I am not looking at it - Einstein"
+   print "In = ", message
+   print "Out = ", reverse_words(message)
+</pre>
+<br>
+<p>See also <a href="python_interview_questions.html#iterative_reverse">Reversing a string</a></p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Parenthesis">Parenthesis, a lot of them</div>
+<p>Write a function that outputs a list of tuples [(an opening parenthesis, the corresponding closing parenthesis), () ...].
+The tuple should be an index of the position of parenthesis. For example, "(())()", the list should be [(0,3),(1,2),(4,5)]</p>
+<p>Use the following string, and write the code:</p>
+<pre class="prettyprint">
+ "You know parentheses()? (Those little crescent-shaped thingies()?) 
+Well, sometimes they drive me crazy (overusing(), even nested ones(()), lack of clarity, fuzzy writing)"
+</pre>
+<br>
+<p>The idea is while we're looping through the word, we put the index of '(' onto a stack. Whenever we see ')', we pop the stack, which will give us the the most recent index of '('. Then we construct a tuple of a pair of indices: one for '(' and the other one for ')'. We append the pair to our result list.</p>
+<p>Here is the code:</p>
+<pre class="prettyprint">
+s = "You know parentheses()? (Those little crescent-shaped thingies()?) Well, sometimes they drive me crazy (overusing(), even nested ones(()), lack of clarity, fuzzy writing)"
+op = []
+cp = []
+pair = []
+
+for i in range(len(s)):
+   if s[i] == '(':
+      op.append(i)
+   elif s[i] == ')':
+      cp.append(i)
+      pair.append((op.pop(),cp.pop()))
+   else:
+      pass
+
+print pair
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[(20, 21), (62, 63), (24, 65), (113, 114), (134, 135), (133, 136), (103, 169)]
+</pre>
+<br/>
+<p>Or we can use a little bit simpler code using two lists instead of three:</p>
+<pre class="prettyprint">
+def parenthesis(s):
+   idx=[]
+   ans = []
+   for i,c in enumerate(s):
+      if c == '(':
+         idx.append(i)
+      elif c == ')':
+         ans.append((idx.pop(),i))
+      else:
+         pass
+   return ans
+
+s = "You know parentheses()? (Those little crescent-shaped thingies()?) Well, sometimes they drive me crazy (overusing(), even nested ones(()), lack of clarity, fuzzy writing)"
+print parenthesis(s)
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Palindrome">Palindrome / Permutations</div>
+<p>Write a function that checks whether any permutation of an input string is a palindrome. For example, </p>
+<ol>
+<li>"civic" should return True</li>
+<li>"livci" should return False</li>
+<li>"icvci" should return True</li>
+<li>"civil" should return False</li>
+</ol>
+<p>Here is the code:</p>
+<pre class="prettyprint">
+import itertools
+def isPalindrome(w):
+   for i in range((len(w)+1)/2):
+      if w[i] != w[-i-1]:
+         return False
+   return True
+
+if __name__ == "__main__":
+   word = "civic"
+   for w in itertools.permutations(word):
+      word = "".join(w)
+      print "Is %s palindrome ? %s"  %(word, isPalindrome(word))
+</pre>
+<br>
+<p>Output looks like this:</p>
+<pre class="prettyprint">
+Is civic palindrome ? True
+Is civci palindrome ? False
+Is ciivc palindrome ? False
+...
+Is icvic palindrome ? False
+Is icvci palindrome ? True
+Is icivc palindrome ? False
+...
+</pre>
+<br>
+<p>The <b>isPalindrome()</b> function could be more compact:</p>
+<pre class="prettyprint">
+def isPalindrome(w):
+   return w == w[::-1]
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="split-rstrip">Constructing new string after removing white spaces</div>
+<p>Remove white spaces and make a new string from a string "a b c "</p>
+<pre class="prettyprint">
+s = "a b c "
+ss = ''.join(s.rstrip().split())
+print "ss =", ss
+</pre>
+<br>
+<p>The <b>rstrip()</b> strips off (white space by default) characters from the end of the string.</p>
+<p>Output:</p>
+<pre class="prettyprint">
+ss = abc
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="removing-duplicate-list-items">Removing duplicate list items</div>
+<p>Write a small program to remove duplicate items from a given list.</p>
+<pre class="prettyprint">
+a = [1,2,9,7,5,1,2,3]
+a.sort()
+item = a[-1]
+for i in range(len(a)-2,-1,-1):
+   if a[i] == item:
+      del a[i]
+   else:
+      item = a[i]
+print a
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+[1, 2, 3, 5, 7, 9]
+</pre>
+<br>
+<p>Or simpler solution:</p>
+<pre>
+a = [1,2,9,7,5,1,2,3]
+print a
+[a.remove(x) for x in a if a.count(x) > 1]
+print a
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+[1, 2, 9, 7, 5, 1, 2, 3]
+[9, 7, 5, 1, 2, 3]
+</pre>
+<br>
+<p>The simplest solution is to use <b>set()</b>:</p>
+<pre class="prettyprint">
+a = [1,2,9,7,5,1,2,3]
+s = list(set(a))
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Dictionary-exercise">Dictionary exercise</div>
+<p><b>Marketing fees</b></p>
+<p>Develop an algorithm that can be used to identify the best marketing source, by dollar spent per lead cost, each quarter based on the cost structure outlined below:</p>
+<ol>
+<li>Apartment Guide = $495 per month, flat rate.</li>
+<li>Apartments.com = $295 per signed lease.</li>
+<li>Rent.com = $595 or 50% per lease signed, whichever is higher.</li>
+<li>For Rent = $195 monthly, plus $25 per lead.</li>
+<li>Craigslist = Free!</li>
+<li>Resident Referral = $500 per signed lease.</li>
+</ol>
+<br/>
+<p>Dataset Description:/p&gt;
+<p>
+<a href="files/Interview3/guest_cards.json">guest_cards.json</a> - Each record is a unique person who has visited the apartment. The record will let you determine who leased a unit.</p>
+<p>Metric Definitions:</p>
+<p>
+Closing Time - Each record contains a "first_seen" and "lease_signed" value. A lease is considered closed when there is a date in "lease_signed." You should use the delta in days as the time to close.</p>
+<p>
+Closing Rate - The total number of records with "lease_signed" in a month.
+</p>
+<p>Output:</p>
+<p>
+This is not real output, use it as a guide for formatting.
+</p>
+<pre class="prettyprint">
+Q1 2014:
+
+1. For Rent - total leads: 10, signed leases: 1, total cost: $445.00, avg cost per lead: $44.50
+1. Rent.com - total leads: 10, signed leases: 2, total cost: $1,190.00, avg cost per lead: $119.00
+1. Apartments Guide - total leads: 1, signed leases: 1, total cost: $495.00, avg cost per lead: $495.00
+</pre>
+<br>
+<p>Solution: <a href="files/Interview3/kihong.py">kihong.py</a></p>
+<pre class="prettyprint">
+"""
+Python : kihong.py
+
+Afer loading info from json, 
+this code construct monthly numbers (data),
+aggregate it (out) after applying cost info depending on the source type. 
+Then, writes quarterly report.
+
+
+Here are the steps in the code:
+1. load data from json file, and convert it to a list
+2. initialize data by year-month and source sub keys
+   (data - interim data to process loaded info from json)
+3. adding leads to the data
+4. Updating total cost based on cost structure
+5. Construct quarterly data struct, out
+6. Writing report to console
+7. (Note) For degging purpose, did not remove intermediate prints to console. 
+"""
+
+import json
+
+# load data from json file, and convert it to a list
+json_data = json.loads(open("guest_cards.json").read())
+
+# Construct year &amp; month set 
+# These sets will be used to make a new dictionary from the json info.  
+# This new dictionary (data) will be used to make monthly numbers.
+ym_set = set()
+source_set = set()
+for js in json_data:
+    ym = ''
+    # Takes year and month from the string
+    if js['lease_signed'] is not None:
+        ym = str(js['lease_signed'])[:7]
+    else:
+        ym = str(js['first_seen'])[:7]
+
+    ym_set.add(ym)
+    s = str(js['marketing_source'])
+    source_set.add(s)
+
+print 'ym_set=',ym_set
+print 'source_set=',source_set
+
+# initialize data by year-month and source sub keys
+# data - interim data to process loaded info from json
+
+data = {}
+for m in ym_set:
+    data[m] = {}
+    for s in source_set: 
+        data[m][s] = {'signed_leases':0, 'total_leads':0,
+                      'total_cost':0, 'avg_cost_per_lead':0}
+
+# adding leads to data
+for js in json_data:
+    if js['lease_signed'] is not None:
+        m = str(js['lease_signed'])[:7]
+        s = str(js['marketing_source'])
+        data[m][s]['signed_leases'] += 1 
+        data[m][s]['total_leads'] += 1 
+    else:
+        m = str(js['first_seen'])[:7]
+        s = str(js['marketing_source'])
+        data[m][s]['total_leads'] += 1 
+        
+# Updating total cost based on cost structure
+for key,val in data.items():
+    for v in val:
+        # check source type
+        if v == 'Apartment Guide':
+            data[key][v]['total_cost'] = 495
+        elif v == 'Apartments.com':
+            data[key][v]['total_cost'] = 295*data[key][v]['signed_leases']
+        elif v == 'Rent.com':
+            data[key][v]['total_cost'] = max(595,295*data[key][v]['signed_leases'])
+        elif v == 'For Rent':
+            data[key][v]['total_cost'] = 195+25*data[key][v]['total_leads']
+        elif v == 'Resident Referral':
+            data[key][v]['total_cost'] = 500*data[key][v]['signed_leases']
+        else:
+            pass
+       
+# A funtion returning quarter &amp; year string, for example, 'Q1 2014' from '2014-03'
+def get_quarter(key):
+    ym = str(key).split('-')
+    year = ym[0]
+    month = ym[1]
+    if month &lt;= '03':
+        q = 'Q1'
+    elif month &lt;= '06':
+        q = 'Q2'
+    elif month &lt;= '09':
+        q = 'Q3'
+    else:
+        q = 'Q4'
+    return (q + ' ' + year)
+
+# Construct quarterly data struct
+out = {}
+for key, val in data.items():
+    q = get_quarter(key)
+    out[q] = {}
+    for v in val:
+        out[q][v] = {'quarter':q, 'source':v, 'total_leads':0, 
+                     'signed_leases':0, 'total_cost':0, 'avg_cost_per_lead':0} 
+
+# Populate quarterly info : combines monthly to get quarterly
+for key, val in data.items():
+    q = get_quarter(key)
+    for v in val:
+        if q == out[q][v]['quarter']:
+            out[q][v]['total_cost'] += data[key][v]['total_cost']
+            out[q][v]['total_leads'] += data[key][v]['total_leads']
+            out[q][v]['signed_leases'] += data[key][v]['signed_leases']
+
+print "=============== Quarterly report =================="
+print
+# Writing report
+for key, val in out.items():
+    print key,':'
+    print
+    for v in val:
+        print ("%s - total leads: %s, signed leases: %s, total cost: $%s, avg cost per lead: $%s") %(out[key][v]['source'], out[key][v]['total_leads'], out[q][v]['signed_leases'], out[q][v]['total_cost'], out[q][v]['total_cost']/max(1,out[key][v]['total_leads'])) 
+    print
+    print
+</pre>
+<p>Output from the code (snippet):</p>
+<pre class="prettyprint">
+Q2 2014 :
+
+Website - total leads: 0, signed leases: 1, total cost: $0, avg cost per lead: $0
+None - total leads: 3, signed leases: 7, total cost: $0, avg cost per lead: $0
+Rentlix.com - total leads: 1, signed leases: 0, total cost: $0, avg cost per lead: $0
+zillow.com - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Transfer Unit - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Resident Referral - total leads: 0, signed leases: 2, total cost: $1000, avg cost per lead: $1000
+Drive By - total leads: 0, signed leases: 12, total cost: $0, avg cost per lead: $0
+online-apartments-listings.co - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Apartment Guide - total leads: 1, signed leases: 9, total cost: $1485, avg cost per lead: $1485
+Phonebook - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Housing Authority - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Facebook - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Apartments.com - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+rentdigs.com - total leads: 0, signed leases: 0, total cost: $0, avg cost per lead: $0
+Craigslist.com - total leads: 9, signed leases: 2, total cost: $0, avg cost per lead: $0
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="Z">printing numbers in Z-shape</div>
+<p>For a given number <b>n</b>, print the numbers to make Z-shape output on <b>nxn</b> grid (matrix). For example (n=3,4,5,6), we get the following output.</p>
+<ol>
+<li>We can print blank for a number not in diagonal(top right to lower left)</li>
+<li>We should drop other than lowest digit: 10-&gt;0, 11-&gt;1, 12-&gt;2, ... 23-&gt;3 </li>
+</ol>
+<br>
+<pre class="prettyprint">
+1 2 3
+  4  
+5 6 7
+
+1 2 3 4
+    5  
+  6    
+7 8 9 0
+
+1 2 3 4 5
+      6  
+    7    
+  8      
+9 0 1 2 3
+
+1 2 3 4 5 6
+        7  
+      8    
+    9      
+  0        
+1 2 3 4 5 6
+</pre>
+<br>
+<p>Ok, here is the code outputs the above:</p>
+<pre class="prettyprint">
+def print_z(n):
+	pos = 1
+	for r in range(n):
+		for c in range(n):
+			pos = pos % 10
+			if r == 0 or r == n-1:
+				print pos,
+				pos += 1
+			elif c == n - r - 1:
+				print pos,
+				pos += 1
+			else:
+				print ' ',
+
+		print
+
+for n in range(3,7):
+   print_z(n)
+   print
+</pre>
+<br/>
+<br/>
+<p>Here is another version:</p>
+<pre>
+def print_z(n):
+    for j in range(n):
+        for i in range(n):
+            if j == 0 or j == n-1:
+                print '*',       
+            elif i==n-j-1:
+                print '*',
+            else:
+                print ' ',
+        print
+
+for n in range(3,7):
+   print_z(n)
+   print
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+* * *
+  *  
+* * *
+
+* * * *
+    *  
+  *    
+* * * *
+
+* * * * *
+      *  
+    *    
+  *      
+* * * * *
+
+* * * * * *
+        *  
+      *    
+    *      
+  *        
+* * * * * *
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<div class="subtitle_2nd" id="fact">Factorial</div>
+<p>Here is the factorial code : iterative &amp; recursive:</p>
+<pre class="prettyprint">
+# iterative
+def fact(n):
+    f = 1
+    for i in range(1,n+1):
+        f *= i
+    return f
+
+# recursive
+def fact2(n):
+   if n == 0:
+      return 1
+   return n * fact(n-1)
+
+n = 10
+for n in range(n):
+   print '%s:%s %s' %(n, fact(n), fact2(n))
+
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+0:1 1
+1:1 1
+2:2 2
+3:6 6
+4:24 24
+5:120 120
+6:720 720
+7:5040 5040
+8:40320 40320
+9:362880 362880
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lambda">lambda</div>
+<p>Python supports the creation of anonymous functions (i.e. functions that are not bound to a name) at runtime, using a construct called lambda. This is not exactly the same as lambda in functional programming languages such as Lisp, but it is a very powerful concept that's well integrated into Python and is often used in conjunction with typical functional concepts like <b>filter()</b>, <b>map()</b> and <b>reduce()</b>.</p>
+<pre class="prettyprint">
+f1 = lambda x:x**1
+f2 = lambda x:x**2
+f3 = lambda x:x**3
+f4 = lambda x:x**4
+f5 = lambda x:x**5
+for x in [1,2,3,4,5]:
+   print f1(x),f2(x),f3(x),f4(x),f5(x)
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+1 1 1 1 1
+2 4 8 16 32
+3 9 27 81 243
+4 16 64 256 1024
+5 25 125 625 3125
+</pre>
+<br>
+<p>With <b>map()</b>:</p>
+<pre class="prettyprint">
+print map(lambda x:x**2, [i for i in range(10)])  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre>
+
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lambda-map-filter-reduce">lambda with map/filter/reduce</div>
+<p>We have a text file (download : "wget d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.6.tgz"), and we want to know the total size in bytes of the line that has "Spark" in it.</p>
+<p>Let's start with the following code that gives us list of lines of the file:</p>
+<pre>
+lines = open('/usr/local/spark-2.0.2-bin-hadoop2.6/README.md', 'r').read().split('\n')
+</pre>
+<br>
+<p>Simple for loop can do the job (output = 1351):</p>
+<pre>
+bytes = 0
+for line in lines:
+    if "Spark" in line:
+        bytes += len(line)
+print bytes
+</pre>
+<br>
+<p>Now we want to do the same task using "map/filter/reduce" with lambda:</p>
+<pre>
+bytes = reduce(lambda a,b: a+b, map(lambda s: len(s), filter(lambda line: "Spark" in line, lines)))
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="lampairs">Number of integer pairs whose difference is K</div>
+<pre class="prettyprint">
+a = [1,2,3,4,5,6,7,8,9,10]
+K = 4
+p = []
+for n in a:
+    if n+K in a:
+        p.append((n,n+K))
+
+print len(p)
+print p
+</pre>
+<br>
+<p>Output:</p>
+<pre class="prettyprint">
+6
+[(1, 5), (2, 6), (3, 7), (4, 8), (5, 9), (6, 10)]
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="iterator-generator">iterator vs generator</div>
+<ol>
+<li><b>iterable</b> - an iterable is an object 
+    <ol>
+<li>that has an <b>__iter__</b> method which returns an <b>iterator</b></li>
+<pre>
+>>> iterable = range(4)
+>>> iterable
+[0, 1, 2, 3]
+>>> 
+>>> iterator = <font color="blue">iter</font>(iterable)
+>>> type(iterator)
+&lt;type 'listiterator'&gt;
+>>> for i in range(4):
+...    iterator.next()
+... 
+0
+1
+2
+3
+</pre>
+<br>
+Or
+<pre>
+>>> iterable = range(4)
+>>> iterator = iterable.<font color="blue">__iter__()</font>
+>>> type(iterator)
+&lt;type 'listiterator'&gt;
+>>> for i in range(4):
+...    iterator.next()
+... 
+0
+1
+2
+3
+
+</pre>
+<br>
+<li>that has a <b>__getitem__</b> method that can take sequential indicies starting from zero (and raises an IndexError when the indexes are no longer valid). </li>
+</ol>
+    In short, <font color="red">an iterable is an object that we can get an iterator from</font>.
+  </li>
+<li><b>iterators</b> - iterators are <b>iterables</b> with some kind of <b>position</b> state and a <b>__next__()</b> method. <font color="red">An iterator is an object with a <b>next</b> (Python 2) or <b>__next__</b> (Python 3) method</font>. 
+Whenever we use a for loop, or map, or a list comprehension, etc., the next method is called automatically to get each item from the iterator, thus going through the process of iteration. </li>
+<li><b>generators</b> - A generator function is a way to <font color="blue">create an iterator</font>. Generator functions let us use local variables and the position of the program counter as state for a generator object. A new generator object is created and returned each time we call a generator function. The generator object is an iterator. A generator <font color="blue">yields</font> the values one at a time, which requires less memory and allows the caller to get started processing the first few values immediately. In short, <font color="red">a generator looks like a function but behaves like an iterator.</font>
+</li>
+<br/>
+<br/>
+<img alt="iterator-generator.png" src="images/python_interview_questions3/iterator-generator.png"/>
+<br>
+<p align="center">Picture source : <a href="https://excess.org/article/2013/02/itergen1/" target="_blank">Iterables, Iterators and Generators: Part 1</a>
+</p>
+</ol>
+
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="recursive-printing-files">Recursive printing files in a given directory</div>
+<p>Write a function that takes the name of a directory and prints out the paths of files within that given directory as well as any files contained in contained directories <font color="red">NOT</font> using <b>os.walk</b>:</p>
+<pre>
+def dir_contents(p):
+    
+    for child in os.listdir(p):
+        child_path = os.path.join(p, child)
+        if os.path.isdir(child_path):
+            dir_contents(child_path)
+        else:
+            print child_path
+
+p = '/home/k/TEST/PySpark'
+dir_contents(p)
+</pre>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="bubble-sort">Bubble sort</div>
+<p>Bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.</p>
+<img alt="Bubble-sort-example-300px.gif" src="images/python_interview_questions3/Bubble-sort-example-300px.gif"/>
+
+<p align="center">Image credit : <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank">https://en.wikipedia.org/wiki/Bubble_sort</a></p>
+
+
+<p>Here is the code for sorting <b>L = [3,1,5,7,6,4,2,8,10,9]</b>:</p>
+<pre>
+for j in range(len(L)-1):
+    for i in range(len(L)-1):
+        if L[i] > L[i+1]:
+            temp = L[i]
+            L[i] = L[i+1]
+            L[i+1] = temp
+    print L
+</pre>
+<br>
+<p>Output:</p>
+<pre>
+[1, 3, 5, 6, 4, 2, 7, 8, 9, 10]
+[1, 3, 5, 4, 2, 6, 7, 8, 9, 10]
+[1, 3, 4, 2, 5, 6, 7, 8, 9, 10]
+[1, 3, 2, 4, 5, 6, 7, 8, 9, 10]
+<font color="green">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</font>
+</pre>
+<br>
+<p>As we can see from the output, the bubble sort is not efficient in that it continues to try sort the already sorted list.</p>
+<p>Here is a little bit more effective code:</p>
+<pre>
+sorted = False
+
+while not sorted:
+    sorted = True
+    for i in range(len(L)-1):
+        if L[i] > L[i+1]:
+            sorted = False
+            temp = L[i]
+            L[i] = L[i+1]
+            L[i+1] = temp
+    print L, sorted
+</pre>
+<br>
+<p>Now can see the output below, it now stops if the list is sorted:</p>
+<pre>
+[1, 3, 5, 6, 4, 2, 7, 8, 9, 10] False
+[1, 3, 5, 4, 2, 6, 7, 8, 9, 10] False
+[1, 3, 4, 2, 5, 6, 7, 8, 9, 10] False
+[1, 3, 2, 4, 5, 6, 7, 8, 9, 10] False
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] False
+<font color="green">[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] True</font>
+</pre>
+<br>
+<img alt="Bubble_sort_animation.gif" src="images/python_interview_questions3/Bubble_sort_animation.gif"/>
+<br>
+<p align="center">Image credit : <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank">https://en.wikipedia.org/wiki/Bubble_sort</a></p>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="subtitle_2nd" id="What-is-GIL">What is GIL (Global Interpreter Lock)?</div>
+<p>Python doesn't allow us to do multi-threading programming in a way that others (Java/C) do. It has a multi-threading package but if we want to multi-thread to speed up our code, then it's usually not a good idea to use it. </p>
+<p><a href="http://softwareengineering.stackexchange.com/questions/186889/why-was-python-written-with-the-gil" target="_blank">Why Was Python Written with the GIL?</a></p>
+<p>Getting rid of the GIL is an occasional topic on the python-dev mailing list. No one has managed it yet - <a href="https://wiki.python.org/moin/GlobalInterpreterLock" target="_blank">GlobalInterpreterLock</a></p>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<ol>
+<li><a href="python_interview_questions.html">Python Interview Questions I</a> </li>
+<li><a href="python_interview_questions_2.html">Python Interview Questions II</a> </li>
+<li><a href="python_interview_questions_3.html">Python Interview Questions III</a> </li>
+<li><a href="python_interview_questions_4.html">Python Interview Questions IV</a> </li>
+</ol>
+<br/>
+<br/>
+<!-- Inner List -->
+<h1>List of codes for interview Q & A</h1>
+
+<ol>
+   <li><a href="python_interview_questions.html#merging-two-sorted-list">Merging two sorted list</a> </li>
+   <li><a href="python_interview_questions.html#initializing-D">Get word frequency - initializing dictionary</a> </li>
+   <li><a href="python_interview_questions.html#initializing-dict-with-list">Initializing dictionary with list</a> </li>
+   <li><a href="python_interview_questions.html#map-filter-reduce">map, filter, and reduce</a> </li>
+   <li><a href="python_interview_questions.html#fnc">Write a function f() - yield</a> </li>
+   <li><a href="python_interview_questions.html#__init__">What is __init__.py?</a> </li>
+   <li><a href="python_interview_questions.html#str_join">Build a string with the numbers from 0 to 100, "0123456789101112..." </a> </li>
+   <li><a href="python_interview_questions.html#file_reading">Basic file processing: Printing contents of a file - "with open"</a> </li>
+   <li><a href="python_interview_questions.html#print-home-dir">How can we get home directory using '~' in Python?</a> </li>
+   <li><a href="python_interview_questions.html#dirname-basename">The usage of os.path.dirname() & os.path.basename() - os.path</a> </li>
+   <li><a href="python_interview_questions.html#default_libraries">Default Libraries</a> </li>
+   <li><a href="python_interview_questions.html#range_xrange">range vs xrange</a> </li>
+   <li><a href="python_interview_questions.html#Iterators">Iterators</a> </li>
+   <li><a href="python_interview_questions.html#generators">Generators</a> </li>
+   <li><a href="python_interview_questions.html#functions_as_first_class">Manipulating functions as first-class objects</a> </li>
+   <li><a href="python_interview_questions.html#docstrings_vs_commmnets">docstrings vs comments</a> </li>
+   <li><a href="python_interview_questions.html#using_lambdda">using lambdda</a> </li>
+   <li><a href="python_interview_questions.html#classmethods_vs_staticmethods">classmethod vs staticmethod</a> </li>
+   <li><a href="python_interview_questions.html#unique_elements">Making a list with unique element from a list with duplicate elements</a> </li>
+   <li><a href="python_interview_questions.html#what_is_map">What is map?</a> </li>
+   <li><a href="python_interview_questions.html#what_is_filter_and_reduce">What is filter and reduce?</a> </li>
+   <li><a href="python_interview_questions.html#what_is_star_in_args">*args and **kwargs</a> </li>
+   <li><a href="python_interview_questions.html#mutable">mutable vs immutable</a> </li>
+   <li><a href="python_interview_questions.html#del">Difference between remove, del and pop on lists</a> </li>
+   <li><a href="python_interview_questions.html#join-new-line">Join with new line</a> </li>
+
+   <li><a href="python_interview_questions_2.html#hamming-distance">Hamming distance</a> </li>
+   <li><a href="python_interview_questions_2.html#floor">Floor operation on integers</a> </li>
+   <li><a href="python_interview_questions_2.html#other-fetch">Fetching every other item in the list</a> </li>
+   <li><a href="python_interview_questions_2.html#Python-type-function">Python type() - function</a> </li>
+   <li><a href="python_interview_questions_2.html#dic_comprehension">Dictionary Comprehension</a> </li>
+   <li><a href="python_interview_questions_2.html#sum-elements">Sum</a> </li>
+   <li><a href="python_interview_questions_2.html#Trunc">Truncating division</a> </li>
+   <li><a href="python_interview_questions_2.html#python2_3">Python 2 vs Python 3</a> </li>
+   <li><a href="python_interview_questions_2.html#set">len(set)</a> </li>
+   <li><a href="python_interview_questions_2.html#print-dir">Print a list of file in a directory</a> </li>
+   <li><a href="python_interview_questions_2.html#count-chars">Count occurrence of a character in a Python string</a> </li>
+   <li><a href="python_interview_questions_2.html#prime">Make a prime number list from (1,100)</a> </li>
+   <li><a href="python_interview_questions_2.html#recursive_reverse">Reversing a string - Recursive</a> </li>
+   <li><a href="python_interview_questions_2.html#iterative_reverse">Reversing a string - Iterative</a> </li>
+   <li><a href="python_interview_questions_2.html#output">Output?</a> </li>
+   <li><a href="python_interview_questions_2.html#merge">Merging overlapped range</a> </li>
+   <li><a href="python_interview_questions_2.html#ternary">Conditional expressions (ternary operator)</a> </li>
+   <li><a href="python_interview_questions_2.html#args">Function args</a> </li>
+   <li><a href="python_interview_questions_2.html#unpacking">Unpacking args</a> </li>
+   <li><a href="python_interview_questions_2.html#bug-revision">Finding the 1st revision with a bug</a> </li>
+   <li><a href="python_interview_questions_2.html#precedence">Which one has higher precedence in Python?  - NOT, AND , OR</a> </li>
+   <li><a href="python_interview_questions_2.html#decorator">Decorator(@) - with dollar sign($)</a> </li>
+   <li><a href="python_interview_questions_2.html#Multi">Multi-line coding</a> </li>
+   <li><a href="python_interview_questions_2.html#binary">Recursive binary search</a> </li>
+   <li><a href="python_interview_questions_2.html#binary_iter">Iterative binary search</a> </li>
+   <li><a href="python_interview_questions_2.html#pass_by_ref">Pass by reference</a> </li>
+   <li><a href="python_interview_questions_2.html#calc">Simple calculator</a> </li>
+   <li><a href="python_interview_questions_2.html#iterator-class">iterator class that returns network interfaces</a> </li>
+   <li><a href="python_interview_questions_2.html#ip-domain">Converting domain to ip</a> </li>
+   <li><a href="python_interview_questions_2.html#static-method">How to count the number of instances</a> </li>
+   <li><a href="python_interview_questions_2.html#Python-profilers">Python profilers - cProfile</a> </li>
+   <li><a href="python_interview_questions_2.html#Calling-base-class-method">Calling a base class method from a child class that overrides it</a> </li>
+   <li><a href="python_interview_questions_2.html#current-module-name">How do we find the current module name?</a> </li>
+   <li><a href="python_interview_questions_2.html#changing-list">Why did changing list 'newL' also change list 'L'?</a> </li>
+   <li><a href="python_interview_questions_2.html#Construction-dictionary">Construction dictionary - {key:[]}</a> </li>
+   <li><a href="python_interview_questions_2.html#Colon-separated-sequence">Colon separated sequence</a> </li>
+   <li><a href="python_interview_questions_2.html#Converting-binary">Converting binary to integer</a> </li>
+   <li><a href="python_interview_questions_2.html#9999">9+99+999+9999+...</a> </li>
+   <li><a href="python_interview_questions_2.html#Calculating-balance">Calculating balance</a> </li>
+   <li><a href="python_interview_questions_2.html#reg-numbers-findall">Regular expression - findall</a> </li>
+   <li><a href="python_interview_questions_2.html#Chickens-pigs">Chickens and pigs</a> </li>
+   <li><a href="python_interview_questions_2.html#highest-possible-product">Highest possible product</a> </li>
+
+   <li><a href="python_interview_questions_3.html#copy-obj">Copy an object</a> </li>
+   <li><a href="python_interview_questions_3.html#filter">Filter</a> </li>
+   <li><a href="python_interview_questions_3.html#Products">Products</a> </li>
+   <li><a href="python_interview_questions_3.html#pickle">Pickle</a> </li>
+   <li><a href="python_interview_questions_3.html#Overlapped-Rect">Overlapped Rectangles</a> </li>
+   <li><a href="python_interview_questions_3.html#__dict__">__dict__</a> </li>
+   <li><a href="python_interview_questions_3-2.html">Fibonacci I - iterative, recursive, and via generator</a> </li>
+   <li><a href="python_interview_questions_3-3.html">Fibonacci II - which method?</a> </li>
+
+
+   <li><a href="python_interview_questions_3.html#Stack">Stack</a> </li>
+   <li><a href="python_interview_questions_3.html#Duplicate1">Finding duplicate integers from a list - 1</a> </li>
+   <li><a href="python_interview_questions_3.html#Duplicate2">Finding duplicate integers from a list - 2</a> </li>
+   <li><a href="python_interview_questions_3.html#Duplicate3">Finding duplicate integers from a list - 3</a> </li>
+   <li><a href="python_interview_questions_3.html#reversing-words-1">Reversing words 1</a> </li>
+   <li><a href="python_interview_questions_3.html#Parenthesis">Parenthesis, a lot of them</a> </li>
+   <li><a href="python_interview_questions_3.html#Palindrome">Palindrome / Permutations</a> </li>
+   <li><a href="python_interview_questions_3.html#split-rstrip">Constructing new string after removing white spaces</a> </li>
+   <li><a href="python_interview_questions_3.html#removing-duplicate-list-items">Removing duplicate list items</a> </li>
+   <li><a href="python_interview_questions_3.html#Dictionary-exercise">Dictionary exercise</a> </li>
+   <li><a href="python_interview_questions_3.html#Z">printing numbers in Z-shape</a> </li>
+   <li><a href="python_interview_questions_3.html#fact">Factorial</a> </li>
+   <li><a href="python_interview_questions_3.html#lambda">lambda</a> </li>
+   <li><a href="python_interview_questions_3.html#lambda-map-filter-reduce">lambda with map/filter/reduce</a> </li>
+   <li><a href="python_interview_questions_3.html#lampairs">Number of integer pairs whose difference is K</a> </li>
+   <li><a href="python_interview_questions_3.html#iterator-generator">iterator vs generator</a> </li>
+   <li><a href="python_interview_questions_3.html#recursive-printing-files">Recursive printing files in a given directory</a> </li>
+   <li><a href="python_interview_questions_3.html#bubble-sort">Bubble sort</a> </li>
+   <li><a href="python_interview_questions_3.html#What-is-GIL">What is GIL (Global Interpreter Lock)?</a> </li>
+
+
+   <li><a href="python_interview_questions_4.html#wc-collections">Word count using collections</a> </li>
+   <li><a href="python_interview_questions_4.html#pig-latin">Pig Latin</a> </li>
+   <li><a href="python_interview_questions_4.html#anagram">List of anagrams from a list of words</a> </li>
+   <li><a href="python_interview_questions_4.html#lambda">lamda with map, filer and reduce functions</a> </li>
+   <li><a href="python_interview_questions_4.html#email">Write a code sending an email using gmail</a> </li>
+   <li><a href="python_interview_questions_4.html#histogram-1">histogram 1 : the frequency of characters</a> </li>
+   <li><a href="python_interview_questions_4.html#histogram-2">histogram 2 : the frequency of ip-address</a> </li>
+   <li><a href="python_interview_questions_4.html#dict-tuple">Creating a dictionary using tuples</a> </li>
+   <li><a href="python_interview_questions_4.html#index-from-a-list">Getting the index from a list</a> </li>
+   <li><a href="python_interview_questions_4.html#two-lists">Looping through two lists side by side</a> </li>
+   <li><a href="python_interview_questions_4.html#dic-sort">Dictionary sort with two keys : primary / secondary keys</a> </li>
+   <li><a href="python_interview_questions_4.html#file-download">Writing a file downloaded from the web</a> </li>
+   <li><a href="python_interview_questions_4.html#Sorting-csv-data">Sorting csv data</a> </li>
+   <li><a href="python_interview_questions_4.html#Reading-json-file">Reading json file</a> </li>
+   <li><a href="python_interview_questions_4.html#sorting-class-object">Sorting class objects</a> </li>
+   <li><a href="python_interview_questions_4.html#Parsing-Brackets">Parsing Brackets</a> </li>
+   <li><a href="python_interview_questions_4.html#full-path">Printing full path</a> </li>
+   <li><a href="python_interview_questions_4.html#str-vs-repr">str() vs repr()</a> </li>
+   <li><a href="python_interview_questions_4.html#missing-integer">Missing integer from a sequence</a> </li>
+   <li><a href="python_interview_questions_4.html#Polymorphism">Polymorphism</a> </li>
+   <li><a href="python_interview_questions_4.html#Products-every">Product of every integer except the integer at that index</a> </li>
+   <li><a href="python_interview_questions_4.html#Accessors-mutators-property">What are accessors, mutators, and @property?</a> </li>
+   <li><a href="python_interview_questions_4.html#Nth">N-th to last element in a linked list</a> </li>
+   <li><a href="python_interview_questions_4.html#Implementing-linked-list">Implementing linked list</a> </li>
+   <li><a href="python_interview_questions_4.html#RemovingduplicateList">Removing duplicate element from a list</a> </li>
+   <li><a href="python_interview_questions_4.html#List-comprehension">List comprehension</a> </li>
+   <li><a href="python_interview_questions_4.html#py-vs-pyc">.py vs .pyc</a> </li>
+   <li><a href="python_interview_questions_4.html#BinaryTree">Binary Tree</a> </li>
+   <li><a href="python_interview_questions_4.html#print-c-n-times">Print 'c' N-times without a loop</a> </li>
+   <li><a href="python_interview_questions_4.html#Quicksort">Quicksort</a> </li>
+   <li><a href="python_interview_questions_4.html#Dictionary-of-list">Dictionary of list</a> </li>
+   <li><a href="python_interview_questions_4.html#creating-matrix">Creating r x c matrix</a> </li>
+   <li><a href="python_interview_questions_4.html#isalpha-isdigit">str.isalpha() & str.isdigit()</a> </li>   
+   <li><a href="python_interview_questions_4.html#regular-expression">Regular expression</a> </li> 
+
+
+   <li><a href="python_interview_questions_5.html#Hashable">What is Hashable? Immutable?</a> </li>
+   <li><a href="python_interview_questions_5.html#list-to-string">Convert a list to a string</a> </li>
+   <li><a href="python_interview_questions_5.html#list-to-dict">Convert a list to a dictionary</a> </li>
+   <li><a href="python_interview_questions_5.html#diff-append-extend-concatenate">List - append vs extend vs concatenate</a> </li>
+   <li><a href="python_interview_questions_5.html#diff-sort-sorted">Use sorted(list) to keep the original liste</a> </li>
+   <li><a href="python_interview_questions_5.html#count-list">list.count()</a> </li>
+   <li><a href="python_interview_questions_5.html#weighted-average">zip(list,list) - weighted average with two lists</a> </li>
+   <li><a href="python_interview_questions_5.html#intersection-lists">Intersection of two lists</a> </li>
+</ol>
+<br><br>
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br /><br />
+
+
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="python_Selenium_WebDriver.html">Selenium WebDriver</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br><br><br>
+<h1>OpenCV 3 image and video processing with Python</h1>
+
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3.html" target="_blank">OpenCV 3 with Python</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">Image - OpenCV BGR : Matplotlib RGB</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">Basic image operations - pixel access</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">Signal Processing with NumPy I - FFT and DFT for sine, square waves, unitpulse, and random signal</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">Inverse Fourier Transform of an Image with low pass filter: cv2.idft() </a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">Image Histogram</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">Video Capture and Switching colorspaces - RGB / HSV</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">Adaptive Thresholding - Otsu's clustering-based image thresholding</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">Edge Detection - Sobel and Laplacian Kernels</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">Canny Edge Detection</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">Hough Transform - Circles</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">Watershed Algorithm : Marker-based Segmentation I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">Watershed Algorithm : Marker-based Segmentation II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">Image noise reduction : Non-local Means denoising algorithm</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">Image object detection : Face detection using Haar Cascade Classifiers</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">Video : Mean shift object tracking</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">Machine Learning : Clustering - K-Means clustering I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization_2.html" target="_blank">Machine Learning : Clustering - K-Means clustering II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm</a> 
+
+
+<br />
+<br />
+
+<br><br><br>
+<h1>Machine Learning with scikit-learn</h1>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_install.html" target="_blank">scikit-learn installation</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_features_extraction.html" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_quick_preview.html" target="_blank">scikit-learn : Machine Learning Quick Preview</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-Missing-Data-Categorical-Data.php" target="_blank">scikit-learn : Data Preprocessing I - Missing / Categorical data</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-II-Datasets-Partitioning-Feature-scaling-Feature-Selection-Regularization.html" target="_blank">scikit-learn : Data Preprocessing II - Partitioning a dataset / Feature scaling / Feature Selection / Regularization</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-III-Dimensionality-reduction-via-Sequential-feature-selection-Assessing-feature-importance-via-random-forests.html" target="_blank">scikit-learn : Data Preprocessing III - Dimensionality reduction vis Sequential feature selection / Assessing feature importance via random forests</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_1_Principal_component_analysis%20_PCA.html" target="_blank">Data Compression via Dimensionality Reduction I - Principal component analysis (PCA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_2_Linear_Discriminant_Analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction II - Linear Discriminant Analysis (LDA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_3-nonlinear-mappings-via-kernel-principal-component-analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction III - Nonlinear mappings via kernel principal component (KPCA) analysis</a>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_logistic_regression.html" target="_blank">scikit-learn : Logistic Regression, Overfitting & regularization</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">scikit-learn : Supervised Learning & Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">scikit-learn : Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)</a> 
+   <br><br>
+   <a href="scikit-learn/scikt_machine_learning_Decision_Tree_Learning_Informatioin_Gain_IG_Impurity_Entropy_Gini_Classification_Error.php" target="_blank">scikit-learn : Decision Tree Learning I - Entropy, Gini, and Information Gain</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Constructing_Decision_Tree_Learning_Information_Gain_IG_Impurity_Entropy_Gini_Classification_Error.html" target="_blank">scikit-learn : Decision Tree Learning II - Constructing the Decision Tree</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Random_Decision_Forests_Ensemble_Learning_Classification.html" target="_blank">scikit-learn : Random Decision Forests Classification</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM_2.html" target="_blank">scikit-learn : Support Vector Machines (SVM) II</a> 
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_1.html" target="_blank">Flask with Embedded Machine Learning I : Serializing with pickle and DB setup</a></li>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_2.html" target="_blank">Flask with Embedded Machine Learning II : Basic Flask App</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_3.html" target="_blank">Flask with Embedded Machine Learning III : Embedding Classifier</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_4.html" target="_blank">Flask with Embedded Machine Learning IV : Deploy</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_5.html" target="_blank">Flask with Embedded Machine Learning V : Updating the classifier</a>
+   <br><br>
+   <a href="scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.html" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> 
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Machine learning algorithms and concepts</h3>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="scikit-learn/Perceptron_Model_with_Iris_DataSet.html" target="_blank">Single Layer Neural Network - Perceptron model on the Iris dataset using Heaviside step activation function</a>
+   <br><br> 
+   <a href="scikit-learn/scikit-learn_batch-gradient-descent-versus-stochastic-gradient-descent.html" target="_blank">Batch gradient descent versus stochastic gradient descent</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron.html" target="_blank">Single Layer Neural Network - Adaptive Linear Neuron using linear (identity) activation function with batch gradient descent method</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron-with-Stochastic-Gradient-Descent.html" target="_blank">Single Layer Neural Network : Adaptive Linear Neuron using linear (identity) activation function with stochastic gradient descent (SGD)</a>
+   <br><br> 
+   <a href="scikit-learn/logistic_regression.html" target="_blank">Logistic Regression</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_VC_Dimension_Shatter.html" target="_blank">VC (Vapnik-Chervonenkis) Dimension and Shatter</a> 
+   <br><br> 
+   <a href="scikit-learn/scikit_machine_learning_Bias-variance-Tradeoff.html" target="_blank">Bias-variance tradeoff</a> 
+   <br><br> 
+   <a href="scikit-learn/Maximum-Likelyhood-Estimation-MLE.html" target="_blank">Maximum Likelihood Estimation (MLE)</a> 
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="../Algorithms/minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="../Algorithms/tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="../Algorithms/Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Artificial Neural Networks (ANN)</h3>
+
+   [Note] <a href="https://github.com/Einsteinish/Artificial-Neural-Networks-with-Jupyter.git" target="_blank">Sources are available at Github - Jupyter notebook files</a> 
+
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html" target="_blank">1. Introduction</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-2-Forward-Propagation.html" target="_blank">2. Forward Propagation</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-3-Gradient-Descent.html" target="_blank">3. Gradient Descent</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-4-Backpropagation.html" target="_blank">4. Backpropagation of Errors</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-5-Checking-Gradient.html" target="_blank">5. Checking gradient</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-6-Training-via-BFGS-Broyden-Fletcher-Goldfarb-Shanno-algorithm-a-variant-of-gradient-descent.html" target="_blank">6. Training via BFGS</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-7-Overfitting-Regularization.html" target="_blank">7. Overfitting & Regularization</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-8-Deep-Learning-1-Image-Recognition-Image-Uploading.html" target="_blank">8. Deep Learning I : Image Recognition (Image uploading)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-9-Deep-Learning-2-Image-Recognition-Image-Classification.html" target="_blank">9. Deep Learning II : Image Recognition (Image classification)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-10-Deep-Learning-3-Theano-TensorFlow-Keras.html" target="_blank">10 - Deep Learning III : Deep Learning III : Theano, TensorFlow, and Keras</a>
+<br />
+<br />
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_interview_questions_3.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 10:13:29 GMT -->
+</html>
+

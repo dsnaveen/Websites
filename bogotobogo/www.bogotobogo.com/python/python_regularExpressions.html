@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_regularExpressions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 10:08:33 GMT -->
+<head>
+  <title>Python Tutorial: Regular Expressions with Python - 2017</title>
+  <meta content="Python Tutorial: Regular Expressions with Python" name="description" />
+  <meta content="Python Tutorial: Regular Expressions with Python, parsing phone number, street address, search, re, groups, re.compile, re.VERBOSE, recursive file listing, searching, replacing string" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Regular Expressions with Python - 2014
+        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/python_logo.png" alt="python_logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+<div class="subtitle" id="regular_expressions_python">Regular Expressions &amp; Python</div>
+<p>Python provides support for regular expressions via <strong>re</strong> module.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>Regular expressions are a powerful and standardized way of searching, replacing, and parsing text 
+with complex patterns of characters. There are several good places to look:</p>
+<ol>
+<li><a href="http://docs.python.org/3.2/library/re.html" target="_blank">http://docs.python.org/3.2/library/re.html</a></li>
+<li><a href="http://www.regular-expressions.info/" target="_blank">http://www.regular-expressions.info/</a></li>
+<li><a href="https://developers.google.com/edu/python/regular-expressions" target="_blank">https://developers.google.com/edu/python/regular-expressions</a></li>
+</ol>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="frequent_expressions">Frequently Used Regular Expressions</div>
+<ol>
+<li><b>^</b> matches the beginning of a string.</li>
+<li><b>$</b> matches the end of a string.</li>
+<li><b>\b</b> matches a word boundary.</li>
+<li><b>\d</b> matches any numeric digit.</li>
+<li><b>\D</b> matches any non-numeric character.</li>
+<li><b>(x|y|z)</b> matches exactly one of <b>x</b>, <b>y</b> or <b>z</b>.</li>
+<li><b>(x)</b> in general is a remembered group. We can get the value of what matched by using the <b>groups()</b> method of the object returned by <b>re.search</b>.</li>
+<li><b>x?</b> matches an optional <b>x</b> character (in other words, it matches an <b>x</b> zero or one times).</li>
+<li><b>x*</b> matches <b>x</b> zero or more times.</li>
+<li><b>x+</b> matches <b>x</b> one or more times.</li>
+<li><b>x{m,n}</b> matches an <strong>x</strong> character at least <strong>m</strong> times, but not more than <b>n</b> times.</li>
+<li><b>?:</b> matches an expression but do not capture it. Non capturing group.</li>
+<li><b>?=</b> matches a suffix but exclude it from capture. Positive look ahead. <br/>
+   a(?=b) will match the "a" in "ab", but not the "a" in "ac" <br/>
+   In other words, a(?=b) matches the "a" which is followed by the string 'b', without consuming what follows the a.
+   </li>
+<li><b>?!</b> matches if suffix is absent. Negative look ahead.<br/>
+   a(?!b) will match the "a" in "ac", but not the "a" in "ab"</li>
+<li><b>?&lt;= </b> positive look behind</li>
+<li><b>?&lt;! </b> negative look behind</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="ip_address">IP address substitution in Python script</div>
+<p>Here is a very simple code replacing ip address:</p>
+<pre>
+import re
+pattern = re.compile(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b')
+old = 'IPs : 173.254.28.78 or 167.81.178.97'
+
+new_ip = '127.0.0.1'
+
+replaced = re.sub(pattern, new_ip, old)
+
+print('replaced = %s' %(replaced))
+</pre>
+<p>Output:</p>
+<pre>
+replaced = IPs : 127.0.0.1 or 127.0.0.1
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="pluralizing_nouns">Pluralizing Nouns with Regular Expressions</div>
+<br/>
+<div class="subtitle_2nd" id="pluralizing_nouns_1">1. re.sub()</div>
+<p>The <strong>re.sub()</strong> function performs regular expression-based string substitutions.</p>
+<pre>
+>>> import re
+>>> re.search('[abc]', 'Space')
+&lt;_sre.SRE_Match object at 0x03028C60&gt;
+>>> 
+>>> re.sub('[abc]', 'o', 'Space')
+'Spooe'
+>>> re.sub('[aeu]', 'n', re.sub('[abc]', 'o', 'Space'))
+'Spoon'
+</pre>
+<ol>
+<li>Does the string <strong>Space</strong> contain <strong>a</strong>, <strong>b</strong>, or <strong>c</strong>? Yes, it contains <strong>a</strong> and <strong>c</strong>.</li>
+<li>OK, now find <strong>a</strong>, <strong>b</strong>, or <strong>c</strong>, and replace it with <strong>o</strong>. <strong>Space</strong> becomes <strong>Spooe</strong>.
+ <li>Let's take the output and use it as an input to replace <strong>a</strong>, <strong>e</strong>, or <strong>u</strong> with <strong>n</strong>.</li>
+<li>As a result, the <strong>Space</strong> turned into a <strong>Spoon</strong>.</li>
+</li></ol>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="pluralizing_nouns_2">2. Pluralize nouns with regular expressions</div>
+<p>In this section, we will learn some of the regular expressions while doing pluralization of nouns.</p>
+<pre>
+>>> def pluralize(noun):          
+    if re.search('[sxz]$', noun):     
+        return re.sub('$', 'es', noun)
+    elif re.search('[^aeioudgkprt]h$', noun):
+        return re.sub('$', 'es', noun)       
+    elif re.search('[^aeiou]y$', noun):      
+        return re.sub('y$', 'ies', noun)     
+    else:
+        return noun + 's'
+</pre>
+<p>The four branches of <strong>if</strong> statements are the implementation of the following four rules of pluralization described below:</p>
+<ol>
+<li>If a word ends in <strong>s</strong>, <strong>x</strong>, or <strong>z</strong>, add <strong>es</strong>. Bass becomes bass<strong>es</strong>, fax becomes fax<strong>es</strong>, and waltz becomes waltz<strong>es</strong>.</li>
+<li>If a word ends in a noisy <strong>h</strong>, add <strong>es</strong>; if it ends in a silent <strong>h</strong>, just add <strong>s</strong>. What's a noisy <strong>h</strong>? One that gets combined with other letters to make a sound that we can hear. So coach becomes coach<strong>es</strong> and rash becomes rash<strong>es</strong>, because we can hear the <strong>ch</strong> and <strong>sh</strong> sounds when we say them. But cheetah becomes cheetah<strong>s</strong>, because the <strong>h</strong> is silent.</li>
+<li>If a word ends in <strong>y</strong> that sounds like <strong>i</strong>, change the <strong>y</strong> to <strong>ies</strong>; if the <strong>y</strong> is combined with a vowel to sound like something else, just add <strong>s</strong>. So vacancy becomes vacanc<strong>ies</strong>, but day becomes day<strong>s</strong>.</li>
+<li>If all else fails, just add <strong>s</strong>.</li>
+</ol>
+<br/>
+<p>OK, now is the time to look the code in the example above:</p>
+<pre>
+    if re.search('[sxz]<font color="red">$</font>', noun):     
+        return re.sub('<font color="red">$</font>', 'es', noun)
+</pre>
+<p>The square brackets <strong>[]</strong> mean <strong>match exactly one of these characters</strong>. So <strong>[sxz]</strong> means <strong>s</strong>, or <strong>x</strong>, or <strong>z</strong>, but only one of them. The <strong>$</strong>  matches the end of string. Combined, this regular expression tests whether noun ends with <strong>s</strong>, <strong>x</strong>, or <strong>z</strong>.</p>
+<p>Here, we're replacing the end of the string matched by <strong>$</strong> with the string <strong>es</strong>. In other words, adding <strong>es</strong> to the string. We could accomplish the same thing with string concatenation, for example <strong>noun + 'es'</strong>, but we opted to use regular expressions for each rule.</p>
+<pre>
+    elif re.search('[<font color="red">^</font>aeioudgkprt]h$', noun):
+        return re.sub('$', 'es', noun) 
+</pre>
+<p>This is another new variation. The <strong>^</strong> as the first character inside the square brackets means something special: <strong>negation</strong>. <strong>[^abc]</strong> means <strong>any single character except a, b, or c</strong>. So <strong>[^aeioudgkprt]</strong> means any character except a, e, i, o, u, d, g, k, p, r, or t. Then that character needs to be followed by <strong>h</strong>, followed by end of string. We're looking for words that end in <strong>h</strong> where the <strong>h</strong> can be heard.</p>
+<pre>
+    elif re.search('[^aeiou]<font color="red">y</font>$', noun):      
+        return re.sub('y$', 'ies', noun)  
+</pre>
+<p>Same pattern here: match words that end in <strong>y</strong>, where the character before the <strong>y</strong> is not <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, or <strong>u</strong>. We're looking for words that end in <strong>y</strong> that sounds like <strong>i</strong>.</p>
+<p>Let's do some practice with regular expressions:</p>
+<pre>
+>>> re.search('[^aeiou]y$', 'emergency')
+&lt;_sre.SRE_Match object at 0x03028C98&gt;
+>>> re.search('[^aeiou]y$', 'toy')
+>>> 
+>>> re.search('[^aeiou]y$', 'gay')
+>>> 
+>>> re.search('[^aeiou]y$', 'taco')
+</pre>
+<p><strong>emergency</strong> matches this regular expression, because it ends in <strong>cy</strong>, and <strong>c</strong> is not <strong>a</strong>, <strong>e</strong>, <strong>i</strong>, <strong>o</strong>, or <strong>u</strong>.<br/>
+<strong>toy</strong> does not match, because it ends in <strong>oy</strong>, and we specifically said that the character before the <strong>y</strong> could not be <strong>o</strong>. <strong>gay</strong> does not match, because it ends in <strong>ay</strong>.<br/>
+<strong>taco</strong> does not match, because it does not end in <strong>y</strong>.
+</p>
+<pre>
+>>> re.search('[^aeiou]y$', 'emergency')
+&lt;_sre.SRE_Match object at 0x03028C98&gt;
+>>> re.search('[^aeiou]y$', 'toy')
+>>> 
+>>> re.search('[^aeiou]y$', 'gay')
+>>> 
+>>> re.search('[^aeiou]y$', 'taco')
+</pre>
+<p>Another example:</p>
+<pre>
+>>> re.sub('y$', 'ies', 'emergency')
+'emergencies'
+>>> re.sub('y$', 'ies', 'semitransparency')
+'semitransparencies'
+</pre>
+<p>This regular expression turns <strong>emergency</strong> into <strong>emergencies</strong> and <strong>semitransparency</strong> into <strong>semitransparencies</strong>, which is what we wanted. Note that it would also turn <strong>toy</strong> into <strong>toies</strong>, but that will never happen in the function because we did that <strong>re.search</strong> first to find out whether we should do this <strong>re.sub</strong>.</p>
+<pre>
+>>> re.sub('([^aeiou])y$', r'\1ies', 'emergency')
+'emergencies'
+</pre>
+<p>It is possible to combine these two regular expressions (one to find out if the rule applies, and another to actually apply it) into a single regular expression. Here's what that would look like. We're using a remembered group. The group is used to remember the character before the letter <strong>y</strong>. Then in the substitution string, we use a new syntax, <strong>\1</strong>, which means <strong>hey, that first group we remembered? put it right here</strong>. In this case, we remember the <strong>c</strong> before the <strong>y</strong>; when we do the substitution, we substitute <strong>c</strong> in place of <strong>c</strong>, and <strong>ies</strong> in place of <strong>y</strong>. (If we have more than one remembered group, we can use <strong>\2</strong> and <strong>\3</strong> and so on.)</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="parsing_phone_number">Parsing Phone Number with Regular Expressions</div>
+<p>Here are the combinations of possible phone numbers that we have to parse. We should be able to get the area code 415, the trunk 867, and the rest of the phone number 5309. We also need to know the extension if any.</p>
+<ol>
+<li>415-867-5309</li>
+<li>415 867 5309</li>
+<li>415.867.5309</li>
+<li>(415) 867-5309</li>
+<li>1-415-867-5309</li>
+<li>415-867-5309-9999</li>
+<li>415-867-5309x9999</li>
+<li>415-867-5309 ext. 9999</li>
+<li>emergency 1-(415) 867.5309 #9999</li>
+</ol>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_1">1. re.compile(r'^(\d{3})-(\d{3})-(\d{4})$') </div>
+<p>This one matches the beginning (<strong>^</strong>) of the string, and then <strong>(\d{3})</strong>. <br/>
+What's <strong>\d{3}</strong>? <br/>
+<strong>\d</strong> means <strong>any numeric digit</strong> (0 through 9). The <strong>{3}</strong> means <strong>match exactly three numeric digits</strong>. It's a variation on the <strong>{m,n}</strong> syntax which matches an <strong>x</strong> character at least <strong>m</strong> times, but not more than <strong>n</strong> times. <br/>
+Putting it all in parentheses means <strong>match exactly three numeric digits, and then remember them as a group that I can ask for later</strong>. Then match a literal hyphen. Then match another group of exactly three digits. Then another literal hyphen. Then another group of exactly four digits. Then match the end of the string.</p>
+<pre>
+>>> import re
+>>> pattern = <font color="red">re.compile</font>(<font color="red">r'</font>^(\d{3})-(\d{3})-(\d{4})$')
+>>> pattern.search('415-867-5309')
+&lt;_sre.SRE_Match object at 0x02FCDD40&gt;
+>>> pattern.search('415-867-5309').groups()
+('415', '867', '5309')
+</pre>
+<p>The line</p>
+<pre>
+pattern = re.compile(regular expression)
+</pre>
+compiles a regular expression into a regular expression object, which can be used for matching using its <strong>match()</strong> or <strong>search()</strong> methods. The compiled version, <strong>re.compile()</strong>, will be cached. In other words, it saves the resulting regular expression object for reuse which makes it efficient when the expression will be used several times in a single program. 
+<p>For more info on <strong>compile</strong>, visit <a href="python_functions_built_in.html#builtin_compile" target="_blank">Built-in compile</a>.</p>
+<p>Also, note that we used <strong>raw string (r')</strong> in the line</p>
+<pre>
+re.compile(<font color="red">r'</font>^(\d{3})-(\d{3})-(\d{4})$')
+</pre>
+<p>This is to work around so called the backslash plague. The letter <strong>r</strong> tells Python that nothing in this string should be escaped; <strong>'\t'</strong> is a tab character, but <strong>r'\t'</strong> is really the backslash character <strong>\</strong> followed by the letter <strong>t</strong>. We are better off to use raw strings when dealing with regular expressions; otherwise, things get too confusing too quickly. As we know, regular expressions are confusing enough already.</p>
+<p>To get access to the groups that the regular expression parser remembered along the way, we used the <strong>groups()</strong> method on the <strong>MatchObject</strong> that the <strong>search()</strong> method returns. It will return a tuple of however many groups were defined in the regular expression. In this case, we defined three groups, one with three digits, one with three digits, and one with four digits.</p>
+<p>So far, it seems to be working fine. However, it breaks at the following lines:</p>
+<pre>
+>>> pattern.search('415-867-5309-9999')
+>>> pattern.search('415-867-5309-9999').groups()
+Traceback (most recent call last):
+  File "&lt;pyshell#116&gt;", line 1, in <module>
+    pattern.search('415-867-5309-9999').groups()
+AttributeError: 'NoneType' object has no attribute 'groups'
+</module></pre>
+<p>As we see, it doesn't handle a phone number with an extension on the end. For that, we'll need to expand the regular expression. And this is why we should never <strong>chain</strong> the <strong>search()</strong> and <strong>groups()</strong> methods in production code. If the <strong>search()</strong> method returns no matches, it returns <strong>None</strong>, not a regular expression match object. Calling <strong>None.groups()</strong> raises a perfectly obvious exception: <strong>None</strong> doesn't have a <strong>groups()</strong> method.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_2">2. re.compile(r'^(\d{3})-(\d{3})-(\d{4})-(\d+)$')  </div>
+<p>Let's modify the regular expression  a little bit;</p>
+<pre>
+>>> pattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})-<font color="red">(\d+)</font>$')
+>>> pattern.search('415-867-5309-9875').groups()
+('415', '867', '5309', '9875')
+</pre>
+<p>This regular expression is almost identical to the previous one. Just as we did before, we match the beginning of the string, then a remembered group of three digits, then a hyphen, then a remembered group of three digits, then a hyphen, then a remembered group of four digits. What's new is that we then match another hyphen, and a remembered group of <strong>one or more digits</strong> (note that we added <strong>\d+</strong>), then the end of the string. So, the <strong>groups()</strong> method now returns a tuple of four elements, since the regular expression now defines four groups to remember.</p>
+<p>Though it seems to be working, it breaks again as shown below:</p>
+<pre>
+>>> pattern.search('415 867 5309 9999')
+>>> 
+>>> pattern.search('415-867-5309')
+>>> 
+</pre>
+<p>Unfortunately, this regular expression is not the final answer either, because it assumes that the different parts of the phone number are separated by hyphens. What if they're separated by spaces, or commas, or dots? We need a more general solution to match several different types of separators. Not only does this regular expression not do everything we want, it's actually a step backwards, because now we can't parse phone numbers without an extension. That's not what we wanted at all; if the extension is there, we want to know what it is, but if it's not there, we still want to know what the different parts of the main number are.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_3">3. re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')  </div>
+<p>OK, then another regular expression:</p>
+<pre>
+>>> pattern = re.compile(r'^(\d{3})<font color="red">\D+</font>(\d{3})<font color="red">\D+</font>(\d{4})<font color="red">\D+</font>(\d+)$')
+>>> pattern.search('415 867 5309 9999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415-867-5309-9999').groups()
+('415', '867', '5309', '9999')
+>>> 
+</pre>
+<p>We're matching the beginning of the string, then a group of three digits, then <strong>\D+</strong>. What is this doing? Well, <strong>\D</strong> matches any character except a numeric digit, and <strong>+</strong> means <strong>1 or more</strong>. So <strong>\D+</strong> matches one or more characters that are not digits. This is what we're using instead of a literal hyphen, to try to match different separators.</p>
+<p>Using <strong>\D+</strong> instead of <strong>-</strong> means we can now match phone numbers where the parts are separated by spaces instead of hyphens. Of course, phone numbers separated by hyphens still work too.</p>
+<p>However, this is still not the final answer, because it assumes that there is a separator at all. What if the phone number is entered without any spaces or hyphens at all? It fails:</p>
+<pre>
+>>> pattern.search('41586753099999')
+>>> 
+</pre>
+<p>The regular expression fails even the easier one we've been passed before:</p>
+<pre>
+>>> pattern.search('415-867-5309')
+>>> 
+</pre>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_4">4. re.compile(r'^(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')  </div>
+<p>We have two problems with the regular expression in the previous section, but we can solve both of them with the same technique:</p>
+<pre>
+>>> pattern = re.compile(r'^(\d{3})<font color="red">\D*</font>(\d{3})<font color="red">\D*</font>(\d{4})<font color="red">\D*</font>(<font color="red">\d*</font>)$')
+>>> pattern.search('41586753099999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415.867.5309 x9999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415-867-5309').groups()
+('415', '867', '5309', '')
+</pre>
+<p>The only change we've made since that last step is changing all the <strong>+</strong> to <strong>*</strong>. Instead of <strong>\D+</strong> between the parts of the phone number, we now match on <strong>\D*</strong>. Remember that <strong>+</strong> means <strong>1 or more</strong>? Well, <strong>*</strong> means <strong>zero or more</strong>. So now we should be able to parse phone numbers even when there is no separator character at all.</p>
+It actually works. <br/>
+Why? <br/>
+We matched the beginning of the string, then a remembered group of three digits (415), then zero non-numeric characters, then a remembered group of three digits (867), then zero non-numeric characters, then a remembered group of four digits (5309), then zero non-numeric characters, then a remembered group of an arbitrary number of digits (9999), then the end of the string. Other variations work now too: dots instead of hyphens, and both a space and an x before the extension.
+<p>However, we're not finished yet:</p>
+<pre>
+>>> pattern.search('(415)8675309 x9999')
+>>> 
+</pre>
+What's the problem here? There's an extra character '<strong>(</strong>' before the area code, but the regular expression assumes that the area code is the first thing at the beginning of the string. No problem, we can use the same technique of <strong>zero or more non-numeric characters</strong> to skip over the leading characters before the area code.
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_5">5. re.compile(r'^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')  </div>
+<p>What regular expression we're going to use to parse the extra character before the area code?</p>
+<pre>
+>>> pattern = re.compile(r'^<font color="red">\D*</font>(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')
+>>> pattern.search('(415)8675309 x9999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415-867-5309').groups()
+('415', '867', '5309', '')
+</pre>
+<p>This is the same as in the previous example, except now we're matching <strong>\D*</strong>, zero or more non-numeric characters, before the first remembered group (the area code). Notice that we're not remembering these non-numeric characters (they're not in parentheses). If we find them, we'll just skip over them and then start remembering the area code whenever we get to it.
+We can successfully parse the phone number, even with the leading left parenthesis before the area code. (The right parenthesis after the area code is already handled; it's treated as a non-numeric separator and matched by the <strong>\D*</strong> after the first remembered group.)</p>
+<p>Since the leading characters are entirely optional, this matches the beginning of the string, then zero non-numeric characters, then a remembered group of three digits (415), then one non-numeric character (the hyphen), then a remembered group of three digits (867), then one non-numeric character (the hyphen), then a remembered group of four digits (5309), then zero non-numeric characters, then a remembered group of zero digits, then the end of the string.</p>
+<p>Again, here is a phone number we fail:</p>
+<pre>
+>>> pattern.search('emergency 1-(415) 867.5309 #9999')
+>>> 
+</pre>
+<p>Why doesn't this phone number match? That's because we assumed that all the leading characters before the area code were non-numeric characters by putting <strong>\D*</strong> but there's a <strong>1</strong> before the area code.</p>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_6">6. re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')  </div>
+<p>So far, the regular expressions have all matched from the beginning of the string. But now we see that there may be an indeterminate amount of stuff at the beginning of the string that we want to ignore. Rather than trying to match it all just so we can skip over it, let's take a different approach:<br/>
+ don't explicitly match the beginning of the string at all. </p>
+<pre>
+>>> pattern = re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')
+>>> pattern.search('emergency 1-(415) 867.5309 #9999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415-867-5309').groups()
+('415', '867', '5309', '')
+>>> pattern.search('(415)86753099999').groups()
+('415', '867', '5309', '9999')
+</pre>
+<p>Note the lack of <font color="red"><strong>^</strong></font> in this regular expression. We are not matching the beginning of the string anymore. There's nothing that says we need to match the entire input with our regular expression. The regular expression engine will do the hard work of figuring out where the input string starts to match, and go from there.</p>
+<p>Now we can successfully parse a phone number that includes leading characters and a leading digit, plus any number of any kind of separators around each part of the phone number.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="parsing_phone_number_7">7. re.compile(''' ''', re.VERBOSE)  </div>
+<p>As we realized, regular expressions are difficult to read, and even if we figure out what one does, there's no guarantee that we'll be able to understand it later. So, what we really need is inline documentation.</p>
+<p>
+Python allows us to do this with something called <strong>verbose regular expressions</strong>. A verbose regular expression is different from a compact regular expression in two ways:</p>
+<ol>
+<li>Whitespace is ignored. Spaces, tabs, and carriage returns are not matched as spaces, tabs, and carriage returns. They're not matched at all. If we want to match a space in a verbose regular expression, we'll need to escape it by putting a backslash in front of it)</li>
+<li>Comments are ignored. A comment in a verbose regular expression is just like a comment in Python code: it starts with a # character and goes until the end of the line. In this case it's a comment within a multi-line string instead of within our source code, but it works the same way.</li>
+</ol>
+<pre>
+>>> pattern = re.compile(r<font color="red">'''</font>
+                # don't match beginning of string, number can start anywhere
+    (\d{3})     # area code is 3 digits (e.g. '415')
+    \D*         # optional separator is any number of non-digits
+    (\d{3})     # trunk is 3 digits (e.g. '867')
+    \D*         # optional separator
+    (\d{4})     # rest of number is 4 digits (e.g. '5309')
+    \D*         # optional separator
+    (\d*)       # extension is optional and can be any number of digits
+    $           # end of string
+    <font color="red">'''</font>, <font color="red">re.VERBOSE</font>)
+>>> pattern.search('emergency 1-(415) 867.5309 #9999').groups()
+('415', '867', '5309', '9999')
+>>> pattern.search('415-867-5309').groups()
+('415', '867', '5309', '')
+>>> pattern.search('(415)86753099999').groups()
+('415', '867', '5309', '9999')
+>>> 
+</pre>
+<p>The most important thing to remember when using verbose regular expressions is that we need to pass an extra argument when working with them: <strong>re.VERBOSE</strong> is a constant defined in the re module that signals that the pattern should be treated as a verbose regular expression. As we can see, this pattern has quite a bit of whitespace (all of which is ignored), and several comments (all of which are ignored). Once we ignore the whitespace and the comments, this is exactly the same regular expression as we saw in our previous sections, but it's a lot more readable.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle" id="reg_ex1">Recursive string replacing</div>
+<p>The following example shows:</p>
+<ol>
+<li>Recursive file /directory searching</li>
+<li>Replacing a string in each file using regular expression</li>
+<li>In <b>listFiles()</b>, list of sub directories is constructed if it's a directory. Otherwise, file extension is checked. Then, the fullpath of the file will be passed to <b>string_replace()</b> function.</li>
+<li>In the <b>string_replace()</b> function, two files are opened: the file which is passed from <b>listFiles()</b>, and the other one is a new file to write line by line from the input file. After finishing the writing, old file will be removed and then the new file will be renamed with the same name that has been passed.</li>
+</ol>
+<p>Actually, I want to replace 2013 with 2014 in my web pages which are under various directories:</p>
+<pre>
+&lt;title&gt;Python Tutorial: Regular Expressions with Python - 2013&lt;/title&gt;
+...
+&lt;div style="padding: 10px;"&gt;
+&lt;span class="titletext"&gt;Regular Expressions with Python - 2013    &lt;g:plusone&gt;&lt;/g:plusone&gt;
+&lt;/span&gt;&lt;/div&gt;
+...
+</pre>
+<p>Here is the python code:</p>
+<pre>
+import re
+import os
+
+def string_replace(fname):
+
+   pattern1 = '&lt;title&gt;\D*\d*\D*\d*2013\D*\d*&lt;/title&gt;'
+   pattern2 = '2013\D*\d*&lt;g:plusone&gt;'
+
+   fname_new = 'temp'
+   f = open(fname, 'r')
+   fnew = open(fname_new, 'w')
+
+   for string in f:
+      if(re.search(pattern1, string) or re.search(pattern2, string)):
+         newline = re.sub('2013', '2014', string)
+         fnew.write(newline)
+	 print fname, ':' , newline
+      else:
+         fnew.write(string)
+
+   f.close()
+   fnew.close()
+   os.remove(fname)
+   os.rename(fname_new, fname)
+
+
+def listFiles(dir):
+    basedir = dir
+    print 'current basedir=', basedir
+    print "Files in ", os.path.abspath(dir), ": "
+    subdirlist = []
+    for item in os.listdir(dir):
+	#print 'checking if item is a file or a dir', item
+	fullpath = os.path.join(basedir,item)
+        if os.path.isdir(fullpath):
+            print  'dir item=',fullpath
+	    subdirlist.append(fullpath)
+        else:
+	    print 'file item=',fullpath
+	    if(item.endswith('.php') or item.endswith('.html')):
+	       # print 'file to be processed ********', item
+	       print 'file to be processed = ', fullpath
+	       string_replace(fullpath)
+
+            
+    print '------ new dir ----'
+    print 'subdirlist =', subdirlist
+    for subdir in subdirlist:
+        listFiles(subdir)
+
+# call this to repalce "2013" with "2014" in *.php or *.html
+listFiles('/www_root_directory/');
+</pre>
+<br/>
+<br/>
+<p<div class="subtitle_2nd" id="Note">Note</p<div>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                
+<br /><br />
+
+
+<div>
+<br><br>
+<h1>Python tutorial</h1>
+   <br><br>
+   <a href="pytut.html">Python Home</a> 
+   <br><br>
+   <a href="python_introduction.html">Introduction</a> 
+   <br><br>
+   <a href="python_running.html">Running Python Programs (os, sys, import)</a> 
+   <br><br>
+   <a href="python_modules_idle.html">Modules and IDLE (Import, Reload, exec)</a> 
+   <br><br>
+   <a href="python_numbers_strings.html">Object Types - Numbers, Strings, and None</a> 
+   <br><br>
+   <a href="python_strings.html">Strings - Escape Sequence, Raw String, and Slicing</a> 
+   <br><br>
+   <a href="python_strings_method.html">Strings - Methods</a> 
+   <br><br>
+   <a href="python_string_formatting.html">Formatting Strings - expressions and method calls</a> 
+   <br><br>
+   <a href="python_files.html">Files and os.path</a> 
+   <br><br>
+   <a href="python_traversing_directory_tree_recursively_os_walk.html">Traversing directories recursively</a> 
+   <br><br>
+   <a href="python_subprocess_module.html">Subprocess Module</a> 
+   <br><br>
+   <a href="python_regularExpressions.html">Regular Expressions with Python</a> 
+   <br><br>
+   <a href="python_lists.html">Object Types - Lists</a> 
+   <br><br>
+   <a href="python_dictionaries_tuples.html">Object Types - Dictionaries and Tuples</a> 
+   <br><br>
+   <a href="python_functions_def.html">Functions def, *args, **kargs</a> 
+   <br><br>
+   <a href="python_functions_lambda.html">Functions lambda</a> 
+   <br><br>
+   <a href="python_functions_built_in.html">Built-in Functions</a> 
+   <br><br>
+   <a href="python_fncs_map_filter_reduce.html">map, filter, and reduce</a> 
+   <br><br>
+   <a href="python_decorators.html">Decorators</a> 
+   <br><br>
+   <a href="python_list_comprehension.html">List Comprehension</a> 
+   <br><br>
+   <a href="python_sets_union_intersection.html">Sets (union/intersection) and itertools - Jaccard coefficient and shingling to check plagiarism</a> 
+   <br><br>
+   <a href="python_hash_tables_hashing_dictionary_associated_arrays.html">Hashing (Hash tables and hashlib)</a> 
+   <br><br>
+   <a href="python_dictionary_comprehension_with_zip_from_list.html">Dictionary Comprehension with zip</a> 
+   <br><br>
+   <a href="python_function_with_yield_keyword_is_a_generator_iterator_next.html">The yield keyword</a> 
+   <br><br>
+   <a href="python_generators.html">Generator Functions and Expressions</a> 
+   <br><br>
+   <a href="python_function_with_generator_send_method_yield_keyword_iterator_next.html">generator.send() method</a> 
+   <br><br>
+   <a href="python_iterators.html">Iterators</a> 
+   <br><br>
+   <a href="python_classes_instances.html">Classes and Instances (__init__, __call__, etc.)</a>
+   <br><br>
+   <a href="python_if__name__equals__main__.html">if__name__ == '__main__'</a>
+   <br><br>
+   <a href="python_argparse.html">argparse</a>
+   <br><br>
+   <a href="python_try_except_finally_raise_syntax_error.html">Exceptions</a>
+   <br><br>
+   <a href="python_differences_between_static_method_and_class_method_instance_method.html">@static method vs class method</a>
+   <br><br>
+   <a href="python_private_attributes_methods.html">Private attributes and private methods</a>
+   <br><br>
+   <a href="python_bits_bytes_bitstring_constBitStream.html">bits, bytes, bitstring, and constBitStream</a>
+   <br><br>
+   <a href="python-json-dumps-loads-file-read-write.html">json.dump(s) and json.load(s)</a>
+   <br><br>
+   <a href="python_serialization_pickle_json.html">Python Object Serialization - pickle and json</a>
+   <br><br>
+   <a href="python_yaml_json_conversion.html">Python Object Serialization - yaml and json</a>
+   <br><br>
+   <a href="python_PriorityQueue_heapq_Data_Structure.html">Priority queue and heap queue data structure</a>
+   <br><br>
+   <a href="python_graph_data_structures.html">Graph data structure</a>
+   <br><br>
+   <a href="python_Dijkstras_Shortest_Path_Algorithm.html">Dijkstra's shortest path algorithm</a>
+   <br><br>
+   <a href="python_Prims_Spanning_Tree_Data_Structure.html">Prim's spanning tree algorithm</a>
+   <br><br>
+   <a href="python_closure.html">Closure</a>
+   <br><br>
+   <a href="python_functional_programming.html">Functional programming in Python</a>
+   <br><br>
+   <a href="python_ssh_remote_run.html">Remote running a local file using ssh </a>
+   <br><br>
+   <a href="python_sqlite_connect_create_drop_table.html">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a>
+   <br><br>
+   <a href="python_sqlite_select_update_delete.html">SQLite 3 - B. Selecting, updating and deleting data</a>
+   <br><br>
+   <a href="MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.html">MongoDB with PyMongo I - Installing MongoDB ...</a>
+   <br><br>
+   <a href="python_http_web_services.html">Python HTTP Web Services - urllib, httplib2</a>
+   <br><br>
+   <a href="python_Web_scraping_with_selenium_for_domain_availability.html">Web scraping with Selenium for checking domain availability</a>
+   <br><br>
+   <a href="python-REST-API-Http-Requests-for-Humans-with-Flask.html">REST API : Http Requests for Humans with Flask</a>
+   <br><br>
+   <a href="Tornado/Python_Tornado_Blog_App.html">Blog app with Tornado</a>
+   <br><br>
+   <a href="Multithread/python_multithreading_creating_threads.html">Multithreading ...</a>
+   <br><br>
+   <a href="python_network_programming_server_client.html">Python Network Programming I - Basic Server / Client : A Basics</a>
+   <br><br>
+   <a href="python_network_programming_server_client_file_transfer.html">Python Network Programming I - Basic Server / Client : B File Transfer</a>
+   <br><br>
+   <a href="python_network_programming_tcp_server_client_chat_server_chat_client_select.html">Python Network Programming II - Chat Server / Client</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers.html">Python Network Programming III - Echo Server using socketserver network framework</a>
+   <br><br>
+   <a href="python_network_programming_socketserver_framework_for_network_servers_asynchronous_request_ThreadingMixIn_ForkingMixIn.html">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a>
+   <br><br>
+   <a href="python_interview_questions.html">Python Interview Questions I</a> 
+   <br><br>
+   <a href="python_interview_questions_2.html">Python Interview Questions II</a> 
+   <br><br>
+   <a href="python_interview_questions_3.html">Python Interview Questions III</a> 
+   <br><br>
+   <a href="python_interview_questions_4.html">Python Interview Questions IV</a> 
+   <br><br>
+   <a href="python_interview_questions_5.html">Python Interview Questions V</a> 
+   <br><br>
+   <a href="python_image_processing_with_Pillow_library.html">Image processing with Python image library Pillow</a> 
+   <br><br>
+   <a href="python_cpp_sip.html">Python and C++ with SIP</a> 
+   <br><br>
+   <a href="pydev_eclipse_plugin_install_python_IDE.html">PyDev with Eclipse</a> 
+   <br><br>
+   <a href="python_matplotlib.html">Matplotlib</a> 
+   <br><br>
+   <a href="python_redis_with_python.html">Redis with Python</a> 
+   <br><br>
+   <a href="python_numpy_array_tutorial_basic_A.html">NumPy array basics A</a> 
+   <br><br>
+   <a href="python_numpy_matrix_tutorial.html">NumPy Matrix and Linear Algebra</a> 
+   <br><br>
+   <a href="python_Pandas_NumPy_Matplotlib.html">Pandas with NumPy and Matplotlib</a> 
+   <br><br>
+   <a href="python_cellular_automata.html">Celluar Automata</a> 
+   <br><br>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.html">Longest Common Substring Algorithm</a> 
+   <br><br>
+   <a href="python_unit_testing.html">Python Unit Test - TDD using unittest.TestCase class</a> 
+   <br><br>
+   <a href="python_site_page_ranking_by_keywords.html">Simple tool - Google page ranking by keywords</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_HelloWorld.html">Google App Hello World</a> 
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_WebApp2_WSGI.html">Google App webapp2 and WSGI</a>
+   <br><br>
+   <a href="GoogleApp/python_GoogleApp_Uploading_HelloWorld.html">Uploading Google App Hello World</a> 
+   <br><br>
+   <a href="python_differences_Python2_vs_Python3_port.html">Python 2 vs Python 3</a> 
+   <br><br>
+   <a href="python_virtualenv_virtualenvwrapper.html">virtualenv and virtualenvwrapper</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_S3_uploading_large_file.html">Uploading a big file to AWS S3 using boto module</a> 
+   <br><br>
+   <a href="../DevOps/AWS/aws_stopping_starting_instances.html">Scheduled stopping and starting an AWS instance</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_CDH5_stop_start_services.html">Cloudera CDH5 - Scheduled stopping and starting services</a> 
+   <br><br>
+   <a href="python_Rackspace_API_curl_subprocess_Cloud_Files.html">Removing Cloud Files - Rackspace API with curl and subprocess</a> 
+   <br><br>
+   <a href="python-Windows-Check-if-a-Process-is-Running-Hanging-Schtasks-Run-Stop.html">Checking if a process is running/hanging and stop/run a scheduled task on Windows</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_PySpark.html">Apache Spark 1.3 with PySpark (Spark Python API) Shell</a> 
+   <br><br>
+   <a href="../Hadoop/BigData_hadoop_Apache_Spark_Streaming.html">Apache Spark 1.2 Streaming</a> 
+   <br><br>
+   <a href="Bottle/Python_Bottle_Framework.html">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> 
+   <br><br>
+   <a href="Flask/Python_Flask_Blog_App_Production_with_MongoDB_and_Apache_WSGI.html">Flask app with Apache WSGI on Ubuntu14/CentOS7 ...</a> 
+   <br><br>
+   <a href="python_Selenium_WebDriver.html">Selenium WebDriver</a> 
+   <br><br>
+   <a href="Fabric/python_Fabric.html">Fabric - streamlining the use of SSH for application deployment</a> 
+   <br><br>
+   <a href="../DevOps/Ansible/Ansible_SettingUp_Webservers_Nginx_Install_Env_Configure_Deploy_App.html" target="_blank">Ansible Quick Preview - Setting up web servers with Nginx, configure enviroments, and deploy an App</a>
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="NLTK/NLTK_install.html">NLP - NLTK (Natural Language Toolkit) ...</a> 
+   <br><br>
+   <a href="RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.html">RabbitMQ(Message broker server) and Celery(Task queue) ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html">OpenCV3 and Matplotlib ...</a> 
+   <br><br>
+   <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">Simple tool - Concatenating slides using FFmpeg ...</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="IPython/IPython_Jupyter_Install_iPython_Notebook_Matplotlib_Publishing_it_to_Github.html">iPython and Jupyter - Install Jupyter, iPython Notebook, drawing with Matplotlib, and publishing it to Github</a> 
+   <br><br>
+   <a href="IPython/iPython_Jupyter_Notebook_with_Embedded_D3.html">iPython and Jupyter Notebook with Embedded D3.js</a> 
+   <br><br>
+   <a href="../VideoStreaming/YouTube/youtube-dl-embedding.html">Downloading YouTube videos using youtube-dl embedded with Python</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html">Machine Learning : scikit-learn ...</a> 
+   <br><br>
+   <a href="Django/Python_Django_tutorial_introduction.html">Django 1.6/1.8 Web Framework ...</a> 
+</div>
+<br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<br><br><br>
+<h1>OpenCV 3 image and video processing with Python</h1>
+
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3.html" target="_blank">OpenCV 3 with Python</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">Image - OpenCV BGR : Matplotlib RGB</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">Basic image operations - pixel access</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">iPython - Signal Processing with NumPy</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">Signal Processing with NumPy I - FFT and DFT for sine, square waves, unitpulse, and random signal</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">Inverse Fourier Transform of an Image with low pass filter: cv2.idft() </a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">Image Histogram</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">Video Capture and Switching colorspaces - RGB / HSV</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">Adaptive Thresholding - Otsu's clustering-based image thresholding</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">Edge Detection - Sobel and Laplacian Kernels</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">Canny Edge Detection</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">Hough Transform - Circles</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">Watershed Algorithm : Marker-based Segmentation I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">Watershed Algorithm : Marker-based Segmentation II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">Image noise reduction : Non-local Means denoising algorithm</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">Image object detection : Face detection using Haar Cascade Classifiers</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">Video : Mean shift object tracking</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">Machine Learning : Clustering - K-Means clustering I</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization_2.html" target="_blank">Machine Learning : Clustering - K-Means clustering II</a> 
+   <br><br>
+   <a href="OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm</a> 
+
+
+<br />
+<br />
+
+<br><br><br>
+<h1>Machine Learning with scikit-learn</h1>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_install.html" target="_blank">scikit-learn installation</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_features_extraction.html" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_quick_preview.html" target="_blank">scikit-learn : Machine Learning Quick Preview</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-Missing-Data-Categorical-Data.php" target="_blank">scikit-learn : Data Preprocessing I - Missing / Categorical data</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-II-Datasets-Partitioning-Feature-scaling-Feature-Selection-Regularization.html" target="_blank">scikit-learn : Data Preprocessing II - Partitioning a dataset / Feature scaling / Feature Selection / Regularization</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Preprocessing-III-Dimensionality-reduction-via-Sequential-feature-selection-Assessing-feature-importance-via-random-forests.html" target="_blank">scikit-learn : Data Preprocessing III - Dimensionality reduction vis Sequential feature selection / Assessing feature importance via random forests</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_1_Principal_component_analysis%20_PCA.html" target="_blank">Data Compression via Dimensionality Reduction I - Principal component analysis (PCA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_2_Linear_Discriminant_Analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction II - Linear Discriminant Analysis (LDA)</a>
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Data_Compresssion_via_Dimensionality_Reduction_3-nonlinear-mappings-via-kernel-principal-component-analysis.html" target="_blank">scikit-learn : Data Compression via Dimensionality Reduction III - Nonlinear mappings via kernel principal component (KPCA) analysis</a>
+   <br><br>
+   <a href="scikit-learn/scikit-learn_logistic_regression.html" target="_blank">scikit-learn : Logistic Regression, Overfitting & regularization</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">scikit-learn : Supervised Learning & Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">scikit-learn : Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)</a> 
+   <br><br>
+   <a href="scikit-learn/scikt_machine_learning_Decision_Tree_Learning_Informatioin_Gain_IG_Impurity_Entropy_Gini_Classification_Error.php" target="_blank">scikit-learn : Decision Tree Learning I - Entropy, Gini, and Information Gain</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Constructing_Decision_Tree_Learning_Information_Gain_IG_Impurity_Entropy_Gini_Classification_Error.html" target="_blank">scikit-learn : Decision Tree Learning II - Constructing the Decision Tree</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Random_Decision_Forests_Ensemble_Learning_Classification.html" target="_blank">scikit-learn : Random Decision Forests Classification</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM_2.html" target="_blank">scikit-learn : Support Vector Machines (SVM) II</a> 
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_1.html" target="_blank">Flask with Embedded Machine Learning I : Serializing with pickle and DB setup</a></li>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_2.html" target="_blank">Flask with Embedded Machine Learning II : Basic Flask App</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_3.html" target="_blank">Flask with Embedded Machine Learning III : Embedding Classifier</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_4.html" target="_blank">Flask with Embedded Machine Learning IV : Deploy</a>
+    <br><br>
+    <a href="Flask/Python_Flask_Embedding_Machine_Learning_5.html" target="_blank">Flask with Embedded Machine Learning V : Updating the classifier</a>
+   <br><br>
+   <a href="scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.html" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> 
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Machine learning algorithms and concepts</h3>
+   <a href="python_numpy_batch_gradient_descent_algorithm.html">Batch gradient descent algorithm</a> 
+   <br><br>
+   <a href="scikit-learn/Perceptron_Model_with_Iris_DataSet.html" target="_blank">Single Layer Neural Network - Perceptron model on the Iris dataset using Heaviside step activation function</a>
+   <br><br> 
+   <a href="scikit-learn/scikit-learn_batch-gradient-descent-versus-stochastic-gradient-descent.html" target="_blank">Batch gradient descent versus stochastic gradient descent</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron.html" target="_blank">Single Layer Neural Network - Adaptive Linear Neuron using linear (identity) activation function with batch gradient descent method</a>
+   <br><br> 
+   <a href="scikit-learn/Single-Layer-Neural-Network-Adaptive-Linear-Neuron-with-Stochastic-Gradient-Descent.html" target="_blank">Single Layer Neural Network : Adaptive Linear Neuron using linear (identity) activation function with stochastic gradient descent (SGD)</a>
+   <br><br> 
+   <a href="scikit-learn/logistic_regression.html" target="_blank">Logistic Regression</a> 
+   <br><br>
+   <a href="scikit-learn/scikit_machine_learning_VC_Dimension_Shatter.html" target="_blank">VC (Vapnik-Chervonenkis) Dimension and Shatter</a> 
+   <br><br> 
+   <a href="scikit-learn/scikit_machine_learning_Bias-variance-Tradeoff.html" target="_blank">Bias-variance tradeoff</a> 
+   <br><br> 
+   <a href="scikit-learn/Maximum-Likelyhood-Estimation-MLE.html" target="_blank">Maximum Likelihood Estimation (MLE)</a> 
+   <br><br>
+   <a href="python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.html">Neural Networks with backpropagation for XOR using one hidden layer</a> 
+   <br><br>
+   <a href="../Algorithms/minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.html">minHash</a>
+   <br><br>
+   <a href="../Algorithms/tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.html">tf-idf weight</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_1.html">Natural Language Processing (NLP): Sentiment Analysis I (IMDb & bag-of-words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_2.html">Natural Language Processing (NLP): Sentiment Analysis II (tokenization, stemming, and stop words)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_3.html">Natural Language Processing (NLP): Sentiment Analysis III (training & cross validation)</a>
+   <br><br>
+   <a href="../Algorithms/Machine_Learning_NLP_Sentiment_Analysis_4.html">Natural Language Processing (NLP): Sentiment Analysis IV (out-of-core)</a>
+   <br><br>
+   <a href="../Algorithms/Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.html">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a>
+
+   <br><br>
+   <hr>
+   <br><br>
+   <h3>Artificial Neural Networks (ANN)</h3>
+
+   [Note] <a href="https://github.com/Einsteinish/Artificial-Neural-Networks-with-Jupyter.git" target="_blank">Sources are available at Github - Jupyter notebook files</a> 
+
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html" target="_blank">1. Introduction</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-2-Forward-Propagation.html" target="_blank">2. Forward Propagation</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-3-Gradient-Descent.html" target="_blank">3. Gradient Descent</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-4-Backpropagation.html" target="_blank">4. Backpropagation of Errors</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-5-Checking-Gradient.html" target="_blank">5. Checking gradient</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-6-Training-via-BFGS-Broyden-Fletcher-Goldfarb-Shanno-algorithm-a-variant-of-gradient-descent.html" target="_blank">6. Training via BFGS</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-7-Overfitting-Regularization.html" target="_blank">7. Overfitting & Regularization</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-8-Deep-Learning-1-Image-Recognition-Image-Uploading.html" target="_blank">8. Deep Learning I : Image Recognition (Image uploading)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-9-Deep-Learning-2-Image-Recognition-Image-Classification.html" target="_blank">9. Deep Learning II : Image Recognition (Image classification)</a> 
+   <br><br>
+   <a href="scikit-learn/Artificial-Neural-Network-ANN-10-Deep-Learning-3-Theano-TensorFlow-Keras.html" target="_blank">10 - Deep Learning III : Deep Learning III : Theano, TensorFlow, and Keras</a>
+<br />
+<br />
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/python/python_regularExpressions.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 10:08:33 GMT -->
+</html>
+

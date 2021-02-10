@@ -1,0 +1,4275 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/linkedlist.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:19:13 GMT -->
+<head>
+  <title>C++ Tutorial: Linked List - 2017</title>
+  <meta content="C++ Tutorial: Linked List, Source Code" name="description" />
+  <meta content="C++ Tutorial, Linked List: Examples, Stack with linked list data structure, Detecting circular (loop) linked list, intersection, union, generic linked list, template" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="../Android/android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">C++ Tutorial - Linked List Examples - 2017        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+                 <img src="images/cplusplus_icon.png" alt="cplusplus_icon.png"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<div class="subtitle" id="linkedlists">Linked Lists</div>
+<p>A <strong>linked list</strong> is a basic data structure where each item contains the information that we need to get to the next item.</p>
+<p>The main advantage of linked lists over arrays is that the links provide us with the capability to rearrange the item efficiently. This flexibility is gained at the expense of quick access to any arbitrary item in the list, because the only way to access to an item in the list is to follow links from the beginning.</p>
+<br/>
+<br/>
+<div class="subtitle" id="linkedlistexamples">Linked List Examples</div>
+<p>The following examples are for the linked list. Inside each example, we have several operations:</p>
+<ol>
+<li>Reversing the linked list (#1, #3, #4)</li>
+<li>Copying the linked list(#1)</li>
+<li>Detecting circular (loop) linked list(#5)</li>
+<li>Comparing the two linked list(#1)</li>
+<li>Deleting the linked list(#1)</li>
+<li>Adding, deleting, inserting, and searching a node (all examples)</li>
+<li>Stack implementation with linked list (#6, #7)</li>
+<li>Finding intersection and union of two lists (#8)</li>
+</ol>
+<br/>
+<br/>
+<p>Also, there is another set of linked list <a href="quiz_linkedlist.html" target_blank">quiz</a>.</p>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample1">Example 1</div>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+struct Node {
+	int data;
+	Node* next;
+};
+
+// only for the 1st Node
+void initNode(struct Node *head,int n){
+	head-&gt;data = n;
+	head-&gt;next =NULL;
+}
+
+// apending
+void addNode(struct Node *head, int n) {
+	Node *newNode = new Node;
+	newNode-&gt;data = n;
+	newNode-&gt;next = NULL;
+
+	Node *cur = head;
+	while(cur) {
+		if(cur-&gt;next == NULL) {
+			cur-&gt;next = newNode;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void insertFront(struct Node **head, int n) {
+	Node *newNode = new Node;
+	newNode-&gt;data = n;
+	newNode-&gt;next = *head;
+	*head = newNode;
+}
+
+struct Node *searchNode(struct Node *head, int n) {
+	Node *cur = head;
+	while(cur) {
+		if(cur-&gt;data == n) return cur;
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; "No Node " &lt;&lt; n &lt;&lt; " in list.\n";
+}
+
+bool deleteNode(struct Node **head, Node *ptrDel) {
+	Node *cur = *head;
+	if(ptrDel == *head) {
+		*head = cur-&gt;next;
+		delete ptrDel;
+		return true;
+	}
+	
+	while(cur) {
+		if(cur-&gt;next == ptrDel) {
+			cur-&gt;next = ptrDel-&gt;next;
+			delete ptrDel;
+			return true;
+		}
+		cur = cur-&gt;next;
+	}
+	return false;
+}
+
+/* reverse the list */
+struct Node* reverse(struct Node** head) 
+{
+	Node *parent = *head;
+	Node *me = parent-&gt;next;
+	Node *child = me-&gt;next;
+
+	/* make parent as tail */
+	parent-&gt;next = NULL;
+	while(child) {
+		me-&gt;next = parent;
+		parent = me;
+		me = child;
+		child = child-&gt;next;
+	}
+	me-&gt;next = parent;
+	*head = me;
+	return *head;
+}
+
+/* Creating a copy of a linked list */
+void copyLinkedList(struct Node *node, struct Node **pNew)
+{
+	if(node != NULL) {
+		*pNew = new Node;
+		(*pNew)-&gt;data = node-&gt;data;
+		(*pNew)-&gt;next = NULL;
+		copyLinkedList(node-&gt;next, &amp;((*pNew)-&gt;next));
+	}
+}
+
+/* Compare two linked list */
+/* return value: same(1), different(0) */
+int compareLinkedList(struct Node *node1, struct Node *node2)
+{
+	static int flag;
+
+	/* both lists are NULL */
+	if(node1 == NULL &amp;&amp; node2 == NULL) {
+		flag = 1;
+	}
+	else {
+		if(node1 == NULL || node2 == NULL) 
+			flag = 0;
+		else if(node1-&gt;data != node2-&gt;data) 
+			flag = 0;
+		else
+			compareLinkedList(node1-&gt;next, node2-&gt;next);
+	}
+
+	return flag;
+}
+
+void deleteLinkedList(struct Node **node)
+{
+	struct Node *tmpNode;
+	while(*node) {
+		tmpNode = *node;
+		*node = tmpNode-&gt;next;
+		delete tmpNode;
+	}
+}
+
+void display(struct Node *head) {
+	Node *list = head;
+	while(list) {
+		cout &lt;&lt; list-&gt;data &lt;&lt; " ";
+		list = list-&gt;next;
+	}
+	cout &lt;&lt; endl;
+	cout &lt;&lt; endl;
+}
+
+int main() 
+{
+	struct Node *newHead;
+	struct Node *head = new Node;
+	
+	initNode(head,10);
+	display(head);
+
+	addNode(head,20);
+	display(head);
+
+	addNode(head,30);
+	display(head);
+
+	addNode(head,35);
+	display(head);
+
+	addNode(head,40);
+	display(head);
+
+	insertFront(&amp;head;,5);
+	display(head);
+
+	int numDel = 5;
+	Node *ptrDelete = searchNode(head,numDel);
+	if(deleteNode(&amp;head;,ptrDelete)) 
+		cout &lt;&lt; "Node "&lt;&lt; numDel &lt;&lt; " deleted!\n";
+	display(head);
+
+	cout &lt;&lt; "The list is reversed\n";
+	reverse(&amp;head;);
+	display(head);
+
+	cout &lt;&lt; "The list is copied\n";
+	copyLinkedList(head,&amp;newHead;);
+	display(newHead);
+
+	cout &lt;&lt; "Comparing the two lists...\n";
+	cout &lt;&lt; "Are the two lists same?\n";
+	if(compareLinkedList(head,newHead)) 
+		cout &lt;&lt; "Yes, they are same!\n";
+	else
+		cout &lt;&lt; "No, they are different!\n";
+	cout &lt;&lt; endl;
+
+	numDel = 35;
+	ptrDelete = searchNode(newHead,numDel);
+	if(deleteNode(&amp;newHead;,ptrDelete)) {
+		cout &lt;&lt; "Node "&lt;&lt; numDel &lt;&lt; " deleted!\n";
+		cout &lt;&lt; "The new list after the delete is\n";
+		display(newHead);
+	}
+	cout &lt;&lt; "Comparing the two lists again...\n";
+	cout &lt;&lt; "Are the two lists same?\n";
+	if(compareLinkedList(head,newHead)) 
+		cout &lt;&lt; "Yes, they are same!\n";
+	else
+		cout &lt;&lt; "No, they are different!\n";
+    
+	cout &lt;&lt; endl;
+	cout &lt;&lt; "Deleting the copied list\n";
+	deleteLinkedList(&amp;newHead;);
+	display(newHead);
+	return 0;
+}
+</pre>
+<p>Output from the run:</p>
+<pre>
+10
+
+10 20
+
+10 20 30
+
+10 20 30 35
+
+10 20 30 35 40
+
+5 10 20 30 35 40
+
+Node 5 deleted!
+10 20 30 35 40
+
+The list is reversed
+40 35 30 20 10
+
+The list is copied
+40 35 30 20 10
+
+Comparing the two lists...
+Are the two lists same?
+Yes, they are same!
+
+Node 35 deleted!
+The new list after the delete is
+40 30 20 10
+
+Comparing the two lists again...
+Are the two lists same?
+No, they are different!
+
+Deleting the copied list
+</pre>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample2">Example 2</div>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+struct node {
+	int data;
+	struct node * next;
+};
+
+node *head = NULL;
+
+// returning the pointer to the element 
+// whose data is less than or equal to input data
+struct node *searchNode(int n) {
+	if(head == NULL) return head;
+	node *cur = head;
+	node *prev = head;
+	while(cur) {
+		if(cur-&gt;data == n) return cur;
+		if(cur-&gt;data &gt; n) return prev;
+		prev = cur;
+		cur = cur-&gt;next;
+	}
+}
+
+// returning the pointer to the element 
+// whose data is equal to input data
+struct node *searchNode2(int n) {
+	if(head == NULL) return head;
+	node *cur = head;
+	node *prev = head;
+	while(cur) {
+		if(cur-&gt;data == n) return cur;
+		prev = cur;
+		cur = cur-&gt;next;
+	}
+	return cur;
+}
+
+void addNode(int n) {
+	node *newNode = new node;
+	newNode-&gt;data = n;
+	newNode-&gt;next = NULL;
+
+	if(head == NULL) {
+		head = newNode;
+		return;
+	}
+	node *cur = head;
+	while(cur) {
+		if(cur-&gt;next == NULL) {
+			cur-&gt;next = newNode;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void insertNode(int n) {
+	node *ptr = searchNode(n);
+	node *newNode = new node;
+	newNode-&gt;data = n;
+	node *cur = head;
+	while(cur) {
+		if(cur == ptr ) {
+			newNode-&gt;next = cur-&gt;next;
+			cur-&gt;next = newNode;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void deleteNode(int n) {
+	node *ptr = searchNode(n);
+	if(ptr == NULL) 
+		cout &lt;&lt; "No node with data = " &lt;&lt; n &lt;&lt; endl;
+	if(ptr == head) {
+		head = ptr-&gt;next;
+		return;
+	}
+	node *cur = head;
+	node *prev = head;
+
+	while(cur) {
+		if(cur == ptr) {
+			prev-&gt;next = cur-&gt;next;
+			return;
+		}
+		prev = cur;
+		cur = cur-&gt;next;
+	}
+}
+
+void display() {
+	struct node *list = head;
+	while(list) {
+		cout &lt;&lt; list-&gt;data &lt;&lt;" ";
+		list = list-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	addNode(10);
+        display();
+	addNode(20);
+	display();
+	addNode(40);
+	display();
+	addNode(50);
+	display();
+	insertNode(30);
+	display();
+	deleteNode(40);
+	display();
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample3">Example 3</div>
+<pre>
+
+// linked list example - using struct
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+struct node * initNode( char *, int );
+void displayNode( struct node * );
+void displayList( struct node * );
+void addNode( struct node * );
+struct node * searchName( struct node *, char * );
+void deleteNode( struct node * );
+void insertNode( struct node * );
+void deleteList( struct node * );
+
+struct node {
+   char name[20];
+   int  id;
+   struct node *next;
+};
+
+struct node *head = (struct node *) NULL;
+struct node *tail = (struct node *) NULL;
+
+// allocates memory for the node
+// assign values to the member of the structure
+struct node * initNode( char *name, int id )
+{
+   struct node *ptr = new node;
+
+   // error? then just return
+   if( ptr == NULL )                        
+       return static_cast&lt;struct node *&gt;(NULL);       
+   	// assign it 
+	// then return pointer to ne node
+   else {                                   
+       strcpy( ptr-&gt;name, name );           
+       ptr-&gt;id = id;                        
+       return ptr;                   
+   }
+}
+
+// adding to the end of list
+void addNode( struct node *newnode )   
+{
+	// if there is no node, put it to head
+	if( head == NULL ) {           
+       head = newnode;                          
+       tail = newnode;
+	}
+
+	// link in the new_node to the tail of the list
+	// then mark the next field as the end of the list
+	// adjust tail to point to the last node
+
+	tail-&gt;next = newnode;         
+	newnode-&gt;next = NULL;        
+	tail = newnode;              
+}
+                                                            
+void insertNode( struct node *newnode )
+{
+   struct node *temp, *prev;                 
+
+   if( head == NULL ) {                     // if an empty list,  
+       head = newnode;                      // set 'head' to it  
+       tail = newnode;
+       head-&gt;next = NULL;                   // set end of list to NULL 
+       return;                             
+   }
+
+   temp = head;                             // start at beginning of list
+					    // while currentname &lt; newname 
+   while( strcmp( temp-&gt;name, newnode-&gt;name) &lt; 0 ) {
+					    // to be inserted then 
+          temp = temp-&gt;next;                // goto the next node in list
+          if( temp == NULL )                // don't go past end of list  
+              break;
+   }
+					    // set previous node before we insert  
+					    // first check to see if it's inserting   
+   if( temp == head ) {		    	    // before the first node 
+      newnode-&gt;next = head;                 // link next field to original list  
+      head = newnode;                       // head adjusted to new node
+   }
+   else {				    // it's not the first node
+      prev = head;			    // start of the list,
+      while( prev-&gt;next != temp ) {	    // will cycle to node before temp
+          prev = prev-&gt;next;
+      }
+      prev-&gt;next = newnode;		    // insert node between prev and next 
+      newnode-&gt;next = temp;
+      if( tail == prev )		    // if the new node is inserted at the 
+         tail = newnode;		    // end of the list the adjust 'end' 
+   }
+}
+
+struct node * searchName( struct node *ptr, char *name )
+{
+    while( strcmp( name, ptr-&gt;name ) != 0 ) {   
+       ptr = ptr-&gt;next;                          
+       if( ptr == NULL )                         
+          break;                                  
+    }
+    return ptr;                                  
+}
+
+struct node* searchId(struct node* ptr, int id) {
+    while( id != ptr-&gt;id ) {    
+       ptr = ptr-&gt;next;                          
+       if( ptr == NULL )                          
+          break;                                  
+    }
+    return ptr; 	
+}
+
+void reverse() {
+	// we need at least two nodes for the reverse to have any effect
+	if(head == NULL || head-&gt;next == NULL) return;
+
+	// Starting 2nd list as 'me' and 'head' is now 'me-&gt;next'
+	// and 'head-&gt;next' is pointing to NULL
+	// So, the 3rd list is now 'child' of 'me'
+	node *parent = head;
+	node *me = head-&gt;next;
+	node *child = me-&gt;next;
+
+	// convert head to tail
+	parent-&gt;next = NULL;
+	
+	while(child != NULL){
+		me-&gt;next = parent;
+		parent = me;
+		me = child;
+		child = child-&gt;next;
+	}
+	// when me reached the tail
+	// me becomes head
+	head = me;
+	// the head is now pointing to the 2nd last node
+	head-&gt;next = parent;
+}
+
+void deleteNode( struct node *ptr )
+{
+  struct node *temp, *prev;
+   temp = ptr;    // node to be deleted 
+   prev = head;   // start of the list, will cycle to node before temp    
+
+   if( temp == prev ) {                    // deleting first node?  
+       head = head-&gt;next;                  // moves head to next node     
+       if( tail == temp )                  // is it end, only one node?   
+          tail = tail-&gt;next;               // adjust end as well          
+       delete temp ;                       // free up space 
+   }
+   else {                                  // if not the first node, then 
+       while( prev-&gt;next != temp ) {       // move prev to the node before
+           prev = prev-&gt;next;              // the one to be deleted       
+       }
+       prev-&gt;next = temp-&gt;next;            // link previous node to next  
+       if( tail == temp )                  // if this was the end node,   
+           tail = prev;                    // then reset the end pointer  
+      delete temp;                         // free up space
+   }
+}
+
+void deleteList( struct node *ptr )
+{
+   struct node *temp;
+
+   if( head == NULL ) return;   	// don't try to delete an empty list      
+
+   if( ptr == head ) {			// if we are deleting the entire list    
+       head = NULL;			// then reset head and    
+       tail = NULL;			// end to empty                                     
+   }
+   else {
+       temp = head;			// if it's not the entire list, readjust end   
+       while( temp-&gt;next != ptr )       // locate previous node to ptr   
+           temp = temp-&gt;next;
+       tail = temp;                     // set end to node before ptr   
+   }
+
+   while( ptr != NULL ) {		// while there are still nodes to delete      
+      temp = ptr-&gt;next;			// record address of next node                 
+      delete ptr;			// free this node                             
+      ptr = temp;			// point to next node to be deleted           
+   }
+}
+
+
+void displayNode( struct node *ptr ) {
+	cout &lt;&lt; ptr-&gt;id &lt;&lt; ": " &lt;&lt; ptr-&gt;name &lt;&lt; endl;
+}
+
+
+void displayList( struct node *ptr ) {
+   while( ptr != NULL )           {
+      displayNode( ptr );           
+      ptr = ptr-&gt;next;            
+   }
+}
+
+
+
+#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+   	char* name;
+   	int id, ch = 1;
+   	struct node *ptr;
+
+	// add
+	ptr = initNode( "s1", 1 );
+	addNode(ptr);
+	ptr = initNode( "s2", 2 );
+	addNode(ptr);
+	ptr = initNode( "s3", 3 );
+	addNode(ptr);
+	ptr = initNode( "s4", 4 );
+	addNode(ptr);
+	ptr = initNode( "s5", 5 );
+	addNode(ptr); 
+	displayList(head);
+
+	// delete
+	name = "s2";
+	ptr = searchName(head, name );
+	if( ptr == NULL ) {
+		cout &lt;&lt; "\nName: " &lt;&lt; name &lt;&lt; " not found" &lt;&lt; endl;
+	}
+	else {
+		cout &lt;&lt; "\nDeleting a node ...  ";
+	    displayNode(ptr);
+		deleteNode( ptr );
+	}
+	displayList(head);
+
+	// insert
+	name = "s2";
+	id = 2;
+	ptr = initNode( name, id );
+	insertNode( ptr );
+	cout &lt;&lt; "\nInserting a node ...  ";
+	displayNode(ptr);
+	displayList(head);
+
+	// reverse
+	cout &lt;&lt; "\nReversing the list ...  \n";
+	reverse();
+	displayList(head);
+
+	// delete
+	cout &lt;&lt; "\nIn the end, deleting the list ...  \n";
+	deleteList(head);
+	displayList(head);
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample4">Example 4</div>
+<pre>
+// linked list example - using struct inside a class
+ 
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class list
+{
+public:
+	struct node {
+		int id;
+		string name;
+		struct node *next;
+	} *head, *tail, *ptr;	
+
+	list():head(NULL),tail(NULL){}	// constructor	
+	~list();			// destructor
+
+	struct list::node* searchName(struct list::node*, string);	
+	struct list::node* searchId(struct list::node*, int);
+	struct list::node* initNode(string, int);
+
+	void reverse();
+	void addNode( struct list::node*);
+	void insertNode( struct list::node*);
+	void deleteNode( struct list::node*);
+	void deleteList( struct list::node*);
+	void displayList( struct list::node*)const ;
+ 	void displayNode( struct list::node*) const;	
+};
+
+list::~list() {
+	node *current,*temp;
+	current = head;
+	temp = head;
+	while(current != NULL) {
+		current = current-&gt;next;
+		delete temp;
+		temp = current;
+	}
+}
+
+struct list::node* list::initNode(string s, int i) {
+	struct node *ptr = new node;
+ 
+	// error? then just return
+	if( ptr == NULL )                         
+		return static_cast&lt;struct node *&gt;(NULL);  
+	// assign it 
+	// then return pointer to ne node
+	else {  
+		ptr-&gt;name = s ;  
+		ptr-&gt;id = i;                        
+		return ptr;                         
+	}
+}
+
+// adding to the end of list  
+void list::addNode( struct node *newNode )  {
+	// if there is no node, put it to head
+	if( head == NULL ) {
+		head = newNode;  
+		tail = newNode;
+	}
+   
+	// link in the new_node to the tail of the list
+	// then mark the next field as the end of the list
+	// adjust tail to point to the last node
+
+	tail-&gt;next = newNode;       
+	newNode-&gt;next = NULL;       
+	tail = newNode;               
+}
+
+void list::insertNode( struct node *newnode ) {
+   struct node *temp, *prev;                
+
+   if( head == NULL ) {                     // if an empty list,         
+       head = newnode;                      // set 'head' to it         
+       tail = newnode;
+       head-&gt;next = NULL;                   // set end of list to NULL     
+       return;                                             
+   }
+
+   temp = head;                             // start at beginning of list 
+					    // while currentname &lt; newname 
+   while( temp-&gt;name &lt; newnode-&gt;name) {	    // to be inserted then 
+          temp = temp-&gt;next;                // goto the next node in list  
+          if( temp == NULL )                // don't go past end of list    
+              break;
+   }							 
+					    // set previous node before we insert  
+					    // first check to see if it's inserting         
+   if( temp == head ) {		    	    // before the first node 
+      newnode-&gt;next = head;                 // link next field to original list    
+      head = newnode;                       // head adjusted to new node          
+   }
+   else {				    // it's not the first node
+      prev = head;		    	    // start of the list, 
+      while( prev-&gt;next != temp ) {	
+          prev = prev-&gt;next;	    	    // will cycle to node before temp 
+      }
+      prev-&gt;next = newnode;                 // insert node between prev and next   
+      newnode-&gt;next = temp;
+      if( tail == prev )		    // if the new node is inserted at the  
+         tail = newnode;		    // end of the list the adjust 'end'    
+   }
+}
+
+struct list::node* list::searchName(struct node* ptr, string name) {
+    while( name != ptr-&gt;name ) {    
+       ptr = ptr-&gt;next;                          
+       if( ptr == NULL )                          
+          break;                                  
+    }
+    return ptr; 	
+}
+
+struct list::node* list::searchId(struct node* ptr, int id) {
+    while( id != ptr-&gt;id ) {    
+       ptr = ptr-&gt;next;                          
+       if( ptr == NULL )                          
+          break;                                  
+    }
+    return ptr; 	
+}
+
+void list::reverse() {
+	// we need at least two nodes for the reverse to have any effect
+	if(head == NULL || head-&gt;next == NULL) return;
+
+	// Starting 2nd list as 'me' and 'head' is now 'me-&gt;next'
+	// and 'head-&gt;next' is pointing to NULL
+	// So, the 3rd list is now 'child' of 'me'
+	node *parent = head;
+	node *me = head-&gt;next;
+	node *child = me-&gt;next;
+
+	// convert head to tail
+	head-&gt;next = NULL;
+
+	// reverse pointer direction
+	me-&gt;next = head;
+	
+	while(child != NULL){
+		me-&gt;next = parent;
+		parent = me;
+		me = child;
+		child = child-&gt;next;
+	}
+	// when me reached the tail
+	// me becomes head
+	head = me;
+	// the head is now pointing to the 2nd last node
+	head-&gt;next = parent;
+}
+ 
+
+void list::deleteNode( struct list::node *ptr )
+{
+  struct node *temp, *prev;
+   temp = ptr;    // node to be deleted 
+   prev = head;   // start of the list, will cycle to node before temp    
+
+   if( temp == prev ) {                    // deleting first node?  
+       head = head-&gt;next;                  // moves head to next node     
+       if( tail == temp )                  // is it end, only one node?   
+          tail = tail-&gt;next;               // adjust end as well          
+       delete temp ;                       // free up space 
+   }
+   else {                                  // if not the first node, then 
+       while( prev-&gt;next != temp ) {       // move prev to the node before
+           prev = prev-&gt;next;              // the one to be deleted       
+       }
+       prev-&gt;next = temp-&gt;next;            // link previous node to next  
+       if( tail == temp )                  // if this was the end node,   
+           tail = prev;                    // then reset the end pointer  
+      delete temp;                         // free up space
+   }
+}
+
+void list::deleteList( struct node *ptr )
+{
+   struct node *temp;
+
+   if( head == NULL ) return;   	// don't try to delete an empty list      
+
+   if( ptr == head ) {			// if we are deleting the entire list    
+       head = NULL;			// then reset head and    
+       tail = NULL;			// end to empty                                     
+   }
+   else {
+       temp = head;			// if it's not the entire list, readjust end   
+       while( temp-&gt;next != ptr )       // locate previous node to ptr   
+           temp = temp-&gt;next;
+       tail = temp;                     // set end to node before ptr   
+   }
+
+   while( ptr != NULL ) {		// whilst there are still nodes to delete      
+      temp = ptr-&gt;next;			// record address of next node                 
+      delete ptr;			// free this node                             
+      ptr = temp;			// point to next node to be deleted           
+   }
+}
+
+void list::displayNode( struct list::node *ptr ) const
+{
+	cout &lt;&lt; ptr-&gt;id &lt;&lt; ": " &lt;&lt; ptr-&gt;name &lt;&lt; endl;
+}
+
+void list::displayList( struct list::node *ptr ) const
+{
+	if(!ptr) cout &lt;&lt; "Nothing to display" &lt;&lt; endl;
+	while(ptr) {
+		displayNode(ptr);
+		ptr = ptr-&gt;next;
+	}
+}
+
+int main()
+{
+	int id;
+	string name;
+ 	list myList;
+	list::node* ptr;
+
+	// add
+	ptr = myList.initNode( "s1", 1 );
+	myList.addNode(ptr);
+	ptr = myList.initNode( "s2", 2 );
+	myList.addNode(ptr);
+	ptr = myList.initNode( "s3", 3 );
+	myList.addNode(ptr);
+	ptr = myList.initNode( "s4", 4 );
+	myList.addNode(ptr);
+	ptr = myList.initNode( "s5", 5 );
+	myList.addNode(ptr); 
+	myList.displayList(myList.head);
+
+	// delete
+	name = "s2";
+	ptr = myList.searchName( myList.head, name );
+	if( ptr == NULL ) {
+		cout &lt;&lt; "\nName: " &lt;&lt; name &lt;&lt; " not found" &lt;&lt; endl;
+	}
+	else {
+		cout &lt;&lt; "\nDeleting a node ...  ";
+	    myList.displayNode(ptr);
+		myList.deleteNode( ptr );
+	}
+	myList.displayList(myList.head);
+
+	// insert
+	name = "s2";
+	id = 2;
+	ptr = myList.initNode( name, id );
+	myList.insertNode( ptr );
+	cout &lt;&lt; "\nInserting a node ...  ";
+	myList.displayNode(ptr);
+	myList.displayList(myList.head);
+
+	// reverse
+	cout &lt;&lt; "\nReversing the list ...  \n";
+	myList.reverse();
+	myList.displayList(myList.head);
+
+	// delete
+	cout &lt;&lt; "\nIn the end, deleting the list ...  \n";
+	myList.deleteList(myList.head);
+	myList.displayList(myList.head);
+	return 0;
+}
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample5">Example 5A - Detecting Circular (Loop) Linked List</div>
+<pre>
+/* This code has the following */
+/*
+	1. Adding Nodes
+	2. Function returning the size of the list
+	3. Making the list circular (loop)
+	4. Detecting circular list
+	5. Recursive printing 
+*/
+
+#include &lt;iostream&gt;
+using namespace std;
+
+struct Node
+{
+	int data;
+	Node * next;
+};
+
+Node *root = 0;
+
+void addNode(int n)
+{
+	if(root==0) {
+		root = new Node;
+		root-&gt;data = n;
+		root-&gt;next = 0;
+		return;
+	}
+	Node *cur = root;
+	while(cur) {
+		if(cur-&gt;next == 0) {
+			Node *ptr = new Node;
+			ptr -&gt; data = n;
+			ptr -&gt; next = 0;
+			cur -&gt; next = ptr;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void makeCircular()
+{
+	if(!root || !root-&gt;next) return;
+	Node *cur = root;
+	while(cur) {
+		if(cur-&gt;next == 0) {
+			cur-&gt;next = root;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+int sizeOfList()
+{
+	Node *cur = root;
+	int size = 0;
+	while(cur) {
+		size++;
+		if(cur-&gt;next == 0) {
+			return size; 
+		}
+		cur = cur-&gt;next;	
+	}
+	return size;
+}
+
+bool detectCircular() 
+{
+	// Assuming the list may not be circular
+
+	if(!root || !root-&gt;next) return false;
+	Node *ptr1 = root;
+	Node *ptr2 = root;
+
+	while(ptr1 &amp;&amp; ptr2) {
+		ptr1 = ptr1-&gt;next;
+		ptr2 = ptr2-&gt;next;
+		if(ptr2) {
+		       ptr2 = ptr2-&gt;next;
+		       if(!ptr2) return false;
+		}
+		else {
+			return false;
+		}
+		cout &lt;&lt; ptr1-&gt;data &lt;&lt; "," &lt;&lt; ptr2-&gt;data &lt;&lt; endl;
+		if(ptr1==ptr2) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void printRecursive(Node *ptr)
+{
+	if(!ptr) {
+		cout &lt;&lt; endl;
+		return;
+	}
+	cout &lt;&lt; ptr-&gt;data &lt;&lt; " ";
+	printRecursive(ptr-&gt;next);
+}
+
+int main(int argc, char **argv)
+{
+	addNode(10);addNode(20);addNode(30);addNode(40);addNode(50);
+	addNode(60);addNode(70);addNode(80);addNode(90);addNode(100);
+	
+	printRecursive(root);
+
+	cout &lt;&lt; "size of list = " &lt;&lt; sizeOfList() &lt;&lt; endl;
+	 
+	makeCircular();
+
+	if(detectCircular()) cout &lt;&lt;"Circular\n";
+	else cout &lt;&lt; "Normal\n";
+	 
+}
+</pre>
+<p>Output from the run:</p>
+<pre>
+10 20 30 40 50 60 70 80 90 100
+size of list = 10
+20,30
+30,50
+40,70
+50,90
+60,10
+70,30
+80,50
+90,70
+100,90
+10,10
+Circular
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample5B">Example 5B - Detecting Circular (Loop) Linked List (Generic Class with Template)</div>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+template &lt;class T&gt;
+class LinkedList
+{
+private:
+	struct node
+	{
+		T data;
+		node * next;
+	} *head;
+
+public:
+	LinkedList();
+	~LinkedList();
+	void add(T d);
+	void remove(T d);
+	void clear();
+	void makeCircular();
+	bool isCircular();
+	void display(const char* s);
+};
+
+template &lt;class T&gt;
+LinkedList&lt;T&gt;::LinkedList()
+{
+	head = NULL;
+}	
+
+template &lt;class T&gt;
+LinkedList&lt;T&gt;::~LinkedList()
+{
+	node *p, *q;
+	p = head;
+	if(p == NULL) return;
+	while(p) {
+		q = p-&gt;next;
+		delete p;
+		p = q;
+	}
+}
+
+template &lt;class T&gt;
+void LinkedList&lt;T&gt;::add(T d)
+{	
+	node *p, *q;
+	if(head == NULL) {
+		head = new node;
+		head-&gt;data = d;
+		head-&gt;next = NULL;
+		return;
+	} 
+	p = head;
+	while(p-&gt;next != NULL) 
+		p = p-&gt;next;
+	q = new node;
+	q-&gt;data = d;
+	q-&gt;next = NULL;
+	p-&gt;next = q;	
+}
+
+template &lt;class T&gt;
+void LinkedList&lt;T&gt;::remove(T d)
+{
+	node *p, *q;
+	if(head == NULL) return;
+	p = head;
+	while(p) {
+		if(p-&gt;data == d) {
+			q-&gt;next = p-&gt;next;
+			delete p;
+			return;
+		}
+		q = p;
+		p = p-&gt;next;
+	}
+}
+
+template &lt;class T&gt;
+void LinkedList&lt;T&gt;::clear()
+{
+	node *p, *q;
+	if(head == NULL) return;
+	p = head;
+	while(p) {
+		q = p-&gt;next;
+		delete p;
+		if(q != head)  {
+			head = NULL;
+			return;
+		}
+		p = q;
+	}
+}
+
+template &lt;class T&gt;
+void LinkedList&lt;T&gt;::makeCircular()
+{
+	node *p;
+	if(head == NULL || head-&gt;next == NULL) return;
+	p = head;
+	while(p) {
+		if(p-&gt;next == NULL) {
+			p-&gt;next = head;
+			return;
+		}
+		p = p-&gt;next;
+	}
+}
+
+template &lt;class T&gt;
+bool LinkedList&lt;T&gt;::isCircular()
+{
+	node *p, *pp;
+	if(head == NULL || head-&gt;next == NULL) return false;
+	p = head;
+	pp = head;
+	while(pp) {
+		p = p-&gt;next;
+		if(pp-&gt;next == NULL) return false;
+		pp = (pp-&gt;next)-&gt;next;
+		if(p == pp) return true;
+	}
+	return false;
+}
+
+template &lt;class T&gt;
+void LinkedList&lt;T&gt;::display(const char* s)
+{
+	node *p;
+	if(head == NULL) return;
+	p = head;
+	while(p) {
+		if(s == "string") 
+			cout &lt;&lt; p-&gt;data &lt;&lt; endl;
+		else
+			cout &lt;&lt; p-&gt;data &lt;&lt; ' ';
+		p = p-&gt;next;
+		if(p != NULL) {
+			if(p == head) return;
+		}
+	}
+	if(s == "integer") cout &lt;&lt; endl;
+}
+ 
+int main()
+{
+	LinkedList&lt;string&gt; sList;
+	sList.add("Wolfgang Amadeus Mozart");
+	sList.add("Franz Peter Schubert");
+	sList.add("Pyotr Ilyich Tchaikovsky");
+	sList.add("Clude-Achille Debussy");
+	sList.add("Camille Saint-Saens");
+	sList.display("string");
+	sList.clear();
+
+	LinkedList&lt;int&gt; iList;
+	iList.add(40);
+	iList.add(50);
+	iList.add(60);
+	iList.add(70);
+	iList.add(80);
+	iList.add(90);
+	iList.add(100);
+	iList.add(10);
+	iList.add(20);
+	iList.add(30);
+	iList.display("integer");
+
+	/* link last element to the first */
+	iList.makeCircular();
+
+	if(iList.isCircular()) cout &lt;&lt;"This is circular list\n";
+	iList.display("integer");
+
+	iList.clear();
+	cout &lt;&lt; "\ndisplay after clear()\n";
+	iList.display("integer");
+
+	return 0;
+}
+</pre>
+<p>Output from the run is:</p>
+<pre>
+Wolfgang Amadeus Mozart
+Franz Peter Schubert
+Pyotr Ilyich Tchaikovsky
+Clude-Achille Debussy
+Camille Saint-Saens
+40 50 60 70 80 90 100 10 20 30
+This is circular list
+40 50 60 70 80 90 100 10 20 30
+display after clear()
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample6">Example 6 - Stack Using Linked List</div>
+<p>This stack is using linked list as its data structure.</p>
+<pre>
+/* Stack operations */
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+typedef struct Element
+{
+	void *data;
+	struct Element *next;
+} Element;
+
+bool push(Element **top, void *data)
+{
+	Element *elem = new Element;
+	if(!elem) return false;
+
+	elem-&gt;data = data;
+	elem-&gt;next = *top;
+	*top = elem;
+	return true;
+}
+
+bool createStack(Element **top)
+{
+	*top = NULL;
+	return true;
+}
+
+bool pop(Element **top, void **data )
+{
+	Element *elem;
+	if( !(elem = *top) ) return false;
+
+	*data = elem-&gt;data;
+	*top = elem-&gt;next;
+	delete elem;
+	return true;
+}
+
+bool deleteStack(Element **top)
+{
+	Element *elem;
+	while(*top) {
+		elem = (*top)-&gt;next;
+		delete *top;
+		*top = elem;
+	}
+	return true;
+
+}
+
+void printStack(Element *top) 
+{
+	if(top==NULL) {
+		cout &lt;&lt; "Empty!" &lt;&lt; endl;
+	}
+	Element *cur = top;
+	while(cur) {
+		cout &lt;&lt; *(static_cast&lt;int *&gt;(cur-&gt;data)) &lt;&lt; " ";
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl &lt;&lt; endl;
+}
+
+int main()
+{
+	Element *head;
+	createStack(&amp;head;);
+	int n1 = 10, n2 = 20, n3 = 30, n4 = 40, n5 = 50;
+	push(&amp;head;, &amp;n1;);
+	push(&amp;head;, &amp;n2;);
+	push(&amp;head;, &amp;n3;);
+	push(&amp;head;, &amp;n4;);
+	push(&amp;head;, &amp;n5;);
+
+	printStack(head);
+
+	void * n;
+	pop(&amp;head;, &amp;n;);
+	cout &lt;&lt; "popped " &lt;&lt; *(static_cast&lt;int*&gt;(n)) &lt;&lt; endl;
+	pop(&amp;head;, &amp;n;);
+	cout &lt;&lt; "popped " &lt;&lt; *(static_cast&lt;int*&gt;(n)) &lt;&lt; endl;
+	cout &lt;&lt; endl;
+
+	printStack(head);
+
+	cout &lt;&lt; "deleting stack..." &lt;&lt; endl;
+	deleteStack(&amp;head;);
+	printStack(head);
+}
+</pre>
+<p>Output:</p>
+<pre>
+50 40 30 20 10
+
+popped 50
+popped 40
+
+30 20 10
+
+deleting stack...
+Empty!
+</pre>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample7">Example 7 - Stack Class Using Linked List</div>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Stack
+{
+public:
+	Stack();
+	~Stack();
+	void push(int);
+	int pop();
+	int peek();
+	friend void print(Stack&amp;);
+
+private:
+	typedef struct node {
+		node *next;
+		int data;
+	} NODE;
+
+	NODE *top;
+};
+
+Stack::Stack()
+{
+	top = NULL;
+}
+
+Stack::~Stack()
+{
+	while(top) {
+		NODE *tmp = top;
+		top = top-&gt;next;
+		delete tmp;
+	}
+}
+
+void Stack::push(int n) 
+{
+	NODE *ptr = new NODE;
+	ptr-&gt;next = top;
+	ptr-&gt;data = n;
+	top = ptr;
+}
+
+int Stack::pop()
+{
+	NODE *tmp = top;
+	int val = top-&gt;data;
+	top = top-&gt;next;
+	delete tmp;
+	return val;
+}
+
+int Stack::peek()
+{
+	return top-&gt;data;
+}
+
+void print(Stack &amp;s;)
+{
+	Stack::NODE *cur = s.top;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; " ";
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	Stack *st = new Stack;
+	st-&gt;push(10);
+	st-&gt;push(20);
+	st-&gt;push(30);
+	st-&gt;push(40);
+	st-&gt;push(50);
+	print(*st);
+	st-&gt;pop();
+	st-&gt;pop();
+	print(*st);
+	cout &lt;&lt; "current top=" &lt;&lt; st-&gt;peek();
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+50 40 30 20 10
+30 20 10
+current top=30
+</pre>
+<br/><br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample7B">Example 7B - Stack Class Using Linked List </div>
+<p>The code below is almost the same as the code in Example 6 except it's using Stack class.</p>
+<p>The code below is almost the same as the code in Example 7 except it's using void* for the data type.</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+class Stack
+{
+public:
+	Stack();
+	~Stack();
+	void push(void *data);
+	void *pop();
+	void print();
+protected:
+	typedef struct Element {
+		struct Element *next;
+		void *data;
+	} Element;
+
+	Element *top;
+};
+
+Stack::Stack() {
+	top = NULL;
+}
+
+Stack::~Stack() {
+	while(top) {
+		Element *elm = top-&gt;next;
+		delete top;
+		top = elm;
+	}
+}
+
+void Stack::push(void *data) {
+	Element *elm = new Element;
+	elm-&gt;data = data;
+	elm-&gt;next = top;
+	top = elm;
+}
+
+void *Stack::pop() {
+	void *data;
+	if(top == NULL) return data;
+	data = top-&gt;data;
+	Element *elm = top;
+	top = elm-&gt;next;
+	delete elm;
+	return data;
+}
+
+void Stack::print() {
+	Element *elm = top;
+	while(elm) {
+		cout &lt;&lt; *(static_cast&lt;int*&gt;(elm-&gt;data)) &lt;&lt; " " ;
+		elm = elm-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	Stack *st = new Stack;
+	int n1 = 10;
+	int n2 = 20;
+	int n3 = 30;
+	int n4 = 40;
+	int n5 = 50;
+	st-&gt;push(&amp;n1;);
+	st-&gt;push(&amp;n2;);
+	st-&gt;push(&amp;n3;);
+	st-&gt;push(&amp;n4;);
+	st-&gt;push(&amp;n5;);
+	st-&gt;print();
+	cout &lt;&lt; *(static_cast&lt;int*&gt;(st-&gt;pop()))&lt;&lt; " poped\n";
+	cout &lt;&lt; *(static_cast&lt;int*&gt;(st-&gt;pop()))&lt;&lt; " poped\n";
+	st-&gt;print();
+	cout &lt;&lt; endl;
+}
+</pre>
+<br/>
+<p>Output:</p>
+<pre>
+50 40 30 20 10
+50 poped
+40 poped
+30 20 10
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample7C">Example 7C - Stack Class Using Linked List with Query for Minimum Value </div>
+<p>This stack class can return its minimum element. All operations (push(), pop(), and peekMin()) are O(1) not O(n). Usual approach for query would be traverse each element to get the minimum, and it will ends up with O(n) complexity. So, to have constant time operation, we need keep track of the minimum. We could have a global minimum value, however, it has a problem when the stack with the value popped. Then, we need to update the global min value which may take O(n) operation.</p>
+<p>In the code below, each stack gets its own min-value at the time when it was pushed by comparing the minimum of the previous top stack. When the top stack popped, the code checks if the top stack's minimum value is the global min. </p>
+<p>In summary, this code will get the stacks minimum value by peeking the top only, using <strong>peekMin()</strong> which returns the min-value for the top stack.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+#define MIN(a,b) (a &lt; b ? a : b)
+
+class Stack
+{
+public:
+	Stack();
+	~Stack();
+	void push(int);
+	int pop();
+	int peek();
+	int peekMin();
+	friend void print(Stack&amp;);
+
+private:
+	typedef struct node {
+		node *next;
+		int data;
+		int <font color="red">min</font>;
+	} NODE;
+
+	NODE *top;
+};
+
+Stack::Stack()
+{
+	top = NULL;
+}
+
+Stack::~Stack()
+{
+	while(top) {
+		NODE *tmp = top;
+		top = top-&gt;next;
+		delete tmp;
+	}
+}
+
+void Stack::push(int n) 
+{
+	NODE *ptr = new NODE;
+	ptr-&gt;next = top;
+	ptr-&gt;data = n;
+	// currently empty (top is NULL)
+        <font color="red">
+	if(top == NULL) 
+		ptr-&gt;min = n;
+	else
+		ptr-&gt;min = MIN(n, top-&gt;min); </font>
+	top = ptr;
+}
+
+int Stack::pop()
+{
+	NODE *tmp = top;
+	int val = top-&gt;data;
+	top = top-&gt;next;
+	delete tmp;
+	cout &lt;&lt; "pop " &lt;&lt; val &lt;&lt; endl;
+	return val;
+}
+
+int Stack::peek()
+{
+	return top-&gt;data;
+}
+
+int Stack::<font color="red">peekMin()</font>
+{
+	return top-&gt;min;
+}
+
+void print(Stack &amp;s;)
+{
+	Stack::NODE *cur = s.top;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; " ";
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	Stack *st = new Stack;
+	st-&gt;push(40);
+	st-&gt;push(50);
+	st-&gt;push(20);
+	st-&gt;push(10);
+	st-&gt;push(30);
+	print(*st);
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	print(*st);
+	cout &lt;&lt; "current top=" &lt;&lt; st-&gt;peek();
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+30 10 20 50 40
+minimum = 10
+pop 30
+minimum = 10
+pop 10
+minimum = 20
+pop 20
+minimum = 40
+pop 50
+minimum = 40
+40
+current top=40
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample7D">Example 7D - Stack Class Using Linked List with Query for Minimum Value (additional stack) </div>
+<p>Even though the code in Example 7C can keep track of the minimum of the stack, it is obvious that the code is wasting resources. Suppose, we push the element with the minimum first: 10, 20, 30, 40 ... with increasing order. In that case, the every stack element has additional member for minimum value of 10. However, if we have separate stack just for minimum, we end up having only one stack because we do not save the values which are greater than the min-value.</p>
+<p>Here is the code using separate stack (<strong>StackWithMin</strong> class) just for the minimum value.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+typedef struct node {
+	node *next;
+	int data;
+} NODE;
+
+class Stack
+{
+public:
+	Stack();
+	virtual ~Stack();
+	virtual void push(int);
+	virtual int pop();
+	virtual int peekMin();
+	int peek();
+	friend void print(Stack&amp;);
+
+private:
+	bool empty();
+	NODE *top;
+};
+
+Stack::Stack()
+{
+	top = NULL;
+}
+
+Stack::~Stack()
+{
+	while(top) {
+		NODE *tmp = top;
+		top = top-&gt;next;
+		delete tmp;
+	}
+}
+
+void Stack::push(int n) 
+{
+	NODE *ptr = new NODE;
+	ptr-&gt;next = top;
+	ptr-&gt;data = n;
+	top = ptr;
+}
+
+int Stack::pop()
+{
+	NODE *tmp = top;
+	if(!empty()) {
+		int val = top-&gt;data;
+		top = top-&gt;next;
+		delete tmp;
+		cout &lt;&lt; "pop " &lt;&lt; val &lt;&lt; endl;
+		return val;
+	}
+	else {
+		cout &lt;&lt; "empty! " &lt;&lt; endl;
+		return -1;
+	}
+}
+
+int Stack::peek()
+{
+	if(!empty()) return top-&gt;data;
+	return -1;
+}
+
+bool Stack::empty()
+{
+	if(top == NULL) return true;
+	return false;
+}
+
+int Stack::peekMin()
+{
+	return -1; 
+}
+
+void print(Stack &amp;s;)
+{
+	NODE *cur = s.top;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; " ";
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+class <font color="red">StackWithMin</font> : public Stack
+{
+public:
+	StackWithMin();
+	~StackWithMin();
+	void push(int);
+	int pop();
+	int peekMin();
+private:
+	bool empty();
+	NODE* top;
+};
+
+StackWithMin::StackWithMin()
+{
+	top = NULL;
+}
+
+StackWithMin::~StackWithMin()
+{
+	while(top) {
+		NODE *tmp = top;
+		top = top-&gt;next;
+		delete tmp;
+	}
+}
+
+void StackWithMin::push(int n)
+{
+	if(top){
+		// push only if it's smaller than the top min
+		if(n &lt; top-&gt;data) {
+			NODE *ptr = new NODE;
+			ptr-&gt;next = top;
+			ptr-&gt;data = n;
+			top = ptr;
+		}
+	}
+	// if empty, just push the new element
+	else {
+		NODE *ptr = new NODE;
+		ptr-&gt;next = top;
+		ptr-&gt;data = n;
+		top = ptr;
+	}
+
+	Stack::push(n);
+}
+
+int StackWithMin::pop()
+{
+	int popped = Stack::pop();
+	if(empty()) {
+		cout &lt;&lt; "empty min stack" &lt;&lt; endl;
+		return -1;
+	}
+	if(popped == top-&gt;data) {
+		NODE *tmp = top;
+		if(top-&gt;next) {
+			top = top-&gt;next;
+		}
+		else {
+			top = NULL;
+		}
+		delete tmp;
+	}
+	return popped;
+}
+
+int StackWithMin::peekMin()
+{
+	if(!empty()) return top-&gt;data;
+	cout &lt;&lt; "empty min stack!" &lt;&lt; endl;
+	return -1;
+}
+
+bool StackWithMin::empty()
+{
+	if(top == NULL) return true;
+	return false;
+}
+
+int main()
+{
+	Stack *st = new StackWithMin;
+	st-&gt;push(40);
+	st-&gt;push(50);
+	st-&gt;push(20);
+	st-&gt;push(10);
+	st-&gt;push(30);
+	print(*st);
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	st-&gt;pop();
+	cout &lt;&lt; "minimum = " &lt;&lt; st-&gt;peekMin() &lt;&lt; endl;
+	print(*st);
+	cout &lt;&lt; "current top=" &lt;&lt; st-&gt;peek();
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<br/>
+<img alt="Stack_Min.png" src="images/linkedlist/Stack_Min.png"/>
+<br/>
+<pre>
+30 10 20 50 40
+minimum = 10
+pop 30
+minimum = 10
+pop 10
+minimum = 20
+pop 20
+minimum = 40
+pop 50
+minimum = 40
+pop 40
+empty min stack!
+minimum = -1
+</pre>
+<br/>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample8_struct">Example 8 Queue Struct : Using Linked List</div>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node
+{
+	int data;
+	node *next;
+};
+typedef struct node node_t;
+
+node_t *head = NULL;
+
+void push(int n)
+{
+	node_t *newNode = (node_t *)malloc(sizeof(node_t));
+	newNode-&gt;data = n;
+	newNode-&gt;next = NULL;
+
+	if(head == NULL) {
+		head = newNode;
+		return;
+	}
+
+	node_t *cur = head;
+	while(cur) {
+		if(cur-&gt;next==NULL) {
+			cur-&gt;next = newNode;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void pop()
+{
+	if(head==NULL) return;
+	node_t *tmp = head;
+	head = head-&gt;next;
+	free(tmp);
+}
+
+void display()
+{
+	node_t *cur = head;
+	while(cur) {
+		printf("%3d",cur-&gt;data);
+		cur = cur-&gt;next;
+	}
+	printf("\n");
+}
+
+int main()
+{
+	push(1);push(2);push(3);push(4);push(5);display();
+	pop();display();
+	pop();display();
+	pop();display();
+	pop();display();
+	pop();display();
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+  1  2  3  4  5
+  2  3  4  5
+  3  4  5
+  4  5
+  5
+
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample8B_queue_class">Example 8B - Queue Class: Using Linked List </div>
+<p>First one becomes head, so when it pops, head will be popped.</p>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+class Queue
+{
+public:
+	Queue();
+	~Queue();
+	void push(int);
+	int pop();
+	void print();
+private:
+	typedef struct Node {
+		Node *next;
+		int data;
+	} NODE;
+	NODE* head;
+};
+
+Queue::Queue()
+{
+	head = NULL;
+}
+
+Queue::~Queue()
+{
+	if(head == NULL) return;
+	NODE *cur = head;
+	while(cur) {
+		Node *ptr = cur;
+		cur = cur-&gt;next;
+		delete ptr;
+	}
+}
+
+void Queue::push(int n)
+{
+	if(head == NULL) {
+		head = new NODE;
+		head-&gt;data = n;
+		head-&gt;next = NULL;
+		return;
+	}
+	NODE *cur = head;
+	while(cur) {
+		if(cur-&gt;next == NULL) {
+			NODE *ptr = new NODE;
+			ptr-&gt;data = n;
+			ptr-&gt;next = NULL;
+			cur-&gt;next = ptr;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+void Queue::print()
+{
+	if(head==NULL) return;
+	Node *cur = head;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; " ";
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int Queue::pop()
+{
+	if(head == NULL) {
+		cout &lt;&lt; "empty estack!" &lt;&lt; endl;
+		return NULL;
+	}
+	NODE *tmp = head;
+	int value = head-&gt;data;
+	if(head-&gt;next) {
+		head = head-&gt;next;
+	}
+	// pop the last element (head)
+	else {
+		delete tmp;
+		head = NULL;
+	}
+	cout &lt;&lt; "pop: " &lt;&lt; value &lt;&lt; endl;;
+	return value;
+}
+
+int main()
+{
+	Queue *que = new Queue();
+	que-&gt;push(10);
+	que-&gt;push(20);
+	que-&gt;push(30);
+	que-&gt;push(40);
+	que-&gt;push(50);
+	que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	que-&gt;pop();que-&gt;print();
+	return 0;
+}
+</pre>
+<p>Output:</p>
+<pre>
+10 20 30 40 50
+pop: 10
+20 30 40 50
+pop: 20
+30 40 50
+pop: 30
+40 50
+pop: 40
+50
+pop: 50
+</pre>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample9">Example 9 - Finding Intersection and Union of Two Linked List</div>
+<p>The following code finds intersection/union of two linked list and puts it into a new linked list.</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+struct node 
+{
+	int data;
+	node *next;
+};
+
+void add(struct node **head, int n)
+{
+	struct node *cur;
+	struct node *new_node = (struct node *)malloc(sizeof(struct node));
+	new_node-&gt;data = n;
+	new_node-&gt;next = NULL;
+	if(*head == NULL) {
+		*head = new_node;
+		return;
+	}
+
+	cur = *head;
+	while(cur) {
+		if(cur-&gt;next == NULL) {
+			cur-&gt;next = new_node;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+bool isDuplicate(struct node *head, int n)
+{
+	struct node* cur = head;
+	while(cur) {
+		if(cur-&gt;data == n) return true;
+		cur = cur-&gt;next;
+	}
+	return false;
+
+}
+
+struct node *getIntersection(struct node *headA, struct node *headB)
+{
+	struct node *curA = headA;
+	struct node *curB = headB;
+	struct node *result = NULL;
+	if(curA == NULL || curB == NULL) return NULL;
+	while(curA) {
+		while(curB) {
+			if(curA-&gt;data == curB-&gt;data) {
+				add(&amp;result;, curA-&gt;data);
+			}
+			curB = curB-&gt;next;
+		}
+		curB = headB;
+		curA = curA-&gt;next;
+	}
+	return result;
+}
+
+struct node *getUnion(struct node *headA, struct node *headB)
+{
+	struct node *cur;
+	struct node *result = NULL;
+	if(headA == NULL &amp;&amp; headB == NULL) return NULL;
+
+	cur = headA;
+	while(cur) {
+		add(&amp;result;, cur-&gt;data);
+		cur = cur-&gt;next;
+	}
+
+	cur = headB;
+	while(cur) {
+		/* check if the new data is already there */
+		if(!isDuplicate(result, cur-&gt;data)) {
+			add(&amp;result;, cur-&gt;data);
+		}
+		cur = cur-&gt;next;
+	}
+	return result;
+}
+
+void display(struct node *head)
+{
+	if(head == NULL) return;
+	struct node *cur = head;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; ' ';
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	struct node *myListA = NULL;
+	struct node *myListB = NULL;
+	struct node *intersectionList = NULL;
+	struct node *unionList = NULL;
+
+	add(&amp;myListA;,10);
+	add(&amp;myListA;,20);
+	add(&amp;myListA;,30);
+	add(&amp;myListA;,40);
+	add(&amp;myListA;,50);
+	add(&amp;myListA;,60);
+	add(&amp;myListA;,70);
+	cout &lt;&lt; "List A: ";
+	display(myListA);
+
+	add(&amp;myListB;,10);
+	add(&amp;myListB;,30);
+	add(&amp;myListB;,50);
+	add(&amp;myListB;,70);
+	add(&amp;myListB;,90);
+	add(&amp;myListB;,110);
+	add(&amp;myListB;,130);
+	cout &lt;&lt; "List B: ";
+	display(myListB);
+
+	cout &lt;&lt; "Intersection of A and B: ";
+	intersectionList = getIntersection(myListA, myListB);
+	display(intersectionList);
+
+	cout &lt;&lt; "Union of A and B: ";
+	unionList = getUnion(myListA, myListB);
+	display(unionList);
+
+	return 0;
+}
+</pre>
+<p>Output is:</p>
+<pre>
+List A: 10 20 30 40 50 60 70
+List B: 10 30 50 70 90 110 130
+Intersection of A and B: 10 30 50 70
+Union of A and B: 10 20 30 40 50 60 70 90 110 130
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="linkedlistexample10">Example 10 - Another Example of Generic Linked List</div>
+<p>The following example is another example of generic use of linked list. It will be used as a base for doubly linked list later.</p>
+<pre>
+#include &lt;iostream&gt;
+
+using namespace std;
+
+template &lt;typename T&gt;
+class List
+{
+	struct Node
+	{
+		T data;
+		Node *next;
+		Node(T d, Node *n = 0):data(d), next(n) {}
+	};
+	Node *head;
+
+public:
+	List(Node *h = 0):head(h){}
+	~List();
+	void insert(Node *loc, T d);
+	void push_back(T d);
+	void push_front(T d);
+	T pop_back();
+	T pop_front();
+	void erase(Node *loc);
+	void display();
+	Node *search(T d);
+};
+
+// destructor
+template &lt;typename T&gt;
+List&lt;T&gt;::~List()
+{
+	Node *tmp;
+	while(head) {
+		tmp = head;
+		head = head-&gt;next;
+		delete tmp;
+	}
+}
+
+// insert d before loc
+template &lt;typename T&gt;
+void List&lt;T&gt;::insert(Node *loc, T d) 
+{ 
+	Node *new_node = new Node(d,0);
+	if(!head) {
+		head = new_node;
+		return;
+	}
+	if(loc == head) {
+		push_front(d);
+		return;
+	}
+	Node *cur = head;
+	while(cur-&gt;next) {
+		if(cur-&gt;next == loc) {
+			new_node-&gt;next = cur-&gt;next;
+			cur-&gt;next = new_node;
+			return ;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+template &lt;typename T&gt;
+void List&lt;T&gt;::push_back(T d) 
+{
+	Node *new_node = new Node(d,0);
+	if(!head) {
+		head = new_node;
+		return;
+	}
+	Node *cur = head;
+	while(cur) {
+		if(!cur-&gt;next) {
+			cur-&gt;next = new_node;
+			return;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+template &lt;typename T&gt;
+void List&lt;T&gt;::push_front(T d)
+{
+	Node *new_node = new Node(d,0);
+	if(!head) {
+		head = new_node;
+		return;
+	}
+	new_node-&gt;next = head;
+	head = new_node;
+	return;
+}
+
+template &lt;typename T&gt;
+T List&lt;T&gt;::pop_back() 
+{
+	Node *cur = head;
+	while(cur) {
+		if(!cur-&gt;next) {
+			T data (cur-&gt;data);
+			delete cur;
+			head = NULL;
+			return data;
+		}
+		else {
+			if(!cur-&gt;next-&gt;next)  {
+				T data (cur-&gt;next-&gt;data);
+				cur-&gt;next = NULL;
+				delete cur-&gt;next;
+				return data;
+			}
+		}
+		cur = cur-&gt;next;
+	}
+	return NULL;
+}
+
+template &lt;typename T&gt;
+T List&lt;T&gt;::pop_front()
+{
+	if(!head) return NULL;
+	Node *tmp = head;
+	T data (head-&gt;data);
+	if(head-&gt;next) {
+		head = head-&gt;next;
+		delete tmp;
+		return data;
+	}
+	delete tmp;
+	head = NULL;
+	return data;
+}
+
+template &lt;typename T&gt;
+void List&lt;T&gt;::erase(Node *loc)
+{
+	if(loc == head) {
+		Node *tmp = head;
+		head = head-&gt;next;
+		delete tmp;
+		return;
+	}
+	Node *cur = head;
+	while(cur) {
+		if(cur-&gt;next == loc) {
+			cur-&gt;next = loc-&gt;next;
+			delete loc;
+		}
+		cur = cur-&gt;next;
+	}
+}
+
+template &lt;typename T&gt;
+<font color="blue">typename</font> List&lt;T&gt;::Node* List&lt;T&gt;::search(T d)
+{
+	if(!head) return NULL;
+	Node* cur = head;
+	while(cur) {
+		if(cur-&gt;data == d) return cur;
+		cur = cur-&gt;next;
+	}
+	return NULL;
+}
+
+template &lt;typename T&gt;
+void List&lt;T&gt;::display()
+{
+	if(!head) return;
+	Node *cur  = head;
+	while(cur) {
+		cout &lt;&lt; cur-&gt;data &lt;&lt; " " &lt;&lt; endl;
+		cur = cur-&gt;next;
+	}
+	cout &lt;&lt; endl;
+}
+
+int main()
+{
+	List&lt;int&gt; *myList = new List&lt;int&gt;(NULL);
+
+	cout &lt;&lt; "push_back() 20, 30 40, 50\n\n";
+	myList-&gt;push_back(20);
+	myList-&gt;push_back(30);
+	myList-&gt;push_back(40);
+	myList-&gt;push_back(50);
+	myList-&gt;display();
+
+	cout &lt;&lt; "push_front() 10\n\n";
+	myList-&gt;push_front(10);
+	myList-&gt;display();
+
+	cout &lt;&lt; "erase 30\n\n";
+	myList-&gt;erase(myList-&gt;search(30));
+	myList-&gt;display();
+
+	cout &lt;&lt; "insert 30 before 40\n\n";
+	myList-&gt;insert(myList-&gt;search(40),30);
+	myList-&gt;display();
+
+	cout &lt;&lt; "pop_back()\n";
+	cout &lt;&lt; myList-&gt;pop_back() &lt;&lt; " just back popped\n\n";
+	myList-&gt;display();
+
+	cout &lt;&lt; "pop_front()\n";
+	cout &lt;&lt; myList-&gt;pop_front() &lt;&lt; " just front popped\n\n";
+	myList-&gt;display();
+
+	return 0;
+}
+</pre>
+<br/>
+<p>Output:</p>
+<pre>
+push_back() 20, 30 40, 50
+
+20
+30
+40
+50
+
+push_front() 10
+
+10
+20
+30
+40
+50
+
+erase 30
+
+10
+20
+40
+50
+
+insert 30 before 40
+
+10
+20
+30
+40
+50
+
+pop_back()
+50 just back popped
+
+10
+20
+30
+40
+
+pop_front()
+10 just front popped
+
+20
+30
+40
+</pre>
+<br/>
+<br/>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd" id="examplelist">List of Linked List Examples of This Page</div>
+<ol>
+<li><strong> <a href="#linkedlistexample1">Example 1</a></strong><br/>
+	When the head of the list is not a global pointer. </li>
+<li><strong><a href="#linkedlistexample2">Example 2</a></strong> and <strong><a href="#linkedlistexample3">Example 3</a></strong> <br/>
+	When the head of the list is a global pointer. <br/>
+There are some implementation differences between these two examples.</li>
+<li><strong><a href="#linkedlistexample4">Example 4</a></strong><br/>
+	Used class &amp; structure in that class.</li>
+<li><strong><a href="#linkedlistexample5">Example 5A</a></strong><br/>
+	Detecting circular (loop) linked list.</li>
+<li><strong><a href="#linkedlistexample5B">Example 5B</a></strong><br/>
+	Detecting circular (loop) linked list (Generic Class with Template).</li>
+<li><strong><a href="#linkedlistexample6">Example 6</a></strong><br/>
+	Stack with linked list data structure.</li>
+<li><strong><a href="#linkedlistexample7">Example 7</a></strong><br/>
+	Class Stack with linked list data structure.</li>
+<li><strong><a href="#linkedlistexample7B">Example 7B</a></strong><br/>
+	Class Stack with linked list data structure.</li>
+<li><strong><a href="#linkedlistexample7C">Example 7C</a></strong><br/>
+	Class Stack using linked list with query for minimum value.</li>
+<li><strong><a href="#linkedlistexample7D">Example 7D</a></strong><br/>
+	Stack Class Using Linked List with Query for Minimum Value (additional stack).</li>
+<li><strong><a href="#linkedlistexample8_struct">Example 8</a></strong><br/>
+	Queue Struct with linked list data structure.</li>
+<li><strong><a href="#linkedlistexample8B_queue_class">Example 8B</a></strong><br/>
+	Queue Class with linked list data structure.</li>
+<li><strong><a href="#linkedlistexample9">Example 9</a></strong><br/>
+	Finding intersection and union of two linked lists.</li>
+<li><strong><a href="#linkedlistexample10">Example 10</a></strong><br/>
+	Generic linked lists.</li>
+</ol>
+<p>Also, there are set of linked list samples:</p>
+<ol>
+<li><a href="quiz_linkedlist.html" target_blank">quiz</a>.</li>
+<li><a href="linked_list_basics.html" target_blank">Linked List Basic</a>.</li>
+</ol>
+<br/><br/>
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title sub">Bogotobogo Image / Video Processing </h1>
+<h1 class="teaser title">Computer Vision & Machine Learning</h2>
+<p>
+  with OpenCV, MATLAB, FFmpeg, and scikit-learn.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_ubuntu13_install_cmake.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/lena_Ubuntu_opencv.png" 
+      title="Installing on Ubuntu 13 and loading an image"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_mat_object_image_matrix_image_container.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/matrix_Mat_object.png" 
+      title="Mat(rix) object (Image Container)"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_creating_mat_objects.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/ThreeChannelArray.png" 
+      title="Creating Mat objects, zeros(), ones(), eye() and clone()"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_load_convert_save_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Dostoevsky.png" 
+      title="The core - Image load, convert and save"/> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div id = "pics">
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra1.png" 
+      title="Smoothing Filters A - Average and Gaussian Blur"/> </a>
+
+      <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing_B.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/zebra2.png" 
+      title="Smoothing Filters B - Median, Bilateral"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCVwithPython.png" 
+      title="OpenCV 3 with Python"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bgr_Matplot.png" 
+      title="OpenCV BGR : Matplotlib RGB, There is a difference in pixel ordering in OpenCV and Matplotlib."/> </a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/CloudyGoldenGate_grayscale.jpg" 
+      title="Basic image operations - pixel access"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/iPython_FFT_Random.png" 
+      title="iPython - Signal Processing with NumPy"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Signal_FFT_square_5_Hz.png" 
+      title="Signal Processing with NumPy I - FFT & DFT for sine, square waves, unitpulse, and random signal"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/NumPyFFT_maze.png" 
+      title="Signal Processing with NumPy II - Image Fourier Transform : FFT & DFT"/> </a>
+      
+    </div>
+ 
+    <!-- 16-20 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/cv2_dft_xfiles.png" 
+      title="Inverse Fourier Transform of an Image with low pass filter: cv2.idft()"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_image_histogram_calcHist.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Histo_gray.png" 
+      title="Image Histogram"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/RGB_HSV.png" 
+      title="Video Capture & Switching colorspaces - RGB / HSV"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/OpenCV_Otsu_Thresholding3.png" 
+      title="Adaptive Thresholding - Otsu's clustering-based image thresholding"/> </a>
+      
+    </div>
+
+    <!-- 21-25 -->
+
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/SanFrancisco_out.png" 
+      title="Edge Detection - Sobel and Laplacian Kernels"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Canny_Edge_Detection.png" 
+      title="Canny Edge Detection"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hough_eye_51.png" 
+      title="Hough Transform - Circles"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_Dilation.png" 
+      title="Watershed Algorithm : Marker-based Segmentation I"/> </a>
+      
+    </div>
+
+    <!-- 26-30 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/WaterShed_input_output.png" 
+      title="Watershed Algorithm : Marker-based Segmentation II"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Denoising_Gaussian_Gray.png" 
+      title="Image noise reduction : Non-local Means denoising algorithm"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/xfiles4.png" 
+      title="Image object detection : Face detection using Haar Cascade Classifiers"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/bolt.jpg" 
+      title="Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts"/> </a>
+      
+    </div>
+
+    <!-- 31-35 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Output_4_pics.png" 
+      title="Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/MeanShiftPic.png" 
+      title="Video : Mean shift object tracking"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D.png" 
+      title="Machine Learning : Clustering - K-Means clustering I"/> </a>
+
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/Hist_1D_2.png" 
+      title="Machine Learning : Clustering - K-Means clustering II"/> </a>
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div id = "pics">
+      <a href="../python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV/kNN_2.png" 
+      title="Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm"/> </a>
+
+      <img src="../media/img/TopicLogo/OpenCV/more_image_processing.png" 
+      title="Continue..."/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" 
+      title="Matlab - Vectors and Matrices"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_M_Files_scripts.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/m_files.png" 
+      title="mfiles - Matlab script files"/> </a>
+      
+    </div>
+
+    <!-- 41-45 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_For_Loop.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/sum_1_to_10_ForLoop.png" 
+      title="For loop for loop_index = vector"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Indexing_Masking_Array_Vector_Matrix.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ArrayMasking.png" 
+      title="Indexing and masking"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Vector_Array_Audio_Wave_File_Plot_Play.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DrumAudioTwoChannels_2.png" 
+      title="Vectors and arrays with audio files"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ReversedAudio.png" 
+      title="Manipulating Audio I : Reverse play and delay audio"/> </a>
+      
+    </div>
+
+    <!-- 46-50 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_2_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Audio2.png" 
+      title="Manipulating Audio II : Playing with stereo sound, tone control, changing Speed, removing vocals"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Introduction_to_FFT_DFT_Fast_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/FFT_DFT_Diagram.png" 
+      title="Introduction to FFT & DFT"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_DFT_Discrete_Fourier_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DFT_results.png" 
+      title="Discrete Fourier Transform (DFT)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_I.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/RGB_BerkeleyTower.png" 
+      title="Digital Image Processing 1 - 7 basic functions "/> </a>
+ 
+    </div>
+
+    <!-- 51-55 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_2_RGB_Indexed_Color_Info.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/ImgProc2.png" 
+      title="Digital Image Processing 2 - RGB image & indexed image"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_3_Grayscale_RGB.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Einstein.jpg" 
+      title="Digital Image Processing 3 - Grayscale image I"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_4_Grayscale_RGB_II.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/bit_plane1.png" 
+      title="Digital Image Processing 4 - Grayscale image II (image data type and bit-plane)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_5_Histogram_Equalization_imhist_histeq_imadjust.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/two_histogram_in_one_pic.png" 
+      title="Digital Image Processing 5 - Histogram equalization"/> </a>
+      
+    </div>
+
+    <!-- 56-60 -->
+    <div id = "pics">
+      <a href="../Matlab/Matlab_Tutorial_Digital_Image_Processing_6_Filter_Smoothing_Low_Pass_fspecial_filter2.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/noise_in_rgb_image.png" 
+      title="Digital Image Processing 6 - Image Filter (Low pass filters)"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_1_Object_Detection_by_Color_Thresholding.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/Matlab_Object_Detect_Run2.png" 
+      title="Video Processing 1 - Object detection (tagging cars) by thresholding color"/> </a>
+
+      <a href="../Matlab/Matlab_Tutorial_Video_Processing_2_Face_Detection_CamShift_Tracking.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab/DetectedFace.png" 
+      title="Video Processing 2 - Face Detection and CAMShift Tracking"/> </a>
+
+      <img src="../media/img/TopicLogo/Matlab/more_image_processing.png" 
+      title="More image processing"/> 
+      
+    </div>
+
+    <!-- 61-65 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_image_scaling_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" 
+      title="Image/video scaling"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropping_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/cropped_blue_umbrella_025.png" 
+      title="Image/video cropping - crop=712:534"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_cropdetect.png" 
+      title="Cropdetect and ffplay : crop=out_width:out_height:x:y"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_speed_up_dlow_down.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ffmpeg_video_speed_up_dlow_down.png" 
+      title="Speeding-up & slowing-down video"/> </a>
+      
+    </div>
+
+    <!-- 66-70 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_basic_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_show.png" 
+      title="Basic slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_adv_slide_show_from_images_jpeg.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/Adv_Slide_Show.png" 
+      title="Advanced slide show from images"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_thumbnails_select_scene_iframe.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/thumnail_iframe.png" 
+      title="Thumbnails -Selecting specific frames : I-frame extraction etc."/> </a>
+
+      <a href="../FFMpeg/ffmpeg_seeking_ss_option_cutting_section_video_image.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/seek_cut_sections.png" 
+      title="Seeking and cutting sections of a video & audio"/> </a>
+      
+    </div>
+
+    <!-- 71-75 -->
+    <div id = "pics">
+
+      <a href="../FFMpeg/ffmpeg_concatenating_two_videos.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/concat.png" 
+      title="Concatenating two video files or two audio files"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out.png" 
+      title="Transitions : fade-in & fade-out for 1 slide"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_two_slides.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/fade_in_out_two.png" 
+      title="Transitions : python script for fade-in & fade-out with two slides"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/slide_concat.png" 
+      title="Concatenate slides"/> </a>
+      
+    </div>
+
+    <!-- 76-80 -->
+    <div id = "pics">
+      <a href="../FFMpeg/ffmpeg_video_test_patterns_src.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/creating_test_video.png" 
+      title="Creating test videos"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/screencasting.png" 
+      title="Screen Recording on Ubuntu A"/> </a>
+
+      <a href="../FFMpeg/ffmpeg_video_screencasting_screen_recording_capture_active_current_top_window.html" target="_blank">
+      <img src="../media/img/TopicLogo/FFmpeg/ActiveCapture.png" 
+      title="Active window capture with Python on Ubuntu B"/> </a>
+
+      <img src="../media/img/TopicLogo/arrow_scikit-learn.png" 
+      title="Machine Learning with scikit-learn"/> 
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" 
+      title="scikit-learn installation"/> </a>
+
+      <a href="../python/scikit-learn/scikit-learn_install.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/feature_extraction.png" 
+      title="Features and feature extraction - iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/supervised.png" 
+      title="Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/un_supervised.png" 
+      title="Unsupervised_Learning - KMeans clustering with iris dataset"/> </a>
+
+
+      
+    </div>
+
+
+    <!-- 81-86 -->
+    <div id = "pics">
+      <a href="../python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/NonlinearlySeparable.png" 
+      title="Linearly Separable Data - Linear Model & (Gaussian) radial basis function kernel (RBF kernel)"/> </a>
+
+      <a href="../python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.html" target="_blank">
+      <img src="../media/img/TopicLogo/scikit-learn/svm.png" 
+      title="Support Vector Machines (SVM)"/> </a>
+
+      
+    </div>
+
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h2 class="teaser title">Bogotobogo's Video Streaming Technology </h1>
+<h1 class="teaser title sub">with FFmpeg, HLS, MPEG-DASH, H.265 (HEVC)</h2>
+
+
+<div class="box full" >
+<div style="margin:0 auto; width: 734px; height:120px;">
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/VideoStreaming_Image.png" 
+      title="Video Streaming Technology - General Introduction & Terminology"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_HLS_SmoothStreaming_MPEG_DASH_SorensenSqueez.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Adaptive_Sorenson.png" 
+      title="Adaptive Live Streaming with Sorenson Squeeze - HLS, Smooth Stream, and MPEG-DASH"/> </a>
+
+      <a href="../OpenCV/DigitalImageProcessing_JPEG_Compression_Under_Sampling_DCT_Quantization_Entropy_Hoffman_Encoding.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/JPEG_Compression_process_YCbCr.png" 
+      title="Digital Image Processing : JPEG Compression - subsampling, subimage, DCT, quantize, Huffman encoding"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_transcoding_audio_video_demuxing_muxing.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/planet_linux_i002.png" 
+      title="FFmpeg on Linux - Audio Video Transcoding,  Mux and Demux"/> </a>
+      
+    </div>
+
+    <!-- 6-10 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Conversion_To_Webm.png" 
+      title="FFmpeg install on Windows, file conversion, and FFmpeg converter"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_webcam_capture_Windows_Linux.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTML5_player.png" 
+      title="FFmpeg Webcam video capture, HTML5 player"/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_http_live_streaming_hls.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Segment.png" 
+      title="FFmpeg segment etc."/> </a>
+
+      <a href="../VideoStreaming/ffmpeg_options_list.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_command_options.png" 
+      title="FFmpeg command options"/> </a>
+      
+    </div>
+
+    <!-- 11-15 -->
+    <div id = "pics">
+      <a href="../VideoStreaming/ffmpeg_AdaptiveLiveStreaming_SmoothStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/FFmpeg_Smooth_Streaming.png" 
+      title="Multiple bit rate encoding with two pass, creating manifest using ismindex and mp4split"/> </a>
+
+      <a href="../VideoStreaming/rtmp_rtsp_live_streaming_vs_http_adaptive_dynamic_smooth.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/HTTPvsRTMP.png" 
+      title="HTTP vs RTMP"/> </a>
+
+      <a href="../WebTechnologies/mobile.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Mobile.png" 
+      title="Mobile in general and Mobile streaming"/> </a>
+
+      <a href="../VideoStreaming/h265_hevc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/H265.png" 
+      title="Introduction to H.265 (HEVC)"/> </a>
+      
+    </div>
+
+    <!-- 16-20-->
+    <div id = "pics">
+      <a href="../VideoStreaming/Screen_Recording_Capture_HTML5_Video_MP4_OGG_Converter.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Export_BBFlash.png" 
+      title="Screen Recording (mp4/ogg) and HTML5 Video"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_iis8.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/iis8.png" 
+      title="SmoothStreaming iis8"/> </a>
+
+      <a href="../VideoStreaming/Smooth_Streaming_Linux_Nginx_Apache.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/localhost_nginx_welcome.png" 
+      title="Smooth Streaming on Nginx/Apache"/> </a>
+
+      <a href="../VideoStreaming/mpeg_dash.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/DASH_Profile.png" 
+      title="MPEG Dynamic Adaptive Streaming over HTTP (MPEG-DASH)"/> </a>
+      
+    </div>
+
+    <!-- 21-25-->
+    <div id = "pics">
+      <a href="../VideoStreaming/p2pStreaming.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/P2P.png" 
+      title="p2p"/> </a>
+
+      <a href="../VideoStreaming/AdaptiveLiveStreaming_SmoothStreaming_expression_encoder.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/ExpressionEncoderSilverlightProject.png" 
+      title="Smooth Streaming - Expression Encoder"/> </a>
+
+      <a href="../VideoStreaming/optimization_transrating.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/opt_data.png" 
+      title="Streaming (Data Traffic) - Optimization"/> </a>
+
+      <a href="../VideoStreaming/VideoStreamingSharingSites.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/vimeo.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/How_to_Capture_Screen_to_a_Video_File_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/convert_save.png" 
+      title="How to Capture Screen to a Video File using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_http.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/Results_Two_Pictures.png" 
+      title="Live Streaming over http using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/How_to_Streaming_Live_Network_rtp.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/OpenNetworkStream.png" 
+      title="Live Streaming over RTP using VLC"/> </a>
+
+      <a href="../VideoStreaming/VLC/File_Convert_Transcoding_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/TranscodingStarted.png" 
+      title="VideoStreaming Sharing Sites"/> </a>
+      
+    </div>
+
+    <!-- 26-30-->
+    <div id = "pics">
+      <a href="../VideoStreaming/VLC/Downloading_YouTube_Video_using_VLC.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming/YouTube.png" 
+      title="Downloading a YouTube Video using VLC"/> </a>
+      
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+
+$("#pics img[title]").tooltip();
+</script>
+</div> <!-- box full -->
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+</div> <!-- blurb -->
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-horizontal.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/scrollable-buttons.css" />
+<link rel="stylesheet" type="text/css" href="../media/css/picture-box.css" />
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+
+<div class="blurb">
+<h1 class="teaser title">Bogotobogo's contents</h1>
+<p>
+  To see more items, click left or right arrow.
+</p>
+
+<div class="box full" >
+
+<div style="margin:0 auto; width: 734px; height:120px;">
+
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+ 
+  <!-- root element for the items -->
+  <div class="items">
+ 
+    <!-- 1-5 -->
+    <div>
+      <a href="cpptut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Cpp_Image.png" /> </a>
+      <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html" target="_blank">
+      <img src="../media/img/TopicLogo/Qt5_Image.png" /></a>
+      <a href="../python/pytut.html" target="_blank">
+      <img src="../media/img/TopicLogo/Python_Image.png" /> </a>
+      <a href="../Android/android.html" target="_blank">
+      <img src="../media/img/TopicLogo/Android_Image.png" /> </a>
+      
+    </div>
+ 
+    <!-- 5-10 -->
+    <div>
+      <a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html" target="_blank">
+      <img src="../media/img/TopicLogo/Matlab_Image.png" /> </a>
+      <a href="../python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.html" target="_blank">
+      <img src="../media/img/TopicLogo/OpenCV3_Image.png" /></a>
+      <a href="../FFMpeg/ffmpeg_cropdetect_ffplay.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/FFMpeg_Image.png" /></a>
+      <a href="../php/phptut.html" target="_blank"> 
+      <img src="../media/img/TopicLogo/PHP_Image.png" /></a>
+      
+    </div>
+ 
+    <!-- 10-15 -->
+    <div>
+      <a href="../CSharp/.netframework.html" target="_blank">
+      <img src="../media/img/TopicLogo/CSharp_Image.png" /></a>
+      <a href="../VisualBasicSQL/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/VisualBacis_Image.png" /></a>
+      <a href="../AngularJS/AngularJS_Introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/AngularJS_logo.png" /> </a>
+      <a href="../JQuery/JQuery_document_ready_click_function.html" target="_blank">
+      <img src="../media/img/TopicLogo/jQuery_Image.png" /></a>
+    </div>
+ 
+    <!-- 16-20 -->
+    <div>
+      <a href="../Algorithms/algorithms.html" target="_blank">
+      <img src="../media/img/TopicLogo/Algorithms_Image.png" /></a>
+      <a href="../DesignPatterns/introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Design_Patterns_Image.png" /></a>
+      <a href="../VideoStreaming/videostreaming_etc.html" target="_blank">
+      <img src="../media/img/TopicLogo/VideoStreaming_Image.png" /></a>
+      <a href="../Java/tutorials/on_java.html" target="_blank">
+      <img src="../media/img/TopicLogo/Java_Image.png" /></a>
+    </div>
+
+    <!-- 21-25 -->
+    <div>
+      <a href="../RubyOnRails/RubyOnRails.html" target="_blank">
+      <img src="../media/img/TopicLogo/RubyOnRails_Image.png" /></a>
+      <a href="../iPhone/iPhone.html" target="_blank">
+      <img src="../media/img/TopicLogo/iOS_Image.png" /></a>
+      <a href="../HTML5/OnHTML5.html" target="_blank">
+      <img src="../media/img/TopicLogo/HTML5_Image.png" /></a>
+      <a href="../Linux/linux_tips1.html" target="_blank">
+      <img src="../media/img/TopicLogo/Linux_Image.png" /> </a>    
+    </div>
+
+    <!-- 26-30 -->
+    <div>
+      <a href="../python/Django/Python_Django_tutorial_introduction.html" target="_blank">
+      <img src="../media/img/TopicLogo/Django_Image.png" /></a>
+      <a href="../python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.html"/ target="_blank">
+      <img src="../media/img/TopicLogo/Scikit-learn_Image.png" /></a>
+      <a href="../php/Laravel4/php_laravel4_framework_install_on_Windows.html" target="_blank">
+      <img src="../media/img/TopicLogo/Laravel_Image.png" /></a>
+      
+      <a href="embeddedSystemsProgramming.html" target="_blank">
+      <img src="../media/img/TopicLogo/EmbeddedRTOS.png" /></a>
+    </div>
+
+    <!-- 31-35 -->
+    <div>
+      <a href="Git/Git_GitHub_Express.html" target="_blank">
+      <img src="../media/img/TopicLogo/git_github_image.png" /></a>
+      <a href="../SVG/svg.html" target="_blank">
+      <img src="../media/img/TopicLogo/SVG_Image.png" /> </a>
+      <a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html" target="_blank">
+      <img src="../media/img/TopicLogo/DevOps_icon.png" /> </a>
+      <img src="../media/img/TopicLogo/Coming_Soon_Image.png" />
+      <img src="../media/img/TopicLogo/Hadoop_Blur_Image.png" />
+      
+    </div>
+
+    <!-- 36-40 -->
+    <div>
+      <img src="../media/img/TopicLogo/OpenCL_Blur_Image.png" />
+    </div>
+  </div> <!-- items -->
+
+</div> <!-- scrollable -->
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+});
+</script>
+</div> <!-- box full -->
+ 
+<p>
+<a class="standalone"
+          href="../about_us.html">I hope this site is informative and helpful.</a></p>
+ 
+</div> <!-- blurb -->
+
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC0In+maN+zseQtRj6SJqP9kj2LLvKf0yFklTm01uHY7UwgB3YJ0MZwvi6iERXfh4x2/KVYyMzY6elATG68c3gd6gb0Pqca380dXCg2Xua8jlW0pTZ3UabUNkpYi0iIwMSUsvWKbIw9eX8cBljOrYU1CXNuk46c0Yz2J3lGG+xCZTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI23eIgGIDbFqAgaDMolOA+os0Y06D0j9NgHZJahDCSSl3deolhu6gz8hNd0SKwNAMBDPd5LBjJ7v6QgReCprB9L2E6CVpXZwgyLnzPC/wHbQG0Qd9sc/CqbiFy2FaJodDtPbRS8mOh+aHph0pNXgZ2kRA8uqVGIRF5gc0d6wqx7+NrPK5FehCMWoGGTmfTTMlykPVQhwDAY8+QFNSbCnqih5GXX62XpkmMJWFoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwOTA2MTYwNDAxWjAjBgkqhkiG9w0BCQQxFgQUuyx70nay4O6eJQs3x4WiAm4/7DkwDQYJKoZIhvcNAQEBBQAEgYAN7yS/34G8dBK6CfFf5g4rQk/H8s7D/aUmIzppGWOoXR7nZuXQo99wSBlQsPdeFtB+a+NNapf6lC4ibUTjgSpbu1gscGHH4Y+QtXl03bt5qgaSoFhZsCJKubwRHPHGHDGVx+tQmQ2DHk09lXjjL61FpB6iqkiFFvw4vfixsoeI6g==-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+<!-- cplusplus_list_INNER.php -->
+<br><br><br>
+<h1>C++ Tutorials</h1>
+   <a href="cpptut.html">C++ Home</a> 
+   <br><br>
+   <a href="../Algorithms/algorithms.html">Algorithms & Data Structures in C++ ...</a>
+   <br><br>
+   <a href="application_visual_studio_2013.html">Application (UI) - using Windows Forms (Visual Studio 2013/2012)</a>
+   <br><br>
+   <a href="autoptr.html">auto_ptr</a>
+   <br><br>
+   <a href="binarytree.html">Binary Tree Example Code</a>
+   <br><br>
+   <a href="blackjackQT.html">Blackjack with Qt</a>
+   <br><br>
+   <a href="boost.html">Boost - shared_ptr, weak_ptr, mpl, lambda, etc.</a>
+   <br><br>
+   <a href="Boost/boost_AsynchIO_asio_tcpip_socket_server_client_timer_A.html">Boost.Asio (Socket Programming - Asynchronous TCP/IP)...</a>
+   <br><br>
+   <a href="class.html">Classes and Structs</a> 
+   <br><br>
+   <a href="constructor.html">Constructor</a> 
+   <br><br>
+   <a href="cplusplus11.html">C++11(C++0x): rvalue references, move constructor, and lambda, etc.</a> 
+   <br><br>
+   <a href="cpptesting.html">C++ API Testing</a>
+   <br><br>
+   <a href="cplusplus_keywords.html">C++ Keywords - const, volatile, etc.</a>
+   <br><br>
+   <a href="CppCrashDebuggingMemoryLeak.html">Debugging Crash & Memory Leak</a>
+   <br><br>
+   <a href="../DesignPatterns/introduction.html">Design Patterns in C++ ...</a>
+   <br><br>
+   <a href="dynamic_cast.html">Dynamic Cast Operator</a>
+   <br><br>
+   <a href="eclipse_CDT_JNI_MinGW_64bit.html">Eclipse CDT / JNI (Java Native Interface) / MinGW</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming.html">Embedded Systems Programming I - Introduction</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_gnu_toolchain_ARM_cross_compiler.html">Embedded Systems Programming II - gcc ARM Toolchain and Simple Code on Ubuntu and Fedora</a>
+   <br><br>
+   <a href="embeddedSystemsProgramming_GNU_ARM_ToolChain_Eclipse_CDT_plugin.html">Embedded Systems Programming III - Eclipse CDT Plugin for gcc ARM Toolchain </a>
+   <br><br>
+   <a href="exceptions.html">Exceptions</a> 
+   <br><br>
+   <a href="friendclass.html">Friend Functions and Friend Classes</a>
+   <br><br>
+   <a href="fstream_input_output.html">fstream: input & output</a>
+   <br><br>
+   <a href="function_overloading.html">Function Overloading</a>
+   <br><br>
+   <a href="functor_function_object_stl_intro.html">Functors (Function Objects) I - Introduction</a>
+   <br><br>
+   <a href="functor_function_object_stl_2.html">Functors (Function Objects) II - Converting function to functor</a>
+   <br><br>
+   <a href="functors.html">Functors (Function Objects) - General</a>
+   <br><br>
+   <br><br>
+   <a href="Git/Git_GitHub_Express.html">Git and GitHub Express...</a>
+   <br><br>
+   <a href="google_unit_test_gtest.html">GTest (Google Unit Test) with Visual Studio 2012</a>
+   <br><br>
+   <a href="multipleinheritance.html">Inheritance & Virtual Inheritance (multiple inheritance) </a>
+   <br><br>
+   <a href="libraries.html">Libraries - Static, Shared (Dynamic)</a>
+   <br><br>
+   <a href="linked_list_basics.html">Linked List Basics</a>
+   <br><br>
+   <a href="linkedlist.html">Linked List Examples</a>
+   <br><br>
+   <a href="make.html">make & CMake</a>
+   <br><br>
+   <a href="gnumake.html">make (gnu)</a>
+   <br><br>
+   <a href="memoryallocation.html">Memory Allocation</a>
+   <br><br>
+   <a href="multithreaded.html">Multi-Threaded Programming - Terminology - Semaphore, Mutex, Priority Inversion etc.</a>
+   <br><br>
+   <a href="multithreading_win32A.html">Multi-Threaded Programming II -  Native Thread for Win32 (A) </a>
+   <br><br>
+   <a href="multithreading_win32B.html">Multi-Threaded Programming II -  Native Thread for Win32 (B) </a>
+   <br><br>
+   <a href="multithreading_win32C.html">Multi-Threaded Programming II -  Native Thread for Win32 (C) </a>
+   <br><br>
+   <a href="multithreading_win32.html">Multi-Threaded Programming II - C++ Thread for Win32</a>
+   <br><br>
+   <a href="multithreading_pthread.html">Multi-Threaded Programming III - C/C++ Class Thread for Pthreads</a>
+   <br><br>
+   <a href="multithreading_ipc.html">MultiThreading/Parallel Programming - IPC</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11.html">Multi-Threaded Programming with C++11 Part A (start, join(), detach(), and ownership)</a>
+   <br><br>
+   <a href="multithreaded4_cplusplus11B.html">Multi-Threaded Programming with C++11 Part B (Sharing Data - mutex, and race conditions, and deadlock)</a>
+   <br><br>
+   <a href="multithreadedDebugging.html">Multithread Debugging</a>
+   <br><br>
+   <a href="object_returning.html">Object Returning</a>
+   <br><br>
+   <a href="slicing.html">Object Slicing and Virtual Table</a>
+   <br><br>
+   <a href="opencv.html">OpenCV with C++</a> 
+   <br><br>
+   <a href="operatoroverloading.html">Operator Overloading I</a> 
+   <br><br>
+   <a href="operator_oveloading_self_assignment.html">Operator Overloading II - self assignment</a> 
+   <br><br>
+   <a href="valuevsreference.html">Pass by Value vs. Pass by Reference</a>
+   <br><br>
+   <a href="pointers.html">Pointers</a>
+   <br><br>
+   <a href="pointers2_voidpointers_arrays.html">Pointers II - void pointers & arrays</a>
+   <br><br>
+   <a href="pointers3_function_multidimensional_arrays.html">Pointers III - pointer to function & multi-dimensional arrays</a>
+   <br><br>
+   <a href="preprocessor_macro.html">Preprocessor - Macro</a>
+   <br><br>
+   <a href="private_inheritance.html">Private Inheritance</a>
+   <br><br>
+   <a href="../python/python_cpp_sip.html">Python & C++ with SIP</a>
+   <br><br>
+   <a href="RandomNumbers.html">(Pseudo)-random numbers in C++</a>
+   <br><br>
+   <a href="references.html">References for Built-in Types</a>
+   <br><br>
+   <a href="sockets_server_client.html">Socket - Server & Client</a>
+   <br><br>
+    <a href="sockets_server_client_QT.html">Socket - Server & Client with Qt (Asynchronous / Multithreading / ThreadPool etc.)</a>
+   <br><br>
+   <a href="stackunwinding.html">Stack Unwinding</a>
+   <br><br>
+   <a href="stl_vector_list.html">Standard Template Library (STL) I - Vector & List</a>
+   <br><br>
+   <a href="stl2_map.html">Standard Template Library (STL) II - Maps</a>
+   <br><br>
+   <a href="stl2_unorderd_map_cpp11_hash_table_hash_function.html">Standard Template Library (STL) II - unordered_map</a>
+   <br><br>
+   <a href="stl2B_set.html">Standard Template Library (STL) II - Sets</a>
+   <br><br>
+   <a href="stl3_iterators.html">Standard Template Library (STL) III - Iterators</a>
+   <br><br>
+   <a href="stl4_algorithms.html">Standard Template Library (STL) IV - Algorithms</a>
+   <br><br>
+   <a href="stl5_function_objects.html">Standard Template Library (STL) V - Function Objects</a>
+   <br><br>
+   <a href="statics.html">Static Variables and Static Class Members</a>
+   <br><br>
+   <a href="string.html">String</a> 
+   <br><br>
+   <a href="string2.html">String II - sstream etc.</a> 
+   <br><br>
+   <a href="assembly.html">Taste of Assembly</a>
+   <br><br>
+   <a href="templates.html">Templates</a>
+   <br><br>
+   <a href="template_specialization_function_class.html">Template Specialization</a>
+   <br><br>
+   <a href="template_specialization_traits.html">Template Specialization - Traits</a>
+   <br><br>
+   <a href="template_declaration_definition_header_implementation_file.html">Template Implementation & Compiler (.h or .cpp?)</a>
+   <br><br>
+   <a href="this_pointer.html">The this Pointer</a>
+   <br><br>
+   <a href="typecast.html">Type Cast Operators</a>
+   <br><br>
+   <a href="upcasting_downcasting.html">Upcasting and Downcasting</a>
+   <br><br>
+   <a href="virtual_destructors_shared_ptr.html">Virtual Destructor & boost::shared_ptr</a>
+   <br><br>
+   <a href="virtualfunctions.html">Virtual Functions</a>
+   <br><br>
+   <br><br>
+   <i>Programming Questions and Solutions &darr;</i>
+      <br><br>
+       <a href="quiz_strings_arrays.html">Strings and Arrays</a>
+       <br><br>
+       <a href="quiz_linkedlist.html">Linked List</a>
+       <br><br>
+       <a href="quiz_recursion.html">Recursion</a>
+       <br><br>
+       <a href="quiz_bit_manipulation.html">Bit Manipulation</a> 
+       <br><br>
+       <a href="smallprograms.html">Small Programs (string, memory functions etc.)</a>
+       <br><br>
+       <a href="quiz_math_probability.html">Math & Probability</a>
+       <br><br>
+       <a href="quiz_multithreading.html">Multithreading</a>
+       <br><br>
+       <a href="google_interview_questions.html">140 Questions by Google</a> 
+       <br><br>
+       <br><br>
+   <a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5 EXPRESS...</a>
+   <br><br>
+   <a href="../Win32API/Win32API_DLL.html">Win32 DLL ...</a>
+   <br><br>
+   <a href="cppNews.html">Articles On C++</a> 
+   <br><br>
+   <a href="C11/C11_initializer_list.html">What's new in C++11...</a> 
+   <br><br>
+   <a href="C11/1_C11_creating_thread.html">C++11 Threads EXPRESS...</a> 
+   <br><br>
+   <a href="../OpenCV/opencv_3_tutorial_imgproc_gausian_median_blur_bilateral_filter_image_smoothing.html">OpenCV...</a> 
+
+
+<br />
+
+
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/cplusplus/linkedlist.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Dec 2017 18:19:16 GMT -->
+</html>
+

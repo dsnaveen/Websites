@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android21ContentProvider.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:25:40 GMT -->
+<head>
+  <title>Android 4 - Content Provider - 2017</title>
+  <meta content="Android and Eclipse Tutorial - Content Provider" name="description" />
+  <meta content="Android, Eclipse, Tutorial, Content Provider, SQLite" name="keywords" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700">
+  <link rel="stylesheet" href="../public/css/app.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/bogostyleWidePreNew.css">
+</head>
+
+<body class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">      
+      <div class="navbar-header">
+        <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar"> 
+          <span class="sr-only">Toggle navigation</span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="../index-2.html">BogoToBogo</a>
+      </div>
+      
+      <div class="navbar-collapse collapse">
+        
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../index-2.html">Home</a></li>
+          <li><a href="../about_us.html">About</a></li>
+          <li><a href="../Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.html">Big Data</a></li>
+          <li><a href="../python/scikit-learn/Artificial-Neural-Network-ANN-1-Introduction.html">Machine Learning</a></li>
+          <li><a href="../AngularJS/AngularJS_Introduction.html">AngularJS</a></li> 
+          <li><a href="../python/pytut.html">Python</a></li>
+          <li><a href="../cplusplus/cpptut.html">C++</a></li>
+          <li><a href="../DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.html">DevOps </a></li>
+          <li><a href="../Algorithms/algorithms.html">Algorithms</a></li> 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More...<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+           
+              <li><a href="../Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.html">Qt 5</a></li>                           
+              <li><a href="android.html">Android</a></li>
+              
+              <li><a href="../Linux/linux_tips1.html">Linux</a></li>
+              <li><a href="../Java/tutorials/on_java.html">Java</a></li>
+              <li><a href="../CSharp/.netframework.html">CSharp</a></li>
+              <li><a href="../VideoStreaming/videostreaming_etc.html">Video Streaming</a></li>
+              <li><a href="../FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.html">FFmpeg</a></li>
+              <li><a href="../Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.html">Matlab</a></li>
+              <li><a href="../python/Django/Python_Django_Forums_Shared_Host.html">Django 1.8</a></li>
+              <li><a href="../Laravel5/Laravel5_ToDo_List_Sample.html">Laravel 5.2</a></li>
+              <li><a href="../RubyOnRails/RubyOnRails.html">Ruby On Rails</a></li>
+              <li><a href="../HTML5/HTML5_Tutorial.html">HTML5 & CSS</a></li>
+              <li><a href="../AmazingPlaces/index.html" target="_blank">
+<img src="../Menus/MenuIcons/Earth_8px_transparent_background.png"
+width="24" height="24"/>Earth</a> </li>
+            </ul>
+          </li>
+        </ul>      
+      </div>
+    </div>  
+  </nav>  
+
+  <div id="main">
+    <div class="container">
+      <div class="row section featured topspace">
+        <div class="row">
+          <div class="col-sm-9 col-md-9 col-xs-9">
+            <h2 class="section-title">Android 4.0
+21. Content Provider - SQLite        <g:plusone></g:plusone></h2>
+            <div class="icon-image">
+               <img src="../Linux/images/emperor_penguins.png" alt="linux logo"/>
+            </div>
+            <div class="SocialLinks">
+  <span class='st__large' displayText=''></span>
+  <br><br>
+  <div align="center">
+  <span class='st_facebook_large' displayText='Facebook'></span>
+  <span class='st_twitter_large' displayText='Tweet'></span>
+  <span class='st_linkedin_large' displayText='LinkedIn'></span>
+  </div>
+  <br><br>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "b9569c43-5f56-4501-92f0-4bf4aa8fceb0", doNotHash: false, doNotCopy: true, hashAddressBar: false});</script>
+</div>
+
+<div id="bookmarkshare">
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+  <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=khhong7"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=khhong7"></script>
+</div>
+
+<br>
+<hr>
+<br>
+
+
+<!-- Google bogo1 ad -->
+<!-- Google search box -->
+
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+
+
+<hr>
+            <br><br><br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="subtitle_2nd">
+<p>This chapter</p></div>
+<ol>
+<li>
+<a href="android21ContentProvider.html#ContentProvider">21.0 Content Provider</a>
+</li>
+<li>
+<a href="android21ContentProvider.html#Example">21.1 Example</a>
+</li>
+</ol>
+<br/>
+<br/>
+
+
+<!-- bogo1 -->
+<div>
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo1 -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-4716428189734495"
+     data-ad-slot="6542308167"></ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<!-- Google search box -->
+<div class="AdSenseSearch">
+  bogotobogo.com site search:
+  <form action="http://www.google.com/" id="cse-search-box" target="_blank">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <!--<input type="text" name="q" size="55" />-->
+      <input type="text" name="q" size="" width="90%"/>
+      <input type="submit" name="sa" value="Search" />
+    </div>
+  </form>
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+
+<br/>
+<br/>
+<div class="subtitle" id="ContentProvider">21.0 Content Providers - Introduction</div>
+<br/>
+<p>Content Providers are one of the fundamental building blocks of the Android Platform. We have looked at <a href="android12ActivityTesting.html">Activities</a>, <a href="android20NotificationService.html">Notification and Services</a>, and <a href="android13Intent.html"> Intent</a>. None of these have dealt with stored data. Content Provider brings us to the concept of how to deal with data stored in the Android.</p>
+
+<!-- Google bogo_square_ad -->
+<div>
+  <script type="text/javascript">
+    google_ad_client = "ca-pub-4716428189734495";
+    /* bogo_LargeRectangle_336_280 */
+    google_ad_slot = "2712696561";
+    google_ad_width = 336;
+    google_ad_height = 280;
+  </script>
+  <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<br>
+
+
+
+
+
+<p>So, what is a content provider?<br \>
+As we already know, Android does not provide storage that all applications share. Instead, Android uses <strong>content providers</strong> that enable apps to save and retrieve data. It also makes data accessible across applications.</br></p>
+<p>A content provider can be viewed as a wrapper around the data. <strong>Android exposes data</strong> through a <strong>content provider</strong>. Several content providers are built into Android for access to data such as videos, images, and contact information, an so on.</p>
+<p>When using a content provider, all we really need to know is the <strong>provider's base URI</strong>. From there, we can run queries and construct a <strong>URI</strong> to a specific instance.</p>
+<p>The URI always starts with <strong>content://</strong>, indicating it is a <strong>content URI</strong> instead of a URI to a web resource, http://.</p>
+<p>Any application on the device can make use of these <strong>URI</strong>s to access and manipulate data. As a consequence, content providers play a significant role in sharing data between applications. </p>
+<p>There are 4 ways we can store data:
+<ol>
+<li> <strong>Preferences</strong> <br/>
+ 	Preferences are used to store user preferences for a single application or across applications in a mobile. They are typically name-value pairs accessible to the context. </li>
+<li> <strong>Files</strong> <br/>
+	Files can be stored directly on to the mobile or to extended storage mediums. They are by default not accessible to applications other than the one that created it.</li>
+<li><strong>Database (RDBMS) </strong> <br/>
+	Android supports creation of databases based on SQLite. These are again private to the application that created it. </li>
+<li><strong>Network </strong> <br/>
+	Android provides API support to store data over the network on to a server.</li>
+</ol>
+<p>
+Note that all these are various forms of storing data and most often for a single application. Irrespective of how data is stored, if it has to be shared across applications, we need Content Providers.</p>
+<p>
+No matter how the data is stored, Content Providers give a uniform interface to access the data. Data is exposed as a simple table with rows and columns where row is a record and column is a particular data type with a specific meaning. A row could be about a single person and the columns could be the person's first name, number, address, email, and so on.</p>
+<p>
+Each record is identified by a unique _ID field which is the key to the record. Each content provider exposes a unique URI that identifies its data set uniquely. This URI is equivalent to a table name in a database. The URI consists of various parts: eg: content://com.bogotobogo/android/sample/123 is a unique URI. content:// is a standard prefix. com.bogotobogo/android is the authority, sample is the table name, 123 is the unique _ID. </p>
+<br/>
+<p>
+For the native content providers, these unique URIs are declared as constants in an interface. So, in our program we will be using constants like People.CONTENT_URI which internally translates to content://contacts/people.</p>
+<p>Here are a few of the native providers:</p>
+<pre>
+Browser
+CallLog
+Contacts
+	People
+	Phones
+	Photos
+	Groups
+MediaStore
+	Audio
+		Albums
+		Artists
+		Genres
+		Playlists
+	Images
+		Thumbnails
+	Video
+Settings
+</pre>
+<p>The top-level items are databases and the lower-level items are tables. So Browser, CallLog, Contacts, MediaStore, and Settings are individual SQlite databases encapsulated as providers. These SQLite databases typically have an extension of <strong>.db</strong> and are accessible only from the implementation package. Any access outside that package must go through the content provider interface. </p>
+<br/>
+<br/>
+<div class="subtitle" id="Example">21.1 Example
+</div>
+<p>Let us look at the <strong>onCreate()</strong>:</p>
+<pre>
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		constantsCursor=managedQuery(<font color="red">Provider.Constants.CONTENT_URI</font>,
+				PROJECTION, null, null, null);
+	
+		ListAdapter adapter=
+			new SimpleCursorAdapter(this,
+				R.layout.row, constantsCursor,
+				new String[] {Provider.Constants.TITLE,
+				Provider.Constants.VALUE},
+				new int[] {R.id.title, R.id.value});
+		
+		setListAdapter(adapter);
+		registerForContextMenu(getListView());
+	}
+</pre>
+<p>Given a base <strong>URI</strong>, we can run a query to return data from the content provider related to that URI. This is done by specifying the columns to return, and the constraints determine which rows to return.</p>
+<p>Here we are using the <strong>Activity.managedQuery()</strong> to create and execute a query against the provided URI. It takes five parameters: </p>
+<ol>
+<li>Contact URI</li>
+<li>Which columns to return, the return that we want to get from the query, in our case, it's an array of string, PROJECTION which is defines as: <br/>
+<pre>
+	private static final String[] PROJECTION = new String[] {
+		Provider.Constants._ID, Provider.Constants.TITLE,
+		Provider.Constants.VALUE};
+  </pre> </li>
+<li>Which rows to return, a constraint statement. </li>
+<li>Where clause parameters, an optional set of parameters to bind into the constraint clause. </li>
+<li> Sort clause. </li>
+</ol>
+</p>This returns a <strong>Cursor</strong> object that can be iterated using the two methods moveToFirst() and moveToNext() if we want manipulate the Cursor manually.  Since we have a <strong>Cursor</strong> via <strong>managedQuery()</strong>, we have access to the query results and can do whatever we want with them. We might, for example, manually extract data from the <strong>Cursor</strong> to populate widgets.
+<p>In this example, since our goal of query is to return a list from which the user should choose an item, we use <strong>SimpleCursorAdapter</strong>. This class bridges between the <strong>Cursor</strong> and a selection widget like ListView. Feed the <strong>Cursor</strong> into a <strong>SimpleCursorAdapter</strong>, hand the adapter off to the widget, then we are set,  our widget will show the available options.</p>
+<p>So, in the code, after executing the <strong>managedQuery()</strong> and getting the <strong>Cursor</strong>, it uses <strong>SimpleCursorAdapter</strong> </p>
+<pre>
+	ListAdapter adapter=
+		new SimpleCursorAdapter(this,
+			R.layout.row, constantsCursor,
+			new String[] {
+                                      Provider.Constants.TITLE,
+			              Provider.Constants.VALUE},
+			              new int[] {R.id.title, R.id.value
+                                      });
+</pre>
+with the following parameters:
+<ol>
+<li>The <strong>activity</strong> creating the adapter, PlanetConstants, in this case. </li>
+<li>  The identifier for a layout to be used for rendering the list entries, <strong>R.layout.row</strong>.</li>
+<li><strong>Cursor</strong>, constantCursor, in this example. </li>
+<li>The properties to pull out of the cursor and use for configuring the list entry View instances (TITLE and VALUE). </li>
+<li>The corresponding identifiers of <strong>TextView</strong> widgets in the list entry layout that those properties should go into (<strong>R.id.title</strong> and <strong>R.id.value</strong>). </li>
+</ol>
+<p>After that, we put the adapter into the <strong>ListView</strong>. </p>
+<br/>
+<img alt="PlanetInit" src="../images/Android/Android21/PlanetInit.png"/><br/>
+<br/>
+<p>Content provider also offer the capabilities of adding and removing data.</p>
+<p>To insert data into a content provider, we have two options available on the <strong>ContentProvider</strong> interface which is available through <strong>getContentProvider</strong> to our activity:
+<ol>
+<li>Use <strong>insert()</strong> with a collection URI and a <strong>ContentValues</strong> structure describing the initial set of data to put in the row. </li>
+<li>Use <strong>bulkInsert()</strong> with a collection URI and an array of <strong>ContentValues</strong> structures to populate several rows at once. </li>
+</ol>
+<p>Let us look at our code where we are adding data.</p>
+<pre>
+	private void processAdd(DialogWrapper wrapper) {
+		ContentValues values=new ContentValues(2);
+		
+		values.put(Provider.Constants.TITLE, wrapper.getTitle());
+		values.put(Provider.Constants.VALUE, wrapper.getValue());
+		
+		getContentResolver()
+			.insert(Provider.Constants.CONTENT_URI, values);
+		constantsCursor.requery();
+	}
+</pre>
+<p>The <strong>insert()</strong> method returns a URI for us to use for future operations on that new object. In the code above, the passed <strong>DialogWrapper</strong> provide access to the title and value of the constant.</p>
+<p>Since we already have a <strong>Cursor</strong> for the content provider's contents, we call <strong>requery()</strong> on that to update the Cursor's contents. This, in turn, will update any <strong>SimpleCursorAdapter</strong> we may have wrapping the <strong>Cursor</strong>, and that will update any selection widgets we have.</p>
+<p> <strong>ContentResolver</strong> provides applications access to the content data or model. We can get a handle to a ContentResolver by calling the <strong>getContentResolver()</strong> method within the Activity. This provides methods to insert, update and delete data. </p>
+<p>To delete one or more rows from the content provider, we use <strong>delete()</strong> method on <strong>ContentResolver</strong>.</p>
+<pre>
+	private void processDelete(long rowId) {
+		Uri uri=ContentUris
+		    .withAppendedId(Provider.Constants.CONTENT_URI, rowId);
+		getContentResolver().delete(uri, null, null);
+		constantsCursor.requery();
+	}
+</pre>
+<br/>
+<p>No databases are automatically supplied to us by Android. If we want to use SQLite, we'll need to create our own database, and then populate it with our own tables, indexes, and data. </p>
+<p>To create and open a database, we subclassing <strong>SQLiteOpenHelper</strong>. This class wraps up the logic to create and upgrade a database, per our specifications, as needed by our application. </p>
+<pre>
+	private class DatabaseHelper extends SQLiteOpenHelper {
+		public DatabaseHelper(Context context) {
+			super(context, DATABASE_NAME, null, 1);
+		}
+		
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			Cursor c=db.rawQuery
+			("SELECT name FROM sqlite_master WHERE type='table' AND name='constants'", null);
+			
+			try {
+				if (c.getCount()==0) {
+					db.execSQL("CREATE TABLE constants 
+			(_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, value REAL);");
+					
+					ContentValues cv=new ContentValues();
+					
+					cv.put(Constants.TITLE, "Gravity, Death Star I");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_DEATH_STAR_I);
+					db.insert("constants", getNullColumnHack(), cv);
+						..........
+				}
+			}
+			finally {
+				c.close();
+			}
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			android.util.Log.w("Constants", 
+				"Upgrading database, which will destroy all old data");
+			db.execSQL("DROP TABLE IF EXISTS constants");
+			onCreate(db);
+		}
+	}
+</pre>
+<p>Our subclass of <strong>SQLiteOpenHelper</strong> will need three methods: </p>
+<ol>
+<li>The constructor, chaining upward to the <strong>SQLiteOpenHelper</strong> constructor. This takes the Context, the name of the database, on optional cursor factory, and an integer representing the version of the database schema we are using. <br/>
+<pre>
+	super(context, DATABASE_NAME, null, 1);
+      </pre> </li>
+<li><strong>onCreate()</strong>, which passes us a <strong>SQLiteDatabase</strong> object that we need to populate with tables and initial data. <br/>
+<pre>
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+  </pre></li>
+<li><strong>onUpgrade()</strong>, which passes us a <strong>SQLiteDatabase</strong> object and the old and new version numbers, so we can figure out how best to convert the database from the old schema to the new one. <br/>
+<pre>
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+  </pre> </li>
+</ol>
+<p>To use our <strong>SQLiteOpenHelper</strong> subclass, we create an instance and ask it to <strong>getReadableDatabase()</strong> or <strong>getWriteableDatabase()</strong>, depending on whether or not we will be changing its contents. </p>
+<pre>
+		db=(new DatabaseHelper(getContext())).getWritableDatabase();
+</pre>
+<p>This will return a <strong>SQLiteDatabase</strong> instance, which we can then use to query the database or modify its data.</p>
+<p>To create our tables and indexes, we'll need to call <strong>execSQL()</strong> on <strong>SQLiteDatabase</strong>, providing the Data Definition Language (DDL) statement we wish to apply against the database. In our example, we call <strong>execSQL()</strong> to create the <strong>constants</strong> table in the <strong>DatabaseHelper</strong> on <strong>onCreate()</strong> method: </p>
+<pre>
+	db.execSQL("CREATE TABLE constants " +
+		"(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+					" title TEXT, value REAL);");
+</pre>
+<p>This will create a table, <strong>constants</strong>, with a primary key column <strong>_id</strong> that is an autoincremented integer, plus two data columns: <strong>title (text)</strong> and <strong>value REAL</strong>. SQLite will automatically create an index for us on our primary key column.</p>
+<p>If we do not change our table schemas, we might never drop our tables or indexes, but if we do, just use <strong>execSQL()</strong> to invoke DROP INDEX and DROP TABLE statement as needed.</p>
+<pre>
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+		android.util.Log.w("Constants", 
+			"Upgrading database, which will destroy all old data");
+		db.execSQL("DROP TABLE IF EXISTS constants");
+		onCreate(db);
+	}
+</pre>
+<p>Now that we have a database and tables, we want to put some data in them. We have two approaches for doing this. </p>
+<ol>
+<li>Use the <strong>execSQL()</strong> method works for any SQL that does not return results. </li>
+<li>Use the insert(), update(), and delete() methods on the <strong>SQLiteDatabase</strong> object. There are builder* methods, in that they break down the SQL statements into discrete chunks, then take those chunks as parameters. </li>
+</ol>
+<p>In our example, the insert() from class PlanetConstants looks like this:</p>
+<pre>
+	private void processAdd(DialogWrapper wrapper) {
+		ContentValues values=new ContentValues(2);
+		
+		values.put(Provider.Constants.TITLE, wrapper.getTitle());
+		values.put(Provider.Constants.VALUE, wrapper.getValue());
+		
+		getContentResolver()
+			.insert(Provider.Constants.CONTENT_URI, values);
+		constantsCursor.requery();
+	}
+</pre>
+<p>These methods make use of <strong>ContentValues</strong> objects. </p>
+<br/> <br/>
+<img alt="Content_Provider_Package_Explorer.png" src="../images/Android/Android21/Content_Provider_Package_Explorer.png"/>
+<br/> <br/>
+<p><strong>PlanetConstants.java</strong>:</p>
+<pre>
+package com.bogotobogo.constants;
+
+import android.app.AlertDialog;
+import android.app.ListActivity;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
+
+public class PlanetConstants extends ListActivity {
+	private static final int ADD_ID = Menu.FIRST;
+	//private static final int EDIT_ID = Menu.FIRST+1;
+	private static final int DELETE_ID = Menu.FIRST+2;
+	private static final int CLOSE_ID = Menu.FIRST+3;
+	private static final String[] PROJECTION = new String[] {
+			Provider.Constants._ID, Provider.Constants.TITLE,
+			Provider.Constants.VALUE};
+	private Cursor constantsCursor;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		constantsCursor=managedQuery(Provider.Constants.CONTENT_URI,
+				PROJECTION, null, null, null);
+	
+		ListAdapter adapter=
+			new SimpleCursorAdapter(this,
+				R.layout.row, constantsCursor,
+				new String[] {Provider.Constants.TITLE,
+				Provider.Constants.VALUE},
+				new int[] {R.id.title, R.id.value});
+		
+		setListAdapter(adapter);
+		registerForContextMenu(getListView());
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		
+		constantsCursor.close();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(Menu.NONE, ADD_ID, Menu.NONE, "Add")
+				.setIcon(R.drawable.add)
+				.setAlphabeticShortcut('a');
+		menu.add(Menu.NONE, CLOSE_ID, Menu.NONE, "Close")
+				.setIcon(R.drawable.eject)
+				.setAlphabeticShortcut('c');
+
+		return(super.onCreateOptionsMenu(menu));
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case ADD_ID:
+				add();
+				return(true);
+				
+			case CLOSE_ID:
+				finish();
+				return(true);
+		}
+
+		return(super.onOptionsItemSelected(item));
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+						ContextMenu.ContextMenuInfo menuInfo) {
+		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Delete")
+				.setIcon(R.drawable.delete)
+				.setAlphabeticShortcut('d');
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case DELETE_ID:
+				AdapterView.AdapterContextMenuInfo info=
+					(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+				delete(info.id);
+				return(true);
+		}
+
+		return(super.onOptionsItemSelected(item));
+	}
+	
+	private void add() {
+		LayoutInflater inflater=LayoutInflater.from(this);
+		View addView=inflater.inflate(R.layout.add_edit, null);
+		final DialogWrapper wrapper=new DialogWrapper(addView);
+		
+		new AlertDialog.Builder(this)
+			.setTitle(R.string.add_title)
+			.setView(addView)
+			.setPositiveButton(R.string.ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+								int whichButton) {
+					processAdd(wrapper);
+				}
+			})
+			.setNegativeButton(R.string.cancel,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+								int whichButton) {
+					// ignore, just dismiss
+				}
+			})
+			.show();
+	}
+	
+	private void delete(final long rowId) {
+		if (rowId&gt;0) {
+			new AlertDialog.Builder(this)
+				.setTitle(R.string.delete_title)
+				.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+								int whichButton) {
+						processDelete(rowId);
+					}
+				})
+				.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+								int whichButton) {
+					// ignore, just dismiss
+					}
+				})
+				.show();
+		}
+	}
+	
+	private void processAdd(DialogWrapper wrapper) {
+		ContentValues values=new ContentValues(2);
+		
+		values.put(Provider.Constants.TITLE, wrapper.getTitle());
+		values.put(Provider.Constants.VALUE, wrapper.getValue());
+		
+		getContentResolver()
+			.insert(Provider.Constants.CONTENT_URI, values);
+		constantsCursor.requery();
+	}
+	
+	private void processDelete(long rowId) {
+		Uri uri=ContentUris
+			.withAppendedId(Provider.Constants.CONTENT_URI, rowId);
+		getContentResolver().delete(uri, null, null);
+		constantsCursor.requery();
+	}
+	
+	class DialogWrapper {
+		EditText titleField=null;
+		EditText valueField=null;
+		View base=null;
+		
+		DialogWrapper(View base) {
+			this.base=base;
+			valueField=(EditText)base.findViewById(R.id.value);
+		}
+		
+		String getTitle() {
+			return(getTitleField().getText().toString());
+		}
+		
+		float getValue() {
+			return(new Float(getValueField().getText().toString())															.floatValue());
+		}
+		
+		private EditText getTitleField() {
+			if (titleField==null) {
+				titleField=(EditText)base.findViewById(R.id.title);
+			}
+			
+			return(titleField);
+		}
+		
+		private EditText getValueField() {
+			if (valueField==null) {
+				valueField=(EditText)base.findViewById(R.id.value);
+			}
+			
+			return(valueField);
+		}
+	}
+}
+</pre>
+<br/> <br/>
+<p><strong>Provider.java</strong>:</p>
+<pre>
+ package com.bogotobogo.constants;
+
+import android.content.*;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.hardware.SensorManager;
+import android.net.Uri;
+import android.provider.BaseColumns;
+import android.text.TextUtils;
+import java.util.HashMap;
+
+
+public class Provider extends ContentProvider {
+	private static final String DATABASE_NAME="constants.db";
+	private static final int CONSTANTS=1;
+	private static final int CONSTANT_ID=2;
+	private static final UriMatcher MATCHER;
+	private static HashMap&lt;String, String&gt; CONSTANTS_LIST_PROJECTION;
+	
+	public static final class Constants implements BaseColumns {
+		public static final Uri CONTENT_URI
+			= Uri.parse("content://com.bogotobogo.android.constants.Provider/constants");
+		public static final String DEFAULT_SORT_ORDER="title";
+		public static final String TITLE="title";
+		public static final String VALUE="value";
+	}
+
+	static {
+		MATCHER=new UriMatcher(UriMatcher.NO_MATCH);
+		MATCHER.addURI("com.bogotobogo.android.constants.Provider", "constants", CONSTANTS);
+		MATCHER.addURI("com.bogotobogo.android.constants.Provider", "constants/#", CONSTANT_ID);
+
+		CONSTANTS_LIST_PROJECTION=new HashMap&lt;String, String&gt;();
+		CONSTANTS_LIST_PROJECTION.put(Provider.Constants._ID, Provider.Constants._ID);
+		CONSTANTS_LIST_PROJECTION.put(Provider.Constants.TITLE, Provider.Constants.TITLE);
+		CONSTANTS_LIST_PROJECTION.put(Provider.Constants.VALUE, Provider.Constants.VALUE);
+	}
+
+	public String getDbName() {
+		return(DATABASE_NAME);
+	}
+	
+	public int getDbVersion() {
+		return(1);
+	}
+	
+	private class DatabaseHelper extends SQLiteOpenHelper {
+		public DatabaseHelper(Context context) {
+			super(context, DATABASE_NAME, null, 1);
+		}
+		
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			Cursor c=db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='constants'", null);
+			
+			try {
+				if (c.getCount()==0) {
+					db.execSQL("CREATE TABLE constants (_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, value REAL);");
+					
+					ContentValues cv=new ContentValues();
+					
+					cv.put(Constants.TITLE, "Gravity, Death Star I");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_DEATH_STAR_I);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Earth");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_EARTH);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Jupiter");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_JUPITER);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Mars");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_MARS);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Mercury");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_MERCURY);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Moon");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_MOON);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Neptune");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_NEPTUNE);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Pluto");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_PLUTO);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Saturn");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_SATURN);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Sun");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_SUN);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, The Island");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_THE_ISLAND);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Uranus");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_URANUS);
+					db.insert("constants", getNullColumnHack(), cv);
+					
+					cv.put(Constants.TITLE, "Gravity, Venus");
+					cv.put(Constants.VALUE, SensorManager.GRAVITY_VENUS);
+					db.insert("constants", getNullColumnHack(), cv);
+				}
+			}
+			finally {
+				c.close();
+			}
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			android.util.Log.w("Constants", "Upgrading database, which will destroy all old data");
+			db.execSQL("DROP TABLE IF EXISTS constants");
+			onCreate(db);
+		}
+	}
+	
+	private SQLiteDatabase db;
+	
+	@Override
+	public boolean onCreate() {
+		db=(new DatabaseHelper(getContext())).getWritableDatabase();
+		
+		return (db == null) ? false : true;
+	}
+	
+	@Override
+	public Cursor query(Uri url, String[] projection, String selection,
+		String[] selectionArgs, String sort) {
+		SQLiteQueryBuilder qb=new SQLiteQueryBuilder();
+
+		qb.setTables(getTableName());
+		
+		if (isCollectionUri(url)) {
+			qb.setProjectionMap(getDefaultProjection());
+		}
+		else {
+			qb.appendWhere(getIdColumnName()+"="+url.getPathSegments().get(1));
+		}
+		
+		String orderBy;
+		
+		if (TextUtils.isEmpty(sort)) {
+			orderBy=getDefaultSortOrder();
+		} else {
+			orderBy=sort;
+		}
+
+		Cursor c=qb.query(db, projection, selection, selectionArgs,
+						           null, null, orderBy);
+		c.setNotificationUri(getContext().getContentResolver(), url);
+		return c;
+	}
+
+	@Override
+	public String getType(Uri url) {
+		if (isCollectionUri(url)) {
+			return(getCollectionType());
+		}
+		
+		return(getSingleType());
+	}
+
+	@Override
+	public Uri insert(Uri url, ContentValues initialValues) {
+		long rowID;
+		ContentValues values;
+		
+		if (initialValues!=null) {
+			values=new ContentValues(initialValues);
+		} else {
+			values=new ContentValues();
+		}
+
+		if (!isCollectionUri(url)) {
+			throw new IllegalArgumentException("Unknown URL " + url);
+		}
+		
+		for (String colName : getRequiredColumns()) {
+			if (values.containsKey(colName) == false) {
+				throw new IllegalArgumentException("Missing column: "+colName);
+			}
+		}
+
+		populateDefaultValues(values);
+
+		rowID=db.insert(getTableName(), getNullColumnHack(), values);
+		if (rowID &gt; 0) {
+			Uri uri=ContentUris.withAppendedId(getContentUri(), rowID);
+			getContext().getContentResolver().notifyChange(uri, null);
+			return uri;
+		}
+
+		throw new SQLException("Failed to insert row into " + url);
+	}
+
+	@Override
+	public int delete(Uri url, String where, String[] whereArgs) {
+		int count;
+		//long rowId=0;
+		
+		if (isCollectionUri(url)) {
+			count=db.delete(getTableName(), where, whereArgs);
+		}
+		else {
+			String segment=url.getPathSegments().get(1);
+			//rowId=Long.parseLong(segment);
+			count=db.delete(getTableName(), getIdColumnName()+"="
+					+ segment + (!TextUtils.isEmpty(where) ? " AND (" + where
+									+ ')' : ""), whereArgs);
+		}
+
+		getContext().getContentResolver().notifyChange(url, null);
+		return count;
+	}
+
+	@Override
+	public int update(Uri url, ContentValues values, String where, String[] whereArgs) {
+		int count;
+		
+		if (isCollectionUri(url)) {
+			count=db.update(getTableName(), values, where, whereArgs);
+		}
+		else {
+			String segment=url.getPathSegments().get(1);
+			count=db.update(getTableName(), values, getIdColumnName()+"="
+					+ segment+ (!TextUtils.isEmpty(where) ? " AND (" + where
+									+ ')' : ""), whereArgs);
+		}
+	
+		getContext().getContentResolver().notifyChange(url, null);
+		return count;
+	}
+	
+	private boolean isCollectionUri(Uri url) {
+		return(MATCHER.match(url)==CONSTANTS);
+	}
+	
+	private HashMap&lt;String, String&gt; getDefaultProjection() {
+		return(CONSTANTS_LIST_PROJECTION);
+	}
+	
+	private String getTableName() {
+		return("constants");
+	}
+	
+	private String getIdColumnName() {
+		return("_id");
+	}
+	
+	private String getDefaultSortOrder() {
+		return("title");
+	}
+	
+	private String getCollectionType() {
+		return("vnd.android.cursor.dir/vnd.bogotobogo.constant");
+	}
+	
+	private String getSingleType() {
+		return("vnd.android.cursor.item/vnd.bogotobogo.constant");
+	}
+	
+	private String[] getRequiredColumns() {
+		return(new String[] {"title"});
+	}
+	
+	private void populateDefaultValues(ContentValues values) {
+		//Long now=Long.valueOf(System.currentTimeMillis());
+		//Resources r=Resources.getSystem();
+
+		if (values.containsKey(Provider.Constants.VALUE) == false) {
+			values.put(Provider.Constants.VALUE, 0.0f);
+		}
+	}
+	
+	private String getNullColumnHack() {
+		return("title");
+	}
+	
+	private Uri getContentUri() {
+		return(Provider.Constants.CONTENT_URI);
+	}
+}
+</pre>
+<br . <p><strong>strings.xml</strong>:</br></p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+		&lt;string name="app_name"&gt;Content Provider - Planet Constants&lt;/string&gt;
+		&lt;string name="ok"&gt;OK&lt;/string&gt;
+		&lt;string name="cancel"&gt;Cancel&lt;/string&gt;
+		&lt;string name="add_title"&gt;Add Constant&lt;/string&gt;
+		&lt;string name="delete_title"&gt;Delete Constant: Are You Sure?&lt;/string&gt;
+		&lt;string name="display"&gt;Display Name:&lt;/string&gt;
+		&lt;string name="value"&gt;Value:&lt;/string&gt;
+&lt;/resources&gt;
+</pre>
+<br/>
+<p><strong>res/layout/row.xml</strong>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"&gt;
+	&lt;TextView
+			android:id="@+id/title"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"/&gt;
+	&lt;TextView
+			android:id="@+id/value"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_alignParentRight="true"/&gt;
+&lt;/RelativeLayout&gt;
+</pre>
+<br/>
+<p><strong>res/layout/add_edit.xml</strong>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"&gt;
+	&lt;LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"&gt;
+		&lt;TextView
+				android:text="@string/display"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" /&gt;
+		&lt;EditText
+		    	android:inputType="text"
+				android:id="@+id/title"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" /&gt;
+	&lt;/LinearLayout&gt;
+	&lt;LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"&gt;
+		&lt;TextView
+				android:text="@string/value"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" /&gt;
+		&lt;EditText
+		    	android:inputType="text"
+				android:id="@+id/value"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" /&gt;
+	&lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
+</pre>
+<br/>
+<p>Time to run our example with API level 8 (Android 2.2): </p>
+<br/>
+<img alt="PlanetA" src="../images/Android/Android21/PlanetA.png"/>
+<br/> <br/>
+<img alt="PlanetAdd" src="../images/Android/Android21/PlanetAdd.png"/>
+<br/> <br/>
+<p>With long click:</p>
+<img alt="PlanetDelete" src="../images/Android/Android21/PlanetDelete.png"/>
+<br/> <br/>
+<img alt="PlanetDeleteB" src="../images/Android/Android21/PlanetDeleteB.png"/>
+<br/> <br/>
+<p>Files used in this Content Provider example, <a href="../Files/Android/Android21/ContentProvider_PlanetConstants.zip">ContentProvider_PlanetConstants.zip</a> <br/>
+<br/>
+<br/> <br/>
+<p>If we run with API level 14, Android 4.0, we get the <strong>Action Bar </strong> for the menu.</p>
+<img alt="PlanetA_API14" src="../images/Android/Android21/PlanetA_API14.png"/>
+<br/><br/>
+<p>This requires slight change in the code, <strong>PlanetConstants.java</strong>:</p>
+<pre>
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	        MenuInflater inflater = getMenuInflater();
+	        inflater.inflate(R.menu.my_menu, menu);
+	        return true;
+	}
+</pre>
+<p>and we need to import <strong>android.view.MenuInflater</strong>. Also, we added <strong>res/menu/my_menu.xml</strong>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;item 
+        android:id="@+id/add_title"
+        android:icon="@drawable/add"
+        android:showAsAction="ifRoom|withText"
+		android:title="@string/add_title" /&gt;
+    &lt;item 
+        android:id="@+id/cancel"
+       	android:icon="@drawable/eject"
+       	android:showAsAction="ifRoom|withText"
+        android:title="@string/cancel" /&gt;
+&lt;/menu&gt;
+</pre>
+<p>with a slightly modified <strong>AndroidManifest.xml</strong>:</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.bogotobogo.constants"&gt;
+	&lt;uses-sdk android:minSdkVersion="14" /&gt;
+	&lt;application android:label="@string/app_name"
+		android:icon="@drawable/icon"&gt;
+		&lt;provider 
+		    android:name="com.bogotobogo.constants.Provider"
+			android:authorities="com.bogotobogo.android.constants.Provider" /&gt;
+		&lt;activity android:name="com.bogotobogo.constants.PlanetConstants" 
+					android:label="@string/app_name"&gt;
+			&lt;intent-filter&gt;
+				&lt;action android:name="android.intent.action.MAIN" /&gt;
+				&lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+			&lt;/intent-filter&gt;
+		&lt;/activity&gt;
+	&lt;/application&gt;
+&lt;/manifest&gt;
+</pre>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    
+<div class="custom-disqus">
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+/* Disabling Disqus 4/26/2017
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+ Disabling Disqus */    
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br></div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-xs-3">
+  	    <div class="g-person" data-width="1" data-href="//plus.google.com/111664369941456137911" data-rel="author">
+  	    </div>
+            <div class="resume">
+              <p>Ph.D. / Golden Gate Ave, San Francisco / Seoul National Univ / Carnegie Mellon / UC Berkeley / DevOps / Deep Learning / Visualization</p>
+            </div>
+  	    <div>
+                
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+
+
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+</script>
+  	    </div>
+  	    <div class="side_menu">
+                <br /><br />
+<br /><br />
+<h1>Android Tutorials</h1>
+   <br /><br />
+   <a href="android.html">1. Introduction</a></li>
+   <br /><br />
+   <a href="android2MyFirstApplication.html">2. My First Android Application</a></li>
+   <br /><br />
+   <a href="android3BackToHelloWorld.html">3. Back to Hello World Again</a></li>
+   <br /><br />
+   <a href="android4UserInterface.html">4. Basic User Interface</a></li>
+   <br /><br />
+   <a href="android5Layouts.html">5. Layouts</a></li>
+   <br /><br />
+   <a href="android6ListViewSpinnerGridViewGallery.html">6. ListView, Spinner, GridView, and Gallery</a></li>
+   <br /><br />
+   <a href="android7dvancedListView.html">7. Advanced ListView Widget</a></li>
+   <br /><br />
+   <a href="android8DatePickerTimePickerClocks.php">8. DatePicker, TimePicker, and Clocks</a></li>
+   <br /><br />
+   <a href="android9TabWidgetFlipper.html">9. TabWidget, Flipper, and SlidingDrawer</a></li>
+   <br /><br />
+   <a href="android10Menus.html">10. Menus</a></li>
+   <br /><br />
+   <a href="android11JUnitTest.html">11. Android JUnit Test</a></li>
+   <br /><br />
+   <a href="android12ActivityTesting.html">12. Activity Testing</a></li>
+   <br /><br />
+   <a href="android13Intent.html">13. Intent</a></li>
+   <br /><br />
+   <a href="android14OnNotepad.php">14. On Notepad Example</a></li>
+   <br /><br />
+   <a href="android15Rotation.html">15. Configuring Rotation</a></li>
+   <br /><br />
+   <a href="android16Preferences.html">16. Preferences</a></li>
+   <br /><br />
+   <a href="android17MapView.html">17. Map View</a></li>
+   <br /><br />
+   <a href="android18Manifest.html">18. Manifest</a></li>
+   <br /><br />
+   <a href="android19Animation.html">19. Animation - Frame By Frame, Layout, and View</a></li>
+   <br /><br />
+   <a href="android20NotificationService.html">20. Notification and Service</a></li>
+   <br /><br />
+   <a href="android21ContentProvider.html">21. Content Provider</a></li>
+   <br /><br />
+   <a href="android22Threads.html">22. Threads</a></li>
+   <br /><br />
+   <a href="android23HTTP.html">23. HTTP Internet Connection</a></li>
+   <br /><br />
+   <a href="android24Media.html">24. Media</a></li>
+   <br /><br />
+   <a href="android25ActivityLifeCycle.html">25. Activity Life Cycle</a></li>
+   <br /><br />
+   <a href="androidAppsMortgageCalculator.html">Apps - Mortagage Calculator</a></li>
+   <br /><br />
+          
+
+<br /><br />
+
+<div class="skyscraper">
+  <br>
+
+
+<div class="skyscraper">
+
+  <div class="bogo-paypal">
+    <!-- Paypal Donate button -->
+    <p><i>Sponsor Open Source development activities and free contents for everyone.</i></p>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_pp_142x27.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+    <p><i>Thank you.</i></p>
+    <p>- <a href="../about_us.html" target="_blank">K Hong</a></p>
+    <!-- End of Paypal Donate button   -->
+  </div>
+
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bogo_skyscraper -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-4716428189734495"
+       data-ad-slot="5321096966"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+
+  <br><br>
+
+
+
+
+
+</div></div>
+
+  		
+  	    </div>
+          </div>
+        </div>
+      </div> <!-- / section -->
+    </div>
+  </div>
+
+  <br>
+<br>
+<br>
+<br>
+
+<div class="custom-disqus">
+<!-- Disqus -->
+<!-- Disqus disabled Oct 17, 2016 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+     
+    var disqus_config = function () {
+        this.page.url = window.location.href;
+        this.page.identifier = document.title;
+    };
+    
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//bogotobogocom.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+     
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+---- Disable -->
+<!-- Disqus ends here -->
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- footer starts here -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Contact</h3>
+        <div class="widget-body">
+          <p>BogoToBogo<br>
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+          </p>  
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title">Follow Bogotobogo</h3>
+        <div class="widget-body">
+
+          <!--
+          <ul>
+            <li><a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a></li>
+          </ul>
+          -->
+             <h3>
+             <a href="https://www.facebook.com/KHongSanFrancisco" target="_unknown"><i class="fa fa-facebook"></i></a> 
+             <a href="https://twitter.com/KHongTwit" target="_unknown"><i class="fa fa-twitter"></i></a> 
+             <a href="https://plus.google.com/u/0/+KHongSanFrancisco/posts" target="_unknown"><i class="fa fa-google-plus"></i> </a> 
+             </h3>
+
+        </div>
+      </div>
+
+      <div class="col-md-4 widget">
+        <h3 class="widget-title"><a href="../about_us.html">About Us</a></h3>
+        <div class="widget-body">
+            <a href="mailto:#">contactus@bogotobogo.com</a><br>
+            <br>
+            Golden Gate Ave, San Francisco, CA 94115
+          </p>  
+        </div>
+      </div>
+
+    </div> 
+  </div>
+</footer>
+
+<footer id="underfooter">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p>Golden Gate Ave, San Francisco, CA 94115 </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 widget">
+        <div class="widget-body">
+          <p class="text-right">
+            Copyright &copy; 2016, bogotobogo<br> 
+            Design: <a href="../index.html" rel="designer">Web Master</a> </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- D3.js -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12016988-2']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!-- Google Analytics --> 
+<!-- We need this for Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+  
+<!-- Google+ -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+</body>
+
+<!-- Mirrored from www.bogotobogo.com/Android/android21ContentProvider.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2017 15:25:56 GMT -->
+</html>
+
